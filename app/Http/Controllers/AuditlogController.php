@@ -32,7 +32,7 @@ class AuditlogController extends Controller
     {
         //
         $clientIP = request()->ip();
-        dd($clientIP);
+        //dd($clientIP);
     }
 
     /**

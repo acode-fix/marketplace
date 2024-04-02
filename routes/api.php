@@ -38,13 +38,21 @@ Route::prefix('v1')->middleware('auth:sanctum')->group(function () {
 Route::get('/users', [UsersController::class, 'view']);
 //Route::get('/product/{id}', [AuditlogController::class, 'create']);
 
+// //product
+// Route::post('/product', [ProductController::class, 'store'])->middleware('can:store_product');
+// Route::get('/product/user/{id}', [ProductController::class, 'showUser']);
+// Route::get('/product/{id}', [ProductController::class, 'view'])->middleware('can:view_product');
+// Route::get('/product/{id}/edit',[ProductController::class, 'edit'])->middleware('can:edit_product');
+// Route::post('/product/{id}',[ProductController::class, 'update'])->middleware('can:update_product');
+// Route::delete('/product/{id}',[ProductController::class, 'delete'])->middleware('can:delete_product');
+
 //product
-Route::post('/product', [ProductController::class, 'store'])->middleware('can:store_product');
+Route::post('/product', [ProductController::class, 'store']);
 Route::get('/product/user/{id}', [ProductController::class, 'showUser']);
-Route::get('/product/{id}', [ProductController::class, 'view'])->middleware('can:view_product');
-Route::get('/product/{id}/edit',[ProductController::class, 'edit'])->middleware('can:edit_product');
-Route::post('/product/{id}',[ProductController::class, 'update'])->middleware('can:update_product');
-Route::delete('/product/{id}',[ProductController::class, 'delete'])->middleware('can:delete_product');
+Route::get('/product/{id}', [ProductController::class, 'view']);
+Route::get('/product/{id}/edit',[ProductController::class, 'edit']);
+Route::post('/product/{id}',[ProductController::class, 'update']);
+Route::delete('/product/{id}',[ProductController::class, 'delete']);
 //reviews
 Route::post('/reviewers', [ReviewersController::class, 'store']);
 Route::get('/reviewers/{id}', [ReviewersController::class, 'view']);

@@ -15,6 +15,29 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
+})->name('welcome');
+
+Route::get('/privacy', function () {
+    return view('privacy-policy');
+});
+Route::get('/product', function () {
+    return view('product');
+})->name('product');
+
+Route::get('/homepage', function () {
+    return view('homepage');
+});
+Route::get('/setting', function () {
+    return view('setting');
+});
+Route::get('/refer', function () {
+    return view('referafriend');
+});
+Route::get('/ads', function () {
+    return view('advert');
+});
+Route::get('/ads2', function () {
+    return view('advert2');
 });
 
 //Auth::routes();

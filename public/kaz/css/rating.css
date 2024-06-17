@@ -1,0 +1,182 @@
+.structure-m2 {
+  display: flex;
+  align-items: center;
+}
+
+.review-m {
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.01);
+  background-color: white;
+  height: 60px;
+}
+
+.review-m2 {
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.01);
+  background-color: white;
+  height: 285px;
+}
+
+.star {
+  border: none;
+  background-color: unset;
+  color: #ffce29;
+  font-size: 1.5rem;
+}
+
+.comments {
+  position: absolute;
+  bottom: 8px;
+  left: 12px;
+  color: #6c757d;
+  font-size: small;
+}
+
+.textarea1 {
+  width: 90%;
+  background-color: #e3e5e8;
+}
+
+#submit {
+  background-color: #ffce29;
+  color: #343434;
+  ;
+  font-size: small;
+  border: 1px solid #e3e5e8;
+  cursor: pointer;
+  border-radius: 4px;
+  padding: 7px 40px 7px 40px;
+  margin-left: 10px;
+  font-weight: bold;
+
+}
+
+#submit:hover {
+  background-color: #ffce60;
+
+}
+
+#submit2:hover {
+  color: #14ae5c;
+
+}
+
+#submit2 {
+  background-color: #ffce29;
+  color: #343434;
+  ;
+  font-size: small;
+  border: 1px solid #e3e5e8;
+  cursor: pointer;
+  border-radius: 4px;
+  padding: 7px 40px 7px 40px;
+  font-weight: bold;
+
+}
+
+.connect-shop2 {
+  font-size: small;
+  padding: 7px;
+  border-radius: 4px;
+  transition: background-color 0.3s ease;
+  cursor: pointer;
+}
+
+.connect-shop3 {
+  font-size: small;
+  /* border: 1px solid #e3e5e8; */
+  padding: 7px;
+  /* border-radius: 4px; */
+  transition: background-color 0.3s ease;
+  cursor: pointer;
+
+
+}
+
+.mm {
+  display: flex;
+  justify-content: center;
+}
+
+@media screen and (min-width:1400px) {
+  .review-m2 {
+    height: 290px;
+  }
+
+}
+
+.tab {
+  object-fit: cover;
+  width: 100%;
+  max-width: none;
+  height: 215.48px
+    /* Maintain aspect ratio */
+}
+
+.size {
+  width: 40%;
+}
+
+@media screen and (max-width:1192px) {
+  .size {
+    width: 49%;
+  }
+}
+
+.mobile-st {
+  display: flex;
+  align-items: center;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.01);
+  background-color: white;
+  height: 60px;
+}
+
+.structure-box {
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.01);
+  background-color: white;
+
+}
+
+.textarea2 {
+  width: 90%;
+  margin: 0 auto;
+  background-color: #e3e5e8;
+}
+
+.rate-mobile {
+  font-size: 14px;
+  text-align: center;
+}
+
+@media screen and (max-width:960px) {
+  #submit {
+    margin-left: 8px;
+
+  }
+}
+
+.no-link {
+  text-decoration: none;
+  color: #343434;
+
+}
+
+.no-link:hover {
+  color: #14ae5c;
+}
+
+#exampleFormControlTextarea1 {
+  outline: none;
+  /* Remove default focus outline */
+  box-shadow: none
+}
+
+#exampleFormControlTextarea1.form-control:focus {
+  border-top: 1px solid #ffce29;
+  /* Set top border to 1px solid #ffce29 */
+  border-left: 1px solid #ffce29;
+  /* Set left border to 1px solid #ffce29 */
+  border-right: 1px solid #ffce29;
+  border-bottom: 1px solid #ffce29;
+  /* Set right border to 1px solid #ffce29 */
+
+
+}

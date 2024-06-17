@@ -1,0 +1,245 @@
+/* Modal Content Signup Login */
+.modal_content_signup_login {
+  height: fit-content;
+  width: 100%;
+  padding: 15px;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+}
+
+.modal_content_signup_login img {
+  margin-bottom: 20px;
+  max-width: 90%;
+  height: auto;
+}
+
+.close_modal_content_signup_login {
+  color: red;
+  position: absolute;
+  top: 6%;
+  left: 90%;
+  font-size: 20px;
+  float: right;
+  cursor: pointer;
+}
+.buy_and_sell_logo_modal{
+  max-width: 160px;
+  /* cursor: pointer; */
+}
+
+/* Sign Up */
+#sign_up {
+  color: red;
+  text-align: justify;
+  margin: 15px auto;
+}
+
+.signup_continue_button {
+  background-color: #ffce29;
+  border: 2px solid #ffce29;
+  padding: 7px 10px 7px 10px;
+  border-radius: 4px;
+  width: 100%;
+}
+
+/* Or Sign Up Using */
+#or_sign_up_using {
+  position: absolute;
+  padding: 0px 10px 0px 10px;
+  margin-top: 50px;
+  margin-left: 34%;
+  background-color: white;
+  text-align: center;
+  z-index: 100;
+}
+
+@media screen and (max-width: 800px) {
+  #or_sign_up_using {
+    margin-left: 31%;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  #or_sign_up_using {
+    margin-left: 29%;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  #or_sign_up_using {
+    margin-left: 27%;
+  }
+}
+
+/* Or Login Using */
+#or_login_using {
+  position: absolute;
+  padding: 0px 10px 0px 10px;
+  margin-top: 25px;
+  margin-left: 36%;
+  background-color: white;
+  text-align: center;
+  z-index: 100;
+}
+
+@media screen and (max-width: 800px) {
+  #or_login_using {
+    margin-left: 35%;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  #or_login_using {
+    margin-left: 33%;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  #or_login_using {
+    margin-left: 30%;
+  }
+}
+
+/* Signup Links */
+.signup_links {
+  color: red;
+  text-decoration: none;
+}
+
+/* Show Password Button */
+.showPasswordBtn {
+  position: absolute;
+  right: 6%;
+  z-index: 999;
+  margin-top: 13px;
+}
+
+/* Forget Password Login */
+.forget_password_login {
+  text-align: end;
+  margin-top: 12px;
+  cursor: pointer;
+  color: blue;
+}
+
+/* Forgot Password */
+.forgot_password {
+  margin-top: 80px;
+  font-size: 15px;
+}
+
+.forgot_password_head {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.reset_email {
+  margin-top: 85px;
+  margin-bottom: 30px;
+}
+
+.already_have_an_account {
+  margin-top: 70px;
+  margin-bottom: 10px;
+}
+
+/* Type New Password */
+.type_new_password {
+  margin-top: 110px;
+  font-size: 15px;
+  margin-bottom: 50px;
+}
+
+.type_new_password_head {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+/* Change Password Button */
+.change_password_button {
+  margin-top: 50px;
+  margin-bottom: 30px;
+}
+
+/* Password Conditions */
+.password-conditions {
+  color: red;
+  display: none;
+  text-align: justify;
+  margin-top: 3px;
+}
+
+.password-conditions p {
+  margin: 5px 0;
+}
+
+.password-conditions .invalid {
+  font-size: 0.8em;
+  margin: 0px;
+  line-height: 15px;
+}
+
+/* Error */
+.error {
+  margin-top: 3px;
+  color: red;
+  display: none;
+  text-align: justify;
+  font-size: 12px;
+  line-height: 15px;
+}
+
+/* Input Field */
+.input_field {
+  border: 2px solid #ffce29;
+  height: 45px;
+}
+
+.input_field:focus{
+ 
+  border: 2px solid #ffce29;
+
+ outline: 0;
+ box-shadow: 0 0 0 0.25rem #f1e3b5;
+}
+/* Password Inputs */
+.password_inputs {
+  border: 2px solid #ffce29;
+  height: 45px;
+}
+
+/* Auth Icons */
+.auth_icons {
+  display: flex;
+  margin-top: 35px;
+}
+
+.facebook_icon {
+  margin-left: 45px;
+  width: 30px;
+}
+
+.gmail_icon {
+  margin-left: auto;
+  margin-right: 45px;
+}
+
+/* Signup Continue Button */
+.signup_continue_button {
+  margin-top: 15px;
+}
+
+
+#exampleFormControlTextarea1.form-control:focus {
+  border-top: 1px solid #ffce29;
+  /* Set top border to 1px solid #ffce29 */
+  border-left: 1px solid #ffce29;
+  /* Set left border to 1px solid #ffce29 */
+  border-right: 1px solid #ffce29;
+  border-bottom: 1px solid #ffce29;
+  /* Set right border to 1px solid #ffce29 */
+
+
+}
+

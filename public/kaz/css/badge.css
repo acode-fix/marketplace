@@ -1,0 +1,193 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "poppins";
+
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  align-content: center;
+  height: 90px;
+  background-color: white;
+  justify-content: space-between;
+  border-bottom-color: rgb(228, 228, 228);
+  box-shadow: 0px 4px 8px -2px rgba(0, 0, 0, 0.10);
+  position: fixed;
+  width: 100%;
+  z-index: 100;
+}
+
+.arrow {
+  width: 35px;
+  margin-top: -5px;
+}
+
+.next-btn {
+  position: fixed;
+  bottom: 15px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: auto;
+  padding-left: 45%;
+  padding-right: 45%;
+}
+
+.next-btn {
+  position: fixed;
+  bottom: 15px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: auto;
+  padding-left: 45%;
+  padding-right: 45%;
+}
+
+@media screen and (max-width:517px) {
+  .next-btn {
+    padding-left: 42%;
+    padding-right: 42%;
+  }
+}
+
+@media screen and (min-width:970px) {
+  /* .next-btn{
+    width: auto;
+  padding-left: 10%;
+  padding-right: 10%
+  } */
+}
+
+.main {
+  padding-top: 120px;
+}
+
+.vetted {
+  background-color: whitesmoke;
+  position: absolute;
+  border-radius: 50%;
+  margin-top: -20px;
+  margin-left: 55px;
+}
+
+.vetted-div {
+  height: 150px;
+  display: flex;
+  align-items: center;
+  align-content: start;
+  border-radius: 8px;
+  background: linear-gradient(to bottom, rgba(255, 231, 166, 100), rgba(255, 254, 253, 0));
+}
+
+.vetted-seller {
+  font-size: 13px;
+  opacity: 0.4;
+}
+
+.badge-text {
+  font-size: small;
+}
+
+.modal-benefits {
+  font-size: 14px;
+  margin-left: -13px;
+}
+
+@media screen and (min-width:762px) {
+  .first {
+    display: none;
+  }
+
+  .second {
+    display: block;
+  }
+
+  .radio-btn {
+    margin-left: 128px;
+
+  }
+
+  .augustine2 {
+    display: block;
+    margin-left: 75px;
+  }
+
+  .dp {
+    margin-left: 25px !important;
+  }
+
+  .augustine1 {
+    display: none;
+  }
+
+  .vetted {
+    margin-left: 65px;
+  }
+
+}
+
+@media screen and (max-width:762px) {
+  .first {
+    display: block;
+  }
+
+  .second {
+    display: none;
+  }
+
+  .augustine1 {
+    display: block;
+
+  }
+
+  .augustine2 {
+    display: none;
+
+  }
+
+}
+
+.scroll-text {
+  overflow-y: scroll;
+  padding-bottom: 70px;
+
+}
+
+.layout {
+  display: flex;
+  justify-content: space-between;
+}
+
+.form-check-input[type="radio"]:checked {
+  background-color: yellow;
+  /* Change background color when radio button is checked */
+  border-color: yellow;
+  /* Change border color when radio button is checked */
+}
+
+.month,
+.year {
+  padding: 8px 0px 0px 8px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.month.selected,
+.year.selected {
+  background: linear-gradient(to bottom, rgba(249, 249, 249, 100), rgba(255, 255, 255, 0));
+  /* color: white; */
+}
+
+.month2,
+.year2 {
+  padding: 8px 0px 0px 8px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.month2.selected,
+.year2.selected {
+  background: linear-gradient(to bottom, rgba(249, 249, 249, 100), rgba(255, 255, 255, 0));
+  /* color: white; */
+}

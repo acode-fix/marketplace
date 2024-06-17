@@ -1,0 +1,158 @@
+/* Styles for the location search area */
+.location_search_area {
+    display: flex;
+    padding: 5px;
+}
+
+/* Styles for the close button */
+.close_location {
+    width: initial;
+    display: flex;
+    position: absolute;
+    margin-top: 7px;
+    cursor: pointer;
+    font-size: 28px;
+}
+
+/* Styles for adding space */
+.space {
+    margin-left: 3%;
+}
+
+/* Styles for the location search input area */
+.location_search_input_area {
+    display: flex;
+    border: 1.5px solid black;
+    padding: 5px 5px 5px 5px;
+    border-radius: 5px;
+    margin-left: auto;
+    height: 42px;
+    width: 80%;
+}
+
+.location_search_input_area:focus-within {
+    border: 1.5px solid #ffce29;
+    outline: 2.5px solid #fdf0c6;
+}
+
+/* Styles for the image inside the location search input area */
+.location_search_input_area img {
+    transform: scale(0.6);
+}
+
+/* Styles for the input field inside the location search input area */
+.location_search_input_area input {
+    border: none;
+    outline: none;
+    width: 90%;
+    font-size: 13px;
+    font-family: "poppins";
+    height: 30px;
+    margin-right: 2px;
+    border-radius: 3px;
+    margin-left: auto;
+}
+
+/* Styles for the icon inside the location search input area */
+.location_search_input_area i {
+    padding: 3px 4px;
+    border-radius: 4px;
+    margin-left: auto;
+    margin-right: 2%;
+    margin-top: 4px;
+}
+
+/* Styles for the state selection */
+.state_selection {
+    text-align: justify;
+    overflow-y: scroll;
+    max-height: 400px;
+    background-color: white;
+}
+
+/* Styles for the paragraphs inside the state selection */
+.state_selection p {
+    border-bottom: 1px solid rgb(145, 141, 141);
+    padding: 5px;
+    margin: 0;
+}
+.state_selection p:hover{
+    background-color: #fdf0c6;
+}
+/* Styles for the modal content */
+.modal_content {
+    height: 500px;
+    width: 80%;
+    padding: 10px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Media query for screens with a maximum width of 450px */
+@media screen and (max-width: 450px) {
+    .modal_content {
+        height: 500px;
+        width: 100%;
+        padding: 10px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
+
+/* Styles for the clickMe div */
+.clickMe_div {
+    border: 1px solid black;
+
+    min-width: 70px;
+    max-width: 120px;
+    height: 30px;
+    border-radius: 6px;
+    font-size: 12px;
+    background-color: white;
+    padding: 4px;
+    cursor: pointer;
+    display: flex;
+    margin-top: 2px;
+    margin-left: 10px;
+    white-space: nowrap;
+}
+
+/* Styles for the paragraphs inside the clickMe div */
+
+/* Styles for the angle down icon */
+.angle_down {
+    margin-top: 4px;
+    margin-left: 15px;
+    justify-content: end;
+    cursor: pointer;
+}
+
+/* Styles for the clickMe mobile view div */
+.clickMe_mobile_veiw_div {
+    border: 1px solid black;
+    width: fit-content;
+    min-width: 60px;
+    overflow: hidden;
+    height: 25px;
+    border-radius: 3px;
+    font-size: 11px;
+    background-color: white;
+    padding: 4px;
+    cursor: pointer;
+    display: flex;
+    overflow: visible;
+    white-space: nowrap;
+    margin-left: 10%;
+}
+
+.location_filter-area {
+    margin-bottom: -10px;
+}
+
+/* Styles for the angle down icon in mobile view */
+.angle_down_mobile_view {
+    margin-top: 4px;
+    margin-left: 15px;
+    cursor: pointer;
+    z-index: 1000;
+}

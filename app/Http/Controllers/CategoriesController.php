@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Categories;
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\Ads_categoryController;
+
 use App\Models\Product;
 use Illuminate\Support\Facades\Validator;
 
@@ -16,6 +18,8 @@ class CategoriesController extends Controller
     public function index()
     {
         //
+        $categories = Ads_Category::all();
+        return response()->json($categories);
     }
 
     /**
@@ -44,7 +48,7 @@ class CategoriesController extends Controller
         $category =  Categories::find($id);
 
         return response()->json([
-          'status' => 'success',
+          'status' => true,
           'message' => 'category details',
           'data' => $category,
       ], 200);
@@ -63,7 +67,7 @@ class CategoriesController extends Controller
 
 
       return response()->json([
-        'status' => 'success',
+        'status' => true,
         'message' => 'list of Categories products',
         'data' => $categorylist,
     ], 200);
@@ -78,7 +82,7 @@ class CategoriesController extends Controller
         $category = Categories::where('name', 'LIKE', '%' . $search . '%')->get();
 
         return response()->json([
-            'status' => 'success',
+            'status' => true,
             'message' => 'Search Categories',
             'data' => $category,
         ], 200);

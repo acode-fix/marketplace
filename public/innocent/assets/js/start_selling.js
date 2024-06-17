@@ -1,0 +1,209 @@
+
+//product condition
+function toggleButton(button) {
+    if (button.classList.contains('new')) {
+        document.querySelector('.new').classList.remove('clicked');
+        document.querySelector('.used').classList.remove('clicked');
+        button.classList.add('clicked');
+    } else if (button.classList.contains('used')) {
+        document.querySelector('.new').classList.remove('clicked');
+        document.querySelector('.used').classList.remove('clicked');
+        button.classList.add('clicked');
+    }
+  }
+
+  const leftArrow = document.getElementById('leftArrow');
+  const rightArrow = document.getElementById('rightArrow');
+  const imageGallery = document.getElementById('imageGallery');
+
+  leftArrow.style.display = 'none'; // Initially hide left arrow
+
+  imageGallery.addEventListener('scroll', () => {
+      if (imageGallery.scrollLeft <= 0) {
+          leftArrow.style.display = 'none'; // Hide left arrow when at left extreme
+      } else {
+          leftArrow.style.display = 'block'; // Show left arrow when not at left extreme
+      }
+
+      if (imageGallery.scrollLeft + imageGallery.clientWidth >= imageGallery.scrollWidth) {
+          rightArrow.style.display = 'none'; // Hide right arrow when at right extreme
+      } else {
+          rightArrow.style.display = 'block'; // Show right arrow when not at right extreme
+      }
+  });
+
+  leftArrow.addEventListener('click', () => {
+      imageGallery.scrollLeft -= 900;
+  });
+
+  rightArrow.addEventListener('click', () => {
+      imageGallery.scrollLeft += 900;
+  });
+
+
+const priceSwitch = document.getElementById('priceSwitch');
+const PricesInput = document.getElementById('PricesInput');
+
+
+priceSwitch.addEventListener('change', function() {
+    if (this.checked) {
+        PricesInput.classList.add('hidden');
+      
+    } else {
+        PricesInput.classList.remove('hidden');
+       
+    }
+});
+
+let selectedCategory = null;
+
+function selectCategory(element, categoryName) {
+    if (selectedCategory) {
+        selectedCategory.classList.remove('selected');
+        selectedCategory.querySelector('.checked-icon').style.display = 'none';
+    }
+    selectedCategory = element;
+    selectedCategory.classList.add('selected');
+    selectedCategory.querySelector('.checked-icon').style.display = 'block';
+    document.getElementById('selected-category').value = categoryName;
+    document.getElementById('tooltip').style.display = 'none';
+}
+
+document.getElementById('product-name').addEventListener('focus', function() {
+    if (!selectedCategory) {
+        document.getElementById('tooltip').style.display = 'block';
+    }
+});
+
+
+
+var selectedImages = 0;
+
+document.getElementById('imageContainer').addEventListener('click', function() {
+    document.getElementById('fileInput').click();
+});
+
+document.getElementById('fileInput').addEventListener('change', function() {
+  
+    var file = this.files[0];
+    if (file) {
+        
+        if (selectedImages < 3) {
+            if (file.type === 'image/jpeg' || file.type === 'image/png') {
+                if (file.size <= 5242880) { // 5MB
+                    var reader = new FileReader();
+                    reader.onload = function(e) {
+                        var image = document.createElement('img');
+                        image.className = 'uploaded_image'; // Add unique class to the uploaded image
+                        image.onload = function() {
+                            if (image.naturalWidth > 100 || image.naturalHeight > 100) {
+                                var aspectRatio = image.naturalWidth / image.naturalHeight;
+                                if (image.naturalWidth > image.naturalHeight) {
+                                    image.width = 100;
+                                    image.height = 100 / aspectRatio;
+                                } else {
+                                    image.height = 100;
+                                    image.width = 100 * aspectRatio;
+                                }
+                            }
+                        };
+                        image.src = e.target.result;
+                        var frame = document.querySelector('.frame img') ? 
+                            document.querySelector('.frame2 img') ? 
+                                document.querySelector('.frame3 img') ? null : document.querySelector('.frame3') : document.querySelector('.frame2') : document.querySelector('.frame');
+                        if (frame) {
+                            frame.innerHTML = '';
+                            frame.appendChild(image);
+                            frame.style.display = 'flex';
+                            
+                            var closeButton = document.createElement('span');
+                            closeButton.innerHTML = '×';
+                            closeButton.className = 'close_button';
+                            closeButton.addEventListener('click', function() {
+                                frame.innerHTML = '';
+                                frame.style.display = 'none';
+                                selectedImages--;
+                                if (selectedImages === 0) {
+                                    document.querySelector('.frame_container').style.display = 'none';
+                                    document.querySelector('.upload_preview').style.display = 'none';
+                                    document.querySelector('.thumbnail').style.display = 'none';
+                                }
+                            });
+                            frame.appendChild(closeButton);
+                            selectedImages++;
+                        }
+                    };
+                    reader.readAsDataURL(file);
+                    document.querySelector('.frame_container').style.display = 'flex';
+                    document.querySelector('.upload_preview').style.display = 'block';
+                    document.querySelector('.thumbnail').style.display = 'block';
+                } else {
+                 //Size must be less than 5MB
+                var myModal = new bootstrap.Modal(document.getElementById('product_upload_condition1'));
+                myModal.show();
+                }
+            } else {
+               //Image must be PNG or JPG
+                var myModal = new bootstrap.Modal(document.getElementById('product_upload_condition2'));
+                myModal.show();
+            }
+        } else {
+           //You can only upload a maximum of three images
+            var myModal = new bootstrap.Modal(document.getElementById('product_upload_condition3'));
+            myModal.show();
+        }
+    }
+});
+
+
+
+const states = [
+    'Abakaliki', 'Aba', 'Abeokuta', 'Abuja', 'Ado Ekiti', 'Akure', 'Asaba', 'Awka', 'Bauchi', 'Benin City', 
+    'Birnin Kebbi', 'Calabar', 'Damaturu', 'Delta', 'Dutse', 'Edo', 'Ekiti', 'Enugu', 'Gombe', 'Gusau', 'Ibadan',
+    'Ikeja', 'Ilorin', 'Imo', 'Jalingo', 'Jos', 'Kaduna', 'Kano', 'Katsina', 'Lafia', 'Lagos', 'Lokoja', 'Maiduguri',
+    'Makurdi', 'Minna', 'Ogun', 'Owerri', 'Owere', 'Port Harcourt', 'Sokoto', 'Umuahia', 'Uyo', 'Yenagoa', 'Yola', 'Zaria'
+  ];
+
+  
+
+// location for mobile view serch page
+function filterStates3(value) {
+    const filteredStates = states.filter(state => state.toLowerCase().startsWith(value.toLowerCase()));
+    const stateSelection = document.getElementById('stateSelection3');
+    stateSelection.innerHTML = '';
+    if (filteredStates.length > 0) {
+      filteredStates.forEach(state => {
+        const p = document.createElement('p');
+        p.textContent = state;
+        p.setAttribute('data-bs-dismiss', 'modal');
+        p.setAttribute('aria-label', 'Close');
+        p.addEventListener('click', () => changeLocation3(state));
+        stateSelection.appendChild(p);
+      });
+    } else {
+      const p = document.createElement('p');
+      p.textContent = 'State not found';
+      stateSelection.appendChild(p);
+    }
+  }
+  
+  function changeLocation3(location) {
+    document.getElementById('clickMe3').textContent = location;
+    document.querySelector(".locationInput3").value = location;
+  } 
+
+  
+window.onscroll = function() {scrollFunction()};
+
+function scrollFunction() {
+  if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+    document.getElementById("scrollToTop").style.display = "block";
+  } else {
+    document.getElementById("scrollToTop").style.display = "none";
+  }
+}
+
+document.getElementById("scrollToTop").addEventListener("click", function() {
+  document.body.scrollTop = 0;
+  document.documentElement.scrollTop = 0;
+});

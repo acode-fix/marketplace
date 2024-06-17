@@ -1,18 +1,23 @@
 <!DOCTYPE html>
 <html class="no-js" lang="en">
 
+
 @include('layouts.others.head')
 
 
-<body class="container-fluid px-0 body_background template-collection">
-    
+
+<body>
+
 @include('layouts.others.navbar')
-@include('layouts.others.asidenav')
+
+
+
+@include('layouts.others.sidenav')
 
 
      @yield('content')
-    
-      @include('layouts.others.footer')
+
+
 </body>
 
 </html>

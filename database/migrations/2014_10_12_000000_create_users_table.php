@@ -16,15 +16,21 @@ return new class extends Migration
             $table->string('name')->nullable();
             $table->string('username')->nullable();
             $table->string('password');
-            $table->string('phone')->nullable();
+            $table->string('phone_number')->nullable();
             $table->string('whatsapp')->nullable();
             $table->string('address')->nullable();
-            $table->string('email');
+            $table->string('email')->unique();
             $table->string('email_verified_at')->nullable();
+            $table->string('bio')->nullable();
             $table->string('photo_url')->nullable();
             $table->string('location')->nullable();
+            $table->unsignedBigInteger('shop_id')->nullable();
             $table->string('stage')->default(1);   // 1 - initial signup , 2- update bio-data
-
+            $table->string('referral_code')->nullable()->unique(); // Add referral code column
+            $table->boolean('is_verified')->default(false);
+            $table->enum('badge_type', ['monthly', 'yearly'])->nullable();
+            $table->date('badge_expiry')->nullable();
+            $table->softDeletes(); // Adds a deleted_at column for soft deletes
             $table->timestamps();
         });
     }

@@ -17,7 +17,7 @@ return [
     */
 
     'name' => env('APP_NAME', 'Laravel'),
-    
+
 
     /*
     |--------------------------------------------------------------------------
@@ -44,6 +44,8 @@ return [
     */
 
     'debug' => (bool) env('APP_DEBUG', false),
+
+    // 'gateway_url' => (  env('APP_ENV') == 'local' ) ? env('TESTING_GATEWAY_URL'):env('LIVE_GATEWAY_URL')
 
     /*
     |--------------------------------------------------------------------------
@@ -170,7 +172,7 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
         Spatie\Permission\PermissionServiceProvider::class,
-    
+
     ])->toArray(),
 
     /*

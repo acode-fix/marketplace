@@ -1,0 +1,142 @@
+table{
+  border-radius: 20px; 
+  background-color: white;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);  
+} 
+.border-remove{
+  border-bottom: none;
+  text-align: center;
+  line-height: 0.1em;
+}
+.icon-preview{
+  padding-right: 35px;
+  font-size: small; 
+}
+.amount-rate{
+  padding-right: 95px;
+  color: #75d14a;
+  font-size: 20px;
+}
+.points{
+  font-size: small;
+}
+.wallet{
+  font-size: small;
+}
+.icon-text{
+  color: darkblue;
+  font-size: 20px;
+
+}
+.text2{
+  background-color: #e1eeff;
+  font-size: 12px;
+  padding: 0px  4px 0px 4px;
+  color: #4679bf;
+  border-radius: 8px;  
+}
+.points-border{
+  border-right: 1px dashed #e3e5e8
+}
+.point-earned-text{
+  font-size: small;
+}
+.excited-text{
+  font-size: small;
+}
+::placeholder{
+  font-size: small;
+}
+.wallet-btn{
+  width: 100%;
+}
+#wallet-form{
+border: 1px solid #ffce29;
+border-right: none;
+ outline: none; 
+box-shadow: none;
+transition: border-color 0.1s; 
+
+}
+#basic-addon2{
+  border: 1px solid #ffce29;
+  background-color: #f4f6f6;
+
+}
+#wallet-form.form-control:focus {
+  border: 1px solid #ffce29; 
+ 
+}
+.fund-box{
+  border-radius: 20px; 
+  background-color: white;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+
+}
+.fund-text{
+  font-size: 14px;
+}
+.svg-size1{
+height:15px;
+width:15px
+}
+.point-svg{
+  height: 17px;
+  width: 20px;
+}
+ .point-preview{
+   margin-right:30px; 
+} 
+@media screen and (max-width:1213px){
+  .excited-text{
+    font-size: x-small;
+  }
+}
+.accordion {
+  width: 100%;
+  outline: none;
+  border: none;
+
+ }
+ .caret-btn{
+  float: right;margin-top: -25px;
+  padding-right: 20px;
+ }
+ .caret-btn2{
+  padding-right: 20px;
+  float: right;margin-top: -25px;
+
+ }
+
+.panel {
+  padding: 0 18px;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.2s ease-out;
+}
+.excited-text-mobile{
+  font-size: small;
+}
+.myLink5 span {
+  /* Your styles here */
+  border: 1px solid rgb(236, 231, 231);
+  width: 150px;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  border-radius: 10px;
+  box-shadow: 0px 4px 4px -2px rgba(0, 0, 0, 0.2);
+  text-decoration: none;
+  }
+  .mobile-link-btn1{
+  padding: 5px;
+  border-radius: 6px;
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.1), 0 3px 10px 0 rgba(0, 0, 0, 0.1);
+  color:#1a2b88;
+  background-color: white;
+  
+  }
+  .mobile-link-btn1 a{
+    text-decoration: none;
+    color:#1a2b88;
+  }
+  

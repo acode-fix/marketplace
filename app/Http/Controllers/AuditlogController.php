@@ -10,11 +10,15 @@ use App\Models\Auditlog;
 class AuditlogController extends Controller
 {
 
+    // Function to display audit logs
     /**
      * Display a listing of the resource.
      */
 
-    public function index(Request $request){
+    public function index(){
+
+        $logs = Auditlog::with('user')->orderByDesc('created_at')->get();
+        return view('audit_logs.index', ['logs' => $logs]);
 //         $clientIP = request()->ip();
 // dd($clientIP);
         // dd($request->ip());

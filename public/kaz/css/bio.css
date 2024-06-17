@@ -1,0 +1,208 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "poppins";
+
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  align-content: center;
+  height: 90px;
+  background-color: white;
+  justify-content: space-between;
+  border-bottom-color: rgb(228, 228, 228);
+  box-shadow: 0px 4px 8px -2px rgba(0, 0, 0, 0.10);
+  position: fixed;
+  width: 100%;
+}
+
+.arrow {
+  width: 35px;
+  margin-top: -5px;
+}
+
+.modal-text {
+  font-size: 14px;
+}
+
+
+
+@media screen and (min-width:970px) {
+  .next-btn {
+    width: auto;
+    padding-left: 10%;
+    padding-right: 10%
+  }
+}
+
+.main {
+  text-align: center;
+  padding-top: 120px;
+}
+
+#search-modal {
+  background-image: url(images/Email.svg);
+  background-position: 10px;
+  background-repeat: no-repeat;
+  text-indent: 25%;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  border-bottom-color: rgb(228, 228, 76);
+  outline: none;
+  /* Remove default focus outline */
+  box-shadow: none;
+  transition: border-color 0.1s;
+
+}
+
+#search-modal.form-control:focus {
+  border-top: 1px solid yellow;
+  /* Set top border to 1px solid yellow */
+  border-left: 1px solid yellow;
+  /* Set left border to 1px solid yellow */
+  border-right: 1px solid yellow;
+  /* Set right border to 1px solid yellow */
+}
+
+#search-modal1 {
+  background-image: url(images/name.svg);
+  background-position: 10px;
+  background-repeat: no-repeat;
+  text-indent: 25%;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  border-bottom-color: rgb(228, 228, 76);
+  outline: none;
+  /* Remove default focus outline */
+  box-shadow: none;
+  transition: border-color 0.1s;
+
+}
+
+#search-modal1.form-control:focus {
+  border-top: 1px solid yellow;
+  /* Set top border to 1px solid yellow */
+  border-left: 1px solid yellow;
+  /* Set left border to 1px solid yellow */
+  border-right: 1px solid yellow;
+  /* Set right border to 1px solid yellow */
+}
+
+#search-modal2 {
+  background-image: url(images/address.svg);
+  background-position: 10px;
+  background-repeat: no-repeat;
+  text-indent: 25%;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  border-bottom-color: rgb(228, 228, 76);
+  outline: none;
+  /* Remove default focus outline */
+  box-shadow: none;
+  transition: border-color 0.1s;
+
+
+}
+
+#search-modal2.form-control:focus {
+  border-top: 1px solid yellow;
+  /* Set top border to 1px solid yellow */
+  border-left: 1px solid yellow;
+  /* Set left border to 1px solid yellow */
+  border-right: 1px solid yellow;
+  /* Set right border to 1px solid yellow */
+}
+
+#search-modal3 {
+  background-image: url(images/phone\ number.svg);
+  background-position: 10px;
+  background-repeat: no-repeat;
+  text-indent: 15%;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  border-bottom-color: rgb(228, 228, 76);
+  outline: none;
+  /* Remove default focus outline */
+  box-shadow: none;
+  transition: border-color 0.1s;
+
+
+}
+
+#inputstate {
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  border-bottom-color: rgb(228, 228, 76);
+  outline: none;
+  /* Remove default focus outline */
+  box-shadow: none;
+  transition: border-color 0.1s;
+
+}
+
+#inputstate:focus {
+  border-top: 1px solid yellow;
+  /* Set top border to 1px solid yellow */
+  border-left: 1px solid yellow;
+  /* Set left border to 1px solid yellow */
+  border-right: 1px solid yellow;
+  /* Set right border to 1px solid yellow */
+}
+
+.next-btn {
+  position: fixed;
+  bottom: 15px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: auto;
+  padding-left: 45%;
+  padding-right: 45%;
+}
+
+button a {
+  text-decoration: none;
+  color: black;
+}
+
+.scroll-text {
+  overflow-y: scroll;
+  padding-bottom: 70px;
+
+}
+
+@media screen and (max-width:517px) {
+  .next-btn {
+    padding-left: 42%;
+    padding-right: 42%;
+  }
+
+}
+
+#search-modal3.form-control:focus {
+  border-top: 1px solid yellow;
+  /* Set top border to 1px solid yellow */
+  border-left: 1px solid yellow;
+  /* Set left border to 1px solid yellow */
+  border-right: 1px solid yellow;
+  /* Set right border to 1px solid yellow */
+}
+
+.form-check-input[type="radio"]:checked {
+  background-color: yellow;
+  /* Change background color when radio button is checked */
+  border-color: yellow;
+  /* Change border color when radio button is checked */
+  outline-color: yellow;
+}
+
+.form-check-input[type="radio"]:focus {
+  border-color: yellow;
+  /* Set border color to yellow when radio button is focused */
+}

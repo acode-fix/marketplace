@@ -7,6 +7,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Log;
 
 class ProductController extends Controller
 {
@@ -16,6 +17,9 @@ class ProductController extends Controller
     public function index()
     {
         //
+        $data = Product::all();
+        return response()->json($data);
+
     }
 
     /**
@@ -35,22 +39,24 @@ class ProductController extends Controller
         try{
         $validateProduct = Validator::make($request->all(), [
 
-            'user_id' => 'required',
+            'user_id' => 'required|exists:users,id',
+            // 'shop_id' => 'required|exists:shops,id',
             'title' => 'required',
-           'image_url' => 'required|image|mimes:jpg,jpeg,png,gif|max:300',
+           'image_url' => 'required|image|mimes:jpg,jpeg,png,gif|max:2048',
             'description' => 'required',
-            'category_id' => 'required',
+            'category_id' => 'required|exists:categories,id',
             'quantity' => 'required',
             'location' => 'required',
             'actual_price' => 'required',
             'promo_price' => 'required',
             'condition' => ['required','in:used,new'],
-            'price_status' => ['required','in:cash_price,negotiable'],
+            // 'price_status' => ['required','in:cash_price,negotiable'],
+            // 'images.*' => 'image|mimes:jpeg,png,jpg,gif|max:2048'
         ]);
 
        if($validateProduct->fails()){
            return response()->json([
-               'status' => 'error',
+               'status' => false,
                'message' => 'validation error',
                'errors' => $validateProduct->errors()
            ], 401);
@@ -58,8 +64,8 @@ class ProductController extends Controller
 
        $product = Product::create([
         'user_id' => $request->user_id,
+        // 'shop_id' => $request->shop_id,
             'title' => $request->title,
-            //'image_url' => $request->image_url,
             'description' => $request->description,
             'category_id' => $request->category_id,
             'quantity' => $request->quantity,
@@ -67,25 +73,67 @@ class ProductController extends Controller
             'actual_price' => $request->actual_price,
             'promo_price' => $request->promo_price,
             'condition' => $request->condition,
-            'price_status' => $request->price_status,
-    ]);
+            // 'price_status' => $request->price_status,
+            'image_url' => json_encode([]), // Initialize with an empty array
+]);
 
-    $imageName = null;
-    if (request()->hasFile('image_url')) {
-        $file = request()->file('image_url');
-        $imageName = md5($file->getClientOriginalName() . time()) . "." . $file->getClientOriginalExtension();
-        $file->move('./uploads/products/', $imageName);
 
-        $product->image_url = $imageName;
-        $product->save();
+$imageNames = [];
 
+// Step 2: Check if the request has files and debug the files array
+if ($request->hasFile('image_url')) {
+    $files = $request->file('image_url');
+
+    // Ensure $files is an array
+    if (!is_array($files)) {
+        $files = [$files];
     }
 
+    // Debugging: Log the structure of the files array
+    \Log::info('Image Files Count:', ['count' => count($files)]);
 
+    foreach ($files as $file) {
+        // Additional debugging to check each file
+        \Log::info('Processing File:', ['originalName' => $file->getClientOriginalName(), 'isValid' => $file->isValid()]);
+
+        if (!$file->isValid()) {
+            \Log::error('Invalid file detected', ['file' => $file->getClientOriginalName()]);
+            continue;
+        }
+
+        $imageName = md5($file->getClientOriginalName() . time()) . "." . $file->getClientOriginalExtension();
+        $file->move(public_path('uploads/products/'), $imageName);
+        $imageNames[] = $imageName;
+    }
+
+    // Debugging: Log the image names array
+    \Log::info('Processed Image Names:', $imageNames);
+
+    // Debugging: Check if image names are being collected
+    if (empty($imageNames)) {
+        return response()->json([
+            'status' => false,
+            'message' => 'No images were processed'
+        ]);
+    }
+
+    // Step 3: Update the product's image_url field with all processed image names
+    $product->image_url = json_encode($imageNames);
+    $product->save();
+} else {
+    // Debugging: No files found in the request
     return response()->json([
-        'status' => 'success',
-        'message' => 'Product saved successfully',
-    ], 200);
+        'status' => false,
+        'message' => 'No image files found in the request'
+    ]);
+}
+
+// Step 4: Return the response with the updated product
+return response()->json([
+    'status' => true,
+    'message' => 'Product created successfully',
+    'data' => $product
+]);
 
 
 
@@ -107,7 +155,7 @@ class ProductController extends Controller
       //$product =  ['products'=> $product ];
 
       return response()->json([
-        'status' => 'success',
+        'status' => true,
         'message' => 'products',
         'data' => $product,
     ], 200);
@@ -127,7 +175,7 @@ class ProductController extends Controller
                 //::whereUserId($user_id)->get();
 
       return response()->json([
-        'status' => 'success',
+        'status' => false,
         'message' => 'products',
         'data' => $productuser,
     ], 200);
@@ -167,7 +215,7 @@ class ProductController extends Controller
 
        if($validateProduct->fails()){
            return response()->json([
-               'status' => 'error',
+               'status' => false,
                'message' => 'validation error',
                'errors' => $validateProduct->errors()
            ], 401);
@@ -190,14 +238,14 @@ class ProductController extends Controller
     }
 
              return response()->json([
-        'status' => 'success',
+        'status' => true,
         'message' => 'Product updated successfully',
     ], 200);
 
 
 } catch (\Throwable $th) {
     return response()->json([
-        'status' => 'error',
+        'status' => false,
         'message' => $th->getMessage()
     ], 500);
 }
@@ -217,12 +265,12 @@ class ProductController extends Controller
 
               if($prd){
                 return response()->json([
-                    'status' => 'success',
+                    'status' => true,
                     'message' => 'Product updated successfully',
                 ], 200);
               }else {
                 return response()->json([
-                    'status' => 'Error',
+                    'status' => false,
                     'message' => 'un-enable to delete product',
                 ], 500);
               }

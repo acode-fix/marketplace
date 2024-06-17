@@ -1,0 +1,384 @@
+.view-shop {
+  border: 1px solid #343434;
+  font-size: small;
+  padding: 5px 8px 5px 8px;
+  border-radius: 4px;
+}
+
+.view-shop:hover {
+  background-color: #1a2b88;
+  color: white;
+  border: 1px solid #e3e5e8;
+}
+
+.view-link {
+  text-decoration: none;
+
+}
+
+.view-link:hover {
+  color: white;
+}
+
+.rate-layout {
+  display: flex;
+  align-items: center;
+}
+
+.rate-no {
+  font-size: small;
+}
+
+.no-text {
+  font-size: 30px;
+  color: #1a2b88;
+  font-weight: bold;
+}
+
+.arrow-up {
+  font-size: small;
+  color: #14ae5c;
+  background-color: #e6f5e3;
+  padding: 2px;
+  border-radius: 15px;
+}
+
+.rate-break {
+  font-size: small;
+
+}
+
+.main-size {
+  margin-left: 3.3%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.lagos {
+  font-size: small;
+}
+
+.rate-four {
+  font-size: small;
+}
+
+.rate-four-text {
+  font-size: small;
+  margin-top: -20px;
+}
+
+.underline {
+  background-color: #343434;
+  margin-left: 42px;
+}
+
+.drill {
+  display: flex;
+  align-items: center;
+
+}
+
+.veri-m {
+  text-decoration-color: #14ae5c;
+  color: #14ae5c;
+  text-decoration: underline;
+  font-size: small;
+
+}
+
+.connect-shop4 {
+  font-size: small;
+  border: 1px solid #e3e5e8;
+  padding: 6px 20px 6px 20px;
+  border-radius: 4px;
+  transition: background-color 0.3s ease;
+  cursor: pointer;
+
+}
+
+.connect-shop4:hover {
+  background-color: #ffce29;
+  ;
+  /* Yellow background color on hover */
+
+}
+
+.badge3-cam-m {
+  margin-left: 5px;
+  margin-top: -1px;
+
+}
+
+.camera3-m {
+  width: 25px;
+  height: 25px;
+  background-color: #e3e5e8;
+  border-radius: 50%;
+  position: absolute;
+  left: 55px;
+  top: 185px
+}
+
+.mired-drill-m {
+  font-size: 15px;
+}
+
+.review-m {
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.01);
+  border-radius: 12px;
+  background-color: white;
+
+
+}
+
+.growth {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: -14px;
+}
+
+.star {
+  display: flex;
+  align-items: center;
+}
+
+.arrow-text {
+  display: flex;
+  align-items: center;
+}
+
+.arrangement {
+  display: flex;
+  justify-content: space-between;
+  margin-top: -14px;
+}
+
+.review-text {
+  display: flex;
+  justify-content: space-between;
+}
+
+.sleek {
+  font-size: small;
+}
+
+.m-text {
+  background-color: #343434;
+  margin-top: -3px;
+}
+
+.structure-m {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.structure-m2 {
+  display: flex;
+  align-items: center;
+}
+
+
+.connect-shop {
+  font-size: small;
+  border: 1px solid #e3e5e8;
+  padding: 6px 20px 6px 20px;
+  border-radius: 4px;
+  transition: background-color 0.3s ease;
+  cursor: pointer;
+
+}
+
+.connect-shop.with-padding {
+  padding: 4px 7px 4px 7px;
+  /* Adjusted padding when 'connect-shop' has 'with-padding' class */
+}
+
+.connect-shop:hover {
+  background-color: #ffce29;
+  ;
+  /* Yellow background color on hover */
+
+}
+
+.connect-shop4.with-padding4 {
+  padding: 10px 10px 10px 10px;
+  /* Adjusted padding when 'connect-shop' has 'with-padding' class */
+  font-size: x-small;
+}
+
+.connect-shop4:hover {
+  background-color: #ffce29;
+  ;
+  /* Yellow background color on hover */
+
+}
+
+.connect-shop4 {
+  font-size: small;
+  border: 1px solid #e3e5e8;
+  padding: 6px 20px 6px 20px;
+  border-radius: 4px;
+  transition: background-color 0.3s ease;
+  cursor: pointer;
+
+}
+
+
+.side-display {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.view {
+  font-size: small;
+}
+
+.connect-sidebar {
+  height: 65px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.sidebar-card {
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+
+}
+
+.badge-cam {
+  margin-left: 8px;
+  margin-top: 3px;
+
+}
+
+.badge-cam-m {
+  margin-left: 5px;
+  margin-top: -1px;
+
+}
+
+.content-margin {
+  margin-left: 6%;
+
+}
+
+.selling-pro {
+  border: 1px solid #e3e5e8;
+  display: flex;
+  align-items: center;
+  justify-content: end;
+  padding: 5px;
+  border-radius: 4px;
+  margin-right: 10px;
+
+}
+
+.selling-pro:hover {
+  background-color: #fe3d3d;
+  color: white;
+
+}
+
+@media screen and (max-width:1060px) {
+  .logo-bag {
+    width: 20px;
+  }
+
+}
+
+@media screen and (max-width:988px) {
+  .logo-bag {
+    width: 17px;
+  }
+
+}
+
+.verified-link {
+  text-decoration-color: #14ae5c;
+  color: #14ae5c;
+
+}
+
+.veri-m {
+  text-decoration-color: #14ae5c;
+  color: #14ae5c;
+  text-decoration: underline;
+  font-size: small;
+
+}
+
+.drill {
+  display: flex;
+  align-items: center;
+}
+
+.mired-shop-email-m {
+  font-size: x-small;
+}
+
+.about {
+  background-color: white;
+}
+
+.view-m {
+  font-size: small;
+}
+
+.bracket {
+  font-size: small;
+}
+
+.from {
+  font-size: x-small;
+
+}
+
+.link-card {
+  text-decoration: none;
+  color: black;
+}
+
+.link-card:hover {
+  text-decoration: none;
+  color: black;
+}
+
+.review {
+  margin-left: 50px;
+}
+
+@media screen and (max-width:1179px) {
+  .review {
+    margin-left: 40px;
+  }
+}
+
+@media screen and (max-width:1195px) {
+  .review {
+    margin-left: 40px;
+  }
+}
+
+@media screen and (max-width:1031px) {
+  .review {
+    margin-left: 35px;
+  }
+}
+
+@media screen and (max-width:1007px) {
+  .review {
+    margin-left: 32px;
+  }
+}
+
+#readMoreBtn {
+  text-decoration: none;
+  color: blue;
+}
+
+.connect-struct {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 12px;
+}

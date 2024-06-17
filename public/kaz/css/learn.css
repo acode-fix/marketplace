@@ -1,0 +1,814 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Sora:wght@100..800&display=swap');
+
+body {
+  font-family: "poppins";
+  background-color: #f6f8fc;
+}
+
+/* holds the whole header/nav-bar style */
+.header-section {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 120px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  background-color: white;
+  border-bottom-color: rgb(228, 228, 228);
+  box-shadow: 0px 4px 8px -2px rgba(0, 0, 0, 0.10);
+
+
+}
+
+/* style the  h6  */
+h6 {
+  margin: 0;
+}
+
+/* style the right section */
+.right-section {
+  display: flex;
+  align-items: center;
+
+}
+
+.svg-size1 {
+  height: 15px;
+  width: 15px
+}
+
+.left-section {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.arrow-div {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.arrow {
+  width: 45px;
+}
+
+/* style the profile picture */
+.profile-picture {
+  height: 40px;
+}
+
+/*style the email address */
+.mired-text {
+  font-size: small;
+  padding-right: 4px;
+}
+
+/* style the user name */
+.name {
+  padding-left: 16px;
+  font-size: 18px;
+}
+
+/* style the middle section */
+.middle-section {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 40%;
+
+}
+
+/* style the search-img */
+.search-img {
+  width: 20px;
+}
+
+/* style the search button */
+.search-btn {
+  border: none;
+  outline: none;
+  float: right;
+
+
+}
+
+/* style the input search */
+input[type="search"] {
+  padding: 10px;
+  width: 70%;
+  max-width: 100%;
+  outline: none;
+  border: none;
+}
+
+/* style the search-border */
+.search-border {
+
+  width: 100%;
+  border: 1px solid rgb(188, 183, 183);
+  border-radius: 4px;
+
+}
+
+/* adjust the widths of the search-border,input  type and middle section respectively */
+@media screen and (max-width:1173px) {
+
+  .search-border {
+    width: 95%;
+  }
+
+  input[type="search"] {
+    width: 50%;
+  }
+
+  .middle-section {
+    width: 37%;
+  }
+
+
+}
+
+/* adjust the widths of the search-border,input  type and middle section respectively*/
+@media screen and (max-width:1097px) {
+  .search-border {
+    width: 95%;
+  }
+
+  input[type="search"] {
+    width: 50%;
+  }
+
+  .middle-section {
+    width: 32%;
+  }
+
+
+}
+
+@media screen and (max-width:1097px) {
+  .search-border {
+    width: 95%;
+  }
+
+  input[type="search"] {
+    width: 50%;
+  }
+
+  .middle-section {
+    width: 29%;
+  }
+
+
+}
+
+/* the classes will not display at this sceeen size*/
+@media screen and (max-width:970px) {
+  .middle-section {
+    display: none;
+  }
+
+  .create {
+    display: none;
+  }
+
+  .right-section {
+    display: none;
+  }
+
+  .side-bar {
+    display: none;
+  }
+
+  .content {
+    display: none;
+  }
+
+  .left-section {
+    display: none;
+  }
+
+
+}
+
+/* style the hamburger menu*/
+.menu-toggle {
+  position: relative;
+  font-size: 35px;
+  right: 7px;
+
+}
+
+/*hides the checkbox */
+.menu-checkbox {
+  display: none;
+}
+
+/*style the menu btn */
+.menu-btn {
+  cursor: pointer;
+  padding: 10px;
+  background-color: white;
+  color: black;
+}
+
+/* style the overlay*/
+.menu-overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+/*style the menu  */
+.menu {
+  display: none;
+  position: fixed;
+  top: 80px;
+  right: 20px;
+  width: 200px;
+  background-color: #fff;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  border-radius: 8px;
+  font-size: 15px;
+}
+
+/* style the menu list*/
+.menu li {
+  list-style: none;
+}
+
+/*style the menu link */
+.menu li a {
+  display: block;
+  padding: 10px;
+  text-decoration: none;
+  color: #333;
+}
+
+/* opens the checkbox and overlay*/
+.menu-checkbox:checked+.menu-overlay {
+  display: block;
+}
+
+/*opens the checkbox ,overlay and menu */
+.menu-checkbox:checked+.menu-overlay+.menu {
+  display: block;
+}
+
+/* hides the hamburgger menu,arrrow img and the second layout*/
+@media screen and (min-width:970px) {
+  .menu-toggle {
+    display: none;
+  }
+
+  .mobile-view {
+    display: none;
+  }
+
+  .arrow-div {
+    display: none;
+  }
+
+}
+
+/* style the arrow image*/
+.arrow {
+  width: 45px;
+}
+
+::placeholder {
+  font-size: small;
+}
+
+/* sidebar style */
+.side-bar {
+  position: fixed;
+  top: 120px;
+  left: 0;
+  width: 200px;
+  height: 100%;
+  color: #fff;
+  padding: 20px;
+  background-color: white;
+  box-shadow: 0px 4px 8px -2px rgba(0, 0, 0, 0.19);
+
+}
+
+/* holds the sidebar,content bar and the mobile view bar */
+.main {
+  margin-top: 140px;
+
+}
+
+/*  style the main content*/
+.content {
+  margin-left: 207px;
+  /* height: 910px; */
+  overflow-x: hidden;
+
+
+
+}
+
+/* style the side-bar content  */
+.sidebar-link {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
+  height: 40px;
+  border-radius: 10px;
+  margin-top: 4px;
+}
+
+/* style the individual limks */
+.links {
+  display: flex;
+  align-items: center;
+  width: 150px;
+  height: 200px;
+}
+
+.myLink.clicked span {
+  /* Your styles here */
+  border: 1px solid rgb(236, 231, 231);
+  width: 150px;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  border-radius: 10px;
+  box-shadow: 0px 4px 4px -2px rgba(0, 0, 0, 0.2);
+}
+
+/* remove the default color */
+.links a {
+  text-decoration: none;
+  color: black
+}
+
+/* style each link when it is clicked on */
+.links.clicked a {
+  text-decoration: none;
+  color: blue
+}
+
+/* style the profile text  */
+.profile-text {
+  font-size: small;
+  margin-left: 10px;
+}
+
+/* style the links logo */
+.profile-logo {
+  margin-left: 10px;
+}
+
+/*  style the shopping bag and verified seller*/
+.shopping-bag {
+  display: flex;
+  align-items: center;
+  float: right;
+  margin-right: 10px;
+  font-size: 18px;
+  padding: 5px;
+  border-radius: 4px;
+  border: 1px solid rgb(246, 246, 133);
+
+}
+
+/* style the verified seller link*/
+.shopping-bag,
+a {
+  text-decoration: none;
+  color: black;
+}
+
+/* style the upload column*/
+.upload-div {
+  display: flex;
+  align-items: center;
+}
+
+/* style the identification text*/
+.identify-text {
+  font-size: small;
+}
+
+/* style the edit and save btn*/
+.post-btn {
+  display: flex;
+  align-items: center;
+  justify-content: end;
+}
+
+.btn-col {
+  display: flex;
+  justify-content: space-between;
+}
+
+/* style the name of the user in mobile*/
+.mobile-view-name {
+  font-size: 20px;
+  padding-top: 50px;
+  margin-left: 25px;
+}
+
+/* style the email of the user in mobile*/
+.mobile-view-email {
+  font-size: large;
+}
+
+/* style the upload text of the user in mobile*/
+.mobile-view-upload {
+  font-size: 15px;
+}
+
+/* style the last text of the user in mobile*/
+.mobile-view-text {
+  font-size: 18px;
+}
+
+/* style the delete log in mobile*/
+.delete-logo {
+  width: 50px;
+}
+
+/* style the delete button the user in mobile*/
+.del-btn {
+  border-radius: 8px;
+}
+
+/* style the  mobile-view-name,del-logo and delete button of the user in mobile*/
+@media screen and (max-width:660px) {
+  .mobile-view-name {
+    margin-left: 10px;
+  }
+
+  .delete-logo {
+    width: 40px;
+  }
+
+  .del-btn {
+    width: 80px;
+    font-size: small;
+  }
+
+}
+
+/* style the mobile-view-name,delete-logo,delete-button and the delete div of the user in mobile*/
+@media screen and (max-width:588px) {
+  .mobile-view-name {
+    margin-left: 10px;
+    font-size: 15px;
+
+  }
+
+  .delete-logo {
+    width: 30px;
+  }
+
+  .del-btn {
+    width: 75px;
+    font-size: small;
+    line-height: 1em;
+  }
+
+  .del-div {
+    margin-bottom: 30px;
+    position: absolute;
+    margin-left: 60%
+  }
+}
+
+/* style the mobile-view-text,email and dele=-div of the user in mobile*/
+@media screen and (max-width:480px) {
+  .mobile-view-text {
+    font-size: small;
+  }
+
+  .mobile-view-email {
+    font-size: small;
+  }
+
+  .mobile-view-upload {
+    font-size: small;
+  }
+
+  .del-div {
+    margin-bottom: 30px;
+    position: absolute;
+    margin-left: 66%
+  }
+
+}
+
+/*style the shopping -bag-mobile*/
+.shopping-bag-mobile {
+  border: 1px solid yellow;
+  display: flex;
+  align-items: center;
+  padding: 5px;
+  border-radius: 6px;
+}
+
+/* style the col*/
+.col-style {
+  display: flex;
+  justify-content: space-between;
+}
+
+/* style the location col*/
+.location-col-style {
+  display: flex;
+  align-items: center;
+}
+
+/*style the text in mobile */
+@media screen and (max-width:444px) {
+  .become-text-mobile {
+    font-size: small;
+  }
+
+  .turn-mobile {
+    font-size: small;
+  }
+}
+
+/* style the btn in mobile*/
+.mobile-btn {
+  display: flex;
+  justify-content: center;
+  margin-top: 50px;
+}
+
+/*style the save btn in moble */
+.save-btn {
+  width: 60%;
+}
+
+/* increase the width of the save btn in mobile*/
+@media screen and (max-width:588px) {
+  .save-btn {
+    width: 100%;
+  }
+
+}
+
+/*reduce the font size of the upload btn*/
+@media screen and (max-width:1120px) {
+  .upload-btn {
+    font-size: small;
+  }
+
+}
+
+/* style the svg size*/
+.svg-size {
+  height: 20px;
+  width: 20px
+}
+
+/*style the outer div*/
+.outer-div {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  column-gap: 20px;
+
+
+
+}
+
+/* style the text*/
+.new-text {
+  font-family: "Poppins";
+
+}
+
+/* style the card text*/
+.card-txt {
+  padding: 0px;
+  margin-top: 5px;
+  font-size: 17px;
+  /* word-spacing: 5px;  */
+  font-weight: 20px;
+  line-height: 1em;
+}
+
+/*style the img card*/
+.img-card {
+  border-radius: 10px;
+  width: auto;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+/*style the card-main*/
+.card-main {
+  border: none;
+  background-color: #f6f8fc;
+  /* background-color: white; */
+}
+
+/*style the footer text*/
+.footer-txt {
+  margin-top: -10px;
+  font-size: 14px;
+  font-family: "Poppins";
+  color: rgb(154, 150, 150);
+
+}
+
+/* style the footer*/
+.footer {
+  /* background-color: white; */
+  font-family: "Poppins";
+
+}
+
+/* style the video-size and outer-div*/
+@media screen and (max-width:1350px) {
+  .video-size {
+    border-radius: 10px;
+    width: 250px;
+    height: 180px;
+  }
+
+  .outer-div {
+    column-gap: 20px;
+    row-gap: 15px;
+
+  }
+
+
+
+}
+
+/* style the outer div*/
+@media screen and (max-width:1277px) {
+  .outer-div {
+    display: grid;
+    align-items: center;
+    justify-content: space-evenly;
+    grid-template-columns: 1fr 1fr;
+  }
+
+
+}
+
+/* style the outer div at this screen size*/
+@media screen and (max-width:1277px) {
+  .outer-div {
+    display: grid;
+    grid-template-columns: auto auto;
+  }
+
+}
+
+/* style the outer div at this screen size*/
+@media screen and (max-width:1007px) {
+  .outer-div {
+    display: grid;
+    grid-template-columns: auto auto;
+    margin-left: 0px;
+  }
+
+  .video-size {
+    border-radius: 10px;
+    width: 270px;
+    height: 200px;
+  }
+}
+
+/* style the video size*/
+.video-size {
+  border-radius: 10px;
+  width: 350px;
+  height: 200px;
+}
+
+/* style the  mobile-video size*/
+.mobile-video-size {
+  border-radius: 10px;
+  width: 350px;
+  height: 250px;
+}
+
+/* style the  mobile-video size*/
+@media screen and (max-width:969px) {
+  .mobile-video-size {
+    border-radius: 10px;
+    width: 100%;
+    height: 250px;
+  }
+
+}
+
+/* style the  mobile-outer div size*/
+@media screen and (max-width:773px) {
+  .mobile-outer-div {
+    display: block;
+  }
+
+  .mobile-video-size {
+    border-radius: 10px;
+    width: 100%;
+    height: 250px;
+  }
+
+}
+
+/* style the new mobile-btn*/
+.new-mobile-btn {
+  padding: 5px;
+  border-radius: 6px;
+}
+
+/* style the new mobile-btn*/
+.new-btn-mobile {
+  padding: 10px;
+  color: blue;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+
+}
+
+.mobile-link-btn.clicked {
+  /* Your styles for the clicked link */
+  padding: 5px;
+  border-radius: 6px;
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.1), 0 3px 10px 0 rgba(0, 0, 0, 0.1);
+  color: blue;
+  background-color: white;
+}
+
+/* style the new mobile-btn link*/
+.mobile-link-btn a {
+  text-decoration: none;
+  color: black;
+}
+
+/* style the new mobile-btn when clicked*/
+.mobile-link-btn.clicked a {
+  text-decoration: none;
+  color: blue;
+}
+
+.myLink3 span {
+  /* Your styles here */
+  border: 1px solid rgb(236, 231, 231);
+  width: 150px;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  border-radius: 10px;
+  box-shadow: 0px 4px 4px -2px rgba(0, 0, 0, 0.2);
+  text-decoration: none;
+}
+
+.mobile-link-btn1 {
+  /* Your styles for the clicked link */
+  padding: 5px;
+  border-radius: 6px;
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.1), 0 3px 10px 0 rgba(0, 0, 0, 0.1);
+  color: #1a2b88;
+  background-color: white;
+
+}
+
+.mobile-link-btn1 a {
+  text-decoration: none;
+  color: #1a2b88;
+}
+
+.mobile-struct {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+sidebar-link .footer img {
+  transition: transform 0.3s ease;
+  /* Smooth transition effect */
+}
+
+.sidebar-link .footer img:hover {
+  transform: translateY(-5px);
+  /* Move the image up by 5px */
+}
+
+.footer-desktop div {
+  cursor: pointer;
+}
+
+.footer-desktop div img {
+  transition: transform 0.3s ease;
+  /* Smooth transition effect */
+}
+
+.footer-desktop div img:hover {
+  transform: translateY(-8px);
+  /* Move the image up by 5px */
+}

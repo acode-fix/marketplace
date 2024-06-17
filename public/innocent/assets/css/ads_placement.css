@@ -1,0 +1,909 @@
+
+    /* Ads Upload Body */
+    .ads_upload_body{
+    padding: 0px;
+    color: black;
+    font-size: 15px;
+    font-family: "poppins";
+    background-color: #f6f8fc;
+    }
+
+    /* Main */
+    .main{
+    background-color: #f6f8fc;
+    padding: 15px 25px 100px 25px;
+    }
+
+    /* Choose Ads */
+    .choose_ads{
+    font-size: 22px;
+    color: rgb(61, 56, 56);
+    text-align: center;
+    line-height: 20px;
+    font-weight: bold;
+    font-family: "poppins";
+    opacity: 0;
+    transition: opacity 2s, transform 3s;
+    transition-delay: 0.2s;
+    }
+
+    /* Set Ads */
+    .set_ads{
+    font-size: 22px;
+    color: rgb(61, 56, 56);
+    text-align: center;
+    line-height: 20px;
+    font-weight: bold;
+    font-family: "poppins";
+    opacity: 0;
+    transition: opacity 2s, transform 3s;
+    transition-delay: 0.2s;
+    }
+
+    /* Span 1 */
+    #span1{
+    color: red;
+    }
+
+    /* Span 2 */
+    #span2{
+    font-size: 15px;
+    font-weight: normal;
+    }
+
+    /* Choose Ads Small Screen */
+    .choose_ads_small_screen{
+    font-size: 16px;
+    color: rgb(61, 56, 56);
+    text-align: justify;
+    line-height: 8px;
+    font-weight: bold;
+    display: none;
+    }
+
+    /* Set Ads Small Screen */
+    .set_ads_small_screen{
+    font-size: 16px;
+    color: rgb(61, 56, 56);
+    text-align: justify;
+    line-height: 8px;
+    font-weight: bold;
+    display: none;
+    }
+
+    /* Media Query for Small Screen */
+    @media screen and (max-width: 700px) {
+    .choose_ads_small_screen{
+    display: inline;
+    font-family: "poppins";
+    }
+    .set_ads_small_screen{
+    display: inline;
+    opacity: 0;
+    transition: opacity 2s, transform 3s;
+    transition-delay: 0.2s;
+    font-family: "poppins";
+    }
+    .choose_ads{
+    display: none;
+    }
+    .set_ads{
+    display: none;
+    }
+    #span2{
+    font-size: 12px;
+    font-weight: normal;
+    }
+    }
+
+    /* Div for Button to Choose Ads */
+    .div_for_btn_to_choose_ads{
+    text-align: center;
+    background-color: white;
+    padding: 10px 0px 10px 0px;
+    display: flex;
+    justify-content: center;
+    border-radius: 3px;
+    text-align: center;
+    margin: 15px 100px 10px 100px;
+    max-width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+    }
+
+    /* Media Query for Button to Choose Ads */
+    @media screen and (max-width: 700px) {
+    .div_for_btn_to_choose_ads{
+    margin: 10px 0px 10px 0px;
+    display: block;
+    background-color: inherit;
+    text-align: center;
+    justify-content: center;
+    max-width: 100%;
+    }
+    }
+
+    /* Button to Choose Ads */
+    .btn_to_choose_ads{
+    width: 300px;
+    height: 50px;
+    font-size: 16px;
+    background-color: white;
+    text-align: justify;
+    font-weight: bolder;
+    border: 2px solid white;
+    margin-left: 5%;
+    margin-right: 5%;
+    padding: 5px 10px 5px 10px;
+    border-radius: 10px;
+    cursor: pointer;
+    opacity: 0;
+    transition: opacity 2s, transform 3s;
+    transition-delay: 0.2s;
+    font-family: "poppins";
+    }
+
+    /* Media Query for Button to Choose Ads */
+    @media screen and (max-width: 700px) {
+    .btn_to_choose_ads{
+    width: 350px;
+    border: inherit;
+    margin-top: 20px;
+    height: 50px;
+    max-width: 100%;
+    font-size: 15px;
+    font-weight: normal;
+    background-color: inherit;
+    margin-left: auto;
+    margin-right: auto;
+    }
+    }
+
+    /* Checked */
+    .checked {
+    background-image: linear-gradient(rgb(202, 198, 198), white,rgb(202, 198, 198));
+    }
+
+    /* Media Query for Button 1 */
+    @media screen and (max-width: 700px) {
+    .btn1{
+    margin-top: 0px;
+    }
+    }
+
+    /* Form Check Input */
+    .form-check-input{
+    float: right;
+    margin: 5px;
+    }
+
+    /* Form Check Input Radio Checked */
+    .form-check-input[type="radio"]:checked {
+    background-color: rgb(252, 240, 9);
+    border-color: red;
+    outline-color: red;
+    }
+
+    /* Upload Banner Image */
+    .upload_banner_img{
+    max-width: 80%;
+    height: auto;
+    text-align: center;
+    position: relative;
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    opacity: 0;
+    transition: opacity 2s, transform 3s;
+    transition-delay: 0.2s;
+    }
+
+    /* Upload Banner Image Image */
+    .upload_banner_img img{
+    max-width: 70%;
+    height: auto;
+    }
+
+    /* Upload Banner Paragraph */
+    .upload_banner_p{
+    max-width: 70%;
+    height: auto;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    }
+
+    /* Scroll View */
+    .scroll_veiw{
+    width: 65px;
+    height: 85px;
+    position: absolute;
+    margin-left: 20px;
+    margin-top: 60px;
+    }
+
+    /* Media Query for Scroll View */
+    @media screen and (max-width: 850px) {
+    .scroll_veiw{
+    width: 60px;
+    height: 72px;
+    margin-left: 20px;
+    margin-top: 54px;
+    }
+    }
+
+    /* Media Query for Scroll View */
+    @media screen and (max-width: 750px) {
+    .scroll_veiw{
+    width: 55px;
+    height: 65px;
+    margin-left: 16px;
+    margin-top: 41px;
+    }
+    }
+
+    /* Media Query for Scroll View */
+    @media screen and (max-width: 650px) {
+    .scroll_veiw{
+    width: 50px;
+    height: 62px;
+    position: absolute;
+    margin-left: 14px;
+    margin-top: 34px;
+    }
+    }
+
+    /* Media Query for Scroll View */
+    @media screen and (max-width: 580px) {
+    .scroll_veiw{
+    width: 48px;
+    height: 59px;
+    position: absolute;
+    margin-left: 14px;
+    margin-top: 30px;
+    }
+    }
+
+    /* Media Query for Scroll View */
+    @media screen and (max-width: 550px) {
+    .scroll_veiw{
+    width: 44px;
+    height: 55px;
+    position: absolute;
+    margin-left: 13px;
+    margin-top: 27px;
+    }
+    }
+
+    /* Scroll View */
+    @media screen and (max-width: 520px) {
+    .scroll_view{
+    width: 44px;
+    height: 55px;
+    position: absolute;
+    margin-left: 13px;
+    margin-top: 25px;
+    }
+    }
+
+    @media screen and (max-width: 500px) {
+    .scroll_view{
+    width: 40px;
+    height: 50px;
+    position: absolute;
+    margin-left: 12px;
+    margin-top: 23px;
+    }
+    }
+
+    @media screen and (max-width: 480px) {
+    .scroll_view{
+    width: 53px;
+    height: 70px;
+    position: absolute;
+    margin-left: 10px;
+    margin-top: 42px;
+    }
+
+    .upload_banner_img img{
+    max-width: 120%;
+    height: auto;
+    }
+    }
+
+    @media screen and (max-width: 430px) {
+    .scroll_view{
+    width: 52px;
+    height: 67px;
+    position: absolute;
+    margin-left: 10px;
+    margin-top: 44px;
+    }
+    }
+
+    @media screen and (max-width: 400px) {
+    .scroll_view{
+    width: 51px;
+    height: 67px;
+    position: absolute;
+    margin-left: 5px;
+    margin-top: 30px;
+    }
+    }
+
+    /* Days Display */
+    #daysDisplay {
+    font-size: 20px;
+    text-align: center;
+    transition: margin-left 0.3s;
+    position: absolute;
+    margin-left: 17%;
+    margin-right: auto;
+    font-family: "poppins";
+    }
+
+    #daysRange {
+    width: 70%;
+    margin-top: 35px;
+    margin-left: 15%;
+    position: relative;
+    margin-right: auto;
+    text-align: center;
+    }
+
+    #days_limit{
+    display: none;
+    color: red;
+    font-size: 19px;
+    text-align: center;
+    transition: margin-left 0.3s;
+    position: absolute;
+    margin-left: 17%;
+    margin-right: auto;
+    font-family: "poppins";   
+    }
+
+    @media screen and (max-width: 700px) {
+    #daysDisplay {
+    margin-left: 13%;
+    font-size: 18px;
+    }
+
+    #daysRange {
+    width: 80%;
+    margin-left: 10%;
+    margin-top: 35px;
+    }
+    #days_limit{
+    margin-left: 13%;
+    font-size: 18px;
+    }
+    }
+
+    @media screen and (max-width: 480px) {
+    #daysDisplay {
+    margin-left: 4%;
+    font-size: 17px;
+    }
+
+    #daysRange {
+    width: 100%;
+    margin-left: 0%;
+    margin-top: 30px;
+    }
+    #days_limit{
+    margin-left: 4%;
+    font-size: 17px;
+    }
+    }
+
+    /* Ads Budgets */
+    .ads_budgets{
+    text-align: justify;
+    width: 70%;
+    margin-top: 5px;
+    margin-left :15%;
+    position: relative;
+    margin-right: auto;
+    text-align: justify;
+    }
+
+    .budget_summary{
+    margin-top: 0px;
+    font-size: 18px;
+    font-weight: bold;
+    text-align: justify;
+    font-family: "poppins";
+    }
+
+    .ads_costs{
+    text-align: justify;
+    font-family: "poppins";
+    }
+
+    #amountDisplay {
+    font-size: 18px;
+    font-weight: bold;
+    font-family: "poppins";
+    position: absolute;
+    right: 0%;
+    }
+
+    .vat_costs{
+    text-align: justify;
+    font-family: "poppins";
+    }
+
+    #vatDisplay {
+    font-size: 16px;
+    font-weight: normal;
+    font-family: "poppins";
+    position: absolute;
+    right: 0%;
+    }
+
+    .extimate_reach{
+    text-align: justify;
+    font-family: "poppins";
+    }
+
+    #extimate_reach{
+    font-size: 16px;
+    font-weight: normal;
+    font-family: "poppins";
+    position: absolute;
+    right: 0%;
+    }
+
+    .reward{
+    text-align: justify;
+    font-family: "poppins";
+    }
+
+    #reward_earn{
+    font-size: 16px;
+    font-weight: normal;
+    font-family: "poppins";
+    position: absolute;
+    right: 0%;
+    }
+
+    .total_cost{
+    text-align: justify;
+    font-family: "poppins";
+    margin-top: 5px;
+    font-weight: bold;
+    font-size: 18px;
+    }
+
+    #total_display{
+    font-size: 18px;
+    font-weight: normal;
+    font-family: "poppins";
+    position: absolute;
+    right: 0%;
+    font-weight: bold;
+    }
+
+    @media screen and (max-width: 700px) {
+    .ads_budgets{
+    width: 100%;
+    margin-left: 0%;
+    margin-top: 4px;
+    }
+
+    .budget_summary{
+    margin-top: 2px;
+    font-size: 16px;
+    }
+    }
+
+    /* Next and Previous Buttons */
+    .next_and_prev_buttons1{
+    text-align: justify;
+    width: 80%;
+    margin-top: 30px;
+    margin-left: 10%;
+    position: relative;
+    margin-right: auto;
+    text-align: justify;
+    }
+
+    .back_button1{
+    text-align: justify;
+    font-family: "poppins";
+    font-size: 21px;
+    color: white;
+    background-color: rgb(159, 157, 157);
+    border: 2px solid rgb(159, 157, 157);
+    border-radius: 6px;
+    padding: 6px 8px 6px 8px;
+    }
+
+    .next_button1{
+    font-size: 21px;
+    font-weight: normal;
+    font-family: "poppins";
+    position: absolute;
+    right: 0%;
+    background-color: rgb(244, 216, 5);
+    border: 1px solid rgb(244, 216, 5);
+    border-radius: 6px;
+    padding: 6px 8px 6px 8px;
+    }
+
+    @media screen and (max-width: 700px) {
+    .next_and_prev_buttons1{
+    width: 100%;
+    margin-left: 0%;
+    margin-top: 25px;
+    }
+
+    .back_button1{
+    font-size: 16px;
+    padding: 3px 5px 3px 5px;
+    }
+    }
+
+    @media screen and (max-width: 700px) {
+
+
+    .next_and_prev_buttons1{
+    width: 100%;
+    margin-left: 0%;
+    margin-top: 25px;
+    }
+
+
+    .back_button1{ 
+    font-size: 16px;
+    padding: 3px 5px 3px 5px;
+    }
+
+    .next_button1 {
+    font-size: 16px;
+    padding: 3px 5px 3px 5px;
+    }
+    }
+
+
+
+    /* Main2 Styles */
+    #main2 {
+    display: none;
+    padding: 50px 20px 20px 20px;
+    background-color: whitesmoke;
+    font-family: "poppins";
+    }
+
+    /* Div for Upload Ads Styles */
+    .div_for_to_upload_ads {
+    text-align: center;
+    background-color: white;
+    padding: 10px 0px 10px 0px;
+    display: flex;
+    justify-content: center;
+    border-radius: 3px;
+    margin: 10px 100px 10px 100px;
+    max-width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+    height: 145px;
+    border-radius: 10px;
+    box-shadow: 0px 5px 5px rgba(0,0,0,0.3);
+    font-family: "poppins";
+    }
+
+    /* Upload Both Views Description 2 Styles */
+    .upload_both_veiws_descriptoin2 {
+    font-size: 20px;
+    margin: auto 20px;
+    font-family: "poppins";
+    opacity: 0;
+    transition: opacity 2s, transform 3s;
+    transition-delay: 0.2s;
+    }
+
+    /* Upload Both Views Description 1 Styles */
+    .upload_both_veiws_descriptoin1 {
+    display: none;
+    font-family: "poppins";
+    }
+
+    /* Upload for Both Views Styles */
+    .upload_for_both_veiws {
+    border: 2px dashed rgb(105, 102, 102);
+    width: 50%;
+    height: 100px;
+    border-radius: 10px;
+    margin: 15px 20px 15px auto;
+    cursor: pointer;
+    font-family: "poppins";
+    padding: 9px;
+    opacity: 0;
+    transition: opacity 0.2s, transform 0.2s;
+    transition-delay: 0.2s;
+    }
+
+    /* Upload Camera Styles */
+    .upload_camera {
+    width: 35px;
+    height: 30px;
+    margin-top: 4px;
+    }
+
+    /* Photo Description 2 Styles */
+    .photo_discribtion_2 {
+    color: red;
+    }
+
+    /* Photo Description Styles */
+    .photo_discribtion {
+    font-size: 11px;
+    }
+
+    /* Photo Description 3 Styles */
+    .photo_discribtion_3 {
+    color: red;
+    font-size: 12px;
+    }
+    @media screen and (max-width: 800px) {
+
+    .upload_both_veiws_descriptoin2{
+    display: none;
+    }
+    .upload_both_veiws_descriptoin1{
+    display: inline;
+    margin-left: 10px;
+    opacity: 0;
+    transition: opacity 2s, transform 3s;
+    transition-delay: 0.2s;
+
+    }
+
+    .upload_for_both_veiws{
+    width: 100%;
+    margin-left: 20px;
+    }
+
+    }
+
+    @media screen and (max-width: 600px) {
+
+
+    .div_for_to_upload_ads{
+    max-width: 90%;
+
+    }
+    }
+
+    @media screen and (max-width: 450px) {
+
+
+    .div_for_to_upload_ads{
+    max-width: 95%;
+
+    }
+
+    .upload_for_both_veiws{
+    width: 100%;
+
+    }
+    }
+    /* Next and Previous Buttons 2 Styles */
+    .next_and_prev_buttons2 {
+    text-align: justify;
+    width: 80%;
+    margin-top: 60px;
+    margin-left: 10%;
+    position: relative;
+    margin-right: auto;
+    }
+
+    /* Back Button 2 Styles */
+    .back_button2 {
+    text-align: justify;
+    font-family: "poppins";
+    font-size: 21px;
+    color: white;
+    background-color: rgb(159, 157, 157);
+    border: 2px solid rgb(159, 157, 157);
+    border-radius: 6px;
+    padding: 6px 8px 6px 8px;
+    }
+
+    /* Next Button 2 Styles */
+    .next_button2 {
+    font-size: 21px;
+    font-weight: normal;
+    font-family: "poppins";
+    position: absolute;
+    right: 0%;
+    opacity: 0;
+    transition: opacity 2s, transform 3s;
+    transition-delay: 0.2s;
+    background-color: rgb(244, 216, 5);
+    border: 1px solid rgb(244, 216, 5);
+    border-radius: 6px;
+    padding: 6px 8px 6px 8px;
+    }
+
+    /* Ads Confirmation Styles */
+    #adsConfirmation {
+    font-size: 16px;
+    text-align: center;
+    top: 0;
+    margin-left: auto;
+    margin-right: auto;
+    width: fit-content;
+    position: relative;
+    white-space: wrap;
+    margin-bottom: 30px;
+    justify-content: center;
+    font-family: "poppins";
+    opacity: 0;
+    transition: opacity 1s, transform 1s;
+    transition-delay: 0.2s;
+    }
+
+
+    @media screen and (max-width: 700px) {
+
+
+    .next_and_prev_buttons2{
+
+    width: 100%;
+    margin-left: 0%;
+    margin-top: 40px;
+    }
+
+
+    .back_button2{
+
+    font-size: 16px;
+    padding: 3px 5px 3px 5px;
+    }
+    .next_button2{
+    font-size: 16px;
+    padding: 3px 5px 3px 5px;  
+    }
+
+    }
+    /* Upload Button Styles */
+    #uploadButton {
+    position: relative;
+    cursor: pointer;
+    }
+
+    /* Upload Button 2 Styles */
+    #uploadButton2 {
+    position: relative;
+    cursor: pointer;
+    }
+
+    /* Main Image Container Styles */
+    .main_image_container {
+    display: flex;
+    margin-left: 10%;
+    font-size: small;
+    flex-wrap: wrap;
+    }
+
+    /* Frame Container Styles */
+    .frame_container {
+    display: none;
+    flex-wrap: wrap;
+    margin: 5px;
+    }
+
+    /* Frame Styles */
+    .frame {
+    position: relative;
+    width: 213px;
+    height: 73px;
+    margin: 6px;
+    border-radius: 10px;
+    display: none;
+    border: 2px solid #ffce29;
+    }
+
+    /* Close Button Styles */
+    .close_button {
+    color: white;
+    background-color: black;
+    border: 2px solid white;
+    position: absolute;
+    padding: 0px 8px;
+    border-radius: 100px;
+    top: -18%;
+    right: -5%;
+    margin-left: 10px;
+    cursor: pointer;
+    font-size: 20px;
+    }
+
+    /* Uploaded Image Styles */
+    .uploaded_image {
+    width: 210px;
+    height: 70px;
+    object-fit: cover;
+    border-radius: 10px;
+    padding: 3px;
+    }
+
+    /* Uploads Styles */
+    .uploads {
+    position: relative;
+    margin: 0px;
+    }
+
+    /* Upload Preview Styles */
+    .upload_preview {
+    text-align: justify;
+    z-index: 9999;
+    display: none;
+    margin-left: 20px;
+    }
+
+    /* Thumbnail Styles */
+    .thumbnail {
+    margin: 0px;
+    }
+
+    /* Frame Container 2 Styles */
+    .frame_container2 {
+    display: none;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: 5px;
+    }
+
+    /* Frame 2 Styles */
+    .frame2 {
+    position: relative;
+    width: 213px;
+    height: 73px;
+    margin: 6px;
+    border-radius: 10px;
+    display: none;
+    border: 2px solid #ffce29;
+    }
+
+    /* Close Button 2 Styles */
+    .close_button2 {
+    color: white;
+    background-color: black;
+    border: 2px solid white;
+    position: absolute;
+    padding: 0px 8px;
+    border-radius: 100px;
+    top: -18%;
+    right: -5%;
+    margin-left: 10px;
+    cursor: pointer;
+    font-size: 20px;
+    }
+
+    /* Uploaded Image 2 Styles */
+    .uploaded_image2 {
+    width: 210px;
+    height: 70px;
+    object-fit: cover;
+    border-radius: 10px;
+    padding: 3px;
+    }
+
+    /* Uploads Styles */
+    .uploads {
+    position: relative;
+    margin: 0px;
+    }
+
+    /* Upload Preview 2 Styles */
+    .upload_preview2 {
+    text-align: justify;
+    z-index: 9999;
+    display: none;
+    margin-left: 20px;
+    }
+

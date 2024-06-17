@@ -1,0 +1,189 @@
+.connect-shop {
+  font-size: small;
+  border: 1px solid #e3e5e8;
+  padding: 6px 20px 6px 20px;
+  border-radius: 4px;
+  transition: background-color 0.3s ease;
+  cursor: pointer;
+
+}
+
+.connect-shop2 {
+  font-size: small;
+  border: 1px solid #e3e5e8;
+  padding: 6px 20px 6px 20px;
+  border-radius: 4px;
+  transition: background-color 0.3s ease;
+  cursor: pointer;
+
+}
+
+.connect-shop3 {
+  font-size: small;
+  border: 1px solid #e3e5e8;
+  padding: 6px 20px 6px 20px;
+  border-radius: 4px;
+  transition: background-color 0.3s ease;
+  cursor: pointer;
+
+}
+
+.connect-shop2:hover {
+  background-color: #ffce29;
+  ;
+  /* Yellow background color on hover */
+
+}
+
+.connect-shop3:hover {
+  background-color: #ffce29;
+  ;
+  /* Yellow background color on hover */
+
+}
+
+.connect-shop3.with-padding1 {
+  padding: 10px 10px 10px 10px;
+  /* Adjusted padding when 'connect-shop' has 'with-padding' class */
+  font-size: x-small;
+}
+
+.connect-shop.with-padding {
+  padding: 4px 7px 4px 7px;
+  /* Adjusted padding when 'connect-shop' has 'with-padding' class */
+}
+
+.connect-shop:hover {
+  background-color: #ffce29;
+  ;
+  /* Yellow background color on hover */
+
+}
+
+.side-display {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.view {
+  font-size: small;
+}
+
+.connect-sidebar {
+  height: 65px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.sidebar-card {
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+
+}
+
+.badge-cam {
+  margin-left: 8px;
+  margin-top: 3px;
+
+}
+
+.badge-cam-m {
+  margin-left: 5px;
+  margin-top: -1px;
+
+}
+
+.content-margin {
+  margin-left: 6%;
+
+}
+
+.selling-pro {
+  border: 1px solid #e3e5e8;
+  display: flex;
+  align-items: center;
+  justify-content: end;
+  padding: 5px;
+  border-radius: 4px;
+  margin-right: 2px;
+
+}
+
+.selling-pro:hover {
+  background-color: #fe3d3d;
+  color: white;
+
+}
+
+@media screen and (max-width:1060px) {
+  .logo-bag {
+    width: 20px;
+  }
+
+}
+
+@media screen and (max-width:988px) {
+  .logo-bag {
+    width: 17px;
+  }
+
+}
+
+.verified-link {
+  text-decoration-color: #14ae5c;
+  color: #14ae5c;
+
+}
+
+.veri-m {
+  text-decoration-color: #14ae5c;
+  color: #14ae5c;
+  text-decoration: underline;
+  font-size: small;
+
+}
+
+.drill {
+  display: flex;
+  align-items: center;
+}
+
+.mired-shop-email-m {
+  font-size: x-small;
+}
+
+.about {
+  background-color: white;
+}
+
+.view-m {
+  font-size: small;
+}
+
+.bracket {
+  font-size: small;
+}
+
+.from {
+  font-size: x-small;
+
+}
+
+.link-card {
+  text-decoration: none;
+  color: black;
+}
+
+.link-card:hover {
+  text-decoration: none;
+  color: black;
+}
+
+#readMoreBtn {
+  text-decoration: none;
+  color: blue;
+}
+
+#readMoreBtn2 {
+  text-decoration: none;
+  color: blue;
+}

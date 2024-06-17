@@ -15,9 +15,11 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('product_id');
+            $table->unsignedBigInteger('reviewer_id');
             $table->integer('rate');
-            
-
+            $table->string('comment');
+            // $table->foreignId('user_id')->constrained()->onDelete('cascade');
+            // $table->foreignId('product_id')->constrained()->onDelete('cascade');
             $table->timestamps();
         });
     }

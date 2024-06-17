@@ -1,0 +1,178 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+
+body {
+    font-family: "poppins";
+}
+
+/* Main notification container */
+.notification_main {
+    font-family: "poppins";
+    justify-content: center;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 15px;
+}
+
+a {
+    color: black;
+    text-decoration: none;
+}
+
+/* Navbar styling */
+.notification_navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: black;
+    padding: 0px 20px;
+    margin-bottom: 0px;
+    box-shadow: 0px 4px 4px rgba(133, 132, 132, 0.3);
+    background-color: white;
+    height: 95px;
+    padding-top: 20px;
+}
+
+/* Navbar links */
+.notification_navbar a {
+    margin-bottom: 10px;
+    margin-right: 10%;
+}
+
+
+.back_to_index {
+    display: flex;
+    cursor: pointer;
+    font-size: 28px;
+    color: black;
+    margin-top: 5px;
+}
+
+/* Notifications region */
+.notifications_region {
+    margin-top: 87px;
+
+}
+
+/* Notification heading */
+.notification_heading {
+    font-size: 18px;
+    margin-left: 10px;
+    margin-top: 5px;
+}
+
+/* Notification indicator */
+.notification_indicator {
+    padding: 5px;
+    border-bottom: 1px solid #7c7c7c;
+    margin: 0;
+}
+
+/* Search, buy, and sell section */
+.notification_buy_and_sell_logo {
+    max-width: 140px;
+    margin-left: 0%;
+    margin-bottom: 15px;
+}
+
+@media screen and (max-width: 350px) {
+  .notification_buy_and_sell_logo {
+    max-width: 120px;
+    margin-left: 0%;
+    margin-bottom: 15px;
+}
+}
+
+/* Individual notification styling */
+.notification {
+    border-bottom: 1px solid #7c7c7c;
+    padding-bottom: 5px;
+    transition: height 0.5s;
+    margin-top: 0;
+    color: black;
+}
+
+.notification:hover {
+    background-color: #f7f0d9;
+}
+
+.notification a {
+    text-decoration: none;
+    color: black;
+}
+
+/* Notification details */
+.notification_details {
+    display: flex;
+    align-items: center;
+    padding: 5px;
+}
+
+/* Profile picture styling */
+.notification_image {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin-right: 10px;
+    transition: opacity 0.5s;
+}
+
+/* Message area */
+.message_area {
+    flex: 1;
+    font-size: 13px;
+    line-height: 10px;
+}
+
+/* Message text */
+.message {
+    flex: 1;
+    font-size: 13px;
+    line-height: 1.2;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+}
+
+/* Picture styling */
+.notification_product_image {
+    width: 60px;
+    height: 50px;
+    margin-left: 10px;
+    border-radius: 4px;
+    object-fit: cover;
+}
+
+
+/* Expanded notification */
+.expanded {
+    display: block;
+}
+
+/* Time stamp */
+.time {
+    font-size: 12px;
+    color: rgb(144, 143, 143);
+}
+
+/* Scroll to top button */
+#scrollToTop {
+    display: none;
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #0b0b0b;
+    color: white;
+    padding: 10px 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    border-radius: 100%;
+    z-index: 999999999999999999999999;
+}
+
+/* Notification volume */
+.notification_volume {
+    margin: 10px 10px 0px 15px;
+}

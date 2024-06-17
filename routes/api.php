@@ -8,17 +8,10 @@ use App\Http\Controllers\ReviewersController;
 use App\Models\Reviewers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Auth\PasswordResetController;
+use App\Http\Controllers\LearnController;
 
-/*
-|--------------------------------------------------------------------------
-| API Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register API routes for your application. These
-| routes are loaded by the RouteServiceProvider and all of them will
-| be assigned to the "api" middleware group. Make something great!
-|
-*/
+
 
 // Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 //     return $request->user();
@@ -26,11 +19,22 @@ use Illuminate\Support\Facades\Route;
 
 //, 'permission:admin,market_user'
 
-Route::post('/auth/register', [UsersController::class, 'store']);
+Route::post('/auth/register', [UsersController::class, 'register']);
 Route::post('/auth/login', [UsersController::class, 'loginUser']);
-Route::post('/auth/update/{id}',[UsersController::class, 'update']);
+Route::post('/auth/update/{id}',[UsersController::class, 'accountSettings']);
 //Route::post('/auth/edit/{id}',[UsersController::class, 'edit']);
 
+// reset Password
+Route::post('forgot-password', [PasswordResetController::class, 'sendResetOtp']);
+Route::post('verify-otp', [PasswordResetController::class, 'verifyOtp']);
+Route::post('reset-password', [PasswordResetController::class, 'resetPassword']);
+
+// Learn Page
+Route::get('/videos', [LearnController::class, 'index']);
+Route::get('videos/{id}', [LearnController::class, 'show']);
+Route::post('videos', [LearnController::class, 'store']);
+Route::put('videos/{id}', [LearnController::class, 'update']);
+Route::delete('videos/{id}', [LearnController::class, 'destroy']);
 
 
 Route::prefix('v1')->middleware('auth:sanctum')->group(function () {
@@ -47,6 +51,7 @@ Route::get('/users', [UsersController::class, 'view']);
 // Route::delete('/product/{id}',[ProductController::class, 'delete'])->middleware('can:delete_product');
 
 //product
+Route::get('/allproduct', [ProductController::class, 'index']);
 Route::post('/product', [ProductController::class, 'store']);
 Route::get('/product/user/{id}', [ProductController::class, 'showUser']);
 Route::get('/product/{id}', [ProductController::class, 'view']);
@@ -67,8 +72,24 @@ Route::get('/categories/{id}', [CategoriesController::class, 'list']);
 Route::get('/search/{search}', [CategoriesController::class, 'search']);
 
 
+Route::post('/adverts', [AdvertController::class, 'store']);
+Route::get('/adverts/create', [AdvertController::class, 'create']);
+Route::post('/adverts/price', [AdvertController::class, 'calculatePrice']);
+Route::post('/adverts/{advert}', [AdvertController::class, 'update']);
+Route::post('/adverts/{advert}', [AdvertController::class, 'destroy']);
+
+
 
 });
+
+Route::get('/adverts', 'AdvertController@index');
+Route::put('/adverts/{advert}', 'AdvertController@update')->middleware('auth');
+Route::delete('/adverts/{advert}', 'AdvertController@destroy')->middleware('auth');
+
+// Route::get('/adverts/create', [AdvertController::class, 'create'])->name('adverts.create');
+// Route::post('/adverts', [AdvertController::class, 'store'])->name('adverts.store');
+// Route::post('/adverts/price', [AdvertController::class, 'calculatePrice'])->name('adverts.calculatePrice');
+
 
 
 

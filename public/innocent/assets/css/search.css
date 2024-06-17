@@ -1,0 +1,272 @@
+.previous {
+    cursor: pointer;
+    width: initial;
+    display: flex;
+    margin-top: 7px;
+    margin-left: 10px;
+    cursor: pointer;
+    font-size: 28px;
+    color: black;
+    text-decoration: none;
+}
+
+/* Search Buy and Sell */
+.search_buy_and_sell_logo {
+    max-width: 160px;
+    margin-left: 0%;
+}
+
+/* Search Container */
+.search_container {
+    margin-top: 70px;
+}
+
+@media screen and (max-width: 700px) {
+    .search_container {
+        margin-top: 120px;
+    }
+}
+
+/* Recent Search */
+#recent_search {
+    font-size: 17px;
+    justify-content: baseline;
+    margin-left: 0%;
+    margin-right: 0%;
+    width: 100%;
+    padding: 10px;
+}
+
+/* Recent Content */
+.recent_content {
+    display: flex;
+    color: black;
+    background-color: inherit;
+    padding: 5px;
+    flex-wrap: wrap;
+    justify-content: baseline;
+    margin-left: 0%;
+    margin-right: 0%;
+    width: 95%;
+    margin-bottom: 10px;
+}
+
+@media screen and (max-width: 1500px) {
+    .recent_content {
+        margin-left: 2.5%;
+        margin-right: 2.5%;
+        width: 90%;
+    }
+
+    #recent_search {
+        margin-left: 2.5%;
+        margin-right: 2.5%;
+        width: 95%;
+    }
+}
+
+@media screen and (max-width: 800px) {
+    .recent_content {
+        margin-left: 5%;
+        margin-right: 5%;
+        width: 90%;
+    }
+
+    #recent_search {
+        margin-left: 5%;
+        margin-right: 5%;
+        width: 90%;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .recent_content {
+        margin-left: 0%;
+        margin-right: 0%;
+        width: 100%;
+    }
+
+    #recent_search {
+        text-align: justify;
+        margin-left: 0%;
+        margin-right: 0%;
+        width: 98%;
+    }
+}
+
+/* Buttons */
+.buttons {
+    margin: 4px;
+    width: fit-content;
+    height: 30px;
+    background-color: rgb(245, 248, 135);
+    border: 2px solid rgb(245, 248, 135);
+    border-radius: 5px;
+}
+
+.buttons:hover {
+    background-color: #f8c008;
+    border: 2px solid #f8c008;
+
+
+}
+
+/* Filter Main */
+.filter_main {
+    font-family: "poppins";
+    width: 95%;
+    margin-left: auto;
+    margin-right: auto;
+    display: none;
+}
+
+@media screen and (max-width: 1100px) {
+    .filter_main {
+        display: block;
+    }
+}
+
+@media screen and (max-width: 1000px) {
+    .filter_main {
+        margin-left: 5%;
+        margin-right: 5%;
+        width: 85%;
+    }
+}
+
+@media screen and (max-width: 700px) {
+    .filter_main {
+        margin-top: 45px;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .filter_main {
+        width: 95%;
+        margin-left: auto;
+        margin-right: auto;
+        padding: 5px;
+    }
+}
+
+/* Filter Labels Mobile */
+.filter_labels_mobile {
+    font-size: smaller;
+    margin-left: 10px;
+    margin-bottom: 10px;
+}
+
+@media screen and (max-width: 370px) {
+    .filter_labels_mobile {
+        font-size: x-small;
+    }
+}
+
+@media screen and (max-width: 340px) {
+    .filter_labels_mobile {
+        font-size: 9px;
+    }
+}
+
+/* Cancel Button */
+.cancel {
+    font-size: 23px;
+    margin-top: 0px;
+    cursor: pointer;
+    margin-left: auto;
+}
+
+/* Filter Inputs */
+.filter_inputs {
+    width: 65px;
+    height: 26px;
+    color: red;
+    border-radius: 3px;
+    font-size: 12px;
+    border: 1px solid black;
+}
+
+.filter_inputs:focus-within {
+    border: 1.5px solid #ffce29;
+    outline: 2.5px solid #fdf0c6;
+}
+
+@media screen and (max-width: 600px) {
+    .filter_inputs {
+        width: 65px;
+        height: 26px;
+        color: red;
+        border-radius: 3px;
+        font-size: 10px;
+    }
+}
+
+@media screen and (max-width: 370px) {
+    .filter_inputs {
+        width: 60px;
+        height: 25px;
+        color: red;
+    }
+}
+
+@media screen and (max-width: 340px) {
+    .filter_inputs {
+        width: 50px;
+        height: 20px;
+        color: red;
+    }
+}
+
+/* Button Styles for "New" or "Fairly Used" on Mobile */
+.button2 {
+    background-color: white;
+    color: black;
+    border: 1px solid black;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    border-radius: 3px;
+    width: 70px;
+    height: 25px;
+    font-size: 10px;
+}
+
+
+@media screen and (max-width: 340px) {
+    .button2 {
+        background-color: white;
+        color: black;
+        border: 1px solid black;
+        text-align: center;
+        text-decoration: none;
+        cursor: pointer;
+        border-radius: 3px;
+        width: 65px;
+        height: 20px;
+        font-size: 9px;
+    }
+
+}
+
+/* New Button */
+.new2 {
+    background-color: white;
+}
+
+/* Used Button */
+.used2 {
+    background-color: white;
+    margin-left: 5px;
+}
+
+/* Clicked New Button */
+.new2.clicked {
+    background-color: rgb(128, 216, 104);
+    border: 1px solid rgb(130, 216, 104);
+}
+
+/* Clicked Used Button */
+.used2.clicked {
+    background-color: rgb(104, 203, 216);
+    border: 1px solid rgb(104, 203, 216);
+}

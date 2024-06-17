@@ -8,10 +8,13 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use Spatie\Permission\Traits\HasRoles;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Auth\Passwords\CanResetPassword;
 
 class User extends Authenticatable
 {
-    use HasApiTokens, HasFactory, Notifiable, HasRoles;
+    use HasApiTokens, HasFactory, Notifiable, HasRoles, CanResetPassword;
 
     /**
      * The attributes that are mass assignable.
@@ -22,6 +25,8 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'referral_code',
+
     ];
 
     /**
@@ -44,10 +49,23 @@ class User extends Authenticatable
         'password' => 'hashed',
     ];
 
+    use SoftDeletes; // Use the SoftDeletes trait
+
+    protected $dates = ['deleted_at']; // Optional: ensures dates are treated as instances of Carbon
 
 
        static function getAuthUser(){
-         
+
            return  \Auth::guard('sanctum')->user();
        }
+
+       public function referrals()
+    {
+        return $this->hasMany(Referral::class);
+    }
+
+    public function referredBy()
+    {
+        return $this->hasOne(Referral::class, 'referred_user_id');
+    }
 }

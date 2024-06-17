@@ -1,0 +1,125 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "poppins";
+
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  align-content: center;
+  height: 90px;
+  background-color: white;
+  justify-content: space-between;
+  border-bottom-color: rgb(228, 228, 228);
+  box-shadow: 0px 4px 8px -2px rgba(0, 0, 0, 0.10);
+  position: fixed;
+  width: 100%;
+}
+
+.arrow {
+  width: 35px;
+  margin-top: -5px;
+}
+
+.next-btn {
+  position: fixed;
+  bottom: 15px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: auto;
+  padding-left: 45%;
+  padding-right: 45%;
+}
+
+.main {
+  text-align: center;
+}
+
+@media screen and (max-width:517px) {
+  .next-btn {
+    padding-left: 42%;
+    padding-right: 42%;
+  }
+}
+
+@media screen and (min-width:970px) {
+  .next-btn {
+    width: auto;
+    padding-left: 10%;
+    padding-right: 10%
+  }
+}
+
+.main {
+  padding-top: 70px;
+}
+
+.selfie {
+  border-radius: 50%;
+  height: 250px;
+  width: 250px;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  margin-top: 80px;
+  background: linear-gradient(to bottom, rgba(255, 190, 1, 54), rgba(236, 234, 229, 0.032));
+}
+
+.scan-text {
+  margin-top: 80px;
+}
+
+.scroll-text {
+  overflow-y: scroll;
+  padding-bottom: 70px;
+
+}
+
+.video-contain {
+  text-align: center;
+  display: none
+}
+
+.canvas-contain {
+  display: none;
+  text-align: center;
+}
+
+.main-canvas {
+  height: 133px;
+  width: 222px;
+  border-radius: 20px
+}
+
+.top-cam {
+  text-align: center;
+  margin-top: -28px;
+}
+
+.cam-main {
+  display: inline-block;
+  margin-top: 60px;
+}
+
+.selfie-canvas {
+  height: 242px;
+  width: 250px;
+  border-radius: 50%;
+}
+
+.selfie1 {
+  border-radius: 50%;
+  height: 250px;
+  width: 250px;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  margin-top: 80px;
+  background: linear-gradient(to bottom, rgba(255, 231, 166, 100), rgba(255, 254, 253, 0));
+}
+
+#video {
+  border-radius: 50%;
+}

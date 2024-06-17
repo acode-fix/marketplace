@@ -1,0 +1,31 @@
+.alert_modal_content{
+    height: 80px;
+    margin-top: 100px;
+ 
+}
+
+.alert_modal_body{
+    display: flex;
+}
+
+.alert_modal_body i{
+   cursor: pointer;
+}
+
+.alert_modal_body p{
+ font-size: 18px;
+}
+.alert_main_message{
+    color: red;
+}
+@media screen and (max-width: 900px) {
+   
+.alert_modal_body p{
+    font-size: 16px;
+   }
+  }
+
+.alert_modal_body i{
+    font-size: 25px;
+    margin-left: auto;
+}

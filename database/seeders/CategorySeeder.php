@@ -23,6 +23,9 @@ class CategorySeeder extends Seeder
             ['name' => 'Jobs'],
             ['name' => 'Beauty/Cosmetics'],
             ['name' => 'Supermarket'],
+            ['name' => 'Fruits'],
+            ['name' => 'Utensils'],
+            ['name' => 'Others'],
 
         ]);
     }

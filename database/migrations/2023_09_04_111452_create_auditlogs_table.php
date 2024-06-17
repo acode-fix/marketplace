@@ -13,13 +13,14 @@ return new class extends Migration
     {
         Schema::create('auditlogs', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('user_id')->nullable(); // Who made the change;
             $table->string('username');
-            $table->string('action');
+            $table->string('action');   // e.g., "created", "updated", "deleted"
             $table->string('date');
-            $table->string('view_type');
-            $table->string('IP_address');
+            $table->string('view_type'); // to store the type of view or page
+            $table->string('ip_address')->nullable();
 
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('set null');
             $table->timestamps();
         });
     }

@@ -10,19 +10,23 @@ class Auditlog extends Model
     use HasFactory;
     //protected $guarded = [];
 
-    protected $fillable = [
-        'action', 'view_type', 'username', 'IP_address', 'date', 'user_id'
-    ];
+    protected $fillable = ['action', 'view_type', 'username', 'IP_address', 'date', 'user_id'];
+
     // public $timestamps = false;
     // protected $appends = ['dateHumanize','json_data'];
 
     // private $userInstance = "\App\Models\User";
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 
     static function getLog() {
         $userInstance = config('user-activity.model.user');
         if(!empty($userInstance))
         return $userInstance;
     }
+
 
     
 

@@ -33,7 +33,7 @@ class UsersController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function register(Request $request)
     {
         try{
         //
@@ -72,6 +72,7 @@ class UsersController extends Controller
 
     }
 
+
     /**
      * Login The User
      * @param Request $request
@@ -95,34 +96,32 @@ class UsersController extends Controller
                ], 401);
            }
 
-           if(!Auth::attempt($request->only(['email', 'password']))){
-            return response()->json([
-                'status' => false,
-                'message' => 'Email and password does not match',
-            ], 401);
-           }
+        //    if(!Auth::attempt($request->only(['email', 'password']))){
+        //     return response()->json([
+        //         'status' => false,
+        //         'message' => 'Email and password does not match',
+        //     ], 401);
+        //    }
 
            $user = User::where('email', $request->email)->first();
+           if(!$user)
+             {
 
+                return response()->json([
+                    'status' => false,
+                    'message' => 'email is not found',
 
+                ], 401);
+             }
 
-        if(empty($user->api_token)) {
-            $token = $user->createToken("API TOKEN")->plainTextToken;
-             $user->update(['api_token'=>$token]);
-
-           }
-
-           else {
-            $token = $user->api_token;
-
-           }
+           $token = $user->createToken(env('APP_NAME'))->plainTextToken;
 
           // $user = Auditlog::getLog();
-
+            // AuditLog::storeAudith()
            return response()->json([
             'status' => true,
             'message' => 'User Logged in successfully',
-            'token' => $token,
+            'data' => ['token'=>$token],
         ], 200);
 
 
@@ -147,7 +146,7 @@ class UsersController extends Controller
                 $user = User::all();
 
                 return response()->json([
-                    'status' => 'success',
+                    'status' => true,
                     'Detail of all users' =>  $user,
                 ], 200);
 
@@ -166,7 +165,7 @@ class UsersController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(string $id, Request $request)
+    public function accountSettings(string $id, Request $request)
     {
         //
         try {
@@ -174,18 +173,24 @@ class UsersController extends Controller
             $validateUser = Validator::make($request->all(), [
 
                 'name' => 'required',
-                'username' => 'required',
-                'phone' => 'required',
+                'username' => 'string|max:255|unique:users,username,' . $user->id,
+                // 'email' => 'string|email|max:255|unique:users,email,' . $user->id,
+                'phone_number' => 'required',
                 'whatsapp' => 'required',
                 'address' => 'required',
-               'photo_url' => 'required|image|mimes:jpg,jpeg,png,gif|max:300',
-                'location' => 'required',
+                'bio' => 'string|nullable',
+               'photo_url' => 'required|image|mimes:jpg,jpeg,png,gif,svg|max:300',
+               'location' => 'string|max:255|nullable',
                 'stage' => 'required',
+                'is_verified' => 'boolean|nullable',
+                'shop_id' => 'string|nullable',
+                'badge_type' => 'in:monthly,yearly|nullable',
+                'badge_expiry' => 'date|nullable',
             ]);
 
             if($validateUser->fails()){
                 return response()->json([
-                    'status' => 'error',
+                    'status' => false,
                     'message' => 'validation error',
                     'errors' => $validateUser->errors()
                 ], 401);
@@ -195,12 +200,16 @@ class UsersController extends Controller
             $user = User::find($id);  // Find the user using model and hold its reference
             $user->name=$request->input('name');
             $user->username=$request->input('username');
-            $user->phone=$request->input('phone');
+            $user->phone=$request->input('phone_number');
             $user->whatsapp=$request->input('whatsapp');
             $user->address=$request->input('address');
+            $user->bio=$request->input('bio');
             $user->location=$request->input('location');
             $user->stage=$request->input('stage');
-
+            $user->is_verified=$request->input('is_verified');
+            $user->shop_id=$request->input('shop_id');
+            $user->badge_type=$request->input('badge_type');
+            $user->badge_expiry=$request->input('badge_expiry');
 
         //  $validatedData = array_filter($validateUser->getData());
 
@@ -220,7 +229,7 @@ class UsersController extends Controller
             $user->save();  // Update the data
 
             return response()->json([
-                'status' => 'success',
+                'status' => true,
                 'message' => 'User Updated Succesfully',
                 'review' => $user,
             ], 200);

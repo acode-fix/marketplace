@@ -16,9 +16,6 @@ class ReviewersController extends Controller
     {
         //
         try {
-
-
-
             //code...
           //  $yourToken = $request->bearerToken();
 
@@ -35,7 +32,7 @@ class ReviewersController extends Controller
         ]);
         if($validateReviewer->fails()){
             return response()->json([
-                'status' => 'error',
+                'status' => false,
                 'message' => 'validation error',
                 'errors' => $validateReviewer->errors()
             ], 401);
@@ -56,7 +53,7 @@ class ReviewersController extends Controller
         // $reviewers->save();
 
         return response()->json([
-            'status' => 'success',
+            'status' => true,
             'message' => 'Review Added',
             'rate' => $reviewers,
         ], 200);
@@ -81,7 +78,7 @@ class ReviewersController extends Controller
         $reviewers =  Reviewers::find($id);
 
         return response()->json([
-          'status' => 'success',
+          'status' => true,
           'message' => 'review',
           'rate' => $reviewers,
       ], 200);
@@ -108,7 +105,7 @@ class ReviewersController extends Controller
 
        if($validateReviewer->fails()){
            return response()->json([
-               'status' => 'error',
+               'status' => false,
                'message' => 'validation error',
                'errors' => $validateReviewer->errors()
            ], 401);
@@ -120,7 +117,7 @@ class ReviewersController extends Controller
     $review =  $reviewers->update($validatedData);
 
              return response()->json([
-        'status' => 'success',
+        'status' => true,
         'message' => 'Review Updated',
         'review' => $reviewers
     ], 200);
@@ -128,7 +125,7 @@ class ReviewersController extends Controller
 
 } catch (\Throwable $th) {
     return response()->json([
-        'status' => 'error',
+        'status' => false,
         'message' => $th->getMessage()
     ], 500);
 }
@@ -158,7 +155,7 @@ class ReviewersController extends Controller
                $avg = (($sumRate)/($r*5)*5);
 
              return response()->json([
-                'status' => 'success',
+                'status' => true,
                 'rate' =>  round($avg, 2),
             ], 200);
 
@@ -204,7 +201,7 @@ class ReviewersController extends Controller
 
 
         return response()->json([
-            'status' => 'success',
+            'status' => true,
             'data' =>  $data,
         ], 200);
 
@@ -246,7 +243,7 @@ class ReviewersController extends Controller
 
 
         return response()->json([
-            'status' => 'success',
+            'status' => true,
             'data' =>  $data,
         ], 200);
 

@@ -1,0 +1,145 @@
+
+    /* Main notification container */
+    .notification_main {
+    font-family: "poppins";
+    max-width: 400px;
+    display: none;
+    height: 500px;
+    overflow-y: scroll;
+    justify-content: center;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 15px;
+    box-shadow: 0px 5px 5px rgba(0,0,0,0.3);
+    top: 12%;
+    left: 60%;
+    right: 7%;
+    position: fixed;
+    z-index: 10000000;
+    background-color: white;
+    border:  0.5px solid whitesmoke;
+    }
+
+    a{
+        color: black;
+        text-decoration: none;
+
+    }
+    a:hover{
+        color: black;
+    }
+    /* Responsive adjustments for smaller screens */
+    @media screen and (max-width: 1300px) {
+    .notification_main {
+    left: 40%;
+    right: 10%;
+    }
+    }
+
+
+    
+    /* Notification heading styling */
+    .notification_heading {
+    font-size: 20px;
+    }
+
+    /* Notification indicator styling */
+    .notification_indicator {
+    padding: 5px;
+    border-bottom: 1px solid #7c7c7c;
+    margin: 0;
+    }
+
+
+    .notifications_region {
+    margin: 0;
+    }
+    
+
+    /* Search, buy, and sell styling */
+    .search-buy_and_sell {
+    max-width: 40%;
+    margin-left: 0%;
+    margin-bottom: 15px;
+    }
+
+    /* Individual notification styling */
+    .notification {
+    border-bottom: 1px solid #7c7c7c;
+    padding-bottom: 5px;
+    transition: height 0.5s;
+    margin-top: 0;
+    }
+    .notification:hover{
+        background-color:  #f7f0d9;
+    }
+
+
+    /* Notification details styling */
+    .notification_details {
+    display: flex;
+    align-items: center;
+    padding: 5px;
+    }
+
+    /* Profile picture styling */
+    .notification_image {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin-right: 10px;
+    transition: opacity 0.5s;
+    }
+
+    /* Message area styling */
+    .message_area {
+    flex: 1;
+    font-size: 13px;
+    line-height: 10px;
+    }
+
+    /* Message styling */
+    .message {
+    flex: 1;
+    font-size: 13px;
+    line-height: 1.2;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    }
+
+    /* Picture styling */
+    .notification_product_image {
+    width: 60px;
+    height: 50px;
+    margin-left: 10px;
+    border-radius: 4px;
+    object-fit: cover;
+    }
+
+    /* Picture2 styling */
+
+    /* Dropdown arrow styling */
+    .dropdown-arrow {
+    cursor: pointer;
+    margin: 5px 5px 32px 5px;
+    opacity: 0.7;
+    }
+
+    /* Expanded dropdown styling */
+    .expanded {
+    display: block;
+    }
+
+    /* Time styling */
+    .time {
+    font-size: 12px;
+    color: rgb(144, 143, 143);
+    }
+
+    /* Notification volume styling */
+    .notification_volume {
+    margin: 10px 10px 0px 15px;
+    }

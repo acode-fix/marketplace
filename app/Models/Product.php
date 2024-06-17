@@ -8,7 +8,15 @@ use Illuminate\Database\Eloquent\Model;
 class Product extends Model
 {
     use HasFactory;
-    protected $guarded = [];
+
+    protected $fillable = [
+        'user_id', 'title', 'description', 'category_id', 'quantity',
+        'location', 'actual_price', 'promo_price', 'condition', 'image_url'
+    ];
+
+    protected $casts = [
+        'image_url' => 'json'
+    ];
 
     // /**
     //  * Get the reviews of the product.

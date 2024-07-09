@@ -6,7 +6,6 @@ use Illuminate\Http\Request;
 use App\Models\Categories;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\Ads_categoryController;
-
 use App\Models\Product;
 use Illuminate\Support\Facades\Validator;
 
@@ -37,6 +36,10 @@ class CategoriesController extends Controller
     {
         //
 
+    }
+    public function show($id)
+    {
+        return view('other_frontend.category_search', ['categoryId' => $id]);
     }
 
     /**
@@ -70,6 +73,7 @@ class CategoriesController extends Controller
         'status' => true,
         'message' => 'list of Categories products',
         'data' => $categorylist,
+        'category' => $category->name, // Include the category name
     ], 200);
     }
 

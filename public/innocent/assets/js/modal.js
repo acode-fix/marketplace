@@ -13,3 +13,14 @@ showPasswordBtns.forEach((btn, index) => {
         }
     });
 });
+
+function showSignUpModal() {
+    document.querySelector('.login_modal').style.display = 'none';
+    document.querySelector('.sign_up_modal').style.display = 'block';
+}
+
+function showLoginModal() {
+    document.querySelector('.sign_up_modal').style.display = 'none';
+    document.querySelector('.login_modal').style.display = 'block';
+}
+

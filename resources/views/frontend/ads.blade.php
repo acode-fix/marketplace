@@ -7,7 +7,25 @@
 
   <div class="main">
 
-    <div class="content">
+    <div class="content" style="text-align: center">
+        <div class="container">
+            <div class="row">
+              <div class="col-9">
+                <table class="table">
+                  <tbody>
+                    <tr>
+                    <th style="padding: 50px;"><h2>This page is under construction. Expect something amazing soon</h2> </th>
+                </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+        </div>
+    </div>
+
+{{-- STILL UNDER CONSTRUCTION --}}
+
+    {{-- <div class="content">
       <div class="container">
         <div class="row">
           <div class="col-9">
@@ -226,12 +244,12 @@
 
       </div>
 
-    </div>
+    </div> --}}
 
   </div>
 
   <!-- mobile-view -->
-  <div class="mobile-view">
+  {{-- <div class="mobile-view">
     <div class="container-fluid">
       <div class="row">
         <div class="mobile-struct">
@@ -620,6 +638,22 @@
 
 
     </div>
-  </div>
+  </div> --}}
+
+  <div class="mobile-view" style="margin-left:100px">
+    <div class="container">
+        <div class="row">
+          <div class="col-9">
+            <table class="table">
+              <tbody>
+                <tr>
+                <th style="padding: 50px;"><h2>This page is under construction. Expect something amazing soon</h2> </th>
+            </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+    </div>
+    </div>
 
   @endsection

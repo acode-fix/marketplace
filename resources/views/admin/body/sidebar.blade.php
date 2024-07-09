@@ -5,7 +5,7 @@
       <div class="links myLink">
         <span>
           <a href="shop.html"><img class="profile-logo svg-size" src="{{ asset('kaz/images/profile.svg') }}" alt=""></a>
-          <a class="profile-text" href="shop.html">Shop</a>
+          <a class="profile-text" href="{{ url('/shop') }}">Shop</a>
         </span>
       </div>
     </div>
@@ -13,7 +13,7 @@
       <div class="links myLink">
         <span>
           <a href="settings.html"><img class="profile-logo svg-size" src="{{ asset('kaz/images/product.svg') }}" alt=""></a>
-          <a class="profile-text" href="settings.html">Settings</a>
+          <a class="profile-text" href="{{ url('/settings') }}">Settings</a>
         </span>
       </div>
     </div>
@@ -45,14 +45,14 @@
 
     </div>
     <hr style="color: black;">
-    <div class="sidebar-link">
+    {{-- <div class="sidebar-link">
       <div class="links myLink">
         <span>
           <a href="privacy.html"><img class="profile-logo svg-size" src="{{ asset('kaz/images/privacy policy.svg') }}" alt=""></a>
           <a class="profile-text" href="privacy.html">privacy policy</a>
         </span>
       </div>
-    </div>
+    </div> --}}
     <div class="sidebar-link">
       <div class="links myLink">
         <span>
@@ -61,14 +61,14 @@
         </span>
       </div>
     </div>
-    <div class="sidebar-link">
+    {{-- <div class="sidebar-link">
       <div class="links myLink">
         <span>
           <a href="delete.html"><img class="profile-logo svg-size1" src="{{ asset('kaz/images/delete.svg') }}" alt=""></a>
           <a class="profile-text" href="delete.html">Delete Account</a>
         </span>
       </div>
-    </div>
+    </div> --}}
     <div class="sidebar-link">
       <div class="row mt-5 footer">
         <div style="text-align: center;" class="col">

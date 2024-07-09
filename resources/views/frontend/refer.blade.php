@@ -125,6 +125,8 @@
 
   </div>
 
+  <script src="{{ asset('kaz/js/refer.js') }}"></script>
+
 
 
 @endsection

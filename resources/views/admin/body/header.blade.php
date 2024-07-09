@@ -6,27 +6,37 @@
     </div>
     <div class="left-section">
       <a href="index.html"><img class="img-fluid ms-3" src="{{ asset('kaz/images/logo.png') }}" alt=""></a>
-      <h6 class="ms-5 fw-bold profile">Ads</h6>
+      <h6 class="ms-5 fw-bold profile">Dashboard</h6>
 
     </div>
 
     <div class="middle-section">
       <div class="search-border">
-        <input type="search" id="search" placeholder="&nbsp Search product...">
+        <input type="search" id="search" placeholder="&nbsp Search ...">
         <button class="search-btn btn-light mt-1 pt-1 pb-2 me-1"><img src="{{ asset('kaz/images/Search.png') }}"
             class="img-fluid search-img" alt=""> search</button>
       </div>
 
     </div>
-    <div class="create">
+    {{-- <div class="create">
       <button type="button" class=" btn btn-warning  btn-height"> + create Ads</button>
-    </div>
+    </div> --}}
+            @php
+              $id =  auth('sanctum')->user()->id;
+            // $id = Auth::user()->id;
+        $adminData = App\Models\User::find($id);
+        @endphp
+
     <div class="right-section me-4">
       <div class="me-1">
-        <h6 class="name">Mired Augustine </h6>
-        <h6 class="mired-text fw-light">miredaugustine@gmail.com</h6>
+        <h6 class="name">{{ $adminData->username }} </h6>
+        {{-- <h6 class="name">Mired Augustine </h6> --}}
+        <h6 class="mired-text fw-light">{{ $adminData->email }}</h6> 
+        {{-- <h6 class="mired-text fw-light">miredaugustine@gmail.com</h6> {{ $adminData->name }} --}}
       </div>
-      <img class="img-fluid profile-picture" src="{{ asset('kaz/images/dp.png') }}" alt="">
+      <img class="img-fluid profile-picture" src="{{ (!empty($adminData->profile_url))? url('upload/users/'.$adminData->profile_url):url(asset('kaz/images/dp.png')) }}" alt="">
+      
+      {{-- <img class="img-fluid profile-picture" src="{{ asset('kaz/images/dp.png') }}" alt=""> --}}
     </div>
     <div class="menu-toggle">
       <input type="checkbox" id="menu-checkbox" class="menu-checkbox">

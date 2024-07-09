@@ -21,8 +21,8 @@ use App\Http\Controllers\LearnController;
 
 Route::post('/auth/register', [UsersController::class, 'register']);
 Route::post('/auth/login', [UsersController::class, 'loginUser']);
-Route::post('/auth/update/{id}',[UsersController::class, 'accountSettings']);
-//Route::post('/auth/edit/{id}',[UsersController::class, 'edit']);
+Route::post('/auth/update',[UsersController::class, 'accountSettings']);
+
 
 // reset Password
 Route::post('forgot-password', [PasswordResetController::class, 'sendResetOtp']);
@@ -36,10 +36,34 @@ Route::post('videos', [LearnController::class, 'store']);
 Route::put('videos/{id}', [LearnController::class, 'update']);
 Route::delete('videos/{id}', [LearnController::class, 'destroy']);
 
+Route::get('/prod', [ProductController::class, 'index']);
+Route::get('/prod/{id}', [ProductController::class, 'view']);
+// In your routes/web.php or routes/api.php
+Route::get('/product-details/{id}', [ProductController::class, 'getProductDetails']);
+
+Route::post('/product', [ProductController::class, 'store']);
+
+
+
+
+
+//
+Route::middleware('auth:sanctum')->group(function () {
+    Route::get('notifications', [NotificationController::class, 'index']);
+    Route::get('notifications/{id}', [NotificationController::class, 'show']);
+    Route::put('notifications/{id}/mark-as-read', [NotificationController::class, 'markAsRead']);
+    Route::delete('notifications/{id}', [NotificationController::class, 'destroy']);
+});
+//
+
+
 
 Route::prefix('v1')->middleware('auth:sanctum')->group(function () {
 
 Route::get('/users', [UsersController::class, 'view']);
+Route::post('/auth/logout',[UsersController::class, 'logoutUser']);
+Route::get('/getuser', [UsersController::class, 'getUserData']);
+
 //Route::get('/product/{id}', [AuditlogController::class, 'create']);
 
 // //product
@@ -52,12 +76,15 @@ Route::get('/users', [UsersController::class, 'view']);
 
 //product
 Route::get('/allproduct', [ProductController::class, 'index']);
+Route::get('/product/filter', [ProductController::class, 'filterProducts']);
 Route::post('/product', [ProductController::class, 'store']);
 Route::get('/product/user/{id}', [ProductController::class, 'showUser']);
 Route::get('/product/{id}', [ProductController::class, 'view']);
 Route::get('/product/{id}/edit',[ProductController::class, 'edit']);
 Route::post('/product/{id}',[ProductController::class, 'update']);
+Route::get('/product/search', [ProductController::class, 'search']);
 Route::delete('/product/{id}',[ProductController::class, 'delete']);
+
 //reviews
 Route::post('/reviewers', [ReviewersController::class, 'store']);
 Route::get('/reviewers/{id}', [ReviewersController::class, 'view']);
@@ -66,10 +93,20 @@ Route::get('/review/{id}', [ReviewersController::class, 'viewUserMetric']);
 Route::get('/reviewall', [ReviewersController::class, 'allUserMetric']);
 Route::get('/reviewcomment', [ReviewersController::class, 'allUserComment']);
 //Route::get('/reviewers', [ReviewersController::class, 'show']);
+
 //categories
 Route::get('/category/{id}', [CategoriesController::class, 'view']);
 Route::get('/categories/{id}', [CategoriesController::class, 'list']);
+Route::get('/category_search/{id}', [CategoriesController::class, 'show']);
+// Route::get('/categories/{id}', [CategoryController::class, 'show']);
 Route::get('/search/{search}', [CategoriesController::class, 'search']);
+
+// Learn Page
+Route::get('/videos', [LearnController::class, 'index']);
+Route::get('videos/{id}', [LearnController::class, 'show']);
+Route::post('videos', [LearnController::class, 'store']);
+Route::put('videos/{id}', [LearnController::class, 'update']);
+Route::delete('videos/{id}', [LearnController::class, 'destroy']);
 
 
 Route::post('/adverts', [AdvertController::class, 'store']);

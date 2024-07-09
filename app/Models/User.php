@@ -23,6 +23,7 @@ class User extends Authenticatable
      */
     protected $fillable = [
         'name',
+        'username',
         'email',
         'password',
         'referral_code',
@@ -67,5 +68,10 @@ class User extends Authenticatable
     public function referredBy()
     {
         return $this->hasOne(Referral::class, 'referred_user_id');
+    }
+
+        public function products()
+    {
+        return $this->hasMany(Product::class);
     }
 }

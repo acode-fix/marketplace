@@ -1,16 +1,29 @@
 
 //product condition
-function toggleButton(button) {
-    if (button.classList.contains('new')) {
-        document.querySelector('.new').classList.remove('clicked');
-        document.querySelector('.used').classList.remove('clicked');
-        button.classList.add('clicked');
-    } else if (button.classList.contains('used')) {
-        document.querySelector('.new').classList.remove('clicked');
-        document.querySelector('.used').classList.remove('clicked');
-        button.classList.add('clicked');
-    }
-  }
+// function toggleButton(button) {
+//     if (button.classList.contains('new')) {
+//         document.querySelector('.new').classList.remove('clicked');
+//         document.querySelector('.used').classList.remove('clicked');
+//         button.classList.add('clicked');
+//     } else if (button.classList.contains('used')) {
+//         document.querySelector('.new').classList.remove('clicked');
+//         document.querySelector('.used').classList.remove('clicked');
+//         button.classList.add('clicked');
+//     }
+
+//     // document.getElementById('toggle-button').value = condition;
+//   }
+function toggleButton(button, condition) {
+    // Remove 'clicked' class from both buttons
+    document.querySelector('.new').classList.remove('clicked');
+    document.querySelector('.used').classList.remove('clicked');
+
+    // Add 'clicked' class to the clicked button
+    button.classList.add('clicked');
+
+    // Set the value of the hidden input field 'toggle-button' with the selected condition
+    document.getElementById('toggle-button').value = condition;
+}
 
   const leftArrow = document.getElementById('leftArrow');
   const rightArrow = document.getElementById('rightArrow');
@@ -42,16 +55,16 @@ function toggleButton(button) {
 
 
 const priceSwitch = document.getElementById('priceSwitch');
-const PricesInput = document.getElementById('PricesInput');
+const PricesInput = document.getElementById('priceFields');
 
 
 priceSwitch.addEventListener('change', function() {
     if (this.checked) {
         PricesInput.classList.add('hidden');
-      
+
     } else {
         PricesInput.classList.remove('hidden');
-       
+
     }
 });
 
@@ -84,10 +97,10 @@ document.getElementById('imageContainer').addEventListener('click', function() {
 });
 
 document.getElementById('fileInput').addEventListener('change', function() {
-  
+
     var file = this.files[0];
     if (file) {
-        
+
         if (selectedImages < 3) {
             if (file.type === 'image/jpeg' || file.type === 'image/png') {
                 if (file.size <= 5242880) { // 5MB
@@ -108,14 +121,14 @@ document.getElementById('fileInput').addEventListener('change', function() {
                             }
                         };
                         image.src = e.target.result;
-                        var frame = document.querySelector('.frame img') ? 
-                            document.querySelector('.frame2 img') ? 
+                        var frame = document.querySelector('.frame img') ?
+                            document.querySelector('.frame2 img') ?
                                 document.querySelector('.frame3 img') ? null : document.querySelector('.frame3') : document.querySelector('.frame2') : document.querySelector('.frame');
                         if (frame) {
                             frame.innerHTML = '';
                             frame.appendChild(image);
                             frame.style.display = 'flex';
-                            
+
                             var closeButton = document.createElement('span');
                             closeButton.innerHTML = '×';
                             closeButton.className = 'close_button';
@@ -158,13 +171,13 @@ document.getElementById('fileInput').addEventListener('change', function() {
 
 
 const states = [
-    'Abakaliki', 'Aba', 'Abeokuta', 'Abuja', 'Ado Ekiti', 'Akure', 'Asaba', 'Awka', 'Bauchi', 'Benin City', 
+    'Abakaliki', 'Aba', 'Abeokuta', 'Abuja', 'Ado Ekiti', 'Akure', 'Asaba', 'Awka', 'Bauchi', 'Benin City',
     'Birnin Kebbi', 'Calabar', 'Damaturu', 'Delta', 'Dutse', 'Edo', 'Ekiti', 'Enugu', 'Gombe', 'Gusau', 'Ibadan',
     'Ikeja', 'Ilorin', 'Imo', 'Jalingo', 'Jos', 'Kaduna', 'Kano', 'Katsina', 'Lafia', 'Lagos', 'Lokoja', 'Maiduguri',
     'Makurdi', 'Minna', 'Ogun', 'Owerri', 'Owere', 'Port Harcourt', 'Sokoto', 'Umuahia', 'Uyo', 'Yenagoa', 'Yola', 'Zaria'
   ];
 
-  
+
 
 // location for mobile view serch page
 function filterStates3(value) {
@@ -186,13 +199,13 @@ function filterStates3(value) {
       stateSelection.appendChild(p);
     }
   }
-  
+
   function changeLocation3(location) {
     document.getElementById('clickMe3').textContent = location;
     document.querySelector(".locationInput3").value = location;
-  } 
+  }
 
-  
+
 window.onscroll = function() {scrollFunction()};
 
 function scrollFunction() {

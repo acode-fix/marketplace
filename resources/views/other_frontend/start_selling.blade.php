@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="{{ asset('innocent/assets/icons/css/all.min.css') }}">
     <link rel="stylesheet" href="{{ asset('innocent/assets/icons/css/fontawesome.min.css') }}">
     <link rel="stylesheet" href="{{ asset('innocent/assets/css/alert.css') }}">
-
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
     <style>
 
     </style>
@@ -31,6 +31,9 @@
 
     <div id="scrollToTop"><i class="fa-solid fa-arrow-up"></i></div>
 
+    <form id="productForm" enctype="multipart/form-data">
+            @csrf
+
     <div class="main_body">
         <h5 class="category-h5  animate animate-top">Select product category
             <span  class="text-danger"><sup>*</sup></span>
@@ -38,106 +41,109 @@
         </h5>
 
     <div class="category_mobile">
+
         <!-- Category Images -->
-        <div class="image2" onclick="selectCategory(this, 'Gadgets')">
+        <div class="image2" onclick="selectCategory(this, 1)">
             <img src="innocent/assets/image/category 1.png">
             <div class="text2">Gadgets</div>
             <div class="checked-icon">✅️</div>
         </div>
-        <div class="image2" onclick="selectCategory(this, 'Vehicles')">
+        <div class="image2" onclick="selectCategory(this, 2)">
             <img src="innocent/assets/image/category 2.png">
             <div class="text2">Vehicles</div>
             <div class="checked-icon">✅️</div>
         </div>
-        <div class="image2" onclick="selectCategory(this, 'Houses')">
+        <div class="image2" onclick="selectCategory(this, 3)">
             <img src="innocent/assets/image/category 3.png">
             <div class="text2">Houses</div>
             <div class="checked-icon">✅️</div>
         </div>
-        <div class="image2" onclick="selectCategory(this, 'Fashion')">
+        <div class="image2" onclick="selectCategory(this, 4)">
             <img src="innocent/assets/image/category 4.png">
             <div class="text2">Fashion</div>
             <div class="checked-icon">✅️</div>
         </div>
-        <div class="image2" onclick="selectCategory(this, 'Jobs')">
+        <div class="image2" onclick="selectCategory(this, 5)">
             <img src="innocent/assets/image/category 5.png">
             <div class="text2">Jobs</div>
             <div class="checked-icon">✅️</div>
         </div>
-        <div class="image2" onclick="selectCategory(this, 'Cosmetics')">
+        <div class="image2" onclick="selectCategory(this, 6)">
             <img src="innocent/assets/image/category 6.png">
             <div class="text2">Cosmetics</div>
             <div class="checked-icon">✅️</div>
         </div>
-        <div class="image2" onclick="selectCategory(this, 'Fruits')">
+        <div class="image2" onclick="selectCategory(this, 7)">
             <img src="innocent/assets/image/category 7.png">
             <div class="text2">Fruits</div>
             <div class="checked-icon">✅️</div>
         </div>
-        <div class="image2" onclick="selectCategory(this, 'Kitchen utensils')">
+        <div class="image2" onclick="selectCategory(this, 8)">
             <img src="innocent/assets/image/category 8.png">
             <div class="text2">Kitchen utensils</div>
             <div class="checked-icon">✅️</div>
         </div>
-        <div class="others_mobile" onclick="selectCategory(this, 'others')">
+        <div class="others_mobile" onclick="selectCategory(this, 9)">
             <p>others</p>
             <div class="checked-icon">✅️</div>
         </div>
+
     </div>
+
         <!-- Category Full Size -->
     <div class="category_desktop_container">
             <div class="category_desktop_arrow"><i class="fa-solid fa-circle-arrow-left " id="leftArrow"></i></div>
         <div class="category_desktop" id="imageGallery">
             <!-- Category Images Gallery -->
 
-            <div class="image" onclick="selectCategory(this, 'Gadgets')">
+            <div class="image" onclick="selectCategory(this, 1)">
                 <img src="innocent/assets/image/category 1.png">
                 <div class="text2">Gadgets</div>
                 <div class="checked-icon">✅️</div>
             </div>
 
-            <div class="image" onclick="selectCategory(this, 'Vehicles')">
+            <div class="image" onclick="selectCategory(this, 2)">
                 <img src="innocent/assets/image/category 2.png">
                 <div class="text2">Vehicles</div>
                 <div class="checked-icon">✅️</div>
             </div>
 
-            <div class="image" onclick="selectCategory(this, 'Houses')">
+            <div class="image" onclick="selectCategory(this, 3)">
                 <img src="innocent/assets/image/category 3.png">
                 <div class="text2">Houses</div>
                 <div class="checked-icon">✅️</div>
             </div>
 
-            <div class="image" onclick="selectCategory(this, 'Fashion')">
+            <div class="image" onclick="selectCategory(this, 4)">
                 <img src="innocent/assets/image/category 4.png">
                 <div class="text2">Fashion</div>
                 <div class="checked-icon">✅️</div>
             </div>
 
-            <div class="image" onclick="selectCategory(this, 'Jobs')">
+            <div class="image" onclick="selectCategory(this, 5)">
                 <img src="innocent/assets/image/category 5.png">
                 <div class="text2">Jobs</div>
                 <div class="checked-icon">✅️</div>
             </div>
 
-            <div class="image" onclick="selectCategory(this, 'Cosmetics')">
+            <div class="image" onclick="selectCategory(this, 6)">
                 <img src="innocent/assets/image/category 6.png">
                 <div class="text2">Cosmetics</div>
                 <div class="checked-icon">✅️</div>
             </div>
 
 
-            <div class="image" onclick="selectCategory(this, 'Fruits')">
+            <div class="image" onclick="selectCategory(this, 7)">
                 <img src="innocent/assets/image/category 7.png">
                 <div class="text2">Fruits</div>
                 <div class="checked-icon">✅️</div>
             </div>
-            <div class="image" onclick="selectCategory(this, 'Kitchen utensils')">
+            <div class="image" onclick="selectCategory(this, 8)">
                 <img src="innocent/assets/image/category 8.png">
                 <div class="text2"> utensils</div>
                 <div class="checked-icon">✅️</div>
             </div>
-            <div  id="others" onclick="selectCategory(this, 'others')">
+            <div  id="others" onclick="selectCategory(this, 9)">
                 <p>others</p>
                 <div class="checked-icon">✅️</div>
             </div>
@@ -145,7 +151,7 @@
         <div class="category_desktop_arrow"><i class="fa-solid fa-circle-arrow-right " id="rightArrow"></i></div>
     </div>
 
-    <input type="text" id="selected-category" placeholder="Selected Category" readonly style="display: none;">
+    <input type="text" name="category_id" id="selected-category" placeholder="Selected Category" readonly style="display: none;">
  <!-- product upload area -->
     <div class="product_upload">
         <div class="col first_column">
@@ -156,7 +162,7 @@
 
 
 
-                <input type="file" id="fileInput" accept="image/*" style="display: none;">
+                <input type="file" id="fileInput" name="image_url[]" accept="image/*" style="display: none;" multiple>
 
                 <div id="imageContainer">
                     <div id="uploadButton">
@@ -185,21 +191,24 @@
 
         <div class="col second_column">
             <div data-bs-toggle="modal" data-bs-target="#location_input_modal_mobile_view"  class=" photo_inputs">
-                <p data-bs-toggle="modal" data-bs-target="#location_input_modal_mobile_view"  class="clickMe_mobile_veiw" id="clickMe3">Location<span>*</span></p>
+               <p data-bs-toggle="modal" data-bs-target="#location_input_modal_mobile_view"  class="clickMe_mobile_veiw" id="clickMe3">Location<span>*</span></p>
             </div>
 
-            <div class="price_input photo_inputs" id="PricesInput">
-                <input type="text" placeholder="main price" class="main_price"  >
+            {{-- <div class="price_input photo_inputs" id="PricesInput" id="priceFields"> --}}
+            <div class="price_input photo_inputs" id="priceFields">
+                <input type="text" placeholder="main price" class="main_price" name="actual_price" >
                 <div class="vertical-bar"></div>
-                <input type="text" placeholder="promo(optional)" class="promo_price" >
+                <input type="text" placeholder="promo(optional)" class="promo_price" name="promo_price">
             </div>
-            <input type="text" placeholder="how many in stock," class="photo_inputs">
+            <input type="text" placeholder="how many in stock," class="photo_inputs" name="quantity">
             <div class="product_condition">
                 <p>
                  condition
-                    <button class="button used" onclick="toggleButton(this)">Fairly Used</button>
-                    <button class="button new" onclick="toggleButton(this)">New</button>
+            <button type="button"  value="used" class="button used" onclick="toggleButton(this, 'used')">Fairly Used</button>
+             <button type="button" value="new" class="button new" onclick="toggleButton(this, 'new')">New</button>
                 </p>
+            <input type="text" name="condition" id="toggle-button" readonly style="display: none;">
+
             </div>
             <div class="ask_for_price">
                 <p>Ask for price
@@ -226,15 +235,17 @@
         </div>
 
         <div class="col " style="margin-left: auto;">
-            <input type="text" placeholder="product title" class="product_title" id="product-name">
+            <input type="text" placeholder="product title" name="title" class="product_title" id="product-name">
 
            <div class="tooltip" id="tooltip" style="display: none;">Please choose any category to proceed</div>
 
             <p class="maximum_character">500 characters max</p>
-            <textarea  placeholder="product descriptoin" class="product_descriptoin_input"></textarea>
+            <textarea  placeholder="product descriptoin" name="description" class="product_descriptoin_input"></textarea>
 
-            <button type="submit" class="upload_your_product animate " data-bs-toggle="modal" data-bs-target="#exampleModal">
-              <p class="upload_your_product_p">
+            {{-- <button type="submit" class="upload_your_product animate " data-bs-toggle="modal" data-bs-target="#exampleModal"> --}}
+            <button type="submit" class="upload_your_product animate ">
+
+                <p class="upload_your_product_p">
                 <img src="innocent/assets/image/logo icon.svg" alt="">
                 Upload your Product
               </p>
@@ -266,7 +277,7 @@
             <div class="location_search_input_area">
                 <i class="fa-solid fa-location-dot"></i>
 
-                <input type="text" class="locationInput3" placeholder="Enter your city location" oninput="filterStates3(this.value)">
+                <input type="text" name="location" class="locationInput3" placeholder="Enter your city location" oninput="filterStates3(this.value)">
                <i class="fa-solid fa-search"></i>
             </div>
         </div>
@@ -321,6 +332,8 @@
     </div>
   </div>
 
+</form>
+
 
   <!-- Modal -->
   <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -335,7 +348,7 @@
         </p>
        <div class="upload_sucess_modal_div">
         <p class="upload_sucess_modal_div_p">Sucessful!</p>
-        <p class="upload_sucess_modal_div_p2">Your Product have been Sucessfully pulish</p>
+        <p class="upload_sucess_modal_div_p2">Your Product have been Sucessfully publish</p>
        </div>
       </div>
     </div>
@@ -382,11 +395,89 @@
     </div>
   </div>
 
-</script>
+
     <script src="{{ asset('innocent/assets/js/start_selling.js') }}"></script>
     <script src="{{ asset('innocent/assets/js/animation.js') }}"></script>
     <script src="{{ asset('innocent/assets/js/upload_image.js') }}"></script>
     <script src="{{ asset('innocent/assets/js/bootstrap.js') }}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const priceSwitch = document.getElementById('priceSwitch');
+        const priceFields = document.getElementById('priceFields');
+
+        // Hide price fields initially if the switch is checked
+        if (priceSwitch.checked) {
+            priceFields.style.display = 'none';
+        }
+
+        // Toggle price fields visibility based on the switch state
+        priceSwitch.addEventListener('change', function() {
+            if (priceSwitch.checked) {
+                priceFields.style.display = 'none';
+            } else {
+                priceFields.style.display = 'block';
+            }
+        });
+
+        document.getElementById('productForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            let formData = new FormData(this);
+
+            // Add ask_for_price to formData based on the switch state
+            formData.append('ask_for_price', priceSwitch.checked ? 1 : 0);
+
+            // Conditionally remove actual_price and promo_price if the switch is on
+            if (priceSwitch.checked) {
+                formData.delete('actual_price');
+                formData.delete('promo_price');
+            }
+
+            for (let pair of formData.entries()) {
+                console.log(pair[0] + ': ' + pair[1]);
+            }
+
+            const token = localStorage.getItem('apiToken');
+
+            axios.post('/api/v1/product', formData, {
+                headers: {
+                    'Content-Type': 'multipart/form-data',
+                    'Authorization': 'Bearer ' + token
+                }
+            })
+            .then(function(response) {
+                console.log(response.data);
+                if (response.data.status) {
+                    const modal = new bootstrap.Modal(document.getElementById('exampleModal'));
+                         modal.show();
+                    //      modal._element.addEventListener('hidden.bs.modal', function () {
+                    //     window.location.href = '/index'; // Redirect to index page after modal is hidden
+                    // });
+                  // Redirect to the index page after a short delay
+                setTimeout(function() {
+                    window.location.href = '/';
+                }, 5000); // 5000 milliseconds = 5 seconds
+                } else {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Failed to create product',
+                        text: response.data.message
+                    });
+                }
+            })
+            .catch(function(error) {
+                console.log(error.response.data);
+                Swal.fire({
+                    icon: 'error',
+                    title: 'An error occurred',
+                    text: error.response.data.message + ' ' + 'All fields are required'
+                });
+            });
+        });
+    });
+        </script>
 
 
 </body>

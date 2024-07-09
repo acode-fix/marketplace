@@ -12,7 +12,9 @@
     <link rel="stylesheet" href="{{ asset('innocent/assets/css/location.css') }}">
     <link rel="stylesheet" href="{{ asset('innocent/assets/icons/css/all.min.css') }}">
     <link rel="stylesheet" href="{{ asset('innocent/assets/icons/css/fontawesome.min.css') }}">
-
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/moment@2.29.1/min/moment.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 
 
 </head>
@@ -50,7 +52,7 @@
             <button id="search" type="button" class="search" onclick="check_input()">Search</button>
             </span></a>
         </div>
-        <img src="innocent/assets/image/main logo.svg" alt="" class="search_buy_and_sell_logo">
+        <img src="{{ asset('innocent/assets/image/main logo.svg') }}" alt="" class="search_buy_and_sell_logo">
 
     </div>
 
@@ -96,7 +98,7 @@
             <br>
             <div class="row">
                 <div class="col d-flex">
-                    <img src="innocent/assets/image/badge.png" alt="" class="verify_badge">
+                    <img src="{{ asset('innocent/assets/image/badge.png') }}" alt="" class="verify_badge">
 
                     <p>verified seller</p>
                     <label class="switch">
@@ -107,7 +109,7 @@
             </div>
             <!-- <a href="start_selling.html"><img src="innocent/assets/image/Start selling 3.png" alt="" class="start_selling_filter"></a> -->
             <a href="{{ url('/start_selling') }}" class="start_selling_div">
-                <img src="innocent/assets/image/logo icon.svg" alt="">
+                <img src="{{ asset('innocent/assets/image/logo icon.svg') }}" alt="">
                 <p class="start_selling_p">
                    <span class="start_selling_span"> do you have anything to sell</span><br>
                    <span class="start_selling_span2">start selling</span>
@@ -119,11 +121,8 @@
         <div class="main main_categoty_serch_page">
 
 
-            <h5 class="search_by_category  animate animate-right" > Vehicles</h5>
+            <h5 class="search_by_category  animate animate-right" id="categoryTitle">Category Name</h5>
             <!-- Product Cards -->
-
-
-
 
 
             <div class="product_card_container search_by_category_margin_for_category">
@@ -131,7 +130,7 @@
                 <div class="container-fluid">
                     <div class="row">
                       <div class="col">
-                        <div class="product_card_display card-margin content-margin mt-4">
+                        <div class="product_card_display card-margin content-margin mt-4" id="productCardDisplay">
 
 
                             <a href="{{ url('/product_des') }}" class="product_card_link">
@@ -262,10 +261,10 @@
             </div>
             <!-- Promotion Section -->
             <div class="promotion">
-                <img src="innocent/assets/image/Annoucement.png" alt="" class="Annoucement">
+                <img src="{{ asset('innocent/assets/image/Annoucement.png') }}" alt="" class="Annoucement">
                 <p>
-                    <img src="innocent/assets/image/main logo.svg" alt="" class="buy_and_sell_logo_promotion" ><br><br>
-                        <img src="innocent/assets/image/Annoucement.png" alt="" class="Annoucement2">
+                    <img src="{{ asset('innocent/assets/image/main logo.svg') }}" alt="" class="buy_and_sell_logo_promotion" ><br><br>
+                        <img src="{{ asset('innocent/assets/image/Annoucement.png') }}" alt="" class="Annoucement2">
                         <strong>Reach more audience by promoting your Product(s)</strong><br>
                         determine your target audience location, interest, <br> select a
                         convenient budget and duration
@@ -276,7 +275,7 @@
 
                 <div class="promotion_card card" id="promotion_card" style="display: none;">
                     <i class="fa-solid fa-close close_get_started" onclick="hideCard_get_started()"></i>
-                    <img src="innocent/assets/image/Annoucement.png" alt="">
+                    <img src="{{ asset('innocent/assets/image/Annoucement.png') }}" alt="">
                     <div class="card_content_get_started">
                        <p>chosse your promotion option <br>
                         <span>select your promotion option</span>
@@ -425,7 +424,7 @@
             <!--tell us what is it-->
             <div class="tell_us_what_u_want animate animate-left ">
                 <p class="tell_us_paragraph" onclick="changeToInput()">
-                    <img src="innocent/assets/image/pen.png" alt="" class="pen">
+                    <img src="{{ asset('innocent/assets/image/pen.png') }}" alt="" class="pen">
                     Can't find what you are looking for?
                     <span>Tell us what it is!</span><br>
                     and we'll do our best to assist you.
@@ -433,7 +432,7 @@
             </div>
 
             <div class="tell_us_what_u_want_input_area">
-                <img src="innocent/assets/image/dp.png" alt="" class="tell_us_what_u_want_profile">
+                <img src="{{ asset('innocent/assets/image/dp.png') }}" alt="" class="tell_us_what_u_want_profile">
                <div class="vertical_bar"></div>
                 <input type="text" name="" class="tell_us_input" placeholder="write the details here">
                 <button class="send" onclick="send()">send</button>
@@ -458,10 +457,10 @@
             <a href="">Report a seller</a>
         </nav>
         <div class="footer_icons">
-            <img src="innocent/assets/image/facebook.png" alt="">
-            <img src="innocent/assets/image/twitter.png" alt="">
-            <img src="innocent/assets/image/linkedin.png" alt="">
-            <img src="innocent/assets/image/message.png" alt="">
+            <img src="{{ asset('innocent/assets/image/facebook.png') }}" alt="">
+            <img src="{{ asset('innocent/assets/image/twitter.png') }}" alt="">
+            <img src="{{ asset('innocent/assets/image/linkedin.png') }}" alt="">
+            <img src="{{ asset('innocent/assets/image/message.png') }}" alt="">
         </div>
     </div>
 
@@ -705,5 +704,75 @@
     <script src="{{ asset('innocent/assets/js/script.js') }}"></script>
     <script src="{{ asset('innocent/assets/js/animation.js') }}"></script>
     <script src="{{ asset('innocent/assets/js/location.js') }}"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+    <script>
+document.addEventListener('DOMContentLoaded', function () {
+    const products = JSON.parse(localStorage.getItem('allProducts'));
+    const categoryName = localStorage.getItem('categoryName');
+    const categoryTitle = document.getElementById('categoryTitle');
+    const productContainer = document.getElementById('productCardDisplay');
+
+    categoryTitle.innerText = categoryName;
+    renderProducts(products);
+
+    function renderProducts(products) {
+        productContainer.innerHTML = ''; // Clear the container first
+
+        products.forEach(function (product) {
+            const card = createProductCard(product);
+            productContainer.appendChild(card);
+        });
+    }
+
+    function createProductCard(product) {
+        const card = document.createElement('div');
+        card.className = 'card';
+
+        let product_img_url = '';
+        JSON.parse(product.image_url).forEach((el, i) => {
+            if (i === 0) product_img_url = el;
+        });
+
+        card.innerHTML = `
+            <a href="{{ url('/product_des') }}" class="product_card_link" data-product='${JSON.stringify(product)}'>
+                            <div class="card product_card">
+                                <h6 class="sold"> Sold ${product.sold || 0} <br> <img src="innocent/assets/image/Rate.png" alt=""> ${product.rating || 0}</h6>
+                                <img src="uploads/products/${product_img_url || 'default.jpg'}" class="card-img-top w-100 product_image" alt="${product.title}">
+                                <div class="product_card_title">
+                                    <div class="main_and_promo_price_area">
+                                        ${
+                                            product.ask_for_price  
+                                            ? '<p class="ask-for-price" style="color:red; padding-right: 2px; font-size:23px">Ask for price</p>' 
+                                            : `
+                                                <p class="promo_price">$${product.promo_price || ''}</p>
+                                                <div class="main_price"><p class="main_price_amount">$${product.actual_price || ''}</p></div>
+                                            `
+                                        }
+                                    </div>
+                                    <p class="product_name">${product.title}</p>
+                                    <span class="product_card_location"><i class="fa-solid fa-location-dot"></i> ${product.location}</span>
+                                    <img src="innocent/assets/image/logo icon.svg" alt="">
+                                    <span class="connect"><strong>connect</strong></span>
+                                </div>
+                            </div>
+                        </a>
+                            
+        `;
+
+        card.querySelector('.product_card_link').addEventListener('click', function (event) {
+            event.preventDefault();
+            localStorage.setItem('selectedProduct', this.getAttribute('data-product'));
+            window.location.href = this.href;
+        });
+
+        return card;
+    }
+});
+</script>
+
+
+    
 </body>
 </html>

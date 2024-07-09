@@ -22,6 +22,7 @@
           </div> --}}
         </div>
       </div>
+
       <div style="background-color: white;">
         <div class="footer footer-desktop">
           <div class="row buy border-top footer mt-5 ">
@@ -108,14 +109,21 @@
   <script src="https://cdn.jsdelivr.net/npm/moment@2.29.1/min/moment.min.js"></script>
   <script>
   document.addEventListener('DOMContentLoaded', function () {
-      axios.get('/api/videos')
+            const token = localStorage.getItem('apiToken');
+
+            axios.get('/api/v1/videos', {
+                headers: {
+                    'Authorization': 'Bearer ' + token
+                }
+            })
+            
           .then(function (response) {
               const webLearnContainer = document.getElementById('web-learn-container');
               const mobileLearnContainer = document.getElementById('mobile-learn-container');
 
               response.data.forEach(item => {
                   const cardContent = `
-                      <iframe class="video-size" src="${item.url}" title="${item.title}" frameborder="0"
+                      <iframe style="width: 335px;" class="video-size" src="${item.url}" title="${item.title}" frameborder="0"
                           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                           referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
                       <div class="card-body card-txt">
@@ -140,5 +148,7 @@
               console.error('Error fetching learn data:', error);
           });
   });
+
+
   </script>
 @endsection

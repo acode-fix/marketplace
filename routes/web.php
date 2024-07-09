@@ -4,24 +4,33 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuditlogController;
 use App\Http\Controllers\LearnController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\ProductController;
+use App\Http\Controllers\CategoriesController;
 
 
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider and all of them will
-| be assigned to the "web" middleware group. Make something great!
-|
-*/
+
+
+
+// Route::get('/category_search/{id}', [CategoriesController::class, 'show']);
+
+// web.php
+// Route::get('/api/product/{id}', [ProductController::class, 'getProductData']);
+Route::get('/ggg', [ProductController::class, 'index']);
 
 
 Route::get('/api/learn', [LearnController::class, 'getLearnData']);
+Route::get('/form', function () {
+    return view('frontend.productform');
+});
 Route::get('/learn3', function () {
     return view('frontend.learn3');
+});
+Route::get('/learn4', function () {
+    return view('frontend.learn4');
+});
+Route::get('/learn5', function () {
+    return view('frontend.learn5');
 });
 
 Route::get('/audit-logs', [AuditlogController::class, 'index']);

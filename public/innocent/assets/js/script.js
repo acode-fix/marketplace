@@ -48,24 +48,24 @@ const minPriceInput = document.getElementById('minPriceInput');
 const maxPriceRange = document.getElementById('maxPriceRange');
 const maxPriceInput = document.getElementById('maxPriceInput');
 
-actualPriceRange.addEventListener('input', function() {
-    const actualPrice = parseInt(actualPriceInput.value.substring(1));
-    const minPrice = Math.round(actualPrice * (minPriceRange.value / 100));
-    const maxPrice = Math.round(actualPrice * (maxPriceRange.value / 50));
-    minPriceInput.value = `₦${minPrice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}`;
-    maxPriceInput.value = `₦${maxPrice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}`;
-});
+// actualPriceRange.addEventListener('input', function() {
+//     const actualPrice = parseInt(actualPriceInput.value.substring(1));
+//     const minPrice = Math.round(actualPrice * (minPriceRange.value / 100));
+//     const maxPrice = Math.round(actualPrice * (maxPriceRange.value / 50));
+//     minPriceInput.value = `₦${minPrice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}`;
+//     maxPriceInput.value = `₦${maxPrice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}`;
+// });
 
-minPriceRange.addEventListener('input', function() {
-    const actualPrice = parseInt(actualPriceInput.value.substring(1));
-    const minPrice = Math.round(actualPrice * (minPriceRange.value / 100));
-    minPriceInput.value = `₦${minPrice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}`;
-});
-maxPriceRange.addEventListener('input', function() {
-    const actualPrice = parseInt(actualPriceInput.value.substring(1));
-    const maxPrice = Math.round(actualPrice * (maxPriceRange.value / 50));
-    maxPriceInput.value = `₦${maxPrice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}`;
-});
+// minPriceRange.addEventListener('input', function() {
+//     const actualPrice = parseInt(actualPriceInput.value.substring(1));
+//     const minPrice = Math.round(actualPrice * (minPriceRange.value / 100));
+//     minPriceInput.value = `₦${minPrice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}`;
+// });
+// maxPriceRange.addEventListener('input', function() {
+//     const actualPrice = parseInt(actualPriceInput.value.substring(1));
+//     const maxPrice = Math.round(actualPrice * (maxPriceRange.value / 50));
+//     maxPriceInput.value = `₦${maxPrice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}`;
+// });
 
 
 

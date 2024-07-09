@@ -22,7 +22,6 @@
 
 
 
-
 </head>
 <script>
 
@@ -63,8 +62,9 @@
             <div id="notification_icon_div2"> <a href="{{ url('/notification_mobile') }}"><img
                         src="innocent/assets/image/notification.png" alt="Logo"></a></div>
 
-            <div><img src="innocent/assets/image/bike.png" alt=".profile picture " class="profile_picture"></div>
-            <a href="{{ url('/settings') }}"><img src="innocent/assets/image/bike.png" alt=".profile picture "
+            <div><img id="profile_picture" src="" alt=".profile picture " class="profile_picture"></div>
+            <a href="{{ url('/settings') }}">
+                <img id="profile_picture_mobile" src="" alt=".profile picture "
                     class="profile_picture_mobile"></a>
 
         </div>
@@ -72,17 +72,23 @@
         <!-- prifile card -->
         <div class="profile_card">
             <div class="profile_card_user_name">
-                <img src="innocent/assets/image/dp.png" alt="">
-                <p>Mired Augustine <br>
-                    <span>miredaugustine@gmail.com</span>
+                <img id="profile_image" src="" alt="Profile Image"
+                style="width: 80px; height:80px; border-radius:50px">
+                <p id="profile_name">Loading
                 </p>
+                <p><span id="profile_email">loading</span></p>
+                {{-- <p id="profile_name">Mired Augustine <br>
+                    <span id="profile_email">miredaugustine@gmail.com</span>
+                </p> --}}
             </div>
             <hr>
             <div class="accont_features">
                 <p><a href="{{ url('/settings') }}">Account Setting </a></p>
                 <p><a href="{{ url('/refer') }}"> Reffer a Friend </a></p>
                 <p> <a href="{{ url('/privacy') }}">Privacy and Policy </a></p>
-                <p><a href="#"> log out</a></p>
+                {{-- <p><a href="#"> log out</a></p> --}}
+                <p><a href="#" id="logoutLink">Log out</a></p>
+
 
             </div>
 
@@ -151,12 +157,14 @@
                 <p class="product_condition_p">Product Condition</p>
                 <div class="product_condition_desktop">
 
-                    <button class="button new" onclick="toggleButton(this)">New</button>
-                    <button class="button used" onclick="toggleButton(this)">Fairly Used</button>
+                    <button class="button new" onclick="toggleButton(this, 'new')">New</button>
+                    <button class="button used" onclick="toggleButton(this, 'fairly used')">Fairly Used</button>
+
 
                     <!-- Button trigger modal -->
                     <div data-bs-toggle="modal" data-bs-target="#location_input_modal" class="clickMe_div">
-                        <p data-bs-toggle="modal" data-bs-target="#location_input_modal" id="clickMe">Lagos</p>
+                        <p data-bs-toggle="modal" data-bs-target="#location_input_modal" id="clickMe" onclick="applyFilter()">Lagos</p>
+                        {{-- <p data-bs-toggle="modal" data-bs-target="#location_input_modal" id="clickMe" >Lagos</p> --}}
                         <i class="fa-solid fa-angle-down  angle_down" data-bs-toggle="modal"
                             data-bs-target="#location_input_modal"></i>
                     </div>
@@ -168,7 +176,8 @@
 
                         <p>verified seller</p>
                         <label class="switch">
-                            <input type="checkbox">
+                            <input type="checkbox" id="verifiedSeller" onclick="applyFilter()">
+                            {{-- <input type="checkbox"> --}}
                             <span class="slider"></span>
                         </label>
                     </div>
@@ -219,55 +228,56 @@
 
                 <div class="category_mobile">
                     <!-- Category Images -->
-                    <a href="{{ url('/category_search') }}">
+                    <a href="#" class="category-link" data-category-id="1" data-category-name="Gadgets">
                         <div class="image2">
                             <img src="innocent/assets/image/category 1.png">
                             <div class="text2">Gadgets</div>
                         </div>
                     </a>
-                    <a href="{{ url('/category_search') }}">
+                    <a href="#" class="category-link" data-category-id="2" data-category-name="Vehicles">
                         <div class="image2">
                             <img src="innocent/assets/image/category 2.png">
                             <div class="text2">Vehicles</div>
                         </div>
                     </a>
-                    <a href="{{ url('/category_search') }}">
+                    <a href="#" class="category-link" data-category-id="3" data-category-name="Houses">
                         <div class="image2">
                             <img src="innocent/assets/image/category 3.png">
                             <div class="text2">Houses</div>
                         </div>
                     </a>
-                    <a href="{{ url('/category_search') }}">
+                    <a href="#" class="category-link" data-category-id="4" data-category-name="Fashion">
                         <div class="image2">
                             <img src="innocent/assets/image/category 4.png">
                             <div class="text2">Fashion</div>
                         </div>
                     </a>
-                    <a href="{{ url('/category_search') }}">
+                    <a href="#" class="category-link" data-category-id="5" data-category-name="Jobs">
                         <div class="image2">
                             <img src="innocent/assets/image/category 5.png">
                             <div class="text2">Jobs</div>
                         </div>
                     </a>
-                    <a href="{{ url('/category_search') }}">
+                    <a href="#" class="category-link" data-category-id="6" data-category-name="Cosmetics">
                         <div class="image2">
                             <img src="innocent/assets/image/category 6.png">
                             <div class="text2">Cosmetics</div>
                         </div>
-                        <a href="{{ url('/category_search') }}">
+                    </a>
+                    <a href="#" class="category-link" data-category-id="7" data-category-name="Fruits">
                             <div class="image2">
                                 <img src="innocent/assets/image/category 7.png">
                                 <div class="text2">Fruits</div>
                             </div>
                         </a>
-                        <a href="{{ url('/category_search') }}">
+                        <a href="#" class="category-link" data-category-id="8" data-category-name="Kitchen Utensils">
                             <div class="image2">
                                 <img src="innocent/assets/image/category 8.png">
                                 <div class="text2">Kitchen utensils</div>
                             </div>
                         </a>
                         <div class="others_mobile">
-                            <a href="{{ url('/category_search') }}" class="others_mobile_link">
+                            <a href="#" class="category-link" data-category-id="9" data-category-name="Others" class="others_mobile_link">
                                 <div>
 
                                     <p>others</p>
@@ -280,71 +290,67 @@
 
 
                 <!-- Category Full Size -->
-
                 <div class="category_desktop_container">
-                    <div class="category_desktop_arrow"><i class="fa-solid fa-circle-arrow-left " id="leftArrow"></i>
-                    </div>
+                    <div class="category_desktop_arrow"><i class="fa-solid fa-circle-arrow-left " id="leftArrow"></i></div>
                     <div class="category_desktop" id="imageGallery">
                         <!-- Category Images Gallery -->
-                        <a href="{{ url('/category_search') }}">
+                        <a href="#" class="category-link" data-category-id="1" data-category-name="Gadgets">
                             <div class="image">
                                 <img src="innocent/assets/image/category 1.png">
                                 <div class="text">Gadgets</div>
                             </div>
                         </a>
-                        <a href="{{ url('/category_search') }}">
+                        <a href="#" class="category-link" data-category-id="2" data-category-name="Vehicles">
                             <div class="image">
                                 <img src="innocent/assets/image/category 2.png">
                                 <div class="text">Vehicles</div>
                             </div>
                         </a>
-                        <a href="{{ url('/category_search') }}">
+                        <a href="#" class="category-link" data-category-id="3" data-category-name="Houses">
                             <div class="image">
                                 <img src="innocent/assets/image/category 3.png">
                                 <div class="text">Houses</div>
                             </div>
                         </a>
-                        <a href="{{ url('/category_search') }}">
+                        <a href="#" class="category-link" data-category-id="4" data-category-name="Fashion">
                             <div class="image">
                                 <img src="innocent/assets/image/category 4.png">
                                 <div class="text">Fashion</div>
                             </div>
                         </a>
-                        <a href="{{ url('/category_search') }}">
+                        <a href="#" class="category-link" data-category-id="5" data-category-name="Jobs">
                             <div class="image">
                                 <img src="innocent/assets/image/category 5.png">
                                 <div class="text">Jobs</div>
                             </div>
                         </a>
-                        <a href="{{ url('/category_search') }}">
+                        <a href="#" class="category-link" data-category-id="6" data-category-name="Cosmetics">
                             <div class="image">
                                 <img src="innocent/assets/image/category 6.png">
                                 <div class="text">Cosmetics</div>
                             </div>
                         </a>
-                        <a href="{{ url('/category_search') }}">
+                        <a href="#" class="category-link" data-category-id="7" data-category-name="Fruits">
                             <div class="image">
                                 <img src="innocent/assets/image/category 7.png">
                                 <div class="text">Fruits</div>
                             </div>
                         </a>
-                        <a href="{{ url('/category_search') }}">
+                        <a href="#" class="category-link" data-category-id="8" data-category-name="Kitchen Utensils">
                             <div class="image">
                                 <img src="innocent/assets/image/category 8.png">
                                 <div class="text">Kitchen Utensils</div>
                             </div>
                         </a>
-                        <a href="{{ url('/category_search') }}" class="link">
+                        <a href="#" class="category-link" data-category-id="9" data-category-name="Others" class="link">
                             <div class="image others">
-                                <p>others</p>
-
+                                <p>Others</p>
                             </div>
                         </a>
                     </div>
-
-                    <div class="category_desktop_arrow"><i class="fa-solid fa-circle-arrow-right " id="rightArrow"></i>
-                    </div>
+                    <div class="category_desktop_arrow"><i class="fa-solid fa-circle-arrow-right " id="rightArrow"></i></div>
                 </div>
+
 
                 <a href="{{ url('/start_selling') }}">
                     <div class="startselling2">
@@ -353,164 +359,15 @@
                     </div>
                 </a>
                 <h5 class="top_sales  animate animate-right">Top Sales</h5>
+
                 <!-- Product Cards -->
-
-
-
-
-
                 <div class="product_card_container top_sales_margin">
 
                     <div class="container-fluid">
                         <div class="row">
                             <div class="col">
-                                <div class="product_card_display card-margin content-margin mt-4">
-
-
-                                    <a href="{{ url('/product_des') }}" class="product_card_link">
-                                        <div class="card product_card">
-                                            <h6 class="sold"> Sold 35 <br> <img src="innocent/assets/image/Rate.png"
-                                                    alt=""> 4.0</h6>
-                                            <img src="innocent/assets/image/pexels-pixabay-164558.jpg"
-                                                class="card-img-top w-100 product_image" alt="...">
-
-                                            <div class="product_card_title">
-                                                <div class="main_and_promo_price_area">
-                                                    <p class="promo_price">$100,000,000</p>
-                                                    <div class="main_price">
-                                                        <p class="main_price_amount">$120,000,000</p>
-                                                    </div>
-
-                                                </div>
-
-
-                                                <p class="product_name">3 Bed Room Flat</p>
-                                                <span class="product_card_location"><i
-                                                        class="fa-solid fa-location-dot"></i> Abuja</span>
-                                                <img src="innocent/assets/image/badge.png" alt="">
-                                                <span class="connect"><strong>connect</strong></span>
-
-                                            </div>
-                                        </div>
-                                    </a>
-                                    <a href="{{ url('/product_des') }}" class="product_card_link">
-                                        <div class="card product_card">
-                                            <h6 class="sold"> Sold 7 <br> <img src="innocent/assets/image/Rate.png"
-                                                    alt=""> 3.6</h6>
-                                            <img src="innocent/assets/image/felipe-simo-dWQDNyPfKPU-unsplash.jpg"
-                                                class="card-img-top w-100 product_image" alt="...">
-
-                                            <div class="product_card_title">
-                                                <div class="main_and_promo_price_area">
-                                                    <p class="promo_price">$500,000</p>
-                                                    <div class="main_price">
-                                                        <p class="main_price_amount">$520,000</p>
-                                                    </div>
-
-                                                </div>
-
-
-                                                <p class="product_name">Mercedes-Benz M Class ML 350 4Matic 2012 Silver
-                                                </p>
-                                                <span class="product_card_location"><i
-                                                        class="fa-solid fa-location-dot"></i> Abuja</span>
-                                                <img src="innocent/assets/image/logo icon.svg" alt="">
-                                                <span class="connect"><strong>connect</strong></span>
-
-                                            </div>
-                                        </div>
-                                    </a>
-                                    <a href="{{ url('/product_des') }}" class="product_card_link">
-                                        <div class="card product_card">
-                                            <h6 class="sold"> Sold 175 <br> <img src="innocent/assets/image/Rate.png"
-                                                    alt=""> 3.6</h6>
-                                            <img src="innocent/assets/image/laptop.jpg"
-                                                class="card-img-top w-100 product_image" alt="...">
-
-                                            <div class="product_card_title">
-
-                                                <div class="main_and_promo_price_area">
-                                                    <div class="ask_for_price">Ask for price</div>
-
-                                                </div>
-                                                <p class="product_name">Laptop Apple MacBook Pro 2015 8GB</p>
-                                                <span class="product_card_location"><i
-                                                        class="fa-solid fa-location-dot"></i> Ilorin</span>
-                                                <img src="innocent/assets/image/badge.png" alt="">
-                                                <span class="connect"><strong>connect</strong></span>
-                                            </div>
-                                        </div>
-                                    </a>
-
-                                    <a href="{{ url('/product_des') }}" class="product_card_link">
-                                        <div class="card product_card">
-                                            <h6 class="sold"> Sold 75 <br> <img src="innocent/assets/image/Rate.png"
-                                                    alt=""> 5.0</h6>
-                                            <img src="innocent/assets/image/portrait-smiling-afro-american-male-photographer.jpg"
-                                                class="card-img-top w-100 product_image" alt="...">
-
-                                            <div class="product_card_title">
-
-                                                <div class="main_and_promo_price_area">
-                                                    <div class="ask_for_price">Ask for price</div>
-
-                                                </div>
-                                                <p class="product_name">Photographer</p>
-                                                <span class="product_card_location"><i
-                                                        class="fa-solid fa-location-dot"></i> Lagos</span>
-                                                <img src="innocent/assets/image/logo icon.svg" alt="">
-                                                <span class="connect"><strong>connect</strong></span>
-                                            </div>
-                                        </div>
-                                    </a>
-                                    <a href="{{ url('/product_des') }}" class="product_card_link">
-                                        <div class="card product_card">
-                                            <h6 class="sold"> Sold 95 <br> <img src="innocent/assets/image/Rate.png"
-                                                    alt=""> 3.6</h6>
-                                            <img src="innocent/assets/image/laptop2.jpg"
-                                                class="card-img-top w-100 product_image" alt="...">
-
-                                            <div class="product_card_title">
-
-                                                <div class="main_and_promo_price_area">
-                                                    <p class="promo_price">$70,000</p>
-                                                    <div class="main_price">
-                                                        <p class="main_price_amount">$82,000</p>
-                                                    </div>
-
-                                                </div>
-                                                <p class="product_name">Lenovo 600gb Finger Print 2020</p>
-                                                <span class="product_card_location"><i
-                                                        class="fa-solid fa-location-dot"></i> Lagos</span>
-                                                <img src="innocent/assets/image/logo icon.svg" alt="">
-                                                <span class="connect"><strong>connect</strong></span>
-                                            </div>
-                                        </div>
-                                    </a>
-                                    <a href="{{ url('/product_des') }}" class="product_card_link">
-                                        <div class="card product_card">
-                                            <h6 class="sold"> Sold 70 <br> <img src="innocent/assets/image/Rate.png"
-                                                    alt=""> 3.0</h6>
-                                            <img src="innocent/assets/image/usb-flash-drive-mockup-technology-data-storage-device.jpg"
-                                                class="card-img-top w-100 product_image" alt="...">
-
-                                            <div class="product_card_title">
-
-                                                <div class="main_and_promo_price_area">
-                                                    <p class="promo_price">$500</p>
-                                                    <div class="main_price">
-                                                        <p class="main_price_amount">$550</p>
-                                                    </div>
-
-                                                </div>
-                                                <p class="product_name">USB Type C OTG Card Reader</p>
-                                                <span class="product_card_location"><i
-                                                        class="fa-solid fa-location-dot"></i> Lagos</span>
-                                                <img src="innocent/assets/image/badge.png" alt="">
-                                                <span class="connect"><strong>connect</strong></span>
-                                            </div>
-                                        </div>
-                                    </a>
+                                <div class="product_card_display card-margin content-margin mt-4" id="productCardDisplay">
+                                    <!-- Products will be dynamically added here -->
 
                                 </div>
                             </div>
@@ -798,7 +655,7 @@
                     </div>
 
 
-                    <div class="login_modal" style="display: none;">
+                    <div id="loginModal" class="login_modal" style="display: none;">
 
                         <i class="fa-solid fa-close close_modal_content_signup_login" data-bs-dismiss="modal"
                             aria-label="Close"> </i>
@@ -830,7 +687,7 @@
                             </div>
                         </div>
                         <button class="signup_continue_button continueBtn" onclick="loginuser()">continue</button>
-                        <p style="margin-top: 20px;">Don't have an account? <span><a href="#" onclick="signup()"
+                        <p style="margin-top: 20px;">Don't have an account? <span><a href="#" onclick="showSignUpModal()"
                                     class="signup_links">Sign up</a></span></p>
 
                     </div>
@@ -983,7 +840,6 @@
                 </div>
             </a>
 
-
             <a href="{{ url('rating') }}">
                 <div class="notification">
                     <div class="notification_details">
@@ -1000,7 +856,6 @@
 
                 </div>
             </a>
-
 
             <a href="{{ url('rating') }}">
                 <div class="notification">
@@ -1020,7 +875,6 @@
                 </div>
             </a>
 
-
             <a href="{{ url('rating') }}">
                 <div class="notification">
                     <div class="notification_details">
@@ -1037,8 +891,6 @@
 
                 </div>
             </a>
-
-
 
             <a href="{{ url('rating') }}">
                 <div class="notification">
@@ -1106,7 +958,6 @@
 
 
     <div class="location_input_modal">
-
 
         <!-- Modal -->
         <div class="modal fade" id="location_input_modal" data-bs-backdrop="static" data-bs-keyboard="false"
@@ -1182,8 +1033,6 @@
             </div>
         </div>
 
-
-
     </div>
 
 
@@ -1218,86 +1067,7 @@
     {{-- AXIOUS JAVASCRIPT --}}
     <script>
 
-//         function signup() {
-//     const email = document.getElementById("signup_email").value;
-//     const password = document.getElementById("signup_password").value;
-
-//     axios.post('/api/auth/register', {
-//         email: email,
-//         password: password,
-//         // password_confirmation: passwordConfirmation
-//     })
-//     .then(function (response) {
-//         // Process the response data
-//         const responseData = response.data;
-
-//         // Assuming the response contains the API token
-//         const token = responseData.token;
-
-//         // Store the token in localStorage (or sessionStorage)
-//         localStorage.setItem('apiToken', token);
-
-//         // Display a success message to the user
-//         Swal.fire({
-//             icon: 'success',
-//             title: 'Registration Successful',
-//             text: 'You have registered successfully.',
-//             willClose: () => {
-//                 // Redirect to another page or perform another action
-//                 login(); // Change to your desired page
-//             }
-//         });
-//     })
-//     .catch(function (error) {
-//         // Process the error response data
-//         const errorData = error.response.data;
-
-//         // Display an error message to the user
-//         Swal.fire({
-//             icon: 'error',
-//             title: 'Registration Failed',
-//             text: 'There was an error while registering. Please try again later.'
-//         });
-//     });
-// }
-
         // Sign UP PAGE
-   // Function to handle signup form submission
-// function signup() {
-//     const email = document.getElementById("signup_email").value;
-//     const password = document.getElementById("signup_password").value;
-
-//     axios.post('/api/auth/register', {
-//         email: email,
-//         password: password,
-//         password_confirmation: password // Assuming you have a password confirmation field
-//     })
-//     .then(function (response) {
-//         // Handle success response
-//         console.log(response.data);
-//         // Display a success message, e.g., using SweetAlert2
-//         Swal.fire({
-//             icon: 'success',
-//             title: 'Registration Successful',
-//             text: 'You have successfully registered!',
-//             willClose: () => {
-//                 // After registration, show the login modal
-//                 login(); // Assuming you have a function to show the login modal
-//             }
-//         });
-//     })
-//     .catch(function (error) {
-//         // Handle error response
-//         console.log(error.response.data);
-//         // Display an error message to the user
-//         Swal.fire({
-//             icon: 'error',
-//             title: 'Registration Failed',
-//             text: 'There was an error during registration. Please try again later.'
-//         });
-//     });
-// }
-
 function signup() {
     const email = document.getElementById("signup_email").value;
     const password = document.getElementById("signup_password").value;
@@ -1313,6 +1083,9 @@ function signup() {
         if (responseData.status) {
             // Store the token in localStorage
             localStorage.setItem('apiToken', responseData.token);
+
+
+            //alert(responseData.token);
 
             // Set the token in Axios default headers for subsequent requests
             axios.defaults.headers.common['Authorization'] = `Bearer ${responseData.token}`;
@@ -1374,34 +1147,6 @@ axios.interceptors.request.use(
 
 
 
-
-// Function to handle login form submission
-// function loginuser() {
-//     const email = document.getElementById("login_email").value;
-//     const password = document.getElementById("login_password").value;
-
-//     axios.post('/api/auth/login', {
-//         email: email,
-//         password: password
-//     })
-//     .then(function (response) {
-//         // Handle success response
-//         console.log(response.data);
-//         // Redirect the user to the index page or perform any other action
-//         window.location.href = '/'; // Replace with your index page URL
-//     })
-//     .catch(function (error) {
-//         // Handle error response
-//         console.log(error.response.data);
-//         // Display an error message to the user
-//         Swal.fire({
-//             icon: 'error',
-//             title: 'Login Failed',
-//             text: 'Invalid email or password. Please try again.'
-//         });
-//     });
-// }
-
 function loginuser() {
     const email = document.getElementById("login_email").value;
     const password = document.getElementById("login_password").value;
@@ -1415,10 +1160,15 @@ function loginuser() {
 
         if (responseData.status) {
             // Store the token in localStorage
-            localStorage.setItem('apiToken', responseData.token);
+            localStorage.setItem('apiToken', responseData.data.token);
+            //    console.log(responseData.data.token);
+            // // alert(localStorage.getItem('apiToken'));
+            // // return;
+            // alert(responseData.data.token);
+            //  return;
 
             // Set the token in Axios default headers for subsequent requests
-            axios.defaults.headers.common['Authorization'] = `Bearer ${responseData.token}`;
+            axios.defaults.headers.common['Authorization'] = `Bearer ${responseData.data.token}`;
 
             Swal.fire({
                 icon: 'success',
@@ -1452,7 +1202,7 @@ axios.interceptors.request.use(
     function (config) {
         const token = localStorage.getItem('apiToken');
         if (token) {
-            config.headers['Authorization'] = `Bearer ${token}`;
+            config.headers['Authorization'] = `Bearer` + token;
         }
         return config;
     },
@@ -1580,8 +1330,269 @@ function resetPassword() {
     });
 }
 
+function logoutUser() {
+    axios.post('/api/v1/auth/logout')
+        .then(function (response) {
+            const responseData = response.data;
+
+            if (responseData.status) {
+                // Remove the token from localStorage
+                localStorage.removeItem('apiToken');
+
+                // Remove the token from Axios default headers
+                delete axios.defaults.headers.common['Authorization'];
+
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Logout Successful',
+                    text: responseData.message,
+                    // willClose: () => {
+                    //     window.location.href = '/login'; // Redirect to login page
+                    // }
+                    onClose: function() {
+                        login3(); // Redirect to login page
+                     }
+                });
+            } else {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Logout Failed',
+                    text: 'Unexpected response from the server. Please try again later.'
+                });
+            }
+        })
+        .catch(function (error) {
+            const errorData = error.response.data;
+
+            Swal.fire({
+                icon: 'error',
+                title: 'Logout Failed',
+                text: errorData.message || 'There was an error while logging out. Please try again later.'
+            });
+        });
+}
+
+// Add this JavaScript code to handle the logout process
+document.getElementById('logoutLink').addEventListener('click', function(event) {
+    event.preventDefault(); // Prevent the default action of the link
+    logoutUser(); // Call the logout function
+});
 
 
+
+
+//THIS IS FOR PRODUCTS
+function applyFilter() {
+    const locationFilter = document.getElementById('clickMe').innerText.trim();
+    const verifiedSeller = document.getElementById('verifiedSeller').checked;
+
+    let condition = '';
+    const conditionButton = document.querySelector('.product_condition_desktop .button.clicked');
+    if (conditionButton) {
+        condition = conditionButton.innerText.trim().toLowerCase();
+    }
+
+    const filters = {
+        condition: condition,
+        location: locationFilter,
+        verifiedSeller: verifiedSeller
+    };
+
+    console.log('Filters applied:', filters);
+
+    axios.get('/api/v1/product/filter', { params: filters })
+        .then(function (response) {
+            const products = response.data;
+            renderProducts(products);
+        })
+        .catch(function (error) {
+            console.error('Error fetching filtered products:', error);
+        });
+}
+
+// Function to handle condition button toggle
+function toggleButton(button) {
+    document.querySelectorAll('.product_condition_desktop .button').forEach(btn => btn.classList.remove('clicked'));
+    button.classList.add('clicked');
+    applyFilter();
+}
+
+
+document.addEventListener('DOMContentLoaded', function () {
+
+    document.querySelectorAll('.product_condition_desktop .button').forEach(button => {
+        button.addEventListener('click', function() {
+            toggleButton(this);
+        });
+    });
+
+    document.getElementById('verifiedSeller').addEventListener('change', function() {
+        applyFilter();
+    });
+
+    document.getElementById('clickMe').addEventListener('input', function() {
+        applyFilter();
+    });
+
+            axios.get('/api/v1/allproduct')
+                .then(function (response) {
+                    const products = response.data;
+                    localStorage.setItem('allProducts', JSON.stringify(products));
+                    renderProducts(products);
+                })
+                .catch(function (error) {
+                    console.error('Error fetching products:', error);
+                });
+        });
+
+        function renderProducts(products) {
+            const productContainer = document.getElementById('productCardDisplay');
+            productContainer.innerHTML = ''; // Clear the container first
+
+            products.forEach(function (product) {
+                const card = createProductCard(product);
+                productContainer.appendChild(card);
+            });
+        }
+
+        function createProductCard(product) {
+            const card = document.createElement('div');
+            card.className = 'card';
+
+            let product_img_url = '';
+            JSON.parse(product.image_url).forEach((el, i) => {
+                if (i === 0) product_img_url = el;
+            });
+
+            card.innerHTML = `
+                <a href="{{ url('/product_des') }}" class="product_card_link" data-product='${JSON.stringify(product)}'>
+                    <div class="card product_card">
+                        <h6 class="sold"> Sold ${product.sold || 0} <br> <img src="innocent/assets/image/Rate.png" alt=""> ${product.rating || 0}</h6>
+                        <img src="uploads/products/${product_img_url || 'default.jpg'}" class="card-img-top w-100 product_image" alt="${product.title}">
+                        <div class="product_card_title">
+                            <div class="main_and_promo_price_area">
+                                ${
+                            product.ask_for_price
+                            ? '<p class="ask-for-price" style="color:red; padding-right: 2px; font-size:23px">Ask for price</p>'
+                            : `
+                                <p class="promo_price">$${product.promo_price || ''}</p>
+                                <div class="main_price"><p class="main_price_amount">$${product.actual_price || ''}</p></div>
+                            `
+                        }
+                            </div>
+
+                            <p class="product_name">${product.title}</p>
+                            <span class="product_card_location"><i class="fa-solid fa-location-dot"></i> ${product.location}</span>
+                            <img src="innocent/assets/image/logo icon.svg" alt="">
+                            <span class="connect"><strong>connect</strong></span>
+                        </div>
+                    </div>
+                </a>
+            `;
+
+            card.querySelector('.product_card_link').addEventListener('click', function (event) {
+                event.preventDefault();
+                localStorage.setItem('selectedProduct', this.getAttribute('data-product'));
+                window.location.href = this.href;
+            });
+
+            return card;
+        }
+
+
+
+
+ // FETCH THE USER DATA
+document.addEventListener('DOMContentLoaded', () => {
+    // Ensure the code runs after the DOM is fully loaded
+    const token = localStorage.getItem('apiToken'); // Get the token from local storage
+
+    if (token) {
+        fetchUserData(token);
+    } else {
+        promptLogin('Authentication token is missing. Please log in.');
+    }
+});
+
+function fetchUserData(token) {
+    axios.get('/api/v1/getuser', {
+        headers: {
+            'Authorization': 'Bearer ' + token
+        }
+    })
+    .then(response => {
+        const user = response.data;
+        updateUserProfile(user);
+    })
+    .catch(error => {
+        console.error('Error fetching user data:', error);
+        if (error.response && error.response.status === 401) {
+            promptLogin('Your session has expired. Please log in again.');
+        }
+    });
+}
+
+function updateUserProfile(user) {
+    const nameElement = document.getElementById('profile_name');
+    const emailElement = document.getElementById('profile_email');
+    const profileImageElement = document.getElementById('profile_image');
+    const profilePictureElement = document.getElementById('profile_picture');
+    const profilePictureMobileElement = document.getElementById('profile_picture_mobile');
+
+    if (user) {
+        nameElement.innerHTML = `${user.username || 'Unknown User'} <br>`;
+        emailElement.innerHTML = user.email || 'No email provided';
+
+        // nameElement.textContent = user.username || 'Unknown User';
+        // emailElement.textContent = user.email || 'No email provided';
+
+        const imageUrl = user.photo_url ? `/uploads/users/${user.photo_url}` : 'innocent/assets/image/dp.png';
+        profileImageElement.src = imageUrl;
+        profilePictureElement.src = imageUrl;
+        profilePictureMobileElement.src = imageUrl;
+    } else {
+        console.error('User data is null or undefined');
+    }
+}
+
+function promptLogin(message) {
+    Swal.fire({
+        icon: 'error',
+        title: 'Login Required',
+        text: 'Please login to continue'
+    }).then(() => {
+        login3(); // Redirect to login page
+    });
+}
+
+
+document.addEventListener('DOMContentLoaded', function () {
+    const categoryLinks = document.querySelectorAll('.category-link');
+
+    categoryLinks.forEach(link => {
+        link.addEventListener('click', function (event) {
+            event.preventDefault();
+            const categoryId = this.getAttribute('data-category-id');
+            const categoryName = this.getAttribute('data-category-name');
+            const token = localStorage.getItem('apiToken'); // Replace with your actual token
+
+            axios.get(`/api/v1/categories/${categoryId}`, {
+                headers: {
+                    'Authorization': `Bearer ${token}`
+                }
+            })
+            .then(function (response) {
+                const products = response.data.data;
+                localStorage.setItem('allProducts', JSON.stringify(products));
+                localStorage.setItem('categoryName', categoryName);
+                window.location.href = "{{ url('/category_search') }}";
+            })
+            .catch(function (error) {
+                console.error('Error fetching products:', error);
+            });
+        });
+    });
+});
 
 
 

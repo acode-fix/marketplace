@@ -16,7 +16,7 @@
 
 
      @yield('content')
-
+@include('layouts.main.profile-js')
 
 </body>
 

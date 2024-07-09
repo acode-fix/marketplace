@@ -49,17 +49,21 @@
         <div id="notification_icon_div"><img src="innocent/assets/image/notification.png" alt="Logo" id="notification_icon"></div>
         <div id="notification_icon_div2"> <a href="{{ url('/notification_mobile') }}"><img src="innocent/assets/image/notification.png" alt="Logo" ></a></div>
 
-         <div><img src="innocent/assets/image/bike.png" alt=".profile picture " class="profile_picture"></div>
-         <div><img src="innocent/assets/image/bike.png" alt=".profile picture " class="profile_picture_mobile"></div>
+         <div><img id="profile_picture" src="" alt=".profile picture " class="profile_picture"></div>
+         <div><img id="profile_picture_mobile" src="" alt=".profile picture " class="profile_picture_mobile"></div>
     </div>
 
-    <!-- prifile card -->
+    <!-- profile card -->
     <div class="profile_card">
         <div class="profile_card_user_name">
-          <img src="innocent/assets/image/dp.png" alt="">
-          <p>Mired Augustine <br>
+            <img id="profile_image" src="" alt="Profile Image" 
+            style="width: 80px; height:80px; border-radius:50px">
+          <p id="profile_name">Loading
+        </p>
+        <p><span id="profile_email">loading</span></p>
+          {{-- <p>Mired Augustine <br>
             <span>miredaugustine@gmail.com</span>
-          </p>
+          </p> --}}
         </div>
         <hr>
         <div class="accont_features">
@@ -74,6 +78,8 @@
 
 
 
+
+        {{-- This part is for the mobile view for navbar sticky part --}}
     <div class="navbar-2 fixed-top">
         <a href="{{ url('/') }}">  <i class="fa-solid fa-angle-left  back_to_index" ></i></a>
         <div class="user_info">
@@ -81,28 +87,28 @@
 
             <div><img src="innocent/assets/image/bike.png" alt=".profile picture " class="user_photo"></div>
             <div class="user_name_area">
-                <p class="user_name">Innocent chibuike onyemaobi </p>
+                <p class="user_name">Innocent</p>
 
                 <p class="location">
                     <img src="innocent/assets/image/badge.png" alt="">
-                    <span class="user_state_mobile">lagos,</span>
+                    <span class="user_state_mobile">loading</span>
                     <span class="rate">
                         <img src="innocent/assets/image/Rate.png" alt="">
-                        5.0
-                    </span >
+                        <span class="rate_value">loading</span>
+                    </span>
                 </p>
             </div>
             <div class="products_details_head">
                 <p class="sold2">
-                    sold 10
+                    loading
                 </p>
 
                 <p class="stock">
-                    200 in stock
+                    loading
                 </p>
 
                 <p class="condition">
-                    fairly used
+                    loading
                 </p>
             </div>
         </div>
@@ -120,89 +126,72 @@
             <div class="sidebar_main">
 
 
-
                 <div class="products_details_dekstop">
                     <div class="user_info2">
                         <div><img src="innocent/assets/image/bike.png" alt=".profile picture " class="user_photo"></div>
                         <div class="user_name2_area">
-                            <p class="user_name2"> Innocent Chibuike  onyemaobi </p>
+                            <p class="user_name2">Loading</p>
                             <p class="location2">
                                 <img src="innocent/assets/image/badge.png" alt="">
-                                <i class="fa-solid fa-location-dot " style="font-size: 12px;"></i>
-                                <span class="user_state">lagos</span>
+                                <i class="fa-solid fa-location-dot" style="font-size: 12px;"></i>
+                                <span class="user_state">loading</span>
                                 <span class="rate">
                                     <img src="innocent/assets/image/Rate.png" alt="">
-                                    5.0
-                                </span >
-                            </div>
-                        </p>
+                                    <span class="rate_value">loading</span>
+                                </span>
+                            </p>
+                        </div>
                         <div class="close_product_des"><a href="{{ url('/') }}"><i class="fa-solid fa-close "></i></a></div>
                     </div>
 
                     <div class="products_details_head2">
                         <p class="sold3">
-                            sold 10
+                            Loading
                         </p>
 
                         <p class="stock2">
-                            200 in stock
+                            Loading
                         </p>
 
                         <p class="condition2">
-                            fairly used
+                            Loading
                         </p>
                     </div>
                 </div>
-               <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
-                    <div class="carousel-indicators">
-                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1" style="background-color: #ffce29;"></button>
-                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2" style="background-color: #ffce29;"></button>
-                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3" style="background-color: #ffce29;"></button>
-                    </div>
-                    <div class="carousel-inner">
+
+              <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+                <div class="carousel-indicators" id="carousel-indicators">
+                    <!-- Carousel indicators will be dynamically inserted here -->
+                </div>
+                <div class="carousel-inner" id="carousel-inner">
+                    <!-- Carousel items will be dynamically inserted here -->
                     <div class="carousel-item active">
-                        <img src="innocent/assets/image/pexels-pixabay-164558.jpg" class="carousel_img" alt="...">
+                        <img src="" class="carousel_img" alt="...">
                     </div>
-                    <div class="carousel-item">
-                        <img src="innocent/assets/image/felipe-simo-dWQDNyPfKPU-unsplash.jpg" class="carousel_img" alt="...">
-                    </div>
-                    <div class="carousel-item">
-                        <img src="innocent/assets/image/portrait-smiling-afro-american-male-photographer.jpg" class="carousel_img" alt="...">
-                    </div>
-                    </div>
-                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
                     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                     <span class="visually-hidden">Previous</span>
-                    </button>
-                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
                     <span class="carousel-control-next-icon" aria-hidden="true"></span>
                     <span class="visually-hidden">Next</span>
-                   </button>
-              </div>
+                </button>
+            </div>
+
 
 
                <div class="product_descriptoin_card">
+                    <p class="product_name_on_sidebar">Loading</p>
+                    <hr>
+                    <div class="main_and_promo_price_des_sidebar">
+                    <p class="promo_price2">loading</p>
+                     <p class="main_price2">loading</p>
 
-
-                    <p class="product_name_on_sidebar" > Buy Hp pro 11</p>
-
-                  <hr>
-                 <div class="main_and_promo_price_des_sidebar">
-                     <p class="promo_price2">$90,000</p>
-                     <p class="main_price2">$100,000</p>
-
-                 </div>
-
-                 <div>
+                    </div>
+                    <div>
                      <span style="font-weight: bold;">Description</span>
-                     <p>
-                     typeliquid reting IPS LCD,120Hz,
-                      HDRIO, Doldy Vision,600nits (typ)Size11.0 inches,
-                       366.5 cm <sup>2</sup> (-82.9% screen-to-body ratio) Resolution 1668 * 2388 pixels (-265 ppi density)
-                       ptotectionScratch-resistant glass, oleophobic coating
-                       (typ)Size11.0 inches,
-                       366.5 cm <sup>2</sup> (-82.9% screen-to-body ratio) Resolution 1668 * 2388 pixels (-265 ppi density)
-                     </p>
+                     <p class="description">Loading</p>
                  </div>
                     <div class="connect_buttons">
 
@@ -219,144 +208,40 @@
             </div>
 
 
-        <!-- Main Body Section -->
+            <!-- Main Body Section --> <!-- This part works for the mobile view -->
         <div class="main2" >
 
             <h5 class="related_search  animate animate-right">Related Search</h5>
             <!-- Product Cards -->
             <div class="product_card_container related_search_margin">
-
                 <div class="container-fluid">
                     <div class="row">
-                      <div class="col">
-                        <div class="product_card_display card-margin content-margin mt-4">
-
-
-                            <a href="{{ url('/product_des') }}" class="product_card_link">
-                                <div class="card product_card">
-                                    <h6 class="sold"> Sold 35 <br> <img src="innocent/assets/image/Rate.png" alt=""> 4.0</h6>
-                                    <img src="innocent/assets/image/pexels-pixabay-164558.jpg" class="card-img-top w-100 product_image" alt="...">
-
-                                    <div class="product_card_title">
-                                        <div class="main_and_promo_price_area">
-                                            <p class="promo_price">$100,000,000</p>
-                                            <div class="main_price"><p class="main_price_amount">$120,000,000</p></div>
-
-                                        </div>
-
-
-                                        <p class="product_name">3 Bed Room Flat</p>
-                                        <span class="product_card_location"><i class="fa-solid fa-location-dot"></i>  Abuja</span>
-                                        <img src="innocent/assets/image/logo icon.svg" alt="" >
-                                        <span class="connect"><strong>connect</strong></span>
-
-                                    </div>
-                                </div>
-                             </a>
-                             <a href="{{ url('/product_des') }}" class="product_card_link">
-                                <div class="card product_card">
-                                    <h6 class="sold"> Sold 7 <br> <img src="innocent/assets/image/Rate.png" alt=""> 3.6</h6>
-                                    <img src="innocent/assets/image/felipe-simo-dWQDNyPfKPU-unsplash.jpg" class="card-img-top w-100 product_image" alt="...">
-
-                                    <div class="product_card_title">
-                                        <div class="main_and_promo_price_area">
-                                            <p class="promo_price">$500,000</p>
-                                            <div class="main_price"><p class="main_price_amount">$520,000</p></div>
-
-                                        </div>
-
-
-                                            <p class="product_name">Mercedes-Benz M Class ML 350 4Matic 2012 Silver</p>
+                        <div class="col">
+                            <div class="product_card_display card-margin content-margin mt-4">
+                                <!-- Example Product Card -->
+                                <a href="#" class="product_card_link" data-product-id="1">
+                                    <div class="card product_card">
+                                        <h6 class="sold"> Sold 35 <br> <img src="innocent/assets/image/Rate.png" alt=""> 4.0</h6>
+                                        <img src="innocent/assets/image/pexels-pixabay-164558.jpg" class="card-img-top w-100 product_image" alt="...">
+                                        <div class="product_card_title">
+                                            <div class="main_and_promo_price_area">
+                                                <p class="promo_price">$100,000,000</p>
+                                                <div class="main_price"><p class="main_price_amount">$120,000,000</p></div>
+                                            </div>
+                                            <p class="product_name">3 Bed Room Flat</p>
                                             <span class="product_card_location"><i class="fa-solid fa-location-dot"></i>  Abuja</span>
-                                            <img src="innocent/assets/image/logo icon.svg" alt="" >
+                                            <img src="innocent/assets/image/logo icon.svg" alt="">
                                             <span class="connect"><strong>connect</strong></span>
-
-                                    </div>
-                                </div>
-                             </a>
-                             <a href="{{ url('/product_des') }}" class="product_card_link">
-                                <div class="card product_card">
-                                    <h6 class="sold"> Sold 175 <br> <img src="innocent/assets/image/Rate.png" alt=""> 3.6</h6>
-                                    <img src="innocent/assets/image/laptop.jpg" class="card-img-top w-100 product_image" alt="...">
-
-                                    <div class="product_card_title">
-
-                                        <div class="main_and_promo_price_area">
-                                            <div class="ask_for_price">Ask for price</div>
-
                                         </div>
-                                            <p class="product_name">Laptop Apple MacBook Pro 2015 8GB</p>
-                                            <span class="product_card_location"><i class="fa-solid fa-location-dot"></i> Ilorin</span>
-                                            <img src="innocent/assets/image/logo icon.svg" alt="" >
-                                           <span class="connect"><strong>connect</strong></span>
                                     </div>
-                                </div>
-                             </a>
-
-                             <a href="{{ url('/product_des') }}" class="product_card_link">
-                                <div class="card product_card">
-                                    <h6 class="sold"> Sold 75 <br> <img src="innocent/assets/image/Rate.png" alt=""> 5.0</h6>
-                                    <img src="innocent/assets/image/portrait-smiling-afro-american-male-photographer.jpg" class="card-img-top w-100 product_image" alt="...">
-
-                                    <div class="product_card_title">
-
-                                        <div class="main_and_promo_price_area">
-                                            <div class="ask_for_price">Ask for price</div>
-
-                                        </div>
-                                            <p class="product_name">Photographer</p>
-                                            <span class="product_card_location"><i class="fa-solid fa-location-dot"></i>  Lagos</span>
-                                            <img src="innocent/assets/image/logo icon.svg" alt="" >
-                                           <span class="connect"><strong>connect</strong></span>
-                                    </div>
-                                </div>
-                             </a>
-                             <a href="{{ url('/product_des') }}" class="product_card_link">
-                                <div class="card product_card">
-                                    <h6 class="sold"> Sold 95 <br> <img src="innocent/assets/image/Rate.png" alt=""> 3.6</h6>
-                                    <img src="innocent/assets/image/laptop2.jpg" class="card-img-top w-100 product_image" alt="...">
-
-                                    <div class="product_card_title">
-
-                                        <div class="main_and_promo_price_area">
-                                            <p class="promo_price">$70,000</p>
-                                            <div class="main_price"><p class="main_price_amount">$82,000</p></div>
-
-                                        </div>
-                                            <p class="product_name">Lenovo 600gb Finger Print 2020</p>
-                                            <span class="product_card_location"><i class="fa-solid fa-location-dot"></i>  Lagos</span>
-                                            <img src="innocent/assets/image/logo icon.svg" alt="" >
-                                           <span class="connect"><strong>connect</strong></span>
-                                    </div>
-                                </div>
-                             </a>
-                             <a href="{{ url('/product_des') }}" class="product_card_link">
-                                <div class="card product_card">
-                                    <h6 class="sold"> Sold 70 <br> <img src="innocent/assets/image/Rate.png" alt=""> 3.0</h6>
-                                    <img src="innocent/assets/image/usb-flash-drive-mockup-technology-data-storage-device.jpg" class="card-img-top w-100 product_image" alt="...">
-
-                                    <div class="product_card_title">
-
-                                        <div class="main_and_promo_price_area">
-                                            <p class="promo_price">$500</p>
-                                            <div class="main_price"><p class="main_price_amount">$550</p></div>
-
-                                        </div>
-                                            <p class="product_name">USB Type C OTG Card Reader</p>
-                                            <span class="product_card_location"><i class="fa-solid fa-location-dot"></i>  Lagos</span>
-                                            <img src="innocent/assets/image/logo icon.svg" alt="" >
-                                           <span class="connect"><strong>connect</strong></span>
-                                    </div>
-                                </div>
-                             </a>
-
+                                </a>
+                                <!-- Repeat similar structure for other product cards -->
+                            </div>
                         </div>
-                      </div>
                     </div>
-                  </div>
-
-                <!-- More Product Cards -->
+                </div>
             </div>
+
             <!-- Promotion Section -->
             <div class="promotion">
                 <img src="innocent/assets/image/Annoucement.png" alt="" class="Announcement">
@@ -554,127 +439,8 @@
                 <div class="container-fluid">
                     <div class="row">
                       <div class="col">
-                        <div class="product_card_display card-margin content-margin mt-4">
-
-
-                            <a href="{{ url('/product_des') }}" class="product_card_link">
-                                <div class="card product_card">
-                                    <h6 class="sold"> Sold 35 <br> <img src="innocent/assets/image/Rate.png" alt=""> 4.0</h6>
-                                    <img src="innocent/assets/image/pexels-pixabay-164558.jpg" class="card-img-top w-100 product_image" alt="...">
-
-                                    <div class="product_card_title">
-                                        <div class="main_and_promo_price_area">
-                                            <p class="promo_price">$100,000,000</p>
-                                            <div class="main_price"><p class="main_price_amount">$120,000,000</p></div>
-
-                                        </div>
-
-
-                                        <p class="product_name">3 Bed Room Flat</p>
-                                        <span class="product_card_location"><i class="fa-solid fa-location-dot"></i>  Abuja</span>
-                                        <img src="innocent/assets/image/logo icon.svg" alt="" >
-                                        <span class="connect"><strong>connect</strong></span>
-
-                                    </div>
-                                </div>
-                             </a>
-                             <a href="{{ url('/product_des') }}" class="product_card_link">
-                                <div class="card product_card">
-                                    <h6 class="sold"> Sold 7 <br> <img src="innocent/assets/image/Rate.png" alt=""> 3.6</h6>
-                                    <img src="innocent/assets/image/felipe-simo-dWQDNyPfKPU-unsplash.jpg" class="card-img-top w-100 product_image" alt="...">
-
-                                    <div class="product_card_title">
-                                        <div class="main_and_promo_price_area">
-                                            <p class="promo_price">$500,000</p>
-                                            <div class="main_price"><p class="main_price_amount">$520,000</p></div>
-
-                                        </div>
-
-
-                                            <p class="product_name">Mercedes-Benz M Class ML 350 4Matic 2012 Silver</p>
-                                            <span class="product_card_location"><i class="fa-solid fa-location-dot"></i>  Abuja</span>
-                                            <img src="innocent/assets/image/logo icon.svg" alt="" >
-                                            <span class="connect"><strong>connect</strong></span>
-
-                                    </div>
-                                </div>
-                             </a>
-                             <a href="{{ url('/product_des') }}" class="product_card_link">
-                                <div class="card product_card">
-                                    <h6 class="sold"> Sold 175 <br> <img src="innocent/assets/image/Rate.png" alt=""> 3.6</h6>
-                                    <img src="innocent/assets/image/laptop.jpg" class="card-img-top w-100 product_image" alt="...">
-
-                                    <div class="product_card_title">
-
-                                        <div class="main_and_promo_price_area">
-                                            <div class="ask_for_price">Ask for price</div>
-
-                                        </div>
-                                            <p class="product_name">Laptop Apple MacBook Pro 2015 8GB</p>
-                                            <span class="product_card_location"><i class="fa-solid fa-location-dot"></i> Ilorin</span>
-                                            <img src="innocent/assets/image/logo icon.svg" alt="" >
-                                           <span class="connect"><strong>connect</strong></span>
-                                    </div>
-                                </div>
-                             </a>
-
-                             <a href="{{ url('/product_des') }}" class="product_card_link">
-                                <div class="card product_card">
-                                    <h6 class="sold"> Sold 75 <br> <img src="innocent/assets/image/Rate.png" alt=""> 5.0</h6>
-                                    <img src="innocent/assets/image/portrait-smiling-afro-american-male-photographer.jpg" class="card-img-top w-100 product_image" alt="...">
-
-                                    <div class="product_card_title">
-
-                                        <div class="main_and_promo_price_area">
-                                            <div class="ask_for_price">Ask for price</div>
-
-                                        </div>
-                                            <p class="product_name">Photographer</p>
-                                            <span class="product_card_location"><i class="fa-solid fa-location-dot"></i>  Lagos</span>
-                                            <img src="innocent/assets/image/logo icon.svg" alt="" >
-                                           <span class="connect"><strong>connect</strong></span>
-                                    </div>
-                                </div>
-                             </a>
-                             <a href="{{ url('/product_des') }}" class="product_card_link">
-                                <div class="card product_card">
-                                    <h6 class="sold"> Sold 95 <br> <img src="innocent/assets/image/Rate.png" alt=""> 3.6</h6>
-                                    <img src="innocent/assets/image/laptop2.jpg" class="card-img-top w-100 product_image" alt="...">
-
-                                    <div class="product_card_title">
-
-                                        <div class="main_and_promo_price_area">
-                                            <p class="promo_price">$70,000</p>
-                                            <div class="main_price"><p class="main_price_amount">$82,000</p></div>
-
-                                        </div>
-                                            <p class="product_name">Lenovo 600gb Finger Print 2020</p>
-                                            <span class="product_card_location"><i class="fa-solid fa-location-dot"></i>  Lagos</span>
-                                            <img src="innocent/assets/image/logo icon.svg" alt="" >
-                                           <span class="connect"><strong>connect</strong></span>
-                                    </div>
-                                </div>
-                             </a>
-                             <a href="{{ url('/product_des') }}" class="product_card_link">
-                                <div class="card product_card">
-                                    <h6 class="sold"> Sold 70 <br> <img src="innocent/assets/image/Rate.png" alt=""> 3.0</h6>
-                                    <img src="innocent/assets/image/usb-flash-drive-mockup-technology-data-storage-device.jpg" class="card-img-top w-100 product_image" alt="...">
-
-                                    <div class="product_card_title">
-
-                                        <div class="main_and_promo_price_area">
-                                            <p class="promo_price">$500</p>
-                                            <div class="main_price"><p class="main_price_amount">$550</p></div>
-
-                                        </div>
-                                            <p class="product_name">USB Type C OTG Card Reader</p>
-                                            <span class="product_card_location"><i class="fa-solid fa-location-dot"></i>  Lagos</span>
-                                            <img src="innocent/assets/image/logo icon.svg" alt="" >
-                                           <span class="connect"><strong>connect</strong></span>
-                                    </div>
-                                </div>
-                             </a>
-
+                        <div class="product_card_display card-margin content-margin mt-4" id="productCardDisplay">
+                            <!-- Products will be dynamically added here -->
                         </div>
                       </div>
                     </div>
@@ -1068,53 +834,525 @@
      {{-- Axios and Moment.js Scripts --}}
   <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/moment@2.29.1/min/moment.min.js"></script>
-  <script>
-  document.addEventListener('DOMContentLoaded', function () {
-      axios.get('/api/allproduct')
-          .then(function (response) {
-              const webLearnContainer = document.getElementById('web-learn-container');
-              const mobileLearnContainer = document.getElementById('mobile-learn-container');
-
-              response.data.forEach(item => {
-                  const cardContent = `
-                   <a href="{{ url('/product_des') }}" class="product_card_link">
-                                <div class="card product_card">
-                                    <h6 class="sold"> Sold 35 <br> <img src="innocent/assets/image/Rate.png" alt=""> 4.0</h6>
-                                    <img src=${item.image_url} class="card-img-top w-100 product_image" alt="...">
-
-                                    <div class="product_card_title">
-                                        <div class="main_and_promo_price_area">
-                                            <p class="promo_price">${item.promo_price}</p>
-                                            <div class="main_price"><p class="main_price_amount">${item.actual_price}</p></div>
-
-                                        </div>
 
 
-                                        <p class="product_name">${item.title}</p>
-                                        <span class="product_card_location"><i class="fa-solid fa-location-dot"></i>  Abuja</span>
-                                        <img src="innocent/assets/image/logo icon.svg" alt="" >
-                                        <span class="connect"><strong>connect</strong></span>
 
-                                    </div>
-                                </div>
-                             </a>
-                  `;
+    {{-- <script>
+        document.addEventListener('DOMContentLoaded', function () {
+    // Fetch and display all products
+    axios.get('/api/prod')
+        .then(function (response) {
+            const products = response.data;
+            renderProducts(products);
+        })
+        .catch(function (error) {
+            console.error('Error fetching products:', error);
+        });
 
-                  const webCard = document.createElement('div');
-                  webCard.classList.add('card', 'card-main');
-                  webCard.innerHTML = cardContent;
-                  webLearnContainer.appendChild(webCard);
+    // Function to render product cards
+    function renderProducts(products) {
+        const productContainer = document.getElementById('productCardDisplay');
+        productContainer.innerHTML = ''; // Clear the container first
 
-                  const mobileCard = document.createElement('div');
-                  mobileCard.classList.add('card', 'card-main');
-                  mobileCard.innerHTML = cardContent.replace('class="video-size"', 'class="mobile-video-size"');
-                  mobileLearnContainer.appendChild(mobileCard);
-              });
-          })
-          .catch(function (error) {
-              console.error('Error fetching learn data:', error);
-          });
-  });
-  </script>
+        var url = 'localhost:8000/uploads/products/';
+
+        products.forEach(function (product) {
+            const card = document.createElement('div');
+            card.className = 'card';
+
+            var product_img_url = '';
+            JSON.parse(product.image_url).forEach((el, i) => {
+                if (i == 0)
+                    product_img_url = el;
+            });
+
+            card.innerHTML = `
+                <a href="#" class="product_card_link" data-product-id="${product.id}">
+                    <div class="card product_card">
+                        <h6 class="sold">Sold ${product.sold} <br> <img src="innocent/assets/image/Rate.png" alt=""> ${product.rating}</h6>
+
+                        <img src="uploads/products/${product_img_url}" class="card-img-top w-100 product_image" alt="${product.title}">
+                        <div class="product_card_title">
+                            <div class="main_and_promo_price_area">
+                                <p class="promo_price">$${product.promo_price}</p>
+                                <div class="main_price"><p class="main_price_amount">$${product.actual_price}</p></div>
+                            </div>
+                            <p class="product_name">${product.title}</p>
+                            <span class="product_card_location"><i class="fa-solid fa-location-dot"></i> ${product.location}</span>
+                            <img src="innocent/assets/image/logo icon.svg" alt="">
+                            <span class="connect"><strong>connect</strong></span>
+                        </div>
+                    </div>
+                </a>
+            `;
+
+            // Add click event listener to fetch and display product details
+            card.querySelector('.product_card_link').addEventListener('click', function (event) {
+                event.preventDefault();
+                const productId = this.getAttribute('data-product-id');
+                fetchProductDetails(productId);
+            });
+
+            productContainer.appendChild(card);
+        });
+    }
+
+    // Function to fetch product details by ID and update the sidebar
+    function fetchProductDetails(productId) {
+        axios.get(`/api/product-details/${productId}`)
+            .then(function (response) {
+                const productDetails = response.data;
+
+                document.querySelector('.user_name2').textContent = productDetails.user_name;
+                document.querySelector('.user_state').textContent = productDetails.location;
+                document.querySelector('.rate_value').textContent = productDetails.rate;
+                document.querySelector('.sold3').textContent = 'sold ' + productDetails.sold;
+                document.querySelector('.stock2').textContent = productDetails.stock + ' in stock';
+                document.querySelector('.condition2').textContent = productDetails.condition;
+                document.querySelector('.promo_price2').textContent = '$' + productDetails.promo_price;
+                document.querySelector('.main_price2').textContent = '$' + productDetails.actual_price;
+                document.querySelector('.description').textContent = productDetails.description;
+                document.querySelector('.product_name_on_sidebar').textContent = productDetails.title;
+
+                updateCarousel(productDetails.image_url);
+            })
+            .catch(function (error) {
+                console.error('Error fetching product details:', error);
+            });
+    }
+
+    // Function to update the carousel with product images
+    function updateCarousel(imagesJson) {
+        const images = JSON.parse(imagesJson);
+
+        const indicatorsContainer = document.getElementById('carousel-indicators');
+        const innerContainer = document.getElementById('carousel-inner');
+
+        indicatorsContainer.innerHTML = '';
+        innerContainer.innerHTML = '';
+
+        images.forEach((image, index) => {
+            const indicator = document.createElement('button');
+            indicator.type = 'button';
+            indicator.setAttribute('data-bs-target', '#carouselExampleIndicators');
+            indicator.setAttribute('data-bs-slide-to', index);
+            indicator.setAttribute('aria-label', `Slide ${index + 1}`);
+            indicator.style.backgroundColor = '#ffce29';
+            if (index === 0) {
+                indicator.classList.add('active');
+                indicator.setAttribute('aria-current', 'true');
+            }
+            indicatorsContainer.appendChild(indicator);
+
+            const carouselItem = document.createElement('div');
+            carouselItem.classList.add('carousel-item');
+            if (index === 0) {
+                carouselItem.classList.add('active');
+            }
+            carouselItem.innerHTML = `
+                <img src="uploads/products/${image}" class="carousel_img" alt="Product Image ${index + 1}">
+            `;
+            innerContainer.appendChild(carouselItem);
+        });
+    }
+});
+
+    </script> --}}
+
+    {{-- UPDATED VERSION --}}
+     {{-- <script>
+        document.addEventListener('DOMContentLoaded', function () {
+    // Fetch and display all products
+    axios.get('/api/prod')
+        .then(function (response) {
+            const products = response.data;
+            renderProducts(products);
+        })
+        .catch(function (error) {
+            console.error('Error fetching products:', error);
+        });
+
+    // Function to render product cards
+    function renderProducts(products) {
+        const productContainer = document.getElementById('productCardDisplay');
+        const mobileProductContainer = document.querySelector('.product_card_display');
+        productContainer.innerHTML = ''; // Clear the container first
+        mobileProductContainer.innerHTML = ''; // Clear the mobile container first
+
+        products.forEach(function (product) {
+            const card = createProductCard(product);
+            productContainer.appendChild(card);
+
+            const mobileCard = createProductCard(product);
+            mobileProductContainer.appendChild(mobileCard);
+        });
+
+        // Add event listeners to both desktop and mobile product cards
+        document.querySelectorAll('.product_card_link').forEach(link => {
+            link.addEventListener('click', function (event) {
+                event.preventDefault();
+                const productId = this.getAttribute('data-product-id');
+                fetchProductDetails(productId);
+            });
+        });
+    }
+
+    // Function to create a product card element
+    function createProductCard(product) {
+        const card = document.createElement('div');
+        card.className = 'card';
+
+        var product_img_url = '';
+        JSON.parse(product.image_url).forEach((el, i) => {
+            if (i == 0)
+                product_img_url = el;
+        });
+
+        card.innerHTML = `
+            <a href="#" class="product_card_link" data-product-id="${product.id}">
+                <div class="card product_card">
+                    <h6 class="sold">Sold ${product.sold} <br> <img src="innocent/assets/image/Rate.png" alt=""> ${product.rating}</h6>
+                    <img src="uploads/products/${product_img_url}" class="card-img-top w-100 product_image" alt="${product.title}">
+                    <div class="product_card_title">
+                        <div class="main_and_promo_price_area">
+                            <p class="promo_price">$${product.promo_price}</p>
+                            <div class="main_price"><p class="main_price_amount">$${product.actual_price}</p></div>
+                        </div>
+                        <p class="product_name">${product.title}</p>
+                        <span class="product_card_location"><i class="fa-solid fa-location-dot"></i> ${product.location}</span>
+                        <img src="innocent/assets/image/logo icon.svg" alt="">
+                        <span class="connect"><strong>connect</strong></span>
+                    </div>
+                </div>
+            </a>
+        `;
+
+        return card;
+    }
+
+    // Function to fetch product details by ID and update the sidebar
+    function fetchProductDetails(productId) {
+        axios.get(`/api/product-details/${productId}`)
+            .then(function (response) {
+                const productDetails = response.data;
+
+                // document.querySelector('.user_name2').textContent = productDetails.user_name;
+                document.querySelector('.user_state').textContent = productDetails.location;
+                document.querySelector('.rate_value').textContent = productDetails.rate;
+                document.querySelector('.sold3').textContent = 'sold ' + productDetails.sold;
+                document.querySelector('.stock2').textContent = productDetails.quantity + ' in stock';
+                document.querySelector('.condition2').textContent = productDetails.condition;
+                document.querySelector('.promo_price2').textContent = '$' + productDetails.promo_price;
+                document.querySelector('.main_price2').textContent = '$' + productDetails.actual_price;
+                document.querySelector('.description').textContent = productDetails.description;
+                document.querySelector('.product_name_on_sidebar').textContent = productDetails.title;
+
+                //for the mobile
+                document.querySelector('.sold2').textContent = 'sold ' + productDetails.sold;
+                document.querySelector('.stock').textContent = productDetails.quantity + ' in stock';
+                document.querySelector('.condition').textContent = productDetails.condition;
+                // document.querySelector('.user_name').textContent = productDetails.user_name;
+                document.querySelector('.user_state_mobile').textContent = productDetails.location;
+
+
+
+
+
+                updateCarousel(productDetails.image_url);
+            })
+            .catch(function (error) {
+                console.error('Error fetching product details:', error);
+            });
+    }
+
+    // Function to update the carousel with product images
+    function updateCarousel(imagesJson) {
+        const images = JSON.parse(imagesJson);
+
+        const indicatorsContainer = document.getElementById('carousel-indicators');
+        const innerContainer = document.getElementById('carousel-inner');
+
+        indicatorsContainer.innerHTML = '';
+        innerContainer.innerHTML = '';
+
+        images.forEach((image, index) => {
+            const indicator = document.createElement('button');
+            indicator.type = 'button';
+            indicator.setAttribute('data-bs-target', '#carouselExampleIndicators');
+            indicator.setAttribute('data-bs-slide-to', index);
+            indicator.setAttribute('aria-label', `Slide ${index + 1}`);
+            indicator.style.backgroundColor = '#ffce29';
+            if (index === 0) {
+                indicator.classList.add('active');
+                indicator.setAttribute('aria-current', 'true');
+            }
+            indicatorsContainer.appendChild(indicator);
+
+            const carouselItem = document.createElement('div');
+            carouselItem.classList.add('carousel-item');
+            if (index === 0) {
+                carouselItem.classList.add('active');
+            }
+            carouselItem.innerHTML = `
+                <img src="uploads/products/${image}" class="carousel_img" alt="Product Image ${index + 1}">
+            `;
+            innerContainer.appendChild(carouselItem);
+        });
+    }
+});
+
+    </script> --}}
+
+
+
+    {{-- NEW VERSION --}}
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const selectedProduct = JSON.parse(localStorage.getItem('selectedProduct'));
+            const allProducts = JSON.parse(localStorage.getItem('allProducts'));
+
+            if (selectedProduct) {
+                // document.querySelector('.user_name2').textContent = productDetails.username;
+                document.querySelector('.user_state').textContent = selectedProduct.location;
+                document.querySelector('.rate_value').textContent = selectedProduct.rate;
+                document.querySelector('.sold3').textContent = 'sold ' + selectedProduct.sold;
+                document.querySelector('.stock2').textContent = selectedProduct.quantity + ' in stock';
+                document.querySelector('.condition2').textContent = selectedProduct.condition;
+                // document.querySelector('.promo_price2').textContent = '$' + selectedProduct.promo_price;
+                // document.querySelector('.main_price2').textContent = '$' + selectedProduct.actual_price;
+                document.querySelector('.description').textContent = selectedProduct.description;
+                document.querySelector('.product_name_on_sidebar').textContent = selectedProduct.title;
+
+                //for mobile
+                document.querySelector('.sold2').textContent = 'sold ' + selectedProduct.sold;
+                document.querySelector('.stock').textContent = selectedProduct.quantity + ' in stock';
+                document.querySelector('.condition').textContent = selectedProduct.condition;
+                document.querySelector('.user_state_mobile').textContent = selectedProduct.location;
+
+                if (selectedProduct.ask_for_price) {
+                document.querySelector('.promo_price2').textContent = 'ASK FOR PRICE';
+                document.querySelector('.main_price2').textContent = '';
+            } else {
+                document.querySelector('.promo_price2').textContent = '$' + (selectedProduct.promo_price || '');
+                document.querySelector('.main_price2').textContent = '$' + (selectedProduct.actual_price || '');
+            }
+
+                updateCarousel(selectedProduct.image_url);
+            }
+
+            if (allProducts) {
+                renderProducts(allProducts);
+            }
+        });
+
+        function updateCarousel(imagesJson) {
+            const images = JSON.parse(imagesJson);
+
+            const indicatorsContainer = document.getElementById('carousel-indicators');
+            const innerContainer = document.getElementById('carousel-inner');
+
+            indicatorsContainer.innerHTML = '';
+            innerContainer.innerHTML = '';
+
+            images.forEach((image, index) => {
+                const indicator = document.createElement('button');
+                indicator.type = 'button';
+                indicator.setAttribute('data-bs-target', '#carouselExampleIndicators');
+                indicator.setAttribute('data-bs-slide-to', index);
+                indicator.setAttribute('aria-label', `Slide ${index + 1}`);
+                indicator.style.backgroundColor = '#ffce29';
+                if (index === 0) {
+                    indicator.classList.add('active');
+                    indicator.setAttribute('aria-current', 'true');
+                }
+                indicatorsContainer.appendChild(indicator);
+
+                const carouselItem = document.createElement('div');
+                carouselItem.classList.add('carousel-item');
+                if (index === 0) {
+                    carouselItem.classList.add('active');
+                }
+                carouselItem.innerHTML = `
+                    <img src="uploads/products/${image}" class="carousel_img" alt="Product Image ${index + 1}">
+                `;
+                innerContainer.appendChild(carouselItem);
+            });
+        }
+
+        function renderProducts(products) {
+            const productContainer = document.getElementById('productCardDisplay');
+        const mobileProductContainer = document.querySelector('.product_card_display');
+        productContainer.innerHTML = ''; // Clear the container first
+        mobileProductContainer.innerHTML = ''; // Clear the mobile container first
+
+        products.forEach(function (product) {
+            const card = createProductCard(product);
+            productContainer.appendChild(card);
+
+            const mobileCard = createProductCard(product);
+            mobileProductContainer.appendChild(mobileCard);
+        });
+
+
+            // Add event listeners to product cards
+            document.querySelectorAll('.product_card_link').forEach(link => {
+                link.addEventListener('click', function (event) {
+                    event.preventDefault();
+                    const productId = this.getAttribute('data-product-id');
+                    fetchProductDetails(productId);
+                });
+            });
+        }
+
+        function createProductCard(product) {
+            const card = document.createElement('div');
+            card.className = 'card';
+
+            let product_img_url = '';
+            JSON.parse(product.image_url).forEach((el, i) => {
+                if (i === 0) product_img_url = el;
+            });
+
+            card.innerHTML = `
+                <a href="{{ url('/product_des') }}" class="product_card_link" data-product='${JSON.stringify(product)}'>
+                    <div class="card product_card">
+                         <h6 class="sold"> Sold ${product.sold || 0} <br> <img src="innocent/assets/image/Rate.png" alt=""> ${product.rating || 0}</h6>
+                        <img src="uploads/products/${product_img_url || 'default.jpg'}" class="card-img-top w-100 product_image" alt="${product.title}">
+                        <div class="product_card_title">
+                            <div class="main_and_promo_price_area">
+                                  ${
+                            product.ask_for_price  
+                            ? '<p class="ask-for-price" style="color:red; padding-right: 2px; font-size:23px">Ask for price</p>' 
+                            : `
+                                <p class="promo_price">$${product.promo_price || ''}</p>
+                                <div class="main_price"><p class="main_price_amount">$${product.actual_price || ''}</p></div>
+                            `
+                        }     
+                            </div>
+                            <p class="product_name">${product.title}</p>
+                            <span class="product_card_location"><i class="fa-solid fa-location-dot"></i> ${product.location}</span>
+                            <img src="innocent/assets/image/logo icon.svg" alt="">
+                            <span class="connect"><strong>connect</strong></span>
+                        </div>
+                    </div>
+                </a>
+            `;
+
+            card.querySelector('.product_card_link').addEventListener('click', function (event) {
+                event.preventDefault();
+                localStorage.setItem('selectedProduct', this.getAttribute('data-product'));
+                window.location.href = this.href;
+            });
+
+            return card;
+        }
+
+        function fetchProductDetails(productId) {
+            // Simulate fetching product details from API
+            // Replace with actual API call if needed
+            const allProducts = JSON.parse(localStorage.getItem('allProducts'));
+            const selectedProduct = allProducts.find(product => product.id === productId);
+
+            if (selectedProduct) {
+                // document.querySelector('.user_name2').textContent = productDetails.username;
+                document.querySelector('.user_state').textContent = selectedProduct.location;
+                document.querySelector('.rate_value').textContent = selectedProduct.rate;
+                document.querySelector('.sold3').textContent = 'sold ' + selectedProduct.sold;
+                document.querySelector('.stock2').textContent = selectedProduct.quantity + ' in stock';
+                document.querySelector('.condition2').textContent = selectedProduct.condition;
+                // document.querySelector('.promo_price2').textContent = '$' + selectedProduct.promo_price;
+                // document.querySelector('.main_price2').textContent = '$' + selectedProduct.actual_price;
+                document.querySelector('.description').textContent = selectedProduct.description;
+                document.querySelector('.product_name_on_sidebar').textContent = selectedProduct.title;
+
+                //for mobile
+                document.querySelector('.sold2').textContent = 'sold ' + selectedProduct.sold;
+                document.querySelector('.stock').textContent = selectedProduct.stock + ' in stock';
+                document.querySelector('.condition').textContent = selectedProduct.condition;
+                document.querySelector('.user_state_mobile').textContent = selectedProduct.location;
+
+                console.log('Ask for Price:', selectedProduct.ask_for_price);
+
+                if (selectedProduct.ask_for_price) {
+                document.querySelector('.promo_price2').textContent = 'ASK FOR PRICE';
+                document.querySelector('.main_price2').textContent = '';
+            } else {
+                document.querySelector('.promo_price2').textContent = '$' + (selectedProduct.promo_price || '');
+                document.querySelector('.main_price2').textContent = '$' + (selectedProduct.actual_price || '');
+            }
+
+                updateCarousel(selectedProduct.image_url);
+            } else {
+                console.error('Product with ID ' + productId + ' not found.');
+            }
+        }
+
+        
+        // FETCH THE USER DATA
+document.addEventListener('DOMContentLoaded', () => {
+    // Ensure the code runs after the DOM is fully loaded
+    const token = localStorage.getItem('apiToken'); // Get the token from local storage
+
+    if (token) {
+        fetchUserData(token);
+    } else {
+        promptLogin('Authentication token is missing. Please log in.');
+    }
+});
+
+function fetchUserData(token) {
+    axios.get('/api/v1/getuser', {
+        headers: {
+            'Authorization': 'Bearer ' + token
+        }
+    })
+    .then(response => {
+        const user = response.data;
+        updateUserProfile(user);
+    })
+    .catch(error => {
+        console.error('Error fetching user data:', error);
+        if (error.response && error.response.status === 401) {
+            promptLogin('Your session has expired. Please log in again.');
+        }
+    });
+}
+
+function updateUserProfile(user) {
+    const nameElement = document.getElementById('profile_name');
+    const emailElement = document.getElementById('profile_email');
+    const profileImageElement = document.getElementById('profile_image');
+    const profilePictureElement = document.getElementById('profile_picture');
+    const profilePictureMobileElement = document.getElementById('profile_picture_mobile');
+
+    if (user) {
+        // nameElement.innerHTML = `${user.username || 'Unknown User'} <br>`;
+        // emailElement.innerHTML = user.email || 'No email provided';
+
+        nameElement.textContent = user.username || 'Unknown User';
+        emailElement.textContent = user.email || 'No email provided';
+
+        const imageUrl = user.photo_url ? `/uploads/users/${user.photo_url}` : 'innocent/assets/image/dp.png';
+        profileImageElement.src = imageUrl;
+        profilePictureElement.src = imageUrl;
+        profilePictureMobileElement.src = imageUrl;
+    } else {
+        console.error('User data is null or undefined');
+    }
+}
+
+function promptLogin(message) {
+    Swal.fire({
+        icon: 'error',
+        title: 'Login Required',
+        text: message
+    }).then(() => {
+        window.location.href = '/'; // Redirect to login page
+    });
+}
+    </script>
+
+
+
 </body>
 </html>

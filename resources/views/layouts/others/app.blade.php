@@ -17,6 +17,8 @@
 
      @yield('content')
 
+     @include('layouts.others.profile-js')
+
 
 </body>
 

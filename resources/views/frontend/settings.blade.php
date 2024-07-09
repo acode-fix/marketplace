@@ -1,6 +1,7 @@
 @extends('layouts.others.app')
 @section('title','Settings')
 @section('navtitle', 'Settings')
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@10/dist/sweetalert2.min.css">
 
 
 @section('content')
@@ -291,7 +292,10 @@
 
         </div>
         <div class="container">
-          <form action="" class="row">
+            {{-- THE MAIN FEORM FOR USER UPDATE DESKTOP VIEW--}}
+          <form action="" id="settingForm" class="row" enctype="multipart/form-data">
+            @csrf
+
             <div class="col-8 upload-div">
               <img id="previewImg1" class="img-fluid" src="kaz/images/dp.png" alt="">
               <h6 class="ms-4">Upload your profile picture <br>
@@ -299,7 +303,7 @@
               </h6>
             </div>
             <div class="col-2 post-btn">
-              <input type="file" name="photo" id="actual-btn" accept="image/*" hidden onchange="previewImage(this)">
+              <input type="file" name="photo_url" id="actual-btn" accept="image/*" hidden onchange="previewImage(this)">
               <label class="label3" for="actual-btn">Upload Photo</label>
             </div>
             <div class="col-8">
@@ -307,16 +311,17 @@
             </div>
             <div class="col-8 mb-3">
               <label for="usernameInput" class="form-label">Username</label>
-              <input type="text" class="form-control" id="usernameInput"
+              <input type="text" name="username" class="form-control" id="usernameInput"
                 placeholder="This is your profile display name on buyandsell">
             </div>
+            {{-- <input type="text" name="username" id="usernameInput" readonly style="display: none;"> --}}
             <div class="col-2 mt-3 post-btn">
               <button id="editUsernameBtn" style="background-color: whitesmoke;" type="button"
                 class="btn btn-info">Edit</button>
             </div>
             <div class="col-8 mb-3">
               <label for="usernameInput" class="form-label">Profile Bio</label>
-              <input type="text" class="form-control" id="profileInput"
+              <input type="text" name="bio" class="form-control" id="profileInput"
                 placeholder="This is will be displayed to potential buyers only if you are a verified seller (Mx1000)">
             </div>
             <div class="col-2 mt-3 post-btn">
@@ -325,7 +330,7 @@
             </div>
             <div class="col-8 mb-3">
               <label for="phoneInput" class="form-label">Call Phone Number</label>
-              <input type="number" class="form-control" id="phoneInput"
+              <input type="number" name="phone_number" class="form-control" id="phoneInput"
                 placeholder="This contact will be used by visitors on buyandsell to reach you via phone call">
             </div>
             <div class="col-2 mt-3 post-btn">
@@ -346,7 +351,7 @@
               <div class="location-struct">
                 <h6 class="me-2">location</h6>
                 <label class="switch">
-                  <input type="checkbox">
+                  <input type="checkbox" name="location" id="locationSwitch">
                   <span class="slider round"></span>
                 </label>
               </div>
@@ -355,7 +360,7 @@
               </div>
             </div>
             <div class="col-2 mb-5 post-btn">
-              <button id="saveBtn" type="button" class="btn btn-warning">Save</button>
+              <button id="saveBtn" type="submit" class="btn btn-warning">Save</button>
             </div>
           </form>
         </div>
@@ -386,7 +391,10 @@
           </div>
         </div>
       </div>
-      <form class="row mt-5 " action="">
+            {{-- THE MAIN FEORM FOR USER UPDATE MOBILE VIEW --}}
+      <form class="row mt-5 " action="" id="settingForm" enctype="multipart/form-data">
+        @csrf
+
         <div class="col-10 mb-3">
           <label for="usernameInput" class="form-label">Username</label>
           <input type="text" class="form-control" id="usernameInput1"
@@ -452,13 +460,93 @@
   </div>
 
 
-  <script>
-    function goBack() {
-      window.history.back();
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10/dist/sweetalert2.all.min.js"></script>
+
+      
+ <script>
+    // function goBack() {
+    //   window.history.back();
+    // }
+
+    document.addEventListener('DOMContentLoaded', function() {
+    document.getElementById('settingForm').addEventListener('submit', function(event) {
+        event.preventDefault();
+
+        let formData = new FormData(this);
+
+        for (let pair of formData.entries()) {
+        console.log(pair[0] + ': ' + pair[1]);
     }
 
+        const token = localStorage.getItem('apiToken');
+        
+
+        const locationSwitch = document.getElementById('locationSwitch');
+        if (locationSwitch && locationSwitch.checked) {
+            navigator.geolocation.getCurrentPosition(function(position) {
+                formData.append('latitude', position.coords.latitude);
+                formData.append('longitude', position.coords.longitude);
+                sendUpdateRequest(formData, token);
+            }, function(error) {
+                console.error('Error getting location:', error);
+                Swal.fire({
+                    icon: 'error',
+                    title: 'An error occurred',
+                    text: 'Could not get your location. Please try again.'
+                });
+            });
+        } else {
+            sendUpdateRequest(formData, token);
+        }
+    });
+
+    function sendUpdateRequest(formData, token) {
+        axios.post(`/api/auth/update`, formData, {
+            headers: {
+                'Content-Type': 'multipart/form-data',
+                'Authorization': 'Bearer ' + token
+            }
+        })
+       
+        .then(function(response) {
+            console.log(response.data);
+            if (response.data.status) {
+                
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Success!',
+                    text: 'Your profile has been updated.',
+                    showConfirmButton: false,
+                    timer: 8000
+                }).then(() => {
+                    window.location.href = '/';
+                });
+            } else {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Failed to update profile',
+                    text: response.data.message
+                });
+            }
+        })
+        .catch(function(error) {
+            console.log(error.response.data);
+            Swal.fire({
+                icon: 'error',
+                title: 'An error occurred',
+                text: error.response.data.message || 'All fields are required'
+            });
+        });
+    }
+
+ 
+});
 
 
-  </script>
+ </script>
+
+
+
 
 @endsection

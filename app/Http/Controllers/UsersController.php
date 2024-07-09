@@ -24,10 +24,12 @@ class UsersController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function getUserData()
     {
-        //
-
+        // $user =  auth('sanctum')->user()->id;
+        //     $user = User::find($id);  // Find the user using model and hold its reference
+        $user = Auth::user(); // Get the authenticated user
+        return response()->json($user);
     }
 
     /**
@@ -165,27 +167,26 @@ class UsersController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function accountSettings(string $id, Request $request)
+    public function accountSettings( Request $request)
     {
         //
         try {
 
             $validateUser = Validator::make($request->all(), [
 
-                'name' => 'required',
-                'username' => 'string|max:255|unique:users,username,' . $user->id,
-                // 'email' => 'string|email|max:255|unique:users,email,' . $user->id,
+                // 'name' => 'required',
+                'username' => 'required|max:255|unique:users,username,',
                 'phone_number' => 'required',
-                'whatsapp' => 'required',
-                'address' => 'required',
                 'bio' => 'string|nullable',
                'photo_url' => 'required|image|mimes:jpg,jpeg,png,gif,svg|max:300',
                'location' => 'string|max:255|nullable',
-                'stage' => 'required',
-                'is_verified' => 'boolean|nullable',
-                'shop_id' => 'string|nullable',
-                'badge_type' => 'in:monthly,yearly|nullable',
-                'badge_expiry' => 'date|nullable',
+               // 'whatsapp' => 'required',
+                // 'address' => 'required',
+                // 'stage' => 'required',
+                // 'is_verified' => 'boolean|nullable',
+                // 'shop_id' => 'string|nullable',
+                // 'badge_type' => 'in:monthly,yearly|nullable',
+                // 'badge_expiry' => 'date|nullable',
             ]);
 
             if($validateUser->fails()){
@@ -196,20 +197,20 @@ class UsersController extends Controller
                 ], 401);
             }
 
-        //$userDetails = Auth::user();  // To get the logged-in user details
+              $id =  auth('sanctum')->user()->id;
             $user = User::find($id);  // Find the user using model and hold its reference
-            $user->name=$request->input('name');
+            // $user->name=$request->input('name');
             $user->username=$request->input('username');
-            $user->phone=$request->input('phone_number');
-            $user->whatsapp=$request->input('whatsapp');
-            $user->address=$request->input('address');
+            $user->phone_number=$request->input('phone_number');
             $user->bio=$request->input('bio');
             $user->location=$request->input('location');
-            $user->stage=$request->input('stage');
-            $user->is_verified=$request->input('is_verified');
-            $user->shop_id=$request->input('shop_id');
-            $user->badge_type=$request->input('badge_type');
-            $user->badge_expiry=$request->input('badge_expiry');
+            // $user->whatsapp=$request->input('whatsapp');
+            // $user->address=$request->input('address');
+            // $user->stage=$request->input('stage');
+            // $user->is_verified=$request->input('is_verified');
+            // $user->shop_id=$request->input('shop_id');
+            // $user->badge_type=$request->input('badge_type');
+            // $user->badge_expiry=$request->input('badge_expiry');
 
         //  $validatedData = array_filter($validateUser->getData());
 
@@ -222,10 +223,8 @@ class UsersController extends Controller
         $imageName = md5($file->getClientOriginalName() . time()) . "." . $file->getClientOriginalExtension();
         $file->move('./uploads/users/', $imageName);
 
-        $user->photo_url=$imageName;
     }
-
-
+             $user->photo_url=$imageName;
             $user->save();  // Update the data
 
             return response()->json([
@@ -236,7 +235,6 @@ class UsersController extends Controller
         }
 
             catch (\Throwable $th) {
-            //throw $th;
             return response()->json([
                 'status' => false,
                 'message' => $th->getMessage()
@@ -250,5 +248,37 @@ class UsersController extends Controller
     public function destroy(string $id)
     {
         //
+    }
+
+    /**
+     * Log out the user
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function logoutUser(Request $request)
+    {
+        try {
+            $user = $request->user(); // Get the authenticated user
+
+            if ($user) {
+                // Get the user's token and revoke it
+                $user->currentAccessToken()->delete();
+
+                return response()->json([
+                    'status' => true,
+                    'message' => 'User logged out successfully',
+                ], 200);
+            } else {
+                return response()->json([
+                    'status' => false,
+                    'message' => 'User not authenticated',
+                ], 401);
+            }
+        } catch (\Throwable $th) {
+            return response()->json([
+                'status' => false,
+                'message' => $th->getMessage()
+            ], 500);
+        }
     }
 }

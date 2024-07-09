@@ -20,10 +20,11 @@
     <div class="right-section me-4">
       <button type="button" class=" btn btn-warning   me-5"> + create Ads</button>
       <div class="me-1">
-        <h6 class="name">Mired Augustine </h6>
-        <h6 class="mired-text fw-light">miredaugustine@gmail.com</h6>
+        <h6 class="name">Loading </h6>
+        <h6 class="mired-text fw-light">loading</h6>
       </div>
-      <img class="img-fluid profile-picture" src="kaz/images/dp.png" alt="">
+      <img class="img-fluid profile-picture" style="border: 0px solid transparent; border-radius:50px; height:45px; width:45px"
+       src="" alt="">
     </div>
     <div class="menu-toggle">
       <input type="checkbox" id="menu-checkbox" class="menu-checkbox">

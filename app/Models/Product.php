@@ -4,19 +4,27 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
+
 
 class Product extends Model
 {
-    use HasFactory;
+    use HasFactory,softDeletes;
 
     protected $fillable = [
         'user_id', 'title', 'description', 'category_id', 'quantity',
-        'location', 'actual_price', 'promo_price', 'condition', 'image_url'
+        'location', 'actual_price', 'promo_price', 'condition', 'image_url', 'ask_for_price'
     ];
 
     protected $casts = [
-        'image_url' => 'json'
+        'ask_for_price' => 'boolean',  // Ensure this attribute is cast to a boolean
     ];
+
+    protected $guarded = [];
+
+    // protected $casts = [
+    //     'image_url' => 'json'
+    // ];
 
     // /**
     //  * Get the reviews of the product.
@@ -34,6 +42,10 @@ class Product extends Model
     //     return $this->belongsTo('App\User');
     // }
 
+        public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 
 
     static function getProduct($id){

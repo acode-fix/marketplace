@@ -36,9 +36,9 @@ document.addEventListener('DOMContentLoaded', function() {
   });
  });
 
- 
+
 function hideIcon(self){
-  self.style.backgroundImage='none';  
+  self.style.backgroundImage='none';
 }
 document.addEventListener("DOMContentLoaded", function() {
   const nextBtn = document.getElementById('nextBtn');
@@ -85,6 +85,7 @@ document.addEventListener("DOMContentLoaded", function() {
   const phoneInput = document.getElementById('phoneInput');
   // const whatsappInput = document.getElementById('whatsappInput');
   const profileInput = document.getElementById('profileInput');
+
 
   // Get all the edit buttons
   const editUsernameBtn = document.getElementById('editUsernameBtn');
@@ -165,7 +166,7 @@ document.addEventListener("DOMContentLoaded", function() {
     toggleReadOnly(phoneInput);
     toggleReadOnly(whatsappInput);
   });
-})
+});
 
 
 document.addEventListener("DOMContentLoaded", function() {

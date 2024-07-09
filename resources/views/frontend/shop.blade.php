@@ -16,7 +16,7 @@
                                     src="kaz/images/carousel 1.png" class="card-img-top main-img-border"
                                     alt="...">
                                 <div onclick="uploadBannerImage()" class="camera">
-                                    <i class="fa-solid fa-camera icon-cam"></i>
+                                  <i class="fa-solid fa-camera icon-cam"></i>
                                 </div>
                             </form>
                             <div class="card-body">

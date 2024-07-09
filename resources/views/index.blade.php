@@ -1382,96 +1382,173 @@ document.getElementById('logoutLink').addEventListener('click', function(event) 
 
 
 //THIS IS FOR PRODUCTS
-function applyFilter() {
-    const locationFilter = document.getElementById('clickMe').innerText.trim();
-    const verifiedSeller = document.getElementById('verifiedSeller').checked;
+// function applyFilter() {
+//     const locationFilter = document.getElementById('clickMe').innerText.trim();
+//     const verifiedSeller = document.getElementById('verifiedSeller').checked;
 
-    let condition = '';
-    const conditionButton = document.querySelector('.product_condition_desktop .button.clicked');
-    if (conditionButton) {
-        condition = conditionButton.innerText.trim().toLowerCase();
-    }
+//     let condition = '';
+//     const conditionButton = document.querySelector('.product_condition_desktop .button.clicked');
+//     if (conditionButton) {
+//         condition = conditionButton.innerText.trim().toLowerCase();
+//     }
 
-    const filters = {
-        condition: condition,
-        location: locationFilter,
-        verifiedSeller: verifiedSeller
-    };
+//     const filters = {
+//         condition: condition,
+//         location: locationFilter,
+//         verifiedSeller: verifiedSeller
+//     };
 
-    console.log('Filters applied:', filters);
+//     console.log('Filters applied:', filters);
 
-    axios.get('/api/v1/product/filter', { params: filters })
-        .then(function (response) {
-            const products = response.data;
-            renderProducts(products);
-        })
-        .catch(function (error) {
-            console.error('Error fetching filtered products:', error);
-        });
-}
+//     axios.get('/api/v1/product/filter', { params: filters })
+//         .then(function (response) {
+//             const products = response.data;
+//             renderProducts(products);
+//         })
+//         .catch(function (error) {
+//             console.error('Error fetching filtered products:', error);
+//         });
+// }
 
-// Function to handle condition button toggle
-function toggleButton(button) {
-    document.querySelectorAll('.product_condition_desktop .button').forEach(btn => btn.classList.remove('clicked'));
-    button.classList.add('clicked');
-    applyFilter();
-}
+// // Function to handle condition button toggle
+// function toggleButton(button) {
+//     document.querySelectorAll('.product_condition_desktop .button').forEach(btn => btn.classList.remove('clicked'));
+//     button.classList.add('clicked');
+//     applyFilter();
+// }
 
+
+// document.addEventListener('DOMContentLoaded', function () {
+
+//     document.querySelectorAll('.product_condition_desktop .button').forEach(button => {
+//         button.addEventListener('click', function() {
+//             toggleButton(this);
+//         });
+//     });
+
+//     document.getElementById('verifiedSeller').addEventListener('change', function() {
+//         applyFilter();
+//     });
+
+//     document.getElementById('clickMe').addEventListener('input', function() {
+//         applyFilter();
+//     });
+
+//             axios.get('/api/v1/allproduct')
+//                 .then(function (response) {
+//                     const products = response.data;
+//                     localStorage.setItem('allProducts', JSON.stringify(products));
+//                     renderProducts(products);
+//                 })
+//                 .catch(function (error) {
+//                     console.error('Error fetching products:', error);
+//                 });
+//         });
+
+//         function renderProducts(products) {
+//             const productContainer = document.getElementById('productCardDisplay');
+//             productContainer.innerHTML = ''; // Clear the container first
+
+//             products.forEach(function (product) {
+//                 const card = createProductCard(product);
+//                 productContainer.appendChild(card);
+//             });
+//         }
+
+//         function createProductCard(product) {
+//             const card = document.createElement('div');
+//             card.className = 'card';
+
+//             let product_img_url = '';
+//             JSON.parse(product.image_url).forEach((el, i) => {
+//                 if (i === 0) product_img_url = el;
+//             });
+
+//             card.innerHTML = `
+//                 <a href="{{ url('/product_des') }}" class="product_card_link" data-product='${JSON.stringify(product)}'>
+//                     <div class="card product_card">
+//                         <h6 class="sold"> Sold ${product.sold || 0} <br> <img src="innocent/assets/image/Rate.png" alt=""> ${product.rating || 0}</h6>
+//                         <img src="uploads/products/${product_img_url || 'default.jpg'}" class="card-img-top w-100 product_image" alt="${product.title}">
+//                         <div class="product_card_title">
+//                             <div class="main_and_promo_price_area">
+//                                 ${
+//                             product.ask_for_price
+//                             ? '<p class="ask-for-price" style="color:red; padding-right: 2px; font-size:23px">Ask for price</p>'
+//                             : `
+//                                 <p class="promo_price">$${product.promo_price || ''}</p>
+//                                 <div class="main_price"><p class="main_price_amount">$${product.actual_price || ''}</p></div>
+//                             `
+//                         }
+//                             </div>
+
+//                             <p class="product_name">${product.title}</p>
+//                             <span class="product_card_location"><i class="fa-solid fa-location-dot"></i> ${product.location}</span>
+//                             <img src="innocent/assets/image/logo icon.svg" alt="">
+//                             <span class="connect"><strong>connect</strong></span>
+//                         </div>
+//                     </div>
+//                 </a>
+//             `;
+
+//             card.querySelector('.product_card_link').addEventListener('click', function (event) {
+//                 event.preventDefault();
+//                 localStorage.setItem('selectedProduct', this.getAttribute('data-product'));
+//                 window.location.href = this.href;
+//             });
+
+//             return card;
+//         }
 
 document.addEventListener('DOMContentLoaded', function () {
-
-    document.querySelectorAll('.product_condition_desktop .button').forEach(button => {
-        button.addEventListener('click', function() {
-            toggleButton(this);
+    axios.get('/api/products')
+        .then(function (response) {
+            const products = response.data;
+            renderProductsAndSections(products);
+        })
+        .catch(function (error) {
+            console.error('Error fetching products:', error);
         });
-    });
+});
 
-    document.getElementById('verifiedSeller').addEventListener('change', function() {
-        applyFilter();
-    });
+function renderProductsAndSections(products) {
+    const productContainer = document.getElementById('productCardDisplay');
+    const promotionTemplate = document.querySelector('.promotion').innerHTML;
+    const tellUsTemplate = document.querySelector('.tell-us-template').innerHTML;
 
-    document.getElementById('clickMe').addEventListener('input', function() {
-        applyFilter();
-    });
+    productContainer.innerHTML = ''; // Clear the container first
 
-            axios.get('/api/v1/allproduct')
-                .then(function (response) {
-                    const products = response.data;
-                    localStorage.setItem('allProducts', JSON.stringify(products));
-                    renderProducts(products);
-                })
-                .catch(function (error) {
-                    console.error('Error fetching products:', error);
-                });
-        });
-
-        function renderProducts(products) {
-            const productContainer = document.getElementById('productCardDisplay');
-            productContainer.innerHTML = ''; // Clear the container first
-
-            products.forEach(function (product) {
-                const card = createProductCard(product);
-                productContainer.appendChild(card);
-            });
+    products.forEach((product, index) => {
+        // Insert promotion section at a specific position
+        if (index === 5) {
+            productContainer.innerHTML += promotionTemplate;
         }
+        // Insert "Tell us what it is" section at a specific position
+        if (index === 10) {
+            productContainer.innerHTML += tellUsTemplate;
+        }
+        // Render product card
+        const card = createProductCard(product);
+        productContainer.appendChild(card);
+    });
+}
 
-        function createProductCard(product) {
-            const card = document.createElement('div');
-            card.className = 'card';
+function createProductCard(product) {
+    const card = document.createElement('div');
+    card.className = 'card';
 
-            let product_img_url = '';
-            JSON.parse(product.image_url).forEach((el, i) => {
-                if (i === 0) product_img_url = el;
-            });
+    let product_img_url = '';
+    JSON.parse(product.image_url).forEach((el, i) => {
+        if (i === 0) product_img_url = el;
+    });
 
-            card.innerHTML = `
-                <a href="{{ url('/product_des') }}" class="product_card_link" data-product='${JSON.stringify(product)}'>
-                    <div class="card product_card">
-                        <h6 class="sold"> Sold ${product.sold || 0} <br> <img src="innocent/assets/image/Rate.png" alt=""> ${product.rating || 0}</h6>
-                        <img src="uploads/products/${product_img_url || 'default.jpg'}" class="card-img-top w-100 product_image" alt="${product.title}">
-                        <div class="product_card_title">
-                            <div class="main_and_promo_price_area">
-                                ${
+    card.innerHTML = `
+        <a href="{{ url('/product_des') }}" class="product_card_link" data-product='${JSON.stringify(product)}'>
+            <div class="card product_card">
+                <h6 class="sold"> Sold ${product.sold || 0} <br> <img src="innocent/assets/image/Rate.png" alt=""> ${product.rating || 0}</h6>
+                <img src="uploads/products/${product_img_url || 'default.jpg'}" class="card-img-top w-100 product_image" alt="${product.title}">
+                <div class="product_card_title">
+                    <div class="main_and_promo_price_area">
+                        ${
                             product.ask_for_price
                             ? '<p class="ask-for-price" style="color:red; padding-right: 2px; font-size:23px">Ask for price</p>'
                             : `
@@ -1479,25 +1556,51 @@ document.addEventListener('DOMContentLoaded', function () {
                                 <div class="main_price"><p class="main_price_amount">$${product.actual_price || ''}</p></div>
                             `
                         }
-                            </div>
-
-                            <p class="product_name">${product.title}</p>
-                            <span class="product_card_location"><i class="fa-solid fa-location-dot"></i> ${product.location}</span>
-                            <img src="innocent/assets/image/logo icon.svg" alt="">
-                            <span class="connect"><strong>connect</strong></span>
-                        </div>
                     </div>
-                </a>
-            `;
 
-            card.querySelector('.product_card_link').addEventListener('click', function (event) {
-                event.preventDefault();
-                localStorage.setItem('selectedProduct', this.getAttribute('data-product'));
-                window.location.href = this.href;
-            });
+                    <p class="product_name">${product.title}</p>
+                    <span class="product_card_location"><i class="fa-solid fa-location-dot"></i> ${product.location}</span>
+                    <img src="innocent/assets/image/logo icon.svg" alt="">
+                    <span class="connect"><strong>connect</strong></span>
+                </div>
+            </div>
+        </a>
+    `;
 
-            return card;
-        }
+    card.querySelector('.product_card_link').addEventListener('click', function (event) {
+        event.preventDefault();
+        localStorage.setItem('selectedProduct', this.getAttribute('data-product'));
+        window.location.href = this.href;
+    });
+
+    return card;
+}
+
+function boostListings() {
+    // Handle boosting listings action
+}
+
+function newProductBoost() {
+    // Handle new product boost action
+}
+
+function showCard_get_started() {
+    // Show the promotion card
+    document.getElementById('promotion_card').style.display = 'block';
+}
+
+function hideCard_get_started() {
+    // Hide the promotion card
+    document.getElementById('promotion_card').style.display = 'none';
+}
+
+function changeToInput() {
+    // Handle change to input action for "Tell us what it is"
+}
+
+function send() {
+    // Handle send action for "Tell us what it is"
+}
 
 
 

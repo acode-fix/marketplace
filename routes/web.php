@@ -6,11 +6,15 @@ use App\Http\Controllers\LearnController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CategoriesController;
+use App\Http\Controllers\ShopController;
 
 
 
 
 
+
+// web.php
+Route::get('/sellers-shop/{userId}', [ShopController::class, 'showUserShop'])->name('sellers.shop');
 
 // Route::get('/category_search/{id}', [CategoriesController::class, 'show']);
 

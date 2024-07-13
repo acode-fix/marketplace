@@ -17,6 +17,11 @@
   <!-- <script src="kaz/js/privacy.js"></script>
   <script src="kaz/js/bootstrap.js"></script>  -->
 
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <!-- Include SweetAlert CSS and JS -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.js"></script>
+
   <style>
 
 

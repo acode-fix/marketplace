@@ -132,29 +132,7 @@
                       <div class="col">
                         <div class="product_card_display card-margin content-margin mt-4" id="productCardDisplay">
 
-
-                            <a href="{{ url('/product_des') }}" class="product_card_link">
-                                <div class="card product_card">
-                                    <h6 class="sold"> Sold 35 <br> <img src="innocent/assets/image/Rate.png" alt=""> 4.0</h6>
-                                    <img src="innocent/assets/image/pexels-pixabay-164558.jpg" class="card-img-top w-100 product_image" alt="...">
-
-                                    <div class="product_card_title">
-                                        <div class="main_and_promo_price_area">
-                                            <p class="promo_price">$100,000,000</p>
-                                            <div class="main_price"><p class="main_price_amount">$120,000,000</p></div>
-
-                                        </div>
-
-
-                                        <p class="product_name">3 Bed Room Flat</p>
-                                        <span class="product_card_location"><i class="fa-solid fa-location-dot"></i>  Abuja</span>
-                                        <img src="innocent/assets/image/logo icon.svg" alt="" >
-                                        <span class="connect"><strong>connect</strong></span>
-
-                                    </div>
-                                </div>
-                             </a>
-                             <a href="{{ url('/product_des') }}" class="product_card_link">
+                             {{-- <a href="{{ url('/product_des') }}" class="product_card_link">
                                 <div class="card product_card">
                                     <h6 class="sold"> Sold 7 <br> <img src="innocent/assets/image/Rate.png" alt=""> 3.6</h6>
                                     <img src="innocent/assets/image/felipe-simo-dWQDNyPfKPU-unsplash.jpg" class="card-img-top w-100 product_image" alt="...">
@@ -174,82 +152,8 @@
 
                                     </div>
                                 </div>
-                             </a>
-                             <a href="{{ url('/product_des') }}" class="product_card_link">
-                                <div class="card product_card">
-                                    <h6 class="sold"> Sold 175 <br> <img src="innocent/assets/image/Rate.png" alt=""> 3.6</h6>
-                                    <img src="innocent/assets/image/laptop.jpg" class="card-img-top w-100 product_image" alt="...">
+                             </a> --}}
 
-                                    <div class="product_card_title">
-
-                                        <div class="main_and_promo_price_area">
-                                            <div class="ask_for_price">Ask for price</div>
-
-                                        </div>
-                                            <p class="product_name">Laptop Apple MacBook Pro 2015 8GB</p>
-                                            <span class="product_card_location"><i class="fa-solid fa-location-dot"></i> Ilorin</span>
-                                            <img src="innocent/assets/image/logo icon.svg" alt="" >
-                                           <span class="connect"><strong>connect</strong></span>
-                                    </div>
-                                </div>
-                             </a>
-
-                             <a href="{{ url('/product_des') }}" class="product_card_link">
-                                <div class="card product_card">
-                                    <h6 class="sold"> Sold 75 <br> <img src="innocent/assets/image/Rate.png" alt=""> 5.0</h6>
-                                    <img src="innocent/assets/image/portrait-smiling-afro-american-male-photographer.jpg" class="card-img-top w-100 product_image" alt="...">
-
-                                    <div class="product_card_title">
-
-                                        <div class="main_and_promo_price_area">
-                                            <div class="ask_for_price">Ask for price</div>
-
-                                        </div>
-                                            <p class="product_name">Photographer</p>
-                                            <span class="product_card_location"><i class="fa-solid fa-location-dot"></i>  Lagos</span>
-                                            <img src="innocent/assets/image/logo icon.svg" alt="" >
-                                           <span class="connect"><strong>connect</strong></span>
-                                    </div>
-                                </div>
-                             </a>
-                             <a href="{{ url('/product_des') }}" class="product_card_link">
-                                <div class="card product_card">
-                                    <h6 class="sold"> Sold 95 <br> <img src="innocent/assets/image/Rate.png" alt=""> 3.6</h6>
-                                    <img src="innocent/assets/image/laptop2.jpg" class="card-img-top w-100 product_image" alt="...">
-
-                                    <div class="product_card_title">
-
-                                        <div class="main_and_promo_price_area">
-                                            <p class="promo_price">$70,000</p>
-                                            <div class="main_price"><p class="main_price_amount">$82,000</p></div>
-
-                                        </div>
-                                            <p class="product_name">Lenovo 600gb Finger Print 2020</p>
-                                            <span class="product_card_location"><i class="fa-solid fa-location-dot"></i>  Lagos</span>
-                                            <img src="innocent/assets/image/logo icon.svg" alt="" >
-                                           <span class="connect"><strong>connect</strong></span>
-                                    </div>
-                                </div>
-                             </a>
-                             <a href="{{ url('/product_des') }}" class="product_card_link">
-                                <div class="card product_card">
-                                    <h6 class="sold"> Sold 70 <br> <img src="innocent/assets/image/Rate.png" alt=""> 3.0</h6>
-                                    <img src="innocent/assets/image/usb-flash-drive-mockup-technology-data-storage-device.jpg" class="card-img-top w-100 product_image" alt="...">
-
-                                    <div class="product_card_title">
-
-                                        <div class="main_and_promo_price_area">
-                                            <p class="promo_price">$500</p>
-                                            <div class="main_price"><p class="main_price_amount">$550</p></div>
-
-                                        </div>
-                                            <p class="product_name">USB Type C OTG Card Reader</p>
-                                            <span class="product_card_location"><i class="fa-solid fa-location-dot"></i>  Lagos</span>
-                                            <img src="innocent/assets/image/logo icon.svg" alt="" >
-                                           <span class="connect"><strong>connect</strong></span>
-                                    </div>
-                                </div>
-                             </a>
 
                         </div>
                       </div>
@@ -292,30 +196,8 @@
                 <div class="container-fluid">
                     <div class="row">
                       <div class="col">
-                        <div class="product_card_display card-margin content-margin mt-4">
-
-
-                            <a href="{{ url('/product_des') }}" class="product_card_link">
-                                <div class="card product_card">
-                                    <h6 class="sold"> Sold 35 <br> <img src="innocent/assets/image/Rate.png" alt=""> 4.0</h6>
-                                    <img src="innocent/assets/image/pexels-pixabay-164558.jpg" class="card-img-top w-100 product_image" alt="...">
-
-                                    <div class="product_card_title">
-                                        <div class="main_and_promo_price_area">
-                                            <p class="promo_price">$100,000,000</p>
-                                            <div class="main_price"><p class="main_price_amount">$120,000,000</p></div>
-
-                                        </div>
-
-
-                                        <p class="product_name">3 Bed Room Flat</p>
-                                        <span class="product_card_location"><i class="fa-solid fa-location-dot"></i>  Abuja</span>
-                                        <img src="innocent/assets/image/logo icon.svg" alt="" >
-                                        <span class="connect"><strong>connect</strong></span>
-
-                                    </div>
-                                </div>
-                             </a>
+                        <div class="product_card_display card-margin content-margin mt-4" id="productCardDisplay2">
+{{--
                              <a href="{{ url('/product_des') }}" class="product_card_link">
                                 <div class="card product_card">
                                     <h6 class="sold"> Sold 7 <br> <img src="innocent/assets/image/Rate.png" alt=""> 3.6</h6>
@@ -336,82 +218,8 @@
 
                                     </div>
                                 </div>
-                             </a>
-                             <a href="{{ url('/product_des') }}" class="product_card_link">
-                                <div class="card product_card">
-                                    <h6 class="sold"> Sold 175 <br> <img src="innocent/assets/image/Rate.png" alt=""> 3.6</h6>
-                                    <img src="innocent/assets/image/laptop.jpg" class="card-img-top w-100 product_image" alt="...">
+                             </a> --}}
 
-                                    <div class="product_card_title">
-
-                                        <div class="main_and_promo_price_area">
-                                            <div class="ask_for_price">Ask for price</div>
-
-                                        </div>
-                                            <p class="product_name">Laptop Apple MacBook Pro 2015 8GB</p>
-                                            <span class="product_card_location"><i class="fa-solid fa-location-dot"></i> Ilorin</span>
-                                            <img src="innocent/assets/image/logo icon.svg" alt="" >
-                                           <span class="connect"><strong>connect</strong></span>
-                                    </div>
-                                </div>
-                             </a>
-
-                             <a href="{{ url('/product_des') }}" class="product_card_link">
-                                <div class="card product_card">
-                                    <h6 class="sold"> Sold 75 <br> <img src="innocent/assets/image/Rate.png" alt=""> 5.0</h6>
-                                    <img src="innocent/assets/image/Picture of product.png" class="card-img-top w-100 product_image" alt="...">
-
-                                    <div class="product_card_title">
-
-                                        <div class="main_and_promo_price_area">
-                                            <div class="ask_for_price">Ask for price</div>
-
-                                        </div>
-                                            <p class="product_name">Photographer</p>
-                                            <span class="product_card_location"><i class="fa-solid fa-location-dot"></i>  Lagos</span>
-                                            <img src="innocent/assets/image/logo icon.svg" alt="" >
-                                           <span class="connect"><strong>connect</strong></span>
-                                    </div>
-                                </div>
-                             </a>
-                             <a href="{{ url('/product_des') }}" class="product_card_link">
-                                <div class="card product_card">
-                                    <h6 class="sold"> Sold 95 <br> <img src="innocent/assets/image/Rate.png" alt=""> 3.6</h6>
-                                    <img src="innocent/assets/image/laptop2.jpg" class="card-img-top w-100 product_image" alt="...">
-
-                                    <div class="product_card_title">
-
-                                        <div class="main_and_promo_price_area">
-                                            <p class="promo_price">$70,000</p>
-                                            <div class="main_price"><p class="main_price_amount">$82,000</p></div>
-
-                                        </div>
-                                            <p class="product_name">Lenovo 600gb Finger Print 2020</p>
-                                            <span class="product_card_location"><i class="fa-solid fa-location-dot"></i>  Lagos</span>
-                                            <img src="innocent/assets/image/logo icon.svg" alt="" >
-                                           <span class="connect"><strong>connect</strong></span>
-                                    </div>
-                                </div>
-                             </a>
-                             <a href="{{ url('/product_des') }}" class="product_card_link">
-                                <div class="card product_card">
-                                    <h6 class="sold"> Sold 70 <br> <img src="innocent/assets/image/Rate.png" alt=""> 3.0</h6>
-                                    <img src="innocent/assets/image/usb-flash-drive-mockup-technology-data-storage-device.jpg" class="card-img-top w-100 product_image" alt="...">
-
-                                    <div class="product_card_title">
-
-                                        <div class="main_and_promo_price_area">
-                                            <p class="promo_price">$500</p>
-                                            <div class="main_price"><p class="main_price_amount">$550</p></div>
-
-                                        </div>
-                                            <p class="product_name">USB Type C OTG Card Reader</p>
-                                            <span class="product_card_location"><i class="fa-solid fa-location-dot"></i>  Lagos</span>
-                                            <img src="innocent/assets/image/logo icon.svg" alt="" >
-                                           <span class="connect"><strong>connect</strong></span>
-                                    </div>
-                                </div>
-                             </a>
 
                         </div>
                       </div>
@@ -712,18 +520,31 @@ document.addEventListener('DOMContentLoaded', function () {
     const products = JSON.parse(localStorage.getItem('allProducts'));
     const categoryName = localStorage.getItem('categoryName');
     const categoryTitle = document.getElementById('categoryTitle');
-    const productContainer = document.getElementById('productCardDisplay');
+    const productCardDisplay1 = document.getElementById('productCardDisplay');
+    const productCardDisplay2 = document.getElementById('productCardDisplay2');
 
     categoryTitle.innerText = categoryName;
     renderProducts(products);
 
-    function renderProducts(products) {
-        productContainer.innerHTML = ''; // Clear the container first
 
-        products.forEach(function (product) {
-            const card = createProductCard(product);
-            productContainer.appendChild(card);
+    function renderProducts(products) {
+       productCardDisplay1.innerHTML = ''; // Clear the container first
+         productCardDisplay2.innerHTML = ''; // Clear the container first
+
+
+        products.forEach(function (product, index) {
+            // Render product card
+        const card = createProductCard(product);
+
+            // Insert product into appropriate container
+            if (index < 8) {
+                productCardDisplay1.appendChild(card);
+            } else {
+                productCardDisplay2.appendChild(card);
+            }
+
         });
+
     }
 
     function createProductCard(product) {
@@ -743,8 +564,8 @@ document.addEventListener('DOMContentLoaded', function () {
                                 <div class="product_card_title">
                                     <div class="main_and_promo_price_area">
                                         ${
-                                            product.ask_for_price  
-                                            ? '<p class="ask-for-price" style="color:red; padding-right: 2px; font-size:23px">Ask for price</p>' 
+                                            product.ask_for_price
+                                            ? '<p class="ask-for-price" style="color:red; padding-right: 2px; font-size:23px">Ask for price</p>'
                                             : `
                                                 <p class="promo_price">$${product.promo_price || ''}</p>
                                                 <div class="main_price"><p class="main_price_amount">$${product.actual_price || ''}</p></div>
@@ -758,7 +579,7 @@ document.addEventListener('DOMContentLoaded', function () {
                                 </div>
                             </div>
                         </a>
-                            
+
         `;
 
         card.querySelector('.product_card_link').addEventListener('click', function (event) {
@@ -773,6 +594,6 @@ document.addEventListener('DOMContentLoaded', function () {
 </script>
 
 
-    
+
 </body>
 </html>

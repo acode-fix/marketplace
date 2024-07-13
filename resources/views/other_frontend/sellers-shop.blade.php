@@ -14,6 +14,11 @@
   <script src="{{ asset('kaz/js/bootstrap.js') }}"></script>
   <script src="{{ asset('kaz/js/card.js') }}"></script>
   <script src="{{ asset('kaz/js/read.js') }}"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <!-- Include SweetAlert CSS and JS -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.js"></script>
   <style>
 
   </style>
@@ -45,17 +50,17 @@
         <button type="button" class="btn btn-warning btn-height me-5"> + create Ads</button>
       </div>
       <div class="me-1">
-        <h6 class="name">Mired Augustine</h6>
-        <h6 class="mired-text fw-light">miredaugustine@gmail.com</h6>
+        <h6 class="name">Loading</h6>
+        <h6 class="mired-text fw-light">loading</h6>
       </div>
       <div class="profile-dropdown">
         <img class="img-fluid profile-picture" src="kaz/images/dp.png" alt="" id="profileDropdownBtn">
         <div class="dropdown-menu" id="dropdownMenu">
           <div class="container drop-struct">
-            <img class="pt-1" width="50px" src="kaz/images/dp.png" alt="">
+            <img id="profile_image" class="pt-1" width="50px" src="kaz/images/dp.png" alt="">
             <div class="ms-2 pt-1">
-              <h6>Mired Augustine</h6>
-              <h6 style="font-size: small;">Miredaugustine@gmail.com</h6>
+              <h6 id="profile_name">Mired Augustine</h6>
+              <h6 id="profile_email" style="font-size: small;">Miredaugustine@gmail.com</h6>
             </div>
           </div>
           <hr style="background-color: black; margin-left: 10px;margin-right: 10px;">
@@ -735,10 +740,216 @@
 
   </div>
 
+
+
+
   <script>
+    // Fetch the user data
+    const token = localStorage.getItem('apiToken'); // Get the token from local storage
+
+if (token) {
+    axios.get('/api/v1/getuser', {
+        headers: {
+            'Authorization': 'Bearer ' + token
+        }
+    })
+    .then(response => {
+        const user = response.data;
+        updateUserProfile(user);
+    })
+    .catch(error => {
+        console.error('Error fetching user data:', error);
+        if (error.response && error.response.status === 401) {
+            Swal.fire({
+                icon: 'error',
+                title: 'Unauthorized',
+                text: 'Your session has expired. Please log in again.'
+            }).then(() => {
+                window.location.href = '/login'; // Redirect to login page
+            });
+        }
+    });
+} else {
+    Swal.fire({
+        icon: 'error',
+        title: 'Missing Token',
+        text: 'Authentication token is missing. Please log in.'
+    }).then(() => {
+        window.location.href = '/login'; // Redirect to login page
+    });
+}
+
+function updateUserProfile(user) {
+    const nameElement = document.querySelector('.right-section .name');
+    const emailElement = document.querySelector('.right-section .mired-text');
+    const profileImageElement = document.querySelector('.right-section .profile-picture');
+    const nameeElement = document.getElementById('profile_name');
+    const emaileElement = document.getElementById('profile_email');
+    // const profileImageElement = document.getElementById('profile_image');
+    const profilePictureElement = document.getElementById('profile_picture');
+    // const profilePictureMobileElement = document.getElementById('profile_picture_mobile');
+
+    if (user) {
+        nameElement.textContent = user.username || 'Unknown User';
+        emailElement.textContent = user.email || 'No email provided';
+
+        nameeElement.textContent = user.username || 'Unknown User';
+        emaileElement.textContent = user.email || 'No email provided';
+
+        // profileImageElement.src = user.photo_url ? user.photo_url : 'kaz/images/dp.png';
+        const imageUrl = user.photo_url ? `/uploads/users/${user.photo_url}` : 'innocent/assets/image/dp.png';
+        profileImageElement.src = imageUrl;
+        profilePictureElement.src = imageUrl;
+        profilePictureMobileElement.src = imageUrl;
+    } else {
+        console.error('User data is null or undefined');
+    }
+}
 
 
-  </script>
+
+
+// function fetchSellerDetails(userId) {
+//     axios.get(`/api/v1/product/user/${userId}`, {
+//         headers: {
+//             'Authorization': `Bearer` + token
+//         }
+//     })
+//     .then(response => {
+//         if (response.data.status) {
+//             const user = response.data.data.user;
+//             const products = response.data.data.products;
+
+//             updateUserProfile(user);
+//             renderSellerProducts(products);
+//         } else {
+//             console.error('Failed to fetch user details:', response.data.message);
+//         }
+//     })
+//     .catch(error => {
+//         console.error('Error fetching user details:', error);
+//         if (error.response && error.response.status === 401) {
+//             alert('You are not authorized. Please log in.');
+//             window.location.href = '/';
+//         } else if (error.response && error.response.status === 404) {
+//             alert('User not found.');
+//         }
+//     });
+// }
+function fetchSellerDetails(user) {
+    const token = localStorage.getItem('apiToken'); // Get the token from local storage
+
+    if (!token) {
+        alert('You are not authorized. Please log in.');
+        // window.location.href = '/';
+        return;
+    }
+
+    axios.get(`/api/product/user`, {
+        headers: {
+            'Authorization': 'Bearer' + token
+        }
+    })
+    .then(response => {
+        if (response.data.status) {
+            const user = response.data.data.user;
+            const products = response.data.data.products;
+
+            updateUserProfile(user);
+            renderSellerProducts(products);
+        } else {
+            console.error('Failed to fetch user details:', response.data.message);
+        }
+    })
+    .catch(error => {
+        console.error('Error fetching user details:', error);
+        if (error.response && error.response.status === 401) {
+            alert('You are not authorized. Please log in.');
+            // window.location.href = '/';
+        } else if (error.response && error.response.status === 404) {
+            alert('User not found.');
+        }
+    });
+}
+
+// function updateUserProfile(user) {
+//     const profileImage = document.querySelector('.profile-image');
+//     const userName = document.querySelector('.user-name');
+//     const userBio = document.querySelector('.user-bio');
+
+//     if (profileImage) {
+//         profileImage.src = user.profile_image || 'default-profile.png'; // Provide a default image if needed
+//     }
+
+//     if (userName) {
+//         userName.textContent = user.name;
+//     }
+
+//     if (userBio) {
+//         userBio.textContent = user.bio;
+//     }
+// }
+
+function renderSellerProducts(products) {
+    const sellerProductsContainer = document.getElementById('seller-products');
+    sellerProductsContainer.innerHTML = ''; // Clear existing content
+
+    products.forEach(product => {
+        const productCard = createProductCard(product);
+        sellerProductsContainer.appendChild(productCard);
+    });
+}
+
+function createProductCard(product) {
+    const card = document.createElement('div');
+    card.className = 'card';
+
+    let product_img_url = '';
+    JSON.parse(product.image_url).forEach((el, i) => {
+        if (i === 0) product_img_url = el;
+    });
+
+    card.innerHTML = `
+        <a href="{{ url('/product_des') }}" class="product_card_link" data-product='${JSON.stringify(product)}'>
+            <div class="card product_card">
+                <h6 class="sold"> Sold ${product.sold || 0} <br> <img src="innocent/assets/image/Rate.png" alt=""> ${product.rating || 0}</h6>
+                <img src="uploads/products/${product_img_url || 'default.jpg'}" class="card-img-top w-100 product_image" alt="${product.title}">
+                <div class="product_card_title">
+                    <div class="main_and_promo_price_area">
+                        ${
+                            product.ask_for_price
+                            ? '<p class="ask-for-price" style="color:red; padding-right: 2px; font-size:23px">Ask for price</p>'
+                            : `
+                                <p class="promo_price">$${product.promo_price || ''}</p>
+                                <div class="main_price"><p class="main_price_amount">$${product.actual_price || ''}</p></div>
+                            `
+                        }
+                    </div>
+                    <p class="product_name">${product.title}</p>
+                    <span class="product_card_location"><i class="fa-solid fa-location-dot"></i> ${product.location}</span>
+                    <img src="innocent/assets/image/logo icon.svg" alt="">
+                    <span class="connect"><strong>connect</strong></span>
+                </div>
+            </div>
+        </a>
+    `;
+
+    card.querySelector('.product_card_link').addEventListener('click', function (event) {
+        event.preventDefault();
+        localStorage.setItem('selectedProduct', this.getAttribute('data-product'));
+        window.location.href = this.href;
+    });
+
+    return card;
+}
+
+// Usage
+document.addEventListener('DOMContentLoaded', function () {
+    const userId = 'USER_ID_HERE'; // Replace with the actual user ID
+    fetchSellerDetails(userId);
+});
+
+</script>
 
 
 

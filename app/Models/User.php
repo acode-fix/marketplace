@@ -11,6 +11,7 @@ use Spatie\Permission\Traits\HasRoles;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Auth\Passwords\CanResetPassword;
+use Illuminate\Support\Str;
 
 class User extends Authenticatable
 {
@@ -73,5 +74,23 @@ class User extends Authenticatable
         public function products()
     {
         return $this->hasMany(Product::class);
+    }
+
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::creating(function ($user) {
+            $user->referral_code = $user->generateReferralCode();
+        });
+    }
+
+    public function generateReferralCode()
+    {
+        do {
+            $code = Str::random(10);
+        } while (self::where('referral_code', $code)->exists());
+
+        return $code;
     }
 }

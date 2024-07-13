@@ -395,9 +395,23 @@
       <form class="row mt-5 " action="" id="settingForm" enctype="multipart/form-data">
         @csrf
 
+        <div class="col-10 upload-div">
+            <img id="previewImg1" class="img-fluid" src="kaz/images/dp.png" alt="">
+            <h6 class="ms-4">Upload your profile picture <br>
+              <span class="fw-light identify-text">This helps visitors to recognize you on buy and sell</span>
+            </h6>
+          </div>
+          <div class="col-2 post-btn">
+            <input type="file" name="photo_url" id="actual-btn" accept="image/*" hidden onchange="previewImage(this)">
+            <label class="label3" for="actual-btn">Upload Photo</label>
+          </div>
+          <div class="col-10">
+            <hr style="background-color: black;">
+          </div>
+
         <div class="col-10 mb-3">
           <label for="usernameInput" class="form-label">Username</label>
-          <input type="text" class="form-control" id="usernameInput1"
+          <input type="text" class="form-control" name="username" id="usernameInput1"
             placeholder="This is your profile display name on buyandsell">
         </div>
         <div class="col-2 mt-3 post-btn">
@@ -405,18 +419,18 @@
             class="btn btn-info">Edit</button>
         </div>
         <div class="col-10 mb-3">
-          <label for="phoneInput" class="form-label">Call Phone Number</label>
-          <input type="text" class="form-control" id="phoneInput1"
-            placeholder="This contact will be used by visitors on buyandsell to reach you via phone call">
+          <label for="usernameInput" class="form-label">Profile Bio</label>
+          <input type="text" class="form-control" name="bio" id="phoneInput1"
+          placeholder="This is will be displayed to potential buyers only if you are a verified seller (Mx1000)">
         </div>
         <div class="col-2 mt-3 post-btn">
           <button id="editPhoneBtn1" style="background-color: whitesmoke;" type="button"
             class="btn btn-info">Edit</button>
         </div>
         <div class="col-10 mb-3">
-          <label for="whatsappInput" class="form-label">Whatsapp Phone link</label>
-          <input type="text" class="form-control" id="whatsappInput1"
-            placeholder="This link will be used by visitors on buyandsell to reach you on whatsapp">
+          <label for="phoneInput" class="form-label">Call Phone Number</label>
+          <input type="number" class="form-control" name="phone_number" id="phoneInput"
+          placeholder="This contact will be used by visitors on buyandsell to reach you via phone call">
         </div>
         <div class="col-2 mt-3 post-btn">
           <button id="editWhatsappBtn1" style="background-color: whitesmoke;" type="button"
@@ -442,7 +456,7 @@
               <div class="location-struct-m">
                 <h6 class="me-2">Location</h6>
                 <label class="switch">
-                  <input type="checkbox">
+                  <input type="checkbox" name="location">
                   <span class="slider round"></span>
                 </label>
               </div>
@@ -453,7 +467,7 @@
         </div>
 
         <div class="mobile-btn">
-          <button id="saveBtn1" type="button" class="btn btn-warning save-btn btn-lg">Save</button>
+          <button id="saveBtn1" type="submit" class="btn btn-warning save-btn btn-lg">Save</button>
         </div>
       </form>
     </div>
@@ -463,7 +477,7 @@
   <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10/dist/sweetalert2.all.min.js"></script>
 
-      
+
  <script>
     // function goBack() {
     //   window.history.back();
@@ -480,7 +494,7 @@
     }
 
         const token = localStorage.getItem('apiToken');
-        
+
 
         const locationSwitch = document.getElementById('locationSwitch');
         if (locationSwitch && locationSwitch.checked) {
@@ -508,11 +522,11 @@
                 'Authorization': 'Bearer ' + token
             }
         })
-       
+
         .then(function(response) {
             console.log(response.data);
             if (response.data.status) {
-                
+
                 Swal.fire({
                     icon: 'success',
                     title: 'Success!',
@@ -540,7 +554,7 @@
         });
     }
 
- 
+
 });
 
 

@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\Log;
 class ProductController extends Controller
 {
 
-    // public function index()
+    // public function index2()
     // {
     //     $products = Product::orderByRaw('RAND()')->take(10)->get();
     //    return response()->json($products);
@@ -23,73 +23,41 @@ class ProductController extends Controller
     // }
 
 
-//     public function index()
-// {
-//        $data = Product::all();
-//     // Step 1: Count the total number of products
-//     $totalProducts = Product::count();
-
-
-//     if ($totalProducts <= 15) {
-
-//        return response()->json($data);
-
-//     } else if ($totalProducts > 15) {
-//         $numberOfProductsToDisplay = 15;
-//         $randomIndices = [];
-
-//         while (count($randomIndices) < $numberOfProductsToDisplay) {
-//             $randomIndex = rand(0, $totalProducts - 1);
-//             if (!in_array($randomIndex, $randomIndices)) {
-//                 $randomIndices[] = $randomIndex;
-//             }
-//         }
-
-//         // Step 4: Fetch the products using the generated random indices
-//         // This assumes your Product model's primary key is `id`
-//         $randomProducts = Product::whereIn('id', $randomIndices)->get();
-
-//         // Step 5: Return the random products as JSON
-//         return response()->json($randomProducts);
-
-//     } else {
-//         return response()->json([]);
-//     }
-
-// }
-public function index()
+    public function index()
 {
+       $data = Product::all();
+    // Step 1: Count the total number of products
     $totalProducts = Product::count();
-    $numberOfProductsToDisplay = 15;
 
-    if ($totalProducts <= $numberOfProductsToDisplay) {
-        $products = Product::all();
-    } else {
+
+    if ($totalProducts <= 16) {
+
+       return response()->json($data);
+
+    } else if ($totalProducts > 16) {
+        $numberOfProductsToDisplay = 16;
         $randomIndices = [];
+
         while (count($randomIndices) < $numberOfProductsToDisplay) {
             $randomIndex = rand(0, $totalProducts - 1);
             if (!in_array($randomIndex, $randomIndices)) {
                 $randomIndices[] = $randomIndex;
             }
         }
-        $products = Product::whereIn('id', $randomIndices)->get();
+
+        // Step 4: Fetch the products using the generated random indices
+        // This assumes your Product model's primary key is `id`
+        $randomProducts = Product::whereIn('id', $randomIndices)->get();
+
+        // Step 5: Return the random products as JSON
+        return response()->json($randomProducts);
+
+    } else {
+        return response()->json([]);
     }
 
-    // Fetch advertisements
-    $ads = Advertisement::all();
-
-    // Convert to arrays for easier manipulation
-    $productsArray = $products->toArray();
-    $adsArray = $ads->toArray();
-
-    // Merge advertisements into the product list at random positions
-    foreach ($adsArray as $ad) {
-        $randomPosition = rand(0, count($productsArray));
-        array_splice($productsArray, $randomPosition, 0, [$ad]);
-    }
-
-    return response()->json($productsArray);
 }
+
 
 
 
@@ -313,22 +281,30 @@ return response()->json([
     /**
      * Display User of a product.
      */
-     public function showUser(string $id)
-    {
-        //
-        $user = User::find($id);
-        $productuser =  Product::where('user_id',$user->id)->get();
+    public function showUser(string $id)
+{
+    try {
+        $user = User::findOrFail($id); // Use findOrFail to automatically handle 404 if user is not found
 
-          //  ::where('user_id',$user_id)
-             //  ::where(['user_id'=>$user_id,''])
-                //::whereUserId($user_id)->get();
+        $products = Product::where('user_id', $user->id)->get();
 
-      return response()->json([
-        'status' => false,
-        'message' => 'products',
-        'data' => $productuser,
-    ], 200);
+        return response()->json([
+            'status' => true,
+            'message' => 'User and products',
+            'data' => [
+                'user' => $user,
+                'products' => $products,
+            ],
+        ], 200);
+    } catch (\Exception $e) {
+        // Log the exception or return a proper error response
+        return response()->json([
+            'status' => false,
+            'message' => 'Failed to fetch user details: ' . $e->getMessage(),
+        ], 500);
     }
+}
+
 
     /**
      * Show the form for editing the specified resource.

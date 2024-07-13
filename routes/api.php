@@ -43,6 +43,8 @@ Route::get('/product-details/{id}', [ProductController::class, 'getProductDetail
 
 Route::post('/product', [ProductController::class, 'store']);
 
+// Route::get('/product/user', [ProductController::class, 'showUser']);
+
 
 
 
@@ -63,6 +65,9 @@ Route::prefix('v1')->middleware('auth:sanctum')->group(function () {
 Route::get('/users', [UsersController::class, 'view']);
 Route::post('/auth/logout',[UsersController::class, 'logoutUser']);
 Route::get('/getuser', [UsersController::class, 'getUserData']);
+Route::get('/referral-link', [UsersController::class, 'getReferralLink']);
+Route::delete('/user', [UsersController::class, 'deleteAccount']);
+
 
 //Route::get('/product/{id}', [AuditlogController::class, 'create']);
 

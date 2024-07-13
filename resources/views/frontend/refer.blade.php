@@ -8,7 +8,7 @@
 
   <div class="main">
 
-    <div class="content">
+    <div style="height: 400px" class="content">
       <div class="container">
         <div class="row mt-4">
           <div class="col">
@@ -126,6 +126,53 @@
   </div>
 
   <script src="{{ asset('kaz/js/refer.js') }}"></script>
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.js"></script>
+
+  <script>
+  document.addEventListener('DOMContentLoaded', function() {
+      const linkInput = document.getElementById('linkInput');
+      const linkButton = document.getElementById('linkButton');
+
+      const token = localStorage.getItem('apiToken'); // Get the token from local storage
+      // Function to fetch the referral link from the backend
+      function fetchReferralLink() {
+          axios.get('/api/v1/referral-link', {
+              headers: {
+                  'Authorization': 'Bearer ' + token // Assuming the token is stored in localStorage
+              }
+          })
+          .then(function(response) {
+              linkInput.value = response.data.referralLink;
+          })
+          .catch(function(error) {
+              Swal.fire(
+                  'An error occurred',
+                  error.response.data.message || 'Please try again later.',
+                  'error'
+              );
+          });
+      }
+
+      // Function to copy the link to the clipboard
+      function copyToClipboard() {
+          linkInput.select();
+          linkInput.setSelectionRange(0, 99999); // For mobile devices
+          document.execCommand('copy');
+          Swal.fire({
+              icon: 'success',
+              title: 'Copied!',
+              text: 'Referral link copied to clipboard.',
+          });
+      }
+
+      // Fetch the referral link on page load
+      fetchReferralLink();
+
+      // Add event listener to the copy button
+      linkButton.addEventListener('click', copyToClipboard);
+  });
+  </script>
 
 
 

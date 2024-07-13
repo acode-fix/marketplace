@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\User;
+use App\Models\Product;
+
 
 class ShopController extends Controller
 {
@@ -12,6 +15,13 @@ class ShopController extends Controller
     public function index()
     {
         //
+    }
+    public function showUserShop($userId)
+    {
+        $user = User::findOrFail($userId);
+        $products = Product::where('user_id', $userId)->get();
+
+        return view('sellers-shop', compact('user', 'products'));
     }
 
     /**

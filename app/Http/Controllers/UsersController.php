@@ -242,13 +242,20 @@ class UsersController extends Controller
     }
 }
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
+    public function getReferralLink(Request $request)
     {
-        //
+        $user = Auth::user();
+
+        if (!$user->referral_code) {
+            $user->referral_code = $user->generateReferralCode();
+            $user->save();
+        }
+
+        $referralLink = url('/join/bas-mrk-pla?ref=' . $user->referral_code);
+
+        return response()->json(['referralLink' => $referralLink]);
     }
+
 
     /**
      * Log out the user
@@ -281,4 +288,37 @@ class UsersController extends Controller
             ], 500);
         }
     }
+
+    /**
+     * Remove the specified resource from storage.
+     */
+    public function deleteAccount(Request $request)
+{
+    try {
+        // Get the authenticated user
+        $user = Auth::user();
+
+        if (!$user) {
+            return response()->json([
+                'status' => false,
+                'message' => 'User not authenticated',
+            ], 401);
+        }
+
+        // Delete the user
+        $user->tokens()->delete(); // Delete all tokens for the user
+        $user->delete();
+
+        return response()->json([
+            'status' => true,
+            'message' => 'User account deleted successfully',
+        ], 200);
+
+    } catch (\Throwable $th) {
+        return response()->json([
+            'status' => false,
+            'message' => $th->getMessage()
+        ], 500);
+    }
+}
 }

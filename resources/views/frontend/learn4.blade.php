@@ -424,15 +424,52 @@
         <h5 class="related_search animate animate-right">Related Search</h5>
         <!-- Product Cards -->
         <div class="product_card_container related_search_margin">
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col">
-        <div class="product_card_display card-margin content-margin mt-4" id="productCardDisplay">
-            <!-- Products will be dynamically added here -->
-        </div>
-    </div>
-    </div>
-    </div>
+            <div class="container-fluid">
+                <div class="row" id="product-list">
+                    <!-- Products will be dynamically inserted here -->
+                </div>
+            </div>
+
+            <!-- Promotion Section Template -->
+            <div class="promotion-template" style="display: none;">
+                <div class="col-12">
+                    <div class="promotion">
+                        <img src="innocent/assets/image/Annoucement.png" alt="" class="Annoucement">
+                        <p>
+                            <img src="innocent/assets/image/main logo.svg" alt="" class="buy_and_sell_logo_promotion"><br><br>
+                            <img src="innocent/assets/image/Annoucement.png" alt="" class="Annoucement2">
+                            <strong>Reach more audience by promoting your Product(s)</strong><br>
+                            determine your target audience location, interest, <br> select a convenient budget and duration
+                            <br><br><br>
+                            <button class="get_started animate animate-pulse4" onclick="showCard_get_started()">Get Started</button>
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tell Us What It Is Section Template -->
+            <div class="tell-us-template" style="display: none;">
+                <div class="col-12">
+                    <div class="tell_us_what_u_want animate animate-left">
+                        <p class="tell_us_paragraph" onclick="changeToInput()">
+                            <img src="innocent/assets/image/pen.png" alt="" class="pen">
+                            Can't find what you are looking for?
+                            <span>Tell us what it is!</span><br>
+                            and we'll do our best to assist you.
+                        </p>
+                    </div>
+
+                    <div class="tell_us_what_u_want_input_area">
+                        <img src="innocent/assets/image/dp.png" alt="" class="tell_us_what_u_want_profile">
+                        <div class="vertical_bar"></div>
+                        <input type="text" name="" class="tell_us_input" placeholder="write the details here">
+                        <button class="send" onclick="send()">send</button>
+                    </div>
+                    <p class="submmited">submmited✅</p>
+                    <div class="loader"></div>
+                </div>
+            </div>
+
     </div>
 </div>
 
@@ -573,7 +610,7 @@
 
     </script> --}}
 
-    <script>
+    {{-- <script>
         document.addEventListener('DOMContentLoaded', function () {
     // Fetch and display all products
     axios.get('/api/prod')
@@ -715,8 +752,113 @@
 });
 
     </script>
+ --}}
 
+ <script>
+    document.addEventListener('DOMContentLoaded', function () {
+    axios.get('/api/v1/allproduct')
+        .then(function (response) {
+            const products = response.data;
+            renderProductsAndSections(products);
+        })
+        .catch(function (error) {
+            console.error('Error fetching products:', error);
+        });
+});
 
+function renderProductsAndSections(products) {
+    const productList = document.getElementById('product-list');
+    const promotionTemplate = document.querySelector('.promotion-template').innerHTML;
+    const tellUsTemplate = document.querySelector('.tell-us-template').innerHTML;
+
+    productList.innerHTML = ''; // Clear the container first
+
+    products.forEach((product, index) => {
+        // Insert promotion section at a specific position
+        if (index === 5) {
+            productList.innerHTML += promotionTemplate;
+        }
+        // Insert "Tell us what it is" section at a specific position
+        if (index === 10) {
+            productList.innerHTML += tellUsTemplate;
+        }
+        // Render product card
+        const card = createProductCard(product);
+        productList.appendChild(card);
+    });
+}
+
+function createProductCard(product) {
+    const col = document.createElement('div');
+    col.className = 'col-md-4 col-sm-6';
+
+    let product_img_url = '';
+    JSON.parse(product.image_url).forEach((el, i) => {
+        if (i === 0) product_img_url = el;
+    });
+
+    col.innerHTML = `
+        <a href="{{ url('/product_des') }}" class="product_card_link" data-product='${JSON.stringify(product)}'>
+            <div class="card product_card">
+                <h6 class="sold"> Sold ${product.sold || 0} <br> <img src="innocent/assets/image/Rate.png" alt=""> ${product.rating || 0}</h6>
+                <img src="uploads/products/${product_img_url || 'default.jpg'}" class="card-img-top w-100 product_image" alt="${product.title}">
+                <div class="product_card_title">
+                    <div class="main_and_promo_price_area">
+                        ${
+                            product.ask_for_price
+                            ? '<p class="ask-for-price" style="color:red; padding-right: 2px; font-size:23px">Ask for price</p>'
+                            : `
+                                <p class="promo_price">$${product.promo_price || ''}</p>
+                                <div class="main_price"><p class="main_price_amount">$${product.actual_price || ''}</p></div>
+                            `
+                        }
+                    </div>
+
+                    <p class="product_name">${product.title}</p>
+                    <span class="product_card_location"><i class="fa-solid fa-location-dot"></i> ${product.location}</span>
+                    <img src="innocent/assets/image/logo icon.svg" alt="">
+                    <span class="connect"><strong>connect</strong></span>
+                </div>
+            </div>
+        </a>
+    `;
+
+    col.querySelector('.product_card_link').addEventListener('click', function (event) {
+        event.preventDefault();
+        localStorage.setItem('selectedProduct', this.getAttribute('data-product'));
+        window.location.href = this.href;
+    });
+
+    return col;
+}
+
+function boostListings() {
+    // Handle boosting listings action
+}
+
+function newProductBoost() {
+    // Handle new product boost action
+}
+
+function showCard_get_started() {
+    // Show the promotion card
+    document.getElementById('promotion_card').style.display = 'block';
+}
+
+function hideCard_get_started() {
+    // Hide the promotion card
+    document.getElementById('promotion_card').style.display = 'none';
+}
+
+function changeToInput() {
+    // Handle change to input action for "Tell us what it is"
+}
+
+function send() {
+    // Handle send action for "Tell us what it is"
+}
+
+ </script>
 
 
 

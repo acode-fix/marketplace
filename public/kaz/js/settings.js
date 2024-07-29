@@ -208,18 +208,19 @@ function selectPlan(plan) {
     monthDiv.classList.remove('selected');
   }
 }
-function previewImage(input) {
-  if (input.files && input.files[0]) {
-      var reader = new FileReader();
 
-      reader.onload = function (e) {
-          var img = document.getElementById('previewImg1');
-          img.src = e.target.result;
-          img.style.width = '80px'; // Set the width
-          img.style.height = '80px'; // Set the height
-          img.style.borderRadius = '50%'; // Set the border radius
-      };
+function previewImage(input, previewImgId) {
+    if (input.files && input.files[0]) {
+        var reader = new FileReader();
 
-      reader.readAsDataURL(input.files[0]);
-  }
+        reader.onload = function (e) {
+            var img = document.getElementById(previewImgId);
+            img.src = e.target.result;
+            img.style.width = '80px'; // Set the width
+            img.style.height = '80px'; // Set the height
+            img.style.borderRadius = '50%'; // Set the border radius
+        };
+
+        reader.readAsDataURL(input.files[0]);
+    }
 }

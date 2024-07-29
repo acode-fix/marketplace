@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Log;
+use Illuminate\View\View;
 
 class ProductController extends Controller
 {
@@ -394,6 +395,41 @@ return response()->json([
         return response()->json($products);
     }
 
+    public function showProduct($id)
+{
+    $product = Product::findOrFail($id);
+    return view('other_frontend.product_des', compact('product'));
+}
+
+    public function showSellerShop(Request $request)
+    {
+        // $productId = $request->query('productId');
+        // return view('other_frontend.sellers-shop', ['productId' => $productId]);
+        return view('other_frontend.sellers-shop');
+    }
+
+    public function getSellerDetails($productId)
+    {
+        // Find the product by ID
+        $product = Product::find($productId);
+
+        if (!$product) {
+            return response()->json(['error' => 'Product not found'], 404);
+        }
+
+        // Get the seller details
+        $seller = $product->user;
+
+        // Get other products by the same seller
+        $otherProducts = Product::where('user_id', $seller->id)
+                                ->where('id', '!=', $productId)
+                                ->get();
+
+        return response()->json([
+            'seller' => $seller,
+            'products' => $otherProducts
+        ]);
+    }
 
     /**
      * Remove the specified resource from storage.

@@ -14,6 +14,10 @@ use App\Http\Controllers\ShopController;
 
 
 // web.php
+Route::get('/sellers-shop', [ProductController::class, 'showSellerShop']);
+Route::get('/product_des/{id}', [ProductController::class, 'showProduct']);
+// Route::get('/sellers-shop/{productId}', [ProductController::class, 'showSellerShop'])->name('sellers-shop');
+// Route::get('/product_des', [ProductController::class, 'showProductDes']);
 Route::get('/sellers-shop/{userId}', [ShopController::class, 'showUserShop'])->name('sellers.shop');
 
 // Route::get('/category_search/{id}', [CategoriesController::class, 'show']);

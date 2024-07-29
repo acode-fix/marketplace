@@ -22,6 +22,9 @@
             </div>
           </div>
 
+          <form id="verification-form" enctype="multipart/form-data">
+            @csrf
+
           <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
             aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-lg">
@@ -105,15 +108,16 @@
                       </h6>
                     </div>
                     <div class="container">
-                      <form class="row g-3 mt-3">
+                      {{-- <form  class="row g-3 mt-3"> --}}
+                      <div  class="row g-3 mt-3">
                         <div class="col-md-6">
                           <label for="inputEmail4" class="form-label fw-bold">Email</label>
-                          <input oninput="hideIcon(this)" id="search-modal" type="text" class="form-control"
+                          <input name="email" oninput="hideIcon(this)" id="search-modal" type="text" class="form-control"
                             placeholder="Ceredesign@gmail.com">
                         </div>
                         <div class="col-md-6">
                           <label for="inputState" class="form-label fw-bold">Nationality</label>
-                          <select id="inputstate" class="form-select">
+                          <select id="inputstate" class="form-select" id="nationality" name="nationality">
                             <option>Choose...</option>
                             <option>Nigera</option>
                             <option>USA</option>
@@ -121,12 +125,12 @@
                         </div>
                         <div class="col-md-6 mt-4">
                           <label for="name" class="form-label fw-bold">Name</label>
-                          <input oninput="hideIcon(this)" id="search-modal1" type="text" class="form-control"
+                          <input name="name" oninput="hideIcon(this)" id="search-modal1" type="text" class="form-control"
                             placeholder="Your legalName">
                         </div>
                         <div class="col-md-6 mt-4">
                           <label for="address" class="form-label fw-bold">Address</label>
-                          <input oninput="hideIcon(this)" id="search-modal2" type="text" class="form-control"
+                          <input name="address" oninput="hideIcon(this)" id="search-modal2" type="text" class="form-control"
                             placeholder="Enter your work Address">
                         </div>
                         <div class="col-md-6 mt-5">
@@ -135,26 +139,26 @@
                           </div>
 
                           <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1"
-                              value="option1">
+                            <input class="form-check-input" name="gender"  type="radio" name="inlineRadioOptions" id="inlineRadio1"
+                              value="male">
                             <label class="form-check-label" for="inlineRadio1">Male</label>
                           </div>
                           <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2"
-                              value="option2">
+                            <input class="form-check-input" type="radio" name="gender" name="inlineRadioOptions" id="inlineRadio2"
+                              value="female">
                             <label class="form-check-label" for="inlineRadio2">Female</label>
                           </div>
                         </div>
                         <div class="col-md-6 mt-5">
-                          <label for="phonenumber" class="form-label fw-bold">Phone Number</label>
-                          <input oninput="hideIcon(this)" id="search-modal3" type="text" class="form-control"
+                          <label for="phone_number" class="form-label fw-bold">Phone Number</label>
+                          <input name="phone_number" oninput="hideIcon(this)" id="search-modal3" type="text" class="form-control"
                             placeholder="Enter Your Contact Phone Number">
                         </div>
 
                         <div class="col-12">
                           <button type="submit" class="btn btn-primary">Save</button>
                         </div>
-                      </form>
+                    </div>
 
                     </div>
 
@@ -166,14 +170,14 @@
                       <img id="preview-image" class="mt-4" src="kaz/images/Nin upload.svg" alt="">
                     </div>
                     <div class="mt-5" style="text-align: center; ">
-                      <form action="">
-                        <input type="file" name="" id="actual-btn-desktop" hidden>
+                      {{-- <form action=""> --}}
+                        <input type="file" name="nin_file" id="actual-btn-desktop" hidden>
                         <label id="upload" class="label" for="actual-btn-desktop">Upload</label>
-                      </form>
+                      {{-- </form> --}}
                     </div>
                   </div>
                   <div id="page4" style="text-align: center; display: none;">
-                    <form action="">
+                    {{-- <form action=""> --}}
                       <div class="  selfie1 mx-auto mt-5">
                         <div class="vid" id="video-container">
                           <video id="video" autoplay></video>
@@ -192,7 +196,7 @@
                           </label>
                           <button style="display: none;" id="snap" type="button"
                             class=" btn btn-success btn-lg  ">Snap</button>
-
+                            <input type="file" name="selfie_photo" id="selfie-photo" hidden>
                         </div>
 
                       </div>
@@ -203,7 +207,8 @@
                           class=" btn btn-success btn-lg  ">Save</button>
                       </div>
 
-                    </form>
+
+                    {{-- </form> --}}
 
                   </div>
                   <!-- Page 5 -->
@@ -228,24 +233,24 @@
                           </div>
                           <div class="mt-4">
                             <!-- <h6>Monthly</h6> -->
-                            <form action="">
+                            {{-- <form action=""> --}}
                               <div class="month" onclick="selectPlan('month')">
                                 <h6>Monthly</h6>
                                 <p class="badge-text">Your badge cost #2500 per month to stay <input
-                                    class="form-check-input ms-2" type="radio" name="flexRadioDefault"
-                                    id="flexRadioDefault1"><br>
+                                    class="form-check-input ms-2" type="radio" name="badge_type"
+                                    id="flexRadioDefault1" value="monthly"><br>
                                   active on your profile </p>
                               </div>
                               <div class="year" onclick="selectPlan('year')">
                                 <h6>Yearly</h6>
                                 <p class="badge-text"> Your badge cost #20,000 and save 33% <input
-                                    class="form-check-input ms-4" type="radio" name="flexRadioDefault"
-                                    id="flexRadioDefault2"><br>
+                                    class="form-check-input ms-4" type="radio" name="badge_type"
+                                    id="flexRadioDefault2" value="yearly"><br>
                                   per year to stay active on your profile</p>
 
                               </div>
 
-                            </form>
+                            {{-- </form> --}}
 
                           </div>
 
@@ -287,24 +292,25 @@
               </div>
             </div>
           </div>
-
-
+        </form>
 
         </div>
+
+
         <div class="container">
             {{-- THE MAIN FEORM FOR USER UPDATE DESKTOP VIEW--}}
           <form action="" id="settingForm" class="row" enctype="multipart/form-data">
             @csrf
 
             <div class="col-8 upload-div">
-              <img id="previewImg1" class="img-fluid" src="kaz/images/dp.png" alt="">
+                <img id="previewImgDesktop" class="img-fluid" src="kaz/images/dp.png" alt="">
               <h6 class="ms-4">Upload your profile picture <br>
                 <span class="fw-light identify-text">This helps visitors to recognize you on buy and sell</span>
               </h6>
             </div>
             <div class="col-2 post-btn">
-              <input type="file" name="photo_url" id="actual-btn" accept="image/*" hidden onchange="previewImage(this)">
-              <label class="label3" for="actual-btn">Upload Photo</label>
+                <input type="file" name="photo_url" id="desktop-btn" accept="image/*" hidden onchange="previewImage(this, 'previewImgDesktop')">
+              <label class="label3" for="desktop-btn">Upload Photo</label>
             </div>
             <div class="col-8">
               <hr style="background-color: black;">
@@ -391,19 +397,19 @@
           </div>
         </div>
       </div>
-            {{-- THE MAIN FEORM FOR USER UPDATE MOBILE VIEW --}}
-      <form class="row mt-5 " action="" id="settingForm" enctype="multipart/form-data">
+            {{-- THE MAIN FORM FOR USER UPDATE MOBILE VIEW --}}
+      <form class="row mt-5 " action="" id="settingFormMobile" enctype="multipart/form-data">
         @csrf
 
         <div class="col-10 upload-div">
-            <img id="previewImg1" class="img-fluid" src="kaz/images/dp.png" alt="">
+            <img id="previewImgMobile" class="img-fluid" src="kaz/images/dp.png" alt="">
             <h6 class="ms-4">Upload your profile picture <br>
               <span class="fw-light identify-text">This helps visitors to recognize you on buy and sell</span>
             </h6>
           </div>
           <div class="col-2 post-btn">
-            <input type="file" name="photo_url" id="actual-btn" accept="image/*" hidden onchange="previewImage(this)">
-            <label class="label3" for="actual-btn">Upload Photo</label>
+            <input type="file" name="photo_url" id="mobile-btn" accept="image/*" hidden onchange="previewImage(this, 'previewImgMobile')">
+            <label class="label3" for="mobile-btn">Upload Photo</label>
           </div>
           <div class="col-10">
             <hr style="background-color: black;">
@@ -479,24 +485,21 @@
 
 
  <script>
-    // function goBack() {
-    //   window.history.back();
-    // }
 
-    document.addEventListener('DOMContentLoaded', function() {
-    document.getElementById('settingForm').addEventListener('submit', function(event) {
+document.addEventListener('DOMContentLoaded', function() {
+    function handleFormSubmit(event, formId) {
         event.preventDefault();
 
-        let formData = new FormData(this);
+        const form = document.getElementById(formId);
+        let formData = new FormData(form);
 
         for (let pair of formData.entries()) {
-        console.log(pair[0] + ': ' + pair[1]);
-    }
+            console.log(pair[0] + ': ' + pair[1]);
+        }
 
         const token = localStorage.getItem('apiToken');
+        const locationSwitch = form.querySelector('input[name="location"]');
 
-
-        const locationSwitch = document.getElementById('locationSwitch');
         if (locationSwitch && locationSwitch.checked) {
             navigator.geolocation.getCurrentPosition(function(position) {
                 formData.append('latitude', position.coords.latitude);
@@ -513,7 +516,7 @@
         } else {
             sendUpdateRequest(formData, token);
         }
-    });
+    }
 
     function sendUpdateRequest(formData, token) {
         axios.post(`/api/auth/update`, formData, {
@@ -522,11 +525,9 @@
                 'Authorization': 'Bearer ' + token
             }
         })
-
         .then(function(response) {
             console.log(response.data);
             if (response.data.status) {
-
                 Swal.fire({
                     icon: 'success',
                     title: 'Success!',
@@ -554,8 +555,144 @@
         });
     }
 
+    document.getElementById('settingForm').addEventListener('submit', function(event) {
+        handleFormSubmit(event, 'settingForm');
+    });
 
+    document.getElementById('settingFormMobile').addEventListener('submit', function(event) {
+        handleFormSubmit(event, 'settingFormMobile');
+    });
 });
+
+
+
+
+
+
+// VERIFICATION
+let verificationData = {}; // Object to store form data
+
+document.getElementById('nextBtn').addEventListener('click', function() {
+    let currentPage = getCurrentPage(); // Function to get the current page number
+    collectData(currentPage); // Collect data from the current page
+
+    if (currentPage === 5) {
+        // This is the last page, submit data
+        submitVerificationData();
+    } else {
+        // Move to the next page
+        showNextPage(currentPage);
+    }
+});
+
+function collectData(page) {
+    switch (page) {
+        case 1:
+            // Collect data from page 1 (if any)
+            break;
+        case 2:
+            verificationData.email = document.querySelector('input[name="email"]').value;
+            verificationData.nationality = document.querySelector('select[name="nationality"]').value;
+            verificationData.name = document.querySelector('input[name="name"]').value;
+            verificationData.address = document.querySelector('input[name="address"]').value;
+            verificationData.gender = document.querySelector('input[name="gender"]:checked').value;
+            verificationData.phone_number = document.querySelector('input[name="phone_number"]').value;
+            break;
+        case 3:
+            verificationData.nin_file = document.querySelector('input[name="nin_file"]').files[0];
+            break;
+        case 4:
+        const canvas = document.getElementById('canvas');
+            if (canvas) {
+                verificationData.selfie_photo = canvas.toDataURL('image/jpeg');
+            } else {
+                console.error('Canvas element not found.');
+            }
+            break;
+        case 5:
+            verificationData.badge_type = document.querySelector('input[name="badge_type"]:checked').value;
+            break;
+        // Add more cases as needed for additional pages
+    }
+}
+
+function submitVerificationData() {
+    const formData = new FormData();
+    for (const key in verificationData) {
+        if (key === 'selfie_photo') {
+            // Append the Base64 string directly
+            formData.append(key, verificationData[key]);
+        } else {
+            formData.append(key, verificationData[key]);
+        }
+    }
+
+    const token = localStorage.getItem('apiToken');
+
+    axios.post('/api/v1/verifications', formData, {
+        headers: {
+            'Content-Type': 'multipart/form-data',
+            'Authorization': 'Bearer ' + token
+        }
+    })
+//     .then(response => {
+//         if (response.data.status) {
+//             // Handle successful submission, show confirmation or redirect
+//             document.getElementById('page1').style.display = 'none';
+//             document.getElementById('page2').style.display = 'none';
+//             document.getElementById('page3').style.display = 'none';
+//             document.getElementById('page4').style.display = 'none';
+//             document.getElementById('page5').style.display = 'none';
+//             document.getElementById('page6').style.display = 'block';
+//         } else {
+//             console.log(response.data.errors);
+//             // Handle validation errors
+//             alert("Validation errors occurred. Check the console for details.");
+//         }
+//     })
+//     .catch(error => {
+//         console.error(error.response.data);
+//         alert("An error occurred. Check the console for details.");
+//     });
+// }
+.then(response => {
+        if (response.data.status) {
+            // Handle successful submission, show confirmation or redirect
+            showSuccessPage();
+        } else {
+            console.log(response.data.errors);
+            // Handle validation errors
+            alert("Validation errors occurred. Check the console for details.");
+        }
+    })
+    .catch(error => {
+        console.error(error.response.data);
+        alert("An error occurred. Check the console for details.");
+    });
+}
+
+function showNextPage(currentPage) {
+    document.getElementById(`page${currentPage}`).style.display = 'none';
+    document.getElementById(`page${currentPage + 1}`).style.display = 'block';
+}
+
+function getCurrentPage() {
+    for (let i = 1; i <= 6; i++) {
+        if (document.getElementById(`page${i}`).style.display !== 'none') {
+            return i;
+        }
+    }
+    return 1; // Default to page 1 if none are visible
+}
+
+function showSuccessPage() {
+    for (let i = 1; i <= 6; i++) {
+        document.getElementById(`page${i}`).style.display = 'none';
+    }
+    document.getElementById('page6').style.display = 'block';
+}
+
+
 
 
  </script>

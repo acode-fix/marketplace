@@ -13,9 +13,11 @@ return new class extends Migration
     {
         Schema::create('payments', function (Blueprint $table) {
             $table->id();
+            // $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->unsignedBigInteger('user_id'); // Reference to the User who made the payment
             $table->decimal('amount', 10, 2); // Total amount paid
             $table->decimal('amount_due', 10, 2);
+            $table->string('currency')->default('NGN');
             $table->string('invoice_number')->nullable();
             $table->string('payment_reference')->nullable();
             $table->string('transaction'); // Describe the transaction or link to an Enum or specific model

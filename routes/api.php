@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\PasswordResetController;
 use App\Http\Controllers\LearnController;
+use App\Http\Controllers\VerificationController;
 
 
 
@@ -42,6 +43,7 @@ Route::get('/prod/{id}', [ProductController::class, 'view']);
 Route::get('/product-details/{id}', [ProductController::class, 'getProductDetails']);
 
 Route::post('/product', [ProductController::class, 'store']);
+
 
 // Route::get('/product/user', [ProductController::class, 'showUser']);
 
@@ -89,6 +91,8 @@ Route::get('/product/{id}/edit',[ProductController::class, 'edit']);
 Route::post('/product/{id}',[ProductController::class, 'update']);
 Route::get('/product/search', [ProductController::class, 'search']);
 Route::delete('/product/{id}',[ProductController::class, 'delete']);
+// Route::get('/sellers-shop/{productId}', [ProductController::class, 'showSellerShop']);
+Route::get('/seller-details/{productId}', [ProductController::class, 'getSellerDetails']);
 
 //reviews
 Route::post('/reviewers', [ReviewersController::class, 'store']);
@@ -112,6 +116,16 @@ Route::get('videos/{id}', [LearnController::class, 'show']);
 Route::post('videos', [LearnController::class, 'store']);
 Route::put('videos/{id}', [LearnController::class, 'update']);
 Route::delete('videos/{id}', [LearnController::class, 'destroy']);
+
+
+// Verification
+Route::post('/verifications', [VerificationController::class, 'store']);
+Route::post('/verifications/{id}/approve', [VerificationController::class, 'approve'])->middleware('admin');
+Route::post('/verification/bio', [VerificationController::class, 'storeBio']);
+Route::post('/verification/nin', [VerificationController::class, 'uploadNIN']);
+Route::post('/verification/selfie', [VerificationController::class, 'uploadSelfie']);
+Route::post('/verification/status', [VerificationController::class, 'updateVerificationStatus']);
+
 
 
 Route::post('/adverts', [AdvertController::class, 'store']);

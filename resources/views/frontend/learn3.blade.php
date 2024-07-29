@@ -2,884 +2,807 @@
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Products</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <link rel="stylesheet" href="{{ asset('innocent/assets/css/bootstrap.css') }}">
-    <link rel="stylesheet" href="{{ asset('innocent/assets/css/animation.css') }}">
-    <link rel="stylesheet" href="{{ asset('innocent/assets/css/product.des.css') }}">
-    <link rel="stylesheet" href="{{ asset('innocent/assets/css/notification.css') }}">
-    <link rel="stylesheet" href="{{ asset('innocent/assets/css/alert.css') }}">
-    <link rel="stylesheet" href="{{ asset('innocent/assets/icons/css/all.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('innocent/assets/icons/css/fontawesome.min.css') }}">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="{{ asset('kaz/css/bootstrap.css') }}">
+  <link rel="stylesheet" href="{{ asset('kaz/css/navbar.css') }}">
+  <link rel="stylesheet" href="{{ asset('kaz/css/shop.css') }}">
+  <link rel="stylesheet" href="{{ asset('kaz/css/sellers.css') }}">
+  <link rel="stylesheet" href="{{ asset('kaz/css1/all.min.css') }}">
+  <link rel="stylesheet" href="{{ asset('kaz/css1/fontawesome.min.css') }}">
+  <script src="{{ asset('kaz/js/bootstrap.js') }}"></script>
+  <script src="{{ asset('kaz/js/card.js') }}"></script>
+  <script src="{{ asset('kaz/js/read.js') }}"></script>
 
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <!-- Include SweetAlert CSS and JS -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.js"></script>
+  <style>
+
+  </style>
 </head>
+
 <body>
-
-    <div class="body">
-
-        <div >
-
-
-
-           <div id="scrollToTop"><i class="fa-solid fa-arrow-up"></i></div>
-
-            <!-- Navbar and Search Button -->
-        <div class="navbar-1 fixed-top">
-            <img src="innocent/assets/image/main logo.svg"  class="search_buy_and_sell_logo " alt="" onclick="window.location.href='{{ url('/') }}';">
-
-            <div class="search-bar">
-                <div class="location-icon"><i class="fa-solid fa-location-dot"></i></div>
-                <select placeholder="Country" class="country-input">
-                    <option selected>USA</option>
-                    <option value="1">Canada</option>
-                    <option value="2">Nigeria</option>
-                    <option value="3">Russia</option>
-                </select>
-                <div class="vertical-bar"></div>
-                <a href="{{ url('/search') }}">
-                    <span  onclick="localStorage.setItem('previousPage', '{{ url('/product_des') }}')">
-                       <input type="text" placeholder="Find what to buy..." class="find-what-to-buy">
-                       <button type="button" class="search">Search</button>
-                    </span>
-               </a>
-            </div>
-            <div id="notification_icon_div"><img src="innocent/assets/image/notification.png" alt="Logo" id="notification_icon"></div>
-            <div id="notification_icon_div2"> <a href="{{ url('/notification_mobile') }}"><img src="innocent/assets/image/notification.png" alt="Logo" ></a></div>
-
-             <div><img src="innocent/assets/image/bike.png" alt=".profile picture " class="profile_picture"></div>
-             <div><img src="innocent/assets/image/bike.png" alt=".profile picture " class="profile_picture_mobile"></div>
-        </div>
-
-        <!-- prifile card -->
-        <div class="profile_card">
-            <div class="profile_card_user_name">
-              <img src="innocent/assets/image/dp.png" alt="">
-              <p>Mired Augustine <br>
-                <span>miredaugustine@gmail.com</span>
-              </p>
-            </div>
-            <hr>
-            <div class="accont_features">
-                <p><a href="{{ url('/settings') }}">Account Setting </a></p>
-                <p><a href="{{ url('/refer') }}"> Reffer a Friend </a></p>
-                <p> <a href="{{ url('/privacy') }}">Privacy and Policy </a></p>
-                <p><a href="#"> Sign out</a></p>
-
-            </div>
-
-        </div>
-
-
-        {{-- This part is for the mobile view for navbar sticky part --}}
-    <div class="navbar-2 fixed-top">
-        <a href="{{ url('/') }}">  <i class="fa-solid fa-angle-left  back_to_index" ></i></a>
-        <div class="user_info">
-
-
-            <div><img src="innocent/assets/image/bike.png" alt=".profile picture " class="user_photo"></div>
-            <div class="user_name_area">
-                <p class="user_name">Innocent</p>
-
-                <p class="location">
-                    <img src="innocent/assets/image/badge.png" alt="">
-                    <span class="user_state_mobile">loading</span>
-                    <span class="rate">
-                        <img src="innocent/assets/image/Rate.png" alt="">
-                        <span class="rate_value">loading</span>
-                    </span>
-                </p>
-            </div>
-            <div class="products_details_head">
-                <p class="sold2">
-                    loading
-                </p>
-
-                <p class="stock">
-                    loading
-                </p>
-
-                <p class="condition">
-                    loading
-                </p>
-            </div>
-        </div>
-        <img src="innocent/assets/image/main logo.svg" alt="" class="buy_and_sell_logo_product_des_mobile">
-
+  <div class="header-section">
+    <div class="arrow-div">
+      <a href="{{ url('/') }}"><img class="arrow" src="kaz/images/Arrow.png" alt=""></a>
+      <h6 style="font-size: 20px;" class="fw-light ms-4">Sellers Shop</h6>
+    </div>
+    <div class="left-section">
+      <a href="{{ url('/') }}"><img class="img-fluid ms-3" src="kaz/images/logo.png" alt=""></a>
+      <h6 class="ms-5 fw-bold profile">Sellers Shop</h6>
     </div>
 
+    <!-- <div class="middle-section">
+      <div class="search-border">
+        <input type="search" id="search" placeholder="&nbsp Search product...">
+        <button class="search-btn btn-light mt-1 pt-1 pb-2 me-1"><img src="kaz/images/Search.png" class="img-fluid search-img" alt=""> search</button>
+      </div>
+    </div> -->
+    <!-- <div class="create">
+      <button type="button" class="btn btn-warning btn-height"> + create Ads</button>
+    </div> -->
+
+    <div class="right-section me-4">
+      <div class="create">
+        <button type="button" class="btn btn-warning btn-height me-5"> + create Ads</button>
+      </div>
+      <div class="me-1">
+        <h6 class="name">Loading</h6>
+        <h6 class="mired-text fw-light">loading</h6>
+      </div>
+      <div class="profile-dropdown">
+        <img class="img-fluid profile-picture" src="kaz/images/dp.png" alt="" id="profileDropdownBtn">
+        <div class="dropdown-menu" id="dropdownMenu">
+          <div class="container drop-struct">
+            <img id="profile_image" class="pt-1" width="50px" src="kaz/images/dp.png" alt="">
+            <div class="ms-2 pt-1">
+              <h6 id="profile_name">Mired Augustine</h6>
+              <h6 id="profile_email" style="font-size: small;">Miredaugustine@gmail.com</h6>
+            </div>
+          </div>
+          <hr style="background-color: black; margin-left: 10px;margin-right: 10px;">
+          <div style="margin-top: -9px;">
+            <a href="{{ url('/settings') }}">Dashboard</a>
+            <a href="{{ url('/refer') }}">Refer A Friend</a>
+            <a href="{{ url('/privacy') }}">Privacy Policy</a>
+            <a href="#">Log Out</a>
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <div class="menu-toggle">
+      <input type="checkbox" id="menu-checkbox" class="menu-checkbox">
+      <label for="menu-checkbox" class="menu-btn">&#9776;</label>
+      <div class="menu-overlay"></div>
+      <ul class="menu">
+        <li><a href="{{ url('/settings') }}">Dashboard</a></li>
+        <li><a href="{{ url('/refer') }}">Refer A Friend</a></li>
+        <li><a href="{{ url('/privacy') }}">Privacy Policy</a></li>
+        <li><a href="#">Log Out</a></li>
+        <hr style="background-color: black; width: 70%;">
+        <li><a style="color: #ff0000;" href="{{ url('/delete') }}">Delete Account</a></li>
+      </ul>
+    </div>
+  </div>
+
+  {{-- <div class="main">
+    <div class="side-barr">
+      <div class="card sidebar-card mb-3 text-dark ms-2 mt-3" style="width:240px;">
+        <div class="card-body ">
+          <div class="ms-2">
+            <h6 class="card-title">About me</h6>
+            <p style="font-size: small; " class="card-text our-company">
+              Our company is a full service creation agency that specializes in defining top-notch
+              UI/UX design,video editing and <span id="moreText" style="display: none;">Lorem ipsum dolor sit amet
+                consectetur adipisicing elit. Magnam reiciendis, eveniet porro ad iusto illum quisquam dolores modi
+                excepturi officia. Doloribus dolor sunt dicta! A fuga, nesciunt non laborum minus provident repellat
+                numquam rerum natus unde dolorum corrupti culpa. Doloremque, sunt nam modi porro unde ipsam voluptate
+                ipsa alias ab dolorum vitae sed rem beatae exercitationem repellat quas! Molestias ipsa dolore sequi
+                asperiores quia. Expedita iure similique vel nihil magni.</span>
+              <a href="#" id="readMoreBtn"> ......Read more</a>
+            </p>
+          </div>
+          <hr style="background-color: #343434;">
+          <div>
+            <div class="side-display">
+              <div>
+                <img width="10px" height="13px" src="kaz/images/location.svg" alt="">
+                <span style="font-size: small;">From</span>
+              </div>
+              <h6 style="font-size: small;">Abuja,Nigera</h6>
+            </div>
+            <div class="side-display">
+              <div>
+                <img width="15px" src="kaz/images/profile.svg" alt="">
+                <span style="font-size: small;">Member since</span>
+              </div>
+              <h6 style="font-size: small;">May,2022</h6>
+
+            </div>
+            <div class="side-display">
+              <div>
+                <img width="15px" src="kaz/images/product.svg" alt="">
+                <span style="font-size: small;">Listed products</span>
+              </div>
+              <h6 style="font-size: small;">12</h6>
+
+            </div>
+            <hr style="background-color: #343434;">
+          </div>
+          <div class="ms-2">
+            <h6 class="card-title">Reviews</h6>
+            <div>
+              <img src="kaz/images/star-active.svg" class="img-fluid image-rate" width="15px" alt="">
+              <img src="kaz/images/star-active.svg" class="img-fluid image-rate" width="15px" alt="">
+              <img src="kaz/images/star-active.svg" class="img-fluid image-rate" width="15px" alt="">
+              <img src="kaz/images/star-active.svg" class="img-fluid image-rate" width="15px" alt="">
+              <img src="kaz/images/star-nill.svg" class="img-fluid image-rate" width="15px" alt=""> <span
+                style="font-size: small;">(4.5)</span>
+            </div>
+            <a class="view" href="{{ url('/review') }}">View all</a>
+
+          </div>
 
 
-    <!-- Sidebar and Main Body Section -->
-    <div class="sidebar_and_main_container">
-        <div class="sidebar" >
-            <div class="sidebar_main">
+        </div>
+      </div>
+      <div style="color: black; width:240px ;" class="ms-2 connect-sidebar card">
+        <div class="connect-struct">
+          <img width="40px" class="ms-4" src="kaz/images/dp.png" alt="">
+          <h6 class="connect-shop me-4">Connect</h6>
+        </div>
+      </div>
 
-
-                <div class="products_details_dekstop">
-                    <div class="user_info2">
-                        <div><img src="innocent/assets/image/bike.png" alt=".profile picture " class="user_photo"></div>
-                        <div class="user_name2_area">
-                            <p class="user_name2">Loading</p>
-                            <p class="location2">
-                                <img src="innocent/assets/image/badge.png" alt="">
-                                <i class="fa-solid fa-location-dot" style="font-size: 12px;"></i>
-                                <span class="user_state">loading</span>
-                                <span class="rate">
-                                    <img src="innocent/assets/image/Rate.png" alt="">
-                                    <span class="rate_value">loading</span>
-                                </span>
-                            </p>
+    </div>
+    <div class="content">
+      <div class="container">
+        <div class="row ">
+          <div class="col  content-margin">
+            <form action="">
+              <div style="width: 90%;" class="card mb-3  main-card-preview">
+                <img style="height:220px;" id="banner" src="kaz/images/Picture of product (Tablet).png"
+                  class="card-img-top main-img-border" alt="...">
+                <div class="card-body">
+                  <div class="row">
+                    <div class="col mt-2">
+                      <div style="display: flex; align-items: center;">
+                        <img src="kaz/images/dp.png" class="ms-2" alt="">
+                        <div class="camera2">
+                          <img class="badge-cam " height="20px" width="15px" src="kaz/images/badge.png" alt="">
                         </div>
-                        <div class="close_product_des"><a href="{{ url('/') }}"><i class="fa-solid fa-close "></i></a></div>
-                    </div>
-
-                    <div class="products_details_head2">
-                        <p class="sold3">
-                            Loading
-                        </p>
-
-                        <p class="stock2">
-                            Loading
-                        </p>
-
-                        <p class="condition2">
-                            Loading
-                        </p>
-                    </div>
-                </div>
-
-              <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
-                <div class="carousel-indicators" id="carousel-indicators">
-                    <!-- Carousel indicators will be dynamically inserted here -->
-                </div>
-                <div class="carousel-inner" id="carousel-inner">
-                    <!-- Carousel items will be dynamically inserted here -->
-                    <div class="carousel-item active">
-                        <img src="" class="carousel_img" alt="...">
-                    </div>
-                </div>
-                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
-                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Previous</span>
-                </button>
-                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
-                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Next</span>
-                </button>
-            </div>
-
-
-
-               <div class="product_descriptoin_card">
-                    <p class="product_name_on_sidebar">Loading</p>
-                    <hr>
-                    <div class="main_and_promo_price_des_sidebar">
-                    <p class="promo_price2">loading</p>
-                     <p class="main_price2">loading</p>
-
-                    </div>
-                    <div>
-                     <span style="font-weight: bold;">Description</span>
-                     <p class="description">Loading</p>
-                 </div>
-                    <div class="connect_buttons">
-
-                        <button  class="product_card_veiw_shop_button" >
-                          <a href="{{ url('/sellers-shop') }}">view shop <img src="innocent/assets/image/badge.png" alt="" ></a>
-                        </button>
-                        <button  class="product_card_connect_button">
-                           <a href="{{ url('/shop') }}">connect <img src="innocent/assets/image/Shopping bag.png" alt="" ></a>
-                        </button>
-                    </div>
-                </div>
-
-
-            </div>
-
-
-            <!-- Main Body Section --> <!-- This part works for the mobile view -->
-        <div class="main2" >
-
-            <h5 class="related_search  animate animate-right">Related Search</h5>
-            <!-- Product Cards -->
-            <div class="product_card_container related_search_margin">
-                <div class="container-fluid">
-                    <div class="row">
-                        <div class="col">
-                            <div class="product_card_display card-margin content-margin mt-4">
-                                <!-- Example Product Card -->
-                                <a href="#" class="product_card_link" data-product-id="1">
-                                    <div class="card product_card">
-                                        <h6 class="sold"> Sold 35 <br> <img src="innocent/assets/image/Rate.png" alt=""> 4.0</h6>
-                                        <img src="innocent/assets/image/pexels-pixabay-164558.jpg" class="card-img-top w-100 product_image" alt="...">
-                                        <div class="product_card_title">
-                                            <div class="main_and_promo_price_area">
-                                                <p class="promo_price">$100,000,000</p>
-                                                <div class="main_price"><p class="main_price_amount">$120,000,000</p></div>
-                                            </div>
-                                            <p class="product_name">3 Bed Room Flat</p>
-                                            <span class="product_card_location"><i class="fa-solid fa-location-dot"></i>  Abuja</span>
-                                            <img src="innocent/assets/image/logo icon.svg" alt="">
-                                            <span class="connect"><strong>connect</strong></span>
-                                        </div>
-                                    </div>
-                                </a>
-                                <!-- Repeat similar structure for other product cards -->
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Promotion Section -->
-            <div class="promotion">
-                <img src="innocent/assets/image/Annoucement.png" alt="" class="Announcement">
-                <p>
-                    <img src="innocent/assets/image/main logo.svg" alt="" width="180px" ><br><br>
-                        <img src="innocent/assets/image/Annoucement.png" alt="" class="Announcement2">
-                        <strong>Reach more audience by promoting your Product(s)</strong><br>
-                        determine your target audience location, interest, select a <br>
-                        convenient budget and duration
-                    <br><br><br>
-                   <button class="get_started animate animate-pulse4"  onclick="showCard_get_started()">Get Started</button>
-                </p>
-            </div>
-
-                <div class="promotion_card card" id="promotion_card" style="display: none;">
-                    <i class="fa-solid fa-close close_get_started" onclick="hideCard_get_started()"></i>
-                    <img src="innocent/assets/image/Annoucement.png" alt="">
-                    <div class="card_content_get_started">
-                       <p>chosse your promotion option <br>
-                        <span>select your promotion option</span>
-                       </p>
-                        <button>Boost listings</button>
-                        <button>New Product Boost</button>
-                    </div>
-
-                </div>
-            <!-- More Product Cards -->
-            <div class="product_card_container">
-
-                <div class="container-fluid">
-                    <div class="row">
-                      <div class="col">
-                        <div class="product_card_display card-margin content-margin mt-4">
-
-
-                            <a href="{{ url('/product_des') }}" class="product_card_link">
-                                <div class="card product_card">
-                                    <h6 class="sold"> Sold 35 <br> <img src="innocent/assets/image/Rate.png" alt=""> 4.0</h6>
-                                    <img src="innocent/assets/image/pexels-pixabay-164558.jpg" class="card-img-top w-100 product_image" alt="...">
-
-                                    <div class="product_card_title">
-                                        <div class="main_and_promo_price_area">
-                                            <p class="promo_price">$100,000,000</p>
-                                            <div class="main_price"><p class="main_price_amount">$120,000,000</p></div>
-
-                                        </div>
-
-
-                                        <p class="product_name">3 Bed Room Flat</p>
-                                        <span class="product_card_location"><i class="fa-solid fa-location-dot"></i>  Abuja</span>
-                                        <img src="innocent/assets/image/logo icon.svg" alt="" >
-                                        <span class="connect"><strong>connect</strong></span>
-
-                                    </div>
-                                </div>
-                             </a>
-                             <a href="{{ url('/product_des') }}" class="product_card_link">
-                                <div class="card product_card">
-                                    <h6 class="sold"> Sold 7 <br> <img src="innocent/assets/image/Rate.png" alt=""> 3.6</h6>
-                                    <img src="innocent/assets/image/felipe-simo-dWQDNyPfKPU-unsplash.jpg" class="card-img-top w-100 product_image" alt="...">
-
-                                    <div class="product_card_title">
-                                        <div class="main_and_promo_price_area">
-                                            <p class="promo_price">$500,000</p>
-                                            <div class="main_price"><p class="main_price_amount">$520,000</p></div>
-
-                                        </div>
-
-
-                                            <p class="product_name">Mercedes-Benz M Class ML 350 4Matic 2012 Silver</p>
-                                            <span class="product_card_location"><i class="fa-solid fa-location-dot"></i>  Abuja</span>
-                                            <img src="innocent/assets/image/logo icon.svg" alt="" >
-                                            <span class="connect"><strong>connect</strong></span>
-
-                                    </div>
-                                </div>
-                             </a>
-                             <a href="{{ url('/product_des') }}" class="product_card_link">
-                                <div class="card product_card">
-                                    <h6 class="sold"> Sold 175 <br> <img src="innocent/assets/image/Rate.png" alt=""> 3.6</h6>
-                                    <img src="innocent/assets/image/laptop.jpg" class="card-img-top w-100 product_image" alt="...">
-
-                                    <div class="product_card_title">
-
-                                        <div class="main_and_promo_price_area">
-                                            <div class="ask_for_price">Ask for price</div>
-
-                                        </div>
-                                            <p class="product_name">Laptop Apple MacBook Pro 2015 8GB</p>
-                                            <span class="product_card_location"><i class="fa-solid fa-location-dot"></i> Ilorin</span>
-                                            <img src="innocent/assets/image/logo icon.svg" alt="" >
-                                           <span class="connect"><strong>connect</strong></span>
-                                    </div>
-                                </div>
-                             </a>
-
-                             <a href="{{ url('/product_des') }}" class="product_card_link">
-                                <div class="card product_card">
-                                    <h6 class="sold"> Sold 75 <br> <img src="innocent/assets/image/Rate.png" alt=""> 5.0</h6>
-                                    <img src="innocent/assets/image/portrait-smiling-afro-american-male-photographer.jpg" class="card-img-top w-100 product_image" alt="...">
-
-                                    <div class="product_card_title">
-
-                                        <div class="main_and_promo_price_area">
-                                            <div class="ask_for_price">Ask for price</div>
-
-                                        </div>
-                                            <p class="product_name">Photographer</p>
-                                            <span class="product_card_location"><i class="fa-solid fa-location-dot"></i>  Lagos</span>
-                                            <img src="innocent/assets/image/logo icon.svg" alt="" >
-                                           <span class="connect"><strong>connect</strong></span>
-                                    </div>
-                                </div>
-                             </a>
-                             <a href="{{ url('/product_des') }}" class="product_card_link">
-                                <div class="card product_card">
-                                    <h6 class="sold"> Sold 95 <br> <img src="innocent/assets/image/Rate.png" alt=""> 3.6</h6>
-                                    <img src="innocent/assets/image/laptop2.jpg" class="card-img-top w-100 product_image" alt="...">
-
-                                    <div class="product_card_title">
-
-                                        <div class="main_and_promo_price_area">
-                                            <p class="promo_price">$70,000</p>
-                                            <div class="main_price"><p class="main_price_amount">$82,000</p></div>
-
-                                        </div>
-                                            <p class="product_name">Lenovo 600gb Finger Print 2020</p>
-                                            <span class="product_card_location"><i class="fa-solid fa-location-dot"></i>  Lagos</span>
-                                            <img src="innocent/assets/image/logo icon.svg" alt="" >
-                                           <span class="connect"><strong>connect</strong></span>
-                                    </div>
-                                </div>
-                             </a>
-                             <a href="{{ url('/product_des') }}" class="product_card_link">
-                                <div class="card product_card">
-                                    <h6 class="sold"> Sold 70 <br> <img src="innocent/assets/image/Rate.png" alt=""> 3.0</h6>
-                                    <img src="innocent/assets/image/usb-flash-drive-mockup-technology-data-storage-device.jpg" class="card-img-top w-100 product_image" alt="...">
-
-                                    <div class="product_card_title">
-
-                                        <div class="main_and_promo_price_area">
-                                            <p class="promo_price">$500</p>
-                                            <div class="main_price"><p class="main_price_amount">$550</p></div>
-
-                                        </div>
-                                            <p class="product_name">USB Type C OTG Card Reader</p>
-                                            <span class="product_card_location"><i class="fa-solid fa-location-dot"></i>  Lagos</span>
-                                            <img src="innocent/assets/image/logo icon.svg" alt="" >
-                                           <span class="connect"><strong>connect</strong></span>
-                                    </div>
-                                </div>
-                             </a>
-
+                        <div class="mt-4 ms-4">
+                          <h5 class="">Drill Houston <span style="font-size: small;">(unique_id)</span></h5>
+                          <h6 class="mired-email">drillHouston@gmail.com</h6>
+                          <a class="verified-link" href="#">verified seller</a>
                         </div>
                       </div>
                     </div>
+                    <div class="col">
+                      <div style="float: right;">
+                        <h6 class="connect-shop2  me-2 mt-4">Connect</h6>
+
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+        <div class="row mt-3">
+          <div class="col-6 content-margin">
+            <h6 class="">products listed</h6>
+          </div>
+          <div class="col-4 ">
+            <div style="float: right;">
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="container">
+        <div class="row">
+          <div class="col-11">
+            <div class="new-card card-margin content-margin mt-4">
+              <div>
+                <div class="card card-preview" id="productCard" data-card-index="0">
+                  <h6 class="sold">Sold 75</h6>
+                  <img src="kaz/images/Picture of product (USB).png" class="card-img-top w-100 image-border" alt="...">
+                  <div class="card-body">
+                    <div class="card-structure">
+                      <h6 class="amount">$3,990.00 <span class="amount-span">$5,999.00</span></h6>
+                      <div class="star-layout">
+                        <div>
+                          <img src="kaz/images/Rate.png" class="img-fluid image-rate" width="10px" alt="">
+                          <img src="kaz/images/Rate.png" class="img-fluid image-rate" width="10px" alt="">
+                          <img src="kaz/images/Rate.png" class="img-fluid image-rate" width="10px" alt="">
+                        </div>
+                        <div>
+                          <h6 class="ps-1 rate-no">5.0</h6>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="footer-card">
+                      <p class="card-text infinix-text pt-3">Infinix hot 5 (ultralight 5gb ram, 500mph</p>
+                      <img class="mt-3 logo-bag" src="kaz/images/logo icon.png" alt="">
+                    </div>
+                  </div>
+                </div>
+                <div class="overlay" onclick="closeCustomContainer()" id="overlay"></div>
+                <div id="loadedCardContainer"></div>
+
+              </div>
+              <div class="card card-preview" data-card-index="0">
+                <h6 class="sold">Sold 75</h6>
+                <img src="kaz/images/Picture of product (USB).png" class="card-img-top w-100 image-border" alt="...">
+                <div class="card-body">
+                  <div class="card-structure">
+                    <h6 class="amount">$3,990.00 <span class="amount-span">$5,999.00</span></h6>
+                    <div class="star-layout">
+                      <div>
+                        <img src="kaz/images/Rate.png" class="img-fluid image-rate" width="10px" alt="">
+                        <img src="kaz/images/Rate.png" class="img-fluid image-rate" width="10px" alt="">
+                        <img src="kaz/images/Rate.png" class="img-fluid image-rate" width="10px" alt="">
+                      </div>
+                      <div>
+                        <h6 class="ps-1 rate-no">5.0</h6>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="footer-card">
+                    <p class="card-text infinix-text pt-3">Infinix hot 5 (ultralight 5gb ram, 500mph</p>
+                    <img class="mt-3 logo-bag" src="kaz/images/logo icon.png" alt="">
+                  </div>
+                </div>
+              </div>
+              <div class="card card-preview">
+                <h6 class="sold">Sold 75</h6>
+                <img src="kaz/images/Picture of product (USB).png" class="card-img-top w-100 image-border" alt="...">
+                <div class="card-body">
+                  <div class="card-structure">
+                    <h6 class="amount">$3,990.00 <span class="amount-span">$5,999.00</span></h6>
+                    <div class="star-layout">
+                      <div>
+                        <img src="kaz/images/Rate.png" class="img-fluid image-rate" width="10px" alt="">
+                        <img src="kaz/images/Rate.png" class="img-fluid image-rate" width="10px" alt="">
+                        <img src="kaz/images/Rate.png" class="img-fluid image-rate" width="10px" alt="">
+                      </div>
+                      <div>
+                        <h6 class="ps-1 rate-no">5.0</h6>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="footer-card">
+                    <p class="card-text infinix-text pt-3">Infinix hot 5 (ultralight 5gb ram, 500mph</p>
+                    <img class="mt-3 logo-bag" src="kaz/images/logo icon.png" alt="">
+                  </div>
+                </div>
+              </div>
+              <div class="card card-preview">
+                <h6 class="sold">Sold 75</h6>
+                <img src="kaz/images/Picture of product (USB).png" class="card-img-top w-100 image-border" alt="...">
+                <div class="card-body">
+                  <div class="card-structure">
+                    <h6 class="amount">$3,990.00 <span class="amount-span">$5,999.00</span></h6>
+                    <div class="star-layout">
+                      <div>
+                        <img src="kaz/images/Rate.png" class="img-fluid image-rate" width="10px" alt="">
+                        <img src="kaz/images/Rate.png" class="img-fluid image-rate" width="10px" alt="">
+                        <img src="kaz/images/Rate.png" class="img-fluid image-rate" width="10px" alt="">
+                      </div>
+                      <div>
+                        <h6 class="ps-1 rate-no">5.0</h6>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="footer-card">
+                    <p class="card-text infinix-text pt-3">Infinix hot 5 (ultralight 5gb ram, 500mph</p>
+                    <img class="mt-3 logo-bag" src="kaz/images/logo icon.png" alt="">
+                  </div>
+                </div>
+              </div>
+              <div class="card card-preview">
+                <h6 class="sold">Sold 75</h6>
+                <img src="kaz/images/Picture of product (USB).png" class="card-img-top w-100 image-border" alt="...">
+                <div class="card-body">
+                  <div class="card-structure">
+                    <h6 class="amount">$3,990.00 <span class="amount-span">$5,999.00</span></h6>
+                    <div class="star-layout">
+                      <div>
+                        <img src="kaz/images/Rate.png" class="img-fluid image-rate" width="10px" alt="">
+                        <img src="kaz/images/Rate.png" class="img-fluid image-rate" width="10px" alt="">
+                        <img src="kaz/images/Rate.png" class="img-fluid image-rate" width="10px" alt="">
+                      </div>
+                      <div>
+                        <h6 class="ps-1 rate-no">5.0</h6>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="footer-card">
+                    <p class="card-text infinix-text pt-3">Infinix hot 5 (ultralight 5gb ram, 500mph</p>
+                    <img class="mt-3 logo-bag" src="kaz/images/logo icon.png" alt="">
+                  </div>
+                </div>
+              </div>
+              <div class="card card-preview">
+                <h6 class="sold">Sold 75</h6>
+                <img src="kaz/images/Picture of product (USB).png" class="card-img-top w-100 image-border" alt="...">
+                <div class="card-body">
+                  <div class="card-structure">
+                    <h6 class="amount">$3,990.00 <span class="amount-span">$5,999.00</span></h6>
+                    <div class="star-layout">
+                      <div>
+                        <img src="kaz/images/Rate.png" class="img-fluid image-rate" width="10px" alt="">
+                        <img src="kaz/images/Rate.png" class="img-fluid image-rate" width="10px" alt="">
+                        <img src="kaz/images/Rate.png" class="img-fluid image-rate" width="10px" alt="">
+                      </div>
+                      <div>
+                        <h6 class="ps-1 rate-no">5.0</h6>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="footer-card">
+                    <p class="card-text infinix-text pt-3">Infinix hot 5 (ultralight 5gb ram, 500mph</p>
+                    <img class="mt-3 logo-bag" src="kaz/images/logo icon.png" alt="">
+                  </div>
+                </div>
+              </div>
+              <div class="card card-preview">
+                <h6 class="sold">Sold 75</h6>
+                <img src="kaz/images/Picture of product (USB).png" class="card-img-top w-100 image-border" alt="...">
+                <div class="card-body">
+                  <div class="card-structure">
+                    <h6 class="amount">$3,990.00 <span class="amount-span">$5,999.00</span></h6>
+                    <div class="star-layout">
+                      <div>
+                        <img src="kaz/images/Rate.png" class="img-fluid image-rate" width="10px" alt="">
+                        <img src="kaz/images/Rate.png" class="img-fluid image-rate" width="10px" alt="">
+                        <img src="kaz/images/Rate.png" class="img-fluid image-rate" width="10px" alt="">
+                      </div>
+                      <div>
+                        <h6 class="ps-1 rate-no">5.0</h6>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="footer-card">
+                    <p class="card-text infinix-text pt-3">Infinix hot 5 (ultralight 5gb ram, 500mph</p>
+                    <img class="mt-3 logo-bag" src="kaz/images/logo icon.png" alt="">
+                  </div>
+                </div>
+              </div>
+              <div class="card card-preview">
+                <h6 class="sold">Sold 75</h6>
+                <img src="kaz/images/Picture of product (USB).png" class="card-img-top w-100 image-border" alt="...">
+                <div class="card-body">
+                  <div class="card-structure">
+                    <h6 class="amount">$3,990.00 <span class="amount-span">$5,999.00</span></h6>
+                    <div class="star-layout">
+                      <div>
+                        <img src="kaz/images/Rate.png" class="img-fluid image-rate" width="10px" alt="">
+                        <img src="kaz/images/Rate.png" class="img-fluid image-rate" width="10px" alt="">
+                        <img src="kaz/images/Rate.png" class="img-fluid image-rate" width="10px" alt="">
+                      </div>
+                      <div>
+                        <h6 class="ps-1 rate-no">5.0</h6>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="footer-card">
+                    <p class="card-text infinix-text pt-3">Infinix hot 5 (ultralight 5gb ram, 500mph</p>
+                    <img class="mt-3 logo-bag" src="kaz/images/logo icon.png" alt="">
+                  </div>
+                </div>
+              </div>
+              <div class="card card-preview">
+                <h6 class="sold">Sold 75</h6>
+                <img src="kaz/images/Picture of product (USB).png" class="card-img-top w-100 image-border" alt="...">
+                <div class="card-body">
+                  <div class="card-structure">
+                    <h6 class="amount">$3,990.00 <span class="amount-span">$5,999.00</span></h6>
+                    <div class="star-layout">
+                      <div>
+                        <img src="kaz/images/Rate.png" class="img-fluid image-rate" width="10px" alt="">
+                        <img src="kaz/images/Rate.png" class="img-fluid image-rate" width="10px" alt="">
+                        <img src="kaz/images/Rate.png" class="img-fluid image-rate" width="10px" alt="">
+                      </div>
+                      <div>
+                        <h6 class="ps-1 rate-no">5.0</h6>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="footer-card">
+                    <p class="card-text infinix-text pt-3">Infinix hot 5 (ultralight 5gb ram, 500mph</p>
+                    <img class="mt-3 logo-bag" src="kaz/images/logo icon.png" alt="">
+                  </div>
+                </div>
+              </div>
+              <!-- Repeat this structure for each card -->
+            </div>
+          </div>
+          <div style="text-align: center;">
+            <p class="fw-bold mt-5">you've reached the end of the list</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="mt-5 sellers-footer">
+      <div><img src="kaz/images/Logo.png" alt=""></div>
+      <div>
+        <p class="fw-light text-footer">About<br>us</p>
+      </div>
+      <div>
+        <p class="fw-light  text-footer"> Terms and <br> Conditions</p>
+      </div>
+      <div>
+        <p class="fw-light  text-footer">Help <br>center</p>
+      </div>
+      <div>
+        <p class="fw-light  text-footer">Privacy & <br> Cookies <br>Policy</p>
+      </div>
+      <div>
+        <p class="fw-light  text-footer">Report <br> a seller</p>
+      </div>
+      <div class="down">
+        <img height="35px" width="35px" src="kaz/images/facebook.png" alt="">
+        <img height="30px" width="30px" src="kaz/images/twitter.png" alt="">
+        <img height="29px" width="29px" src="kaz/images/whatsapp.png" alt="">
+        <img height="30px" width="30px" src="kaz/images/message.png" alt="">
+      </div>
+
+    </div>
+
+  </div>
+  <!-- mobile-view  -->
+  <div class="mobile-view">
+    <div style="margin-top: -20px;" class="card  main-card-mobile">
+      <img style="height:180px;" id="banner" src="kaz/images/thumbnail-2.webp" class="card-img-top main-img-border2"
+        alt="...">
+      <div class="card-body">
+        <div style="display: flex;justify-content: space-between;">
+          <div class="drill">
+            <img class="" width="50px" src="kaz/images/dp.png" class="" alt="">
+            <div class="camera2-m">
+              <img class="badge-cam-m" height="20px" width="15px" src="kaz/images/badge.png" alt="">
+            </div>
+            <div class="ms-3 mb-2 ">
+              <h5 class="pt-3 mired-drill-m">Drill Houston</h5>
+              <h6 class="mired-email">drillHouston@gmail.com</h6>
+              <h6 class="veri-m pt-1">verified seller</h6>
+
+            </div>
+
+          </div>
+          <div>
+            <h6 class="connect-shop3  mt-4">Connect</h6>
+
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="container-fluid">
+      <div class="row mt-3">
+        <div class="col">
+          <div class="card-body about main-card-mobile-m ">
+            <h6>About me</h6>
+            <p style="font-size: small; " class="card-text our-company  pt-1">
+              Our company is a full service creation agency that specializes in defining top-notch
+              UI/UX design,video editing and <span id="moreText2" style="display: none;">Lorem ipsum dolor sit amet
+                consectetur adipisicing elit. Magnam reiciendis, eveniet porro ad iusto illum quisquam dolores modi
+                excepturi officia. Doloribus dolor sunt dicta! A fuga, nesciunt non laborum minus provident repellat
+                numquam rerum natus unde dolorum corrupti culpa. Doloremque, sunt nam modi porro unde ipsam voluptate
+                ipsa alias ab dolorum vitae sed rem beatae exercitationem repellat quas! Molestias ipsa dolore sequi
+                asperiores quia. Expedita iure similique vel nihil magni.</span>
+              <a href="#" id="readMoreBtn2"> ......Read more</a>
+            </p>
+          </div>
+
+        </div>
+      </div>
+      <div style="margin-top: 10px;" class="row">
+        <div class="col-5">
+          <div class="card-body main-card-mobile-rm ">
+            <h6>Reviews</h6>
+            <img src="kaz/images/star-active.svg" alt="">
+            <img src="kaz/images/star-active.svg" alt="">
+            <img src="kaz/images/star-active.svg" alt="">
+            <img src="kaz/images/star-active.svg" alt="">
+            <img src="kaz/images/star-nill.svg" alt="">
+            <div class="pt-1">
+              <a class="view-m" href="{{ url('/review') }}"><i>View all</i></a><span class="bracket ps-3">(4.5)</span>
+            </div>
+
+          </div>
+
+        </div>
+        <div class="col">
+          <div class="card-body main-card-mobile-rm">
+            <div class="side-display">
+              <div>
+                <img width="8px" height="10px" src="kaz/images/location.svg" alt="">
+                <span class="from ">From</span>
+              </div>
+              <h6 class="from ">Abuja,Nigera</h6>
+            </div>
+            <div class="side-display">
+              <div>
+                <img width="15px" src="kaz/images/profile.svg" alt="">
+                <span class="from ">Member since</span>
+              </div>
+              <h6 class="from ">May,2022</h6>
+
+            </div>
+            <div class="side-display">
+              <div>
+                <img width="15px" src="kaz/images/product.svg" alt="">
+                <span class="from ">Listed products</span>
+              </div>
+              <h6 class="from ">12</h6>
+
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="container-fluid">
+      <h6 class="mt-3 ms-1">Products Listed</h6>
+      <div class="row mt-3 mb-4">
+        <div class="">
+          <div class="mobile-card">
+            <a class="link-card" href="{{ url('/product_des') }}">
+              <div class="card card-preview" data-card-id="1">
+                <div class="sold-mobile">
+                  <h6 class="amount-sold-m ps-1 pt-1">Sold 100</h6>
+                  <img src="kaz/images/Rate.png" class="img-fluid ps-1" width="13px" alt=""><span
+                    class="img-rate ps-1">3.6</span>
+                </div>
+                <img src="kaz/images/Picture of product (USB).png" class="card-img-top w-100 image-border" alt="...">
+                <div class="card-body">
+                  <h6 class="amount">$3,990.00 <span class="amount-span">$5,999.00</span></h6>
+                  <p class="card-text infinix-text pt-3">25gb USB flash Drive.</p>
+                  <div class="footer-card-mobile">
+                    <div style="display: flex;align-items: center;">
+                      <img style="margin-left:-10px;" width="8px" src="kaz/images/location.svg" alt=""><span
+                        class="location-text ps-1">Lagos, Nigera</span>
+                    </div>
+                    <button style="margin-top: -10px;" type="button" class="dropbtn">...</button>
                   </div>
 
-
-
-            </div>
-
-
-            <!--tell us what is it-->
-            <div class="tell_us_what_u_want animate animate-left ">
-                <p class="tell_us_paragraph" onclick="changeToInput()">
-                    <img src="innocent/assets/image/pen.png" alt="" class="pen">
-                    Can't find what you are looking for?
-                    <span>Tell us what it is!</span><br>
-                    and we'll do our best to assist you.
-                </p>
-            </div>
-
-            <div class="tell_us_what_u_want_input_area">
-                <img src="innocent/assets/image/dp.png" alt="" class="tell_us_what_u_want_profile">
-               <div class="vertical_bar"></div>
-                <input type="text" name="" class="tell_us_input" placeholder="write the details here">
-                <button class="send" onclick="send()">send</button>
-
-            </div>
-             <p class="submmited" >submmited✅</p>
-             <div class="loader" class="loader"></div>
-
-        </div>
-    </div>
-
-
-    <div class="main" id="main">
-
-        <h5 class="related_search animate animate-right">Related Search</h5>
-        <!-- Product Cards -->
-        <div class="product_card_container related_search_margin">
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col">
-        <div class="product_card_display card-margin content-margin mt-4" id="productCardDisplay">
-            <!-- Products will be dynamically added here -->
-        </div>
-    </div>
-    </div>
-    </div>
-    </div>
-</div>
-
-
-
-
-<script src="{{ asset('innocent/assets/js/bootstrap.js') }}"></script>
-<script src="{{ asset('innocent/assets/js/search.js') }}"></script>
-<script src="{{ asset('innocent/assets/js/script.js') }}"></script>
-<script src="{{ asset('innocent/assets/js/animation.js') }}"></script>
-<script src="{{ asset('innocent/assets/js/product_des.js') }}"></script>
-<script src="{{ asset('innocent/assets/js/notification.js') }}"></script>
-
-    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-
-
-
-
-    {{-- <script>
-        document.addEventListener('DOMContentLoaded', function () {
-    // Fetch and display all products
-    axios.get('/api/prod')
-        .then(function (response) {
-            const products = response.data;
-            renderProducts(products);
-        })
-        .catch(function (error) {
-            console.error('Error fetching products:', error);
-        });
-
-    // Function to render product cards
-    function renderProducts(products) {
-        const productContainer = document.getElementById('productCardDisplay');
-        productContainer.innerHTML = ''; // Clear the container first
-
-        var url = 'localhost:8000/uploads/products/';
-
-        products.forEach(function (product) {
-            const card = document.createElement('div');
-            card.className = 'card';
-
-            var product_img_url = '';
-            JSON.parse(product.image_url).forEach((el, i) => {
-                if (i == 0)
-                    product_img_url = el;
-            });
-
-            card.innerHTML = `
-                <a href="#" class="product_card_link" data-product-id="${product.id}">
-                    <div class="card product_card">
-                        <h6 class="sold">Sold ${product.sold} <br> <img src="innocent/assets/image/Rate.png" alt=""> ${product.rating}</h6>
-
-                        <img src="uploads/products/${product_img_url}" class="card-img-top w-100 product_image" alt="${product.title}">
-                        <div class="product_card_title">
-                            <div class="main_and_promo_price_area">
-                                <p class="promo_price">$${product.promo_price}</p>
-                                <div class="main_price"><p class="main_price_amount">$${product.actual_price}</p></div>
-                            </div>
-                            <p class="product_name">${product.title}</p>
-                            <span class="product_card_location"><i class="fa-solid fa-location-dot"></i> ${product.location}</span>
-                            <img src="innocent/assets/image/logo icon.svg" alt="">
-                            <span class="connect"><strong>connect</strong></span>
-                        </div>
+                </div>
+              </div>
+            </a>
+            <a class="link-card" href="{{ url('/product_des') }}">
+              <div class="card card-preview" data-card-id="1">
+                <div class="sold-mobile">
+                  <h6 class="amount-sold-m ps-1 pt-1">Sold 100</h6>
+                  <img src="kaz/images/Rate.png" class="img-fluid ps-1" width="13px" alt=""><span
+                    class="img-rate ps-1">3.6</span>
+                </div>
+                <img src="kaz/images/Picture of product (USB).png" class="card-img-top w-100 image-border" alt="...">
+                <div class="card-body">
+                  <h6 class="amount">$3,990.00 <span class="amount-span">$5,999.00</span></h6>
+                  <p class="card-text infinix-text pt-3">25gb USB flash Drive.</p>
+                  <div class="footer-card-mobile">
+                    <div style="display: flex;align-items: center;">
+                      <img style="margin-left:-10px;" width="8px" src="kaz/images/location.svg" alt=""><span
+                        class="location-text ps-1">Lagos, Nigera</span>
                     </div>
-                </a>
-            `;
+                    <button style="margin-top: -10px;" type="button" class="dropbtn">...</button>
+                  </div>
 
-            // Add click event listener to fetch and display product details
-            card.querySelector('.product_card_link').addEventListener('click', function (event) {
-                event.preventDefault();
-                const productId = this.getAttribute('data-product-id');
-                fetchProductDetails(productId);
-            });
+                </div>
+              </div>
+            </a>
+            <a class="link-card" href="{{ url('/product_des') }}">
+              <div class="card card-preview" data-card-id="1">
+                <div class="sold-mobile">
+                  <h6 class="amount-sold-m ps-1 pt-1">Sold 100</h6>
+                  <img src="kaz/images/Rate.png" class="img-fluid ps-1" width="13px" alt=""><span
+                    class="img-rate ps-1">3.6</span>
+                </div>
+                <img src="kaz/images/Picture of product (USB).png" class="card-img-top w-100 image-border" alt="...">
+                <div class="card-body">
+                  <h6 class="amount">$3,990.00 <span class="amount-span">$5,999.00</span></h6>
+                  <p class="card-text infinix-text pt-3">25gb USB flash Drive.</p>
+                  <div class="footer-card-mobile">
+                    <div style="display: flex;align-items: center;">
+                      <img style="margin-left:-10px;" width="8px" src="kaz/images/location.svg" alt=""><span
+                        class="location-text ps-1">Lagos, Nigera</span>
+                    </div>
+                    <button style="margin-top: -10px;" type="button" class="dropbtn">...</button>
+                  </div>
 
-            productContainer.appendChild(card);
-        });
-    }
+                </div>
+              </div>
+            </a>
+            <a class="link-card" href="{{ url('/product_des') }}">
+              <div class="card card-preview" data-card-id="1">
+                <div class="sold-mobile">
+                  <h6 class="amount-sold-m ps-1 pt-1">Sold 100</h6>
+                  <img src="kaz/images/Rate.png" class="img-fluid ps-1" width="13px" alt=""><span
+                    class="img-rate ps-1">3.6</span>
+                </div>
+                <img src="kaz/images/Picture of product (USB).png" class="card-img-top w-100 image-border" alt="...">
+                <div class="card-body">
+                  <h6 class="amount">$3,990.00 <span class="amount-span">$5,999.00</span></h6>
+                  <p class="card-text infinix-text pt-3">25gb USB flash Drive.</p>
+                  <div class="footer-card-mobile">
+                    <div style="display: flex;align-items: center;">
+                      <img style="margin-left:-10px;" width="8px" src="kaz/images/location.svg" alt=""><span
+                        class="location-text ps-1">Lagos, Nigera</span>
+                    </div>
+                    <button style="margin-top: -10px;" type="button" class="dropbtn">...</button>
+                  </div>
 
-    // Function to fetch product details by ID and update the sidebar
-    function fetchProductDetails(productId) {
-        axios.get(`/api/product-details/${productId}`)
-            .then(function (response) {
-                const productDetails = response.data;
+                </div>
+              </div>
+            </a>
+            <a class="link-card" href="{{ url('/product_des') }}">
+              <div class="card card-preview" data-card-id="1">
+                <div class="sold-mobile">
+                  <h6 class="amount-sold-m ps-1 pt-1">Sold 100</h6>
+                  <img src="kaz/images/Rate.png" class="img-fluid ps-1" width="13px" alt=""><span
+                    class="img-rate ps-1">3.6</span>
+                </div>
+                <img src="kaz/images/Picture of product (USB).png" class="card-img-top w-100 image-border" alt="...">
+                <div class="card-body">
+                  <h6 class="amount">$3,990.00 <span class="amount-span">$5,999.00</span></h6>
+                  <p class="card-text infinix-text pt-3">25gb USB flash Drive.</p>
+                  <div class="footer-card-mobile">
+                    <div style="display: flex;align-items: center;">
+                      <img style="margin-left:-10px;" width="8px" src="kaz/images/location.svg" alt=""><span
+                        class="location-text ps-1">Lagos, Nigera</span>
+                    </div>
+                    <button style="margin-top: -10px;" type="button" class="dropbtn">...</button>
+                  </div>
 
-                document.querySelector('.user_name2').textContent = productDetails.user_name;
-                document.querySelector('.user_state').textContent = productDetails.location;
-                document.querySelector('.rate_value').textContent = productDetails.rate;
-                document.querySelector('.sold3').textContent = 'sold ' + productDetails.sold;
-                document.querySelector('.stock2').textContent = productDetails.stock + ' in stock';
-                document.querySelector('.condition2').textContent = productDetails.condition;
-                document.querySelector('.promo_price2').textContent = '$' + productDetails.promo_price;
-                document.querySelector('.main_price2').textContent = '$' + productDetails.actual_price;
-                document.querySelector('.description').textContent = productDetails.description;
-                document.querySelector('.product_name_on_sidebar').textContent = productDetails.title;
+                </div>
+              </div>
+            </a>
+            <a class="link-card" href="{{ url('/product_des') }}">
+              <div class="card card-preview" data-card-id="1">
+                <div class="sold-mobile">
+                  <h6 class="amount-sold-m ps-1 pt-1">Sold 100</h6>
+                  <img src="kaz/images/Rate.png" class="img-fluid ps-1" width="13px" alt=""><span
+                    class="img-rate ps-1">3.6</span>
+                </div>
+                <img src="kaz/images/Picture of product (USB).png" class="card-img-top w-100 image-border" alt="...">
+                <div class="card-body">
+                  <h6 class="amount">$3,990.00 <span class="amount-span">$5,999.00</span></h6>
+                  <p class="card-text infinix-text pt-3">25gb USB flash Drive.</p>
+                  <div class="footer-card-mobile">
+                    <div style="display: flex;align-items: center;">
+                      <img style="margin-left:-10px;" width="8px" src="kaz/images/location.svg" alt=""><span
+                        class="location-text ps-1">Lagos, Nigera</span>
+                    </div>
+                    <button style="margin-top: -10px;" type="button" class="dropbtn">...</button>
+                  </div>
 
-                updateCarousel(productDetails.image_url);
-            })
-            .catch(function (error) {
-                console.error('Error fetching product details:', error);
-            });
-    }
+                </div>
+              </div>
+            </a>
+            <a class="link-card" href="{{ url('/product_des') }}">
+              <div class="card card-preview" data-card-id="1">
+                <div class="sold-mobile">
+                  <h6 class="amount-sold-m ps-1 pt-1">Sold 100</h6>
+                  <img src="kaz/images/Rate.png" class="img-fluid ps-1" width="13px" alt=""><span
+                    class="img-rate ps-1">3.6</span>
+                </div>
+                <img src="kaz/images/Picture of product (USB).png" class="card-img-top w-100 image-border" alt="...">
+                <div class="card-body">
+                  <h6 class="amount">$3,990.00 <span class="amount-span">$5,999.00</span></h6>
+                  <p class="card-text infinix-text pt-3">25gb USB flash Drive.</p>
+                  <div class="footer-card-mobile">
+                    <div style="display: flex;align-items: center;">
+                      <img style="margin-left:-10px;" width="8px" src="kaz/images/location.svg" alt=""><span
+                        class="location-text ps-1">Lagos, Nigera</span>
+                    </div>
+                    <button style="margin-top: -10px;" type="button" class="dropbtn">...</button>
+                  </div>
 
-    // Function to update the carousel with product images
-    function updateCarousel(imagesJson) {
-        const images = JSON.parse(imagesJson);
+                </div>
+              </div>
+            </a>
+            <a class="link-card" href="{{ url('/product_des') }}">
+              <div class="card card-preview" data-card-id="1">
+                <div class="sold-mobile">
+                  <h6 class="amount-sold-m ps-1 pt-1">Sold 100</h6>
+                  <img src="kaz/images/Rate.png" class="img-fluid ps-1" width="13px" alt=""><span
+                    class="img-rate ps-1">3.6</span>
+                </div>
+                <img src="kaz/images/Picture of product (USB).png" class="card-img-top w-100 image-border" alt="...">
+                <div class="card-body">
+                  <h6 class="amount">$3,990.00 <span class="amount-span">$5,999.00</span></h6>
+                  <p class="card-text infinix-text pt-3">25gb USB flash Drive.</p>
+                  <div class="footer-card-mobile">
+                    <div style="display: flex;align-items: center;">
+                      <img style="margin-left:-10px;" width="8px" src="kaz/images/location.svg" alt=""><span
+                        class="location-text ps-1">Lagos, Nigera</span>
+                    </div>
+                    <button style="margin-top: -10px;" type="button" class="dropbtn">...</button>
+                  </div>
 
-        const indicatorsContainer = document.getElementById('carousel-indicators');
-        const innerContainer = document.getElementById('carousel-inner');
+                </div>
+              </div>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div> --}}
 
-        indicatorsContainer.innerHTML = '';
-        innerContainer.innerHTML = '';
-
-        images.forEach((image, index) => {
-            const indicator = document.createElement('button');
-            indicator.type = 'button';
-            indicator.setAttribute('data-bs-target', '#carouselExampleIndicators');
-            indicator.setAttribute('data-bs-slide-to', index);
-            indicator.setAttribute('aria-label', `Slide ${index + 1}`);
-            indicator.style.backgroundColor = '#ffce29';
-            if (index === 0) {
-                indicator.classList.add('active');
-                indicator.setAttribute('aria-current', 'true');
-            }
-            indicatorsContainer.appendChild(indicator);
-
-            const carouselItem = document.createElement('div');
-            carouselItem.classList.add('carousel-item');
-            if (index === 0) {
-                carouselItem.classList.add('active');
-            }
-            carouselItem.innerHTML = `
-                <img src="uploads/products/${image}" class="carousel_img" alt="Product Image ${index + 1}">
-            `;
-            innerContainer.appendChild(carouselItem);
-        });
-    }
-});
-
-    </script> --}}
-
-    {{-- THE REAL ONE --}}
-    {{-- <script>
-        document.addEventListener('DOMContentLoaded', function () {
-    // Fetch and display all products
-    axios.get('/api/prod')
-        .then(function (response) {
-            const products = response.data;
-            renderProducts(products);
-        })
-        .catch(function (error) {
-            console.error('Error fetching products:', error);
-        });
-
-    // Function to render product cards
-    function renderProducts(products) {
-        const productContainer = document.getElementById('productCardDisplay');
-        const mobileProductContainer = document.querySelector('.product_card_display');
-        productContainer.innerHTML = ''; // Clear the container first
-        mobileProductContainer.innerHTML = ''; // Clear the mobile container first
-
-        products.forEach(function (product) {
-            const card = createProductCard(product);
-            productContainer.appendChild(card);
-
-            const mobileCard = createProductCard(product);
-            mobileProductContainer.appendChild(mobileCard);
-        });
-
-        // Add event listeners to both desktop and mobile product cards
-        document.querySelectorAll('.product_card_link').forEach(link => {
-            link.addEventListener('click', function (event) {
-                event.preventDefault();
-                const productId = this.getAttribute('data-product-id');
-                fetchProductDetails(productId);
-            });
-        });
-    }
-
-    // Function to create a product card element
-    function createProductCard(product) {
-        const card = document.createElement('div');
-        card.className = 'card';
-
-        var product_img_url = '';
-        JSON.parse(product.image_url).forEach((el, i) => {
-            if (i == 0)
-                product_img_url = el;
-        });
-
-        card.innerHTML = `
-            <a href="#" class="product_card_link" data-product-id="${product.id}">
-                <div class="card product_card">
-                    <h6 class="sold">Sold ${product.sold} <br> <img src="innocent/assets/image/Rate.png" alt=""> ${product.rating}</h6>
-                    <img src="uploads/products/${product_img_url}" class="card-img-top w-100 product_image" alt="${product.title}">
-                    <div class="product_card_title">
-                        <div class="main_and_promo_price_area">
-                            <p class="promo_price">$${product.promo_price}</p>
-                            <div class="main_price"><p class="main_price_amount">$${product.actual_price}</p></div>
-                        </div>
-                        <p class="product_name">${product.title}</p>
-                        <span class="product_card_location"><i class="fa-solid fa-location-dot"></i> ${product.location}</span>
-                        <img src="innocent/assets/image/logo icon.svg" alt="">
-                        <span class="connect"><strong>connect</strong></span>
+  <div class="main">
+    <div class="side-barr">
+        <!-- Sidebar content here -->
+    </div>
+    <div class="content">
+        <div class="container">
+            <div class="row">
+                <div class="col content-margin">
+                    <div id="seller-details">
+                        <!-- Seller details will be loaded here -->
+                    </div>
+                    <div id="seller-products">
+                        <!-- Seller's other products will be loaded here -->
                     </div>
                 </div>
-            </a>
-        `;
+            </div>
+        </div>
+    </div>
+</div>
+</div>
 
-        return card;
-    }
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const productId = {{ $productId }}; // Pass the product ID from the backend
+    axios.get(`/api/v1/seller-details/${productId}`)
+        .then(response => {
+            const seller = response.data.seller;
+            const products = response.data.products;
 
-    // Function to fetch product details by ID and update the sidebar
-    function fetchProductDetails(productId) {
-        axios.get(`/api/product-details/${productId}`)
-            .then(function (response) {
-                const productDetails = response.data;
-
-                // document.querySelector('.user_name2').textContent = productDetails.user_name;
-                document.querySelector('.user_state').textContent = productDetails.location;
-                document.querySelector('.rate_value').textContent = productDetails.rate;
-                document.querySelector('.sold3').textContent = 'sold ' + productDetails.sold;
-                document.querySelector('.stock2').textContent = productDetails.quantity + ' in stock';
-                document.querySelector('.condition2').textContent = productDetails.condition;
-                document.querySelector('.promo_price2').textContent = '$' + productDetails.promo_price;
-                document.querySelector('.main_price2').textContent = '$' + productDetails.actual_price;
-                document.querySelector('.description').textContent = productDetails.description;
-                document.querySelector('.product_name_on_sidebar').textContent = productDetails.title;
-
-                //for the mobile
-                document.querySelector('.sold2').textContent = 'sold ' + productDetails.sold;
-                document.querySelector('.stock').textContent = productDetails.quantity + ' in stock';
-                document.querySelector('.condition').textContent = productDetails.condition;
-                // document.querySelector('.user_name').textContent = productDetails.user_name;
-                document.querySelector('.user_state_mobile').textContent = productDetails.location;
-
-
-
-
-
-                updateCarousel(productDetails.image_url);
-            })
-            .catch(function (error) {
-                console.error('Error fetching product details:', error);
-            });
-    }
-
-    // Function to update the carousel with product images
-    function updateCarousel(imagesJson) {
-        const images = JSON.parse(imagesJson);
-
-        const indicatorsContainer = document.getElementById('carousel-indicators');
-        const innerContainer = document.getElementById('carousel-inner');
-
-        indicatorsContainer.innerHTML = '';
-        innerContainer.innerHTML = '';
-
-        images.forEach((image, index) => {
-            const indicator = document.createElement('button');
-            indicator.type = 'button';
-            indicator.setAttribute('data-bs-target', '#carouselExampleIndicators');
-            indicator.setAttribute('data-bs-slide-to', index);
-            indicator.setAttribute('aria-label', `Slide ${index + 1}`);
-            indicator.style.backgroundColor = '#ffce29';
-            if (index === 0) {
-                indicator.classList.add('active');
-                indicator.setAttribute('aria-current', 'true');
-            }
-            indicatorsContainer.appendChild(indicator);
-
-            const carouselItem = document.createElement('div');
-            carouselItem.classList.add('carousel-item');
-            if (index === 0) {
-                carouselItem.classList.add('active');
-            }
-            carouselItem.innerHTML = `
-                <img src="uploads/products/${image}" class="carousel_img" alt="Product Image ${index + 1}">
+            // Display seller details
+            const sellerDetailsDiv = document.getElementById('seller-details');
+            sellerDetailsDiv.innerHTML = `
+                <h5>${seller.name}</h5>
+                <p>Email: ${seller.email}</p>
+                <p>Location: ${seller.location}</p>
+                <p>Member since: ${seller.created_at}</p>
+                <!-- Add more seller details as needed -->
             `;
-            innerContainer.appendChild(carouselItem);
-        });
-    }
-});
 
-    </script> --}}
-
-    <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            const selectedProduct = JSON.parse(localStorage.getItem('selectedProduct'));
-            const allProducts = JSON.parse(localStorage.getItem('allProducts'));
-
-            if (selectedProduct) {
-                // document.querySelector('.user_name2').textContent = productDetails.user_name;
-                document.querySelector('.user_state').textContent = selectedProduct.location;
-                document.querySelector('.rate_value').textContent = selectedProduct.rate;
-                document.querySelector('.sold3').textContent = 'sold ' + selectedProduct.sold;
-                document.querySelector('.stock2').textContent = selectedProduct.quantity + ' in stock';
-                document.querySelector('.condition2').textContent = selectedProduct.condition;
-                document.querySelector('.promo_price2').textContent = '$' + selectedProduct.promo_price;
-                document.querySelector('.main_price2').textContent = '$' + selectedProduct.actual_price;
-                document.querySelector('.description').textContent = selectedProduct.description;
-                document.querySelector('.product_name_on_sidebar').textContent = selectedProduct.title;
-
-                //for mobile
-                document.querySelector('.sold2').textContent = 'sold ' + selectedProduct.sold;
-                document.querySelector('.stock').textContent = selectedProduct.quantity + ' in stock';
-                document.querySelector('.condition').textContent = selectedProduct.condition;
-                document.querySelector('.user_state_mobile').textContent = selectedProduct.location;
-
-                updateCarousel(selectedProduct.image_url);
-            }
-
-            if (allProducts) {
-                renderProducts(allProducts);
-            }
-        });
-
-        function updateCarousel(imagesJson) {
-            const images = JSON.parse(imagesJson);
-
-            const indicatorsContainer = document.getElementById('carousel-indicators');
-            const innerContainer = document.getElementById('carousel-inner');
-
-            indicatorsContainer.innerHTML = '';
-            innerContainer.innerHTML = '';
-
-            images.forEach((image, index) => {
-                const indicator = document.createElement('button');
-                indicator.type = 'button';
-                indicator.setAttribute('data-bs-target', '#carouselExampleIndicators');
-                indicator.setAttribute('data-bs-slide-to', index);
-                indicator.setAttribute('aria-label', `Slide ${index + 1}`);
-                indicator.style.backgroundColor = '#ffce29';
-                if (index === 0) {
-                    indicator.classList.add('active');
-                    indicator.setAttribute('aria-current', 'true');
-                }
-                indicatorsContainer.appendChild(indicator);
-
-                const carouselItem = document.createElement('div');
-                carouselItem.classList.add('carousel-item');
-                if (index === 0) {
-                    carouselItem.classList.add('active');
-                }
-                carouselItem.innerHTML = `
-                    <img src="uploads/products/${image}" class="carousel_img" alt="Product Image ${index + 1}">
-                `;
-                innerContainer.appendChild(carouselItem);
-            });
-        }
-
-        function renderProducts(products) {
-            const productContainer = document.getElementById('productCardDisplay');
-        const mobileProductContainer = document.querySelector('.product_card_display');
-        productContainer.innerHTML = ''; // Clear the container first
-        mobileProductContainer.innerHTML = ''; // Clear the mobile container first
-
-        products.forEach(function (product) {
-            const card = createProductCard(product);
-            productContainer.appendChild(card);
-
-            const mobileCard = createProductCard(product);
-            mobileProductContainer.appendChild(mobileCard);
-        });
-
-
-            // Add event listeners to product cards
-            document.querySelectorAll('.product_card_link').forEach(link => {
-                link.addEventListener('click', function (event) {
-                    event.preventDefault();
-                    const productId = this.getAttribute('data-product-id');
-                    fetchProductDetails(productId);
-                });
-            });
-        }
-
-        function createProductCard(product) {
-            const card = document.createElement('div');
-            card.className = 'card';
-
-            let product_img_url = '';
-            JSON.parse(product.image_url).forEach((el, i) => {
-                if (i === 0) product_img_url = el;
-            });
-
-            card.innerHTML = `
-                <a href="{{ url('/learn3') }}" class="product_card_link" data-product='${JSON.stringify(product)}'>
-                    <div class="card product_card">
-                        <h6 class="sold">Sold ${product.sold} <br> <img src="innocent/assets/image/Rate.png" alt=""> ${product.rating}</h6>
-                        <img src="uploads/products/${product_img_url}" class="card-img-top w-100 product_image" alt="${product.title}">
-                        <div class="product_card_title">
-                            <div class="main_and_promo_price_area">
-                                <p class="promo_price">$${product.promo_price}</p>
-                                <div class="main_price"><p class="main_price_amount">$${product.actual_price}</p></div>
-                            </div>
-                            <p class="product_name">${product.title}</p>
-                            <span class="product_card_location"><i class="fa-solid fa-location-dot"></i> ${product.location}</span>
-                            <img src="innocent/assets/image/logo icon.svg" alt="">
-                            <span class="connect"><strong>connect</strong></span>
+            // Display seller's other products
+            const sellerProductsDiv = document.getElementById('seller-products');
+            let productsHtml = '<h6>Other Products</h6>';
+            products.forEach(product => {
+                productsHtml += `
+                    <div class="card card-preview">
+                        <h6 class="sold">Sold ${product.sold}</h6>
+                        <img src="${product.image_url}" class="card-img-top w-100 image-border" alt="...">
+                        <div class="card-body">
+                            <h6 class="amount">$${product.actual_price} <span class="amount-span">$${product.promo_price}</span></h6>
+                            <p class="card-text">${product.title}</p>
+                            <!-- Add more product details as needed -->
                         </div>
                     </div>
-                </a>
-            `;
-
-            card.querySelector('.product_card_link').addEventListener('click', function (event) {
-                event.preventDefault();
-                localStorage.setItem('selectedProduct', this.getAttribute('data-product'));
-                window.location.href = this.href;
+                `;
             });
+            sellerProductsDiv.innerHTML = productsHtml;
+        })
+        .catch(error => {
+            console.error('There was an error fetching the seller details!', error);
+        });
+});
+</script>
 
-            return card;
-        }
-
-        function fetchProductDetails(productId) {
-            // Simulate fetching product details from API
-            // Replace with actual API call if needed
-            const allProducts = JSON.parse(localStorage.getItem('allProducts'));
-            const selectedProduct = allProducts.find(product => product.id === productId);
-
-            if (selectedProduct) {
-                // document.querySelector('.user_name2').textContent = productDetails.user_name;
-                document.querySelector('.user_state').textContent = selectedProduct.location;
-                document.querySelector('.rate_value').textContent = selectedProduct.rate;
-                document.querySelector('.sold3').textContent = 'sold ' + selectedProduct.sold;
-                document.querySelector('.stock2').textContent = selectedProduct.quantity + ' in stock';
-                document.querySelector('.condition2').textContent = selectedProduct.condition;
-                document.querySelector('.promo_price2').textContent = '$' + selectedProduct.promo_price;
-                document.querySelector('.main_price2').textContent = '$' + selectedProduct.actual_price;
-                document.querySelector('.description').textContent = selectedProduct.description;
-                document.querySelector('.product_name_on_sidebar').textContent = selectedProduct.title;
-
-                //for mobile
-                document.querySelector('.sold2').textContent = 'sold ' + selectedProduct.sold;
-                document.querySelector('.stock').textContent = selectedProduct.stock + ' in stock';
-                document.querySelector('.condition').textContent = selectedProduct.condition;
-                document.querySelector('.user_state_mobile').textContent = selectedProduct.location;
-
-                updateCarousel(selectedProduct.image_url);
-            } else {
-                console.error('Product with ID ' + productId + ' not found.');
-            }
-        }
-    </script>
-
-
-</body>
-</html>
 
 
 
@@ -887,7 +810,5 @@
 
 
 </body>
-</html>
-
 
 </html>

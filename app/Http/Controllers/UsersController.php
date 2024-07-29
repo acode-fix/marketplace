@@ -178,7 +178,7 @@ class UsersController extends Controller
                 'username' => 'required|max:255|unique:users,username,',
                 'phone_number' => 'required',
                 'bio' => 'string|nullable',
-               'photo_url' => 'required|image|mimes:jpg,jpeg,png,gif,svg|max:300',
+               'photo_url' => 'required|image|mimes:jpg,jpeg,png,gif,svg|max:2048',
                'location' => 'string|max:255|nullable',
                // 'whatsapp' => 'required',
                 // 'address' => 'required',

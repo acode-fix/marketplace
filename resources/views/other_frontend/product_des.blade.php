@@ -196,7 +196,9 @@
                     <div class="connect_buttons">
 
                         <button  class="product_card_veiw_shop_button" >
+                            {{-- <a href="#" onclick="viewShop({{ $product->id }})">view shop <img src="innocent/assets/image/badge.png" alt=""></a> --}}
                           <a href="{{ url('/sellers-shop') }}">view shop <img src="innocent/assets/image/badge.png" alt="" ></a>
+                          {{-- <a href="{{ url('/sellers-shop/' . $product->id) }}">view shop <img src="innocent/assets/image/badge.png" alt="" ></a> --}}
                         </button>
                         <button  class="product_card_connect_button">
                            <a href="{{ url('/shop') }}">connect <img src="innocent/assets/image/Shopping bag.png" alt="" ></a>
@@ -914,6 +916,11 @@
 
     {{-- NEW VERSION --}}
     <script>
+          function viewShop(productId) {
+        localStorage.setItem('selectedProductId', productId);
+        window.location.href = '{{ url("/sellers-shop") }}';
+    }
+
         document.addEventListener('DOMContentLoaded', function () {
             const selectedProduct = JSON.parse(localStorage.getItem('selectedProduct'));
             const allProducts = JSON.parse(localStorage.getItem('allProducts'));

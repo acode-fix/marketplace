@@ -459,6 +459,8 @@
     </div>
 
   </div>
+
+
   <!-- mobile-view  -->
   <div class="mobile-view">
     <div style="margin-top: -20px;" class="card  main-card-mobile">
@@ -742,7 +744,6 @@
 
 
 
-
   <script>
     // Fetch the user data
     const token = localStorage.getItem('apiToken'); // Get the token from local storage
@@ -808,146 +809,50 @@ function updateUserProfile(user) {
 
 
 
+document.addEventListener('DOMContentLoaded', function() {
+        const productId = localStorage.getItem('selectedProductId');
 
-// function fetchSellerDetails(userId) {
-//     axios.get(`/api/v1/product/user/${userId}`, {
-//         headers: {
-//             'Authorization': `Bearer` + token
-//         }
-//     })
-//     .then(response => {
-//         if (response.data.status) {
-//             const user = response.data.data.user;
-//             const products = response.data.data.products;
+        if (productId) {
+            axios.get(`/api/v1/seller-details`)
+                .then(response => {
+                    const seller = response.data.seller;
+                    const products = response.data.products;
 
-//             updateUserProfile(user);
-//             renderSellerProducts(products);
-//         } else {
-//             console.error('Failed to fetch user details:', response.data.message);
-//         }
-//     })
-//     .catch(error => {
-//         console.error('Error fetching user details:', error);
-//         if (error.response && error.response.status === 401) {
-//             alert('You are not authorized. Please log in.');
-//             window.location.href = '/';
-//         } else if (error.response && error.response.status === 404) {
-//             alert('User not found.');
-//         }
-//     });
-// }
-function fetchSellerDetails(user) {
-    const token = localStorage.getItem('apiToken'); // Get the token from local storage
+                    // Display seller details
+                    const sellerDetailsDiv = document.getElementById('seller-details');
+                    sellerDetailsDiv.innerHTML = `
+                        <h5>${seller.name}</h5>
+                        <p>Email: ${seller.email}</p>
+                        <p>Location: ${seller.location}</p>
+                        <p>Member since: ${user.created_at}</p>
+                        <!-- Add more seller details as needed -->
+                    `;
 
-    if (!token) {
-        alert('You are not authorized. Please log in.');
-        // window.location.href = '/';
-        return;
-    }
-
-    axios.get(`/api/product/user`, {
-        headers: {
-            'Authorization': 'Bearer' + token
-        }
-    })
-    .then(response => {
-        if (response.data.status) {
-            const user = response.data.data.user;
-            const products = response.data.data.products;
-
-            updateUserProfile(user);
-            renderSellerProducts(products);
+                    // Display seller's other products
+                    const sellerProductsDiv = document.getElementById('seller-products');
+                    let productsHtml = '<h6>Other Products</h6>';
+                    products.forEach(product => {
+                        productsHtml += `
+                            <div class="card card-preview">
+                                <h6 class="sold">Sold ${product.sold}</h6>
+                                <img src="${product.image_url}" class="card-img-top w-100 image-border" alt="...">
+                                <div class="card-body">
+                                    <h6 class="amount">$${product.actual_price} <span class="amount-span">$${product.promo_price}</span></h6>
+                                    <p class="card-text">${product.title}</p>
+                                    <!-- Add more product details as needed -->
+                                </div>
+                            </div>
+                        `;
+                    });
+                    sellerProductsDiv.innerHTML = productsHtml;
+                })
+                .catch(error => {
+                    console.error('There was an error fetching the seller details!', error);
+                });
         } else {
-            console.error('Failed to fetch user details:', response.data.message);
-        }
-    })
-    .catch(error => {
-        console.error('Error fetching user details:', error);
-        if (error.response && error.response.status === 401) {
-            alert('You are not authorized. Please log in.');
-            // window.location.href = '/';
-        } else if (error.response && error.response.status === 404) {
-            alert('User not found.');
+            console.error('No product ID found in localStorage.');
         }
     });
-}
-
-// function updateUserProfile(user) {
-//     const profileImage = document.querySelector('.profile-image');
-//     const userName = document.querySelector('.user-name');
-//     const userBio = document.querySelector('.user-bio');
-
-//     if (profileImage) {
-//         profileImage.src = user.profile_image || 'default-profile.png'; // Provide a default image if needed
-//     }
-
-//     if (userName) {
-//         userName.textContent = user.name;
-//     }
-
-//     if (userBio) {
-//         userBio.textContent = user.bio;
-//     }
-// }
-
-function renderSellerProducts(products) {
-    const sellerProductsContainer = document.getElementById('seller-products');
-    sellerProductsContainer.innerHTML = ''; // Clear existing content
-
-    products.forEach(product => {
-        const productCard = createProductCard(product);
-        sellerProductsContainer.appendChild(productCard);
-    });
-}
-
-function createProductCard(product) {
-    const card = document.createElement('div');
-    card.className = 'card';
-
-    let product_img_url = '';
-    JSON.parse(product.image_url).forEach((el, i) => {
-        if (i === 0) product_img_url = el;
-    });
-
-    card.innerHTML = `
-        <a href="{{ url('/product_des') }}" class="product_card_link" data-product='${JSON.stringify(product)}'>
-            <div class="card product_card">
-                <h6 class="sold"> Sold ${product.sold || 0} <br> <img src="innocent/assets/image/Rate.png" alt=""> ${product.rating || 0}</h6>
-                <img src="uploads/products/${product_img_url || 'default.jpg'}" class="card-img-top w-100 product_image" alt="${product.title}">
-                <div class="product_card_title">
-                    <div class="main_and_promo_price_area">
-                        ${
-                            product.ask_for_price
-                            ? '<p class="ask-for-price" style="color:red; padding-right: 2px; font-size:23px">Ask for price</p>'
-                            : `
-                                <p class="promo_price">$${product.promo_price || ''}</p>
-                                <div class="main_price"><p class="main_price_amount">$${product.actual_price || ''}</p></div>
-                            `
-                        }
-                    </div>
-                    <p class="product_name">${product.title}</p>
-                    <span class="product_card_location"><i class="fa-solid fa-location-dot"></i> ${product.location}</span>
-                    <img src="innocent/assets/image/logo icon.svg" alt="">
-                    <span class="connect"><strong>connect</strong></span>
-                </div>
-            </div>
-        </a>
-    `;
-
-    card.querySelector('.product_card_link').addEventListener('click', function (event) {
-        event.preventDefault();
-        localStorage.setItem('selectedProduct', this.getAttribute('data-product'));
-        window.location.href = this.href;
-    });
-
-    return card;
-}
-
-// Usage
-document.addEventListener('DOMContentLoaded', function () {
-    const userId = 'USER_ID_HERE'; // Replace with the actual user ID
-    fetchSellerDetails(userId);
-});
 
 </script>
 

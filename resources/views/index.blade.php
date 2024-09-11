@@ -1516,34 +1516,6 @@ function createProductCard(product) {
     return card;
 }
 
-// function boostListings() {
-//     // Handle boosting listings action
-// }
-
-// function newProductBoost() {
-//     // Handle new product boost action
-// }
-
-// function showCard_get_started() {
-//     // Show the promotion card
-//     document.getElementById('promotion_card').style.display = 'block';
-// }
-
-// function hideCard_get_started() {
-//     // Hide the promotion card
-//     document.getElementById('promotion_card').style.display = 'none';
-// }
-
-// function changeToInput() {
-//     // Handle change to input action for "Tell us what it is"
-// }
-
-// function send() {
-//     // Handle send action for "Tell us what it is"
-// }
-
-
-
 
  // FETCH THE USER DATA
 document.addEventListener('DOMContentLoaded', () => {

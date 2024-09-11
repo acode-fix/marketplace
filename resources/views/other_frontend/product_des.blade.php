@@ -877,7 +877,6 @@ function fetchProductDetails(productId) {
 }
 
 
-        //
 
         // FETCH THE USER DATA
 document.addEventListener('DOMContentLoaded', () => {

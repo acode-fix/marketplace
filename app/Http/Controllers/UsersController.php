@@ -256,6 +256,17 @@ class UsersController extends Controller
         return response()->json(['referralLink' => $referralLink]);
     }
 
+    public function showSellerShop($userId)
+{
+    $user = User::with('products')->findOrFail($userId);
+
+    if (!$user) {
+        return response()->json(['message' => 'User not found'], 404);
+    }
+
+    return response()->json($user);
+}
+
 
     /**
      * Log out the user

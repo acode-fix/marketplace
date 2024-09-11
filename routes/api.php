@@ -11,6 +11,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\PasswordResetController;
 use App\Http\Controllers\LearnController;
 use App\Http\Controllers\VerificationController;
+use App\Http\Controllers\ShopController;
+
 
 
 
@@ -30,12 +32,7 @@ Route::post('forgot-password', [PasswordResetController::class, 'sendResetOtp'])
 Route::post('verify-otp', [PasswordResetController::class, 'verifyOtp']);
 Route::post('reset-password', [PasswordResetController::class, 'resetPassword']);
 
-// Learn Page
-Route::get('/videos', [LearnController::class, 'index']);
-Route::get('videos/{id}', [LearnController::class, 'show']);
-Route::post('videos', [LearnController::class, 'store']);
-Route::put('videos/{id}', [LearnController::class, 'update']);
-Route::delete('videos/{id}', [LearnController::class, 'destroy']);
+
 
 Route::get('/prod', [ProductController::class, 'index']);
 Route::get('/prod/{id}', [ProductController::class, 'view']);
@@ -43,12 +40,7 @@ Route::get('/prod/{id}', [ProductController::class, 'view']);
 Route::get('/product-details/{id}', [ProductController::class, 'getProductDetails']);
 
 Route::post('/product', [ProductController::class, 'store']);
-
-
-// Route::get('/product/user', [ProductController::class, 'showUser']);
-
-
-
+Route::get('/user/products', [ProductController::class, 'userProducts']);
 
 
 //
@@ -71,6 +63,11 @@ Route::get('/referral-link', [UsersController::class, 'getReferralLink']);
 Route::delete('/user', [UsersController::class, 'deleteAccount']);
 
 
+
+Route::post('/admin/verify-user/{id}', [VerificationController::class, 'approveVerification']);
+
+
+
 //Route::get('/product/{id}', [AuditlogController::class, 'create']);
 
 // //product
@@ -91,8 +88,16 @@ Route::get('/product/{id}/edit',[ProductController::class, 'edit']);
 Route::post('/product/{id}',[ProductController::class, 'update']);
 Route::get('/product/search', [ProductController::class, 'search']);
 Route::delete('/product/{id}',[ProductController::class, 'delete']);
+Route::get('/user/products', [ProductController::class, 'userProducts']);
+Route::get('/product-details/{id}', [ProductController::class, 'getProductDetails']);
 // Route::get('/sellers-shop/{productId}', [ProductController::class, 'showSellerShop']);
 Route::get('/seller-details/{productId}', [ProductController::class, 'getSellerDetails']);
+Route::get('/sellers/{sellerId}/products', [ProductController::class, 'getProductsBySeller']);
+
+Route::get('/seller-shop/{userId}', [UserController::class, 'showSellerShop']);
+
+
+
 
 //reviews
 Route::post('/reviewers', [ReviewersController::class, 'store']);
@@ -116,6 +121,7 @@ Route::get('videos/{id}', [LearnController::class, 'show']);
 Route::post('videos', [LearnController::class, 'store']);
 Route::put('videos/{id}', [LearnController::class, 'update']);
 Route::delete('videos/{id}', [LearnController::class, 'destroy']);
+
 
 
 // Verification

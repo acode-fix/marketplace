@@ -316,6 +316,10 @@ border-top-left-radius:14px;
   background-color: #ddd;
 }
 
+.dropdown-content.show {
+    display: block; /* Or any other style to make it visible */
+}
+
 .show {
   display: block;
 }

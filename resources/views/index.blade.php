@@ -1449,6 +1449,7 @@ document.addEventListener('DOMContentLoaded', function () {
         });
 });
 
+
 function renderProductsAndSections(products) {
     const productCardDisplay1 = document.getElementById('productCardDisplay');
     const productCardDisplay2 = document.getElementById('productCardDisplay2');
@@ -1506,8 +1507,10 @@ function createProductCard(product) {
 
     card.querySelector('.product_card_link').addEventListener('click', function (event) {
         event.preventDefault();
+        console.log( this.getAttribute('data-product'))
         localStorage.setItem('selectedProduct', this.getAttribute('data-product'));
-        window.location.href = this.href;
+
+      console.log(window.location.href = this.href);
     });
 
     return card;

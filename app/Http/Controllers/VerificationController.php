@@ -125,7 +125,38 @@ class VerificationController extends Controller
         return response()->json(['status' => true, 'message' => 'Verification approved.']);
     }
 
+
     /**
+     * Verify the specified resource.
+     */
+public function approveVerification(Request $request, $userId)
+{
+    // Fetch the user's verification record
+    $verification = Verification::where('user_id', $userId)->first();
+
+    if (!$verification) {
+        return response()->json(['error' => 'Verification record not found'], 404);
+    }
+
+    // Update the verification status (assuming it's passed)
+    $verification->approved = true;
+    $verification->save();
+
+    // Update the is_verified field in the users table
+    $user = User::find($userId);
+
+    if (!$user) {
+        return response()->json(['error' => 'User not found'], 404);
+    }
+
+    $user->is_verified = true;
+    $user->save();
+
+    return response()->json(['message' => 'User verification approved and updated successfully.']);
+}
+
+
+/**
      * Display the specified resource.
      */
     public function show(string $id)

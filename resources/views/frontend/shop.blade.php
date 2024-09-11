@@ -31,8 +31,8 @@
                                                 </div>
                                         </form>
                                         <div class="mt-4 ms-4">
-                                            <h5 class="">Mired Augustine</h5>
-                                            <h6 class="mired-email">miredaugustine@gmail.com</h6>
+                                            <h5 class="mired-name" id="mired-name">Loading</h5>
+                                            <h6 class="mired-email" id="mired-email">loading</h6>
                                             <a class="verified-link" href="">Unverified seller</a>
                                         </div>
                                     </div>
@@ -73,8 +73,8 @@
             <div class="container">
                 <div class="row">
                     <div class="col-11">
-                        <div class="new-card card-margin mt-4">
-                            <div class="card card-preview">
+                        <div class="new-card card-margin mt-4" id="productList">
+                            {{-- <div class="card card-preview">
                                 <h6 class="sold">Sold 75</h6>
                                 <img src="kaz/images/Picture of product (Tablet).png"
                                     class="card-img-top w-100 image-border" alt="...">
@@ -397,7 +397,7 @@
                                             data-bs-whatever="@mdo">Delete</a>
                                     </div>
                                 </div>
-                            </div>
+                            </div> --}}
 
                         </div>
                     </div>
@@ -476,8 +476,9 @@
                     </div>
                 </div>
             </div>
-        </div>
 
+
+        </div>
 
     </div>
 
@@ -867,12 +868,156 @@
 
 
 
-
+ <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10/dist/sweetalert2.all.min.js"></script>
 
     <script>
         function goBack() {
             window.history.back();
         }
+
+// FOR FETCHING USER DETAILS IMMEDIATELY AFTER THE BANNER
+    document.addEventListener("DOMContentLoaded", function() {
+    // Get the token from local storage
+    const token = localStorage.getItem('apiToken');
+
+    if (!token) {
+        promptLogin('Authentication token is missing. Please log in.');
+        return;
+    }
+
+    // Fetch user data from the backend using the stored token
+    axios.get('/api/v1/getuser', {
+        headers: {
+            'Authorization': `Bearer ${token}`
+        }
+    })
+    .then(response => {
+        // Assuming the user data structure is in response.data
+        const user = response.data;
+
+        // Update the user's name
+        const userNameElement = document.querySelector('.mired-name');
+        if (userNameElement) {
+            userNameElement.textContent = user.username || 'Unknown User';
+        }
+
+        // Update the user's email
+        const userEmailElement = document.querySelector('.mired-email');
+        if (userEmailElement) {
+            userEmailElement.textContent = user.email || 'No email available';
+        }
+
+        // Update the verification status
+        const verificationLinkElement = document.querySelector('.verified-link');
+        if (verificationLinkElement) {
+            verificationLinkElement.textContent = user.verified ? 'Verified seller' : 'Unverified seller';
+            verificationLinkElement.classList.toggle('verified', user.verified); // Toggle 'verified' class based on status
+        }
+    })
+    .catch(error => {
+        console.error('Error fetching user data:', error);
+    });
+});
+
+
+
+
+//FOR PRODUCT LISTING
+document.addEventListener("DOMContentLoaded", function () {
+    const token = localStorage.getItem('apiToken');
+    if (!token) {
+        console.error('API token is missing');
+        return;
+    }
+
+    axios.get('/api/v1/user/products', {
+        headers: {
+            'Authorization': `Bearer ${token}`
+            // 'Authorization': `Bearer` + token
+
+        }
+    })
+    .then(response => {
+        console.log('Response:', response);
+        const products = response.data.data;
+
+        if (!Array.isArray(products)) {
+            console.error('Products data is not an array:', products);
+            return;
+        }
+
+        const productList = document.getElementById('productList');
+        productList.innerHTML = '';
+
+        products.forEach((product) => {
+            const imageUrls = JSON.parse(product.image_url);
+            const firstImageUrl = imageUrls.length > 0 ? imageUrls[0] : 'placeholder.jpg';
+
+            const productCard = `
+                <div class="card card-preview">
+                    <h6 class="sold">Sold ${product.sold || 0}</h6>
+                    <img src="uploads/products/${firstImageUrl}" class="card-img-top w-100 image-border" alt="Product Image">
+                    <div class="card-body">
+                        <div class="card-structure">
+                            <h6 class="amount">$${product.promo_price || 0} <span class="amount-span">$${product.actual_price || 0}</span></h6>
+                            <div class="star-layout">
+                                <div>
+                                    <img src="kaz/images/Rate.png" class="img-fluid image-rate" width="10px" alt="">
+                                    <img src="kaz/images/Rate.png" class="img-fluid image-rate" width="10px" alt="">
+                                    <img src="kaz/images/Rate.png" class="img-fluid image-rate" width="10px" alt="">
+                                </div>
+                                <div>
+                                    <h6 class="ps-1 rate-no">5.0</h6>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="footer-card">
+                            <p class="card-text infinix-text pt-3">${product.title || 'No title available'}</p>
+                            <button type="button" class="dropbtn2 top" data-dropdown-id="${product.id}">...</button>
+                            <div class="dropdown-content" data-dropdown-content="${product.id}">
+                                <a class="share" data-bs-toggle="modal" data-bs-target="#exampleModal-1" data-bs-whatever="@mdo">share</a>
+                                <a href="#home">Edit</a>
+                                <a href="#about">Boost</a>
+                                <a class="share" data-bs-toggle="modal" data-bs-target="#exampleModal-2" data-bs-whatever="@mdo">Delete</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+            productList.insertAdjacentHTML('beforeend', productCard);
+        });
+    })
+    .catch(error => {
+        console.error('Error fetching products:', error);
+    });
+
+    document.addEventListener('click', function (event) {
+    // Check if the clicked element is a dropdown button
+    if (event.target && event.target.classList.contains('dropbtn2')) {
+        console.log('Dropdown button clicked');
+
+        // Assuming data-dropdown-id is set on the button
+        const dropdownId = event.target.getAttribute('data-dropdown-id');
+
+        // Correctly select the dropdown content using querySelector
+        const dropdownContent = document.querySelector(`.dropdown-content[data-dropdown-content="${dropdownId}"]`);
+        console.log('Dropdown content:', dropdownContent);
+
+        if (dropdownContent) {
+            dropdownContent.classList.toggle('show');
+        }
+    } else {
+        // Close all dropdowns if clicked outside
+        document.querySelectorAll('.dropdown-content').forEach(dropdown => {
+            dropdown.classList.remove('show');
+        });
+    }
+});
+
+
+});
+
     </script>
 
 

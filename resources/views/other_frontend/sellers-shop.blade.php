@@ -54,7 +54,7 @@
         <h6 class="mired-text fw-light">loading</h6>
       </div>
       <div class="profile-dropdown">
-        <img class="img-fluid profile-picture" src="kaz/images/dp.png" alt="" id="profileDropdownBtn">
+        <img class="img-fluid profile-picture" style="width: 50px; height:50px; border-radius:50px" src="kaz/images/dp.png" alt="" id="profileDropdownBtn">
         <div class="dropdown-menu" id="dropdownMenu">
           <div class="container drop-struct">
             <img id="profile_image" class="pt-1" width="50px" src="kaz/images/dp.png" alt="">
@@ -97,7 +97,10 @@
         <div class="card-body ">
           <div class="ms-2">
             <h6 class="card-title">About me</h6>
-            <p style="font-size: small; " class="card-text our-company">
+            <p class="about_me"></p>
+            <p class="registration_date"></p>
+
+            <p  style="font-size: small; " class="card-text our-company">
               Our company is a full service creation agency that specializes in defining top-notch
               UI/UX design,video editing and <span id="moreText" style="display: none;">Lorem ipsum dolor sit amet
                 consectetur adipisicing elit. Magnam reiciendis, eveniet porro ad iusto illum quisquam dolores modi
@@ -853,6 +856,90 @@ document.addEventListener('DOMContentLoaded', function() {
             console.error('No product ID found in localStorage.');
         }
     });
+
+
+    // SELLER SHOP LISTING
+//     document.addEventListener('DOMContentLoaded', function () {
+//     const urlParams = new URLSearchParams(window.location.search);
+//     const sellerId = urlParams.get('sellerId');
+//     const token = localStorage.getItem('apiToken'); // Get the token from local storage
+
+
+//     if (sellerId) {
+//         fetchSellerProducts(sellerId);
+//     }
+// });
+
+// function fetchSellerProducts(sellerId) {
+//             axios.get(`/api/v1/sellers/${sellerId}/products`, {
+//             headers: {
+//                 'Authorization': `Bearer` +
+//             }
+//         })
+//         .then(response => {
+//             const products = response.data;
+//             renderProducts(products); // Reuse the renderProducts function to display the products
+//         })
+//         .catch(error => {
+//             console.error('Error fetching seller products:', error);
+//         });
+// }
+
+document.addEventListener('DOMContentLoaded', function () {
+    const userId = new URLSearchParams(window.location.search).get('userId');
+     const token = localStorage.getItem('apiToken'); // Get the token from local storage
+
+console.log(userId);
+    if (userId) {
+        axios.get(`/api/v1/seller-shop/${userId}`, {
+             headers: {
+                'Authorization': `Bearer ${token}`
+           }
+       })
+            .then(response => {
+                const user = response.data.data;
+                displayUserInfo(user);
+                displayUserProducts(user.products);
+            })
+            .catch(error => {
+                console.error('Error fetching seller data:', error);
+                // Handle error display
+            });
+    }
+});
+
+function displayUserInfo(user) {
+    document.querySelector('.about_me').textContent = user.about_me || 'No description available';
+    document.querySelector('.registration_date').textContent = new Date(user.created_at).toLocaleDateString();
+    document.querySelector('.user_state').textContent = user.state || 'State not provided';
+}
+
+function displayUserProducts(products) {
+    const productsContainer = document.querySelector('.user_products');
+    productsContainer.innerHTML = '';
+
+    products.forEach(product => {
+        const productCard = createProductCard(product);
+        productsContainer.appendChild(productCard);
+    });
+}
+
+function createProductCard(product) {
+    const card = document.createElement('div');
+    card.className = 'product_card';
+
+    card.innerHTML = `
+        <img src="uploads/products/${product.image_url[0]}" alt="${product.title}">
+        <div class="product_info">
+            <h5>${product.title}</h5>
+            <p>${product.description}</p>
+            <p>$${product.promo_price || product.actual_price}</p>
+        </div>
+    `;
+    return card;
+}
+
+
 
 </script>
 

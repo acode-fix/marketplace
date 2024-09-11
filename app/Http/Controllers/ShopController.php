@@ -24,6 +24,7 @@ class ShopController extends Controller
         return view('sellers-shop', compact('user', 'products'));
     }
 
+    
     /**
      * Show the form for creating a new resource.
      */

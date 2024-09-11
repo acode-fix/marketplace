@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Product;
 use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
@@ -24,59 +25,91 @@ class ProductController extends Controller
     // }
 
 
-    public function index()
+//     public function index()
+// {
+//        $data = Product::all();
+//     // Step 1: Count the total number of products
+//     $totalProducts = Product::count();
+
+
+//     if ($totalProducts <= 16) {
+
+//        return response()->json($data);
+
+//     } else if ($totalProducts > 16) {
+//         $numberOfProductsToDisplay = 16;
+//         $randomIndices = [];
+
+//         while (count($randomIndices) < $numberOfProductsToDisplay) {
+//             $randomIndex = rand(0, $totalProducts - 1);
+//             if (!in_array($randomIndex, $randomIndices)) {
+//                 $randomIndices[] = $randomIndex;
+//             }
+//         }
+
+//         // Step 4: Fetch the products using the generated random indices
+//         // This assumes your Product model's primary key is `id`
+//         $randomProducts = Product::whereIn('id', $randomIndices)->get();
+
+
+//         // Step 5: Return the random products as JSON
+//         return response()->json($randomProducts);
+
+//     } else {
+//         return response()->json([]);
+//     }
+
+// }
+public function index()
 {
-       $data = Product::all();
-    // Step 1: Count the total number of products
     $totalProducts = Product::count();
 
-
     if ($totalProducts <= 16) {
-
-       return response()->json($data);
-
-    } else if ($totalProducts > 16) {
-        $numberOfProductsToDisplay = 16;
-        $randomIndices = [];
-
-        while (count($randomIndices) < $numberOfProductsToDisplay) {
-            $randomIndex = rand(0, $totalProducts - 1);
-            if (!in_array($randomIndex, $randomIndices)) {
-                $randomIndices[] = $randomIndex;
-            }
-        }
-
-        // Step 4: Fetch the products using the generated random indices
-        // This assumes your Product model's primary key is `id`
-        $randomProducts = Product::whereIn('id', $randomIndices)->get();
-
-        // Step 5: Return the random products as JSON
-        return response()->json($randomProducts);
-
+        // Fetch all products with user data
+        $data = Product::with('user:id,is_verified')->get();
+        return response()->json($data);
     } else {
-        return response()->json([]);
+        $numberOfProductsToDisplay = 16;
+
+        // Fetch a random set of products
+        $randomProducts = Product::with('user:id,is_verified')
+                                 ->inRandomOrder()
+                                 ->limit($numberOfProductsToDisplay)
+                                 ->get();
+
+        return response()->json($randomProducts);
     }
-
 }
-
 
 
 
 //
-public function getProductDetails($id)
-{
-    // Fetch the product details from the database using the provided ID
-    $productDetails = Product::find($id);
+public function getProductDetails($id) {
+    $product = Product::with('user')->find($id);
 
-    // Check if the product exists
-    if (!$productDetails) {
-        return response()->json(['message' => 'Product not found'], 404);
+    if (!$product) {
+        return response()->json(['error' => 'Product not found'], 404);
     }
 
-    return response()->json($productDetails);
+    if ($product) {
+        return response()->json([
+            'id' => $product->id,
+            'title' => $product->title,
+            'description' => $product->description,
+            'location' => $product->location,
+            'image_url' => $product->image_url,
+            'ask_for_price' => $product->ask_for_price,
+            'promo_price' => $product->promo_price,
+            'actual_price' => $product->actual_price,
+            'quantity' => $product->quantity,
+            'condition' => $product->condition,
+            'isUserVerified' => $product->user->is_verified, // Include user verification status
+            'sellerId' => $product->user->id // Include seller ID
+        ]);
+    } else {
+        return response()->json(['error' => 'Product not found'], 404);
+    }
 }
-
-
 
     /**
      * Show the form for creating a new resource.
@@ -135,9 +168,6 @@ public function filterProducts(Request $request)
         return response()->json(['error' => 'Internal Server Error'], 500);
     }
 }
-
-
-
 
     /**
      * Store a newly created resource in storage.
@@ -277,6 +307,7 @@ return response()->json([
         'message' => 'products',
         'data' => $product,
     ], 200);
+
     }
 
     /**
@@ -376,7 +407,7 @@ return response()->json([
     ], 500);
 }
 
-    }
+}
 
 
     // FOR PRODUCT SEARCH
@@ -395,19 +426,15 @@ return response()->json([
         return response()->json($products);
     }
 
-    public function showProduct($id)
-{
-    $product = Product::findOrFail($id);
-    return view('other_frontend.product_des', compact('product'));
-}
-
-    public function showSellerShop(Request $request)
+        public function showProduct($id)
     {
-        // $productId = $request->query('productId');
-        // return view('other_frontend.sellers-shop', ['productId' => $productId]);
-        return view('other_frontend.sellers-shop');
+        $product = Product::findOrFail($id);
+        return view('other_frontend.product_des', compact('product'));
     }
 
+
+// This gets the details of the seller which is a user and other products
+// associated with the user
     public function getSellerDetails($productId)
     {
         // Find the product by ID
@@ -429,6 +456,42 @@ return response()->json([
             'seller' => $seller,
             'products' => $otherProducts
         ]);
+    }
+
+
+    public function getProductsBySeller($sellerId)
+{
+    $products = Product::where('user_id', $sellerId)->get();
+    return response()->json($products);
+}
+
+    /**
+     * This part works for the product listing in Shop.blade.php
+     * Display a listing of the products posted by the authenticated user.
+     *
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function userProducts()
+    {
+        try {
+            $user = auth()->user(); // Ensure this is not null
+            if (!$user) {
+                return response()->json(['message' => 'User not authenticated'], 401);
+            }
+
+            $products = Product::where('user_id', $user->id)->get();
+            return response()->json([
+                    'status' => true,
+                    'message' => 'Product Listed',
+                    'data' => $products,
+                ], 200);
+        } catch (\Exception $e) {
+            // Log the error for further investigation
+            \Log::error("Error fetching user products: ".$e->getMessage());
+
+            // Return a generic error message to the client
+            return response()->json(['message' => 'Internal Server Error'], 500);
+        }
     }
 
     /**

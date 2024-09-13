@@ -122,7 +122,7 @@
 
     <!-- Sidebar and Main Body Section -->
     <div class="sidebar_and_main_container">
-        <div class="sidebar" >
+        <div class="sidebar">
             <div class="sidebar_main">
 
 
@@ -166,7 +166,7 @@
                 <div class="carousel-inner" id="carousel-inner">
                     <!-- Carousel items will be dynamically inserted here -->
                     <div class="carousel-item active">
-                        <img src="" class="carousel_img" alt="...">
+                        <img src="" class="carousel_img" alt="..." >
                     </div>
                 </div>
                 <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
@@ -763,9 +763,13 @@ function updateCarousel(imagesJson) {
         if (index === 0) {
             carouselItem.classList.add('active');
         }
+        // carouselItem.innerHTML = `
+        //     <img src="uploads/products/${image}" style="width:100%" class="carousel_img" alt="Product Image ${index + 1}">
+        // `;
         carouselItem.innerHTML = `
-            <img src="uploads/products/${image}" class="carousel_img" alt="Product Image ${index + 1}">
-        `;
+    <img src="uploads/products/${image}" style="width: 100%; max-height: auto; object-fit: cover;" class="carousel_img" alt="Product Image ${index + 1}">
+`;
+
         innerContainer.appendChild(carouselItem);
     });
 }
@@ -815,7 +819,7 @@ function createProductCard(product) {
         <a href="{{ url('/product_des') }}" class="product_card_link" data-product='${JSON.stringify(product)}'>
             <div class="card product_card">
                 <h6 class="sold"> Sold ${product.sold || 0} <br> <img src="innocent/assets/image/Rate.png" alt=""> ${product.rating || 0}</h6>
-                <img src="uploads/products/${product_img_url || 'default.jpg'}" class="card-img-top w-100 product_image" alt="${product.title}">
+                <img src="uploads/products/${product_img_url || 'default.jpg'}"  class="card-img-top w-100 product_image" alt="${product.title}">
                 <div class="product_card_title">
                     <div class="main_and_promo_price_area">
                         ${product.ask_for_price ? '<p class="ask-for-price" style="color:red; padding-right: 2px; font-size:23px">Ask for price</p>' : `

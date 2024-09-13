@@ -169,6 +169,7 @@ public function filterProducts(Request $request)
     }
 }
 
+
     /**
      * Store a newly created resource in storage.
      */

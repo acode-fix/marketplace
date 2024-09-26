@@ -12,6 +12,10 @@ use App\Http\Controllers\Auth\PasswordResetController;
 use App\Http\Controllers\LearnController;
 use App\Http\Controllers\VerificationController;
 use App\Http\Controllers\ShopController;
+use App\Http\Controllers\NotificationController;
+use App\Http\Controllers\AdvertController;
+
+
 
 
 
@@ -94,7 +98,7 @@ Route::get('/product-details/{id}', [ProductController::class, 'getProductDetail
 Route::get('/seller-details/{productId}', [ProductController::class, 'getSellerDetails']);
 Route::get('/sellers/{sellerId}/products', [ProductController::class, 'getProductsBySeller']);
 
-Route::get('/seller-shop/{userId}', [UserController::class, 'showSellerShop']);
+Route::get('/seller-shop/{userId}', [UsersController::class, 'showSellerShop']);
 
 
 
@@ -144,9 +148,9 @@ Route::post('/adverts/{advert}', [AdvertController::class, 'destroy']);
 
 });
 
-Route::get('/adverts', 'AdvertController@index');
-Route::put('/adverts/{advert}', 'AdvertController@update')->middleware('auth');
-Route::delete('/adverts/{advert}', 'AdvertController@destroy')->middleware('auth');
+// Route::get('/adverts', 'AdvertController@index');
+// Route::put('/adverts/{advert}', 'AdvertController@update')->middleware('auth');
+// Route::delete('/adverts/{advert}', 'AdvertController@destroy')->middleware('auth');
 
 // Route::get('/adverts/create', [AdvertController::class, 'create'])->name('adverts.create');
 // Route::post('/adverts', [AdvertController::class, 'store'])->name('adverts.store');

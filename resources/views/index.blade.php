@@ -17,7 +17,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 
 
@@ -57,9 +57,9 @@
                     </span>
                 </a>
             </div>
-            <div id="notification_icon_div"><img src="innocent/assets/image/notification.png" alt="Logo"
+            <div  id="notification_icon_div"><img src="innocent/assets/image/notification.png" alt="Logo"
                     id="notification_icon"></div>
-            <div id="notification_icon_div2"> <a href="{{ url('/notification_mobile') }}"><img
+            <div  id="notification_icon_div2"> <a href="{{ url('/notification_mobile') }}"><img
                         src="innocent/assets/image/notification.png" alt="Logo"></a></div>
 
             <div><img id="profile_picture" src="" alt=".profile picture " class="profile_picture"></div>
@@ -126,7 +126,7 @@
 
                 </div>
             </div>
-            <a href="{{ url('/start_selling') }}" class="start-selling">
+            <a href="{{ url('/start_selling') }}" class="start-selling js-start-selling">
                 <p class="do_you">Do you have <br> anything to sell?</p>
                 <img src="innocent/assets/image/logo icon.svg" alt="" style="width: 60px;">
                 <p class="start_selling_p2">Start Selling</p>
@@ -161,8 +161,8 @@
                 <p class="product_condition_p">Product Condition</p>
                 <div class="product_condition_desktop">
 
-                    <button class="button new" onclick="toggleButton(this, 'new')">New</button>
-                    <button class="button used" onclick="toggleButton(this, 'fairly used')">Fairly Used</button>
+                    <button class="button new"  data-value="new"  onclick="toggleButton(this, 'new')">New</button>
+                    <button class="button used" data-value="fairly_used" onclick="toggleButton(this, 'fairly_used')">Fairly Used</button>
 
 
                     <!-- Button trigger modal -->
@@ -368,6 +368,8 @@
                 <div class="product_card_container top_sales_margin">
 
                     <div class="container-fluid">
+
+
                         <div class="row">
                             <div class="col">
                                 <div class="product_card_display card-margin content-margin mt-4" id="productCardDisplay">
@@ -616,7 +618,7 @@
         </div>
 
         <!-- Modal -->
-        <div class="modal fade" id="signup_login-modal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+        <div class="modal fade" id="signup_login-modal" class="myModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
             aria-labelledby="staticBackdropLabel" aria-hidden="true">
             <div class="modal-dialog modal-dialog">
                 <div class="modal-content modal_content_signup_login">
@@ -633,12 +635,12 @@
 
                         <div class="form-group">
                             <label for="email" class="form-label"></label>
-                            <input type="email" class="form-control input_field" id="signup_email" placeholder="Email">
+                            <input required type="email" class="form-control input_field" id="signup_email" placeholder="Email">
                         </div>
                         <div class="form-group">
                             <p class="showPasswordBtn"> <i class="fa-solid fa-eye"></i></p>
                             <label for="password" class="form-label"></label>
-                            <input type="password" class="form-control password_inputs input_field" id="signup_password" placeholder="Password">
+                            <input required type="password" class="form-control password_inputs input_field" id="signup_password" placeholder="Password">
                         </div>
 
                         <p id="or_sign_up_using">or sign up using</p>
@@ -670,12 +672,12 @@
 
                         <div class="form-group">
                             <label for="email" class="form-label"></label>
-                            <input type="email" class="form-control input_field" id="login_email" placeholder="Email">
+                            <input required type="email" class="form-control input_field" id="login_email" placeholder="Email">
                         </div>
                         <div class="form-group">
                             <p class="showPasswordBtn"> <i class="fa-solid fa-eye"></i></p>
                             <label for="password" class="form-label"></label>
-                            <input type="password" class="form-control password_inputs input_field" id="login_password"
+                            <input required type="password" class="form-control password_inputs input_field" id="login_password"
                                 placeholder="Password">
 
                         </div>
@@ -690,7 +692,7 @@
                                 <img src="innocent/assets/image/gmail.png" alt="">
                             </div>
                         </div>
-                        <button class="signup_continue_button continueBtn" onclick="loginuser()">continue</button>
+                        <button class="signup_continue_button continueBtn" onclick="loginUser()">continue</button>
                         <p style="margin-top: 20px;">Don't have an account? <span><a href="#" onclick="showSignUpModal()"
                                     class="signup_links">Sign up</a></span></p>
 
@@ -712,7 +714,7 @@
                         <div class="reset_email">
                             <div class="form-group">
                                 <label for="email" class="form-label"></label>
-                                <input type="email" class="form-control input_field" id="reset_email" placeholder="Email">
+                                <input required type="email" class="form-control input_field" id="reset_email" placeholder="Email">
                             </div>
                         </div>
                         <button class="signup_continue_button" onclick="sendResetOtp()">Request Reset Password
@@ -793,7 +795,7 @@
     <div class="reset_email">
         <div class="form-group">
             <label for="otp" class="form-label"></label>
-            <input type="text" class="form-control input_field" id="otp" placeholder="Enter OTP">
+            <input required type="text" class="form-control input_field" id="otp" placeholder="Enter OTP">
         </div>
     </div>
 </div>
@@ -1065,11 +1067,28 @@
     <script src="{{ asset('innocent/assets/js/animation.js') }}"></script>
     <script src="{{ asset('innocent/assets/js/location.js') }}"></script>
     <script src="{{ asset('innocent/assets/js/modal.js') }}"></script>
+    <script src="{{ asset('backend-js/index.js') }}"></script>
 
 
 
     {{-- AXIOUS JAVASCRIPT --}}
     <script>
+
+axios.get('/api/allproduct')
+
+.then(function (response) {
+    const products = response.data;
+
+   // console.log(products);
+    localStorage.setItem('allProducts', JSON.stringify(products));
+    renderProductsAndSections(products);
+})
+.catch(function (error) {
+    console.log(error);
+});
+
+
+        
 
         // Sign UP PAGE
 function signup() {
@@ -1082,14 +1101,17 @@ function signup() {
         password_confirmation: password
     })
     .then(function (response) {
+       //    console.log(response)
         const responseData = response.data;
+
+       // console.log(responseData)
 
         if (responseData.status) {
             // Store the token in localStorage
             localStorage.setItem('apiToken', responseData.token);
 
 
-            //alert(responseData.token);
+           // alert(responseData.token);
 
             // Set the token in Axios default headers for subsequent requests
             axios.defaults.headers.common['Authorization'] = `Bearer ${responseData.token}`;
@@ -1099,10 +1121,12 @@ function signup() {
                 title: 'Registration Successful',
                 text: responseData.message,
                 willClose: () => {
-                    login(); // Redirect to dashboard or desired page
+                    window.location.href = '/'; // Redirect to dashboard or desired page
                 }
             });
-        } else {
+        } else  
+            
+        {
             Swal.fire({
                 icon: 'error',
                 title: 'Registration Failed',
@@ -1110,30 +1134,44 @@ function signup() {
             });
         }
     })
-    .catch(function (error) {
-        const errorData = error.response.data;
 
-        if (error.response.status === 422) {
-            // Validation error response from the server
-            const validationErrors = errorData.errors;
-            let errorMessage = 'Validation Errors:\n';
-            for (let field in validationErrors) {
-                errorMessage += `${validationErrors[field].join(' ')}\n`;
+    .catch(function (error) {
+       if (error.response) {
+        if(error.response.status ===  401 && error.response.data) {
+            const responseErrors = error.response.data.errors;
+
+            let allErrors = [];
+
+            for (let field in responseErrors) {
+
+                const fieldErrors = responseErrors[field];
+                fieldErrors.forEach((message) => {
+                    allErrors.push(message);
+            
+                }); 
             }
-            Swal.fire({
-                icon: 'error',
-                title: 'Registration Failed',
-                text: errorMessage
-            });
-        } else {
-            Swal.fire({
-                icon: 'error',
-                title: 'Registration Failed',
-                text: errorData.message || 'There was an error while registering. Please try again later.'
-            });
+            const errorMsg = allErrors.join('\n')
+
+            displaySwal(errorMsg);
+
         }
-    });
+
+       }
+
+    })
+
 }
+
+function displaySwal(errorMsg, invalidCredentials) {
+
+    Swal.fire({ 
+                icon: 'error',
+                title: 'Login Failed',
+                text:  errorMsg || invalidCredentials,
+            });
+
+}
+
 
 // Axios interceptor to set the Authorization header for all requests
 axios.interceptors.request.use(
@@ -1151,17 +1189,17 @@ axios.interceptors.request.use(
 
 
 
-function loginuser() {
+function loginUser() {
+
     const email = document.getElementById("login_email").value;
     const password = document.getElementById("login_password").value;
 
     axios.post('/api/auth/login', {
         email: email,
         password: password
-    })
+    }) 
     .then(function (response) {
         const responseData = response.data;
-
         if (responseData.status) {
             // Store the token in localStorage
             localStorage.setItem('apiToken', responseData.data.token);
@@ -1173,6 +1211,7 @@ function loginuser() {
 
             // Set the token in Axios default headers for subsequent requests
             axios.defaults.headers.common['Authorization'] = `Bearer ${responseData.data.token}`;
+            
 
             Swal.fire({
                 icon: 'success',
@@ -1183,25 +1222,46 @@ function loginuser() {
                 }
             });
         } else {
-            Swal.fire({
-                icon: 'error',
-                title: 'Login Failed',
-                text: 'Unexpected response from the server. Please try again later.'
-            });
+            
+
+
         }
+        
     })
     .catch(function (error) {
-        const errorData = error.response.data;
+    
+        if (error.response) {
 
-        Swal.fire({
-            icon: 'error',
-            title: 'Login Failed',
-            text: errorData.message || 'There was an error while logging in. Please try again later.'
-        });
+        if(error.response.status ===  401 && error.response.data) {
+
+            const  invalidCredentials = error.response.data.message;
+
+            const responseErrors = error.response.data.errors;
+
+            let allErrors = [];
+
+            for (let field in responseErrors) {
+
+                const fieldErrors = responseErrors[field];
+                fieldErrors.forEach((message) => {
+                    allErrors.push(message);
+            
+                }); 
+            }
+            const errorMsg = allErrors.join('\n')
+
+            displaySwal(errorMsg, invalidCredentials);
+
+        }
+
+       }
+
     });
 }
 
+
 // Axios interceptor to set the Authorization header for all requests
+
 axios.interceptors.request.use(
     function (config) {
         const token = localStorage.getItem('apiToken');
@@ -1217,9 +1277,11 @@ axios.interceptors.request.use(
 
 
 
+
 // Function to handle password reset request
 // Function to send reset OTP
 function sendResetOtp() {
+    
     const email = document.getElementById("reset_email").value;
 
     axios.post('/api/forgot-password', {
@@ -1288,7 +1350,7 @@ function verifyOtp() {
 
 // Function to reset password
 function resetPassword() {
-    const email = document.getElementById("reset_email").value;
+    //const email = document.getElementById("reset_email").value;
     const otp = document.getElementById("otp").value;
     const newPassword = document.getElementById("newPassword").value;
     const confirmPassword = document.getElementById("confirmPassword").value;
@@ -1303,33 +1365,31 @@ function resetPassword() {
     }
 
     axios.post('/api/reset-password', {
-        email: email,
+        //email: email,
         otp: otp,
         password: newPassword,
         password_confirmation: confirmPassword
     })
     .then(function (response) {
-        // Handle success response
-        console.log(response.data);
+     
         // Display a success message to the user
         Swal.fire({
             icon: 'success',
             title: 'Password Reset Successful',
             text: 'Your password has been reset successfully.',
             onClose: function() {
-                // After resetting the password, redirect the user to the login page
-                login3(); // Redirect to login page
+                window.location.href = '/'
             }
         });
     })
     .catch(function (error) {
         // Handle error response
-        console.log(error.response.data);
+         msgError = error.response.data.message;
         // Display an error message to the user
         Swal.fire({
             icon: 'error',
             title: 'Failed to Reset Password',
-            text: 'There was an error while resetting your password. Please try again.'
+            text: msgError,
         });
     });
 }
@@ -1338,23 +1398,21 @@ function logoutUser() {
     axios.post('/api/v1/auth/logout')
         .then(function (response) {
             const responseData = response.data;
-
             if (responseData.status) {
                 // Remove the token from localStorage
                 localStorage.removeItem('apiToken');
+                localStorage.clear();
 
                 // Remove the token from Axios default headers
                 delete axios.defaults.headers.common['Authorization'];
 
+            
                 Swal.fire({
                     icon: 'success',
                     title: 'Logout Successful',
                     text: responseData.message,
-                    // willClose: () => {
-                    //     window.location.href = '/login'; // Redirect to login page
-                    // }
                     onClose: function() {
-                        login3(); // Redirect to login page
+                        window.location.href = '/'; // Redirect to login page
                      }
                 });
             } else {
@@ -1379,21 +1437,47 @@ function logoutUser() {
 // Add this JavaScript code to handle the logout process
 document.getElementById('logoutLink').addEventListener('click', function(event) {
     event.preventDefault(); // Prevent the default action of the link
-    logoutUser(); // Call the logout function
+
+    Swal.fire({
+  title: "Are you sure?",
+  text: "You won't be able to revert this!",
+  icon: "warning",
+  showCancelButton: true,
+  confirmButtonColor: "#3085d6",
+  cancelButtonColor: "#d33",
+  confirmButtonText: "Yes,I am sure!"
+}).then((result) => {
+  if (result.isConfirmed) {
+    logoutUser();
+    
+  }
+});
+
 });
 
 
-
+const token = localStorage.getItem('apiToken');
 
 //THIS IS FOR PRODUCTS
 function applyFilter() {
+
+    if(!token) {
+
+        promptLogin();
+    }
+    
+
     const locationFilter = document.getElementById('clickMe').innerText.trim();
     const verifiedSeller = document.getElementById('verifiedSeller').checked;
 
     let condition = '';
     const conditionButton = document.querySelector('.product_condition_desktop .button.clicked');
+
     if (conditionButton) {
-        condition = conditionButton.innerText.trim().toLowerCase();
+
+       conditionButtonValue = conditionButton.getAttribute('data-value');
+       condition = conditionButtonValue.trim().toLowerCase();
+       
     }
 
     const filters = {
@@ -1407,7 +1491,7 @@ function applyFilter() {
     axios.get('/api/v1/product/filter', { params: filters })
         .then(function (response) {
             const products = response.data;
-            renderProducts(products);
+            renderProductsAndSections(products);
         })
         .catch(function (error) {
             console.error('Error fetching filtered products:', error);
@@ -1416,6 +1500,11 @@ function applyFilter() {
 
 // Function to handle condition button toggle
 function toggleButton(button) {
+    if(!token) {
+        promptLogin();
+    }
+
+
     document.querySelectorAll('.product_condition_desktop .button').forEach(btn => btn.classList.remove('clicked'));
     button.classList.add('clicked');
     applyFilter();
@@ -1423,30 +1512,34 @@ function toggleButton(button) {
 
 
 document.addEventListener('DOMContentLoaded', function () {
+    
 
     document.querySelectorAll('.product_condition_desktop .button').forEach(button => {
-        button.addEventListener('click', function() {
+        button.addEventListener('click', function() {  
+            if(!token) {
+                promptLogin();
+            }
+
             toggleButton(this);
         });
     });
 
     document.getElementById('verifiedSeller').addEventListener('change', function() {
+        if(!token) {
+
+           promptLogin();
+        }
+
         applyFilter();
     });
 
     document.getElementById('clickMe').addEventListener('input', function() {
+        if(!token) {
+
+        promptLogin();
+    }
         applyFilter();
     });
-
-    axios.get('/api/v1/allproduct')
-        .then(function (response) {
-            const products = response.data;
-            localStorage.setItem('allProducts', JSON.stringify(products));
-            renderProductsAndSections(products);
-        })
-        .catch(function (error) {
-            console.error('Error fetching products:', error);
-        });
 });
 
 
@@ -1459,6 +1552,8 @@ function renderProductsAndSections(products) {
 
     products.forEach((product, index) => {
         // Render product card
+
+        console.log(product)
         const card = createProductCard(product);
 
         // Insert product into appropriate container
@@ -1471,6 +1566,7 @@ function renderProductsAndSections(products) {
 }
 
 function createProductCard(product) {
+
     const card = document.createElement('div');
             card.className = 'card';
 
@@ -1507,7 +1603,7 @@ function createProductCard(product) {
 
     card.querySelector('.product_card_link').addEventListener('click', function (event) {
         event.preventDefault();
-        console.log( this.getAttribute('data-product'))
+        //console.log( this.getAttribute('data-product'))
         localStorage.setItem('selectedProduct', this.getAttribute('data-product'));
 
       console.log(window.location.href = this.href);
@@ -1516,48 +1612,16 @@ function createProductCard(product) {
     return card;
 }
 
-// function boostListings() {
-//     // Handle boosting listings action
-// }
-
-// function newProductBoost() {
-//     // Handle new product boost action
-// }
-
-// function showCard_get_started() {
-//     // Show the promotion card
-//     document.getElementById('promotion_card').style.display = 'block';
-// }
-
-// function hideCard_get_started() {
-//     // Hide the promotion card
-//     document.getElementById('promotion_card').style.display = 'none';
-// }
-
-// function changeToInput() {
-//     // Handle change to input action for "Tell us what it is"
-// }
-
-// function send() {
-//     // Handle send action for "Tell us what it is"
-// }
-
-
-
 
  // FETCH THE USER DATA
 document.addEventListener('DOMContentLoaded', () => {
-    // Ensure the code runs after the DOM is fully loaded
-    const token = localStorage.getItem('apiToken'); // Get the token from local storage
-
     if (token) {
         fetchUserData(token);
-    } else {
-        promptLogin('Authentication token is missing. Please log in.');
-    }
+    } 
 });
 
 function fetchUserData(token) {
+
     axios.get('/api/v1/getuser', {
         headers: {
             'Authorization': 'Bearer ' + token
@@ -1565,6 +1629,9 @@ function fetchUserData(token) {
     })
     .then(response => {
         const user = response.data;
+
+        //console.log(user)
+
         updateUserProfile(user);
     })
     .catch(error => {
@@ -1576,6 +1643,7 @@ function fetchUserData(token) {
 }
 
 function updateUserProfile(user) {
+
     const nameElement = document.getElementById('profile_name');
     const emailElement = document.getElementById('profile_email');
     const profileImageElement = document.getElementById('profile_image');
@@ -1585,7 +1653,6 @@ function updateUserProfile(user) {
     if (user) {
         nameElement.innerHTML = `${user.username || 'Unknown User'} <br>`;
         emailElement.innerHTML = user.email || 'No email provided';
-
         // nameElement.textContent = user.username || 'Unknown User';
         // emailElement.textContent = user.email || 'No email provided';
 
@@ -1598,13 +1665,19 @@ function updateUserProfile(user) {
     }
 }
 
-function promptLogin(message) {
+
+function promptLogin() {
     Swal.fire({
         icon: 'error',
         title: 'Login Required',
         text: 'Please login to continue'
     }).then(() => {
-        login3(); // Redirect to login page
+    
+        const myModal = new bootstrap.Modal(document.querySelector('#signup_login-modal'));
+        myModal.show();
+
+
+
     });
 }
 
@@ -1614,10 +1687,14 @@ document.addEventListener('DOMContentLoaded', function () {
 
     categoryLinks.forEach(link => {
         link.addEventListener('click', function (event) {
+            if(!token) {
+
+                promptLogin();
+            }
             event.preventDefault();
             const categoryId = this.getAttribute('data-category-id');
             const categoryName = this.getAttribute('data-category-name');
-            const token = localStorage.getItem('apiToken'); // Replace with your actual token
+            
 
             axios.get(`/api/v1/categories/${categoryId}`, {
                 headers: {
@@ -1636,6 +1713,20 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     });
 });
+
+
+document.getElementById('notification_icon').addEventListener('click', function(e) {
+    e.stopPropagation();
+    if(!token) {
+        document.getElementById("notification_main").style.display = "none";
+        promptLogin();
+
+    }
+    
+  });
+
+
+
 
 
 

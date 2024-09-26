@@ -24,12 +24,15 @@ return new class extends Migration
             $table->string('bio')->nullable();
             $table->string('photo_url')->nullable();
             $table->string('location')->nullable();
-            $table->unsignedBigInteger('shop_id')->nullable();
+            $table->unsignedBigInteger('shop_no')->nullable();
             $table->string('stage')->default(1);   // 1 - initial signup , 2- update bio-data
             $table->string('referral_code')->nullable()->unique(); // Add referral code column
-            $table->boolean('is_verified')->default(false);
+            $table->integer('verify_status')->default(-1);
+            $table->string('shop_token')->nullable();
+            $table->integer('user_type')->default(2);
             $table->enum('badge_type', ['monthly', 'yearly'])->nullable();
             $table->date('badge_expiry')->nullable();
+            $table->string('banner')->nullable();
             $table->softDeletes(); // Adds a deleted_at column for soft deletes
             $table->timestamps();
         });

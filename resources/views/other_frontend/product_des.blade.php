@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -122,7 +123,7 @@
 
     <!-- Sidebar and Main Body Section -->
     <div class="sidebar_and_main_container">
-        <div class="sidebar" >
+        <div class="sidebar">
             <div class="sidebar_main">
 
 
@@ -166,7 +167,7 @@
                 <div class="carousel-inner" id="carousel-inner">
                     <!-- Carousel items will be dynamically inserted here -->
                     <div class="carousel-item active">
-                        <img src="" class="carousel_img" alt="...">
+                        <img src="" class="carousel_img" alt="..." >
                     </div>
                 </div>
                 <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
@@ -200,11 +201,11 @@
                         </button> --}}
                         <button class="product_card_view_shop_button" id="viewShopButton" style="display: none;">
                             {{-- <a href="#" onclick="viewShop()">View Shop</a> --}}
-                            <a href="#">View Shop</a>
+                            <a href="">View Shop</a>
                           </button>
 
                         <button  class="product_card_connect_button">
-                           <a href="{{ url('/shop') }}">connect <img src="innocent/assets/image/Shopping bag.png" alt="" ></a>
+                           <a href="#">connect <img src="innocent/assets/image/Shopping bag.png" alt="" ></a>
                         </button>
                     </div>
                 </div>
@@ -641,11 +642,14 @@
     <script src="{{ asset('innocent/assets/js/animation.js') }}"></script>
     <script src="{{ asset('innocent/assets/js/product_des.js') }}"></script>
     <script src="{{ asset('innocent/assets/js/notification.js') }}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+   
 
 
      {{-- Axios and Moment.js Scripts --}}
   <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/moment@2.29.1/min/moment.min.js"></script>
+  <script type="module" src="{{ asset('backend-js/auth.js') }}"></script>
 
 
     {{-- NEW VERSION --}}
@@ -653,7 +657,7 @@
 
         //
     document.addEventListener('DOMContentLoaded', function () {
-            const viewShopButton = document.getElementById('viewShopButton');
+     const viewShopButton = document.getElementById('viewShopButton');
 
     if (viewShopButton) {
         // Apply initial styles
@@ -677,14 +681,20 @@
     }
 
     const selectedProduct = JSON.parse(localStorage.getItem('selectedProduct'));
+    
     const allProducts = JSON.parse(localStorage.getItem('allProducts'));
+
+    console.log(selectedProduct);
+
+
 
     // Display product details if selectedProduct is available
     if (selectedProduct) {
+
         displayProductDetails(selectedProduct);
 
         // Show "View Shop" button if the seller is verified
-        if (selectedProduct.user && selectedProduct.user.is_verified) {
+        if (selectedProduct.user.id  && selectedProduct.user.is_verified === 1) {
             viewShopButton.style.display = 'block'; // Show button
         } else {
             viewShopButton.style.display = 'none'; // Hide button
@@ -693,6 +703,8 @@
 
    // Add event listener for "View Shop" button
    if (viewShopButton) {
+    console.log(selectedProduct.shop_id);
+
         viewShopButton.addEventListener('click', function () {
             if (selectedProduct) {
                 localStorage.setItem('selectedProductId', selectedProduct.id);
@@ -737,6 +749,7 @@ function displayProductDetails(product) {
 }
 
 function updateCarousel(imagesJson) {
+
     const images = JSON.parse(imagesJson);
 
     const indicatorsContainer = document.getElementById('carousel-indicators');
@@ -763,9 +776,13 @@ function updateCarousel(imagesJson) {
         if (index === 0) {
             carouselItem.classList.add('active');
         }
+        // carouselItem.innerHTML = `
+        //     <img src="uploads/products/${image}" style="width:100%" class="carousel_img" alt="Product Image ${index + 1}">
+        // `;
         carouselItem.innerHTML = `
-            <img src="uploads/products/${image}" class="carousel_img" alt="Product Image ${index + 1}">
-        `;
+    <img src="uploads/products/${image}" style="width: 100%; max-height: auto; object-fit: cover;" class="carousel_img" alt="Product Image ${index + 1}">
+`;
+
         innerContainer.appendChild(carouselItem);
     });
 }
@@ -815,7 +832,7 @@ function createProductCard(product) {
         <a href="{{ url('/product_des') }}" class="product_card_link" data-product='${JSON.stringify(product)}'>
             <div class="card product_card">
                 <h6 class="sold"> Sold ${product.sold || 0} <br> <img src="innocent/assets/image/Rate.png" alt=""> ${product.rating || 0}</h6>
-                <img src="uploads/products/${product_img_url || 'default.jpg'}" class="card-img-top w-100 product_image" alt="${product.title}">
+                <img src="uploads/products/${product_img_url || 'default.jpg'}"  class="card-img-top w-100 product_image" alt="${product.title}">
                 <div class="product_card_title">
                     <div class="main_and_promo_price_area">
                         ${product.ask_for_price ? '<p class="ask-for-price" style="color:red; padding-right: 2px; font-size:23px">Ask for price</p>' : `
@@ -877,9 +894,9 @@ function fetchProductDetails(productId) {
 }
 
 
-        //
 
         // FETCH THE USER DATA
+/*        
 document.addEventListener('DOMContentLoaded', () => {
     // Ensure the code runs after the DOM is fully loaded
     const token = localStorage.getItem('apiToken'); // Get the token from local storage
@@ -890,6 +907,8 @@ document.addEventListener('DOMContentLoaded', () => {
         promptLogin('Authentication token is missing. Please log in.');
     }
 });
+
+*/
 
 function fetchUserData(token) {
     axios.get('/api/v1/getuser', {

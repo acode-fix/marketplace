@@ -1,4 +1,4 @@
-function uploadBannerImage() {
+/* function uploadBannerImage() {
   // Create an input element of type 'file'
   var input = document.createElement('input');
   input.type = 'file';
@@ -32,6 +32,8 @@ function uploadBannerImage() {
     reader.readAsDataURL(file);
   };
 }
+
+
 
 function uploadProfileImage() {
   // Create an input element of type 'file'
@@ -67,6 +69,9 @@ function uploadProfileImage() {
       reader.readAsDataURL(file);
   };
 }
+
+
+
 //mobile-view banner image
 function uploadBannerImage2() {
   // Create an input element of type 'file'
@@ -103,6 +108,7 @@ function uploadBannerImage2() {
   };
 }
 
+
 //mobile-view profile image
 function uploadProfileImage2() {
   // Create an input element of type 'file'
@@ -138,7 +144,7 @@ function uploadProfileImage2() {
       reader.readAsDataURL(file);
   };
 }
-
+*/
 
   function showText() {
     document.getElementById('hover-text').style.display = 'block';
@@ -187,14 +193,19 @@ document.addEventListener('DOMContentLoaded', function() {
   ];
 
   const modalElement = document.getElementById('exampleModal2');
+  if (modalElement) {
 
-  modalElement.addEventListener('show.bs.modal', function() {
-    pages.forEach(page => {
-      page.style.display = 'none';
+    modalElement.addEventListener('show.bs.modal', function() {
+      pages.forEach(page => {
+        page.style.display = 'none';
+      });
+      pages[0].style.display = 'block'; // Show page3 when the modal is shown
     });
-    pages[0].style.display = 'block'; // Show page3 when the modal is shown
-  });
+  
 
+  }
+
+ 
   const shareButton = document.querySelector('#page3 .modal-edit1');
   const deleteButton = document.querySelector('#page3 #deleteButton');
 
@@ -214,6 +225,7 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 
+/*
 
 document.addEventListener('DOMContentLoaded', function() {
   // Get all dropbtns
@@ -248,7 +260,7 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 
-
+*/
 
 
 

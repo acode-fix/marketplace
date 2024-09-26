@@ -1,6 +1,7 @@
-<script>
+{{-- <script>
     // Fetch the user data
     const token = localStorage.getItem('apiToken'); // Get the token from local storage
+   // console.log(token)
 
 if (token) {
     axios.get('/api/v1/getuser', {
@@ -20,17 +21,19 @@ if (token) {
                 title: 'Unauthorized',
                 text: 'Your session has expired. Please log in again.'
             }).then(() => {
-                window.location.href = '/login'; // Redirect to login page
+                window.location.href = '/'; // Redirect to login page
             });
         }
     });
 } else {
+
+    console.log('yes')
     Swal.fire({
         icon: 'error',
         title: 'Missing Token',
-        text: 'Authentication token is missing. Please log in.'
+        text: 'Please log in.'
     }).then(() => {
-        window.location.href = '/login'; // Redirect to login page
+        window.location.href = '/'; // Redirect to login page
     });
 }
 
@@ -49,4 +52,6 @@ function updateUserProfile(user) {
         console.error('User data is null or undefined');
     }
 }
-</script>
+</script> --}}
+
+

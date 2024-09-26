@@ -26,7 +26,9 @@ document.addEventListener('DOMContentLoaded', function() {
     const linkInput = document.getElementById('linkInput');
     const linkButton = document.getElementById('linkButton');
     const paragraph = document.getElementById('display');
-  
+
+    if(linkButton) {
+
     linkButton.addEventListener('click', function() {
       if (linkButton.textContent === 'Link') {
         // Fetch data from the database and set it in the input field
@@ -44,13 +46,17 @@ document.addEventListener('DOMContentLoaded', function() {
         paragraph.textContent = 'Link copied successfully!';
       }
     });
+
+  }
   });
       
   document.addEventListener('DOMContentLoaded', function() {
     const linkInput = document.getElementById('linkInput-mobile');
     const linkButton = document.getElementById('linkButton-mobile');
     const paragraph = document.getElementById('display-mobile');
-  
+
+    if (linkButton) {
+
     linkButton.addEventListener('click', function() {
       if (linkButton.textContent === 'Link') {
         // Fetch data from the database and set it in the input field
@@ -68,6 +74,8 @@ document.addEventListener('DOMContentLoaded', function() {
         paragraph.textContent = 'Link copied successfully!';
       }
     });
+
+  }
   });
   
   

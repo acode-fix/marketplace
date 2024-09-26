@@ -12,12 +12,12 @@
 
 
 
-@include('layouts.others.sidenav')
+@include('layouts.main.sidebar-section')
 
 
      @yield('content')
 
-     @include('layouts.others.profile-js')
+     {{-- @include('layouts.others.profile-js') --}}
 
 
 </body>

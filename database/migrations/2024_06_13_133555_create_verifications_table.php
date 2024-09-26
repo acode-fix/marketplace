@@ -23,7 +23,7 @@ return new class extends Migration
             $table->string('nin_file');
             $table->string('selfie_photo');
             $table->enum('badge_type', ['monthly', 'yearly']);
-            $table->boolean('approved')->default(false);
+            $table->integer('approved')->default(-1);
             $table->timestamps();
         });
     }

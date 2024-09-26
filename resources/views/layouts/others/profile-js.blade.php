@@ -1,4 +1,5 @@
 <script>
+    
     // Fetch the user data
     const token = localStorage.getItem('apiToken'); // Get the token from local storage
 

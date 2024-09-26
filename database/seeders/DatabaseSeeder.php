@@ -3,6 +3,8 @@
 namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+
+use App\Models\Learn;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
@@ -24,6 +26,7 @@ class DatabaseSeeder extends Seeder
            $this->call(CategorySeeder::class);
             $this->call(Role_and_Permission::class);
             $this->call(Ads_categorySeeder::class);
+            $this->call(LearnSeeder::class);
 
     }
 }

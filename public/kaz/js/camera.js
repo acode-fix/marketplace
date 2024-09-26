@@ -38,7 +38,9 @@ document.addEventListener('DOMContentLoaded', () => {
           });
       }
   }
+   if (snap) {
 
+ 
   snap.addEventListener('click', (event) => {
       event.preventDefault(); // Prevent default action
 
@@ -53,7 +55,11 @@ document.addEventListener('DOMContentLoaded', () => {
       retakeButton.style.display = 'inline-block';
       saveButton.style.display = 'inline-block';
       snap.style.display = 'none'; // Hide the snap button after capturing image
-  });
+  })
+};
+ 
+if (retakeButton) {
+
 
   retakeButton.addEventListener('click', (event) => {
       event.preventDefault(); // Prevent default action
@@ -65,13 +71,19 @@ document.addEventListener('DOMContentLoaded', () => {
       saveButton.style.display = 'none';
       snap.style.display = 'inline-block'; // Show the snap button again
   });
+}
+if (useCamera) {
+
 
   useCamera.addEventListener('click', (event) => {
       event.preventDefault(); // Prevent default action
       startWebCam();
-  });
+  })
+};
 
   window.addEventListener('beforeunload', stopWebCam);
+ if (saveButton) {
+
 
   saveButton.addEventListener('click', (event) => {
       event.preventDefault(); // Prevent default action
@@ -102,5 +114,6 @@ document.addEventListener('DOMContentLoaded', () => {
       .catch(error => {
           console.error('Error submitting form:', error);
       });
-  });
+  })
+};
 });

@@ -11,6 +11,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\PasswordResetController;
 use App\Http\Controllers\LearnController;
 use App\Http\Controllers\VerificationController;
+use App\Http\Controllers\NotificationController;
+use App\Http\Controllers\AdvertController;
 use App\Http\Controllers\ShopController;
 
 
@@ -22,9 +24,13 @@ use App\Http\Controllers\ShopController;
 
 //, 'permission:admin,market_user'
 
+Route::get('/allproduct', [ProductController::class, 'index']);
+
 Route::post('/auth/register', [UsersController::class, 'register']);
 Route::post('/auth/login', [UsersController::class, 'loginUser']);
 Route::post('/auth/update',[UsersController::class, 'accountSettings']);
+Route::post('/admin/login', [UsersController::class, 'adminLogin']);
+
 
 
 // reset Password
@@ -52,8 +58,6 @@ Route::middleware('auth:sanctum')->group(function () {
 });
 //
 
-
-
 Route::prefix('v1')->middleware('auth:sanctum')->group(function () {
 
 Route::get('/users', [UsersController::class, 'view']);
@@ -61,6 +65,8 @@ Route::post('/auth/logout',[UsersController::class, 'logoutUser']);
 Route::get('/getuser', [UsersController::class, 'getUserData']);
 Route::get('/referral-link', [UsersController::class, 'getReferralLink']);
 Route::delete('/user', [UsersController::class, 'deleteAccount']);
+
+Route::post('/shop/update',[UsersController::class, 'uploadBanner']);
 
 
 
@@ -79,22 +85,26 @@ Route::post('/admin/verify-user/{id}', [VerificationController::class, 'approveV
 // Route::delete('/product/{id}',[ProductController::class, 'delete'])->middleware('can:delete_product');
 
 //product
-Route::get('/allproduct', [ProductController::class, 'index']);
+//Route::get('/allproduct', [ProductController::class, 'index']);
 Route::get('/product/filter', [ProductController::class, 'filterProducts']);
 Route::post('/product', [ProductController::class, 'store']);
 Route::get('/product/user/{id}', [ProductController::class, 'showUser']);
-Route::get('/product/{id}', [ProductController::class, 'view']);
-Route::get('/product/{id}/edit',[ProductController::class, 'edit']);
-Route::post('/product/{id}',[ProductController::class, 'update']);
+
+Route::get('/product/{id}', [ProductController::class, 'getProduct']);
+//Route::get('/product/{id}/edit',[ProductController::class, 'edit']);
+
+//Route::post('/product/{id}',[ProductController::class, 'update']);
+Route::post('/product/edit/{id}', [ProductController::class, 'update']);
+
 Route::get('/product/search', [ProductController::class, 'search']);
-Route::delete('/product/{id}',[ProductController::class, 'delete']);
+Route::delete('/product/delete/{id}',[ProductController::class, 'delete']);
 Route::get('/user/products', [ProductController::class, 'userProducts']);
 Route::get('/product-details/{id}', [ProductController::class, 'getProductDetails']);
 // Route::get('/sellers-shop/{productId}', [ProductController::class, 'showSellerShop']);
 Route::get('/seller-details/{productId}', [ProductController::class, 'getSellerDetails']);
 Route::get('/sellers/{sellerId}/products', [ProductController::class, 'getProductsBySeller']);
 
-Route::get('/seller-shop/{userId}', [UserController::class, 'showSellerShop']);
+Route::get('/seller-shop/{userId}', [UsersController::class, 'showSellerShop']);
 
 
 

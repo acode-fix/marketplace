@@ -40,7 +40,10 @@ document.addEventListener('DOMContentLoaded', function() {
 function hideIcon(self){
   self.style.backgroundImage='none';
 }
+
+/*
 document.addEventListener("DOMContentLoaded", function() {
+  
   const nextBtn = document.getElementById('nextBtn');
   const modalArrow = document.querySelector('.modal-arrow');
   const pages = [
@@ -53,29 +56,43 @@ document.addEventListener("DOMContentLoaded", function() {
   ];
   let currentPageIndex = 0;
 
-  nextBtn.addEventListener('click', function() {
-    if (currentPageIndex < pages.length - 1) {
-      pages[currentPageIndex].style.display = 'none';
-      currentPageIndex++;
-      pages[currentPageIndex].style.display = 'block';
-      if (currentPageIndex === pages.length - 1) {
-        nextBtn.style.display = 'none'; // Hide the next button on the last page
-      }
-    }
-  });
+  if(nextBtn) {
 
-  modalArrow.addEventListener('click', function() {
-    if (currentPageIndex > 0) {
-      pages[currentPageIndex].style.display = 'none';
-      currentPageIndex--;
-      pages[currentPageIndex].style.display = 'block';
-      if (nextBtn.style.display === 'none') {
-        nextBtn.style.display = 'block'; // Show the next button when navigating back from the last page
+    nextBtn.addEventListener('click', function() {
+      if (currentPageIndex < pages.length - 1) {
+        pages[currentPageIndex].style.display = 'none';
+        currentPageIndex++;
+        pages[currentPageIndex].style.display = 'block';
+        if (currentPageIndex === pages.length - 1) {
+          nextBtn.style.display = 'none'; // Hide the next button on the last page
+        }
       }
+    });
+
+    if (modalArrow) {
+
+      modalArrow.addEventListener('click', function() {
+        if (currentPageIndex > 0) {
+          pages[currentPageIndex].style.display = 'none';
+          currentPageIndex--;
+          pages[currentPageIndex].style.display = 'block';
+          if (nextBtn.style.display === 'none') {
+            nextBtn.style.display = 'block'; // Show the next button when navigating back from the last page
+          }
+        }
+      });
+
+
     }
-  });
+  
+
+
+  }
+
+ 
+ 
 });
-
+*/
 
 
 
@@ -98,9 +115,15 @@ document.addEventListener("DOMContentLoaded", function() {
 
   // Function to toggle readonly attribute
   function toggleReadOnly(input) {
+
+   // console.log(input)
     input.readOnly = !input.readOnly;
   }
 
+
+  if (editUsernameBtn && editPhoneBtn && editProfileBtn && saveBtn) {
+
+ 
   // Add click event listeners to edit buttons
   editUsernameBtn.addEventListener('click', () => {
     toggleReadOnly(usernameInput);
@@ -125,39 +148,48 @@ document.addEventListener("DOMContentLoaded", function() {
     // toggleReadOnly(whatsappInput);
     toggleReadOnly(profileInput);
   });
+}
 });
 
 document.addEventListener("DOMContentLoaded", function() {
   //  Get all the input fields
   const usernameInput = document.getElementById('usernameInput1');
+  const profileInput = document.getElementById('profileInput1');
   const phoneInput = document.getElementById('phoneInput1');
-  const whatsappInput = document.getElementById('whatsappInput1');
 
   // Get all the edit buttons
   const editUsernameBtn = document.getElementById('editUsernameBtn1');
+  const editProfileBtn = document.getElementById('editProfileBtn1');
   const editPhoneBtn = document.getElementById('editPhoneBtn1');
-  const editWhatsappBtn = document.getElementById('editWhatsappBtn1');
 
   // Get the save button
   const saveBtn = document.getElementById('saveBtn1');
 
   // Function to toggle readonly attribute
   function toggleReadOnly(input) {
-    input.readOnly = !input.readOnly;
+    if(input) {
+      input.readOnly = !input.readOnly;
+    }
+    
   }
+ if (usernameInput && profileInput && phoneInput && saveBtn) {
 
-  // Add click event listeners to edit buttons
-  editUsernameBtn.addEventListener('click', () => {
-    toggleReadOnly(usernameInput);
-  });
+    // Add click event listeners to edit buttons
+    editUsernameBtn.addEventListener('click', () => {
+      toggleReadOnly(usernameInput);
+    });
+  
+    editProfileBtn.addEventListener('click', () => {
+      toggleReadOnly(profileInput);
+    });
+  
+    editPhoneBtn.addEventListener('click', () => {
+      toggleReadOnly(phoneInput);
+    });
+  
 
-  editPhoneBtn.addEventListener('click', () => {
-    toggleReadOnly(phoneInput);
-  });
 
-  editWhatsappBtn.addEventListener('click', () => {
-    toggleReadOnly(whatsappInput);
-  });
+
 
   // Add click event listener to save button
   saveBtn.addEventListener('click', () => {
@@ -165,7 +197,8 @@ document.addEventListener("DOMContentLoaded", function() {
     toggleReadOnly(usernameInput);
     toggleReadOnly(phoneInput);
     toggleReadOnly(whatsappInput);
-  });
+  })
+};
 });
 
 
@@ -173,6 +206,10 @@ document.addEventListener("DOMContentLoaded", function() {
 // Get the input element and the default image
 const imgInp = document.getElementById('actual-btn-desktop');
 const defaultImage = document.getElementById('preview-image');
+
+if (imgInp) {
+
+
 
 // Add onchange event listener
 imgInp.addEventListener('change', function(evt) {
@@ -189,7 +226,7 @@ imgInp.addEventListener('change', function(evt) {
         };
         newImage.src = URL.createObjectURL(file);
     }
-})
+})}
 });
 
 function selectPlan(plan) {

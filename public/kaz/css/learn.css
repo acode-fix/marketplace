@@ -3,6 +3,7 @@
 body {
   font-family: "poppins";
   background-color: #f6f8fc;
+
 }
 
 /* holds the whole header/nav-bar style */
@@ -334,28 +335,6 @@ input[type="search"] {
   align-items: center;
   width: 150px;
   height: 200px;
-}
-
-.myLink.clicked span {
-  /* Your styles here */
-  border: 1px solid rgb(236, 231, 231);
-  width: 150px;
-  padding-top: 4px;
-  padding-bottom: 4px;
-  border-radius: 10px;
-  box-shadow: 0px 4px 4px -2px rgba(0, 0, 0, 0.2);
-}
-
-/* remove the default color */
-.links a {
-  text-decoration: none;
-  color: black
-}
-
-/* style each link when it is clicked on */
-.links.clicked a {
-  text-decoration: none;
-  color: blue
 }
 
 /* style the profile text  */

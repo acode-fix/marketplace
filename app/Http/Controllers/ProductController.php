@@ -85,6 +85,7 @@ public function index()
 
 //
 public function getProductDetails($id) {
+
     $product = Product::with('user')->find($id);
 
     if (!$product) {
@@ -162,12 +163,13 @@ public function filterProducts(Request $request)
 
     } catch (\Exception $e) {
         // Log the error for debugging
-        \Log::error('Error filtering products: ' . $e->getMessage());
+        Log::error('Error filtering products: ' . $e->getMessage());
 
         // Return error response
         return response()->json(['error' => 'Internal Server Error'], 500);
     }
 }
+
 
     /**
      * Store a newly created resource in storage.
@@ -187,7 +189,7 @@ public function filterProducts(Request $request)
             'location' => 'required',
             // 'actual_price' => 'required',
             // 'promo_price' => 'required',
-            'condition' => ['required','in:used,new'],
+            'condition' => ['required','in:fairly_used,new'],
             // 'price_status' => ['required','in:cash_price,negotiable'],
            'ask_for_price' => 'required|boolean',
             'image_url' => 'required',
@@ -210,9 +212,10 @@ public function filterProducts(Request $request)
                'errors' => $validateProduct->errors()
            ], 401);
        }
+      // log::info($request->user()->id);
 
        $product = Product::create([
-        'user_id' => $request->user()->id,
+           'user_id' => $request->user()->id,
         // 'shop_id' => $request->shop_id,
             'title' => $request->title,
             'description' => $request->description,
@@ -240,14 +243,14 @@ if ($request->hasFile('image_url')) {
     }
 
     // Debugging: Log the structure of the files array
-    \Log::info('Image Files Count:', ['count' => count($files)]);
+    Log::info('Image Files Count:', ['count' => count($files)]);
 
     foreach ($files as $file) {
         // Additional debugging to check each file
-        \Log::info('Processing File:', ['originalName' => $file->getClientOriginalName(), 'isValid' => $file->isValid()]);
+        Log::info('Processing File:', ['originalName' => $file->getClientOriginalName(), 'isValid' => $file->isValid()]);
 
         if (!$file->isValid()) {
-            \Log::error('Invalid file detected', ['file' => $file->getClientOriginalName()]);
+            Log::error('Invalid file detected', ['file' => $file->getClientOriginalName()]);
             continue;
         }
 
@@ -257,7 +260,7 @@ if ($request->hasFile('image_url')) {
     }
 
     // Debugging: Log the image names array
-    \Log::info('Processed Image Names:', $imageNames);
+    Log::info('Processed Image Names:', $imageNames);
 
     // Debugging: Check if image names are being collected
     if (empty($imageNames)) {
@@ -296,18 +299,34 @@ return response()->json([
     /**
      * Display the specified resource.
      */
-    public function view(string $id)
+    public function getProduct(string $id)
     {
-        //
+    
         $product =  Product::find($id);
-      //$product =  ['products'=> $product ];
 
-      return response()->json([
-        'status' => true,
-        'message' => 'products',
-        'data' => $product,
-    ], 200);
+        if($product) {
 
+            return response()->json([
+                'status' => true,
+                'message' => 'products',
+                'data' => $product,
+            ], 200);
+        
+
+
+        }else {
+
+            return response()->json([
+                'status' => false,
+                'message' => 'Product Not Found',
+            
+            ], 404);
+
+
+        }
+    
+
+     
     }
 
     /**
@@ -348,10 +367,102 @@ return response()->json([
         // $data =  ['products'=> $product ];
     }
 
+
+
+public function update(Request $request, $id) {
+
+    $validator = Validator::make($request->all(),[
+        'title' => 'required|string',
+        'description' => 'required | string',
+        'quantity'  => 'required|numeric',
+        'location' => 'required',
+        'condition' => ['required','in:fairly_used,new'],
+        'actual_price' => 'required|numeric',
+        'promo_price' => 'required|numeric',
+        'image_url' => 'required|array', 
+        'image_url.*' => 'required|image|mimes:jpg,jpeg,png,gif|max:2048',
+
+    ]);
+
+    if($validator->fails()) {
+        return response()->json([
+            'status' => false,
+            'message' => 'Validation Error',
+            'errors' => $validator->errors(),
+        ],422);
+
+
+    }
+    
+
+    if($request->has('image_url')) {
+
+        $files = $request->file('image_url');
+        if (!is_array($files)) {
+            $files = [$files];
+        }
+
+        $imageNames = [];
+       
+        foreach ($files as $file) {
+
+            $imageName = md5($file->getClientOriginalName() ) . mt_rand(000, 999) . "." . $file->getClientOriginalExtension();
+            $file->move(public_path('uploads/products/'), $imageName);
+            $imageNames[] = $imageName;
+        }
+
+       // Log::info($imageNames);
+        
+
+    }
+
+
+
+  $userId  = $request->user()->id;
+
+  $product = Product::find($id);
+  
+  $product->user_id = $userId;
+  $product->title = $request->input('title');
+  $product->description = $request->input('description');
+  $product->quantity = $request->input('quantity');
+  $product->location = $request->input('location');
+  $product->actual_price = $request->input('actual_price');
+  $product->promo_price = $request->input('promo_price');
+  $product->condition = $request->input('condition');
+  $product->image_url = json_encode($imageNames);
+
+  $product->save();
+
+  if($product->save()) {
+
+    return response()->json([
+        'status' => true,
+        'message' => 'Product Details Updated Successfully',
+
+    ],200);
+  }else {
+
+    return response()->json([
+        'status' => false,
+        'message' => 'Something Went Wrong!!',
+
+    ],500);
+
+
+  }
+
+
+
+}
+
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+
+/*
+
+ public function update(Request $request, string $id)
     {
         try{
         //
@@ -366,7 +477,7 @@ return response()->json([
             'location' => 'required',
             'actual_price' => 'required',
             'promo_price' => 'required',
-            'condition' => ['required','in:used,new'],
+            'condition' => ['required','in:fairly_used,new'],
             'price_status' => ['required','in:cash_price,negotiable'],
         ]);
 
@@ -375,7 +486,7 @@ return response()->json([
                'status' => false,
                'message' => 'validation error',
                'errors' => $validateProduct->errors()
-           ], 401);
+           ], 422);
        }
 
        $validatedData = array_filter($validateProduct->getData());
@@ -408,7 +519,7 @@ return response()->json([
 }
 
 }
-
+*/
 
     // FOR PRODUCT SEARCH
     public function search(Request $request)
@@ -487,7 +598,7 @@ return response()->json([
                 ], 200);
         } catch (\Exception $e) {
             // Log the error for further investigation
-            \Log::error("Error fetching user products: ".$e->getMessage());
+            Log::error("Error fetching user products: ".$e->getMessage());
 
             // Return a generic error message to the client
             return response()->json(['message' => 'Internal Server Error'], 500);
@@ -499,20 +610,33 @@ return response()->json([
      */
     public function delete(string $id)
     {
-        //
+        //log::info($id);
+        
         $product = Product::find($id);
-        $prd =  $product->delete();
+
+       $prd =  $product->delete();
 
               if($prd){
                 return response()->json([
                     'status' => true,
                     'message' => 'Product deleted successfully',
                 ], 200);
-              }else {
+              }
+            
+           else {
                 return response()->json([
                     'status' => false,
-                    'message' => 'un-enable to delete product',
+                    'message' => 'Unable to delete product',
+                    
                 ], 500);
               }
+
+              
+        return response()->json([
+            'status' => false,
+            'message' => 'Product Not Found'
+
+        ],404);
+              
     }
 }

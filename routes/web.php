@@ -7,9 +7,22 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CategoriesController;
 use App\Http\Controllers\ShopController;
+use App\Http\Controllers\UsersController;
 
 
+Route::get('/admin/dashboard', function() {
+    return view('admin.dashboard');
+});
 
+Route::get('/admin/login', function() {
+
+    return view('admin.login');
+});
+Route::get('/admin/reset-password', function() {
+
+    return view('admin.reset_password');
+
+})->name('reset');
 
 
 
@@ -34,6 +47,7 @@ Route::get('/form', function () {
 Route::get('/learn3', function () {
     return view('frontend.learn3');
 });
+
 Route::get('/learn4', function () {
     return view('frontend.learn4');
 });

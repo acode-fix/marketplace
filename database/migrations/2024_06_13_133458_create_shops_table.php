@@ -16,10 +16,10 @@ return new class extends Migration
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->string('name');
             $table->string('shop_number')->unique();
-            $table->text('about')->nullable();
-            $table->string('location')->nullable();
-            $table->date('member_since')->nullable();
-            $table->integer('total_listed_products')->default(0);
+           // $table->text('about')->nullable();
+            //$table->string('location')->nullable();
+           // $table->date('member_since')->nullable();
+           // $table->integer('total_listed_products')->default(0);
             $table->integer('reviews')->default(0);
             $table->boolean('verified')->default(false);
             $table->string('banner_image')->nullable();

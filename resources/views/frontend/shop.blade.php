@@ -4,8 +4,6 @@
 @section('content')
 
     <div class="main">
-
-
         <div class="content">
             <div class="container">
                 <div class="row">
@@ -13,9 +11,9 @@
                         <div style="width: 90%;" class="card mb-3 ms-3 main-card-preview">
                             <form id='banner-image-form' action="">
                                 <img style="height:220px; width: 100%;" id="banner"
-                                    src="kaz/images/carousel 1.png" class="card-img-top main-img-border"
+                                    src="kaz/images/carousel 1.png" class="card-img-top main-img-border js-backend-img"
                                     alt="...">
-                                <div onclick="uploadBannerImage()" class="camera">
+                                <div  class="camera js-banner-upload js-banner">
                                   <i class="fa-solid fa-camera icon-cam"></i>
                                 </div>
                             </form>
@@ -24,16 +22,16 @@
                                     <div class="col mt-2">
                                         <form id="profile-image-form" action="">
                                             <div class="banner-s">
-                                                <img id="kaz/images-dp" src="kaz/images/dp.png" class="ms-2"
+                                                <img id="images-dp" src="kaz/images/dp.png" class="ms-2 js-kaz-images-dp"
                                                     alt="">
-                                                <div onclick="uploadProfileImage()" class="camera2">
+                                                <div  class="camera2 js-profile">
                                                     <i class="fa-solid fa-camera icon-cam2"></i>
                                                 </div>
                                         </form>
                                         <div class="mt-4 ms-4">
-                                            <h5 class="mired-name" id="mired-name">Loading</h5>
-                                            <h6 class="mired-email" id="mired-email">loading</h6>
-                                            <a class="verified-link" href="">Unverified seller</a>
+                                            <h5 class="mired-name js-mired-name" id="mired-name">Loading</h5>
+                                            <h6 class="mired-email js-mired-email" id="mired-email">loading</h6>
+                                            <a class="verified-link js-verification" href="{{ url('/sellers-shop') }}">Unverified seller</a>
                                         </div>
                                     </div>
                                 </div>
@@ -110,114 +108,6 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="card card-preview" data-card-index="0">
-                                <h6 class="sold">Sold 75</h6>
-                                <img src="kaz/images/Picture of product (USB).png"
-                                    class="card-img-top w-100 image-border" alt="...">
-                                <div class="card-body">
-                                    <div class="card-structure">
-                                        <h6 class="amount">$3,990.00 <span class="amount-span">$5,999.00</span></h6>
-                                        <div class="star-layout">
-                                            <div>
-                                                <img src="kaz/images/Rate.png" class="img-fluid image-rate"
-                                                    width="10px" alt="">
-                                                <img src="kaz/images/Rate.png" class="img-fluid image-rate"
-                                                    width="10px" alt="">
-                                                <img src="kaz/images/Rate.png" class="img-fluid image-rate"
-                                                    width="10px" alt="">
-                                            </div>
-                                            <div>
-                                                <h6 class="ps-1 rate-no">5.0</h6>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="footer-card">
-                                        <p class="card-text infinix-text pt-3">Infinix hot 5 (ultralight 5gb ram,
-                                            500mph</p>
-                                        <button type="button" class="dropbtn2 top">...</button>
-                                    </div>
-                                    <div id="myDropdown" class="dropdown-content">
-                                        <a class="share" data-bs-toggle="modal" data-bs-target="#exampleModal-1"
-                                            data-bs-whatever="@mdo">share</a>
-                                        <a href="#home">Edit</a>
-                                        <a href="#about">Boost</a>
-                                        <a class="share" data-bs-toggle="modal" data-bs-target="#exampleModal-2"
-                                            data-bs-whatever="@mdo">Delete</a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="card card-preview">
-                                <h6 class="sold">Sold 75</h6>
-                                <img src="kaz/images/Picture of product (USB).png"
-                                    class="card-img-top w-100 image-border" alt="...">
-                                <div class="card-body">
-                                    <div class="card-structure">
-                                        <h6 class="amount">$3,990.00 <span class="amount-span">$5,999.00</span></h6>
-                                        <div class="star-layout">
-                                            <div>
-                                                <img src="kaz/images/Rate.png" class="img-fluid image-rate"
-                                                    width="10px" alt="">
-                                                <img src="kaz/images/Rate.png" class="img-fluid image-rate"
-                                                    width="10px" alt="">
-                                                <img src="kaz/images/Rate.png" class="img-fluid image-rate"
-                                                    width="10px" alt="">
-                                            </div>
-                                            <div>
-                                                <h6 class="ps-1 rate-no">5.0</h6>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="footer-card">
-                                        <p class="card-text infinix-text pt-3">Infinix hot 5 (ultralight 5gb ram,
-                                            500mph</p>
-                                        <button type="button" class="dropbtn2  top">...</button>
-                                    </div>
-                                    <div id="myDropdown" class="dropdown-content">
-                                        <a class="share" data-bs-toggle="modal" data-bs-target="#exampleModal-1"
-                                            data-bs-whatever="@mdo">share</a>
-                                        <a href="#home">Edit</a>
-                                        <a href="#about">Boost</a>
-                                        <a class="share" data-bs-toggle="modal" data-bs-target="#exampleModal-2"
-                                            data-bs-whatever="@mdo">Delete</a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="card card-preview">
-                                <h6 class="sold">Sold 75</h6>
-                                <img src="kaz/images/Picture of product (USB).png"
-                                    class="card-img-top w-100 image-border" alt="...">
-                                <div class="card-body">
-                                    <div class="card-structure">
-                                        <h6 class="amount">$3,990.00 <span class="amount-span">$5,999.00</span></h6>
-                                        <div class="star-layout">
-                                            <div>
-                                                <img src="kaz/images/Rate.png" class="img-fluid image-rate"
-                                                    width="10px" alt="">
-                                                <img src="kaz/images/Rate.png" class="img-fluid image-rate"
-                                                    width="10px" alt="">
-                                                <img src="kaz/images/Rate.png" class="img-fluid image-rate"
-                                                    width="10px" alt="">
-                                            </div>
-                                            <div>
-                                                <h6 class="ps-1 rate-no">5.0</h6>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="footer-card">
-                                        <p class="card-text infinix-text pt-3">Infinix hot 5 (ultralight 5gb ram,
-                                            500mph</p>
-                                        <button type="button" class="dropbtn2  top">...</button>
-                                    </div>
-                                    <div id="myDropdown" class="dropdown-content">
-                                        <a class="share" data-bs-toggle="modal" data-bs-target="#exampleModal-1"
-                                            data-bs-whatever="@mdo">share</a>
-                                        <a href="#home">Edit</a>
-                                        <a href="#about">Boost</a>
-                                        <a class="share" data-bs-toggle="modal" data-bs-target="#exampleModal-2"
-                                            data-bs-whatever="@mdo">Delete</a>
-                                    </div>
-                                </div>
-                            </div>
                             <div class="card card-preview">
                                 <h6 class="sold">Sold 75</h6>
                                 <img src="kaz/images/Picture of product (USB).png"
@@ -350,6 +240,42 @@
                                     <div class="footer-card">
                                         <p class="card-text infinix-text pt-3">Infinix hot 5 (ultralight 5gb ram,
                                             500mph</p>
+                                        <button type="button" class="dropbtn2 top">...</button>
+                                    </div>
+                                    <div id="myDropdown" class="dropdown-content">
+                                        <a class="share" data-bs-toggle="modal" data-bs-target="#exampleModal-1"
+                                            data-bs-whatever="@mdo">share</a>
+                                        <a href="#home">Edit</a>
+                                        <a href="#about">Boost</a>
+                                        <a class="share" data-bs-toggle="modal" data-bs-target="#exampleModal-2"
+                                            data-bs-whatever="@mdo">Delete</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card card-preview">
+                                <h6 class="sold">Sold 75</h6>
+                                <img src="kaz/images/Picture of product (USB).png"
+                                    class="card-img-top w-100 image-border" alt="...">
+                                <div class="card-body">
+                                    <div class="card-structure">
+                                        <h6 class="amount">$3,990.00 <span class="amount-span">$5,999.00</span></h6>
+                                        <div class="star-layout">
+                                            <div>
+                                                <img src="kaz/images/Rate.png" class="img-fluid image-rate"
+                                                    width="10px" alt="">
+                                                <img src="kaz/images/Rate.png" class="img-fluid image-rate"
+                                                    width="10px" alt="">
+                                                <img src="kaz/images/Rate.png" class="img-fluid image-rate"
+                                                    width="10px" alt="">
+                                            </div>
+                                            <div>
+                                                <h6 class="ps-1 rate-no">5.0</h6>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="footer-card">
+                                        <p class="card-text infinix-text pt-3">Infinix hot 5 (ultralight 5gb ram,
+                                            500mph</p>
                                         <button type="button" class="dropbtn2  top">...</button>
                                     </div>
                                     <div id="myDropdown" class="dropdown-content">
@@ -397,10 +323,150 @@
                                             data-bs-whatever="@mdo">Delete</a>
                                     </div>
                                 </div>
-                            </div> --}}
+                            </div>
+                            <div class="card card-preview">
+                                <h6 class="sold">Sold 75</h6>
+                                <img src="kaz/images/Picture of product (USB).png"
+                                    class="card-img-top w-100 image-border" alt="...">
+                                <div class="card-body">
+                                    <div class="card-structure">
+                                        <h6 class="amount">$3,990.00 <span class="amount-span">$5,999.00</span></h6>
+                                        <div class="star-layout">
+                                            <div>
+                                                <img src="kaz/images/Rate.png" class="img-fluid image-rate"
+                                                    width="10px" alt="">
+                                                <img src="kaz/images/Rate.png" class="img-fluid image-rate"
+                                                    width="10px" alt="">
+                                                <img src="kaz/images/Rate.png" class="img-fluid image-rate"
+                                                    width="10px" alt="">
+                                            </div>
+                                            <div>
+                                                <h6 class="ps-1 rate-no">5.0</h6>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="footer-card">
+                                        <p class="card-text infinix-text pt-3">Infinix hot 5 (ultralight 5gb ram,
+                                            500mph</p>
+                                        <button type="button" class="dropbtn2  top">...</button>
+                                    </div>
+                                    <div id="myDropdown" class="dropdown-content">
+                                        <a class="share" data-bs-toggle="modal" data-bs-target="#exampleModal-1"
+                                            data-bs-whatever="@mdo">share</a>
+                                        <a href="#home">Edit</a>
+                                        <a href="#about">Boost</a>
+                                        <a class="share" data-bs-toggle="modal" data-bs-target="#exampleModal-2"
+                                            data-bs-whatever="@mdo">Delete</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card card-preview">
+                                <h6 class="sold">Sold 75</h6>
+                                <img src="kaz/images/Picture of product (USB).png"
+                                    class="card-img-top w-100 image-border" alt="...">
+                                <div class="card-body">
+                                    <div class="card-structure">
+                                        <h6 class="amount">$3,990.00 <span class="amount-span">$5,999.00</span></h6>
+                                        <div class="star-layout">
+                                            <div>
+                                                <img src="kaz/images/Rate.png" class="img-fluid image-rate"
+                                                    width="10px" alt="">
+                                                <img src="kaz/images/Rate.png" class="img-fluid image-rate"
+                                                    width="10px" alt="">
+                                                <img src="kaz/images/Rate.png" class="img-fluid image-rate"
+                                                    width="10px" alt="">
+                                            </div>
+                                            <div>
+                                                <h6 class="ps-1 rate-no">5.0</h6>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="footer-card">
+                                        <p class="card-text infinix-text pt-3">Infinix hot 5 (ultralight 5gb ram,
+                                            500mph</p>
+                                        <button type="button" class="dropbtn2  top">...</button>
+                                    </div>
+                                    <div id="myDropdown" class="dropdown-content">
+                                        <a class="share" data-bs-toggle="modal" data-bs-target="#exampleModal-1"
+                                            data-bs-whatever="@mdo">share</a>
+                                        <a href="#home">Edit</a>
+                                        <a href="#about">Boost</a>
+                                        <a class="share" data-bs-toggle="modal" data-bs-target="#exampleModal-2"
+                                            data-bs-whatever="@mdo">Delete</a>
+                                    </div>
+                                </div>
+                            </div>   --}}
 
                         </div>
                     </div>
+                   
+                      <div class="modal fade" id="exampleModal-edit" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                          <div class="modal-content">
+                            <div class="modal-header">
+                              <h5 class="modal-title" id="exampleModalLabel">Edit Product</h5>
+                              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                              <!-- Step 1 -->
+                              <div class="modal-step-1">
+                                <form id="edit-product-form-1" enctype="multipart/form-data">
+                                    <div class="mb-3">
+                                        <label for="Title" class="col-form-label">Title:</label>
+                                        <input type="text" class="form-control" id="title" name = "title">
+                                      </div>
+                                      <div class="mb-3">
+                                        <label for="Location" class="col-form-label">Location:</label>
+                                        <input type="text" class="form-control" id="location"  name = "location">
+                                      </div>
+                                      <div class="mb-3">
+                                        <label for="quantity" class="col-form-label">Quantity:</label>
+                                        <input type="text" class="form-control" id="quantity"  name = "quantity">
+                                      </div>
+    
+                                    <div class="mb-3">
+                                      <label for="message-text" class="col-form-label">Description:</label>
+                                      <textarea class="form-control" id="description"  name = "description"></textarea>
+                                    </div>
+                                </form>
+                                <button style="float: right" type="button" class="btn btn-primary next-to-step-2">Next</button>
+                              </div>
+                      
+                              <!-- Step 2 -->
+                              <div class="modal-step-2" style="display: none;">
+                                <form id="edit-product-form-2"  enctype="multipart/form-data">
+                                    <div class="mb-3">
+                                        <label for="actual_price" class="col-form-label">Actual Price:</label>
+                                        <input type="number" class="form-control" id="actual_price"  name = "actual_price">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="promo_price" class="col-form-label">Promo Price:</label>
+                                        <input type="number" class="form-control" id="promo_price"  name = "promo_price">
+                                    </div>
+                                    <div class="mb-3">
+                                    <select name="condition" class="form-select" aria-label="Default select example">
+                                        <option selected="">Condition</option>
+                                        <option value="fairly_used">Fairly Used</option>
+                                        <option value="new">New</option>   
+                                    </select>
+                                  </div>
+                                  <div class="mb-3">
+                                    <label for="formFile" class="form-label">Upload</label>
+                                    <input class="form-control" type="file"   multiple name="image_url[]">
+                                  </div>
+                                
+                                </form>
+                                <button type="button" class="btn btn-secondary previous-to-step-1" >Previous</button>
+                                <button type="submit" class="btn btn-primary" id="save-product">Update</button>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+
+
+
                     <div class="modal fade" id="exampleModal-1" tabindex="-1" aria-labelledby="exampleModalLabel"
                         aria-hidden="true">
                         <div class="modal-dialog modal-dialog-centered" style="align-items: flex-end;">
@@ -449,6 +515,7 @@
                             </div>
                         </div>
                     </div>
+                    
 
                     <div class="modal fade" id="exampleModal-2" tabindex="-1" aria-labelledby="exampleModalLabel"
                         aria-hidden="true">
@@ -463,8 +530,8 @@
                                         <h6>Are you sure you want to delist this product</h6>
                                     </div>
                                     <div class="delist mt-4 mb-3">
-                                        <button type="button" class="btn cancel-btn">No</button>
-                                        <button type="button" class="btn del-btn ">Delist product</button>
+                                        <button type="button" class="btn cancel-btn js-cancel-btn">No</button>
+                                        <button type="button" class="btn del-btn js-delist-btn">Delist product</button>
                                     </div>
 
                                 </div>
@@ -536,8 +603,8 @@
             <div class="card mb-3 mt-3  main-card-mobile">
                 <form id="banner-image-form2" action="">
                     <img style="height:180px;" id="banner2" src="kaz/images/Picture of product (Tablet).png"
-                        class="card-img-top" alt="...">
-                    <div onclick="uploadBannerImage2()" class="camera">
+                        class="card-img-top js-backend-img" alt="...">
+                    <div  class="camera  js-banner-upload  js-banner">
                         <i class="fa-solid fa-camera icon-cam"></i>
                     </div>
                 </form>
@@ -545,16 +612,16 @@
                     <div style="display: flex; align-items: center;justify-content: space-between;">
                         <div style="display: flex;align-items: center;">
                             <form id="profile-image-form2" action="">
-                                <img id="kaz/images-dp2" width="50px" src="kaz/images/dp.png" alt="">
+                                <img id="kaz/images-dp2" class="js-kaz-images-dp" width="50px" src="kaz/images/dp.png" alt="">
                                 <div class="camera-mobile">
-                                    <img onclick="uploadProfileImage2()" class="icon-cam-mobile"
+                                    <img  class="icon-cam-mobile js-profile"
                                         src="kaz/images/camera-shop.svg" alt="">
                                 </div>
                             </form>
                             <div class="ms-3">
-                                <h6 class="mired-shop-m pt-3">Mired Augustine</h6>
-                                <h6 class="mired-shop-email-m">miredaugustine@gmail.com</h6>
-                                <a class="mired-un-m" href="">Unverified seller</a>
+                                <h6 class="mired-shop-m pt-3  js-mired-name">Mired Augustine</h6>
+                                <h6 class="mired-shop-email-m js-mired-email">miredaugustine@gmail.com</h6>
+                                <a class="mired-un-m  js-verification " href="{{ url('/sellers-shop') }}">Unverified seller</a>
                             </div>
 
                         </div>
@@ -589,7 +656,7 @@
                 <div class="row mt-4">
                     <div class="col">
                         <div class="mobile-card">
-                            <div class="card card-preview" data-bs-toggle="modal" data-bs-target="#exampleModal2"
+                            {{-- <div class="card card-preview" data-bs-toggle="modal" data-bs-target="#exampleModal2"
                                 data-bs-whatever="@mdo" data-card-id="1">
                                 <div class="sold-mobile">
                                     <h6 class="amount-sold-m ps-1 pt-1">Sold 100</h6>
@@ -783,7 +850,7 @@
                                     </div>
 
                                 </div>
-                            </div>
+                            </div> --}}
                         </div>
                     </div>
                 </div>
@@ -800,9 +867,9 @@
                                     <button style="width: 100%;" type="button"
                                         class="btn btn-warning modal-edit1 btn-lg pt-3 pb-3 mb-2">Share</button>
                                     <button style="width: 100%;" type="button"
-                                        class="btn btn-warning modal-edit1 btn-lg pt-3 pb-3">Edit</button>
+                                        class="btn btn-warning modal-edit1 btn-lg pt-3 pb-3 js-modal-edit" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Edit</button>
                                     <button style="width: 100%;" type="button"
-                                        class="btn btn-warning modal-edit1 btn-lg pt-3 pb-3 mt-2"
+                                        class="btn btn-warning modal-edit1 btn-lg pt-3 pb-3 mt-2 "
                                         id="deleteButton">Delete</button> <!-- Added an id to the Delete button -->
                                     <button style="width: 100%;" type="button"
                                         class="btn btn-warning modal-edit-boost btn-lg pt-3 pb-3 mt-3">Boost</button>
@@ -846,8 +913,8 @@
                                         <h6>Are you sure you want to delist this product</h6>
                                     </div>
                                     <div class="delist mt-4 mb-3">
-                                        <button type="button" class="btn cancel-btn">No</button>
-                                        <button type="button" class="btn del-btn ">Delist product</button>
+                                        <button type="button" class="btn cancel-btn js-cancel-mobile">No</button>
+                                        <button type="button" class="btn del-btn js-delist-mobile ">Delist product</button>
 
                                     </div>
 
@@ -856,6 +923,72 @@
                         </div>
                     </div>
                 </div>
+
+                <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Edit Product</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                          </div>
+                          <div class="modal-body">
+                            <!-- Step 1 -->
+                            <div class="modal-step-1">
+                              <form id="edit-product-form-mobile1" enctype="multipart/form-data">
+                                  <div class="mb-3">
+                                      <label for="Title" class="col-form-label">Title:</label>
+                                      <input type="text" class="form-control title" name ="title">
+                                    </div>
+                                    <div class="mb-3">
+                                      <label for="Location" class="col-form-label">Location:</label>
+                                      <input type="text" class="form-control location"  name = "location">
+                                    </div>
+                                    <div class="mb-3">
+                                      <label for="quantity" class="col-form-label">Quantity:</label>
+                                      <input type="text" class="form-control quantity"  name = "quantity">
+                                    </div>
+  
+                                  <div class="mb-3">
+                                    <label for="message-text" class="col-form-label">Description:</label>
+                                    <textarea class="form-control description"  name = "description"></textarea>
+                                  </div>
+                              </form>
+                              <button style="float: right" type="button" class="btn btn-primary next-to-step-2">Next</button>
+                            </div>
+                    
+                            <!-- Step 2 -->
+                            <div class="modal-step-2" style="display: none;">
+                              <form id="edit-product-form-mobile2"  enctype="multipart/form-data">
+                                  <div class="mb-3">
+                                      <label for="actual_price" class="col-form-label">Actual Price:</label>
+                                      <input type="number" class="form-control actual_price"  name = "actual_price">
+                                  </div>
+                                  <div class="mb-3">
+                                      <label for="promo_price" class="col-form-label">Promo Price:</label>
+                                      <input type="number" class="form-control promo_price"  name = "promo_price">
+                                  </div>
+                                  <div class="mb-3">
+                                  <select name="condition" class="form-select" aria-label="Default select example">
+                                      <option selected="">Condition</option>
+                                      <option value="fairly_used">Fairly Used</option>
+                                      <option value="new">New</option>   
+                                  </select>
+                                </div>
+                                <div class="mb-3">
+                                  <label for="formFile" class="form-label">Upload</label>
+                                  <input class="form-control" type="file"   multiple name="image_url[]">
+                                </div>
+                              
+                              </form>
+                              <button type="button" class="btn btn-secondary previous-to-step-1" >Previous</button>
+                              <button type="submit" class="btn btn-primary" id="save-product-mobile">Update</button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                  </div>
+
+
             </div>
 
 
@@ -870,155 +1003,14 @@
 
  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10/dist/sweetalert2.all.min.js"></script>
+  <script type="module" src="{{ asset('backend-js/shop.js') }}"></script>
+  <script type="module" src="{{ asset('backend-js/auth.js') }}"></script>
 
-    <script>
-        function goBack() {
-            window.history.back();
-        }
+<script>
+        // function goBack() {
+        //     window.history.back();
+        // }
 
-// FOR FETCHING USER DETAILS IMMEDIATELY AFTER THE BANNER
-    document.addEventListener("DOMContentLoaded", function() {
-    // Get the token from local storage
-    const token = localStorage.getItem('apiToken');
-
-    if (!token) {
-        promptLogin('Authentication token is missing. Please log in.');
-        return;
-    }
-
-    // Fetch user data from the backend using the stored token
-    axios.get('/api/v1/getuser', {
-        headers: {
-            'Authorization': `Bearer ${token}`
-        }
-    })
-    .then(response => {
-        // Assuming the user data structure is in response.data
-        const user = response.data;
-
-        // Update the user's name
-        const userNameElement = document.querySelector('.mired-name');
-        if (userNameElement) {
-            userNameElement.textContent = user.username || 'Unknown User';
-        }
-
-        // Update the user's email
-        const userEmailElement = document.querySelector('.mired-email');
-        if (userEmailElement) {
-            userEmailElement.textContent = user.email || 'No email available';
-        }
-
-        // Update the verification status
-        const verificationLinkElement = document.querySelector('.verified-link');
-        if (verificationLinkElement) {
-            verificationLinkElement.textContent = user.verified ? 'Verified seller' : 'Unverified seller';
-            verificationLinkElement.classList.toggle('verified', user.verified); // Toggle 'verified' class based on status
-        }
-    })
-    .catch(error => {
-        console.error('Error fetching user data:', error);
-    });
-});
-
-
-
-
-//FOR PRODUCT LISTING
-document.addEventListener("DOMContentLoaded", function () {
-    const token = localStorage.getItem('apiToken');
-    if (!token) {
-        console.error('API token is missing');
-        return;
-    }
-
-    axios.get('/api/v1/user/products', {
-        headers: {
-            'Authorization': `Bearer ${token}`
-            // 'Authorization': `Bearer` + token
-
-        }
-    })
-    .then(response => {
-        console.log('Response:', response);
-        const products = response.data.data;
-
-        if (!Array.isArray(products)) {
-            console.error('Products data is not an array:', products);
-            return;
-        }
-
-        const productList = document.getElementById('productList');
-        productList.innerHTML = '';
-
-        products.forEach((product) => {
-            const imageUrls = JSON.parse(product.image_url);
-            const firstImageUrl = imageUrls.length > 0 ? imageUrls[0] : 'placeholder.jpg';
-
-            const productCard = `
-                <div class="card card-preview">
-                    <h6 class="sold">Sold ${product.sold || 0}</h6>
-                    <img src="uploads/products/${firstImageUrl}" class="card-img-top w-100 image-border" alt="Product Image">
-                    <div class="card-body">
-                        <div class="card-structure">
-                            <h6 class="amount">$${product.promo_price || 0} <span class="amount-span">$${product.actual_price || 0}</span></h6>
-                            <div class="star-layout">
-                                <div>
-                                    <img src="kaz/images/Rate.png" class="img-fluid image-rate" width="10px" alt="">
-                                    <img src="kaz/images/Rate.png" class="img-fluid image-rate" width="10px" alt="">
-                                    <img src="kaz/images/Rate.png" class="img-fluid image-rate" width="10px" alt="">
-                                </div>
-                                <div>
-                                    <h6 class="ps-1 rate-no">5.0</h6>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="footer-card">
-                            <p class="card-text infinix-text pt-3">${product.title || 'No title available'}</p>
-                            <button type="button" class="dropbtn2 top" data-dropdown-id="${product.id}">...</button>
-                            <div class="dropdown-content" data-dropdown-content="${product.id}">
-                                <a class="share" data-bs-toggle="modal" data-bs-target="#exampleModal-1" data-bs-whatever="@mdo">share</a>
-                                <a href="#home">Edit</a>
-                                <a href="#about">Boost</a>
-                                <a class="share" data-bs-toggle="modal" data-bs-target="#exampleModal-2" data-bs-whatever="@mdo">Delete</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            `;
-            productList.insertAdjacentHTML('beforeend', productCard);
-        });
-    })
-    .catch(error => {
-        console.error('Error fetching products:', error);
-    });
-
-    document.addEventListener('click', function (event) {
-    // Check if the clicked element is a dropdown button
-    if (event.target && event.target.classList.contains('dropbtn2')) {
-        console.log('Dropdown button clicked');
-
-        // Assuming data-dropdown-id is set on the button
-        const dropdownId = event.target.getAttribute('data-dropdown-id');
-
-        // Correctly select the dropdown content using querySelector
-        const dropdownContent = document.querySelector(`.dropdown-content[data-dropdown-content="${dropdownId}"]`);
-        console.log('Dropdown content:', dropdownContent);
-
-        if (dropdownContent) {
-            dropdownContent.classList.toggle('show');
-        }
-    } else {
-        // Close all dropdowns if clicked outside
-        document.querySelectorAll('.dropdown-content').forEach(dropdown => {
-            dropdown.classList.remove('show');
-        });
-    }
-});
-
-
-});
-
-    </script>
-
+</script>
 
 @endsection

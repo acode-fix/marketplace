@@ -22,8 +22,8 @@
       <button type="button" class=" btn btn-warning  btn-height"> + create Ads</button>
     </div> --}}
             @php
-              $id =  auth('sanctum')->user()->id;
-            // $id = Auth::user()->id;
+             // $id =  auth('sanctum')->user()->id;
+          $id = Auth::user()->id;
         $adminData = App\Models\User::find($id);
         @endphp
 

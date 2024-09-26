@@ -74,26 +74,42 @@ document.addEventListener("DOMContentLoaded", function() {
   }
 
   // Event listeners for buttons
-  inReviewBtn.addEventListener("click", function() {
-    hideAllRows();
-    inReviewRows.forEach(row => row.style.display = "table-row");
-    document.getElementById("Newest-main").textContent = "In-Review"; // Update button text
-    toggleDropdown(); 
-  });
 
-  onGoingBtn.addEventListener("click", function() {
-    hideAllRows();
-    onGoingRows.forEach(row => row.style.display = "table-row");
-    document.getElementById("Newest-main").textContent = "On-Going"; // Update button text
-    toggleDropdown(); 
-  });
+  if (inReviewBtn) {
+    inReviewBtn.addEventListener("click", function() {
+      hideAllRows();
+      inReviewRows.forEach(row => row.style.display = "table-row");
+      document.getElementById("Newest-main").textContent = "In-Review"; // Update button text
+      toggleDropdown(); 
+    });
+  
 
-  expiredBtn.addEventListener("click", function() {
-    hideAllRows();
-    expiredRows.forEach(row => row.style.display = "table-row");
-    document.getElementById("Newest-main").textContent = "Expired"; // Update button text
-    toggleDropdown(); 
-  });
+  }
+
+  if (onGoingBtn) {
+    onGoingBtn.addEventListener("click", function() {
+      hideAllRows();
+      onGoingRows.forEach(row => row.style.display = "table-row");
+      document.getElementById("Newest-main").textContent = "On-Going"; // Update button text
+      toggleDropdown(); 
+    });
+
+  }
+ 
+
+  if(expiredBtn) {
+    expiredBtn.addEventListener("click", function() {
+      hideAllRows();
+      expiredRows.forEach(row => row.style.display = "table-row");
+      document.getElementById("Newest-main").textContent = "Expired"; // Update button text
+      toggleDropdown(); 
+    });
+
+    
+  }
+  
+
+  
 });
 
 
@@ -155,6 +171,8 @@ document.addEventListener("DOMContentLoaded", function() {
   }
 
   // Event listeners for buttons
+if (inReviewBtnMobile && onGoingBtnMobile && expiredBtnMobile) {
+
   inReviewBtnMobile.addEventListener("click", function() {
     hideAllRows();
     inReviewRows.forEach(row => row.style.display = "table-row");
@@ -172,4 +190,11 @@ document.addEventListener("DOMContentLoaded", function() {
     expiredRows.forEach(row => row.style.display = "table-row");
     document.getElementById("Newest").textContent = "Expired"; // Update button text
   });
+
+
+
+
+}
+
+
 });

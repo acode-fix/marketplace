@@ -204,7 +204,7 @@
             <div class="product_condition">
                 <p>
                  condition
-            <button type="button"  value="used" class="button used" onclick="toggleButton(this, 'used')">Fairly Used</button>
+            <button type="button"  value="used" class="button used" onclick="toggleButton(this, 'fairly_used')">Fairly Used</button>
              <button type="button" value="new" class="button new" onclick="toggleButton(this, 'new')">New</button>
                 </p>
             <input type="text" name="condition" id="toggle-button" readonly style="display: none;">
@@ -401,82 +401,221 @@
     <script src="{{ asset('innocent/assets/js/upload_image.js') }}"></script>
     <script src="{{ asset('innocent/assets/js/bootstrap.js') }}"></script>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="{{ asset('backend-js/auth.js') }}"></script>
 
     <script>
-    document.addEventListener('DOMContentLoaded', function() {
-        const priceSwitch = document.getElementById('priceSwitch');
-        const priceFields = document.getElementById('priceFields');
+    // document.addEventListener('DOMContentLoaded', function() {
+    //     const priceSwitch = document.getElementById('priceSwitch');
+    //     const priceFields = document.getElementById('priceFields');
 
-        // Hide price fields initially if the switch is checked
+    //     // Hide price fields initially if the switch is checked
+    //     if (priceSwitch.checked) {
+    //         priceFields.style.display = 'none';
+    //     }
+
+    //     // Toggle price fields visibility based on the switch state
+    //     priceSwitch.addEventListener('change', function() {
+    //         if (priceSwitch.checked) {
+    //             priceFields.style.display = 'none';
+    //         } else {
+    //             priceFields.style.display = 'block';
+    //         }
+    //     });
+
+    //     document.getElementById('productForm').addEventListener('submit', function(event) {
+    //         event.preventDefault();
+
+    //         let formData = new FormData(this);
+
+    //         // Add ask_for_price to formData based on the switch state
+    //         formData.append('ask_for_price', priceSwitch.checked ? 1 : 0);
+
+    //         // Conditionally remove actual_price and promo_price if the switch is on
+    //         if (priceSwitch.checked) {
+    //             formData.delete('actual_price');
+    //             formData.delete('promo_price');
+    //         }
+
+    //         for (let pair of formData.entries()) {
+    //             console.log(pair[0] + ': ' + pair[1]);
+    //         }
+
+    //         const token = localStorage.getItem('apiToken');
+
+    //         axios.post('/api/v1/product', formData, {
+    //             headers: {
+    //                 'Content-Type': 'multipart/form-data',
+    //                 'Authorization': 'Bearer ' + token
+    //             }
+    //         })
+    //         .then(function(response) {
+    //             console.log(response.data);
+    //             if (response.data.status) {
+    //                 const modal = new bootstrap.Modal(document.getElementById('exampleModal'));
+    //                      modal.show();
+    //                 //      modal._element.addEventListener('hidden.bs.modal', function () {
+    //                 //     window.location.href = '/index'; // Redirect to index page after modal is hidden
+    //                 // });
+    //               // Redirect to the index page after a short delay
+    //             setTimeout(function() {
+    //                 window.location.href = '/';
+    //             }, 5000); // 5000 milliseconds = 5 seconds
+    //             } else {
+    //                 Swal.fire({
+    //                     icon: 'error',
+    //                     title: 'Failed to create product',
+    //                     text: response.data.message
+    //                 });
+    //             }
+    //         })
+    //         .catch(function(error) {
+    //             console.log(error.response.data);
+    //             Swal.fire({
+    //                 icon: 'error',
+    //                 title: 'An error occurred',
+    //                 text: error.response.data.message + ' ' + 'All fields are required'
+    //             });
+    //         });
+    //     });
+    // });
+
+    document.addEventListener('DOMContentLoaded', function() {
+    const priceSwitch = document.getElementById('priceSwitch');
+    const priceFields = document.getElementById('priceFields');
+    let selectedFiles = []; // Store all selected files
+
+    // Hide price fields initially if the switch is checked
+    if (priceSwitch.checked) {
+        priceFields.style.display = 'none';
+    }
+
+    // Toggle price fields visibility based on the switch state
+    priceSwitch.addEventListener('change', function() {
         if (priceSwitch.checked) {
             priceFields.style.display = 'none';
+        } else {
+            priceFields.style.display = 'block';
+        }
+    });
+
+    document.getElementById('fileInput').addEventListener('change', function() {
+        // Append the newly selected files to the existing list
+        Array.from(this.files).forEach(file => {
+            selectedFiles.push(file);  // Add the file to the selectedFiles array
+        });
+
+       // console.log('Currently selected files:', selectedFiles.map(f => f.name));
+
+        // Reset the file input field to allow new selections
+        this.value = '';  // Reset after each change so the same file can be selected again
+    });
+
+    document.getElementById('productForm').addEventListener('submit', function(event) {
+        event.preventDefault();
+
+        let formData = new FormData(this);
+
+        
+        
+
+        // Add ask_for_price to formData based on the switch state
+        formData.append('ask_for_price', priceSwitch.checked ? 1 : 0);
+
+        // Conditionally remove actual_price and promo_price if the switch is on
+        if (priceSwitch.checked) {
+            formData.delete('actual_price');
+            formData.delete('promo_price');
         }
 
-        // Toggle price fields visibility based on the switch state
-        priceSwitch.addEventListener('change', function() {
-            if (priceSwitch.checked) {
-                priceFields.style.display = 'none';
-            } else {
-                priceFields.style.display = 'block';
-            }
+        const imageArray = [];
+
+        // Loop through the accumulated selected files and append them to formData
+        selectedFiles.forEach((file, index) => {
+            formData.append('image_url[]', file); // Append each file to formData
+            imageArray.push(file.name); // Store file names in the array
+            //console.log(`Appending file ${index}: ${file.name}`); // Log each file name
         });
 
-        document.getElementById('productForm').addEventListener('submit', function(event) {
-            event.preventDefault();
+        // Append the JSON string of image URLs to the formData
+        formData.append('image_url_json', JSON.stringify(imageArray));
 
-            let formData = new FormData(this);
+       // console.log(imageArray);
 
-            // Add ask_for_price to formData based on the switch state
-            formData.append('ask_for_price', priceSwitch.checked ? 1 : 0);
-
-            // Conditionally remove actual_price and promo_price if the switch is on
-            if (priceSwitch.checked) {
-                formData.delete('actual_price');
-                formData.delete('promo_price');
+        // Debug formData content
+        for (let pair of formData.entries()) {
+            if (pair[1] instanceof File) {
+               console.log(`${pair[0]}: File Name - ${pair[1].name}, Size - ${pair[1].size} bytes, Type - ${pair[1].type}`);
+            } else {
+               // console.log(`${pair[0]}: ${pair[1]}`);
             }
+        }
 
-            for (let pair of formData.entries()) {
-                console.log(pair[0] + ': ' + pair[1]);
+        const token = localStorage.getItem('apiToken');
+       
+    
+
+        axios.post('/api/v1/product', formData, {
+            headers: {
+                'Content-Type': 'multipart/form-data',
+                'Authorization': `Bearer ${token}`
             }
+        })
+        .then(function(response) {  
 
-            const token = localStorage.getItem('apiToken');
+            if (response.data.status) {
+                const modal = new bootstrap.Modal(document.getElementById('exampleModal'));
+                modal.show();
 
-            axios.post('/api/v1/product', formData, {
-                headers: {
-                    'Content-Type': 'multipart/form-data',
-                    'Authorization': 'Bearer ' + token
-                }
-            })
-            .then(function(response) {
-                console.log(response.data);
-                if (response.data.status) {
-                    const modal = new bootstrap.Modal(document.getElementById('exampleModal'));
-                         modal.show();
-                    //      modal._element.addEventListener('hidden.bs.modal', function () {
-                    //     window.location.href = '/index'; // Redirect to index page after modal is hidden
-                    // });
-                  // Redirect to the index page after a short delay
+                // Redirect to the index page after a short delay
                 setTimeout(function() {
                     window.location.href = '/';
-                }, 5000); // 5000 milliseconds = 5 seconds
-                } else {
-                    Swal.fire({
-                        icon: 'error',
-                        title: 'Failed to create product',
-                        text: response.data.message
-                    });
-                }
-            })
-            .catch(function(error) {
-                console.log(error.response.data);
+                }, 5000);
+            } else {
                 Swal.fire({
                     icon: 'error',
-                    title: 'An error occurred',
-                    text: error.response.data.message + ' ' + 'All fields are required'
+                    title: 'Failed to create product',
+                    text: response.data.message
                 });
+            }
+        })
+        .catch(function(error) {
+           // console.log(error.response)
+           
+            if(error.response) {
+
+                if(error.response.status === 401 && error.response.data) {
+                       
+                    const responseErrors = error.response.data.errors;
+                
+
+                    let allErrors = []
+
+                    for(let field in responseErrors) {
+
+                     const fieldError = responseErrors[field];
+
+                     fieldError.forEach((message) => {
+                        allErrors.push(message);
+
+                     })
+                    }
+
+              const errorMsg = allErrors.join('\n');
+
+              Swal.fire({ 
+                icon: 'error',
+                title: 'Validation Error',
+                text:  errorMsg ,
             });
+
+            
+                }
+            }
+
         });
     });
+});
+
         </script>
 
 

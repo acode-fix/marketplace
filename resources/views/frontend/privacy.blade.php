@@ -199,6 +199,8 @@
       </div>
   </div>
 
+  <script type="module" src="{{ asset('backend-js/auth.js') }}"></script>
+
 
 
 @endsection

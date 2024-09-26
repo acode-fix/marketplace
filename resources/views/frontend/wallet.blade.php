@@ -185,6 +185,7 @@
     </div>
   </div> --}}
 
+ 
   <div class="mobile-view" style="margin-left:100px">
     <div class="container">
         <div class="row">
@@ -202,6 +203,6 @@
     </div>
 
 
-
+    <script type="module" src="{{ asset('backend-js/auth.js') }}"></script>
 
   @endsection

@@ -1,4 +1,3 @@
-
 //product condition
 // function toggleButton(button) {
 //     if (button.classList.contains('new')) {

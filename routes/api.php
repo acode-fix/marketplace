@@ -14,6 +14,10 @@ use App\Http\Controllers\VerificationController;
 use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\AdvertController;
 use App\Http\Controllers\ShopController;
+use App\Http\Controllers\NotificationController;
+use App\Http\Controllers\AdvertController;
+
+
 
 
 
@@ -159,9 +163,9 @@ Route::post('/adverts/{advert}', [AdvertController::class, 'destroy']);
 
 });
 
-Route::get('/adverts', 'AdvertController@index');
-Route::put('/adverts/{advert}', 'AdvertController@update')->middleware('auth');
-Route::delete('/adverts/{advert}', 'AdvertController@destroy')->middleware('auth');
+// Route::get('/adverts', 'AdvertController@index');
+// Route::put('/adverts/{advert}', 'AdvertController@update')->middleware('auth');
+// Route::delete('/adverts/{advert}', 'AdvertController@destroy')->middleware('auth');
 
 // Route::get('/adverts/create', [AdvertController::class, 'create'])->name('adverts.create');
 // Route::post('/adverts', [AdvertController::class, 'store'])->name('adverts.store');

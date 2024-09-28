@@ -491,6 +491,77 @@
     font-size: 10px;
     border-radius: 2px;
 }
+    .user_name_area {
+        font-size: 15px;
+        margin-left: auto;
+        margin-right: auto;
+        padding: 5px;
+        }
+    .user_name{
+        font-size: 14px;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        max-width: 180px;
+        margin: 0px;
+    }
+
+    @media screen and (max-width: 700px) {
+        .user_name{
+            max-width: 210px;
+        }
+
+    }
+
+    @media screen and (max-width: 500px) {
+        .user_name{
+            max-width: 175px;
+        }
+
+    }
+
+    @media screen and (max-width: 450px) {
+        .user_name{
+            max-width: 145px;
+        }
+
+    }
+
+    @media screen and (max-width: 400px) {
+        .user_name{
+            max-width: 115px;
+        }
+
+    }
+
+    @media screen and (max-width: 370px) {
+        .user_name{
+            max-width: 95px;
+        }
+
+    }
+
+    @media screen and (max-width: 350px) {
+        .user_name{
+            max-width: 75px;
+        }
+
+        }
+        @media screen and (max-width: 330px) {
+            .user_name{
+                max-width: 70px;
+            }
+
+            }
+    .user_state_mobile{
+        font-size: 12px;
+    }
+    .rate {
+        background-color: #ffce29;
+        padding: 3px;
+        font-size: 10px;
+        border-radius: 2px;
+    }
 
 .rate img {
     width: 6px;
@@ -951,6 +1022,14 @@
 }
 .product_card:hover {
     outline: 3px solid #ffce29;
+    .product_card {
+        border-radius: 8px;
+        box-shadow: 0px 3px 3px rgba(185, 185, 185, 0.3);
+        height: fit-content;
+
+    }
+    .product_card:hover {
+        outline: 3px solid #ffce29;
 
 }
 

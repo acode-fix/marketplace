@@ -241,15 +241,15 @@
                         </div>
                         <div class="mt-4">
                           <!-- <h6>Monthly</h6> -->
-                          {{-- <form action=""> --}}
-                            <div class="month" onclick="selectPlan('month')">
+                         <form id="badge_form"> 
+                            <div class="month js-click" onclick="selectPlan('month')">
                               <h6>Monthly</h6>
                               <p class="badge-text">Your badge cost #2500 per month to stay <input
                                   class="form-check-input ms-2" type="radio" name="badge_type" id="flexRadioDefault1"
                                   value="monthly"><br>
                                 active on your profile </p>
                             </div>
-                            <div class="year" onclick="selectPlan('year')">
+                            <div class="year js-click" onclick="selectPlan('year')">
                               <h6>Yearly</h6>
                               <p class="badge-text"> Your badge cost #20,000 and save 33% <input
                                   class="form-check-input ms-4" type="radio" name="badge_type" id="flexRadioDefault2"
@@ -257,9 +257,8 @@
                                 per year to stay active on your profile</p>
 
                             </div>
-
-                            {{--
-                          </form> --}}
+                            <button style="display: none" id="save_badge" type="submit" class="btn btn-success btn-sm">save</button>
+                          </form> 
 
                         </div>
 
@@ -290,8 +289,13 @@
                     <p class="fw-light approval-text mt-3">Your document has been uploded.<br>
                       Awaiting Approval normally approval <br>
                       may take up to 1hrs during business days <br>and up to 3hrs during off business days </p>
+                      
+                    <button  id="submitBtn" type="button" class="btn btn-md btn-success js-btn">Proceed To Make Payment</button>
+                      
 
                   </div>
+                  
+                 
 
                 </div>
               
@@ -301,8 +305,8 @@
                   class="btn btn-md btn-warning">Previous</button>
                 <button style="width: 15%;" id="nextBtn" type="button"
                   class="btn btn-md btn-warning js-btn">Next</button>
-                  <button style="width: 15%;" id="submitBtn" type="button"
-                  class="btn btn-md btn-warning js-btn">Submit</button>
+                  {{-- <button style="width: 40%;" id="submitBtn" type="button"
+                  class="btn btn-md btn-success js-btn">Proceed To Make Payment</button> --}}
               </div>
             </div>
           </div>

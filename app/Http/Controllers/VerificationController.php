@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use Barryvdh\Debugbar\Facades\Debugbar;
 
 class VerificationController extends Controller
 {
@@ -26,6 +27,170 @@ class VerificationController extends Controller
     public function create()
     {
         //
+    }
+
+    public function bioForm(Request $request) {
+
+        $validator = Validator::make($request->all(),[
+
+            'email' => 'required|email',
+            'nationality' => 'required|string',
+            'name' => 'required|string',
+            'address' => 'required|string',
+            'gender' => 'required|in:male,female',
+            'phone_number' => 'required|string',
+            
+
+        ]);
+
+
+        if($validator->fails()) {
+            return response()->json([
+                'status' => true,
+                'message' => 'validation errror',
+                'errors' => $validator->errors(),
+
+            ],422);
+        }
+
+        $user = $request->user();
+        $user->id;
+
+      $verification = Verification::updateOrCreate([
+        'user_id' => $user->id,
+      ], [
+        'email' => $request->email,
+        'nationality' => $request->nationality,
+        'name' => $request->name,
+        'address' => $request->address,
+        'gender' => $request->gender,
+        'phone_number' => $request->phone_number,
+
+      ]);
+
+      if($verification) {
+
+        return response()->json([
+            'status' => true,
+            'message' => 'Bio-Form Submitted Successfully'
+        ],200);
+      }else {
+
+        return response()->json([
+            'status'=> false,
+            'message' => 'Bio-Form Submission Fails'
+        ],400);
+      }
+
+
+
+
+    }
+
+    public function ninUpload(Request $request) {
+
+        $validator = Validator::make($request->all(),[
+
+            'nin_file' => 'required|file|mimes:jpeg,png,pdf',
+
+        ]);
+
+        if($validator->fails()) {
+            return response()->json([
+                'status' => false,
+                'message' => 'validation error',
+                'errors' => $validator->errors(),
+
+            ]);
+        }
+
+    }
+
+
+    public function imageUpload(Request $request) {
+
+      Debugbar::info($request->canvasImage); 
+
+      $validator = Validator::make($request->all(),[
+
+        'canvasImage' => 'required|string',
+
+      ]);
+
+      if($validator->fails()) {
+        return response()->json([
+            'status' => false,
+            'message' => 'Validation Error',
+            'errors'  => $validator->errors(),
+        ], 422);
+        
+      }
+      
+     $encodedData = str_replace(' ','+',$request->canvasImage);
+
+     list(, $encodedData) = explode(',', $encodedData);
+
+     $decodedData = base64_decode($encodedData);
+
+     if($decodedData) {
+
+        $rad = mt_rand(1000, 9999);
+        $extension = 'png';
+        $selfieName = md5($rad . time()). '.' . $extension;
+
+        $selfiePhotoPath = './uploads/selfiePhotos/';
+
+        if (!file_exists($selfiePhotoPath)) {
+            mkdir($selfiePhotoPath, 0777, true); 
+        }
+
+        file_put_contents($selfiePhotoPath . $selfieName, $decodedData);
+
+
+        $user = $request->user();
+
+        Debugbar::info($selfieName);
+        Debugbar::info($user);
+
+        $verification = Verification::where('user_id', $user->id)->first();
+
+        if($verification) {
+
+            $verification->selfie_photo = $selfieName;
+            $verification->save();
+
+            return response()->json([
+                'status' => true,
+                'message' => 'Selfie Captured Succesfully',
+    
+            ], 200);
+
+        }else {
+
+            return response()->json([
+                'status' => false,
+                'message' => 'User Not Found',
+    
+            ], 400);
+
+        }
+        
+    
+     } else {
+
+        return response()->json([
+            'status' => false,
+            'message' => 'Selfie Was Not Captured Successfully',
+
+        ], 400);
+
+
+     }
+    
+
+
+
+
     }
 
     /**

@@ -81,7 +81,7 @@ export function sendResetOtp(value) {
   }
 
 
-  function serverError() {
+  export function serverError() {
 
     Swal.fire({
       icon: 'error',

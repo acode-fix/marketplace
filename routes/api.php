@@ -68,6 +68,11 @@ Route::delete('/user', [UsersController::class, 'deleteAccount']);
 
 Route::post('/shop/update',[UsersController::class, 'uploadBanner']);
 
+//BECOME A VERIFIED SELLER ROUTE;
+Route::post('/verify/bio', [VerificationController::class, 'bioForm']);
+Route::post('/verify/nin', [VerificationController::class, 'ninUpload']);
+Route::post('/verify/image', [VerificationController::class, 'imageUpload']);
+
 
 
 Route::post('/admin/verify-user/{id}', [VerificationController::class, 'approveVerification']);

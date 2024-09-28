@@ -842,6 +842,7 @@ a {
   border-radius: 4px;
 }
 
+
 .selfie {
   border-radius: 50%;
   height: 250px;
@@ -1250,4 +1251,13 @@ sidebar-link .footer img {
 .sidebar-link .footer img:hover {
   transform: translateY(-5px);
   /* Move the image up by 5px */
+}
+
+.error {
+  color: #ff0000;
+}
+
+#nin_error {
+  color: #ff0000;
+
 }

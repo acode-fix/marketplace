@@ -209,8 +209,6 @@ const defaultImage = document.getElementById('preview-image');
 
 if (imgInp) {
 
-
-
 // Add onchange event listener
 imgInp.addEventListener('change', function(evt) {
     const [file] = imgInp.files;

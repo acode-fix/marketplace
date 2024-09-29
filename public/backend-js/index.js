@@ -98,17 +98,6 @@ export function sendResetOtp(value) {
   }
 
 
-
-
-
-
-
-  
-
-
-
-
-
 export function verifyOtp(adminEmail, adminOtp) {
 
   const email = document.getElementById("reset_email")?.value || adminEmail;

@@ -11,8 +11,6 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\PasswordResetController;
 use App\Http\Controllers\LearnController;
 use App\Http\Controllers\VerificationController;
-use App\Http\Controllers\NotificationController;
-use App\Http\Controllers\AdvertController;
 use App\Http\Controllers\ShopController;
 
 
@@ -75,6 +73,7 @@ Route::post('/shop/update',[UsersController::class, 'uploadBanner']);
 Route::post('/verify/bio', [VerificationController::class, 'bioForm']);
 Route::post('/verify/nin', [VerificationController::class, 'ninUpload']);
 Route::post('/verify/image', [VerificationController::class, 'imageUpload']);
+Route::post('/verify/badge', [VerificationController::class, 'badgeType']);
 
 
 
@@ -143,7 +142,7 @@ Route::delete('videos/{id}', [LearnController::class, 'destroy']);
 
 
 // Verification
-Route::post('/verifications', [VerificationController::class, 'store']);
+//Route::post('/verifications', [VerificationController::class, 'store']);
 Route::post('/verifications/{id}/approve', [VerificationController::class, 'approve'])->middleware('admin');
 Route::post('/verification/bio', [VerificationController::class, 'storeBio']);
 Route::post('/verification/nin', [VerificationController::class, 'uploadNIN']);

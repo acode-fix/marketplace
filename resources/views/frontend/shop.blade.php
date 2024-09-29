@@ -1005,6 +1005,7 @@
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10/dist/sweetalert2.all.min.js"></script>
   <script type="module" src="{{ asset('backend-js/shop.js') }}"></script>
   <script type="module" src="{{ asset('backend-js/auth.js') }}"></script>
+  
 
 <script>
         // function goBack() {

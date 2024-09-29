@@ -148,7 +148,7 @@ function showStep(step) {
 
     previousBtn.style.display = step > 1 ? 'block' : 'none';
     nextBtn.style.display = step < totalSteps ? 'block' : 'none';
-    submitBtn.style.display = step === totalSteps ? 'block' : 'none';
+    submitBtn.style.display = step === totalSteps ? 'inline-block' : 'none';
 
 }
 
@@ -337,7 +337,18 @@ bioSubmit.addEventListener('click', (event) => {
         }
 
     }).catch((error) => {
+        
         if (error.response) {
+
+        let email = document.querySelector('.email');
+        let nationality = document.querySelector('.nationality');
+        let name = document.querySelector('.username');
+        let address = document.querySelector('.address');
+        let phone = document.querySelector('.phone_number');
+        let gender = document.querySelector('input[name="gender"]:checked');
+            
+        email.value = ''; nationality.value = ''; name.value= ''; address.value = ''; phone.value = ''; gender.checked = false;
+
             if(error.response.status === 422 && error.response.data) {
 
                 const fieldError = error.response.data.errors;
@@ -374,9 +385,108 @@ bioSubmit.addEventListener('click', (event) => {
 }
 
 });
+ 
+  const saveBadge = document.getElementById('save_badge');
+
+ document.querySelectorAll('.js-click').forEach((click) => {
+    click.addEventListener('click', () => {
+        saveBadge.style.display = 'block';   
+    })
+
+ });
+
+ saveBadge.addEventListener('click', (event) => {
+    event.preventDefault();
+
+    const form = document.getElementById('badge_form');
+   
+    const formData = new FormData(form);
+
+    for(let field of formData) {
+        console.log(field[0] + ':' + field[1]);
+
+    }
+
+    axios.post( '/api/v1/verify/badge', formData, {
+        headers: {
+            'Content-Type': 'multipart/form-data',
+
+        }
+
+    }).then((response) => {
+        //console.log(response);
+
+        if(response.status === 200 && response.data) {
+
+            Swal.fire({
+                icon: 'success',
+                title: 'Badge Subscription',
+                text: response.data.message,
+                showConfirmButton: false,
+                timer: 2000
+            }).then(() => {
+                saveBadge.style.display = 'none';  
+
+            })
+        }
+
+        
+
+    }).catch((error) => {
+        
+        if(error.response) {
+
+            saveBadge.style.display = 'none';  
+
+            if(error.response.status === 422 && error.response.data) {
+
+                const fieldError = error.response.data.errors;
+
+                const msg = validationError(fieldError);
+
+                displaySwal(msg);
+
+    
+
+            }
+            if(error.response.status === 404 && error.response.data) {
+
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Identification Error',
+                    text: error.response.data.message,
+                })
+
+
+            }
+
+            
+            if(error.response.status === 500) {
+
+                serverError();
+
+
+            }
+
+
+        }
+
+    })
+
+
+
+
+ });
+
+
+
+
+
 
 document.querySelector('.nin_upload').addEventListener('click', () => {
-  
+
+  const defaultImage = document.getElementById('preview-image');
+    
   const form = document.getElementById('nin_form');
   const ninUpload =  document.getElementById('upload_nin');
   ninUpload.style.display = 'inline-block';
@@ -403,9 +513,76 @@ document.querySelector('.nin_upload').addEventListener('click', () => {
 
         
 
-        // axios.post('/api/v1/verify/nin',    {
+        axios.post('/api/v1/verify/nin',   formData, {
+            headers: {
+                'Content-Type': 'multipart/form-data',
+            },
+            'method': 'post',
+        }).then((response) => {
+            console.log(response);
 
-        // })
+            if(response.data) {
+
+                if(response.status === 200 && response.data) {
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'NIN Upload',
+                        text: response.data.message,
+                        showConfirmButton: false,
+                        timer: 2000
+                    }).then(() => {
+                        ninUpload.style.display = 'none';
+                        defaultImage.style.width = '70px';
+                        defaultImage.style.height = '70px';
+                        defaultImage.src ="kaz/images/Nin upload.svg";
+                    })
+                }
+
+            }
+
+            
+
+        }).catch((error) => {
+            if(error.response) {
+
+                ninUpload.style.display = 'none';
+                defaultImage.style.width = '70px';
+                defaultImage.style.height = '70px';
+                defaultImage.src ="kaz/images/Nin upload.svg";
+
+               
+
+                if(error.response.status === 422 && error.response.data) {
+
+                    const fieldError = error.response.data.errors;
+    
+                    const msg = validationError(fieldError);
+    
+                    displaySwal(msg);
+    
+                    
+    
+                }
+
+                if(error.response.status === 404 && error.response.data) {
+
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Identification Error',
+                        text: error.response.data.message,
+                    })
+    
+    
+                }
+                if(error.response.status === 500) {
+
+                    serverError();
+    
+    
+                }
+            }
+
+        })
         
     }
 
@@ -581,7 +758,15 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
 
 
-            }).catch((error) => {
+            }).catch((error) => {   
+
+                videoContainer.style.display = 'none'; // Show the video container
+                snap.style.display = 'none'; // Show the snap button
+                useCamera.style.display = 'block';
+
+                canvasContainer.style.display = 'none';
+                retakeButton.style.display = 'none';
+                saveButton.style.display = 'none';
 
                 if (error.response) {
 
@@ -602,6 +787,17 @@ document.addEventListener('DOMContentLoaded', () => {
                         Swal.fire({
                             icon: 'error',
                             title: 'Upload Error',
+                            text: error.response.data.message,
+                        })
+
+
+                    }
+
+                    if (error.response.status === 404 && error.response.data) {
+
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Identification Error',
                             text: error.response.data.message,
                         })
 

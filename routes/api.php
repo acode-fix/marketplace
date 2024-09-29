@@ -14,8 +14,7 @@ use App\Http\Controllers\VerificationController;
 use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\AdvertController;
 use App\Http\Controllers\ShopController;
-use App\Http\Controllers\NotificationController;
-use App\Http\Controllers\AdvertController;
+
 
 
 

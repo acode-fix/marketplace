@@ -19,10 +19,10 @@ return new class extends Migration
             $table->string('currency')->default('NGN');
             $table->string('invoice_number')->nullable();
             $table->string('payment_reference')->nullable();
-            $table->string('transaction_reference'); // Describe the transaction or link to an Enum or specific model
+            $table->string('transaction_reference')->nullable(); // Describe the transaction or link to an Enum or specific model
             $table->string('gateway_response')->nullable(); // Payment gateway used (e.g., Stripe, PayPal)
             $table->string('description')->nullable();
-            $table->string('payment_date'); // e.g., PayPal, Credit Card, Bank Transfer
+            $table->string('payment_date')->nullable(); // e.g., PayPal, Credit Card, Bank Transfer
             $table->integer('status')->default(-1); // Payment status e.g., pending, completed, failed
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->softDeletes();

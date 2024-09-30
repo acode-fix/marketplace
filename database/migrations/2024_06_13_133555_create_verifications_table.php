@@ -20,9 +20,9 @@ return new class extends Migration
             $table->string('address');
             $table->enum('gender', ['male', 'female']);
             $table->string('phone_number');
-            $table->string('nin_file');
-            $table->string('selfie_photo');
-            $table->enum('badge_type', ['monthly', 'yearly']);
+            $table->string('nin_file')->nullable();
+            $table->string('selfie_photo')->nullable();
+            $table->enum('badge_type', ['monthly', 'yearly'])->nullable();
             $table->integer('approved')->default(-1);
             $table->timestamps();
         });

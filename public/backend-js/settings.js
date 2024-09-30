@@ -130,7 +130,7 @@ function displaySwal(errorMsg) {
 const modalArrow = document.getElementById('modal-arrow');
 const previousBtn = document.getElementById('previousBtn');
 const nextBtn = document.getElementById('nextBtn');
-const submitBtn = document.getElementById('submitBtn');
+const proceedBtn = document.getElementById('proceedBtn');
 const bioForm = document.getElementById('bio-form');
 const bioSubmit = document.getElementById('save');
 let currentStep = 1;
@@ -148,9 +148,11 @@ function showStep(step) {
 
     previousBtn.style.display = step > 1 ? 'block' : 'none';
     nextBtn.style.display = step < totalSteps ? 'block' : 'none';
-    submitBtn.style.display = step === totalSteps ? 'inline-block' : 'none';
+    proceedBtn.style.display = step === totalSteps ? 'inline-block' : 'none';
 
 }
+
+
 
 
 function collectData() {
@@ -165,7 +167,6 @@ function collectData() {
 
 nextBtn.addEventListener('click', () => {
 
-    
 
     if (currentStep < totalSteps) {
         currentStep++
@@ -479,10 +480,6 @@ bioSubmit.addEventListener('click', (event) => {
  });
 
 
-
-
-
-
 document.querySelector('.nin_upload').addEventListener('click', () => {
 
   const defaultImage = document.getElementById('preview-image');
@@ -591,14 +588,6 @@ document.querySelector('.nin_upload').addEventListener('click', () => {
 
 
 })
-
- 
-
-
-    
-
-
-
 
 
 
@@ -826,3 +815,65 @@ document.addEventListener('DOMContentLoaded', () => {
         })
     };
 });
+
+
+proceedBtn.addEventListener('click', () => {
+
+    axios.get('api/v1/payment/init', {
+
+    }).then((response) => {
+        console.log(response);
+ 
+        if (response.data) {
+
+            const url = response.data.paystack_url;
+
+            window.location.href = url;
+        }
+
+        console.log(response);
+
+    })
+    
+    .catch((error) => {
+        console.log(error);
+
+        if(error.response) {
+
+            if(error.response.status === 404 && error.response.data) {
+
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Paystack Init Error',
+                    text: error.response.data.message,
+                })
+
+
+            }
+            if(error.response.status === 400 && error.response.data) {
+
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Paystack verification',
+                    text: error.response.data.message,
+                })
+
+
+            }
+
+            if(error.response.status === 500) {
+                serverError();
+
+            }
+
+
+        }
+
+
+
+    })
+
+
+
+});
+

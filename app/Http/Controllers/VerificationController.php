@@ -68,6 +68,8 @@ class VerificationController extends Controller
 
       ]);
 
+      
+
       if($verification) {
 
         return response()->json([

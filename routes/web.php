@@ -8,6 +8,7 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CategoriesController;
 use App\Http\Controllers\ShopController;
 use App\Http\Controllers\UsersController;
+use App\Http\Controllers\PaymentController;
 
 
 Route::get('/admin/dashboard', function() {
@@ -23,6 +24,7 @@ Route::get('/admin/reset-password', function() {
     return view('admin.reset_password');
 
 })->name('reset');
+
 
 
 
@@ -155,7 +157,9 @@ Route::get('/success', function () {
     return view('other_frontend.success');
 });
 
+Route::get('/payment/callback', [PaymentController::class, 'checkTransactionRef']);
 
+Route::get('/payment-success', [PaymentController::class, 'successPage'])->name('success.page');
 
 //Auth::routes();
 

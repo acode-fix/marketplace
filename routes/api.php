@@ -14,6 +14,7 @@ use App\Http\Controllers\VerificationController;
 use App\Http\Controllers\ShopController;
 use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\AdvertController;
+use App\Http\Controllers\PaymentController;
 
 
 
@@ -60,6 +61,8 @@ Route::middleware('auth:sanctum')->group(function () {
 });
 //
 
+//Route::get('/payment/callback', [PaymentController::class, 'checkTransactionRef']);
+
 Route::prefix('v1')->middleware('auth:sanctum')->group(function () {
 
 Route::get('/users', [UsersController::class, 'view']);
@@ -75,6 +78,11 @@ Route::post('/verify/bio', [VerificationController::class, 'bioForm']);
 Route::post('/verify/nin', [VerificationController::class, 'ninUpload']);
 Route::post('/verify/image', [VerificationController::class, 'imageUpload']);
 Route::post('/verify/badge', [VerificationController::class, 'badgeType']);
+
+//Payment Route;
+
+Route::get('/payment/init', [PaymentController::class, 'badgeFeePaystackInit']);
+
 
 
 

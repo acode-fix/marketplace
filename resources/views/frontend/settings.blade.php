@@ -290,7 +290,7 @@
                       Awaiting Approval normally approval <br>
                       may take up to 1hrs during business days <br>and up to 3hrs during off business days </p>
                       
-                    <button  id="submitBtn" type="button" class="btn btn-md btn-success js-btn">Proceed To Make Payment</button>
+                    <button  id="proceedBtn" type="button" class="btn btn-md btn-success js-btn">Proceed To Make Payment</button>
                       
 
                   </div>
@@ -305,8 +305,6 @@
                   class="btn btn-md btn-warning">Previous</button>
                 <button style="width: 15%;" id="nextBtn" type="button"
                   class="btn btn-md btn-warning js-btn">Next</button>
-                  {{-- <button style="width: 40%;" id="submitBtn" type="button"
-                  class="btn btn-md btn-success js-btn">Proceed To Make Payment</button> --}}
               </div>
             </div>
           </div>

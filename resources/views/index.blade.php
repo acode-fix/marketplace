@@ -81,7 +81,7 @@
                     <span id="profile_email">miredaugustine@gmail.com</span>
                 </p> --}}
             </div>
-            {{-- <div class="ms-2 pt-1">
+            {{-- <div class="pt-1 ms-2">
                 <h6 id="profile_name">Mired Augustine</h6>
                 <h6 id="profile_email" style="font-size: small;">Miredaugustine@gmail.com</h6>
               </div> --}}
@@ -169,7 +169,7 @@
                     <div data-bs-toggle="modal" data-bs-target="#location_input_modal" class="clickMe_div">
                         <p data-bs-toggle="modal" data-bs-target="#location_input_modal" id="clickMe" onclick="applyFilter()">Lagos</p>
                         {{-- <p data-bs-toggle="modal" data-bs-target="#location_input_modal" id="clickMe" >Lagos</p> --}}
-                        <i class="fa-solid fa-angle-down  angle_down" data-bs-toggle="modal"
+                        <i class="fa-solid fa-angle-down angle_down" data-bs-toggle="modal"
                             data-bs-target="#location_input_modal"></i>
                     </div>
                 </div>
@@ -224,8 +224,8 @@
                 </div>
 
 
-                <h5 class="category-replace  animate animate-right">Categories</h5>
-                <h5 class="category-h5  ">Select product category
+                <h5 class="category-replace animate animate-right">Categories</h5>
+                <h5 class="category-h5 ">Select product category
                     <span class="text-danger"><sup>*</sup></span>
                     <br><span class="text-black-50 fs-6">(choose a category to filter your search)</span>
                 </h5>
@@ -362,7 +362,7 @@
                         <p>Start Selling</p>
                     </div>
                 </a>
-                <h5 class="top_sales  animate animate-right">Top Sales</h5>
+                <h5 class="top_sales animate animate-right">Top Sales</h5>
 
                 <!-- Product Cards -->
                 <div class="product_card_container top_sales_margin">
@@ -372,7 +372,7 @@
 
                         <div class="row">
                             <div class="col">
-                                <div class="product_card_display card-margin content-margin mt-4" id="productCardDisplay">
+                                <div class="mt-4 product_card_display card-margin content-margin" id="productCardDisplay">
                                     <!-- Products will be dynamically added here -->
 
                                 </div>
@@ -418,10 +418,11 @@
                     <div class="container-fluid">
                         <div class="row">
                             <div class="col">
-                                <div class="product_card_display card-margin content-margin mt-4" id="productCardDisplay2">
+                                <div class="mt-4 product_card_display card-margin content-margin" id="productCardDisplay2">
 
 
-                                    {{-- <a href="{{ url('/product_des') }}" class="product_card_link">
+                                    {{-- <a href=
+                                    "{{ url('/product_des') }}" class="product_card_link">
                                         <div class="card product_card">
                                             <h6 class="sold"> Sold 35 <br> <img src="innocent/assets/image/Rate.png"
                                                     alt=""> 4.0</h6>
@@ -620,7 +621,7 @@
         <!-- Modal -->
         <div class="modal fade" id="signup_login-modal" class="myModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
             aria-labelledby="staticBackdropLabel" aria-hidden="true">
-            <div class="modal-dialog modal-dialog">
+            <div class="modal-dialog">
                 <div class="modal-content modal_content_signup_login">
 
 
@@ -968,7 +969,7 @@
         <!-- Modal -->
         <div class="modal fade" id="location_input_modal" data-bs-backdrop="static" data-bs-keyboard="false"
             tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-            <div class="modal-dialog  modal-dialog-centered modal-dialog-scrollabled">
+            <div class="modal-dialog modal-dialog-centered modal-dialog-scrollabled">
                 <div class="modal-content modal_content">
                     <div class="location_search_area">
 
@@ -1088,7 +1089,7 @@ axios.get('/api/allproduct')
 });
 
 
-        
+
 
         // Sign UP PAGE
 function signup() {
@@ -1124,8 +1125,8 @@ function signup() {
                     window.location.href = '/'; // Redirect to dashboard or desired page
                 }
             });
-        } else  
-            
+        } else
+
         {
             Swal.fire({
                 icon: 'error',
@@ -1147,8 +1148,8 @@ function signup() {
                 const fieldErrors = responseErrors[field];
                 fieldErrors.forEach((message) => {
                     allErrors.push(message);
-            
-                }); 
+
+                });
             }
             const errorMsg = allErrors.join('\n')
 
@@ -1164,7 +1165,7 @@ function signup() {
 
 function displaySwal(errorMsg, invalidCredentials) {
 
-    Swal.fire({ 
+    Swal.fire({
                 icon: 'error',
                 title: 'Login Failed',
                 text:  errorMsg || invalidCredentials,
@@ -1197,7 +1198,7 @@ function loginUser() {
     axios.post('/api/auth/login', {
         email: email,
         password: password
-    }) 
+    })
     .then(function (response) {
         const responseData = response.data;
         if (responseData.status) {
@@ -1211,7 +1212,7 @@ function loginUser() {
 
             // Set the token in Axios default headers for subsequent requests
             axios.defaults.headers.common['Authorization'] = `Bearer ${responseData.data.token}`;
-            
+
 
             Swal.fire({
                 icon: 'success',
@@ -1222,14 +1223,14 @@ function loginUser() {
                 }
             });
         } else {
-            
+
 
 
         }
-        
+
     })
     .catch(function (error) {
-    
+
         if (error.response) {
 
         if(error.response.status ===  401 && error.response.data) {
@@ -1245,8 +1246,8 @@ function loginUser() {
                 const fieldErrors = responseErrors[field];
                 fieldErrors.forEach((message) => {
                     allErrors.push(message);
-            
-                }); 
+
+                });
             }
             const errorMsg = allErrors.join('\n')
 
@@ -1281,7 +1282,7 @@ axios.interceptors.request.use(
 // Function to handle password reset request
 // Function to send reset OTP
 function sendResetOtp() {
-    
+
     const email = document.getElementById("reset_email").value;
 
     axios.post('/api/forgot-password', {
@@ -1371,7 +1372,7 @@ function resetPassword() {
         password_confirmation: confirmPassword
     })
     .then(function (response) {
-     
+
         // Display a success message to the user
         Swal.fire({
             icon: 'success',
@@ -1406,7 +1407,7 @@ function logoutUser() {
                 // Remove the token from Axios default headers
                 delete axios.defaults.headers.common['Authorization'];
 
-            
+
                 Swal.fire({
                     icon: 'success',
                     title: 'Logout Successful',
@@ -1449,7 +1450,7 @@ document.getElementById('logoutLink').addEventListener('click', function(event) 
 }).then((result) => {
   if (result.isConfirmed) {
     logoutUser();
-    
+
   }
 });
 
@@ -1465,7 +1466,7 @@ function applyFilter() {
 
         promptLogin();
     }
-    
+
 
     const locationFilter = document.getElementById('clickMe').innerText.trim();
     const verifiedSeller = document.getElementById('verifiedSeller').checked;
@@ -1477,7 +1478,7 @@ function applyFilter() {
 
        conditionButtonValue = conditionButton.getAttribute('data-value');
        condition = conditionButtonValue.trim().toLowerCase();
-       
+
     }
 
     const filters = {
@@ -1512,10 +1513,10 @@ function toggleButton(button) {
 
 
 document.addEventListener('DOMContentLoaded', function () {
-    
+
 
     document.querySelectorAll('.product_condition_desktop .button').forEach(button => {
-        button.addEventListener('click', function() {  
+        button.addEventListener('click', function() {
             if(!token) {
                 promptLogin();
             }
@@ -1540,6 +1541,16 @@ document.addEventListener('DOMContentLoaded', function () {
     }
         applyFilter();
     });
+
+     axios.get('/api/v1/allproduct')
+        .then(function (response) {
+            const products = response.data;
+            localStorage.setItem('allProducts', JSON.stringify(products));
+            renderProductsAndSections(products);
+        })
+        .catch(function (error) {
+            console.error('Error fetching products:', error);
+        });
 });
 
 
@@ -1603,7 +1614,7 @@ function createProductCard(product) {
 
     card.querySelector('.product_card_link').addEventListener('click', function (event) {
         event.preventDefault();
-        //console.log( this.getAttribute('data-product'))
+        // console.log( this.getAttribute('data-product'))
         localStorage.setItem('selectedProduct', this.getAttribute('data-product'));
 
       console.log(window.location.href = this.href);
@@ -1617,7 +1628,7 @@ function createProductCard(product) {
 document.addEventListener('DOMContentLoaded', () => {
     if (token) {
         fetchUserData(token);
-    } 
+    }
 });
 
 function fetchUserData(token) {
@@ -1672,7 +1683,7 @@ function promptLogin() {
         title: 'Login Required',
         text: 'Please login to continue'
     }).then(() => {
-    
+
         const myModal = new bootstrap.Modal(document.querySelector('#signup_login-modal'));
         myModal.show();
 
@@ -1694,7 +1705,7 @@ document.addEventListener('DOMContentLoaded', function () {
             event.preventDefault();
             const categoryId = this.getAttribute('data-category-id');
             const categoryName = this.getAttribute('data-category-name');
-            
+
 
             axios.get(`/api/v1/categories/${categoryId}`, {
                 headers: {
@@ -1722,7 +1733,7 @@ document.getElementById('notification_icon').addEventListener('click', function(
         promptLogin();
 
     }
-    
+
   });
 
 

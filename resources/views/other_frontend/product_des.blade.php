@@ -82,7 +82,7 @@
 
         {{-- This part is for the mobile view for navbar sticky part --}}
     <div class="navbar-2 fixed-top">
-        <a href="{{ url('/') }}">  <i class="fa-solid fa-angle-left  back_to_index" ></i></a>
+        <a href="{{ url('/') }}">  <i class="fa-solid fa-angle-left back_to_index" ></i></a>
         <div class="user_info">
 
 
@@ -217,13 +217,13 @@
             <!-- Main Body Section --> <!-- This part works for the mobile view -->
         <div class="main2" >
 
-            <h5 class="related_search  animate animate-right">Related Search</h5>
+            <h5 class="related_search animate animate-right">Related Search</h5>
             <!-- Product Cards -->
             <div class="product_card_container related_search_margin">
                 <div class="container-fluid">
                     <div class="row">
                         <div class="col">
-                            <div class="product_card_display card-margin content-margin mt-4">
+                            <div class="mt-4 product_card_display card-margin content-margin">
                                 <!-- Example Product Card -->
                                 <a href="#" class="product_card_link" data-product-id="1">
                                     <div class="card product_card">
@@ -280,7 +280,7 @@
                 <div class="container-fluid">
                     <div class="row">
                       <div class="col">
-                        <div class="product_card_display card-margin content-margin mt-4" id="productcard_display">
+                        <div class="mt-4 product_card_display card-margin content-margin" id="productcard_display">
 
                              {{-- <a href="{{ url('/product_des') }}" class="product_card_link">
                                 <div class="card product_card">
@@ -349,7 +349,7 @@
                 <div class="container-fluid">
                     <div class="row">
                       <div class="col">
-                        <div class="product_card_display card-margin content-margin mt-4" id="productCardDisplay">
+                        <div class="mt-4 product_card_display card-margin content-margin" id="productCardDisplay">
                             <!-- Products will be dynamically added here -->
                         </div>
                       </div>
@@ -391,7 +391,7 @@
                 <div class="container-fluid">
                     <div class="row">
                       <div class="col">
-                        <div class="product_card_display card-margin content-margin mt-4" id="productCardDisplay2">
+                        <div class="mt-4 product_card_display card-margin content-margin" id="productCardDisplay2">
 
                              {{-- <a href="{{ url('/product_des') }}" class="product_card_link">
                                 <div class="card product_card">
@@ -427,7 +427,7 @@
             <!--tell us what is it-->
 
             <!--tell us what is it-->
-            <div class="tell_us_what_u_want  tell_us_what_u_want2 animate animate-left ">
+            <div class="tell_us_what_u_want tell_us_what_u_want2 animate animate-left ">
                 <p class="tell_us_paragraph tell_us_paragraph2" onclick="changeToInput2()">
                     <img src="innocent/assets/image/pen.png" alt="" class="pen">
                     Can't find what you are looking for?
@@ -643,7 +643,7 @@
     <script src="{{ asset('innocent/assets/js/product_des.js') }}"></script>
     <script src="{{ asset('innocent/assets/js/notification.js') }}"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
-   
+
 
 
      {{-- Axios and Moment.js Scripts --}}
@@ -681,7 +681,7 @@
     }
 
     const selectedProduct = JSON.parse(localStorage.getItem('selectedProduct'));
-    
+
     const allProducts = JSON.parse(localStorage.getItem('allProducts'));
 
     console.log(selectedProduct);
@@ -896,7 +896,7 @@ function fetchProductDetails(productId) {
 
 
         // FETCH THE USER DATA
-/*        
+/*
 document.addEventListener('DOMContentLoaded', () => {
     // Ensure the code runs after the DOM is fully loaded
     const token = localStorage.getItem('apiToken'); // Get the token from local storage

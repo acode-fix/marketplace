@@ -1,5 +1,5 @@
-import { validationError,displaySwal } from "./helper/helper.js";
-import { sendResetOtp, verifyOtp, resetPassword } from "./index.js";
+import { validationError,displaySwal } from "../helper/helper.js";
+import { sendResetOtp, verifyOtp, resetPassword,} from "../index.js";
 
 //axios.defaults.headers.common['Content-Type'] = 'multipart/form-data';
 const login = document.querySelector('.js-login');
@@ -146,4 +146,52 @@ if (changePassword) {
 
   })
 }
+
+
+export function logoutUser() {
+
+  axios.post('/api/v1/auth/logout')
+
+      .then(function (response) {
+
+          const responseData = response.data;
+          
+          if (responseData.status) {
+              
+              localStorage.removeItem('apiToken');
+              localStorage.clear();
+
+              // Remove the token from Axios default headers
+              //delete axios.defaults.headers.common['Authorization'];
+
+          
+              Swal.fire({
+                  icon: 'success',
+                  title: 'Logout Successful',
+                  text: responseData.message,
+                  willClose: function() {
+                      window.location.href = '/admin/login'; // Redirect to login page
+                   }
+              });
+          } else {
+              Swal.fire({
+                  icon: 'error',
+                  title: 'Logout Failed',
+                  text: 'Unexpected response from the server. Please try again later.'
+              });
+          }
+      })
+      .catch(function (error) {
+          const errorData = error.response.data;
+
+          Swal.fire({
+              icon: 'error',
+              title: 'Logout Failed',
+              text: errorData.message || 'There was an error while logging out. Please try again later.'
+          });
+      });
+}
+ 
+
+
 

@@ -79,11 +79,17 @@
         opacity: 0;
     }
 }
+.profile-picture {
+    cursor: pointer;
+} 
 
 
   </style>
   <script src="{{asset('kaz/js/bootstrap.js')}}"></script>
   <script src="{{asset('kaz/js/shop.js')}}"></script>
+  <script  src="{{asset('kaz/js/dashboard.js')}}"></script>
+  
+  
   
   
 </head>

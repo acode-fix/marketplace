@@ -53,7 +53,7 @@
 
   <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
-  <script type="module" src="{{ asset('backend-js/admin_auth.js') }}"></script>
+  <script type="module" src="{{ asset('backend-js/admin/admin_auth.js') }}"></script>
   
 </body>
 </html>

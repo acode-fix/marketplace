@@ -41,7 +41,7 @@
           <a href="settings.html">Dashboard</a>
           <a href="refer.html">Refer A Friend</a>
           <a href="privacy.html">Privacy Policy</a>
-          <a href="#">Log Out</a>
+          <a href="#" id="adminLogOut">Log Out</a>
 
         </div>
 

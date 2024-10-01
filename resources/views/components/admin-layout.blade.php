@@ -14,9 +14,8 @@
     </div>
 
     @include('admin_includes.footer')
-    <script src="{{asset('kaz/js/dashboard.js')}}"></script>
-    <script src="{{ asset('backend-js/dashboard.js') }}"></script>
+   
     
-
+ <script type="module" src="{{ asset('backend-js/admin/dashboard.js') }}"></script> 
 </body>
 </html>

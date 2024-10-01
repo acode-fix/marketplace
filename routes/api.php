@@ -59,9 +59,7 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::put('notifications/{id}/mark-as-read', [NotificationController::class, 'markAsRead']);
     Route::delete('notifications/{id}', [NotificationController::class, 'destroy']);
 });
-//
 
-//Route::get('/payment/callback', [PaymentController::class, 'checkTransactionRef']);
 
 Route::prefix('v1')->middleware('auth:sanctum')->group(function () {
 
@@ -73,7 +71,9 @@ Route::delete('/user', [UsersController::class, 'deleteAccount']);
 
 Route::post('/shop/update',[UsersController::class, 'uploadBanner']);
 
-//BECOME A VERIFIED SELLER ROUTE;
+
+//BECOME A VERIFIED SELLER Form Submission Route;
+
 Route::post('/verify/bio', [VerificationController::class, 'bioForm']);
 Route::post('/verify/nin', [VerificationController::class, 'ninUpload']);
 Route::post('/verify/image', [VerificationController::class, 'imageUpload']);
@@ -82,6 +82,11 @@ Route::post('/verify/badge', [VerificationController::class, 'badgeType']);
 //Payment Route;
 
 Route::get('/payment/init', [PaymentController::class, 'badgeFeePaystackInit']);
+
+//Admin Verification Route;
+
+Route::get('/verify/user', [VerificationController::class, 'index']);
+
 
 
 

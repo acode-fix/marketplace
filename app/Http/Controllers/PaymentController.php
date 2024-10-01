@@ -37,9 +37,8 @@ class PaymentController extends Controller
            $txn = Payment::generateTxn();
            $inv = Payment::generateInvoice();
 
-           $payment = Payment::updateOrCreate([
-            'user_id' => $userId,
-            ], [
+           $payment = Payment::Create([
+            
                 'amount' => $amount,
                 'purpose' => $purpose,
                 'invoice_number' => $inv,

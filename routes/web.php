@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuditlogController;
+use App\Http\Controllers\VerificationController;
 use App\Http\Controllers\LearnController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProductController;
@@ -9,21 +10,8 @@ use App\Http\Controllers\CategoriesController;
 use App\Http\Controllers\ShopController;
 use App\Http\Controllers\UsersController;
 use App\Http\Controllers\PaymentController;
+use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 
-
-Route::get('/admin/dashboard', function() {
-    return view('admin.dashboard');
-});
-
-Route::get('/admin/login', function() {
-
-    return view('admin.login');
-});
-Route::get('/admin/reset-password', function() {
-
-    return view('admin.reset_password');
-
-})->name('reset');
 
 
 
@@ -157,10 +145,37 @@ Route::get('/success', function () {
     return view('other_frontend.success');
 });
 
-Route::get('/payment/callback', [PaymentController::class, 'checkTransactionRef']);
 
-Route::get('/payment-success', [PaymentController::class, 'successPage'])->name('success.page');
 
 //Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+//Paystack Web Route;
+
+Route::get('/payment/callback', [PaymentController::class, 'checkTransactionRef']);
+
+Route::get('/payment-success', [PaymentController::class, 'successPage'])->name('success.page');
+
+//Admin Authentication Route;
+
+Route::get('/admin/login', function() {
+    return view('admin.login');
+
+});
+Route::get('/admin/reset-password', function() {
+    return view('admin.reset_password');
+
+})->name('reset');
+
+//Admin Dashboard Page Route;
+
+Route::get('/admin/dashboard', function() {
+    return view('admin.dashboard');
+
+})->name('admin.dashboard');
+
+Route::get('admin/verification/view', function() {
+
+    return view('admin.verify.view');
+});

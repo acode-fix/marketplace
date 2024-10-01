@@ -18,7 +18,6 @@ return new class extends Migration
             $table->string('purpose')->nullable();
             $table->string('currency')->default('NGN');
             $table->string('invoice_number')->nullable();
-            $table->string('payment_reference')->nullable();
             $table->string('transaction_reference')->nullable(); // Describe the transaction or link to an Enum or specific model
             $table->string('gateway_response')->nullable(); // Payment gateway used (e.g., Stripe, PayPal)
             $table->string('description')->nullable();

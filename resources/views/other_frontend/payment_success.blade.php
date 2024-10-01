@@ -26,19 +26,31 @@
 
   <div class="scroll-text">
     <div class="badge-top">
-      <img src="kaz/images/success.svg" alt="">
+      @if(session('error'))
+      <h6 style="margin-top: 40px;" class="fw-bold text-danger fs-2">Error!</h6>
+      <div class="container">
+        <div class="alert alert-danger mt-5">
+
+          {{ session('error') }}
+
+        </div>
+
+      </div>
+        
+      @endif
       @if(session('message'))
       <div class="container">
+        <img src="kaz/images/success.svg" alt="">
         <div class="alert alert-success mt-5">
           {{ session('message') }}
       </div>
       </div>
-      @endif
+     
       <h6 style="margin-top: 40px;" class="fw-bold ">Successful!</h6>
       <p class="fw-light approval-text mt-4 fs-4">Your Payment has been Successful<br>
         Awaiting  Admin Approval normally <br>
         may take up to 1hrs during business days <br>and up to 3hrs during off business days </p>
-
+      @endif
     </div>
     
 

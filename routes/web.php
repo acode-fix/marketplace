@@ -175,7 +175,7 @@ Route::get('/admin/dashboard', function() {
 
 })->name('admin.dashboard');
 
-Route::get('admin/verification/view', function() {
+Route::get('/admin/verification/view', function() {
 
     return view('admin.verify.view');
 });

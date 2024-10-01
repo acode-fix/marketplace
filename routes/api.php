@@ -154,7 +154,7 @@ Route::put('videos/{id}', [LearnController::class, 'update']);
 Route::delete('videos/{id}', [LearnController::class, 'destroy']);
 
 
-
+    
 // Verification
 //Route::post('/verifications', [VerificationController::class, 'store']);
 Route::post('/verifications/{id}/approve', [VerificationController::class, 'approve'])->middleware('admin');

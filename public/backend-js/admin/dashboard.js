@@ -1,3 +1,4 @@
+import { serverError } from "../index.js";
 import { logoutUser } from "./admin_auth.js";
 
 const token = localStorage.getItem('token');
@@ -23,7 +24,7 @@ if(!token) {
 
   }).then((response) => {
 
-    console.log(response)
+   // console.log(response)
 
   }).catch((error) => {
     console.log(error);
@@ -64,14 +65,48 @@ logOut.addEventListener('click', function(event) {
 
 document.getElementById('view').addEventListener('click', () => {
 
+
   axios.get('/api/v1/verify/user').then((response) => {
-    console.log(response);
+   // console.log(response);
+
+    if(response.status === 200 && response.data) {
+      const data = response.data.data;
+      //console.log(data);
+
+    localStorage.setItem('userData', JSON.stringify(data));
+
+     window.location.href = '/admin/verification/view';
+
+    } 
+
+    if(response.status === 500) {
+
+      serverError();
+    }
+
 
   }).catch((error) => {
-    console.log(error);
+
+    //console.log(error);
+
+    if(error.response) {
+
+      if(error.response.status === 404 && error.response.data) {
+
+        Swal.fire({
+            icon: 'error',
+            title: 'Loading All User',
+            text: error.response.data.message,
+        })
+
+
+    }
+
+
+    }
   })
 
-})
+});
 
 
 

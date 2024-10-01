@@ -18,9 +18,34 @@ class VerificationController extends Controller
      */
     public function index(Request $request)
     {
-        $user = $request->user();
+       //$user = User::where('user_type', 2)->get();
 
-        Debugbar::info($user);
+       $user = User::with('payment')->where('user_type', 2)->get();
+
+       Debugbar::info($user);
+
+       if(!$user->isEmpty()) {
+        
+        return response()->json([
+            'status' => true,
+            'message' => 'Users Data Found',
+            'data' => $user,
+
+        ], 200);
+
+       } else {
+
+        return response()->json([
+            'status' => false,
+            'message' => 'No User Data Not Found',
+            
+        
+        ], 404);
+
+       }
+
+
+    
     }
 
     /**
@@ -56,23 +81,20 @@ class VerificationController extends Controller
         }
 
         $user = $request->user();
-        $user->id;
+        
 
-      $verification = Verification::updateOrCreate([
-        'user_id' => $user->id,
-      ], [
+        $details = [
         'email' => $request->email,
         'nationality' => $request->nationality,
         'name' => $request->name,
         'address' => $request->address,
         'gender' => $request->gender,
         'phone_number' => $request->phone_number,
+        ];
 
-      ]);
-
-      
-
-      if($verification) {
+    
+    
+      if($user->update($details)) {
 
         return response()->json([
             'status' => true,
@@ -117,14 +139,11 @@ class VerificationController extends Controller
             $ninFile->move(public_path('./uploads/nins'), $ninFileName);
 
             $user = $request->user();
-            $user->id;
     
-            $verification = Verification::where('user_id', $user->id)->first();
+            if($user) {
     
-            if($verification) {
-    
-                $verification->nin_file = $ninFileName;
-                $verification->save();
+                $user->nin_file = $ninFileName;
+                $user->save();
     
                 return response()->json([
                     'status' => true,
@@ -193,12 +212,12 @@ class VerificationController extends Controller
         Debugbar::info($selfieName);
         Debugbar::info($user);
 
-        $verification = Verification::where('user_id', $user->id)->first();
+    
 
-        if($verification) {
+        if($user) {
 
-            $verification->selfie_photo = $selfieName;
-            $verification->save();
+            $user->selfie_photo = $selfieName;
+            $user->save();
 
             return response()->json([
                 'status' => true,
@@ -253,21 +272,27 @@ class VerificationController extends Controller
         }
 
         $user = $request->user();
-        $user->id;
-         
-        $verification = Verification::where('user_id', $user->id)->first();
+        
 
-        if($verification) {
+        if($user) {
 
-          $verification->badge_type = $request->badge_type;
-          $verification->save();
+          $user->badge_type = $request->badge_type;
+        
 
-          if($verification->save()) {
+          if($user->save()) {
 
             return response()->json([
                 'status' => true,
                 'message' => 'Badge Type Selected Successfully',
               ], 200);
+            
+
+          }else {
+
+            return response()->json([
+                'status' => false,
+                'message' => 'Badge Type Submission Failed',
+              ], 400);
             
 
 

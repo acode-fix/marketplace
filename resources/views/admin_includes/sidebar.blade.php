@@ -1,6 +1,6 @@
 <div class="side-bar">
     <div class="sidebar-link mt-4">
-      <div class="links {{ Request::is('admin/dashboard*') ? 'active clicked' : '' }}">
+      <div class="links {{ Request::is('admin/dashboard*') ? 'active-link clicked' : '' }}">
         <span class="user-menu">
           <a href="javascript:void(0);" class="menu-link">
             <img class="profile-logo svg-size" src="{{ asset('kaz/images/profile.svg') }}" alt="">
@@ -18,7 +18,7 @@
     </div>
   
     <div class="sidebar-link mt-4">
-      <div class="links {{ Request::is('admin/verification*') ? 'active clicked' : '' }}">
+      <div class="links {{ Request::is('admin/verification/view') ? 'active-link clicked' : '' }}">
         <span class="user-menu">
           <a href="javascript:void(0);" class="menu-link">
             <img class="profile-logo svg-size" src="{{ asset('kaz/images/profile.svg') }}" alt="">

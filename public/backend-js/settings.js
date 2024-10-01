@@ -460,6 +460,16 @@ bioSubmit.addEventListener('click', (event) => {
 
 
             }
+            if(error.response.status === 400 && error.response.data) {
+
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Submission Error',
+                    text: error.response.data.message,
+                })
+
+
+            }
 
             
             if(error.response.status === 500) {

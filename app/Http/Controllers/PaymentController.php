@@ -20,11 +20,9 @@ class PaymentController extends Controller
         $userId = $user->id;
         $userEmail = $user->email;
 
-        $verificationDetails = Verification::where('user_id', $userId)->first();
+       if($user) {
 
-       if($verificationDetails) {
-
-           $badgeType = $verificationDetails->badge_type;
+           $badgeType = $user->badge_type;
 
         if ($badgeType) {
 
@@ -38,7 +36,7 @@ class PaymentController extends Controller
            $inv = Payment::generateInvoice();
 
            $payment = Payment::Create([
-            
+                'user_id' => $userId,
                 'amount' => $amount,
                 'purpose' => $purpose,
                 'invoice_number' => $inv,
@@ -110,7 +108,7 @@ class PaymentController extends Controller
             'amount' =>  $amount_to_payStack * 100,
             'reference' => $txn,
             'callback_url' => env('APP_URL') . '/payment/callback',
-            //'callback_url' => 'http://127.0.0.1:8000/payment/callback',
+            
             
         ];
 
@@ -158,10 +156,14 @@ class PaymentController extends Controller
 
         }else {
 
-            return response()->json([
+         return   redirect()->route('success.page')->with('error', 'Invalid Transaction Reference!!');
+
+           /* return response()->json([
                 'status' => false,
                 'message' => 'Invalid Transaction Reference'
             ], 404);
+
+            */
         }
 
     }
@@ -196,14 +198,15 @@ class PaymentController extends Controller
        // Debugbar::info($responses);
         
         if ($err) {
-           // echo "cURL Error #:" . $err;
+       /* echo "cURL Error #:" . $err;
            return response()->json([
             'status' => false,
             'message' => 'Paystack Verification Failed',
              'error' => $err,
 
            ], 400);
-
+       */
+          return redirect()->route('success.page')->with('error',  'Paystack Verification Failed:'. $err);
 
         } else {
            //echo $responses;
@@ -246,11 +249,13 @@ class PaymentController extends Controller
 
                 } else {
 
-                    return response()->json([
+                    return redirect()->route('success.page')->with('error', 'Transaction Details Could Not Be Saved!!');
+
+                   /* return response()->json([
                         'status' => false,
                         'message' => 'Transaction could not be saved',
                     ],404);
-
+                    */
 
                 }
 
@@ -258,23 +263,27 @@ class PaymentController extends Controller
 
             }else {
 
+                return redirect()->route('success.page')->with('error', 'Paystack Status Verification Failed!!');
+               /*
                 return response()->json([
                     'status' => false,
                     'message' => 'Paystack Status Failed',
                    ], 400);
-
+              */
             }
 
             
            }else {
 
-            return response()->json([
+            return redirect()->route('success.page')->with('error', 'Paystack Status Key Is Empty!!');
+
+          /*  return response()->json([
                 'status' => false,
                 'message' => 'Paystack Status Key Empty',
-                'response' => $responses,
+                'response' => $response,
     
                ], 400);
-    
+            */
 
            }
 

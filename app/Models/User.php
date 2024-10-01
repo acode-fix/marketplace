@@ -53,12 +53,18 @@ class User extends Authenticatable
 
     use SoftDeletes; // Use the SoftDeletes trait
 
-    protected $dates = ['deleted_at']; // Optional: ensures dates are treated as instances of Carbon
+    protected $dates = ['deleted_at']; // Optional: ensures dates are treated as instances of Carbon;
+
+
+    public function payment() {
+
+        return $this->hasMany(Payment::class);
+    }
 
 
        static function getAuthUser(){
 
-           return  \Auth::guard('sanctum')->user();
+          // return  \Auth::guard('sanctum')->user();
        }
 
        public function referrals()

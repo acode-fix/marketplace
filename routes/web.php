@@ -179,3 +179,7 @@ Route::get('/admin/verification/view', function() {
 
     return view('admin.verify.view');
 });
+Route::get('/admin/view/user', function() {
+
+    return view('admin.verify.user_details');
+});

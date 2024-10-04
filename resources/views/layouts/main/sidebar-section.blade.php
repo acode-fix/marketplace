@@ -1,6 +1,6 @@
 <div class="side-bar">
     <div class="sidebar-link">
-        <div class="links  {{ Request::is('shop*') ? 'active clicked': '' }}">
+        <div class="links  {{ Request::is('shop*') ? 'active-link clicked': '' }}">
             <span>
                 <a href="{{ url('/shop') }}"> <img class="profile-logo svg-size" src="kaz/images/profile.svg"
                  alt=""><span class="profile-text">Shop</span></a>
@@ -9,7 +9,7 @@
         </div>
     </div>
     <div class="sidebar-link">
-        <div class="links  {{ Request::is('settings*') ? 'active clicked' : '' }}">
+        <div class="links  {{ Request::is('settings*') ? 'active-link clicked' : '' }}">
             <span>
                 <a href="{{ url('/settings') }}"><img class="profile-logo svg-size" src="kaz/images/product.svg"
                         alt=""><span class="profile-text">Settings</span></a>
@@ -18,7 +18,7 @@
         </div>
     </div>
     <div class="sidebar-link">
-        <div class="links {{ Request::is('learn*') ? 'active clicked': '' }}">
+        <div class="links {{ Request::is('learn*') ? 'active-link clicked': '' }}">
             <span>
                 <a href="{{ url('/learn') }}"><img class="profile-logo svg-size" src="kaz/images/learn.svg"
                         alt=""><span class="profile-text">Learn</span></a>
@@ -27,7 +27,7 @@
         </div>
     </div>
     <div class="sidebar-link">
-        <div class="links {{ Request::is('ads*') ? 'active clicked' : '' }}">
+        <div class="links {{ Request::is('ads*') ? 'active-link clicked' : '' }}">
             <span>
                 <a href="{{ url('/ads') }}"><img class="profile-logo" height="20px" width="17px"
                         src="kaz/images/ads.svg" alt="">    <span class="profile-text">Ads</span></a>
@@ -46,7 +46,7 @@
     </div>
     <hr style="color: black;">
     <div class="sidebar-link">
-        <div class="links {{ Request::is('privacy*') ? 'active clicked' : '' }}">
+        <div class="links {{ Request::is('privacy*') ? 'active-link clicked' : '' }}">
             <span>
                 <a href="{{ url('/privacy') }}"><img class="profile-logo svg-size" src="kaz/images/privacy policy.svg"
                         alt=""><span class="profile-text">Privacy Policy</span></a>
@@ -55,7 +55,7 @@
         </div>
     </div>
     <div class="sidebar-link">
-        <div class="links {{ Request::is('refer*') ? 'active clicked': '' }}">
+        <div class="links {{ Request::is('refer*') ? 'active-link clicked': '' }}">
             <span>
                 <a href="{{ url('/refer') }}"> <img class="profile-logo svg-size" src="kaz/images/refer friends.svg"
                         alt=""><span class="profile-text">Refer Friends</span></a>
@@ -64,7 +64,7 @@
         </div>
     </div>
     <div class="sidebar-link">  
-        <div class="links delete {{ Request::is('delete*') ? 'active clicked' : '' }}">
+        <div class="links delete {{ Request::is('delete*') ? 'active-link clicked' : '' }}">
             <span>
                 <a class="delete" href="{{ url('/delete') }}"><img class="profile-logo svg-size1" src="kaz/images/delete.svg"
                         alt=""> <span class="profile-text">Delete Account</span></a>

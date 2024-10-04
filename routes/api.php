@@ -15,11 +15,7 @@ use App\Http\Controllers\ShopController;
 use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\AdvertController;
 use App\Http\Controllers\PaymentController;
-
-
-
-
-
+use App\Models\Verification;
 
 // Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 //     return $request->user();
@@ -68,6 +64,7 @@ Route::post('/auth/logout',[UsersController::class, 'logoutUser']);
 Route::get('/getuser', [UsersController::class, 'getUserData']);
 Route::get('/referral-link', [UsersController::class, 'getReferralLink']);
 Route::delete('/user', [UsersController::class, 'deleteAccount']);
+Route::get('/userDetails', [UsersController::class, 'getUserPayment']);
 
 Route::post('/shop/update',[UsersController::class, 'uploadBanner']);
 
@@ -86,12 +83,13 @@ Route::get('/payment/init', [PaymentController::class, 'badgeFeePaystackInit']);
 //Admin Verification Route;
 
 Route::get('/verify/user', [VerificationController::class, 'index']);
+Route::get('/view/approved/user', [VerificationController::class, 'showApproved']);
+Route::get('/view/rejected/user', [VerificationController::class, 'showRejectedUser']);
+Route::post('/approve/user', [VerificationController::class, 'approveUserVerification']);
+Route::post('/reject/user', [VerificationController::class, 'rejectUserVerification']);
 
 
 
-
-
-Route::post('/admin/verify-user/{id}', [VerificationController::class, 'approveVerification']);
 
 
 

@@ -24,7 +24,7 @@ if(!token) {
 
   }).then((response) => {
 
-   // console.log(response)
+    //console.log(response)
 
   }).catch((error) => {
     console.log(error);
@@ -61,6 +61,7 @@ logOut.addEventListener('click', function(event) {
       });
 
 });
+
 
 
 document.getElementById('view').addEventListener('click', () => {
@@ -107,6 +108,7 @@ document.getElementById('view').addEventListener('click', () => {
   })
 
 });
+
 
 
 

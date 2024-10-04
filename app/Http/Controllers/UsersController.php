@@ -505,4 +505,70 @@ class UsersController extends Controller
         ], 500);
     }
 }
+
+
+public function getUserPayment(Request $request) {
+
+    $userId = $request->user;
+
+    $user = User::with('payment')->where('user_type', 2)->where('id', $userId)->first();
+
+    DeBugBar::info($user, $userId);
+
+    if($user) {
+
+        return response()->json([
+            'status' => true,
+            'message' => 'User Details Fetched Successfuly',
+            'data' => $user,
+
+        ], 200);
+    }else {
+
+
+        return response()->json([
+            'status' => false,
+            'message' => 'User Not Found',
+            
+        ],404);
+    }
+
+
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 }

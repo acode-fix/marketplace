@@ -7,7 +7,7 @@
     <div class="main">
         @include('admin_includes.sidebar')
 
-        <div class="content">
+        <div style="margin-bottom: 150px" class="content">
             {{$slot}}
         </div>
 

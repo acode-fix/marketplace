@@ -2,14 +2,21 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Payment;
 use Illuminate\Http\Request;
 use App\Models\Verification;
 use App\Models\User;
+use App\Models\Shop;
+use App\Models\Badge;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Barryvdh\Debugbar\Facades\Debugbar;
+use Carbon\Carbon;
+use Carbon\CarbonImmutable;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\RejectVerificationMail;
 
 class VerificationController extends Controller
 {
@@ -20,7 +27,7 @@ class VerificationController extends Controller
     {
        //$user = User::where('user_type', 2)->get();
 
-       $user = User::with('payment')->where('user_type', 2)->get();
+       $user = User::with('payment')->where('user_type', 2)->where('verify_status', 0)->get();
 
        Debugbar::info($user);
 
@@ -51,10 +58,157 @@ class VerificationController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
-    {
-        //
+    public function approveUserVerification(Request $request) {
+
+        $userId =  $request->userId;
+
+        $payment = Payment::with('user')->where('user_id', $userId)->where('status', 1)->first();
+
+        if(!$payment) {
+            DebugBar::info($payment);
+            return response()->json([
+                'status' => false,
+                 'message' => 'Payment Verification Failed'
+
+            ], 404);
+
+
+        } else {
+
+            $shopNo = Shop::shopNo();
+            $shopToken = Shop::shopToken(50);
+
+           // DeBugBar::info($shopNo, $shopToken, $payment->user);
+
+            $user = $payment->user;
+
+            if(!$user || !$user->badge_type) {
+
+                return response()->json([
+                    'status' => false,
+                    'message' => 'User Associated with Payment Not Found'
+
+                ],404);
+
+
+            }else {
+
+                $purchaseDate = CarbonImmutable::now();
+                $expiryDate = Badge::getExpiryDate($user->badge_type);
+
+                $badgeInfo = [
+                    'user_id' => $user->id,
+                    'purchase_date' => $purchaseDate,
+                    'expiry_date' =>  $expiryDate,
+                ];
+
+
+                $validate = [
+                    'shop_no' => $shopNo,
+                    'shop_token' => $shopToken,
+                    'verify_status' => 1,
+                ];
+
+                if($user->update($validate) && Badge::create($badgeInfo)) {
+
+                    return response()->json([
+                        'status' => true,
+                        'message' => 'User Verification Approved Successfully'
+
+                    ],200);
+                }else {
+
+                    return response()->json([
+
+                        'status' => false,
+                        'message' => 'User Verification Approval Unsuccessfull!!'
+
+                    ], 400);
+                }
+
+               
+
+               // Debugbar::info($purchaseDate, $expiryDate);
+
+       }    
+                        
+        }
+
+ 
+
     }
+
+    public function rejectUserVerification(Request $request) {
+ 
+        $userId = $request->userId;
+
+        DeBugBar::info($request->userId,
+        $request->text);
+
+        $user = User::find($userId);
+
+        if(!$user) {
+
+            return response()->json([
+                'status' => false,
+                'message' => 'User Does Not Exist',
+
+            ],404);
+
+
+
+        } else {
+
+          $email =  $user->email ??  '';
+          $name = $user->name ?? '';
+          $phone_number = $user->phone_number ?? '';
+          $text = $request->text;
+
+
+         try{
+            
+            Mail::to($email)->send(new RejectVerificationMail($name, $email, $phone_number, $text));
+
+            $user->verify_status = -1;
+            $user->save();
+
+            return response()->json([
+                'status' => true,
+                'message' => 'Mail Sent Succesfully to User'
+
+            ], 200);
+
+        } catch(\Exception $e) {
+
+
+            return response()->json([
+                'status' => false,
+                'message' => 'Mail  Not Sent Succesfully to User !!'. $e->getMessage(),
+
+            ], 500);
+
+
+        }
+ 
+           
+
+
+         
+
+
+
+
+
+
+
+        }
+
+
+
+        
+
+    }
+    
 
     public function bioForm(Request $request) {
 
@@ -319,47 +473,66 @@ class VerificationController extends Controller
        
     }
 
-    // Method to approve verification (for admins)
-    public function approve($id)
-    {
-        $verification = Verification::findOrFail($id);
-        $verification->approved = true;
-        $verification->save();
 
-        return response()->json(['status' => true, 'message' => 'Verification approved.']);
+
+
+
+    public function showApproved(Request $request) {
+
+
+        $user = User::with('payment')->where('verify_status', 1)->get();
+
+        if ($user->isEmpty()) {
+
+            return response()->json([
+                'status' => false,
+                'message' => 'No User Found',
+
+            ],404);
+
+        }else {
+
+
+            return response()->json([
+                'status' => true,
+                'message' => 'User Details Fetched Successfully',
+                'data' => $user,
+
+            ],200);
+        }
+
+    }
+
+    public function showRejectedUser(Request $request) {
+
+
+        $user = User::with('payment')->where('verify_status', -1)->get();
+
+        if ($user->isEmpty()) {
+
+            return response()->json([
+                'status' => false,
+                'message' => 'No User Found',
+
+            ],404);
+
+        }else {
+
+
+            return response()->json([
+                'status' => true,
+                'message' => 'User Details Fetched Successfully',
+                'data' => $user,
+
+            ],200);
+        }
+
     }
 
 
     /**
      * Verify the specified resource.
      */
-public function approveVerification(Request $request, $userId)
-{
-    // Fetch the user's verification record
-    $verification = Verification::where('user_id', $userId)->first();
-
-    if (!$verification) {
-        return response()->json(['error' => 'Verification record not found'], 404);
-    }
-
-    // Update the verification status (assuming it's passed)
-    $verification->approved = true;
-    $verification->save();
-
-    // Update the is_verified field in the users table
-    $user = User::find($userId);
-
-    if (!$user) {
-        return response()->json(['error' => 'User not found'], 404);
-    }
-
-    $user->is_verified = true;
-    $user->save();
-
-    return response()->json(['message' => 'User verification approved and updated successfully.']);
-}
-
-
 /**
      * Display the specified resource.
      */

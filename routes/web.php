@@ -136,6 +136,7 @@ Route::get('/selfie', function () {
     return view('other_frontend.selfie');
 });
 Route::get('/sellers-shop', function () {
+
     return view('other_frontend.sellers-shop');
 });
 Route::get('/start_selling', function () {

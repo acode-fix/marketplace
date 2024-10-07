@@ -56,6 +56,12 @@
     cursor: pointer;
 }
 
+#profile-image {
+    width: 80px;
+    height:80px; 
+    border-radius:50px
+}
+
 .profile_picture_mobile {
     width: 45px;
     height: 45px;

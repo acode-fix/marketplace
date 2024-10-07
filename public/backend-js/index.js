@@ -115,11 +115,7 @@ export function verifyOtp(adminEmail, adminOtp) {
           icon: 'success',
           title: 'OTP Verified',
           text: 'OTP has been verified successfully.',
-          onClose: function() {
-        
-            // After OTP verification, show the password change modal
-              //changePassword(); // Assuming you have a function to show the password change modal
-          }
+          
       });
   }).then(() => {
 

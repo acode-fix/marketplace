@@ -149,7 +149,7 @@ function changePassword() {
 
 function enter_shop_no(){
   document.getElementById("shop_no_dekstop").style.display="none"
-  document.getElementById("shop_no_dekstop2").style.display="flex "
+  document.getElementById("shop_no_dekstop2").style.display="flex";
   document.getElementById("shop_no_input").focus()
 }
 

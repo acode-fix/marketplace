@@ -206,23 +206,28 @@
                 <div id="shop_number_mobile" class="shop_number_mobile">
                     <i class="fa-solid fa-close close_shop_no" onclick=" return_enter_shop_no_mobile()"></i>
 
-                    <input type="text" class="form-control" id="shop_no_input_mobile" placeholder="enter shop no ">
+                    <input type="text" class="form-control js-shop-no" id="shop_no_input_mobile" placeholder="enter shop no ">
 
                     <img src="innocent/assets/image/send 3.svg" alt="" id="send"
                         onclick=" return_enter_shop_no_mobile()">
+                        
                 </div>
 
 
                 <div id="shop_no_dekstop" class="shop" onclick="enter_shop_no()"><img
                         src="innocent/assets/image/shop.svg" alt=""></div>
                 <div id="shop_no_dekstop2" class="shop3">
-                    <i class="fa-solid fa-close close_shop_no" onclick=" return_enter_shop_no()"></i>
+                
+                    <i class="fa-solid fa-close close_shop_no" onclick="return_enter_shop_no()"></i>
 
-                    <input type="text" class="form-control" id="shop_no_input" placeholder="enter shop no ">
+                    <input type="text" class="form-control js-input-value" id="shop_no_input" placeholder="enter shop no ">
 
-                    <img src="innocent/assets/image/send 3.svg" alt="" id="send" onclick=" return_enter_shop_no()">
+                    <img class="js-send" src="innocent/assets/image/send 3.svg" alt="" id="send" onclick="return_enter_shop_no()">
+                    
+                
                 </div>
-
+                
+                
 
                 <h5 class="category-replace  animate animate-right">Categories</h5>
                 <h5 class="category-h5  ">Select product category
@@ -1724,6 +1729,79 @@ document.getElementById('notification_icon').addEventListener('click', function(
     }
     
   });
+
+
+
+document.querySelector('.js-send').addEventListener('click', () => {
+
+ const shopNo =  document.querySelector('.js-input-value').value;
+
+    if (shopNo.trim()  === '' ) {
+
+        Swal.fire({
+                icon: 'error',
+                title: 'Verified Seller Shop',
+                text: 'Shop No Is Required', })
+
+    }else {
+
+    axios.get('/api/v1/verified-seller/details', {
+
+        params: {
+            shopNo,
+
+        },
+        headers: {
+            'Content-type': 'application/json',
+        }
+    }).then((response) =>{
+
+        console.log(response)
+
+        if(response.status === 200 && response.data) {
+
+         const userId = response.data.data;
+
+         localStorage.setItem('userId', JSON.stringify(userId))
+
+         window.location.href = '/sellers-shop'
+
+        }
+
+    }).catch((error) => {
+
+        console.log(error);
+
+        if(error.response) {
+
+            if(error.response.status === 404 && error.response.data) {
+
+                Swal.fire({
+                icon: 'error',
+                title: 'Verification',
+                text: error.response.data.message});
+
+            }
+
+        }else {   
+
+            Swal.fire({
+                 icon: 'error',
+                 title: 'Request Error',
+                 text: 'Something went wrong. Please try again later.', });
+
+
+        }
+
+        
+        
+    });
+
+
+   }
+
+
+});
 
 
 

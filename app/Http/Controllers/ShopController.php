@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Product;
+use Barryvdh\Debugbar\Facades\Debugbar;
 
 
 class ShopController extends Controller
@@ -16,12 +17,18 @@ class ShopController extends Controller
     {
         //
     }
-    public function showUserShop($userId)
+    public function showUserShop(Request $request)
     {
-        $user = User::findOrFail($userId);
-        $products = Product::where('user_id', $userId)->get();
+       $userId = $request->userId;
 
-        return view('sellers-shop', compact('user', 'products'));
+       $user = User::find($userId);
+
+       Debugbar::info($user);
+
+
+
+       
+       
     }
 
     

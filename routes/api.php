@@ -89,6 +89,11 @@ Route::post('/approve/user', [VerificationController::class, 'approveUserVerific
 Route::post('/reject/user', [VerificationController::class, 'rejectUserVerification']);
 
 
+//Verified Seller Shop Route;
+
+Route::get('/verified-seller/details', [UsersController::class, 'getDetails']);
+
+
 
 
 

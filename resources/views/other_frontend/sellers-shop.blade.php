@@ -54,9 +54,9 @@
         <h6 class="mired-text fw-light">loading</h6>
       </div>
       <div class="profile-dropdown">
-        <img class="img-fluid profile-picture" style="width: 50px; height:50px; border-radius:50px" src="kaz/images/dp.png" alt="" id="profileDropdownBtn">
-        <div class="dropdown-menu" id="dropdownMenu">
-          <div class="container drop-struct">
+        <img class="img-fluid" style="width: 50px; height:50px; border-radius:50px" src="kaz/images/dp.png" alt="" id="profileDropdownBtn">
+        <div class="dropdown-menu js-dropdown" id="dropdownMenu">
+           <div class="container drop-struct">
             <img id="profile_image" class="pt-1" width="50px" src="kaz/images/dp.png" alt="">
             <div class="ms-2 pt-1">
               <h6 id="profile_name">Mired Augustine</h6>
@@ -69,8 +69,7 @@
             <a href="{{ url('/refer') }}">Refer A Friend</a>
             <a href="{{ url('/privacy') }}">Privacy Policy</a>
             <a href="#">Log Out</a>
-
-          </div>
+          </div> 
 
         </div>
       </div>
@@ -745,9 +744,12 @@
 
   </div>
 
-
-
+<script type="module" src="{{ asset('backend-js/seller-shop.js') }}"></script>
   <script>
+
+   
+
+    /*
     // Fetch the user data
     const token = localStorage.getItem('apiToken'); // Get the token from local storage
 
@@ -940,7 +942,7 @@ function createProductCard(product) {
 }
 
 
-
+*/
 </script>
 
 

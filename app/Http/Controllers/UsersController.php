@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Barryvdh\Debugbar\Facades\Debugbar;
-use Symfony\Component\ErrorHandler\Debug;
+
 
 class UsersController extends Controller
 {
@@ -533,6 +533,79 @@ public function getUserPayment(Request $request) {
         ],404);
     }
 
+}
+
+
+public function getDetails(Request $request) {
+
+   $userId = $request->query('userId');
+   $shopNo = $request->query('shopNo');
+
+   if($userId) {
+
+   $user = User::with('products')->where('id', $userId)->where('verify_status', 1)
+                                     ->whereNotNull('shop_token')
+                                     ->first();
+
+    if(!$user) {
+
+        return response()->json([
+            'status' => false,
+            'message' => 'Shop Verification Failed',
+
+        ],404);
+
+    }else {
+
+        Debugbar::info($user);
+
+        return response()->json([
+            'status' => true,
+            'message' => 'User Details Fetched Successfully',
+            'data' => $user,
+
+        ]);
+
+        
+
+    }
+
+  }
+
+  if($shopNo) {
+
+    debugbar::info($shopNo);
+
+    $user = User::query()->where('shop_no', $shopNo)
+                         ->whereNotNull('shop_token')
+                         ->first();
+
+    if(!$user) {
+
+        return response()->json([
+            'status' => false,
+            'message' => 'Shop Verification Failed',
+
+        ],404);
+
+    }else {
+    
+        Debugbar::info($user);
+
+        return response()->json([
+            'status' => true,
+            'message' => 'User Details Fetched Successfully',
+            'data' => $user->id,
+
+        ]);
+
+            
+    
+    }
+
+    
+
+  }
 
 
 

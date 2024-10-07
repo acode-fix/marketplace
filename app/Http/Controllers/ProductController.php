@@ -67,7 +67,7 @@ public function index()
     if ($totalProducts <= 16) {
         // Fetch all products with user data
        // $data = Product::with('user:id,is_verified')->get();
-       $data = Product::with('user:id')->get();
+       $data = Product::with('user')->get();
         return response()->json($data);
     } else {
         $numberOfProductsToDisplay = 16;
@@ -75,7 +75,7 @@ public function index()
         // Fetch a random set of products
         $randomProducts = 
        // Product::with('user:id,is_verified')
-       Product::with('user:id,')
+       Product::with('user')
                                  ->inRandomOrder()
                                  ->limit($numberOfProductsToDisplay)
                                  ->get();

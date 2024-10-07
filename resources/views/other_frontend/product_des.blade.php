@@ -50,22 +50,22 @@
         <div id="notification_icon_div"><img src="innocent/assets/image/notification.png" alt="Logo" id="notification_icon"></div>
         <div id="notification_icon_div2"> <a href="{{ url('/notification_mobile') }}"><img src="innocent/assets/image/notification.png" alt="Logo" ></a></div>
 
-         <div><img id="profile_picture" src="" alt=".profile picture " class="profile_picture"></div>
-         <div><img id="profile_picture_mobile" src="" alt=".profile picture " class="profile_picture_mobile"></div>
+         <div><img id="profile_picture" src="" alt=".profile picture " class="profile_picture js-product-desc-img"></div>
+         <div><img id="profile_picture_mobile" src="" alt=".profile picture " class="profile_picture_mobile js-product-desc-img"></div>
     </div>
 
     <!-- profile card -->
     <div class="profile_card">
-        <div class="profile_card_user_name">
-            <img id="profile_image" src="" alt="Profile Image"
+    {{-- <div class="profile_card_user_name">
+              <img id="profile_image" src="" alt="Profile Image"
             style="width: 80px; height:80px; border-radius:50px">
           <p id="profile_name">Loading
         </p>
-        <p><span id="profile_email">loading</span></p>
+        <p><span id="profile_email">loading</span></p>  --}}
           {{-- <p>Mired Augustine <br>
             <span>miredaugustine@gmail.com</span>
           </p> --}}
-        </div>
+          {{-- </div>
         <hr>
         <div class="accont_features">
             <p><a href="{{ url('/settings') }}">Account Setting </a></p>
@@ -73,7 +73,7 @@
             <p> <a href="{{ url('/privacy') }}">Privacy and Policy </a></p>
             <p><a href="#"> Sign out</a></p>
 
-        </div>
+        </div>    --}}
 
     </div>
 
@@ -84,9 +84,7 @@
     <div class="navbar-2 fixed-top">
         <a href="{{ url('/') }}">  <i class="fa-solid fa-angle-left back_to_index" ></i></a>
         <div class="user_info">
-
-
-            <div><img src="innocent/assets/image/bike.png" alt=".profile picture " class="user_photo"></div>
+            {{-- <div><img src="innocent/assets/image/bike.png" alt=".profile picture " class="user_photo"></div>
             <div class="user_name_area">
                 <p class="user_name">Innocent</p>
 
@@ -111,7 +109,7 @@
                 <p class="condition">
                     loading
                 </p>
-            </div>
+            </div> --}}
         </div>
         <img src="innocent/assets/image/main logo.svg" alt="" class="buy_and_sell_logo_product_des_mobile">
 
@@ -129,11 +127,11 @@
 
                 <div class="products_details_dekstop">
                     <div class="user_info2">
-                        <div><img src="innocent/assets/image/bike.png" alt=".profile picture " class="user_photo"></div>
+                        <div><img  src="" alt=".profile picture " class="user_photo js-profile"></div>
                         <div class="user_name2_area">
                             <p class="user_name2">Loading</p>
                             <p class="location2">
-                                <img src="innocent/assets/image/badge.png" alt="">
+                                <img  class="js-badge" src="" alt="">
                                 <i class="fa-solid fa-location-dot" style="font-size: 12px;"></i>
                                 <span class="user_state">loading</span>
                                 <span class="rate">
@@ -605,7 +603,7 @@
     <!-- Footer Section -->
     <div class="footer_contanier">
         <div>
-            <img src="logo.png" alt="">
+            <img src="innocent/assets/image/logo.png" alt="">
         </div>
         <nav class="footer_links">
             <a href="">About Us</a>
@@ -654,7 +652,6 @@
 
     {{-- NEW VERSION --}}
     <script>
-
         //
     document.addEventListener('DOMContentLoaded', function () {
      const viewShopButton = document.getElementById('viewShopButton');
@@ -684,8 +681,7 @@
 
     const allProducts = JSON.parse(localStorage.getItem('allProducts'));
 
-    console.log(selectedProduct);
-
+   // console.log(selectedProduct);
 
 
     // Display product details if selectedProduct is available
@@ -694,7 +690,7 @@
         displayProductDetails(selectedProduct);
 
         // Show "View Shop" button if the seller is verified
-        if (selectedProduct.user.id  && selectedProduct.user.is_verified === 1) {
+        if (selectedProduct.user.id  && selectedProduct.user.verify_status === 1) {
             viewShopButton.style.display = 'block'; // Show button
         } else {
             viewShopButton.style.display = 'none'; // Hide button
@@ -703,13 +699,18 @@
 
    // Add event listener for "View Shop" button
    if (viewShopButton) {
-    console.log(selectedProduct.shop_id);
 
-        viewShopButton.addEventListener('click', function () {
+        viewShopButton.addEventListener('click', function (event) {
+            event.preventDefault();
             if (selectedProduct) {
-                localStorage.setItem('selectedProductId', selectedProduct.id);
-                window.location.href = `/sellers-shop?userId=${selectedProduct.user.id}`;
-            }
+            const userId = selectedProduct.user.id;
+            const token = localStorage.setItem('userId', JSON.stringify(userId));
+
+            window.location.href = '/sellers-shop';
+
+
+            
+           }
         });
     }
 
@@ -719,9 +720,15 @@
     }
 });
 
+
+
+
 function displayProductDetails(product) {
     // Display product details in the UI
+
+    console.log(product);
     document.querySelector('.user_state').textContent = product.location;
+    document.querySelector('.user_name2').textContent = product.user.name;
     document.querySelector('.rate_value').textContent = product.rate;
     document.querySelector('.sold3').textContent = 'sold ' + (product.sold || 0);
     document.querySelector('.stock2').textContent = product.quantity + ' in stock';
@@ -729,11 +736,53 @@ function displayProductDetails(product) {
     document.querySelector('.description').textContent = product.description;
     document.querySelector('.product_name_on_sidebar').textContent = product.title;
 
+    const profileElement = document.querySelector('.js-profile');
+    profileElement.src = product.user.photo_url ? `/uploads/users/${product.user.photo_url}` : '';
+    const badgeElement =  document.querySelector('.js-badge');
+    badgeElement.src =  product.user.verify_status === 1 ? 'innocent/assets/image/badge.png' : '';
+
     // For mobile view
+    /*
     document.querySelector('.sold2').textContent = 'sold ' + (product.sold || 0);
     document.querySelector('.stock').textContent = product.quantity + ' in stock';
     document.querySelector('.condition').textContent = product.condition;
     document.querySelector('.user_state_mobile').textContent = product.location;
+    */
+
+   const profile = product.user.photo_url ? `<img src="/uploads/users/${product.user.photo_url}" alt=".profile picture " class="user_photo">` : '';
+
+   const badge = product.user.verify_status === 1 ? '<img src="innocent/assets/image/badge.png" alt="">' : '';
+     
+   const mobileHeader = `
+    <div>${profile}</div>
+        <div class="user_name_area">
+            <p class="user_name">${product.user.name ?? 'No Data Provided'}</p>
+
+            <p class="location">
+                ${badge}
+                <span class="user_state_mobile">${product.location ?? 'No Data Provided'}</span>
+                <span class="rate">
+                    <img src="innocent/assets/image/Rate.png" alt="">
+                    <span class="rate_value">loading</span>
+                </span>
+            </p>
+        </div>
+        <div class="products_details_head">
+            <p class="sold2">
+                loading
+            </p>
+
+            <p class="stock">
+                ${product.quantity ?? 'No Data Provided'}
+            </p>
+
+            <p class="condition">
+                ${product.condition ?? 'No Data Provided'}
+            </p>
+         </div>`;
+
+         document.querySelector('.user_info').innerHTML = mobileHeader;
+
 
     // Handle price display
     if (product.ask_for_price) {
@@ -895,62 +944,6 @@ function fetchProductDetails(productId) {
 
 
 
-        // FETCH THE USER DATA
-/*
-document.addEventListener('DOMContentLoaded', () => {
-    // Ensure the code runs after the DOM is fully loaded
-    const token = localStorage.getItem('apiToken'); // Get the token from local storage
-
-    if (token) {
-        fetchUserData(token);
-    } else {
-        promptLogin('Authentication token is missing. Please log in.');
-    }
-});
-
-*/
-
-function fetchUserData(token) {
-    axios.get('/api/v1/getuser', {
-        headers: {
-            'Authorization': 'Bearer ' + token
-        }
-    })
-    .then(response => {
-        const user = response.data;
-        updateUserProfile(user);
-    })
-    .catch(error => {
-        console.error('Error fetching user data:', error);
-        if (error.response && error.response.status === 401) {
-            promptLogin('Your session has expired. Please log in again.');
-        }
-    });
-}
-
-function updateUserProfile(user) {
-    const nameElement = document.getElementById('profile_name');
-    const emailElement = document.getElementById('profile_email');
-    const profileImageElement = document.getElementById('profile_image');
-    const profilePictureElement = document.getElementById('profile_picture');
-    const profilePictureMobileElement = document.getElementById('profile_picture_mobile');
-
-    if (user) {
-        // nameElement.innerHTML = `${user.username || 'Unknown User'} <br>`;
-        // emailElement.innerHTML = user.email || 'No email provided';
-
-        nameElement.textContent = user.username || 'Unknown User';
-        emailElement.textContent = user.email || 'No email provided';
-
-        const imageUrl = user.photo_url ? `/uploads/users/${user.photo_url}` : 'innocent/assets/image/dp.png';
-        profileImageElement.src = imageUrl;
-        profilePictureElement.src = imageUrl;
-        profilePictureMobileElement.src = imageUrl;
-    } else {
-        console.error('User data is null or undefined');
-    }
-}
-
 function promptLogin(message) {
     Swal.fire({
         icon: 'error',
@@ -961,6 +954,7 @@ function promptLogin(message) {
     });
 }
     </script>
+    
 
 
 

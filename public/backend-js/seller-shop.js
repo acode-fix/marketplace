@@ -1,4 +1,4 @@
-import { serverError } from "./index.js";
+import { serverError } from "./admin/auth-helper.js";
 
 const token = localStorage.getItem('apiToken');
 

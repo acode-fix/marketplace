@@ -401,7 +401,7 @@
     <script src="{{ asset('innocent/assets/js/upload_image.js') }}"></script>
     <script src="{{ asset('innocent/assets/js/bootstrap.js') }}"></script>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-    <script src="{{ asset('backend-js/auth.js') }}"></script>
+    <script src="{{ asset('backend-js/user/profile-update.js') }}"></script>
 
     <script>
     // document.addEventListener('DOMContentLoaded', function() {

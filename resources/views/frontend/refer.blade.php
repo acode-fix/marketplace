@@ -128,7 +128,7 @@
   <script src="{{ asset('kaz/js/refer.js') }}"></script>
   <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.js"></script>
-  <script type="module" src="{{ asset('backend-js/auth.js') }}"></script>
+  
 
   <script>
   document.addEventListener('DOMContentLoaded', function() {

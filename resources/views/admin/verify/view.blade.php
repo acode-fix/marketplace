@@ -134,7 +134,7 @@
   <script src="https://cdn.datatables.net/responsive/3.0.3/js/dataTables.responsive.js"></script>
   <script src="https://cdn.datatables.net/responsive/3.0.3/js/responsive.bootstrap5.js"></script>
 
- <script type="module" src="{{asset('backend-js/admin/verify_view.js')}}"></script>
+ <script type="module" src="{{asset('backend-js/admin/verify-view.js')}}"></script>
  {{-- <script>
     new DataTable('#example', {
       responsive: true

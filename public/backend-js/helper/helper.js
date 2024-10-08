@@ -31,3 +31,29 @@ export function displaySwal(errorMsg) {
 
 
 }
+
+
+export function getToken () {
+
+  const token = localStorage.getItem('apiToken')
+
+if(!token) {
+
+    Swal.fire({
+    icon: 'error',
+    title: 'Unauthenticated User',
+    text: 'Kindly log in.'
+}).then(() => {
+
+    window.location.href = '/'; 
+    
+});
+
+return false
+
+} else {
+
+  return token;
+}
+
+}

@@ -8,6 +8,9 @@
   <link rel="stylesheet" href="{{ asset('kaz/css/bootstrap.css') }}">
   <link rel="stylesheet" href="{{ asset('kaz/css/nin.css') }}">
   <script src="{{ asset('kaz/js/nin.js') }}"></script>
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
   <style>
 
 
@@ -35,9 +38,10 @@
       <div class="mt-1 below" id="below-section" style="text-align: center;">
         <h2 class="fw-light nin-text">NIN</h2>
         <p>Kind Upload Your National <br>Identification Card </p>
-        <form action="">
-          <input type="file" name="" id="actual-btn" hidden>
-          <label for="actual-btn"><img id="upload" class="mt-4 mb-5" src="kaz/images/Nin uploadw.svg" alt=""></label>
+        <span id="error"></span>
+        <form id="mobile-nin">
+          <input type="file" name="nin_file" id="actual-btn" class="mobile-file" hidden>
+          <label for="actual-btn"><img id="upload" class="mt-4 mb-5" src="{{asset('kaz/images/Nin upload.svg')}}" alt=""></label>
         </form>
       </div>
     </div>
@@ -52,7 +56,7 @@
       <div class="mt-3 tc">
         <button style="display: none;" id="retake-button" type="button"
           class=" btn btn-success btn-lg  ">Retake</button>
-        <button style="display: none;" id="save-button" type="button" class=" btn btn-success btn-lg  ">Save</button>
+        <button style="display: none;" id="save-button" type="button" class=" btn btn-success btn-lg ">Save</button>
       </div>
     </form>
 
@@ -61,19 +65,19 @@
       <h6 class="sign mt-4"><span>or</span></h6>
     </div>
     <div class="mt-4 tc">
-      <form action="">
-        <input type="file" name="" id="imgInp2" hidden>
+      <form >
+        <input  type="file" name="" id="imgInp2" hidden>
         <label class="label2" for="actual-btn">Select the document from Gallery <br>
           <span class="png-text fw-light">Png, jpeg, pdf</span></label>
       </form>
     </div>
 
-    <a href="{{ url('/id') }}">
+    <a href="">
       <button type="button" class="btn btn-warning next-btn btn-lg">Next</button>
     </a>
   </div>
 
-
+  <script type="module" src="{{ asset('backend-js/user/nin.js') }}"></script>
 </body>
 
 </html>

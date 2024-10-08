@@ -1,4 +1,4 @@
-import { validationError } from "./helper/helper.js";
+import { validationError } from "../helper/helper.js";
 
 export function sendResetOtp(value) {
     

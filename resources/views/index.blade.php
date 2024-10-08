@@ -1072,8 +1072,10 @@
     <script src="{{ asset('innocent/assets/js/animation.js') }}"></script>
     <script src="{{ asset('innocent/assets/js/location.js') }}"></script>
     <script src="{{ asset('innocent/assets/js/modal.js') }}"></script>
-    <script type="module" src="{{ asset('backend-js/index.js') }}"></script>
+    
 
+
+ <script  src="{{ asset('backend-js/user/auth.js') }}"></script>
 
 
     {{-- AXIOUS JAVASCRIPT --}}
@@ -1093,7 +1095,7 @@ axios.get('/api/allproduct')
 });
 
 
-        
+ /*       
 
         // Sign UP PAGE
 function signup() {
@@ -1460,6 +1462,7 @@ document.getElementById('logoutLink').addEventListener('click', function(event) 
 
 });
 
+*/
 
 const token = localStorage.getItem('apiToken');
 

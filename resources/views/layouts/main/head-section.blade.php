@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="{{ asset('kaz/css1/fontawesome.min.css') }}">
     <script src="{{ asset('kaz/js/bootstrap.js') }}"></script>
     <script src="{{ asset('kaz/js/shop.js') }}"></script>
+    
 
 {{-- css style from Learn page --}}
     <link rel="stylesheet" href="{{ asset('kaz/css/learn.css') }}">

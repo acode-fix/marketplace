@@ -1,5 +1,5 @@
-import { serverError } from "../index.js";
-import { logoutUser } from "./admin_auth.js";
+import { serverError } from "./auth-helper.js";
+import { logoutUser } from "./auth.js";
 
 const token = localStorage.getItem('token');
 

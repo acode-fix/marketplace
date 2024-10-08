@@ -79,13 +79,17 @@
         benefit sellers by improving thier visibility,
         credibility,and ultimately thier sales performance on the marketplace.
       </h6>
+      <a href="{{ url('/bio') }}">
+        <button type="button" class="btn btn-warning become-next-btn  btn-lg">Next</button>
+      </a> 
     </div>
+    
+  
 
   </div>
-  </div>
-  <a href="{{ url('/bio') }}">
-    <button type="button" class="btn btn-warning next-btn  btn-lg">Next</button>
-  </a>
+  {{-- <a href="{{ url('/bio') }}">
+    <button type="button" class="btn btn-warning become-next-btn  btn-lg">Next</button>
+  </a> --}}
 
 
 

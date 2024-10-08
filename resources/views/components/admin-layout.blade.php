@@ -16,6 +16,7 @@
     @include('admin_includes.footer')
    
     
- <script type="module" src="{{ asset('backend-js/admin/dashboard.js') }}"></script> 
+ <script type="module" src="{{ asset('backend-js/admin/dashboard.js') }}"></script>
+ <script type="module" src="{{ asset('backend-js/admin/auth-helper.js') }}"></script>
 </body>
 </html>

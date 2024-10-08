@@ -136,7 +136,6 @@
         }
     });
     </script> --}}
-    <script type="module" src="{{ asset('backend-js/auth.js') }}"></script>
     <script>
         document.getElementById('deleteAccountBtn').addEventListener('click', function() {
             const token = localStorage.getItem('apiToken'); // Get the token from local storage

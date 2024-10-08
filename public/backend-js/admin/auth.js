@@ -1,5 +1,5 @@
 import { validationError,displaySwal } from "../helper/helper.js";
-import { sendResetOtp, verifyOtp, resetPassword,} from "../index.js";
+import { sendResetOtp, verifyOtp, resetPassword,} from "./auth-helper.js";
 
 //axios.defaults.headers.common['Content-Type'] = 'multipart/form-data';
 const login = document.querySelector('.js-login');

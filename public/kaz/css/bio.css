@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Sora:wght@100..800&display=swap');
+
 body {
   margin: 0;
   padding: 0;
@@ -43,7 +45,7 @@ body {
 }
 
 #search-modal {
-  background-image: url(images/Email.svg);
+  background-image: url(../images/Email.svg);
   background-position: 10px;
   background-repeat: no-repeat;
   text-indent: 25%;
@@ -68,7 +70,7 @@ body {
 }
 
 #search-modal1 {
-  background-image: url(images/name.svg);
+  background-image: url(../images/name.svg);
   background-position: 10px;
   background-repeat: no-repeat;
   text-indent: 25%;
@@ -93,7 +95,7 @@ body {
 }
 
 #search-modal2 {
-  background-image: url(images/address.svg);
+  background-image: url(../images/address.svg);
   background-position: 10px;
   background-repeat: no-repeat;
   text-indent: 25%;
@@ -119,10 +121,10 @@ body {
 }
 
 #search-modal3 {
-  background-image: url(images/phone\ number.svg);
+  background-image: url(../images/phone\ number.svg);
   background-position: 10px;
   background-repeat: no-repeat;
-  text-indent: 15%;
+  text-indent: 25%;
   border-top: none;
   border-left: none;
   border-right: none;
@@ -205,4 +207,7 @@ button a {
 .form-check-input[type="radio"]:focus {
   border-color: yellow;
   /* Set border color to yellow when radio button is focused */
+}
+.error {
+  color: #fe3d3d;
 }

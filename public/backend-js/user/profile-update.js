@@ -1,14 +1,13 @@
 
   // Fetch the user data
- const token = localStorage.getItem('apiToken'); // Get the token from local storage
-  // console.log(token)
+ const token = localStorage.getItem('apiToken');
+
+ axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
 
 if (token) {
   
    axios.get('/api/v1/getuser', {
-       headers: {
-           'Authorization': 'Bearer ' + token
-       }
+
    }).then(response => {
       const  user = response.data;
 
@@ -152,14 +151,18 @@ function updateUserProfile(user) {
                 <p><a href="/settings">Account Setting </a></p>
                 <p><a href="/refer"> Reffer a Friend </a></p>
                 <p> <a href="/privacy'">Privacy and Policy </a></p>
-                <p><a href="#" id="logoutLink">Log out</a></p>
+                <p><a href="#" id="dash">Log out</a></p>
             </div>`;
 
          if(document.querySelector('.profile_card')) {
 
             document.querySelector('.profile_card').innerHTML = dashboard;
 
+        
+
          }
+
+        
         
 
         //UPDATE USER PROFILE NAVBAR ON PRODUCT DESCRIPTION PAGE;
@@ -170,13 +173,105 @@ function updateUserProfile(user) {
 
        });
 
+     //User Log Out Link in Layout.main Navbar;
 
+     const mobileLogOut = document.querySelector('.js-mobile-view-logout');
+
+     //User Log out link in layout.others navbar
+     const otherMobileLogOut = document.querySelector('.js-other-mobile-logout')
+
+     if(mobileLogOut) {
+
+        mobileLogOut.addEventListener('click', () => { 
+        
+            Swal.fire({
+                title: "Are you sure?",
+                text: "You won't be able to revert this!",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#3085d6",
+                cancelButtonColor: "#d33",
+                confirmButtonText: "Yes,I am sure!"
+                }).then((result) => {
+                if (result.isConfirmed) {
+                  logoutUser();
+                  
+                }
+            });
+        });
+     }
+
+     if(otherMobileLogOut) {
+        otherMobileLogOut.addEventListener('click', () => {
+
+            Swal.fire({
+                title: "Are you sure?",
+                text: "You won't be able to revert this!",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#3085d6",
+                cancelButtonColor: "#d33",
+                confirmButtonText: "Yes,I am sure!"
+                }).then((result) => {
+                if (result.isConfirmed) {
+                  logoutUser();
+                  
+                }
+            });
+
+        })
+     }
+
+     function logoutUser() {
+
+        axios.post('/api/v1/auth/logout')
+      
+            .then(function (response) {
+      
+                const responseData = response.data;
+                
+                if (responseData.status) {
+                    
+                    localStorage.removeItem('apiToken');
+                    localStorage.clear();
+          
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Logout Successful',
+                        text: responseData.message,
+                        willClose: function() {
+                            window.location.href = '/'; // Redirect to login page
+                         }
+                    });
+                } else {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Logout Failed',
+                        text: 'Unexpected response from the server. Please try again later.'
+                    });
+                }
+            })
+            .catch(function (error) {
+                const errorData = error.response.data;
+      
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Logout Failed',
+                    text: errorData.message || 'There was an error while logging out. Please try again later.'
+                });
+            });
+      }
+
+       
+      
 
    } else {
        console.error('User data is null or undefined');
    }
 
 }
+
+
 
 
 

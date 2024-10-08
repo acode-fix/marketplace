@@ -647,11 +647,16 @@
      {{-- Axios and Moment.js Scripts --}}
   <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/moment@2.29.1/min/moment.min.js"></script>
-  <script type="module" src="{{ asset('backend-js/auth.js') }}"></script>
+  <script type="module" src="{{ asset('backend-js/user/profile-update.js') }}"></script>
+  <script type="module" src="{{ asset('backend-js/user/product-desc.js') }}"></script> 
+
+
 
 
     {{-- NEW VERSION --}}
     <script>
+        
+        
         //
     document.addEventListener('DOMContentLoaded', function () {
      const viewShopButton = document.getElementById('viewShopButton');

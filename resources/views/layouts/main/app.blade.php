@@ -18,6 +18,7 @@
      @yield('content')
 {{-- @include('layouts.main.profile-js') --}}
 
+<script type="module" src="{{ asset('backend-js/user/profile-update.js') }}"></script>
 </body>
 
 </html>

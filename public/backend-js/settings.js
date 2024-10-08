@@ -1,9 +1,10 @@
 import { validationError,displaySwal, } from "./helper/helper.js";
-import { serverError } from "./index.js";
+import { serverError } from "./admin/auth-helper.js";
 
 const token = localStorage.getItem('apiToken');
 
 axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+
 
 document.addEventListener('DOMContentLoaded', function () {
     function handleFormSubmit(event, formId) {
@@ -208,7 +209,7 @@ showStep(currentStep);
 
 let errors;
 
-function Validation() {
+ function Validation() {
 
     
      errors = {};
@@ -219,7 +220,7 @@ function Validation() {
     const address = document.querySelector('.address').value;
     const phone = document.querySelector('.phone_number').value;
     const gender = document.querySelector('input[name="gender"]:checked');
-    const genderInput = gender ? gender.input : '';
+    const genderInput = gender ? gender.value : '';
 
 
 
@@ -272,7 +273,6 @@ function Validation() {
 };
 
 //console.log(errors)
-
 bioSubmit.addEventListener('click', (event) => {    
     event.preventDefault();
      
@@ -386,6 +386,9 @@ bioSubmit.addEventListener('click', (event) => {
 }
 
 });
+
+
+
  
   const saveBadge = document.getElementById('save_badge');
 

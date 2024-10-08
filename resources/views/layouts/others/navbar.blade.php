@@ -34,7 +34,7 @@
         <li><a href="{{ url('/settings') }}">Dashboard</a></li>
         <li><a href="{{ url('/refer') }}">Refer a Friend</a></li>
         <li><a href="{{ url('/privacy') }}">Privacy Policy</a></li>
-        <li><a href="#">Log Out</a></li>
+        <li><a href="#" class="js-other-mobile-logout">Log Out</a></li>
         <hr style="background-color: black; width: 70%;">
         <li><a style="color: #ff0000;" href="{{ url('/delete') }}">Delete Account</a></li>
       </ul>

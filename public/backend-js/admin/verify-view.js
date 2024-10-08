@@ -1,4 +1,4 @@
-import { serverError } from "../index.js";
+import { serverError } from "./auth-helper.js";
 
 
 //console.log('yes');

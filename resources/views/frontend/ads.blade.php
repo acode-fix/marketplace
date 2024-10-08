@@ -658,5 +658,5 @@
     </div>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10/dist/sweetalert2.all.min.js"></script>
-    <script type="module" src="{{ asset('backend-js/auth.js') }}"></script>
+    
   @endsection

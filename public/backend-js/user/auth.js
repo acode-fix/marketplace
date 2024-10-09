@@ -268,6 +268,10 @@
 }
  
  function logoutUser() {
+    const token = localStorage.getItem('apiToken');
+
+    axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+
     axios.post('/api/v1/auth/logout')
         .then(function (response) {
             const responseData = response.data;

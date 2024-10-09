@@ -320,6 +320,102 @@ class VerificationController extends Controller
 
     }
 
+    public function ninCamUpload(Request $request) {
+
+        Debugbar::info($request->canvasImage);
+
+        $validator = Validator::make($request->all(),[
+            'canvasImage' => 'required | string',
+
+        ]);
+
+        if($validator->fails()) {
+            return response()->json([
+                'status' => false,
+                'message' => 'Validation Error',
+                'errors' => $validator->errors(), 
+
+
+            ], 422);
+
+
+        }
+
+        $encodedData = str_replace(' ','+', $request->canvasImage);
+
+        list(, $encodedData) = explode(',', $encodedData);
+
+        $decodedData = base64_decode($encodedData);
+
+        if($decodedData) {
+            $rad = mt_rand(1000, 9999);
+            $extension = 'png';
+            $ninFileName = md5($rad . time() . '.' . $extension);
+
+            $ninFilePath = './uploads/nins/';
+
+                if(!file_exists($ninFilePath)) {
+                    mkdir($ninFilePath, 0777, true);
+
+                }
+            file_put_contents($ninFilePath . $ninFileName, $decodedData);
+
+            $user = $request->user();
+
+            Debugbar::info($ninFileName);
+            Debugbar::info($user);
+    
+        
+    
+            if($user) {
+    
+                $user->nin_file = $ninFileName;
+                $user->save();
+    
+                return response()->json([
+                    'status' => true,
+                    'message' => 'NIN Captured Succesfully',
+        
+                ], 200);
+    
+            }else {
+    
+                return response()->json([
+                    'status' => false,
+                    'message' => 'Bio-Form Must Be Completed First',
+        
+                ], 404);
+    
+            }
+          
+        }else {
+
+            return response()->json([
+                'status' => false,
+                'message' => 'NIN Was Not Captured Successfully',
+    
+            ], 400);
+    
+    
+         }
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    }
+
 
     public function imageUpload(Request $request) {
 

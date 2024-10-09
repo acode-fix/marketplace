@@ -8,6 +8,9 @@
   <link rel="stylesheet" href="{{ asset('kaz/css/bootstrap.css') }}">
   <link rel="stylesheet" href="{{ asset('kaz/css/badge.css') }}">
   <script src="{{ asset('kaz/js/badge.js') }}"></script>
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
   <style>
 
 
@@ -53,18 +56,17 @@
         </div>
 
 
-
-
       </div>
       <div class="mt-4 container first ">
         <!-- <h6 class="fw-bold">Monthly</h6> -->
-        <form action="">
+        <form id="form1" action="">
+
           <div class="month" onclick="selectPlan('month')">
             <h6 class="fw-bold">Monthly</h6>
             <div class="layout">
               <p class="badge-text">Your badge cost #2500 per month to stay <br>
                 active on your profile </p>
-              <input class="form-check-input me-5 " type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+              <input class="form-check-input me-5 " type="radio" name="badge_type" id="flexRadioDefault1" value="monthly">
             </div>
           </div>
           <div class="year" onclick="selectPlan('year')">
@@ -72,23 +74,24 @@
             <div class="layout">
               <p class="badge-text"> Your badge cost #20,000 and save 33% <br>
                 per year to stay active on your profile</p>
-              <input class="form-check-input me-5 " type="radio" name="flexRadioDefault" id="flexRadioDefault2">
+              <input class="form-check-input me-5 " type="radio" name="badge_type" id="flexRadioDefault2" value="yearly">
             </div>
           </div>
+          <span class="error"></span>
 
         </form>
 
-      </div>
-      <div class="mt-4 container second ">
+      </div>  
+      {{-- <div class="mt-4 container second ">
         <!-- <h6 class="fw-bold">Monthly</h6> -->
-        <form action="">
+        <form id="form2" action="">
           <div class="month2" onclick="selectPlan2('month2')">
             <h6 class="fw-bold">Monthly</h6>
             <div class="layout">
               <p class="badge-text">Your badge cost #2500 per month to stay
                 active on your profile </p>
-              <input class="form-check-input me-5  radio-btn" type="radio" name="flexRadioDefault"
-                id="flexRadioDefault13">
+              <input class="form-check-input me-5  radio-btn" type="radio" name="badge"
+                id="flexRadioDefault3" value="monthly">
             </div>
           </div>
           <div class="year2" onclick="selectPlan2('year2')">
@@ -96,13 +99,13 @@
             <div class="layout">
               <p class="badge-text"> Your badge cost #20,000 and save 33%
                 per year to stay active on your profile </p>
-              <input class="form-check-input  me-5" type="radio" name="flexRadioDefault" id="flexRadioDefault4">
+              <input class="form-check-input  me-5" type="radio" name="badge" id="flexRadioDefault4" value="yearly">
             </div>
           </div>
 
         </form>
 
-      </div>
+      </div> --}}
       <div class="container">
         <h6 class="mt-4 ms-2 fw-bold">Remember the benefits</h6>
         <ol class="modal-benefits ">
@@ -117,14 +120,14 @@
       </div>
 
     </div>
-    <a href="{{ url('/success') }}">
+    <a href="">
       <button type="button" class="btn btn-warning next-btn btn-lg">Next</button>
     </a>
 
 
   </div>
-  <script>
-  </script>
+
+  <script type="module" src="{{ asset('backend-js/user/badge.js') }}"></script> 
 </body>
 
 </html>

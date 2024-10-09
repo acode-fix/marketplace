@@ -77,7 +77,7 @@
     </a>
   </div>
 
-  <script type="module" src="{{ asset('backend-js/user/nin.js') }}"></script>
+   <script type="module" src="{{ asset('backend-js/user/nin.js') }}"></script> 
 </body>
 
 </html>

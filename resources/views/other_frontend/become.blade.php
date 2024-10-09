@@ -8,6 +8,9 @@
   <link rel="stylesheet" href="{{ asset('kaz/css/bootstrap.css') }}">
   <link rel="stylesheet" href="{{ asset('kaz/css/become.css') }}">
   <script src="{{ asset('kaz/js/bootstrap.js') }}"></script>
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
   <style>
 
   </style>
@@ -93,7 +96,7 @@
 
 
 
-
+  <script type="module" src="{{ asset('backend-js/user/become.js') }}"></script>
 </body>
 
 </html>

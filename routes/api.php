@@ -73,6 +73,7 @@ Route::post('/shop/update',[UsersController::class, 'uploadBanner']);
 
 Route::post('/verify/bio', [VerificationController::class, 'bioForm']);
 Route::post('/verify/nin', [VerificationController::class, 'ninUpload']);
+Route::post('/verify/nin-cam', [VerificationController::class, 'ninCamUpload']);
 Route::post('/verify/image', [VerificationController::class, 'imageUpload']);
 Route::post('/verify/badge', [VerificationController::class, 'badgeType']);
 

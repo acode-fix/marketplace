@@ -102,7 +102,7 @@ if(token) {
 
       }).then((response) => {
 
-        console.log(response);
+       // console.log(response);
 
         if(response.status === 200 && response.data ) {
 
@@ -130,7 +130,7 @@ if(token) {
          window.location.href = '/nin';
 
         }
-      })
+          })
 
 
 

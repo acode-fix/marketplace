@@ -336,7 +336,7 @@ class UsersController extends Controller
 
 
         $bannerImg->move(public_path('./uploads/users/'), $bannerName);
-        $upload = './uploads/users/'. $bannerName;
+    
     }
 
     $userId = $request->user()->id;
@@ -374,7 +374,7 @@ class UsersController extends Controller
     }
 }
    
-    $user->banner = $upload;
+    $user->banner = $bannerName;
 
     if ( $user->save()) {
 

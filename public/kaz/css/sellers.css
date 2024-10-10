@@ -187,3 +187,9 @@
   text-decoration: none;
   color: blue;
 }
+.productCard {
+  cursor: pointer;
+}
+.js-profile {
+  cursor: pointer;
+}

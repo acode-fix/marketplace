@@ -12,11 +12,11 @@
   <link rel="stylesheet" href="{{ asset('kaz/css1/all.min.css') }}">
   <link rel="stylesheet" href="{{ asset('kaz/css1/fontawesome.min.css') }}">
   <script src="{{ asset('kaz/js/bootstrap.js') }}"></script>
-  <script src="{{ asset('kaz/js/card.js') }}"></script>
-  <script src="{{ asset('kaz/js/read.js') }}"></script>
+   {{-- <script src="{{ asset('kaz/js/card.js') }}"><script>  --}}
+   <script src="{{ asset('kaz/js/read.js') }}"></script>
 
   <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-  <!-- Include SweetAlert CSS and JS -->
+
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.js"></script>
   <style>
@@ -50,17 +50,17 @@
         <button type="button" class="btn btn-warning btn-height me-5"> + create Ads</button>
       </div>
       <div class="me-1">
-        <h6 class="name">Loading</h6>
-        <h6 class="mired-text fw-light">loading</h6>
+        <h6 class="name js-name">Loading</h6>
+        <h6 class="mired-text fw-light js-email">loading</h6>
       </div>
       <div class="profile-dropdown">
-        <img class="img-fluid" style="width: 50px; height:50px; border-radius:50px" src="kaz/images/dp.png" alt="" id="profileDropdownBtn">
+        <img class="img-fluid js-profile" style="width: 50px; height:50px; border-radius:50px" src="kaz/images/dp.png" alt="" id="profileDropdownBtn">
         <div class="dropdown-menu js-dropdown" id="dropdownMenu">
            <div class="container drop-struct">
-            <img id="profile_image" class="pt-1" width="50px" src="kaz/images/dp.png" alt="">
+            <img id="profile_image" class="js-profile" style="width: 50px; height:50px; border-radius: 40px" src="kaz/images/dp.png" alt="">
             <div class="ms-2 pt-1">
-              <h6 id="profile_name">Mired Augustine</h6>
-              <h6 id="profile_email" style="font-size: small;">Miredaugustine@gmail.com</h6>
+              <h6 id="profile_name" class="js-name">Mired Augustine</h6>
+              <h6 id="profile_email" class="js-email" style="font-size: small;">Miredaugustine@gmail.com</h6>
             </div>
           </div>
           <hr style="background-color: black; margin-left: 10px;margin-right: 10px;">
@@ -94,11 +94,11 @@
     <div class="side-barr">
       <div class="card sidebar-card mb-3 text-dark ms-2 mt-3" style="width:240px;">
         <div class="card-body ">
-          <div class="ms-2">
+          <div class="test">
+            
+          </div>
+          {{-- <div class="ms-2">
             <h6 class="card-title">About me</h6>
-            <p class="about_me"></p>
-            <p class="registration_date"></p>
-
             <p  style="font-size: small; " class="card-text our-company">
               Our company is a full service creation agency that specializes in defining top-notch
               UI/UX design,video editing and <span id="moreText" style="display: none;">Lorem ipsum dolor sit amet
@@ -136,7 +136,9 @@
 
             </div>
             <hr style="background-color: #343434;">
-          </div>
+          
+          </div> --}}
+
           <div class="ms-2">
             <h6 class="card-title">Reviews</h6>
             <div>
@@ -166,17 +168,16 @@
       <div class="container">
         <div class="row ">
           <div class="col  content-margin">
-            <form action="">
-              <div style="width: 90%;" class="card mb-3  main-card-preview">
+              {{-- <div style="width: 90%;" class="card mb-3  main-card-preview">
                 <img style="height:220px;" id="banner" src="kaz/images/Picture of product (Tablet).png"
-                  class="card-img-top main-img-border" alt="...">
+                 class="card-img-top main-img-border" alt="...">
                 <div class="card-body">
                   <div class="row">
                     <div class="col mt-2">
                       <div style="display: flex; align-items: center;">
                         <img src="kaz/images/dp.png" class="ms-2" alt="">
                         <div class="camera2">
-                          <img class="badge-cam " height="20px" width="15px" src="kaz/images/badge.png" alt="">
+                          <img class="badge-cam" height="20px" width="15px" src="kaz/images/badge.png" alt="">
                         </div>
                         <div class="mt-4 ms-4">
                           <h5 class="">Drill Houston <span style="font-size: small;">(unique_id)</span></h5>
@@ -188,13 +189,11 @@
                     <div class="col">
                       <div style="float: right;">
                         <h6 class="connect-shop2  me-2 mt-4">Connect</h6>
-
                       </div>
                     </div>
                   </div>
                 </div>
-              </div>
-            </form>
+              </div> --}}
           </div>
         </div>
         <div class="row mt-3">
@@ -211,7 +210,7 @@
         <div class="row">
           <div class="col-11">
             <div class="new-card card-margin content-margin mt-4">
-              <div>
+               {{--<div>
                 <div class="card card-preview" id="productCard" data-card-index="0">
                   <h6 class="sold">Sold 75</h6>
                   <img src="kaz/images/Picture of product (USB).png" class="card-img-top w-100 image-border" alt="...">
@@ -238,8 +237,8 @@
                 <div class="overlay" onclick="closeCustomContainer()" id="overlay"></div>
                 <div id="loadedCardContainer"></div>
 
-              </div>
-              <div class="card card-preview" data-card-index="0">
+              </div> 
+               <div class="card card-preview" data-card-index="0">
                 <h6 class="sold">Sold 75</h6>
                 <img src="kaz/images/Picture of product (USB).png" class="card-img-top w-100 image-border" alt="...">
                 <div class="card-body">
@@ -423,7 +422,7 @@
                   </div>
                 </div>
               </div>
-              <!-- Repeat this structure for each card -->
+             --}}
             </div>
           </div>
           <div style="text-align: center;">
@@ -560,7 +559,7 @@
       <div class="row mt-3 mb-4">
         <div class="">
           <div class="mobile-card">
-            <a class="link-card" href="{{ url('/product_des') }}">
+            {{-- <a class="link-card" href="{{ url('/product_des') }}">
               <div class="card card-preview" data-card-id="1">
                 <div class="sold-mobile">
                   <h6 class="amount-sold-m ps-1 pt-1">Sold 100</h6>
@@ -735,7 +734,7 @@
 
                 </div>
               </div>
-            </a>
+            </a> --}}
           </div>
         </div>
       </div>
@@ -745,209 +744,6 @@
   </div>
 
 <script type="module" src="{{ asset('backend-js/seller-shop.js') }}"></script>
-  <script>
-
-   
-
-    /*
-    // Fetch the user data
-    const token = localStorage.getItem('apiToken'); // Get the token from local storage
-
-if (token) {
-    axios.get('/api/v1/getuser', {
-        headers: {
-            'Authorization': 'Bearer ' + token
-        }
-    })
-    .then(response => {
-        const user = response.data;
-        updateUserProfile(user);
-    })
-    .catch(error => {
-        console.error('Error fetching user data:', error);
-        if (error.response && error.response.status === 401) {
-            Swal.fire({
-                icon: 'error',
-                title: 'Unauthorized',
-                text: 'Your session has expired. Please log in again.'
-            }).then(() => {
-                window.location.href = '/login'; // Redirect to login page
-            });
-        }
-    });
-} else {
-    Swal.fire({
-        icon: 'error',
-        title: 'Missing Token',
-        text: 'Authentication token is missing. Please log in.'
-    }).then(() => {
-        window.location.href = '/login'; // Redirect to login page
-    });
-}
-
-function updateUserProfile(user) {
-    const nameElement = document.querySelector('.right-section .name');
-    const emailElement = document.querySelector('.right-section .mired-text');
-    const profileImageElement = document.querySelector('.right-section .profile-picture');
-    const nameeElement = document.getElementById('profile_name');
-    const emaileElement = document.getElementById('profile_email');
-    // const profileImageElement = document.getElementById('profile_image');
-    const profilePictureElement = document.getElementById('profile_picture');
-    // const profilePictureMobileElement = document.getElementById('profile_picture_mobile');
-
-    if (user) {
-        nameElement.textContent = user.username || 'Unknown User';
-        emailElement.textContent = user.email || 'No email provided';
-
-        nameeElement.textContent = user.username || 'Unknown User';
-        emaileElement.textContent = user.email || 'No email provided';
-
-        // profileImageElement.src = user.photo_url ? user.photo_url : 'kaz/images/dp.png';
-        const imageUrl = user.photo_url ? `/uploads/users/${user.photo_url}` : 'innocent/assets/image/dp.png';
-        profileImageElement.src = imageUrl;
-        profilePictureElement.src = imageUrl;
-        profilePictureMobileElement.src = imageUrl;
-    } else {
-        console.error('User data is null or undefined');
-    }
-}
-
-
-
-document.addEventListener('DOMContentLoaded', function() {
-        const productId = localStorage.getItem('selectedProductId');
-
-        if (productId) {
-            axios.get(`/api/v1/seller-details`)
-                .then(response => {
-                    const seller = response.data.seller;
-                    const products = response.data.products;
-
-                    // Display seller details
-                    const sellerDetailsDiv = document.getElementById('seller-details');
-                    sellerDetailsDiv.innerHTML = `
-                        <h5>${seller.name}</h5>
-                        <p>Email: ${seller.email}</p>
-                        <p>Location: ${seller.location}</p>
-                        <p>Member since: ${user.created_at}</p>
-                        <!-- Add more seller details as needed -->
-                    `;
-
-                    // Display seller's other products
-                    const sellerProductsDiv = document.getElementById('seller-products');
-                    let productsHtml = '<h6>Other Products</h6>';
-                    products.forEach(product => {
-                        productsHtml += `
-                            <div class="card card-preview">
-                                <h6 class="sold">Sold ${product.sold}</h6>
-                                <img src="${product.image_url}" class="card-img-top w-100 image-border" alt="...">
-                                <div class="card-body">
-                                    <h6 class="amount">$${product.actual_price} <span class="amount-span">$${product.promo_price}</span></h6>
-                                    <p class="card-text">${product.title}</p>
-                                    <!-- Add more product details as needed -->
-                                </div>
-                            </div>
-                        `;
-                    });
-                    sellerProductsDiv.innerHTML = productsHtml;
-                })
-                .catch(error => {
-                    console.error('There was an error fetching the seller details!', error);
-                });
-        } else {
-            console.error('No product ID found in localStorage.');
-        }
-    });
-
-
-    // SELLER SHOP LISTING
-//     document.addEventListener('DOMContentLoaded', function () {
-//     const urlParams = new URLSearchParams(window.location.search);
-//     const sellerId = urlParams.get('sellerId');
-//     const token = localStorage.getItem('apiToken'); // Get the token from local storage
-
-
-//     if (sellerId) {
-//         fetchSellerProducts(sellerId);
-//     }
-// });
-
-// function fetchSellerProducts(sellerId) {
-//             axios.get(`/api/v1/sellers/${sellerId}/products`, {
-//             headers: {
-//                 'Authorization': `Bearer` +
-//             }
-//         })
-//         .then(response => {
-//             const products = response.data;
-//             renderProducts(products); // Reuse the renderProducts function to display the products
-//         })
-//         .catch(error => {
-//             console.error('Error fetching seller products:', error);
-//         });
-// }
-
-document.addEventListener('DOMContentLoaded', function () {
-    const userId = new URLSearchParams(window.location.search).get('userId');
-     const token = localStorage.getItem('apiToken'); // Get the token from local storage
-
-console.log(userId);
-    if (userId) {
-        axios.get(`/api/v1/seller-shop/${userId}`, {
-             headers: {
-                'Authorization': `Bearer ${token}`
-           }
-       })
-            .then(response => {
-                const user = response.data.data;
-                displayUserInfo(user);
-                displayUserProducts(user.products);
-            })
-            .catch(error => {
-                console.error('Error fetching seller data:', error);
-                // Handle error display
-            });
-    }
-});
-
-function displayUserInfo(user) {
-    document.querySelector('.about_me').textContent = user.about_me || 'No description available';
-    document.querySelector('.registration_date').textContent = new Date(user.created_at).toLocaleDateString();
-    document.querySelector('.user_state').textContent = user.state || 'State not provided';
-}
-
-function displayUserProducts(products) {
-    const productsContainer = document.querySelector('.user_products');
-    productsContainer.innerHTML = '';
-
-    products.forEach(product => {
-        const productCard = createProductCard(product);
-        productsContainer.appendChild(productCard);
-    });
-}
-
-function createProductCard(product) {
-    const card = document.createElement('div');
-    card.className = 'product_card';
-
-    card.innerHTML = `
-        <img src="uploads/products/${product.image_url[0]}" alt="${product.title}">
-        <div class="product_info">
-            <h5>${product.title}</h5>
-            <p>${product.description}</p>
-            <p>$${product.promo_price || product.actual_price}</p>
-        </div>
-    `;
-    return card;
-}
-
-
-*/
-</script>
-
-
-
-
 </body>
 
 </html>

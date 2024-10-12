@@ -1261,3 +1261,21 @@ sidebar-link .footer img {
   color: #ff0000;
 
 }
+
+.js-previewImgDesktop {
+  width: 70px;
+  height:70px;
+  border-radius: 40px
+}
+
+.js-previewImgMobile {
+  width: 60px;
+  height:60px;
+  border-radius: 40px
+
+}
+
+.verify-badge-m a {
+  text-decoration-line: none;
+  color: black;
+}

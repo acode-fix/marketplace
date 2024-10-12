@@ -25,8 +25,7 @@
             <h6 class="name">Loading</h6>
             <h6 class="mired-text fw-light">loading</h6>
         </div>
-        <img class="img-fluid profile-picture" style="border: 0px solid transparent; border-radius:50px; height:45px; width:45px"
-       src="" alt="">
+        <img class="img-fluid nav-profile-picture"  src="" alt="">
     </div>
     <div class="menu-toggle">
         <input type="checkbox" id="menu-checkbox" class="menu-checkbox">

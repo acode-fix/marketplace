@@ -11,7 +11,7 @@
                         <div style="width: 90%;" class="card mb-3 ms-3 main-card-preview">
                             <form id='banner-image-form' action="">
                                 <img style="height:220px; width: 100%;" id="banner"
-                                    src="kaz/images/carousel 1.png" class="card-img-top main-img-border js-backend-img"
+                                    src="" class="card-img-top main-img-border js-backend-img"
                                     alt="...">
                                 <div  class="camera js-banner-upload js-banner">
                                   <i class="fa-solid fa-camera icon-cam"></i>
@@ -22,7 +22,7 @@
                                     <div class="col mt-2">
                                         <form id="profile-image-form" action="">
                                             <div class="banner-s">
-                                                <img id="images-dp" src="kaz/images/dp.png" class="ms-2 js-kaz-images-dp"
+                                                <img id="images-dp" src="" class="ms-2 js-images-dp image-dp"
                                                     alt="">
                                                 <div  class="camera2 js-profile">
                                                     <i class="fa-solid fa-camera icon-cam2"></i>
@@ -602,7 +602,7 @@
         <div class="mobile_content">
             <div class="card mb-3 mt-3  main-card-mobile">
                 <form id="banner-image-form2" action="">
-                    <img style="height:180px;" id="banner2" src="kaz/images/Picture of product (Tablet).png"
+                    <img style="height:180px;" id="banner2" src=""
                         class="card-img-top js-backend-img" alt="...">
                     <div  class="camera  js-banner-upload  js-banner">
                         <i class="fa-solid fa-camera icon-cam"></i>
@@ -612,7 +612,7 @@
                     <div style="display: flex; align-items: center;justify-content: space-between;">
                         <div style="display: flex;align-items: center;">
                             <form id="profile-image-form2" action="">
-                                <img id="kaz/images-dp2" class="js-kaz-images-dp" width="50px" src="kaz/images/dp.png" alt="">
+                                <img id="kaz/images-dp2" class="js-images-dp mobile-image" src="" alt="">
                                 <div class="camera-mobile">
                                     <img  class="icon-cam-mobile js-profile"
                                         src="kaz/images/camera-shop.svg" alt="">

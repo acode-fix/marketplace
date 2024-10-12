@@ -1,5 +1,6 @@
 import { serverError } from "./admin/auth-helper.js";
-import { generateAvatar, getUserProfileImage } from "./helper/helper.js";
+import { generateAvatar, getDate, getUserProfileImage, logoutUser } from "./helper/helper.js";
+
 
 
 const token = localStorage.getItem('apiToken');
@@ -34,16 +35,17 @@ if (!userId) {
 
     }).then((response) => {
 
-        console.log(response)
+       // console.log(response)
 
         if (response.status === 200 && response.data) {
 
             const data = response.data.data;
 
-            console.log(data);
-            getProduct(data.products);
+            //console.log(data);
+            getProduct(data.products, data);
             loadMobileCard(data.products);
             updateUserProfile(data);
+            
 
 
         }
@@ -84,7 +86,7 @@ if (!userId) {
     });
 
 
-    function getProduct(products) {
+    function getProduct(products, data) {
 
         let display = '';
 
@@ -121,10 +123,12 @@ if (!userId) {
               </div> `;
         });
 
-        //console.log(display);
-        document.querySelector('.new-card').innerHTML = display;
+        
+
+
+        document.querySelector('.new-card').innerHTML = display ||'You Have No Product Listed!!';
         const el = document.querySelectorAll('.productCard');
-        getDom(el, products)
+        getDom(el, products, data)
 
     }
 
@@ -149,7 +153,7 @@ if (!userId) {
 
 
 
-    function getDom(element, products) {
+    function getDom(element, products, data) {
 
 
 
@@ -165,26 +169,17 @@ if (!userId) {
 
                 getImagePath(product);
 
-
-
-                // console.log(product);
-
-
+            
                 // Placeholder data for the new card (replace with your own code)
+                //testing Photo = 455514555c4ffcf103a53bdf7a834d24.jpg;
                 var newCardHTML = `
             <div id="customContainer" class="custom-container">
                 <div class="custom-image">
-                  <img id="slideshowImage" src="/uploads/products/${image(product.image_url)}" alt="Slideshow Image">
+                  <img style="height:400px" id="slideshowImage" src="/uploads/products/${image(product.image_url)}" alt="Slideshow Image">
                 </div>
                 <div class="custom-content">
                     <div style="display: flex; justify-content: space-between; align-items: center;" class="custom-header">
-                        <div>
-                          <div style="display: flex; align-items: center;">
-                          <img class="ps-2" width="50px" src="kaz/images/dp.png" alt="">
-                          <div class="gary">
-                          <h6 class="ps-2 gary-text">innocent .........</h6>
-                          <img class="ms-1 "height="14px" width="14px" src="kaz/images/location.svg" alt=""><span class="location-text ps-1">Lagos, Nigera</span>
-                          </div>
+                        ${updateOverlayUserProfile(data)}
                       </div>
                         </div>
                         <div class="middle">
@@ -192,10 +187,10 @@ if (!userId) {
                             sold 10
                           </h6> 
                           <h6 class="stock fw-light me-2">
-                            200 in stock
+                            ${product.quantity ?? '0'} in stock
                           </h6> 
                           <h6 class="new fw-light">
-                            New
+                           ${product.condition ?? ''}
                           </h6> 
                         </div>
                         <div>
@@ -206,22 +201,14 @@ if (!userId) {
                     </div>
                     <div class="custom-scrollable-content">
                       <div class="ms-4 mt-2">
-                        <h6>Buy ipad pro 11</h6>
-                        <h6 class="amount-js mt-2">$553,999.00 <span class="amount-span-js ps-4"> $765,999,0</span></h6>
-                        <p class="mac-text mt-2">Macbook is a brand of mac notebook computers designed and marketed by Apple's macOs 
-                          operating system since 2006.The Macbook brand replaced the powerBook and ibook brands
-                          during the mark tranistion to intel processors,announced in 2005.
-                        </p>
-                        <p class="mac-text mt-3">Macbook is a brand of mac notebook computers designed and marketed by Apple's macOs 
-                          operating system since 2006.The Macbook brand replaced the powerBook and ibook brands
-                          during the mark tranistion to intel processors,announced in 2005.
-                        </p>
+                        <h6>Buy ${product.title ?? ''}</h6>
+                        <h6 class="amount-js mt-2">$${product.promo_price ?? ''}<span class="amount-span-js ps-4"> $${product.actual_price ?? ''}</span></h6>
+                        <p class="mac-text mt-2">${product.description ?? ''}</p>
                         <div class="last-box" style="display: flex; justify-content: space-between;">
                            <div class="rate-box">
                             <img width="10px" src="kaz/images/Rate.png" alt="">
                             <h6 class="rate-js ps-1">5.0</h6>
                           </div>
-      
                           <h6 id="connect" class="connect me-4">Connect</h6>
                         </div>
       
@@ -284,6 +271,23 @@ if (!userId) {
 
 
     }
+
+
+    function  updateOverlayUserProfile(user) {
+    const img = user.photo_url 
+          ? `<img class="ms-2 js-profile"  src="/uploads/users/${user.photo_url}" alt="">`
+          : `<img class="ms-2 js-profile"  src="${generateAvatar(user.email)}"  alt="">`;
+
+      return `<div>
+                <div style="display: flex; align-items: center;">
+                 ${img}
+                <div class="gary">
+                <h6 class="ps-2 gary-text">${user.name} .........</h6>
+                <img class="ms-1 "height="14px" width="14px" src="kaz/images/location.svg" alt=""><span class="location-text ps-1">${user.location ?? ''}, Nigera</span>
+              </div>`;
+    
+    
+    };
 
     var currentIndex = 0;
     var imagePaths = [
@@ -385,6 +389,8 @@ if (!userId) {
 
     function updateUserProfile(user) {
 
+      
+
       document.querySelectorAll('.js-name').forEach((username) => {
         username.textContent = user.name ? user.name : 'No Data Provided';
       });
@@ -418,7 +424,7 @@ if (!userId) {
                           <img class="badge-cam" height="20px" width="15px" src="kaz/images/badge.png" alt="">
                         </div>
                         <div class="mt-4 ms-4">
-                          <h5 class="">${user.name ? user.name : 'No Data Provided'}<span style="font-size: small;">(${user.shop_no ? user.shop_no : 'No Data Provided'})</span></h5>
+                          <h5 class="">${user.name ? user.name : 'No Data Provided'}<span style="font-size: small;">(Shop No: ${user.shop_no ? user.shop_no : 'No Data Provided'})</span></h5>
                           <h6 class="mired-email">${user.email ? user.email : 'No Data Provided'}</h6>
                           <a class="verified-link" href="#">verified seller</a>
                         </div>
@@ -438,41 +444,84 @@ if (!userId) {
         loadConnectBtn();
         loadSidebar(user);
 
+      const mobileBannerImg = user.banner 
+            ? `<img style="height:180px;" id="banner" src="/uploads/users/${user.banner}" class="card-img-top main-img-border2" alt="...">`
+            : `<img style="height:180px;" id="banner" src="${generateAvatar(user.email)}" class="card-img-top main-img-border2" alt="...">`;
+
+      const userMobileImg = user.photo_url 
+            ? `<img   src="/uploads/users/${user.photo_url}"  alt="">`
+            : `<img   src="${generateAvatar(user.email)}"  alt="">`;
+
+        const mobileBannerUpdate =`
+           ${mobileBannerImg}
+          <div class="card-body">
+            <div style="display: flex;justify-content: space-between;">
+              <div class="drill">
+                ${userMobileImg}
+                <div class="camera2-m">
+                  <img class="badge-cam-m" height="20px" width="15px" src="kaz/images/badge.png" alt="">
+                </div>
+                <div class="ms-3 mb-2 ">
+                  <h5 class="pt-3 mired-drill-m">${user.name ?? ''}<span style="font-size: small;"> (Shop No: ${user.shop_no ? user.shop_no : 'No Data Provided'})</span></h5>
+                  <h6 class="mired-email">${user.email ?? ''}</h6>
+                  <h6 class="veri-m pt-1">verified seller</h6>
+                </div>
+
+              </div>
+              <div>
+                <h6 class="connect-shop3  mt-4">Connect</h6>
+              </div>
+            </div> 
+          </div>`;
+
+        document.querySelector('.main-card-mobile').innerHTML = mobileBannerUpdate;
+
+        const connectElement = document.querySelector('.connect-shop3');
+    
+        // Add event listener for mouseover
+        connectElement.addEventListener('mouseover', function() {
+          connectElement.textContent = "Connect with me";
+          connectElement.classList.add('with-padding1'); // Add class to reduce padding
+        });
+        
+        // Add event listener for mouseout
+        connectElement.addEventListener('mouseout', function() {
+          connectElement.textContent = "Connect";
+          connectElement.classList.remove('with-padding1'); // Remove class to revert padding
+        });
+
+
+        loadMobileSidebar(user)
+
+
+        
+
+
+          
+
         
       
-
-      
-
-      
-       
-
-      
-
-
-
-
-
-
-
 
     }
 
     function loadSidebar(user) {
 
-      console.log(user) 
+      //console.log(user)
+      
+      const bioText = user.bio ?? '';
+      const previewLength = 100;
 
+      const visibleBio = bioText.slice(0, previewLength);
+      const hiddenBio = bioText.length > previewLength  ? bioText.slice(previewLength) : '';
+
+      
       const display = `
        <div class="ms-2">
             <h6 class="card-title">About me</h6>
             <p  style="font-size: small; " class="card-text our-company">
-            ${user.bio}
-            <span id="moreText" style="display: none;">Lorem ipsum dolor sit amet
-                consectetur adipisicing elit. Magnam reiciendis, eveniet porro ad iusto illum quisquam dolores modi
-                excepturi officia. Doloribus dolor sunt dicta! A fuga, nesciunt non laborum minus provident repellat
-                numquam rerum natus unde dolorum corrupti culpa. Doloremque, sunt nam modi porro unde ipsam voluptate
-                ipsa alias ab dolorum vitae sed rem beatae exercitationem repellat quas! Molestias ipsa dolore sequi
-                asperiores quia. Expedita iure similique vel nihil magni.</span>
-              <a href="#" id="readMoreBtn"> ......Read more</a>
+             ${visibleBio}
+            <span id="moreText" style="display: none;"> ${hiddenBio}.</span>
+              ${hiddenBio ? '<a href="#" id="readMoreBtn"> ......Read more</a>' : ''} 
             </p>
           </div>
           <hr style="background-color: #343434;">
@@ -482,14 +531,14 @@ if (!userId) {
                 <img width="10px" height="13px" src="kaz/images/location.svg" alt="">
                 <span style="font-size: small;">From</span>
               </div>
-              <h6 style="font-size: small;">Abuja,Nigera</h6>
+              <h6 style="font-size: small;">${user.location ?? ''} Nigera</h6>
             </div>
             <div class="side-display">
               <div>
                 <img width="15px" src="kaz/images/profile.svg" alt="">
                 <span style="font-size: small;">Member since</span>
               </div>
-              <h6 style="font-size: small;">May,2022</h6>
+              <h6 style="font-size: small;"> ${getDate(user.created_at)}</h6>
 
             </div>
             <div class="side-display">
@@ -497,7 +546,7 @@ if (!userId) {
                 <img width="15px" src="kaz/images/product.svg" alt="">
                 <span style="font-size: small;">Listed products</span>
               </div>
-              <h6 style="font-size: small;">12</h6>
+              <h6 style="font-size: small;">${user.products.length ?? 0}</h6>
 
             </div>
             <hr style="background-color: #343434;">
@@ -506,19 +555,35 @@ if (!userId) {
 
           document.querySelector('.test').innerHTML = display;
 
-          
-            var moreText = document.getElementById("moreText");
+          const sidebarPicElement = document.querySelector('.sidebar-pic');
+
+          user.photo_url
+           ? sidebarPicElement.src = `/uploads/users/${user.photo_url}` 
+           : sidebarPicElement.src = `${generateAvatar(user.email)}`;
+
+         
+
+           if(hiddenBio) {
+            desktopReadMore();
+  
+          }
+        
+
+
+    }
+
+    function desktopReadMore() {
+
+      var moreText = document.getElementById("moreText");
             var readMoreBtn = document.getElementById("readMoreBtn");
 
-            
-          
             // Function to close the accordion
             function closeAccordion() {
                 moreText.style.display = "none";
                 readMoreBtn.textContent = ".......Read more";
             }
 
-            console.log(readMoreBtn);
+          
           
             // Toggle accordion on read more button click
             readMoreBtn.addEventListener("click", function(e) {
@@ -538,12 +603,99 @@ if (!userId) {
                     closeAccordion();
                 }
             });
-          
-          
-        
 
 
     }
+
+
+    function loadMobileSidebar(user) {
+
+      const mobileSidebar = `
+        <div class="side-display">
+              <div>
+                <img class="ms-1" width="8px" height="10px" src="kaz/images/location.svg" alt="">
+                <span class="from ms-1">From</span>
+              </div>
+              <h6 class="from ">${user.location ?? ''},Nigera</h6>
+            </div>
+            <div class="side-display">
+              <div>
+                <img width="15px" src="kaz/images/profile.svg" alt="">
+                <span class="from ">Member since</span>
+              </div>
+              <h6 class="from ">${getDate(user.created_at)}</h6>
+
+            </div>
+            <div class="side-display">
+              <div>
+                <img width="15px" src="kaz/images/product.svg" alt="">
+                <span class="from ">Listed products</span>
+              </div>
+              <h6 class="from ">${user.products.length ?? 0}</h6>
+            </div>`;
+
+            document.querySelector('.js-sidebar').innerHTML = mobileSidebar;
+
+        const bioText = user.bio ?? '';
+        const previewLength = 100;
+        const visibleBio = bioText.slice(0, previewLength);
+        const hiddenBio = bioText.length > previewLength ? bioText.slice(previewLength) : '';
+
+      const about = `
+       <h6>About me</h6>
+        <p style="font-size: small; " class="card-text our-company  pt-1">
+         ${visibleBio}
+         <span id="moreText2" style="display: none;">
+            ${hiddenBio}</span>
+             ${hiddenBio ? ` <a href="#" id="readMoreBtn2"> ......Read more</a>` : '' }
+        </p>`;
+
+        document.querySelector('.about-mobile').innerHTML = about;
+
+        if( hiddenBio) {
+
+          mobileReadMore();
+
+        }
+
+      
+
+
+
+    }
+
+    function mobileReadMore() {
+      
+      var moreText = document.getElementById("moreText2");
+      var readMoreBtn = document.getElementById("readMoreBtn2");
+
+      // Function to close the accordion
+      function closeAccordion() {
+          moreText.style.display = "none";
+          readMoreBtn.textContent = ".......Read more";
+      }
+    
+      // Toggle accordion on read more button click
+      readMoreBtn.addEventListener("click", function(e) {
+          e.preventDefault();
+          if (moreText.style.display === "none") {
+              moreText.style.display = "inline";
+              readMoreBtn.textContent = "Read less";
+          } else {
+              closeAccordion();
+          }
+      });
+
+      // Close accordion when clicking outside of it
+      document.addEventListener("click", function(e) {
+          var isClickInsideAccordion = readMoreBtn.contains(e.target) || moreText.contains(e.target);
+          if (!isClickInsideAccordion) {
+              closeAccordion();
+          }
+      });
+
+    }
+
 
 
     function loadConnectBtn() {
@@ -554,6 +706,7 @@ if (!userId) {
         connectElement.textContent = "Connect with me";
        
       });
+
       
       // Add event listener for mouseout
       connectElement.addEventListener('mouseout', function() {
@@ -561,32 +714,37 @@ if (!userId) {
        
       });
 
+
     }
 
 
+    document.querySelectorAll('.js-logout').forEach((logout) => {
+
+      logout.addEventListener('click', (event) => {
+        event.preventDefault();
+  
+        Swal.fire({
+          title: "Are you sure?",
+          text: "You won't be able to revert this!",
+          icon: "warning",
+          showCancelButton: true,
+          confirmButtonColor: "#3085d6",
+          cancelButtonColor: "#d33",
+          confirmButtonText: "Yes,I am sure!"
+          }).then((result) => {
+          if (result.isConfirmed) {
+            logoutUser();
+            
+          }
+      });
+        
+  
+      })
 
 
-
+    })
     
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    
 } else {
     Swal.fire({
         icon: 'error',

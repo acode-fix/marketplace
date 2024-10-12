@@ -318,7 +318,7 @@
           @csrf
 
           <div class="col-8 upload-div">
-            <img id="previewImgDesktop" class="img-fluid js-previewImgDesktop" src="kaz/images/dp.png" alt="">
+            <img style="height:80px; width:80px;" id="previewImgDesktop" class="img-fluid js-previewImgDesktop" src="" alt="">
             <h6 class="ms-4">Upload your profile picture <br>
               <span class="fw-light identify-text">This helps visitors to recognize you on buy and sell</span>
             </h6>
@@ -410,10 +410,10 @@
     {{-- THE MAIN FORM FOR USER UPDATE MOBILE VIEW --}}
     <form class="row mt-5 " action="" id="settingFormMobile" enctype="multipart/form-data">
       @csrf
-
+      
       <div class="col-10 upload-div">
-        <img id="previewImgMobile" class="img-fluid  js-previewImgMobile" src="kaz/images/dp.png" alt="">
-        <h6 class="ms-4">Upload your profile picture <br>
+        <img style="height: 60px; width: 60px;" id="previewImgMobile" class="img-fluid js-previewImgMobile" src="" alt="">
+        <h6 class="ms-2">Upload your profile picture <br>
           <span class="fw-light identify-text">This helps visitors to recognize you on buy and sell</span>
         </h6>
       </div>

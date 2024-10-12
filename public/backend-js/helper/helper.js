@@ -1,3 +1,5 @@
+import dayjs from 'https://unpkg.com/dayjs@1.11.10/esm/index.js';
+
 export function validationError(responseErrors) {
 
   let allErrors = [];
@@ -89,7 +91,59 @@ export function generateAvatar(email) {
 export function getUserProfileImage(user) {
 
   return   user.photo_url 
-  ? `<img src="/uploads/users/${user.photo_url}" class="ms-2" alt="">`
+  ? `<img src="/uploads/users/${user.photo_url}" style="width: 70px; height:70px; border-radius: 40px" class="ms-2" alt="">`
   : `<img src="${generateAvatar(user.email)}" style="width: 70px; height:70px; border-radius: 40px" class="ms-2" alt="">`;
 
+}
+
+export function getDate(currentDate) {
+
+return   dayjs(currentDate).format('MMMM, YYYY');
+
+}
+
+
+export  function logoutUser() {
+  
+  const token = localStorage.getItem('apiToken');
+
+  axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+
+  axios.post('/api/v1/auth/logout')
+      .then(function (response) {
+          const responseData = response.data;
+          if (responseData.status) {
+              // Remove the token from localStorage
+              localStorage.removeItem('apiToken');
+              localStorage.clear();
+
+              // Remove the token from Axios default headers
+              delete axios.defaults.headers.common['Authorization'];
+
+          
+              Swal.fire({
+                  icon: 'success',
+                  title: 'Logout Successful',
+                  text: responseData.message,
+                  onClose: function() {
+                      window.location.href = '/'; // Redirect to login page
+                   }
+              });
+          } else {
+              Swal.fire({
+                  icon: 'error',
+                  title: 'Logout Failed',
+                  text: 'Unexpected response from the server. Please try again later.'
+              });
+          }
+      })
+      .catch(function (error) {
+          const errorData = error.response.data;
+
+          Swal.fire({
+              icon: 'error',
+              title: 'Logout Failed',
+              text: errorData.message || 'There was an error while logging out. Please try again later.'
+          });
+      });
 }

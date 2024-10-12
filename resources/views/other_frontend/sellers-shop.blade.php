@@ -12,7 +12,6 @@
   <link rel="stylesheet" href="{{ asset('kaz/css1/all.min.css') }}">
   <link rel="stylesheet" href="{{ asset('kaz/css1/fontawesome.min.css') }}">
   <script src="{{ asset('kaz/js/bootstrap.js') }}"></script>
-   {{-- <script src="{{ asset('kaz/js/card.js') }}"><script>  --}}
    <script src="{{ asset('kaz/js/read.js') }}"></script>
 
   <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
@@ -54,10 +53,10 @@
         <h6 class="mired-text fw-light js-email">loading</h6>
       </div>
       <div class="profile-dropdown">
-        <img class="img-fluid js-profile" style="width: 50px; height:50px; border-radius:50px" src="kaz/images/dp.png" alt="" id="profileDropdownBtn">
+        <img class="img-fluid js-profile"  src="" alt="" id="profileDropdownBtn">
         <div class="dropdown-menu js-dropdown" id="dropdownMenu">
            <div class="container drop-struct">
-            <img id="profile_image" class="js-profile" style="width: 50px; height:50px; border-radius: 40px" src="kaz/images/dp.png" alt="">
+            <img id="profile_image" class="js-profile"  src="" alt="">
             <div class="ms-2 pt-1">
               <h6 id="profile_name" class="js-name">Mired Augustine</h6>
               <h6 id="profile_email" class="js-email" style="font-size: small;">Miredaugustine@gmail.com</h6>
@@ -68,7 +67,7 @@
             <a href="{{ url('/settings') }}">Dashboard</a>
             <a href="{{ url('/refer') }}">Refer A Friend</a>
             <a href="{{ url('/privacy') }}">Privacy Policy</a>
-            <a href="#">Log Out</a>
+            <a class="js-logout" href="#">Log Out</a>
           </div> 
 
         </div>
@@ -83,7 +82,7 @@
         <li><a href="{{ url('/settings') }}">Dashboard</a></li>
         <li><a href="{{ url('/refer') }}">Refer A Friend</a></li>
         <li><a href="{{ url('/privacy') }}">Privacy Policy</a></li>
-        <li><a href="#">Log Out</a></li>
+        <li><a href="#" class="js-logout" >Log Out</a></li>
         <hr style="background-color: black; width: 70%;">
         <li><a style="color: #ff0000;" href="{{ url('/delete') }}">Delete Account</a></li>
       </ul>
@@ -110,7 +109,7 @@
               <a href="#" id="readMoreBtn"> ......Read more</a>
             </p>
           </div>
-          <hr style="background-color: #343434;">
+          <hr style="background-color: #534a4a;">
           <div>
             <div class="side-display">
               <div>
@@ -158,10 +157,11 @@
       </div>
       <div style="color: black; width:240px ;" class="ms-2 connect-sidebar card">
         <div class="connect-struct">
-          <img width="40px" class="ms-4" src="kaz/images/dp.png" alt="">
+          <img style="border-radius: 30px; height:40px" class="sidebar-pic ms-3" width="40px" src="" alt="">
           <h6 class="connect-shop me-4">Connect</h6>
         </div>
-      </div>
+      </div>  
+    
 
     </div>
     <div class="content">
@@ -210,6 +210,7 @@
         <div class="row">
           <div class="col-11">
             <div class="new-card card-margin content-margin mt-4">
+             
                {{--<div>
                 <div class="card card-preview" id="productCard" data-card-index="0">
                   <h6 class="sold">Sold 75</h6>
@@ -465,7 +466,7 @@
   <!-- mobile-view  -->
   <div class="mobile-view">
     <div style="margin-top: -20px;" class="card  main-card-mobile">
-      <img style="height:180px;" id="banner" src="kaz/images/thumbnail-2.webp" class="card-img-top main-img-border2"
+       {{-- <img style="height:180px;" id="banner" src="kaz/images/thumbnail-2.webp" class="card-img-top main-img-border2"
         alt="...">
       <div class="card-body">
         <div style="display: flex;justify-content: space-between;">
@@ -484,16 +485,15 @@
           </div>
           <div>
             <h6 class="connect-shop3  mt-4">Connect</h6>
-
           </div>
-        </div>
-      </div>
+        </div> 
+      </div> --}}
     </div>
     <div class="container-fluid">
       <div class="row mt-3">
         <div class="col">
-          <div class="card-body about main-card-mobile-m ">
-            <h6>About me</h6>
+          <div class="card-body about main-card-mobile-m about-mobile">
+            {{-- <h6>About me</h6>
             <p style="font-size: small; " class="card-text our-company  pt-1">
               Our company is a full service creation agency that specializes in defining top-notch
               UI/UX design,video editing and <span id="moreText2" style="display: none;">Lorem ipsum dolor sit amet
@@ -503,9 +503,8 @@
                 ipsa alias ab dolorum vitae sed rem beatae exercitationem repellat quas! Molestias ipsa dolore sequi
                 asperiores quia. Expedita iure similique vel nihil magni.</span>
               <a href="#" id="readMoreBtn2"> ......Read more</a>
-            </p>
+            </p> --}}
           </div>
-
         </div>
       </div>
       <div style="margin-top: 10px;" class="row">
@@ -525,8 +524,8 @@
 
         </div>
         <div class="col">
-          <div class="card-body main-card-mobile-rm">
-            <div class="side-display">
+          <div class="card-body main-card-mobile-rm js-sidebar">
+            {{-- <div class="side-display">
               <div>
                 <img width="8px" height="10px" src="kaz/images/location.svg" alt="">
                 <span class="from ">From</span>
@@ -547,8 +546,7 @@
                 <span class="from ">Listed products</span>
               </div>
               <h6 class="from ">12</h6>
-
-            </div>
+            </div> --}}
 
           </div>
         </div>

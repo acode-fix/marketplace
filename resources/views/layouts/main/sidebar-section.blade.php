@@ -36,7 +36,7 @@
         </div>
     </div>
     <div class="sidebar-link">
-        <div class="links {{ Request::is('wallet*') ? 'active clicked' : '' }}">
+        <div class="links {{ Request::is('wallet*') ? 'active-link clicked' : '' }}">
             <span>
                 <a href="{{ url('/wallet') }}"> <img class="profile-logo" height="20px" width="17px"
                         src="kaz/images/wallet.svg" alt=""> <span class="profile-text">Wallet</span></a>

@@ -53,9 +53,9 @@ h6 {
 }
 
 /* style the profile picture */
-.profile-picture {
+/* .profile-picture {
   height: 40px;
-}
+} */
 
 /*style the email address */
 .mired-text {
@@ -612,6 +612,14 @@ sidebar-link .footer img {
 
 .sellers-footer div {
   cursor: pointer;
+}
+
+.nav-profile-picture {
+  border: 0px solid transparent;
+  cursor: pointer;
+  width: 50px;
+  height:50px;
+  border-radius:40px;
 }
 
 

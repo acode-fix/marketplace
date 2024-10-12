@@ -162,7 +162,7 @@ export function logoutUser() {
               localStorage.clear();
 
               // Remove the token from Axios default headers
-              //delete axios.defaults.headers.common['Authorization'];
+              delete axios.defaults.headers.common['Authorization'];
 
           
               Swal.fire({

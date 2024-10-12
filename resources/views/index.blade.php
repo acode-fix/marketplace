@@ -1756,6 +1756,7 @@ document.querySelector('.js-send').addEventListener('click', () => {
         },
         headers: {
             'Content-type': 'application/json',
+            'Authorization': `Bearer ${token}`,
         }
     }).then((response) =>{
 
@@ -1781,7 +1782,7 @@ document.querySelector('.js-send').addEventListener('click', () => {
 
                 Swal.fire({
                 icon: 'error',
-                title: 'Verification',
+                title: 'Verified Seller Shop',
                 text: error.response.data.message});
 
             }

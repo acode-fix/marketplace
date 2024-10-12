@@ -1,3 +1,4 @@
+import { generateAvatar } from "../helper/helper.js";
 
   // Fetch the user data
  const token = localStorage.getItem('apiToken');
@@ -25,6 +26,8 @@ if (token) {
            });
        }
    });
+
+
 } else {
 
   // console.log('yes')
@@ -44,13 +47,13 @@ function updateUserProfile(user) {
 
    const nameElement = document.querySelector('.right-section .name');
    const emailElement = document.querySelector('.right-section .mired-text');
-   const profileImageElement = document.querySelector('.right-section .profile-picture');
+   const profileImageElement = document.querySelector('.right-section .nav-profile-picture');
    const profileImagePreview = document.querySelector('.js-previewImgDesktop');
    const profileImgMobile = document.querySelector('.js-previewImgMobile');
 
   // update userProfile on desktop  && mobile shop Page;
   const bannerImage = document.querySelectorAll('.js-backend-img')
-  const bannerProfile = document.querySelectorAll('.js-kaz-images-dp');
+  const bannerProfile = document.querySelectorAll('.js-images-dp');
   const bannerName = document.querySelectorAll('.js-mired-name');
   const bannerEmail = document.querySelectorAll('.js-mired-email');
   const verification = document.querySelectorAll('.js-verification');
@@ -62,58 +65,66 @@ function updateUserProfile(user) {
             if (nameElement && emailElement && profileImageElement){
             nameElement.textContent = user.username || 'No Username';
             emailElement.textContent = user.email || 'No email provided';
-            profileImageElement.src = user.photo_url ? user.photo_url : 'kaz/images/dp.png';
-            const imageUrl = user.photo_url ? `/uploads/users/${user.photo_url}` : 'kaz/images/dp.png';
-            profileImageElement.src = imageUrl;
+            
+            user.photo_url 
+            ? profileImageElement.src = `/uploads/users/${user.photo_url}` 
+            : profileImageElement.src = `${generateAvatar(user.email)}`;
+
+        
 
             }
 
   
             if(profileImagePreview) {
-        
-            const imagePreview = user.photo_url ? `uploads/users/${user.photo_url}` : 'kaz/images/dp.png';
 
-            profileImagePreview.src = imagePreview;
+                user.photo_url 
+                ? profileImagePreview.src = `/uploads/users/${user.photo_url}` 
+                :  profileImagePreview.src = `${generateAvatar(user.email)}`;
+        
+           
 
            }
 
 
             if(profileImgMobile) {
 
-                const mobileImagePreview = user.photo_url ? `uploads/users/${user.photo_url}` : 'kaz/images/dp.png';  
-
-                profileImgMobile.src = mobileImagePreview; 
-                
+                user.photo_url 
+                ? profileImgMobile.src = `/uploads/users/${user.photo_url}`
+                : profileImgMobile.src = `${generateAvatar(user.email)}`;
+  
             }
 
             if (bannerProfile  && bannerName && bannerEmail && verification && bannerImage) {
 
                 //console.log(bannerProfile);
 
-                bannerProfile.forEach((value) => {
-                    const bannerProfileDesktop =user.photo_url ? `uploads/users/${user.photo_url}` : 'kaz/images/dp.png';
-                    value.src = bannerProfileDesktop;
+                bannerProfile.forEach((profileImg) => {
+
+                    user.photo_url ? profileImg.src = `/uploads/users/${user.photo_url}` : profileImg.src = `${generateAvatar(user.email)}`
+
+
                     });
 
                     bannerName.forEach((name) => {
-                        name.textContent = user.username || 'No Username';
+                        name.textContent = user.username ?? 'No Username Provided';
 
                     })
 
                     bannerEmail.forEach((email) => {
-                        email.textContent = user.email || 'No Email Provided';
+                        email.textContent = user.email ?? 'No Email Provided';
 
                     });
 
                     verification.forEach((verify) => {
-                        if(user.is_verified) {
 
-                        user.is_verified = 'Verified Seller';
-                        verify.textContent = user.is_verified;
+                        if(user.verify_status === 1) {
+                        verify.textContent = 'Verified Seller';
+                        verify.style.color = '#14ae5c';
 
                     } else {
                         verify.textContent = 'Unverified Seller';
-                        verify.href = '/shop';   
+                        verify.href = '/shop';  
+                        verify.style.color = '#fe3d3d'; 
 
 
                     }
@@ -122,8 +133,8 @@ function updateUserProfile(user) {
                     })
 
                     bannerImage.forEach((bannerImg) => {
-                        const bannerUpdate = user.banner ? `${user.banner}` : 'kaz/images/carousel 1.png';
-                        bannerImg.src = bannerUpdate;
+
+                        user.banner ?  bannerImg.src = `/uploads/users/${user.banner}` : bannerImg.src = `${generateAvatar(user.email)}`;
 
                     });
 
@@ -157,8 +168,6 @@ function updateUserProfile(user) {
          if(document.querySelector('.profile_card')) {
 
             document.querySelector('.profile_card').innerHTML = dashboard;
-
-        
 
          }
 

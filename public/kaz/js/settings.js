@@ -196,7 +196,7 @@ document.addEventListener("DOMContentLoaded", function() {
     // Toggle readonly for all input fields
     toggleReadOnly(usernameInput);
     toggleReadOnly(phoneInput);
-    toggleReadOnly(whatsappInput);
+    toggleReadOnly(profileInput);
   })
 };
 });

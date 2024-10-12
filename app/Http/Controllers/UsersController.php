@@ -584,7 +584,7 @@ public function getDetails(Request $request) {
 
         return response()->json([
             'status' => false,
-            'message' => 'Shop Verification Failed',
+            'message' => 'Invalid Shop Number',
 
         ],404);
 

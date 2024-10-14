@@ -2,6 +2,7 @@ import { validationError } from "./helper/helper.js";
 
 const token = localStorage.getItem('apiToken');
 
+
 axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
 
 
@@ -18,9 +19,8 @@ document.addEventListener("DOMContentLoaded", function () {
      
   })
   .then(response => { 
-      //console.log('Response:', response);
+    
       const products = response.data.data;
-
 
       if (!Array.isArray(products)) {
           console.error('Products data is not an array:', products);
@@ -735,6 +735,8 @@ document.querySelectorAll('.js-profile').forEach((profile) => {
     })
 
 });
+
+
 
 
 

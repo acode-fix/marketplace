@@ -58,6 +58,8 @@ function changeLocation2(location) {
   document.querySelector(".locationInput2").value = location;
 } 
 
+if(document.getElementById('leftArrow')) {
+
 
 //category images
 const leftArrow = document.getElementById('leftArrow');
@@ -87,3 +89,6 @@ leftArrow.addEventListener('click', () => {
 rightArrow.addEventListener('click', () => {
     imageGallery.scrollLeft += 800;
 });
+
+
+}

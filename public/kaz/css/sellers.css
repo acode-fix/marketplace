@@ -171,11 +171,13 @@
 .link-card {
   text-decoration: none;
   color: black;
+  
 }
 
 .link-card:hover {
   text-decoration: none;
   color: black;
+  
 }
 
 #readMoreBtn {

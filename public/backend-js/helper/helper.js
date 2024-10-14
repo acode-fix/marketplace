@@ -96,9 +96,35 @@ export function getUserProfileImage(user) {
 
 }
 
+export function getIndexProfileImage(user, profileImageElement) {
+
+  user.photo_url 
+  ? profileImageElement.src = `/uploads/users/${user.photo_url}` 
+  : profileImageElement.src = `${generateAvatar(user.email)}`;
+
+}
+
 export function getDate(currentDate) {
 
 return   dayjs(currentDate).format('MMMM, YYYY');
+
+}
+
+export function getSingleImage(productImages) {
+
+  const images = JSON.parse(productImages);
+  
+  return  images.length > 0 ? images[0] : null;
+
+
+}
+
+export function getBadge(product) {
+
+  return    product.user.verify_status === 1 
+              ? `<img class="logo-bag" src="kaz/images/badge.png" alt="">` 
+              : ` <img src="innocent/assets/image/logo icon.svg" alt="">`;
+
 
 }
 

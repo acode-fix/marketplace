@@ -556,6 +556,10 @@ document.addEventListener('DOMContentLoaded', function () {
             if (i === 0) product_img_url = el;
         });
 
+        //console.log(product);
+
+         const badge = product.user.verify_status === 1  ? `<img class="logo-bag" src="kaz/images/badge.png" alt="">` : `<img src="innocent/assets/image/logo icon.svg" alt="">`;
+
         card.innerHTML = `
             <a href="{{ url('/product_des') }}" class="product_card_link" data-product='${JSON.stringify(product)}'>
                             <div class="card product_card">
@@ -574,7 +578,7 @@ document.addEventListener('DOMContentLoaded', function () {
                                     </div>
                                     <p class="product_name">${product.title}</p>
                                     <span class="product_card_location"><i class="fa-solid fa-location-dot"></i> ${product.location}</span>
-                                    <img src="innocent/assets/image/logo icon.svg" alt="">
+                                    ${badge}
                                     <span class="connect"><strong>connect</strong></span>
                                 </div>
                             </div>

@@ -15,6 +15,8 @@
 
 
 
+if(document.getElementById('notification_icon')) {
+
 
 
 document.getElementById('notification_icon').addEventListener('click', function(e) {
@@ -40,4 +42,7 @@ function turnOffNotifications() {
     document.getElementById("volumeMuteIcon").style.display = "none";
     document.getElementById("volumeHighIcon").style.display = "block";
     document.getElementById("notificationSound").play();
+}
+
+
 }

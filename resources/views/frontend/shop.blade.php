@@ -621,7 +621,7 @@
                             <div class="ms-3">
                                 <h6 class="mired-shop-m pt-3  js-mired-name">Mired Augustine</h6>
                                 <h6 class="mired-shop-email-m js-mired-email">miredaugustine@gmail.com</h6>
-                                <a class="mired-un-m  js-verification " href="{{ url('/sellers-shop') }}">Unverified seller</a>
+                                <a class="mired-un-m  js-verification" href="{{ url('/sellers-shop') }}">Unverified seller</a>
                             </div>
 
                         </div>

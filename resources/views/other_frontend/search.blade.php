@@ -13,6 +13,10 @@
     <link rel="stylesheet" href="{{ asset('innocent/assets/icons/css/fontawesome.min.css') }}">
     <link rel="stylesheet" href="{{ asset('innocent/assets/css/search.css') }}">
     <link rel="stylesheet" href="{{ asset('innocent/assets/css/alert.css') }}">
+
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+
 </head>
 
 <body>
@@ -21,7 +25,7 @@
     <div id="search">
         <!-- Navbar and Search Button -->
         <div class="navbar-1 fixed-top ">
-            <i class="fa-solid fa-angle-left  previous" onclick="goBack()"></i>
+            <a href="{{ url('/') }}"><i id="backBtn" class="fa-solid fa-angle-left  previous" ></i></a> 
 
             <div class="search-bar">
                 <div class="location-icon"><i class="fa-solid fa-location-dot"></i></div>
@@ -34,11 +38,12 @@
                 <div class="vertical-bar"></div>
                 <span>
                     <input id="find-what-to-buy_search_page" type="text" placeholder="Find what to buy..."
-                        class="find-what-to-buy" onclick="this.select()" autofocus>
-                    <button id="search id" type="button" class="search" onclick="check_input()">Search</button>
+                        class="find-what-to-buy js-input" onclick="this.select()" autofocus>
+                    <button id="search id" type="button" class="search js-search">Search</button>
                 </span>
             </div>
-            <img src="innocent/assets/image/main logo.svg" alt="" class="search_buy_and_sell_logo">
+        
+          <img src="innocent/assets/image/main logo.svg" alt="" class="search_buy_and_sell_logo">
         </div>
 
         <!-- Sidebar and Main Body Section -->
@@ -48,7 +53,7 @@
                 <!-- Filter Section -->
                 <div class="filter_section">
                     <p>
-                        <img src="innocent/assets/image/filter.png" alt="">
+                        <img src="{{asset('innocent/assets/image/filter.png')}}" alt="">
                     <p class="filter">Filter</p>
                     <p class="filter_line"></p>
 
@@ -69,8 +74,8 @@
                 <p class="product_condition_p">Product Condition</p>
                 <div class="product_condition_desktop">
 
-                    <button class="button new" onclick="toggleButton(this)">New</button>
-                    <button class="button used" onclick="toggleButton(this)">Fairly Used</button>
+                    <button class="button new js-button" data-filter-value = 'new' onclick="toggleButton(this)">New</button>
+                    <button class="button used js-button" data-filter-value = 'fairly_used' onclick="toggleButton(this)">Fairly Used</button>
 
                     <!-- Button trigger modal -->
                     <div data-bs-toggle="modal" data-bs-target="#location_input_modal" class="clickMe_div">
@@ -86,7 +91,7 @@
 
                         <p style="font-size: 15px;">verified seller</p>
                         <label class="switch">
-                            <input type="checkbox">
+                            <input class="js-check" type="checkbox">
                             <span class="slider"></span>
                         </label>
                     </div>
@@ -109,25 +114,25 @@
                 <div class="search_container" id="search_container">
                     <div id="recent_search">recent search</div>
                     <div class="recent_content">
-                        <button class="buttons" onclick="updateSearchInput(this)">car</button>
-                        <button class="buttons" onclick="updateSearchInput(this)">house</button>
-                        <button class="buttons" onclick="updateSearchInput(this)">manions</button>
-                        <button class="buttons" onclick="updateSearchInput(this)">estate</button>
-                        <button class="buttons" onclick="updateSearchInput(this)">bike</button>
-                        <button class="buttons" onclick="updateSearchInput(this)">jersey</button>
-                        <button class="buttons" onclick="updateSearchInput(this)">bed</button>
-                        <button class="buttons" onclick="updateSearchInput(this)">house</button>
-                        <button class="buttons" onclick="updateSearchInput(this)">shoe</button>
-                        <button class="buttons" onclick="updateSearchInput(this)">bike</button>
-                        <button class="buttons" onclick="updateSearchInput(this)">cable</button>
-                        <button class="buttons" onclick="updateSearchInput(this)">USB</button>
+                        <button class="buttons" >car</button>
+                        <button class="buttons" >house</button>
+                        <button class="buttons" >manions</button>
+                        <button class="buttons" >estate</button>
+                        <button class="buttons" >bike</button>
+                        <button class="buttons" >jersey</button>
+                        <button class="buttons" >bed</button>
+                        <button class="buttons" >house</button>
+                        <button class="buttons" >shoe</button>
+                        <button class="buttons" >bike</button>
+                        <button class="buttons" >cable</button>
+                        <button class="buttons" >USB</button>
                     </div>
                 </div>
 
                 <div class="filter_main" id="filter_mobile_view">
                     <div style="display: flex;">
                         <p>
-                            <img src="filter.png" alt="">
+                            <img src="{{asset('innocent/assets/image/filter.png')}}"  alt="">
                             <span>Filter</span>
 
                         </p>
@@ -189,10 +194,10 @@
                     <div class="container-fluid">
                         <div class="row">
                             <div class="col">
-                                <div class="product_card_display card-margin content-margin mt-4">
+                                <div class="product_card_display card-margin content-margin mt-4 js-display">
 
 
-                                    <a href="{{ url('/product_des') }}" class="product_card_link">
+                                    {{-- <a href="{{ url('/product_des') }}" class="product_card_link">
                                         <div class="card product_card">
                                             <h6 class="sold"> Sold 35 <br> <img src="innocent/assets/image/Rate.png"
                                                     alt=""> 4.0</h6>
@@ -335,7 +340,7 @@
                                                 <span class="connect"><strong>connect</strong></span>
                                             </div>
                                         </div>
-                                    </a>
+                                    </a> --}}
 
                                 </div>
                             </div>
@@ -378,10 +383,10 @@
                     <div class="container-fluid">
                         <div class="row">
                             <div class="col">
-                                <div class="product_card_display card-margin content-margin mt-4">
+                                <div class="product_card_display card-margin content-margin mt-4 js-display2">
 
 
-                                    <a href="{{ url('/product_des') }}" class="product_card_link">
+                                    {{-- <a href="{{ url('/product_des') }}" class="product_card_link">
                                         <div class="card product_card">
                                             <h6 class="sold"> Sold 35 <br> <img src="innocent/assets/image/Rate.png"
                                                     alt=""> 4.0</h6>
@@ -524,7 +529,7 @@
                                                 <span class="connect"><strong>connect</strong></span>
                                             </div>
                                         </div>
-                                    </a>
+                                    </a> --}}
 
                                 </div>
                             </div>
@@ -559,7 +564,7 @@
         <!-- Footer Section -->
         <div class="footer_contanier" id="footer">
             <div>
-                <img src="logo.png" alt="">
+                <img src="{{asset('innocent/assets/image/logo.png')}}"  alt="">
             </div>
             <nav class="footer_links">
                 <a href="">About Us</a>
@@ -783,6 +788,9 @@
     <script src="{{ asset('innocent/assets/js/script.js') }}"></script>
     <script src="{{ asset('innocent/assets/js/animation.js') }}"></script>
     <script src="{{ asset('innocent/assets/js/location.js') }}"></script>
+
+
+    <script type="module" src="{{ asset('backend-js/search.js') }}"></script>
 </body>
 
 </html>

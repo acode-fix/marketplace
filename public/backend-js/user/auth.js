@@ -16,6 +16,7 @@
       if (responseData.status) {
           // Store the token in localStorage
           localStorage.setItem('apiToken', responseData.token);
+          
 
 
          // alert(responseData.token);
@@ -95,12 +96,11 @@
       if (responseData.status) {
           // Store the token in localStorage
           localStorage.setItem('apiToken', responseData.data.token);
-          //    console.log(responseData.data.token);
-          // // alert(localStorage.getItem('apiToken'));
-          // // return;
-          // alert(responseData.data.token);
-          //  return;
 
+          const userId =  responseData.data.user.id;
+
+          localStorage.setItem('userId', JSON.stringify(userId));
+          
           // Set the token in Axios default headers for subsequent requests
           axios.defaults.headers.common['Authorization'] = `Bearer ${responseData.data.token}`;
           

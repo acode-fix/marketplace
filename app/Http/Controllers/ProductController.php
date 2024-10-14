@@ -7,6 +7,7 @@ use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Barryvdh\Debugbar\Facades\Debugbar;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Log;
 use Illuminate\View\View;
@@ -146,21 +147,34 @@ public function getProductDetails($id) {
 public function filterProducts(Request $request)
 {
     try {
-        $query = Product::query();
+
+        $query = Product::with('user');
 
         if ($request->has('condition') && $request->condition !== '') {
             $query->where('condition', $request->condition);
+            
         }
 
         if ($request->has('location') && $request->location !== '') {
-            $query->where('location', $request->location);
+
+            $location = $request->location;
+            $query->where('location', $location);
         }
 
-        if ($request->has('verified_seller') && $request->verified_seller) {
-            $query->where('verified_seller', true);
+        if ($request->has('verifyStatus') && $request->verifyStatus !== '') {
+
+            $status = $request->verifyStatus;
+            $query->whereHas('user', function($q) use ($status){
+                $q->where('verify_status', $status);
+
+            });
+            
         }
 
+      
         $products = $query->get();
+
+        DebugBar::info($request->condition, $location,  $status, $products);
 
         return response()->json($products);
 
@@ -454,6 +468,46 @@ public function update(Request $request, $id) {
 
 
   }
+
+
+
+}
+
+
+public function searchProducts(Request $request) {
+
+  $search = $request->searchParams;
+
+  if(!$search) {
+
+    return response()->json([
+        'status' => false,
+        'message' => 'Invalid Search Input',
+
+    ], 404);
+  }
+
+
+   $products =  Product::with('user')->where(function($query) use ($search) {
+      $query->where('title', 'LIKE', "%{$search}%")
+      ->orWhere('description', 'LIKE', "%{$search}%")
+      ->orWhere('location', 'LIKE', "%{$search}%");
+               
+   })->get();
+
+      
+
+        if($products) {
+
+            DebugBar::info($products);
+
+            return response()->json([
+                'status' => true,
+                'message' => 'Product Fetched Successsfully',
+                'products' => $products,
+
+            ], 200);
+        }
 
 
 

@@ -7,6 +7,7 @@ use App\Models\Categories;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\Ads_categoryController;
 use App\Models\Product;
+use App\Models\Ads_category;
 use Illuminate\Support\Facades\Validator;
 
 class CategoriesController extends Controller
@@ -66,7 +67,7 @@ class CategoriesController extends Controller
 
        // $product = Product::find($id);
         $category =  Categories::find($id);
-        $categorylist =  Product::where('category_id',$category->id)->get();
+        $categorylist =  Product::with('user')->where('category_id',$category->id)->get();
 
 
       return response()->json([

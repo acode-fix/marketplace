@@ -63,8 +63,8 @@ function updateUserProfile(user) {
    if (user) {
 
             if (nameElement && emailElement && profileImageElement){
-            nameElement.textContent = user.username || 'No Username';
-            emailElement.textContent = user.email || 'No email provided';
+            nameElement.textContent = user.username ?? 'No Username';
+            emailElement.textContent = user.email ?? 'No email provided';
             
             user.photo_url 
             ? profileImageElement.src = `/uploads/users/${user.photo_url}` 

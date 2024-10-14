@@ -93,6 +93,14 @@ Route::post('/reject/user', [VerificationController::class, 'rejectUserVerificat
 //Verified Seller Shop Route;
 
 Route::get('/verified-seller/details', [UsersController::class, 'getDetails']);
+Route::get('/verified-seller/id', [UsersController::class, 'getUserId']);
+
+
+//SEARCH PAGE ROUTE
+
+Route::get('/search/products', [ProductController::class, 'searchProducts']);
+
+
 
 
 
@@ -121,7 +129,7 @@ Route::get('/product/{id}', [ProductController::class, 'getProduct']);
 //Route::post('/product/{id}',[ProductController::class, 'update']);
 Route::post('/product/edit/{id}', [ProductController::class, 'update']);
 
-Route::get('/product/search', [ProductController::class, 'search']);
+//Route::get('/product/search', [ProductController::class, 'search']);
 Route::delete('/product/delete/{id}',[ProductController::class, 'delete']);
 Route::get('/user/products', [ProductController::class, 'userProducts']);
 Route::get('/product-details/{id}', [ProductController::class, 'getProductDetails']);

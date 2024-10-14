@@ -3,28 +3,28 @@
 //   document.getElementById('find-what-to-buy_search_page').click();
 //   document.getElementById('find-what-to-buy_search_page').click();
 // };
-function updateSearchInput(button) {
-  document.getElementById("find-what-to-buy_search_page").value = button.textContent;
-  document.getElementById("search_main").style.display="block"
-  document.getElementById("search_container").style.display="none"
-  document.getElementById("search_main").style.paddingTop="90px"
+// function updateSearchInput(button) {
+//   document.getElementById("find-what-to-buy_search_page").value = button.textContent;
+//   document.getElementById("search_main").style.display="block"
+//   document.getElementById("search_container").style.display="none"
+//   document.getElementById("search_main").style.paddingTop="90px"
  
-}
+// }
 
-  function check_input() {
-    var input = document.getElementById("find-what-to-buy_search_page").value; 
-    if (input === "") {
-      var myModal = new bootstrap.Modal(document.getElementById('search_input_condition'));
-      myModal.show();
-    } else {
+//   function check_input() {
+//     var input = document.getElementById("find-what-to-buy_search_page").value; 
+//     if (input === "") {
+//       var myModal = new bootstrap.Modal(document.getElementById('search_input_condition'));
+//       myModal.show();
+//     } else {
       
-      document.getElementById("search_main").style.display="block"
-      document.getElementById("search_container").style.display="none"
-      document.getElementById("search_main").style.paddingTop="90px"
+//       document.getElementById("search_main").style.display="block"
+//       document.getElementById("search_container").style.display="none"
+//       document.getElementById("search_main").style.paddingTop="90px"
     
-    }
+//     }
 
-}
+// }
 
 function hideFilterMain() {
   document.querySelector('.filter_main').style.display = 'none';
@@ -71,6 +71,9 @@ document.getElementById("scrollToTop").addEventListener("click", function() {
   document.documentElement.scrollTop = 0;
 });
 
+if(document.querySelector('.profile_picture')) {
+
+
 
 document.querySelector('.profile_picture').addEventListener('click', function(e) {
   e.stopPropagation();
@@ -85,6 +88,8 @@ document.addEventListener('click', function() {
   document.querySelector('.profile_card').style.display = 'none';
 });
 
+
+
 function goBack() {
   var previousPage = localStorage.getItem('previousPage');
   if (previousPage) {
@@ -92,4 +97,6 @@ function goBack() {
   } else {
       window.history.back();
   }
+}
+
 }

@@ -62,6 +62,9 @@ if (!userId) {
                     icon: 'error',
                     title: 'Verification',
                     text: error.response.data.message,
+                    willClose() {
+                      window.location.href = '/';
+                    }
                 })
 
             }
@@ -76,6 +79,9 @@ if (!userId) {
                     icon: 'error',
                     title: 'Request Error',
                     text: 'Something went wrong. Please try again later.',
+                    willClose() {
+                      window.location.href = '/';
+                    }
                 });
 
             }
@@ -449,8 +455,8 @@ if (!userId) {
             : `<img style="height:180px;" id="banner" src="${generateAvatar(user.email)}" class="card-img-top main-img-border2" alt="...">`;
 
       const userMobileImg = user.photo_url 
-            ? `<img   src="/uploads/users/${user.photo_url}"  alt="">`
-            : `<img   src="${generateAvatar(user.email)}"  alt="">`;
+            ? `<img class="js-profile"  src="/uploads/users/${user.photo_url}"  alt="">`
+            : `<img class="js-profile"  src="${generateAvatar(user.email)}"  alt="">`;
 
         const mobileBannerUpdate =`
            ${mobileBannerImg}

@@ -125,7 +125,8 @@ class UsersController extends Controller
            return response()->json([
             'status' => true,
             'message' => 'User Logged in successfully',
-            'data' => ['token'=>$token],
+            'data' => ['token'=>$token, 'user' => $user]
+
         ], 200);
 
 
@@ -538,6 +539,7 @@ public function getUserPayment(Request $request) {
 
 public function getDetails(Request $request) {
 
+   
    $userId = $request->query('userId');
    $shopNo = $request->query('shopNo');
 
@@ -608,6 +610,14 @@ public function getDetails(Request $request) {
   }
 
 
+
+}
+
+public function getUserId(Request $request) {
+
+   $userId = $request->user()->id;
+
+   Debugbar::info($userId);
 
 }
 

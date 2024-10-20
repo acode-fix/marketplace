@@ -43,8 +43,8 @@ if(!token) {
 
     Swal.fire({
     icon: 'error',
-    title: 'Unauthenticated User',
-    text: 'Kindly log in.'
+    title: 'Login Required',
+    text: 'Please log in to continue.'
 }).then(() => {
 
     window.location.href = '/'; 
@@ -122,9 +122,27 @@ export function getSingleImage(productImages) {
 export function getBadge(product) {
 
   return    product.user.verify_status === 1 
-              ? `<img class="logo-bag" src="kaz/images/badge.png" alt="">` 
-              : ` <img src="innocent/assets/image/logo icon.svg" alt="">`;
+              ? `<img class="logo-bag" src="/kaz/images/badge.png" alt="">` 
+              : ` <img src="/innocent/assets/image/logo icon.svg" alt="">`;
 
+
+}
+
+
+export function getProdDesImage(product) {
+
+  const user = product.user;
+
+return  user.photo_url ? `<img src="/uploads/users/${user.photo_url}" alt=".profile picture " class="user_photo">` 
+                               : `<img src="${generateAvatar(user.email)}" alt=".profile picture " class="user_photo">`;
+
+}
+
+export function getProdProfileDescImg(product, element) {
+
+  const user = product.user;
+
+  return  user.photo_url ? element.src = `/uploads/users/${user.photo_url}` : element.src = `${generateAvatar(user.email)}`;
 
 }
 
@@ -173,3 +191,62 @@ export  function logoutUser() {
           });
       });
 }
+
+
+export function loadDashboard(product) {
+
+ const user = product.user;
+
+ //USING OBJECT DESTRUCTURING
+ const{photo_url, email} = user;          
+
+  const dashboardImg = photo_url ? `<img class="dashboard-img"  src="/uploads/users/${photo_url}" alt="Profile Image">` : `<img id="profile_image" class="dashboard-img" src="${generateAvatar(email)}" alt="Profile Image"></img>`;
+
+
+  const dashboard = `
+  <div class="profile_card_user_name">
+    ${dashboardImg}
+  <p id="profile_name">${user.username ?? 'No Username Provided'}
+  </p>
+  <p><span id="profile_email">${user.email ?? 'No Data Provided'}</span></p>  
+  </div>
+  <hr>
+  <div class="accont_features">
+      <p><a href="/settings">Account Setting </a></p>
+      <p><a href="/refer"> Reffer a Friend </a></p>
+      <p> <a href="/privacy'">Privacy and Policy </a></p>
+      <p><a href="#" id="logout-link">Log out</a></p>
+  </div>`;
+
+
+if(document.querySelector('.profile_card')) {
+
+return  document.querySelector('.profile_card').innerHTML = dashboard;
+
+}
+
+
+
+
+}
+
+export function getPrice(product) {
+  
+  return  product.ask_for_price
+    ? '<p class="ask-for-price" style="color:red; padding-right: 2px; font-size:23px">Ask for price</p>'
+    : `
+        <p class="promo_price">$${product.promo_price ?? ''}</p>
+        <div class="main_price"><p class="main_price_amount">$${product.actual_price ?? ''}</p></div>
+    `
+
+ 
+}
+
+export function getShopPrice(product) {
+
+  return product.ask_for_price
+  ? '<h6 class="amount" style="color:red; font-size:15px;">Ask for price</h6>' 
+  : ` <h6 class="amount">$${product.promo_price ?? 0} <span class="amount-span">$${product.actual_price ?? 0}</span></h6>`;
+}
+
+

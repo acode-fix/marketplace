@@ -21,6 +21,7 @@ class Shop extends Model
     }
 
    public static function shopToken($length) {
+
         $key = '';
         // Include digits, uppercase, and lowercase letters
         $keys = array_merge(range(0, 9), range('a', 'z'), range('A', 'Z'));

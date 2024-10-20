@@ -501,7 +501,7 @@
                                                         alt="">
                                                     <h6 class="fw-light  share-text ">whatsapp</h6>
                                                 </div>
-                                                <div>
+                                                <div class="js-share-link">
                                                     <i style="height: 40px; width: 40px;"
                                                         class="fa-solid fa-link"></i>
                                                     <h6 class="fw-light  share-text ">Copy link</h6>
@@ -901,9 +901,9 @@
                                                     alt="">
                                                 <h6 class="fw-light share-text">WhatsApp</h6>
                                             </div>
-                                            <div>
+                                            <div class="js-mobile-share-link">
                                                 <i style="height: 40px; width: 40px;" class="fa-solid fa-link"></i>
-                                                <h6 class="fw-light  share-text ">Copy link</h6>
+                                                <h6 class="fw-light  share-text">Copy link</h6>
                                             </div>
                                         </div>
                                     </div>

@@ -1,4 +1,5 @@
-import { validationError } from "./helper/helper.js";
+import { validationError, getShopPrice } from "./helper/helper.js";
+import { serverError } from "./admin/auth-helper.js";
 
 const token = localStorage.getItem('apiToken');
 
@@ -34,15 +35,16 @@ document.addEventListener("DOMContentLoaded", function () {
       products.forEach((product) => {
       //console.log(product)
           const imageUrls = JSON.parse(product.image_url);
-          const firstImageUrl = imageUrls.length > 0 ? imageUrls[0] : 'placeholder.jpg';
+          const firstImageUrl = imageUrls.length > 0 ? imageUrls[0] : '';
 
            productCard += `
               <div class="card card-preview">
-                  <h6 class="sold">Sold ${product.sold || 0}</h6>
+                  <h6 class="sold">Sold ${product.sold ?? 0}</h6>
                   <img src="uploads/products/${firstImageUrl}" class="card-img-top w-100 image-border" alt="Product Image">
                   <div class="card-body">
                       <div class="card-structure">
-                          <h6 class="amount">$${product.promo_price || 0} <span class="amount-span">$${product.actual_price || 0}</span></h6>
+                      ${getShopPrice(product)}
+                         
                           <div class="star-layout">
                               <div>
                                   <img src="kaz/images/Rate.png" class="img-fluid image-rate" width="10px" alt="">
@@ -55,10 +57,10 @@ document.addEventListener("DOMContentLoaded", function () {
                           </div>
                       </div>
                       <div class="footer-card">
-                          <p class="card-text infinix-text pt-3">${product.title || 'No title available'}</p>
+                          <p class="card-text infinix-text pt-3">${product.title ?? 'No title available'}</p>
                           <button type="button" class="dropbtn2 top " data-dropdown-id="${product.id}">...</button>
                           <div class="dropdown-content js-dropdown-content${product.id}">
-                              <a class="share" data-bs-toggle="modal" data-bs-target="#exampleModal-1" data-bs-whatever="@mdo">share</a>
+                              <a class="share js-share" data-bs-toggle="modal" data-bs-target="#exampleModal-1" data-bs-whatever="@mdo">share</a>
                               <a class="share js-edit" data-bs-toggle="modal" data-bs-target="#exampleModal-edit" data-bs-whatever="@mdo" >Edit</a>
                               <a href="#about">Boost</a>
                               <a class="share js-delete" data-bs-toggle="modal" data-bs-target="#exampleModal-2" data-bs-whatever="@mdo">Delete</a>
@@ -114,6 +116,117 @@ function closeAllDropdowns() {
       
 
 }
+
+document.querySelector('.js-share-link').addEventListener('click', () => {
+
+ // console.log(productId);
+
+ fetchLink(productId);
+
+});
+
+
+function fetchLink(productId) {
+
+
+
+  axios.get('/api/v1/product/link', {
+    params: {
+      productId,
+
+    }
+  }).then((response) => {
+
+   console.log(response)
+
+   if(response.status === 200 && response.data) {
+    const key = response.data.data;
+
+    const encode =  key.encode;
+    const shopNo = key.shopNo;
+    const shopToken = key.shopToken;
+    const url = key.url;
+    const id  = key.id;
+    const decoy = key.decoy;
+
+
+ const productUrl = `${url}/product/shared/link?id=${id}&shop=${shopNo ?? ''}&verify=${decoy}&check=${shopToken}&encode=${encode}`;
+
+      navigator.clipboard.writeText(productUrl).then(() => {
+
+        let timerInterval;
+      Swal.fire({
+        icon: 'success',
+        title: 'Product Link',
+        text:  'Product link Copied To Clipboard Successfully',
+        timer: 2000,
+        timerProgressBar: true,
+        didOpen: () => {
+          Swal.showLoading();
+          const timer = Swal.getPopup().querySelector("b");
+          timerInterval = setInterval(() => {
+           timer.textContent = `${Swal.getTimerLeft()}`;
+          }, 4000);
+        },
+        willClose: () => {
+
+          clearInterval(timerInterval);
+          window.location.href = '/shop';
+
+        }
+      });    
+      },() => {
+      
+        Swal.fire({ 
+          icon: 'error',
+          title: 'Product Link',
+          text:  'Failed to copy',
+          willClose: () => {
+            window.location.href = '/shop';
+
+        }
+
+      });
+
+      });
+   }
+
+  }).catch((error) => {
+  
+    if(error.response) {
+
+      if(error.response.status === 400 && error.response.data) {
+
+        Swal.fire({ 
+          icon: 'error',
+          title: 'Fetching Product',
+          text:  error.response.data.message,
+          willClose: () => {
+            window.location.href = '/shop';
+
+        }
+
+      });
+
+      }
+
+
+      if(error.response.status === 500) {
+
+        serverError();
+
+      
+    }
+    
+  }
+
+
+  })
+
+}
+
+
+
 
 
 
@@ -420,8 +533,8 @@ products.forEach((product) => {
   <img src="uploads/products/${firstImageUrl}"
       class="card-img-top w-100 image-border" alt="...">
   <div class="card-body">
-      <h6 class="amount">$${product.actual_price || 0} <span class="amount-span">$${product.promo_price || 0} </span></h6>
-      <p class="card-text infinix-text pt-3">${product.description}.</p>
+      ${getShopPrice(product)}
+      <p class="card-text infinix-text pt-3">${product.title}.</p>
       <div class="footer-card-mobile">
           <div>
               <img style="margin-left:-10px;" width="8px"
@@ -441,6 +554,15 @@ mobileCard.innerHTML = mobileProduct;
 
 let mobileProductId;
 
+document.querySelector('.js-mobile-share-link').addEventListener('click', () => {
+ // console.log(mobileProductId);\
+
+ const productId = mobileProductId ;
+
+  fetchLink(productId);
+})
+
+
 
 document.querySelectorAll('.js-mobile-card').forEach((mobileCard) => {
   
@@ -458,7 +580,7 @@ document.querySelectorAll('.js-mobile-card').forEach((mobileCard) => {
 var modal = new bootstrap.Modal(document.getElementById('exampleModal2'));
 document.querySelector('.js-modal-edit').addEventListener('click', () => {
   modal.hide();
-  //console.log(mobileProductId);
+  console.log(mobileProductId);
 
 
   axios({

@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Product;
 use App\Models\User;
+use App\Models\Shop;
+use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -93,26 +95,40 @@ public function getProductDetails($id) {
     $product = Product::with('user')->find($id);
 
     if (!$product) {
-        return response()->json(['error' => 'Product not found'], 404);
+        return response()->json([
+            'status' => false,
+            'message' => 'Product not found',
+        ], 404);
     }
 
     if ($product) {
+
+
         return response()->json([
-            'id' => $product->id,
-            'title' => $product->title,
-            'description' => $product->description,
-            'location' => $product->location,
-            'image_url' => $product->image_url,
-            'ask_for_price' => $product->ask_for_price,
-            'promo_price' => $product->promo_price,
-            'actual_price' => $product->actual_price,
-            'quantity' => $product->quantity,
-            'condition' => $product->condition,
-            'isUserVerified' => $product->user->is_verified, // Include user verification status
-            'sellerId' => $product->user->id // Include seller ID
+            'status' => true,
+            'message' => 'User Products Fetched Successfully',
+            'product' => $product,
+
         ]);
+        // return response()->json([
+        //     'id' => $product->id,
+        //     'title' => $product->title,
+        //     'description' => $product->description,
+        //     'location' => $product->location,
+        //     'image_url' => $product->image_url,
+        //     'ask_for_price' => $product->ask_for_price,
+        //     'promo_price' => $product->promo_price,
+        //     'actual_price' => $product->actual_price,
+        //     'quantity' => $product->quantity,
+        //     'condition' => $product->condition,
+        //     'isUserVerified' => $product->user->is_verified, // Include user verification status
+        //     'sellerId' => $product->user->id // Include seller ID
+        // ]);
     } else {
-        return response()->json(['error' => 'Product not found'], 404);
+        return response()->json([
+            'status' => false,
+            'message' => 'Product not found'
+        ], 404);
     }
 }
 
@@ -509,6 +525,90 @@ public function searchProducts(Request $request) {
             ], 200);
         }
 
+
+
+}
+
+public function loadSharedProduct($link) {
+
+    return view('other_frontend.shared-product-link');
+
+}
+
+public function getProductLink(Request $request) {
+
+ $id = $request->productId;
+
+ $product = Product::with('user')->find($id);
+
+ if(!$product) {
+    return response()->json([
+        'status' => true,
+        'message' => 'No Product Found',
+
+    ],404);
+
+ }
+
+ $user = $product->user;
+
+ $shopToken = $user->shop_token;
+ $shopNo = $user->shop_no;
+ $url = env('APP_URL');
+ $encode = Shop::shopToken(100);
+ $decoy = Str::random(40);
+
+
+ return response()->json([
+    'status' => true,
+    'data' => [
+    'id' => $id,
+    'shopToken' => $shopToken,
+    'shopNo' => $shopNo,
+    'encode' => $encode,
+    'url' => $url,
+    'decoy' => $decoy,]
+
+ ],200);
+
+
+}
+
+public function getSharedProductDetails(Request $request) {
+
+    $id = $request->id;
+    $shopToken = $request->shopToken;
+
+    $product = Product::with('user')->where('id', $id)
+                       ->whereHas('user', function($query) use($shopToken) {
+                        $query->where('shop_token', $shopToken);
+
+    })->first();
+
+    if(!$product) {
+        return response()->json([
+            'status' => false,
+            'message' => 'Product Not Found'
+
+
+        ], 404);
+
+    }
+
+    $userId = $product->user_id;
+
+    $otherProducts = Product::with('user')->where('user_id', $userId)->get();
+
+        return response()->json([
+            'status' => true,
+            'message' => 'Product Fetched Successfully',
+            'products' => [
+                'singleProduct' => $product,
+                'otherProduct' => $otherProducts,
+            ]
+
+        ],200);
+    
 
 
 }

@@ -1,4 +1,4 @@
-import { getToken, getSingleImage, getBadge } from "./helper/helper.js";
+import { getToken, getSingleImage, getBadge, getPrice } from "./helper/helper.js";
 import { serverError } from "./admin/auth-helper.js";
 
 const token = getToken();
@@ -121,10 +121,7 @@ if(token) {
 
                 <div class="product_card_title">
                     <div class="main_and_promo_price_area">
-                        <p class="promo_price">$${product.promo_price}</p>
-                        <div class="main_price">
-                            <p class="main_price_amount">$${product.actual_price}</p>
-                        </div>
+                        ${getPrice(product)}
 
                     </div>
                     <p class="product_name">$${product.title}</p>

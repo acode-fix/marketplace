@@ -184,3 +184,5 @@ Route::get('/admin/view/user', function() {
 
     return view('admin.verify.user_details');
 });
+
+Route::get('/product/shared/{link}', [ProductController::class, 'loadSharedProduct' ]);

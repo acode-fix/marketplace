@@ -344,7 +344,8 @@
           <div class="col-8 mb-3">
             <label for="usernameInput" class="form-label">Profile Bio</label>
             <input type="text" name="bio" class="form-control" id="profileInput"
-              placeholder="This is will be displayed to potential buyers only if you are a verified seller (Mx1000)">
+              placeholder="This is will be displayed to potential buyers only if you are a verified seller (Max3000)">
+              <span id="bio-error" class="error"></span>
           </div>
           <div class="col-2 mt-3 post-btn">
             <button id="editProfileBtn" style="background-color: whitesmoke;" type="button"
@@ -438,7 +439,9 @@
       <div class="col-10 mb-3">
         <label for="usernameInput" class="form-label">Profile Bio</label>
         <input type="text" class="form-control" name="bio" id="profileInput1"
-          placeholder="This is will be displayed to potential buyers only if you are a verified seller (Mx1000)">
+          placeholder="This is will be displayed to potential buyers only if you are a verified seller (Max300)">
+          <span id="bio-error-mobile" class="error"></span>
+        
       </div>
       <div class="col-2 mt-3 post-btn">
         <button id="editProfileBtn1" style="background-color: whitesmoke;" type="button"

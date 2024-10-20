@@ -238,10 +238,9 @@
             <input type="text" placeholder="product title" name="title" class="product_title" id="product-name">
 
            <div class="tooltip" id="tooltip" style="display: none;">Please choose any category to proceed</div>
-
+            
             <p class="maximum_character">500 characters max</p>
-            <textarea  placeholder="product descriptoin" name="description" class="product_descriptoin_input"></textarea>
-
+            <textarea  placeholder="product descriptoin" name="description" class="product_descriptoin_input js-desc"></textarea><span class="error"></span>
             {{-- <button type="submit" class="upload_your_product animate " data-bs-toggle="modal" data-bs-target="#exampleModal"> --}}
             <button type="submit" class="upload_your_product animate ">
 
@@ -479,6 +478,24 @@
     //     });
     // });
 
+    function descValidation() {
+       const desc = document.querySelector('.js-desc').value;
+       const descText = desc.trim();
+   
+       let isvalid = false;
+
+       if(descText.length > 500){
+
+         document.querySelector('.error').textContent = '* Product Description Must Not Exceed 500 Words !! *'
+
+         isvalid = true;
+       }
+
+       return isvalid;
+    }
+
+    
+
     document.addEventListener('DOMContentLoaded', function() {
     const priceSwitch = document.getElementById('priceSwitch');
     const priceFields = document.getElementById('priceFields');
@@ -512,6 +529,11 @@
 
     document.getElementById('productForm').addEventListener('submit', function(event) {
         event.preventDefault();
+
+        if(descValidation()) {
+
+            return;
+        }
 
         let formData = new FormData(this);
 

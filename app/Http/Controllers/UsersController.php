@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\Shop;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Auditlog;
@@ -55,10 +56,11 @@ class UsersController extends Controller
                 'errors' => $validator->errors()
             ], 401);
         }
-
+        $shopToken = Shop::shopToken(50);
         $user = User::create([
             'email' => $request->email,
             'password' => Hash::make($request->password),
+            'shop_token' => $shopToken,
         ]);
 
         return response()->json([

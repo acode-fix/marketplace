@@ -10,6 +10,14 @@ document.addEventListener('DOMContentLoaded', function () {
     function handleFormSubmit(event, formId) {
         event.preventDefault();
 
+        
+
+        if(validateBio()) {
+
+            return;
+        }
+
+
         const form = document.getElementById(formId);
         let formData = new FormData(form);
 
@@ -21,6 +29,8 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
         const locationSwitch = form.querySelector('input[name="location"]');
+
+        
 
         if (locationSwitch && locationSwitch.checked) {
             navigator.geolocation.getCurrentPosition(function (position) {
@@ -38,6 +48,46 @@ document.addEventListener('DOMContentLoaded', function () {
         } else {
             sendUpdateRequest(formData, token);
         }
+    }
+
+    function validateBio() {
+
+        const bioText = document.getElementById('profileInput').value;
+        const bioTextMobile = document.getElementById('profileInput1').value;
+        
+        const words = bioText.trim();
+        const mobileWords = bioTextMobile.trim();
+
+        const desktopEl = document.getElementById('bio-error');
+        const mobileEl = document.getElementById('bio-error-mobile');  
+        
+        let isValid = false;
+
+    
+        if(words.length > 300) {  
+
+            desktopEl.textContent = '* Bio Must Not Exceed 300 Words !! *';
+            isValid = true;
+
+        }else {
+
+            desktopEl.textContent = '';
+        }
+
+        if(mobileWords.length > 300) {
+
+            mobileEl.textContent = '* Bio Must Not Exceed 300 Words !! *'; 
+            isValid = true;
+            
+        }else {
+
+            mobileEl.textContent = '';
+        }
+
+        return isValid;
+
+
+
     }
 
     function sendUpdateRequest(formData, token) {

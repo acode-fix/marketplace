@@ -76,7 +76,7 @@ class VerificationController extends Controller
         } else {
 
             $shopNo = Shop::shopNo();
-            $shopToken = Shop::shopToken(50);
+           
 
            // DeBugBar::info($shopNo, $shopToken, $payment->user);
 
@@ -105,7 +105,6 @@ class VerificationController extends Controller
 
                 $validate = [
                     'shop_no' => $shopNo,
-                    'shop_token' => $shopToken,
                     'verify_status' => 1,
                 ];
 

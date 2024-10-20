@@ -1,5 +1,5 @@
 import { serverError } from "./admin/auth-helper.js";
-import { generateAvatar, getDate, getUserProfileImage, logoutUser } from "./helper/helper.js";
+import { generateAvatar, getDate, getUserProfileImage, logoutUser, getShopPrice } from "./helper/helper.js";
 
 
 
@@ -73,18 +73,7 @@ if (!userId) {
 
                 serverError();
 
-            } else {
-
-                Swal.fire({
-                    icon: 'error',
-                    title: 'Request Error',
-                    text: 'Something went wrong. Please try again later.',
-                    willClose() {
-                      window.location.href = '/';
-                    }
-                });
-
-            }
+            } 
 
 
         }
@@ -105,7 +94,7 @@ if (!userId) {
                   <img src="/uploads/products/${image(product.image_url)}" class="card-img-top w-100 image-border" alt="...">
                   <div class="card-body">
                     <div class="card-structure">
-                      <h6 class="amount">$${product.promo_price} <span class="amount-span">$${product.actual_price}</span></h6>
+                    ${getShopPrice(product)}
                       <div class="star-layout">
                         <div>
                           <img src="kaz/images/Rate.png" class="img-fluid image-rate" width="10px" alt="">
@@ -118,7 +107,7 @@ if (!userId) {
                       </div>
                     </div>
                     <div class="footer-card">
-                      <p class="card-text infinix-text pt-3">${product.description}</p>
+                      <p class="card-text infinix-text pt-3">${product.title}</p>
                       <img class="mt-3 logo-bag" src="kaz/images/badge.png" alt="">
                     </div>
                   </div>
@@ -208,7 +197,10 @@ if (!userId) {
                     <div class="custom-scrollable-content">
                       <div class="ms-4 mt-2">
                         <h6>Buy ${product.title ?? ''}</h6>
-                        <h6 class="amount-js mt-2">$${product.promo_price ?? ''}<span class="amount-span-js ps-4"> $${product.actual_price ?? ''}</span></h6>
+                        ${product.ask_for_price
+                          ? '<h6 class="amount-js mt-2" style="color:red; font-size:15px;">Ask for price</h6>' 
+                          : ` <h6 class="amount">$${product.promo_price ?? 0} <span class="amount-span-js ps-4">$${product.actual_price ?? 0}</span></h6>`}
+                        
                         <p class="mac-text mt-2">${product.description ?? ''}</p>
                         <div class="last-box" style="display: flex; justify-content: space-between;">
                            <div class="rate-box">
@@ -373,8 +365,8 @@ if (!userId) {
                 </div>
                 <img src="/uploads/products/${image(product.image_url)}" class="card-img-top w-100 image-border" alt="...">
                 <div class="card-body">
-                  <h6 class="amount">$${product.promo_price} <span class="amount-span">$${product.actual_price}</span></h6>
-                  <p class="card-text infinix-text pt-3">${product.description}.</p>
+                ${getShopPrice(product)}
+                  <p class="card-text infinix-text pt-3">${product.title}.</p>
                   <div class="footer-card-mobile">
                     <div style="display: flex;align-items: center;">
                       <img style="margin-left:-10px;" width="8px" src="kaz/images/location.svg" alt=""><span

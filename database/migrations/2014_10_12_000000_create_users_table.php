@@ -21,7 +21,7 @@ return new class extends Migration
             $table->string('address')->nullable();
             $table->string('email')->unique();
             $table->string('email_verified_at')->nullable();
-            $table->string('bio')->nullable();
+            $table->longText('bio')->nullable();
             $table->string('photo_url')->nullable();
             $table->string('location')->nullable();
             $table->unsignedBigInteger('shop_no')->nullable();

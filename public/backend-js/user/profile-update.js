@@ -1,4 +1,4 @@
-import { generateAvatar } from "../helper/helper.js";
+import { generateAvatar,loadDashboard } from "../helper/helper.js";
 
   // Fetch the user data
  const token = localStorage.getItem('apiToken');
@@ -11,8 +11,12 @@ if (token) {
 
    }).then(response => {
       const  user = response.data;
+      //console.log(user);
+
+      
 
        updateUserProfile(user);
+       
           
    }).catch(error => {
        console.log('Error fetching user data:', error);
@@ -145,34 +149,37 @@ function updateUserProfile(user) {
             }
 
             
+    
+            
+            
+    //   function loadDashboard(user) {
 
+            
 
-            //Update User Profile on Product Description Page
+    //         const dashboardImg = user.photo_url ? `<img id=""  src="/uploads/users/${user.photo_url}" alt="Profile Image">` : '<img id="profile_image" src="" alt="Profile Image"></img>';
+    //         const dashboard = `
+    //         <div class="profile_card_user_name">
+    //           ${dashboardImg}
+    //         <p id="profile_name">${user.username ?? 'No Username Provided'}
+    //         </p>
+    //         <p><span id="profile_email">${user.email ?? 'No Data Provided'}</span></p>  
+    //         </div>
+    //         <hr>
+    //         <div class="accont_features">
+    //             <p><a href="/settings">Account Setting </a></p>
+    //             <p><a href="/refer"> Reffer a Friend </a></p>
+    //             <p> <a href="/privacy'">Privacy and Policy </a></p>
+    //             <p><a href="#" id="dash">Log out</a></p>
+    //         </div>`;
 
-            const dashboardImg = user.photo_url ? `<img id=""  src="/uploads/users/${user.photo_url}" alt="Profile Image">` : '<img id="profile_image" src="" alt="Profile Image"></img>';
-            const dashboard = `
-            <div class="profile_card_user_name">
-              ${dashboardImg}
-            <p id="profile_name">${user.username ?? 'No Username Provided'}
-            </p>
-            <p><span id="profile_email">${user.email ?? 'No Data Provided'}</span></p>  
-            </div>
-            <hr>
-            <div class="accont_features">
-                <p><a href="/settings">Account Setting </a></p>
-                <p><a href="/refer"> Reffer a Friend </a></p>
-                <p> <a href="/privacy'">Privacy and Policy </a></p>
-                <p><a href="#" id="dash">Log out</a></p>
-            </div>`;
+    //      if(document.querySelector('.profile_card')) {
 
-         if(document.querySelector('.profile_card')) {
+    //         document.querySelector('.profile_card').innerHTML = dashboard;
 
-            document.querySelector('.profile_card').innerHTML = dashboard;
-
-         }
+    //      }
 
         
-        
+    //     }
 
         //UPDATE USER PROFILE NAVBAR ON PRODUCT DESCRIPTION PAGE;
 
@@ -275,7 +282,7 @@ function updateUserProfile(user) {
       
 
    } else {
-       console.error('User data is null or undefined');
+       //console.error('User data is null or undefined');
    }
 
 }

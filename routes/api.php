@@ -30,6 +30,10 @@ Route::post('/auth/login', [UsersController::class, 'loginUser']);
 Route::post('/auth/update',[UsersController::class, 'accountSettings']);
 Route::post('/admin/login', [UsersController::class, 'adminLogin']);
 
+//PRODUCT SHARED LINK;
+Route::post('/product/shared', [ProductController::class, 'getSharedProductDetails']);
+Route::get('/product-details/{id}', [ProductController::class, 'getProductDetails']);
+
 
 
 // reset Password
@@ -101,6 +105,9 @@ Route::get('/verified-seller/id', [UsersController::class, 'getUserId']);
 Route::get('/search/products', [ProductController::class, 'searchProducts']);
 
 
+//Route product link 
+
+Route::get('/product/link', [ProductController::class, 'getProductLink']);
 
 
 
@@ -132,7 +139,6 @@ Route::post('/product/edit/{id}', [ProductController::class, 'update']);
 //Route::get('/product/search', [ProductController::class, 'search']);
 Route::delete('/product/delete/{id}',[ProductController::class, 'delete']);
 Route::get('/user/products', [ProductController::class, 'userProducts']);
-Route::get('/product-details/{id}', [ProductController::class, 'getProductDetails']);
 // Route::get('/sellers-shop/{productId}', [ProductController::class, 'showSellerShop']);
 Route::get('/seller-details/{productId}', [ProductController::class, 'getSellerDetails']);
 Route::get('/sellers/{sellerId}/products', [ProductController::class, 'getProductsBySeller']);

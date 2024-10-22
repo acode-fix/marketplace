@@ -1,5 +1,6 @@
 import { validationError, getShopPrice } from "./helper/helper.js";
 import { serverError } from "./admin/auth-helper.js";
+import dayjs from 'https://unpkg.com/dayjs@1.11.10/esm/index.js';
 
 const token = localStorage.getItem('apiToken');
 
@@ -15,13 +16,93 @@ document.addEventListener("DOMContentLoaded", function () {
       console.error('API token is missing');
       return;
   }
+  
+  axios.get('/api/v1/user/badge').then((response)=> {
+    console.log(response);
 
+    const expiryData = response.data.badge.expiry_date;
+
+
+   const expiryDate=  dayjs(expiryData).format('D MMMM YYYY')
+
+    if(response.status === 200 && response.data) {
+
+      const verifyElement = document.querySelector('.become-tag');
+      const verifyElementMobile = document.querySelector('.become-tag-m');
+      const textElements = document.querySelectorAll('.js-hover-text');
+
+       if(response.data.message === 'Active Badge')  {
+
+          verifyElement.textContent = 'Active Badge';
+          verifyElement.href = '';
+
+          verifyElementMobile.textContent = 'Active Badge';
+          verifyElementMobile.style.fontSize = '12px';
+          verifyElementMobile.href = '';
+
+        textElements.forEach((textElement) => {
+          textElement.textContent = `Expires on: ${expiryDate}`;
+          textElement.style.color = '#14AE5c';
+
+        });
+
+       
+
+       }else  if (response.data.message === 'Badge Expired') {
+     
+        verifyElement.textContent = 'Badge Expired';
+        verifyElement.href = '/badge';
+
+        verifyElementMobile.textContent = 'Badge Expired';
+        verifyElementMobile.style.fontSize = '12px'
+        verifyElementMobile.href = '/badge';
+
+        
+
+        textElements.forEach((textElement) => {
+          textElement.textContent = `Expired on: ${expiryDate}`;
+          textElement.style.color = '#FF0000';
+
+        })
+
+       
+
+       }
+
+
+
+
+      
+     
+    }
+
+
+
+  }).catch((error) => {
+
+    if(error.response) {
+
+      if(error.response.status === 500) {
+        serverError();
+      }
+    }
+
+  });
+
+
+
+
+
+
+   
   axios.get('/api/v1/user/products', {
      
   })
   .then(response => { 
     
       const products = response.data.data;
+
+      console.log(products);
 
       if (!Array.isArray(products)) {
           console.error('Products data is not an array:', products);

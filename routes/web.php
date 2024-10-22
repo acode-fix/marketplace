@@ -10,6 +10,7 @@ use App\Http\Controllers\CategoriesController;
 use App\Http\Controllers\ShopController;
 use App\Http\Controllers\UsersController;
 use App\Http\Controllers\PaymentController;
+use App\Http\Controllers\BadgeController;
 use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 
 
@@ -186,3 +187,5 @@ Route::get('/admin/view/user', function() {
 });
 
 Route::get('/product/shared/{link}', [ProductController::class, 'loadSharedProduct' ]);
+
+Route::get('/test', [BadgeController::class, 'verifyBadge']);

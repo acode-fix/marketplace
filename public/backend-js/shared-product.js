@@ -1,14 +1,5 @@
 import { getToken, getProdDesImage, getProdProfileDescImg, loadDashboard,logoutUser, getSingleImage, getBadge, getPrice, } from "./helper/helper.js";
 
-   
-
-  
-
-
-
-
-
-
   const currentUrl = new URL(window.location.href);
   const id = currentUrl.searchParams.get('id');
   const shopToken = currentUrl.searchParams.get('check');
@@ -32,9 +23,25 @@ import { getToken, getProdDesImage, getProdProfileDescImg, loadDashboard,logoutU
       loadCarousel(singleProduct);
       getCarouselImg(singleProduct);
       updateUserProfile(singleProduct);
-      loadProducts(otherProducts);
-      loadMobileProduct(otherProducts);
 
+      //console.log(singleProduct);
+       const {verify_status, badge_status} = singleProduct.user;
+
+      if(verify_status === 1 && badge_status === 1) {
+         
+        loadProducts(otherProducts);
+        loadMobileProduct(otherProducts);
+
+      } else  {
+        const arrayProduct =[];
+        arrayProduct.push(singleProduct);
+
+        loadProducts(arrayProduct);
+        loadMobileProduct(arrayProduct);
+
+      }
+
+   
 
     }
 

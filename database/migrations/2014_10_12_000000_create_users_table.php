@@ -26,8 +26,9 @@ return new class extends Migration
             $table->string('location')->nullable();
             $table->unsignedBigInteger('shop_no')->nullable();
             $table->string('stage')->default(1);   // 1 - initial signup , 2- update bio-data
-            $table->string('referral_code')->nullable()->unique(); // Add referral code column
+            $table->string('referral_code')->nullable()->unique(); 
             $table->integer('verify_status')->default(0);
+            $table->integer('badge_status')->default(0);
             $table->string('shop_token')->nullable();
             $table->integer('user_type')->default(2);
             $table->string('banner')->nullable();
@@ -36,7 +37,9 @@ return new class extends Migration
             $table->string('nin_file')->nullable();
             $table->string('selfie_photo')->nullable();
             $table->enum('badge_type', ['monthly', 'yearly'])->nullable();
-            $table->softDeletes(); // Adds a deleted_at column for soft deletes
+            $table->datetime('purchase_date')->nullable();
+            $table->datetime('expiry_date')->nullable();
+            $table->softDeletes(); 
             $table->timestamps();
         });
     }

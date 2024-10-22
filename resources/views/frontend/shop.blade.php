@@ -45,7 +45,8 @@
                                                 <h6 class="ps-1 vn-size">Verify Now</h6>
                                             </a>
                                         </div>
-                                        <div class="me-3" id="hover-text">become verified seller</div>
+                                        <div class="js-hover-text" class="me-3" id="hover-text">become verified seller</div>
+                                    
                                     </div>
                                 </div>
                             </div>
@@ -627,13 +628,13 @@
                         </div>
                         <div onmouseover="showText2()" onmouseout="hideText2()">
                             <div class="verify-badge-m">
-                                <img height="20px" width="15px" src="kaz/images/badge.png" alt="">
-                                <a class="become-link" href="{{ url('/become') }}">
+                                <img class="mobile-badge" src="kaz/images/badge.png" alt="">
+                                <a class="become-link become-tag-m"   href="{{ url('/become') }}">
                                     <h6 class="verify-m ps-1">Verify Now</h6>
                                 </a>
                             </div>
 
-                            <div class="" id="hover-text2">become verified seller</div>
+                            <div class="js-hover-text" id="hover-text2">become verified seller</div>
                         </div>
 
                     </div>

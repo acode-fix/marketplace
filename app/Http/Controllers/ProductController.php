@@ -747,7 +747,7 @@ public function getSharedProductDetails(Request $request) {
                 return response()->json(['message' => 'User not authenticated'], 401);
             }
 
-            $products = Product::where('user_id', $user->id)->get();
+            $products = Product::with('user')->where('user_id', $user->id)->get();
             return response()->json([
                     'status' => true,
                     'message' => 'Product Listed',

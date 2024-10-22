@@ -121,7 +121,7 @@ function updateUserProfile(user) {
 
                     verification.forEach((verify) => {
 
-                        if(user.verify_status === 1) {
+                        if(user.verify_status === 1 && user.badge_status === 1) {
                         verify.textContent = 'Verified Seller';
                         verify.style.color = '#14ae5c';
 

@@ -199,7 +199,7 @@ if (!userId) {
                         <h6>Buy ${product.title ?? ''}</h6>
                         ${product.ask_for_price
                           ? '<h6 class="amount-js mt-2" style="color:red; font-size:15px;">Ask for price</h6>' 
-                          : ` <h6 class="amount">$${product.promo_price ?? 0} <span class="amount-span-js ps-4">$${product.actual_price ?? 0}</span></h6>`}
+                          : ` <h6 class="amount mt-2 ps-2">$${product.promo_price ?? 0} <span class="amount-span-js ps-4">$${product.actual_price ?? 0}</span></h6>`}
                         
                         <p class="mac-text mt-2">${product.description ?? ''}</p>
                         <div class="last-box" style="display: flex; justify-content: space-between;">

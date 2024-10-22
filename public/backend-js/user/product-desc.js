@@ -36,8 +36,10 @@
 
            displayProductDetails(selectedProduct);
 
+        const {id, verify_status, badge_status} = selectedProduct.user;
+
            // Show "View Shop" button if the seller is verified
-           if (selectedProduct.user.id && selectedProduct.user.verify_status === 1) {
+           if (id && verify_status === 1 && badge_status === 1) {
                viewShopButton.style.display = 'block'; // Show button
            } else {
                viewShopButton.style.display = 'none'; // Hide button
@@ -95,9 +97,10 @@
 
        const carousel = document.getElementById('js-carousel-img');
         getProdProfileDescImg(product, carousel);
-
+         
+        const {verify_status, badge_status} = product.user
        const badgeElement = document.querySelector('.js-badge');
-       badgeElement.src = product.user.verify_status === 1 ? 'innocent/assets/image/badge.png' : '';
+       badgeElement.src = verify_status === 1 && badge_status === 1 ? 'innocent/assets/image/badge.png' : '';
 
        // For mobile view
        /*
@@ -107,7 +110,7 @@
        document.querySelector('.user_state_mobile').textContent = product.location;
        */       
 
-       const badge = product.user.verify_status === 1 ? '<img src="innocent/assets/image/badge.png" alt="">' : '';
+       const badge = verify_status === 1 && badge_status === 1 ? '<img src="innocent/assets/image/badge.png" alt="">' : '';
 
        const mobileHeader = `
          <div><img id="js-profile-mobile" src="" alt=".profile picture " class="user_photo"></div>

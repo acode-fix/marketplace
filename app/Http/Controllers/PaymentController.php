@@ -11,6 +11,7 @@ use Barryvdh\Debugbar\Facades\Debugbar;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Redirect;
+use Carbon\CarbonImmutable;
 
 class PaymentController extends Controller
 {   
@@ -233,15 +234,33 @@ class PaymentController extends Controller
                     'currency' => $currency,
                 ];
 
-                
                 $payment = Payment::where('transaction_reference', $transactionRef)->first();
 
+            
                 if($payment) {
 
+                    $userId = $payment->user_id;
+
+                    $user = User::where('id',$userId)->where('verify_status', 1)->first();
+
+                    if($user) {
+
+                        $purchaseDate = CarbonImmutable::now();
+                        $expiryDate = Payment::getExpiryDate($user->badge_type);
+
+                        $badgeDetails = [
+                            'purchase_date' => $purchaseDate,
+                            'expiry_date' => $expiryDate,
+                            'badge_status' => 1,
+                        ];
+
+                        $user->update($badgeDetails);
+
+                    }
+
+                   
+
                     $payment->update($storeTransaction);
-
-
-                    
 
                     return redirect()->route('success.page')->with(
                         'message','Transaction Successful');

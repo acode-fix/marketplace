@@ -15,6 +15,7 @@ use App\Http\Controllers\ShopController;
 use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\AdvertController;
 use App\Http\Controllers\PaymentController;
+use App\Http\Controllers\BadgeController;
 use App\Models\Verification;
 
 // Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
@@ -108,6 +109,11 @@ Route::get('/search/products', [ProductController::class, 'searchProducts']);
 //Route product link 
 
 Route::get('/product/link', [ProductController::class, 'getProductLink']);
+
+
+//Route badge status check;
+
+Route::get('/user/badge', [BadgeController::class, 'checkBadgeStatus']);
 
 
 

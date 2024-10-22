@@ -121,7 +121,9 @@ export function getSingleImage(productImages) {
 
 export function getBadge(product) {
 
-  return    product.user.verify_status === 1 
+  const{verify_status, badge_status} = product.user;
+
+  return    verify_status === 1 && badge_status 
               ? `<img class="logo-bag" src="/kaz/images/badge.png" alt="">` 
               : ` <img src="/innocent/assets/image/logo icon.svg" alt="">`;
 

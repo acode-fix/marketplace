@@ -970,4 +970,23 @@ border-top-left-radius:14px;
   border-radius: 30px;
 }
 
+.mobile-badge {
+  height: 20px;
+  width:15px;
+}
+
+@media screen and (max-width:420px) {
+
+ .become-tag-m {
+  font-size: 10px;
+ }
+ .mobile-badge {
+  height: 20px;
+  width:18px;
+  margin-right: 10px;
+}
+
+
+}
+
 

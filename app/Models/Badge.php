@@ -14,23 +14,7 @@ class Badge extends Model
    protected $guarded = [];
 
 
-    public static function getExpiryDate($badgeType) {
-
-        if($badgeType === 'monthly') {
-
-         return   CarbonImmutable::now()->addMonths(1);
-
-        }elseif($badgeType === 'yearly') {
-
-            return  CarbonImmutable::now()->addMonths(11);
-
-        }
-
-    return null;
-
-
-
-    }
+   
 
 
 

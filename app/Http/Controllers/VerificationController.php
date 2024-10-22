@@ -94,21 +94,17 @@ class VerificationController extends Controller
             }else {
 
                 $purchaseDate = CarbonImmutable::now();
-                $expiryDate = Badge::getExpiryDate($user->badge_type);
-
-                $badgeInfo = [
-                    'user_id' => $user->id,
-                    'purchase_date' => $purchaseDate,
-                    'expiry_date' =>  $expiryDate,
-                ];
-
+                $expiryDate = Payment::getExpiryDate($user->badge_type);
 
                 $validate = [
                     'shop_no' => $shopNo,
                     'verify_status' => 1,
+                    'badge_status' => 1,
+                    'purchase_date' => $purchaseDate,
+                    'expiry_date' => $expiryDate,
                 ];
 
-                if($user->update($validate) && Badge::create($badgeInfo)) {
+                if($user->update($validate)) {
 
                     return response()->json([
                         'status' => true,

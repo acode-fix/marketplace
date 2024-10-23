@@ -24,7 +24,7 @@
                 <form action="">
                   <input class="link" type="text" name="" id="linkInput"
                     placeholder="www.buyandsell.com/join/bas-mrk-pla">
-                  <button value="submit" type="button" class="btn btn-warning btn-sm  " id="linkButton">Link</button>
+                  <button value="submit" type="button" class="btn btn-warning btn-sm  " id="linkButton">Copy</button>
                 </form>
               </div>
               <div style="float: right; margin-top: 10px;">
@@ -95,7 +95,7 @@
                       placeholder="www.buyandsell.com/join/bas-mrk-pla">
                     <div class="mobile-btn">
                       <button style="width: 40%;" value="submit" type="button" class="btn btn-warning btn-md  "
-                        id="linkButton-mobile">Link</button>
+                        id="linkButton-mobile">Copy</button>
                     </div>
 
                   </form>
@@ -128,51 +128,55 @@
   <script src="{{ asset('kaz/js/refer.js') }}"></script>
   <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.js"></script>
+  <script type="module" src="{{ asset('backend-js/user/refer.js') }}"></script>
   
 
-  <script>
-  document.addEventListener('DOMContentLoaded', function() {
-      const linkInput = document.getElementById('linkInput');
-      const linkButton = document.getElementById('linkButton');
+  <script>    
 
-      const token = localStorage.getItem('apiToken'); // Get the token from local storage
-      // Function to fetch the referral link from the backend
-      function fetchReferralLink() {
-          axios.get('/api/v1/referral-link', {
-              headers: {
-                  'Authorization': 'Bearer ' + token // Assuming the token is stored in localStorage
-              }
-          })
-          .then(function(response) {
-              linkInput.value = response.data.referralLink;
-          })
-          .catch(function(error) {
-              // Swal.fire(
-              //     'An error occurred',
-              //     error.response.data.message || 'Please try again later.',
-              //     'error'
-              // );
-          });
-      }
+  // document.addEventListener('DOMContentLoaded', function() {
+  //     const linkInput = document.getElementById('linkInput');
+  //     const linkButton = document.getElementById('linkButton');
 
-      // Function to copy the link to the clipboard
-      function copyToClipboard() {
-          linkInput.select();
-          linkInput.setSelectionRange(0, 99999); // For mobile devices
-          document.execCommand('copy');
-          Swal.fire({
-              icon: 'success',
-              title: 'Copied!',
-              text: 'Referral link copied to clipboard.',
-          });
-      }
+  //     const token = localStorage.getItem('apiToken'); // Get the token from local storage
+  //     // Function to fetch the referral link from the backend
+  //     function fetchReferralLink() {
+  //         axios.get('/api/v1/referral-link', {
+  //             headers: {
+  //                 'Authorization': 'Bearer ' + token // Assuming the token is stored in localStorage
+  //             }
+  //         })
+  //         .then(function(response) {
+  //             linkInput.value = response.data.referralLink;
+  //         })
+  //         .catch(function(error) {
+  //             // Swal.fire(
+  //             //     'An error occurred',
+  //             //     error.response.data.message || 'Please try again later.',
+  //             //     'error'
+  //             // );
+  //         });
+  //     }
 
-      // Fetch the referral link on page load
-      fetchReferralLink();
+  //     // Function to copy the link to the clipboard
+  //     function copyToClipboard() {
+  //         linkInput.select();
+  //         linkInput.setSelectionRange(0, 99999); // For mobile devices
+  //         document.execCommand('copy');
+  //         Swal.fire({
+  //             icon: 'success',
+  //             title: 'Copied!',
+  //             text: 'Referral link copied to clipboard.',
+  //         });
+  //     }
 
-      // Add event listener to the copy button
-      linkButton.addEventListener('click', copyToClipboard);
-  });
+  //     // Fetch the referral link on page load
+  //     fetchReferralLink();
+
+  //     // Add event listener to the copy button
+  //     linkButton.addEventListener('click', copyToClipboard);
+  // });
+
+
   </script>
 
 

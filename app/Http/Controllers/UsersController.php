@@ -418,19 +418,19 @@ class UsersController extends Controller
    }
 
 
-    public function getReferralLink(Request $request)
-    {
-        $user = Auth::user();
+    // public function getReferralLink(Request $request)
+    // {
+    //     $user = Auth::user();
 
-        if (!$user->referral_code) {
-            $user->referral_code = $user->generateReferralCode();
-            $user->save();
-        }
+    //     if (!$user->referral_code) {
+    //         $user->referral_code = $user->generateReferralCode();
+    //        $user->save();
+    //     }
 
-        $referralLink = url('/join/bas-mrk-pla?ref=' . $user->referral_code);
+    //     $referralLink = url('/join/bas-mrk-pla?ref=' . $user->referral_code);
 
-        return response()->json(['referralLink' => $referralLink]);
-    }
+    //     return response()->json(['referralLink' => $referralLink]);
+    // }
 
     public function showSellerShop($userId)
 {
@@ -482,18 +482,19 @@ class UsersController extends Controller
     public function deleteAccount(Request $request)
 {
     try {
-        // Get the authenticated user
+        
         $user = Auth::user();
 
         if (!$user) {
+
             return response()->json([
                 'status' => false,
                 'message' => 'User not authenticated',
             ], 401);
         }
 
-        // Delete the user
-        $user->tokens()->delete(); // Delete all tokens for the user
+        
+        $user->tokens()->delete(); 
         $user->delete();
 
         return response()->json([
@@ -507,6 +508,12 @@ class UsersController extends Controller
             'message' => $th->getMessage()
         ], 500);
     }
+
+
+
+
+
+
 }
 
 
@@ -548,6 +555,7 @@ public function getDetails(Request $request) {
    if($userId) {
 
    $user = User::with('products')->where('id', $userId)->where('verify_status', 1)
+                                     ->where('badge_status', 1)
                                      ->whereNotNull('shop_token')
                                      ->first();
 
@@ -612,6 +620,31 @@ public function getDetails(Request $request) {
   }
 
 
+
+}
+
+
+public function getLink(Request $request) {
+
+  if(!$request->user()) {
+    return response()->json([
+        'status' => false,
+        'message' => 'User Not authenticated',
+
+
+    ],404);
+  }
+
+   //Debugbar::info(env('APP_URL'));
+
+   $url = config('app.url');
+
+   return response()->json([
+    'status' => true,
+    'message' => 'App url fetched successfully',
+     'url' => $url,
+
+   ]);
 
 }
 

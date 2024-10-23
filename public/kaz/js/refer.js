@@ -22,61 +22,61 @@ document.addEventListener('DOMContentLoaded', function() {
  });
 
 
- document.addEventListener('DOMContentLoaded', function() {
-    const linkInput = document.getElementById('linkInput');
-    const linkButton = document.getElementById('linkButton');
-    const paragraph = document.getElementById('display');
+//  document.addEventListener('DOMContentLoaded', function() {
+//     const linkInput = document.getElementById('linkInput');
+//     const linkButton = document.getElementById('linkButton');
+//     const paragraph = document.getElementById('display');
 
-    if(linkButton) {
+//     if(linkButton) {
 
-    linkButton.addEventListener('click', function() {
-      if (linkButton.textContent === 'Link') {
-        // Fetch data from the database and set it in the input field
-        const fetchedLink = "Your fetched link from the database";
-        linkInput.value = fetchedLink;
-        // Change button text to 'Copy Link'
-        linkButton.textContent = 'Copy';
-        // Add the small-text class to the input field
-        linkInput.classList.add('small-text');
-      } else {
-        // Copy link to clipboard
-        linkInput.select();
-        document.execCommand('copy');
-        // Display message
-        paragraph.textContent = 'Link copied successfully!';
-      }
-    });
+//     linkButton.addEventListener('click', function() {
+//       if (linkButton.textContent === 'Link') {
+//         // Fetch data from the database and set it in the input field
+//         const fetchedLink = "Your fetched link from the database";
+//         linkInput.value = fetchedLink;
+//         // Change button text to 'Copy Link'
+//         linkButton.textContent = 'Copy';
+//         // Add the small-text class to the input field
+//         linkInput.classList.add('small-text');
+//       } else {
+//         // Copy link to clipboard
+//         linkInput.select();
+//         document.execCommand('copy');
+//         // Display message
+//         paragraph.textContent = 'Link copied successfully!';
+//       }
+//     });
 
-  }
-  });
+//   }
+//   });
       
-  document.addEventListener('DOMContentLoaded', function() {
-    const linkInput = document.getElementById('linkInput-mobile');
-    const linkButton = document.getElementById('linkButton-mobile');
-    const paragraph = document.getElementById('display-mobile');
+  // document.addEventListener('DOMContentLoaded', function() {
+  //   const linkInput = document.getElementById('linkInput-mobile');
+  //   const linkButton = document.getElementById('linkButton-mobile');
+  //   const paragraph = document.getElementById('display-mobile');
 
-    if (linkButton) {
+  //   if (linkButton) {
 
-    linkButton.addEventListener('click', function() {
-      if (linkButton.textContent === 'Link') {
-        // Fetch data from the database and set it in the input field
-        const fetchedLink = "Your fetched link from the database";
-        linkInput.value = fetchedLink;
-        // Change button text to 'Copy Link'
-        linkButton.textContent = 'Copy';
-        // Add the small-text class to the input field
-        linkInput.classList.add('small-text');
-      } else {
-        // Copy link to clipboard
-        linkInput.select();
-        document.execCommand('copy');
-        // Display message
-        paragraph.textContent = 'Link copied successfully!';
-      }
-    });
+  //   linkButton.addEventListener('click', function() {
+  //     if (linkButton.textContent === 'Link') {
+  //       // Fetch data from the database and set it in the input field
+  //       const fetchedLink = "Your fetched link from the database";
+  //       linkInput.value = fetchedLink;
+  //       // Change button text to 'Copy Link'
+  //       linkButton.textContent = 'Copy';
+  //       // Add the small-text class to the input field
+  //       linkInput.classList.add('small-text');
+  //     } else {
+  //       // Copy link to clipboard
+  //       linkInput.select();
+  //       document.execCommand('copy');
+  //       // Display message
+  //       paragraph.textContent = 'Link copied successfully!';
+  //     }
+  //   });
 
-  }
-  });
+  // }
+  // });
   
   
  

@@ -39,15 +39,15 @@ class ReferralController extends Controller
     {
         //
         $user = User::find($userId);
-$referredUser = User::find($referredUserId);
+        $referredUser = User::find($referredUserId);
 
-$referral = new Referral([
-    'status' => 'pending'
-]);
+        $referral = new Referral([
+        'status' => 'pending'
+        ]);
 
-$referral->referrer()->associate($user);
-$referral->referred()->associate($referredUser);
-$referral->save();
+        $referral->referrer()->associate($user);
+        $referral->referred()->associate($referredUser);
+        $referral->save();
     }
 
     /**

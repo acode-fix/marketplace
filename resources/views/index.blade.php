@@ -34,13 +34,9 @@
 
     <div id="scrollToTop"><i class="fa-solid fa-arrow-up"></i></div>
     <div id="index">
-      
-
-
         <!-- Navbar and Search Button -->
         <div class="navbar-1 fixed-top">
-            <img src="innocent/assets/image/main logo.svg" class="buy_and_sell_logo" alt="" data-bs-toggle="modal" data-bs-target="#signup_login-modal">
-
+            <img  src="innocent/assets/image/main logo.svg" class="buy_and_sell_logo" alt="" data-bs-toggle="modal" data-bs-target="#signup_login-modal">
             <div class="search-bar">
                 <div class="location-icon"><i class="fa-solid fa-location-dot"></i></div>
                 <select placeholder="Country" class="country-input">
@@ -208,7 +204,7 @@
 
                     <input type="text" class="form-control js-shop-no" id="shop_no_input_mobile" placeholder="enter shop no ">
 
-                    <img src="innocent/assets/image/send 3.svg" alt="" id="send"
+                    <img class="" src="innocent/assets/image/send 3.svg" alt="" id="send"
                         onclick=" return_enter_shop_no_mobile()">
                         
                 </div>

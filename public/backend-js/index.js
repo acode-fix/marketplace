@@ -318,6 +318,16 @@ document.querySelector('.js-send').addEventListener('click', () => {
 
     }else {
 
+        getVerifiedSellerShop(shopNo)
+
+   }
+
+
+});
+
+function getVerifiedSellerShop(shopNo) {
+
+    
     axios.get('/api/v1/verified-seller/details', {
 
         params: {
@@ -369,13 +379,14 @@ document.querySelector('.js-send').addEventListener('click', () => {
 
         
         
-    });
+    })
 
 
-   }
+}
 
 
-});
+
+
 
 if(!token) {
 
@@ -386,6 +397,13 @@ if(!token) {
         promptLogin();
         
     })
+
+  });
+
+
+  document.querySelector('.js-send').addEventListener('click', (event) => {
+    event.preventDefault()
+    promptLogin();
 
   });
 

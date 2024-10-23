@@ -117,6 +117,13 @@ Route::get('/user/badge', [BadgeController::class, 'checkBadgeStatus']);
 
 
 
+//ROUTE referral link
+
+
+Route::get('user/refer-link', [UsersController::class, 'getLink']);
+
+
+
 
 
 

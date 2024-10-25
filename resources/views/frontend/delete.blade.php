@@ -23,11 +23,11 @@
               </ul>
               <p class="fw-light">Note that you will close your buyandsellmarketplace-account</p>
               <p class="fw-light your">Your verified seller subsription/any active promotion wil be canceled with no
-                refund, this is also no reversible</p>
+                refund, this is also not reversible</p>
               <div class="row">
                 <div class="col-10 mt-4">
                   <div style="float: right;">
-                    <button type="button" class="btn cancel-btn me-4 mb-2">Cancel</button>
+                    <a href="/" type="button" class="btn cancel-btn me-4 mb-2">Cancel</a>
                     <button type="button" class="btn del-btn mb-2" id="deleteAccountBtn">Delete Account</button>
 
                   </div>
@@ -83,7 +83,7 @@
               </ul>
               <p class="fw-light">Note that you will close your buyandsellmarketplace-account</p>
               <p class="fw-light your">Your verified seller subsription/any active promotion wil be canceled with no
-                refund, this is also no reversible</p>
+                refund, this is also not reversible</p>
 
             </div>
 
@@ -94,8 +94,8 @@
           <div class="row">
             <div class="col mt-5">
               <div>
-                <button type="button" class="btn cancel-btn me-4 mb-2">Cancel</button>
-                <button type="button" class="btn del-btn1 mb-2" id="deleteAccountBtn">Delete Account</button>
+                <a href="/" type="button" class="btn cancel-btn me-4 mb-2">Cancel</a>
+                <button type="button" class="btn del-btn1 mb-2" id="mobile-deleteAccountBtn">Delete Account</button>
               </div>
 
 
@@ -109,82 +109,11 @@
 
   </div>
 
+  <script type="module" src="{{ asset('backend-js/user/delete.js') }}"></script>
 
-  {{-- <script>
-    document.getElementById('deleteAccountBtn').addEventListener('click', function() {
-        if (confirm("Are you sure you want to delete your account? This action is irreversible.")) {
-
-            const token = localStorage.getItem('apiToken'); // Get the token from local storage
-
-            axios.delete('api/v1/user', {
-                headers: {
-                    'Authorization': 'Bearer ' + token // Assuming the token is stored in localStorage
-                }
-            })
-            .then(function(response) {
-                if (response.data.status) {
-                    alert(response.data.message);
-                    localStorage.removeItem('apiToken'); // Remove the token from localStorage
-                    window.location.href = '/'; // Redirect to the homepage or login page
-                } else {
-                    alert('Error: ' + response.data.message);
-                }
-            })
-            .catch(function(error) {
-                alert('An error occurred: ' + error.response.data.message);
-            });
-        }
-    });
-    </script> --}}
     <script>
-        document.getElementById('deleteAccountBtn').addEventListener('click', function() {
-            const token = localStorage.getItem('apiToken'); // Get the token from local storage
-
-            Swal.fire({
-                title: 'Are you sure?',
-                text: "This action is irreversible and will delete your account and all associated data.",
-                icon: 'warning',
-                showCancelButton: true,
-                confirmButtonColor: '#d33',
-                cancelButtonColor: '#3085d6',
-                confirmButtonText: 'Yes, delete it!',
-                cancelButtonText: 'Cancel'
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    axios.delete('api/v1/user', {
-                        headers: {
-                            'Authorization': 'Bearer ' + token // Assuming the token is stored in localStorage
-                        }
-                    })
-                    .then(function(response) {
-                        if (response.data.status) {
-                            Swal.fire(
-                                'Deleted!',
-                                response.data.message,
-                                'success'
-                            ).then(() => {
-                                localStorage.removeItem('apiToken'); // Remove the token from localStorage
-                                window.location.href = '/'; // Redirect to the homepage or login page
-                            });
-                        } else {
-                            Swal.fire(
-                                'Error!',
-                                response.data.message,
-                                'error'
-                            );
-                        }
-                    })
-                    .catch(function(error) {
-                        Swal.fire(
-                            'An error occurred',
-                            error.response.data.message || 'Please try again later.',
-                            'error'
-                        );
-                    });
-                }
-            });
-        });
-        </script>
+       
+   </script>
 
 
 

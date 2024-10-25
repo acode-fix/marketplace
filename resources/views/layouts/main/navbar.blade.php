@@ -11,8 +11,8 @@
     <div class="middle-section">
         <div class="search-border">
             <input type="search" id="search" placeholder="&nbsp Search product...">
-            <button class="search-btn btn-light mt-1 pt-1 pb-2 me-1">
-                <img src="kaz/images/Search.png" class="img-fluid search-img" alt=""> search
+            <button class="search-btn btn-light mt-1 pt-1 pb-2 me-1 js-search">
+                <img src="kaz/images/Search.png" class="img-fluid search-img " alt=""> search
             </button>
         </div>
     </div>

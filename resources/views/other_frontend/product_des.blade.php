@@ -205,7 +205,7 @@
                             <a href="">View Shop</a>
                           </button>
 
-                        <button  class="product_card_connect_button">
+                        <button  class="product_card_connect_button js-connect-btn">
                            <a href="#">connect <img src="innocent/assets/image/Shopping bag.png" alt="" ></a>
                         </button>
                     </div>

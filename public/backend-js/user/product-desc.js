@@ -1,4 +1,4 @@
-   import {loadDashboard, getProdProfileDescImg} from "../helper/helper.js";
+   import {loadDashboard, getProdProfileDescImg, getBadge, loadConnect} from "../helper/helper.js";
 
    document.addEventListener('DOMContentLoaded', function () {
        const viewShopButton = document.getElementById('viewShopButton');
@@ -67,6 +67,23 @@
        if (allProducts) {
            renderProducts(allProducts);
        }
+
+
+
+       const connectBtn = document.querySelector('.js-connect-btn');
+       connectBtn.addEventListener('click', () => {
+
+        if(selectedProduct) {
+
+            console.log(selectedProduct);
+            loadConnect(selectedProduct)
+
+            
+
+            
+        }
+
+       });
    });
 
 
@@ -78,10 +95,10 @@
 
         const imgDesk = document.getElementById('js-profile-desk');
         getProdProfileDescImg(product, imgDesk);
-
         
+    
 
-       
+
        // Display product details in the UI
 
        //console.log(product);
@@ -101,6 +118,8 @@
         const {verify_status, badge_status} = product.user
        const badgeElement = document.querySelector('.js-badge');
        badgeElement.src = verify_status === 1 && badge_status === 1 ? 'innocent/assets/image/badge.png' : '';
+
+
 
        // For mobile view
        /*
@@ -158,6 +177,8 @@
        // Update the image carousel
        updateCarousel(product.image_url);
    }
+
+   
 
    function updateCarousel(imagesJson) {
 
@@ -253,7 +274,7 @@
                          </div>
                          <p class="product_name">${product.title}</p>
                          <span class="product_card_location"><i class="fa-solid fa-location-dot"></i> ${product.location}</span>
-                         <img src="innocent/assets/image/logo icon.svg" alt="">
+                          ${getBadge(product)}
                          <span class="connect"><strong>connect</strong></span>
                      </div>
                  </div>

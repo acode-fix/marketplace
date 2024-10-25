@@ -445,20 +445,21 @@
                                         <input type="number" class="form-control" id="promo_price"  name = "promo_price">
                                     </div>
                                     <div class="mb-3">
-                                    <select name="condition" class="form-select" aria-label="Default select example">
+                                    <select id="condition" name="condition" class="form-select" aria-label="Default select example">
                                         <option selected="">Condition</option>
                                         <option value="fairly_used">Fairly Used</option>
                                         <option value="new">New</option>   
                                     </select>
-                                  </div>
-                                  <div class="mb-3">
-                                    <label for="formFile" class="form-label">Upload</label>
-                                    <input class="form-control" type="file"   multiple name="image_url[]">
-                                  </div>
-                                
+                                  </div>  
                                 </form>
+                                <div class="mb-3">
+                                    <label for="formFile" class="form-label">Upload</label>
+                                    <input class="form-control" id="fileInput" type="file"   name="image_url[]"  multiple>
+                                </div> 
                                 <button type="button" class="btn btn-secondary previous-to-step-1" >Previous</button>
                                 <button type="submit" class="btn btn-primary" id="save-product">Update</button>
+                                
+                                
                               </div>
                             </div>
                           </div>
@@ -469,7 +470,7 @@
 
 
                     <div class="modal fade" id="exampleModal-1" tabindex="-1" aria-labelledby="exampleModalLabel"
-                        aria-hidden="true">
+                        aria-hidden="true"> 
                         <div class="modal-dialog modal-dialog-centered" style="align-items: flex-end;">
                             <div class="modal-content">
                                 <div style="border: none;" class="modal-header">
@@ -969,18 +970,17 @@
                                       <input type="number" class="form-control promo_price"  name = "promo_price">
                                   </div>
                                   <div class="mb-3">
-                                  <select name="condition" class="form-select" aria-label="Default select example">
+                                  <select id="condition-mobile" name="condition" class="form-select" aria-label="Default select example">
                                       <option selected="">Condition</option>
                                       <option value="fairly_used">Fairly Used</option>
                                       <option value="new">New</option>   
                                   </select>
                                 </div>
-                                <div class="mb-3">
-                                  <label for="formFile" class="form-label">Upload</label>
-                                  <input class="form-control" type="file"   multiple name="image_url[]">
-                                </div>
-                              
                               </form>
+                              <div class="mb-3">
+                                <label for="formFile" class="form-label">Upload</label>
+                                <input id="inputMobile" class="form-control" type="file"   multiple name="image_url[]">
+                              </div>
                               <button type="button" class="btn btn-secondary previous-to-step-1" >Previous</button>
                               <button type="submit" class="btn btn-primary" id="save-product-mobile">Update</button>
                             </div>

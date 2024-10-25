@@ -252,3 +252,22 @@ export function getShopPrice(product) {
 }
 
 
+export function loadConnect(product) {
+
+  const {title} = product;
+  const {name, phone_number, email} = product.user;
+
+  const productName = title;
+
+
+  Swal.fire({
+      icon: 'info',
+      title: `${name ?? 'Seller'} Contact: ${phone_number ?? 'N/A'}`, 
+      text:  `Product Title: ${productName ?? email}`,    
+  
+  });
+
+
+}
+
+

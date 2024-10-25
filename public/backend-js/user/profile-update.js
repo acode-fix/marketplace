@@ -1,4 +1,4 @@
-import { generateAvatar,loadDashboard } from "../helper/helper.js";
+import { generateAvatar,  loadDashboard } from "../helper/helper.js";
 
   // Fetch the user data
  const token = localStorage.getItem('apiToken');

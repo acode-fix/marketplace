@@ -431,6 +431,7 @@ public function update(Request $request, $id) {
     if($request->has('image_url')) {
 
         $files = $request->file('image_url');
+        debugbar::info($files);
         if (!is_array($files)) {
             $files = [$files];
         }
@@ -524,6 +525,51 @@ public function searchProducts(Request $request) {
 
             ], 200);
         }
+
+
+
+}
+
+public function searchShopProducts(Request $request) {
+
+   if(!$request->user()) {
+    return response()->json([
+        'status' => false,
+        'message' => 'Authentication Failed',
+
+    ],400);
+   }
+
+   $searchParams = $request->searchParams;
+
+   if(!$searchParams) {
+
+    return response()->json([
+        'status' => false,
+        'message' => 'Empty Search Parameter'
+
+    ],404);
+ 
+   }
+
+   $userId = $request->user()->id;
+
+   $products = Product::with('user')->where('user_id', $userId)->where(function ($query) use($searchParams) {
+            $query->orWhere('title', 'like', "%{$searchParams}%")
+                    ->orWhere('description', 'like', "%{$searchParams}%")
+                    ->orWhere('location', 'like', "%{$searchParams}%");
+     
+
+   })->get();
+
+   return response()->json([
+        'status' => true,
+        'message' => 'User Product Fetched Successfully',
+        'products' => $products,
+
+   ],200);
+
+
 
 
 

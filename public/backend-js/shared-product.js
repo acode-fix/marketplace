@@ -1,4 +1,4 @@
-import { getToken, getProdDesImage, getProdProfileDescImg, loadDashboard,logoutUser, getSingleImage, getBadge, getPrice, } from "./helper/helper.js";
+import { getToken, getProdDesImage, getProdProfileDescImg, loadDashboard,logoutUser, getSingleImage, getBadge, getPrice, loadConnect } from "./helper/helper.js";
 
   const currentUrl = new URL(window.location.href);
   const id = currentUrl.searchParams.get('id');
@@ -141,14 +141,14 @@ import { getToken, getProdDesImage, getProdProfileDescImg, loadDashboard,logoutU
           </div>
             <div class="connect_buttons">
                  ${verifyStatus}
-                <button  class="product_card_connect_button">
-                    <a href="shop.html">connect <img src="/innocent/assets/image/Shopping bag.png" alt="" ></a> 
+                <button  class="product_card_connect_button js-connect-btn">
+                    <a href="">connect <img src="/innocent/assets/image/Shopping bag.png" alt="" ></a> 
                 </button>
             </div>
         </div>`;
 
 
-    document.querySelector('.js-desc').innerHTML =content;
+    document.querySelector('.js-desc').innerHTML = content;
 
     if( document.getElementById('js-viewshop')) {
 
@@ -168,6 +168,15 @@ import { getToken, getProdDesImage, getProdProfileDescImg, loadDashboard,logoutU
 
     }
 
+    const connectBtn = document.querySelector('.js-connect-btn');
+
+    connectBtn.addEventListener('click', (event) => {
+      event.preventDefault();
+      loadConnect(product);
+      
+    })
+
+  
     const mobileImg = getProdDesImage(product);
 
     const mobileHeader = `
@@ -297,7 +306,7 @@ import { getToken, getProdDesImage, getProdProfileDescImg, loadDashboard,logoutU
 
    document.getElementById('logout-link').addEventListener('click', () => {
 
-    const auth =getToken();
+    const auth = getToken();
 
     if(auth) {
 

@@ -15,9 +15,9 @@
             <div onmouseover="showText()" onmouseout="hideText()" class="badge-shop me-3 mb-2modal-font"
               data-bs-toggle="modal" data-bs-target="#staticBackdrop">
               <img height="20px" width="15px" src="kaz/images/badge.png" alt="">
-              <h6 style="font-size: small;" class="ps-1">Verify Now</h6>
+              <a class="revalidate-link" ><h6 style="font-size: small;" class="ps-1 verify-text">Verify Now</h6></a>
             </div>
-            <div id="hover-text">become verified seller</div>
+            <div id="hover-text" class="hover-text ps-1">become verified seller</div>
           </div>
         </div>
 
@@ -464,13 +464,13 @@
           <div class="verify-badge-m">
 
             <img class="" height="20px" width="15px" src="kaz/images/badge.png" alt="">
-            <a href="{{ url('/become') }}">
-              <h6 class="verify-m ps-1">Verify Now</h6>
+            <a class="js-verify-url" href="{{ url('/become') }}">
+              <h6 class="verify-m ps-1 verify-text">Verify Now</h6>
             </a>
 
           </div>
 
-          <div class="" id="hover-text3">become verified seller</div>
+          <div class="hover-text" id="hover-text3">become verified seller</div>
         </div>
         <div style="display: flex; ">
           <div>

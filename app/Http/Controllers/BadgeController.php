@@ -34,7 +34,7 @@ class BadgeController extends Controller
         return response()->json([
             'status' => true,
             'message' => 'Not Yet Verify',
-            'basge' => $status,
+            'badge' => $status,
 
         ]);
       }

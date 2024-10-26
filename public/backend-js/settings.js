@@ -1,5 +1,6 @@
 import { validationError,displaySwal, } from "./helper/helper.js";
 import { serverError } from "./admin/auth-helper.js";
+import dayjs from 'https://unpkg.com/dayjs@1.11.10/esm/index.js';
 
 const token = localStorage.getItem('apiToken');
 
@@ -166,17 +167,100 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 });
 
-/*
-function displaySwal(errorMsg) {
 
-    Swal.fire({
-        icon: 'error',
-        title: 'Validation Error',
-        text: errorMsg,
-    });
 
-}
-*/
+axios.get('/api/v1/user/badge').then((response) => {
+    console.log(response);
+
+    const expiryData = response.data.badge.expiry_date;
+    const expiryDate = dayjs(expiryData).format('D MMM, YYYY');
+ 
+    if (response.status === 200 && response.data) {
+
+        const badge = document.querySelector('.badge-shop');
+        const verifyTexts = document.querySelectorAll('.verify-text');
+        const hoverTexts = document.querySelectorAll('.hover-text');
+        const verifyUrl = document.querySelector('.js-verify-url');
+        const revalidate = document.querySelector('.revalidate-link');
+    
+
+        if(response.data.message === 'Active Badge') {
+
+            verifyTexts.forEach((text) => {
+                if(text) {
+                    text.textContent = 'Active Badge';
+
+                }   
+                if(badge) {
+                    badge.dataset.bsToggle = '';
+
+                }
+  
+            });
+            
+            if(verifyUrl) {
+                verifyUrl.href = '';
+            }
+
+            hoverTexts.forEach((hover) => {
+
+                if(hover) {
+                    hover.textContent = `Expires on: ${expiryDate}`;
+                    hover.style.color = '#14AE5c';
+                }
+
+            });
+           
+        }else if (response.data.message === 'Badge Expired') {
+
+            verifyTexts.forEach((text) => {
+                if(text) {
+                    text.textContent = 'Badge Expired';
+
+                }   
+                if(badge) {
+                  badge.dataset.bsToggle = '';
+
+                }
+
+                if(revalidate) {
+                  const addLink =  revalidate.setAttribute('href', '/badge');
+
+                }
+
+               
+            });
+            
+            if(verifyUrl) {
+                verifyUrl.href = '/badge';
+            }
+
+            hoverTexts.forEach((hover) => {
+
+                if(hover) {
+                    hover.textContent = `Expired on: ${expiryDate}`;
+                    hover.style.color = '#FF0000';
+                }
+
+            })
+
+
+        }
+
+
+    }
+
+}).catch((error) => {
+
+    if (error.response) {
+
+        if (error.response.status === 500) {
+            serverError();
+        }
+    }
+
+});
+
 
 const modalArrow = document.getElementById('modal-arrow');
 const previousBtn = document.getElementById('previousBtn');

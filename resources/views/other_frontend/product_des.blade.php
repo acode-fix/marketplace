@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="{{ asset('innocent/assets/css/alert.css') }}">
     <link rel="stylesheet" href="{{ asset('innocent/assets/icons/css/all.min.css') }}">
     <link rel="stylesheet" href="{{ asset('innocent/assets/icons/css/fontawesome.min.css') }}">
+    
 
 
 </head>

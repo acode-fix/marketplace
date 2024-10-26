@@ -654,7 +654,15 @@ public function getUserId(Request $request) {
 
    Debugbar::info($userId);
 
+   return response()->json([
+    'status' => true,
+    'message'=> 'ID fetched successfully',
+     'userId' => $userId,
+
+   ],200);
+
 }
+
 
 
 

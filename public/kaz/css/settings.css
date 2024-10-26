@@ -1279,3 +1279,7 @@ sidebar-link .footer img {
   text-decoration-line: none;
   color: black;
 }
+.revalidate-link {
+  text-decoration: none;
+  color: black;
+}

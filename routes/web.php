@@ -11,7 +11,9 @@ use App\Http\Controllers\ShopController;
 use App\Http\Controllers\UsersController;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\BadgeController;
-use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
+use App\Models\User;
+use App\Notifications\ReviewPushNotification;
+
 
 
 
@@ -189,3 +191,14 @@ Route::get('/admin/view/user', function() {
 Route::get('/product/shared/{link}', [ProductController::class, 'loadSharedProduct' ]);
 
 Route::get('/test', [BadgeController::class, 'verifyBadge']);
+
+
+
+Route::get('/notification', function () {
+    
+    $user = User::findOrFail(4);
+    $user->notify(new ReviewPushNotification($user->id , 'someone comment on your post'));
+    
+    dd('notification sent');
+});
+

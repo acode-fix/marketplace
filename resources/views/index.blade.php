@@ -20,12 +20,58 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+<script src="https://js.pusher.com/8.2.0/pusher.min.js"></script>
+<script>
+
+const token = localStorage.getItem('apiToken');
+
+axios.get('/api/v1/userId', {
+    headers: {
+        'Authorization' : `Bearer ${token}`
+    }
+}).then((response) => {
+    console.log(response);
+
+    const userId = response.data.userId;
+
+  // Enable pusher logging - don't include this in production
+  Pusher.logToConsole = true;
+
+var pusher = new Pusher('cb55ced3464e97586728', {
+  cluster: 'ap1'
+});
+
+var channel = pusher.subscribe('marketplace');
+
+channel.bind("Illuminate\\Notifications\\Events\\BroadcastNotificationCreated", function(data) {
+        
+        if(data.user_id ==  userId){
+
+            alert(`Hi ${data.comment}`) //here you can add you own logic
+        }
+  });
+
+
+}).catch((error) => {
+    if(error.response) {
+
+        
+    }
+
+})
+
+
+
+ 
+
+
+  
+
+  
+</script>
 
 
 </head>
-<script>
-
-</script>
 <style>
 
 </style>

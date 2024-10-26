@@ -73,6 +73,9 @@ Route::get('/userDetails', [UsersController::class, 'getUserPayment']);
 
 Route::post('/shop/update',[UsersController::class, 'uploadBanner']);
 
+// Get userId;
+
+Route::get('/userId',[UsersController::class, 'getUserId']);
 
 //BECOME A VERIFIED SELLER Form Submission Route;
 

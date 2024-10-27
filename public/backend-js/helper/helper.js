@@ -254,7 +254,9 @@ export function getShopPrice(product) {
 
 export function loadConnect(product) {
 
-  const {title} = product;
+  console.log(product);
+
+  const {title, id, user_id} = product;
   const {name, phone_number, email} = product.user;
 
   const productName = title;
@@ -266,6 +268,24 @@ export function loadConnect(product) {
       text:  `Product Title: ${productName ?? email}`,    
   
   });
+
+  const token = localStorage.getItem('apiToken');
+
+  console.log(id)
+
+
+  axios.post('/api/v1/product/engagement', {id, user_id}, {
+    headers: {
+      'Authorization': `Bearer ${token}`,
+    },
+  
+
+  }).then((response) => {
+    console.log(response);
+
+  }).catch((error) => {
+    console.log(error);
+  })
 
 
 }

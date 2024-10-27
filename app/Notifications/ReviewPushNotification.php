@@ -13,15 +13,18 @@ class ReviewPushNotification extends Notification
     use Queueable;
 
     protected $user_id;
+    protected $productId;
     protected $msg;
 
     /**
      * Create a new notification instance.
      */
-    public function __construct($user_id, $msg)
+    public function __construct($user_id, $productId, $msg)
     {
         $this->user_id = $user_id;
+        $this->productId = $productId;
         $this->msg = $msg;
+
     }
 
     /**
@@ -42,7 +45,8 @@ class ReviewPushNotification extends Notification
      {
          return [
              'comment'=>$this->msg,
-             'user_id'=>$this->user_id
+             'user_id'=>$this->user_id,
+             'product_id' => $this->productId,
          ];
      }
      public function toBroadcast($notifiable)
@@ -50,7 +54,8 @@ class ReviewPushNotification extends Notification
  
          return new BroadcastMessage([
              'comment'=>$this->msg,
-             'user_id'=>$this->user_id
+             'user_id'=>$this->user_id,
+             'product_id' => $this->productId,
          ]);
      }
      public function broadcastOn(){

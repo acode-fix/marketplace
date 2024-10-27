@@ -194,11 +194,14 @@ Route::get('/test', [BadgeController::class, 'verifyBadge']);
 
 
 
-Route::get('/notification', function () {
+Route::get('/testNo', function () {
     
     $user = User::findOrFail(4);
-    $user->notify(new ReviewPushNotification($user->id , 'someone comment on your post'));
+
+   // $user->notify(new ReviewPushNotification($user->id , 'someone comment on your post'));
     
     dd('notification sent');
 });
+
+Route::get('/notification', [UsersController::class, 'sendNotification']);
 

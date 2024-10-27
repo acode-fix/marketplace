@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use App\Models\Shop;
+use App\Models\ProductEngagementLog;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Auditlog;
@@ -12,6 +13,7 @@ use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Barryvdh\Debugbar\Facades\Debugbar;
+use App\Notifications\ReviewPushNotification;
 
 
 class UsersController extends Controller
@@ -660,6 +662,29 @@ public function getUserId(Request $request) {
      'userId' => $userId,
 
    ],200);
+
+}
+
+public function sendNotification(Request $request) {
+
+
+    $pendingConnects =  ProductEngagementLog::where('status', 0)->get();
+
+    foreach($pendingConnects as $connect) {
+
+    $productId = $connect->product_id;
+    $userId = $connect->user_id;
+
+    $user = User::findOrFail($userId);
+
+    $user->notify(new ReviewPushNotification($userId, $productId, 'someone comment on your post'));
+    
+    }
+
+    return response()->json([
+        'status' => true,
+        'message' => 'Notifications sent successfully',
+], 200);
 
 }
 

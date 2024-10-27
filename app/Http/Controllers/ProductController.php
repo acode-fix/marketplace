@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Product;
 use App\Models\User;
 use App\Models\Shop;
+use App\Models\ProductEngagementLog;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
@@ -655,6 +656,68 @@ public function getSharedProductDetails(Request $request) {
 
         ],200);
     
+
+
+}
+
+
+public function  storeProductEngagement(Request $request) {
+
+   debugbar::info($request->all());
+
+   if(!$request->user()) {
+
+    return response()->json([
+        'status' => false,
+        'message' => 'Authentication Fails',
+
+
+    ],401);
+   }
+
+   $validator = Validator::make($request->all(), [
+        'id' => 'required|exists:products,id',
+        'user_id' => 'required|exists:users,id',
+   ]);
+
+   if($validator->fails()) {
+    
+    return response()->json([
+        'status' => true,
+        'message' => 'validation failed',
+        'errors' => $validator->errors(),
+
+    ],422);
+
+   }
+
+   $productId = $request->id;
+   $userId = $request->user_id;
+
+  $engagement = ProductEngagementLog::create([
+    'user_id' => $userId,
+    'product_id' => $productId,
+   ]);
+
+
+   if($engagement) {
+
+    return response()->json([
+        'status' => true,
+        'message' => 'Product engagement details saved successfully',
+
+    ],200);
+   } else {
+    
+    return response()->json([
+        'status' => false,
+        'message' => 'Product engagement details could not be saved'
+
+    ],500);
+
+
+    }
+
 
 
 }

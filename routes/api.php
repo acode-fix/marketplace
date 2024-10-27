@@ -115,16 +115,23 @@ Route::get('/search/shop/products', [ProductController::class, 'searchShopProduc
 Route::get('/product/link', [ProductController::class, 'getProductLink']);
 
 
+//ROUTE PRODUCT ENGAGEMENT
+
+Route::post('/product/engagement', [ProductController::class, 'storeProductEngagement']);
+
+
 //Route badge status check;
 
 Route::get('/user/badge', [BadgeController::class, 'checkBadgeStatus']);
 
 
-
 //ROUTE referral link
-
-
 Route::get('user/refer-link', [UsersController::class, 'getLink']);
+
+
+//Route UserNotification
+
+Route::get('/user/notification', [NotificationController::class, 'getNotifications']);
 
 
 

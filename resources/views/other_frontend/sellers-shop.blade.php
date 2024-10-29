@@ -50,7 +50,7 @@
       </div>
       <div class="me-1">
         <h6 class="name js-name">Loading</h6>
-        <h6 class="mired-text fw-light js-email">loading</h6>
+        <h6 class="mired-text fw-light js-email ps-4">loading</h6>
       </div>
       <div class="profile-dropdown">
         <img class="img-fluid js-profile"  src="" alt="" id="profileDropdownBtn">

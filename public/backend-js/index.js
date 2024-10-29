@@ -219,7 +219,7 @@ function fetchUserData(token) {
     .catch(error => {
         console.error('Error fetching user data:', error);
         if (error.response && error.response.status === 401) {
-            promptLogin('Your session has expired. Please log in again.');
+           // promptLogin('Your session has expired. Please log in again.');
         }
     });
 }

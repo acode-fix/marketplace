@@ -48,7 +48,7 @@
                 </span>
            </a>
         </div>
-        <div id="notification_icon_div"><img src="innocent/assets/image/notification.png" alt="Logo" id="notification_icon"></div>
+        <div id="notification_icon_div"><img class="notification-icon" src="innocent/assets/image/notification.svg" alt="Logo" id="notification_icon"></div>
         <div id="notification_icon_div2"> <a href="{{ url('/notification_mobile') }}"><img src="innocent/assets/image/notification.png" alt="Logo" ></a></div>
 
          {{-- <div><img id="profile_picture" src="" alt=".profile picture " class="profile_picture js-product-desc-img"></div>
@@ -458,14 +458,14 @@
             <!-- Navbar and Search Button -->
 
             <p class="notification_indicator">
-                <img src="innocent/assets/image/notification.png" alt="">
-                <span>notification(<span>0</span>)</span>
+                <img class="notification-icon" src="innocent/assets/image/notification.svg" alt="">
+                <span>notification(<span  class="indicator-span text-danger">0</span>)</span>
 
 
             </p>
 
             <div class="notifications_region">
-
+{{-- 
                 <a href="{{ url('/rating') }}" >
                     <div class="notification">
                         <div class="notification_details">
@@ -588,7 +588,7 @@
 
                         </div>
                     </div>
-                </a>
+                </a> --}}
                 <div class="d-flex ">
                     <i id="volumeHighIcon" class="fa-solid fa-volume-high notification_volume"
                         onclick="turnOnNotifications()"></i>
@@ -652,7 +652,8 @@
   <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/moment@2.29.1/min/moment.min.js"></script>
   <script type="module" src="{{ asset('backend-js/user/profile-update.js') }}"></script>
-  <script type="module" src="{{ asset('backend-js/user/product-desc.js') }}"></script> 
+  <script type="module" src="{{ asset('backend-js/user/product-desc.js') }}"></script>
+  <script type="module"  src="{{ asset('backend-js/notification.js') }}"></script>
 
 
 

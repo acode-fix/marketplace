@@ -37,7 +37,8 @@ if(token)  {
                           response.data.message,
                           'success'
                       ).then(() => {
-                          localStorage.removeItem('apiToken'); 
+                          localStorage.removeItem('apiToken');
+                          localStorage.clear(); 
                           window.location.href = '/'; 
                       });
                   } else {

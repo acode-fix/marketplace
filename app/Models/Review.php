@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Reviewers extends Model
+class Review extends Model
 {
     use HasFactory;
     protected $guarded = [];
@@ -27,11 +27,11 @@ class Reviewers extends Model
     //     return $this->belongsTo('App\User');
     // }
     static function getReviewByUser($user_id){
-        return Reviewers::where(['user_id'=>$user_id])->get();
+        return Review::where(['user_id'=>$user_id])->get();
 
     }
     static function getComment($comment){
-        return  Reviewers::where(['comment'=>$comment])->get();
+        return  Review::where(['comment'=>$comment])->get();
   }
 
 

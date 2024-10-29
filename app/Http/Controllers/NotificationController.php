@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Notification;
+use Barryvdh\Debugbar\Facades\Debugbar;
 use Illuminate\Support\Facades\Validator;
 
 class NotificationController extends Controller
@@ -42,6 +43,55 @@ class NotificationController extends Controller
       }
 
 
+
+    }
+
+
+    public function updateReadNotification(Request $request) {
+
+       // debugbar::info($request->notificationId);
+
+       $validator = Validator::make($request->all(), [
+        'notificationId' => 'required|exists:notifications,notifiable_id',
+        'productId' => 'required|exists:products,id',
+
+       ]);
+
+       if($validator->fails()) {
+        return response()->json([
+            'status' => false,
+            'message' => 'validation fails',
+            'errors' => $validator->errors(),
+
+        ], 422);
+       }
+
+
+       $notifications = Notification::where('notifiable_id', $request->notificationId)
+                                     ->where('data->product_id', $request->productId)
+                                     ->orderBy('id', 'desc')->get();
+
+        if(!$notifications->isEmpty()) {
+
+            foreach($notifications as $notification) {
+            $notification->read_at = now();
+            $notification->save();
+            }
+            return response()->json([
+                'status' => true,
+                'message' => 'Notification marked as read successfully',
+
+            ], 200);
+
+        }
+
+
+
+        return response()->json([
+            'status' =>false,
+            'message' => 'No Match found for the notification',
+
+        ], 404);
 
     }
     

@@ -1,4 +1,4 @@
-   import {loadDashboard, getProdProfileDescImg, getBadge, loadConnect} from "../helper/helper.js";
+   import {loadDashboard, getProdProfileDescImg, getBadge, loadConnect, getToken} from "../helper/helper.js";
 
    document.addEventListener('DOMContentLoaded', function () {
        const viewShopButton = document.getElementById('viewShopButton');
@@ -76,11 +76,7 @@
         if(selectedProduct) {
 
             console.log(selectedProduct);
-            loadConnect(selectedProduct)
-
-            
-
-            
+            loadConnect(selectedProduct);   
         }
 
        });
@@ -92,6 +88,34 @@
    function displayProductDetails(product) {
 
        loadDashboard(product);
+
+       document.getElementById('logout-link').addEventListener('click', () => {
+
+        const auth = getToken();
+    
+        if(auth) {
+    
+        
+    
+            Swal.fire({
+              title: "Are you sure?",
+              text: "You won't be able to revert this!",
+              icon: "warning",
+              showCancelButton: true,
+              confirmButtonColor: "#3085d6",
+              cancelButtonColor: "#d33",
+              confirmButtonText: "Yes,I am sure!"
+              }).then((result) => {
+              if (result.isConfirmed) {
+                logoutUser();
+                
+              }
+          });
+    
+        }
+      
+      })
+    
 
         const imgDesk = document.getElementById('js-profile-desk');
         getProdProfileDescImg(product, imgDesk);

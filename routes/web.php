@@ -126,9 +126,7 @@ Route::get('/notification_mobile', function () {
 Route::get('/product_des', function () {
     return view('other_frontend.product_des');
 });
-Route::get('/rating', function () {
-    return view('other_frontend.rating');
-});
+
 Route::get('/review', function () {
     return view('other_frontend.review');
 });
@@ -192,16 +190,9 @@ Route::get('/product/shared/{link}', [ProductController::class, 'loadSharedProdu
 
 Route::get('/test', [BadgeController::class, 'verifyBadge']);
 
-
-
-Route::get('/testNo', function () {
-    
-    $user = User::findOrFail(4);
-
-   // $user->notify(new ReviewPushNotification($user->id , 'someone comment on your post'));
-    
-    dd('notification sent');
-});
-
 Route::get('/notification', [UsersController::class, 'sendNotification']);
+
+Route::get('/rating/{id}', function () {
+    return view('other_frontend.rating');
+});
 

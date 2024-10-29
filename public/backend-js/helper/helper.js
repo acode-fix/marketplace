@@ -171,7 +171,7 @@ export  function logoutUser() {
                   icon: 'success',
                   title: 'Logout Successful',
                   text: responseData.message,
-                  onClose: function() {
+                  willClose: function() {
                       window.location.href = '/'; // Redirect to login page
                    }
               });

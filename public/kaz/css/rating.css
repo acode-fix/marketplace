@@ -51,6 +51,7 @@
 
 #submit:hover {
   background-color: #ffce60;
+  color: #14ae5c;
 
 }
 
@@ -179,4 +180,20 @@
   /* Set right border to 1px solid #ffce29 */
 
 
+}
+.js-profile {
+  cursor: pointer;
+  width: 50px;
+  height:50px;
+  border-radius:40px;
+}
+
+.img-content {
+  width:45px;
+  border-radius:30px
+}
+
+.js-mobile-no {
+
+  cursor: pointer;
 }

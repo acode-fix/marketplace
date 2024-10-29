@@ -42,6 +42,8 @@ document.addEventListener('DOMContentLoaded', function() {
       menu.style.display = 'none';
   });
  });
+
+ /*
  document.addEventListener("DOMContentLoaded", function () {
   const profileDropdownBtn = document.getElementById('profileDropdownBtn');
   const dropdownMenu = document.getElementById('dropdownMenu');
@@ -59,3 +61,4 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   });
 });
+*/

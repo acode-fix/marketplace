@@ -21,137 +21,7 @@
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 <script src="https://js.pusher.com/8.2.0/pusher.min.js"></script>
-<script>
 
-// const token = localStorage.getItem('apiToken');
-
-// axios.get('/api/v1/userId', {
-//     headers: {
-//         'Authorization' : `Bearer ${token}`
-//     }
-// }).then((response) => {
-//     console.log(response);
-
-//     const userId = response.data.userId;
-
-//   // Enable pusher logging - don't include this in production
-//   Pusher.logToConsole = true;
-
-// var pusher = new Pusher('cb55ced3464e97586728', {
-//   cluster: 'ap1'
-// });
-
-// var channel = pusher.subscribe('marketplace');
-
-// channel.bind("Illuminate\\Notifications\\Events\\BroadcastNotificationCreated", function(data) {
-
-//     console.log(userId);
-        
-//         if(data.user_id === userId){
-
-//             //alert(`Hi ${data.comment}`) //here you can add you own logic
-//             loadNotification(data);        
-//         }
-//   });
-
-
-// }).catch((error) => {
-//     if(error.response) {
-//         console.log(error);
-
-        
-//     }
-
-// })
-
-
-// function loadNotification(data) {
-
-//     let content = [];
-//     content.push(data);
-
-    
-
-//     console.log(content);
-
-//       let message = '';
-//     for (let i = 0; i < content.length; i++) {
-
-//          message += `
-//      <a href="{{ url('rating') }}" >
-//                 <div class="notification">
-//                     <div class="notification_details">
-//                         <div class="notification_image"><img src="innocent/assets/image/logo icon.svg" alt="Profile Picture">
-//                         </div>
-//                         <div class="message_area">
-//                             <p class="message"><strong>congratulations </strong> <br>it is a perfect time to tell the
-//                                 world about it.</p>
-//                             <p class="time">${content[i].user_id}</p>
-//                             <p class="time">${content[i].product_id}</p>
-//                             <p class="time">${content[i].comment}</p>
-//                             ${loadProductDetails(content[i].product_id)}
-
-//                         </div>
-//                         <img src="innocent/assets/image/laptop2.jpg" alt="Picture" class="notification_product_image">
-
-//                     </div>
-
-//                 </div>
-//      </a>`;
-
-
-//     }
-
-//     console.log(message);
-
-
-// const notification = document.querySelector('.notifications_region');
-
-// if(notification) {
-//      notification.insertAdjacentHTML('beforeend', message);
-// }
-
-
-    
-   
-// }
-
-// function loadProductDetails(id) {
-
-//     console.log(id);
-
-//     axios.get(`/api/v1/product/${id}`, {
-//         headers : {
-//             'Authorization': `Bearer ${token}`,
-//         }
-
-       
-//     }).then((response)=> {
-//         console.log(response);
-
-//         if(response.status === 200 && response.data) {
-
-//            const product  = response.data.data;
-
-
-//         }
-
-//     }).catch((error) => {
-//         console.log(error);
-
-//     })
-
-// }
-
-
-
- 
-
-
-  
-
-  
-</script>
 
 
 </head>
@@ -182,7 +52,7 @@
                     </span>
                 </a>
             </div>
-            <div  id="notification_icon_div"><img src="innocent/assets/image/notification.png" alt="Logo"
+            <div  id="notification_icon_div"><img class="notification-icon" src="innocent/assets/image/notification.svg" alt="Logo"
                     id="notification_icon"></div>
             <div  id="notification_icon_div2"> <a href="{{ url('/notification_mobile') }}"><img
                         src="innocent/assets/image/notification.png" alt="Logo"></a></div>
@@ -950,8 +820,8 @@
         <!-- Navbar and Search Button -->
 
         <p class="notification_indicator">
-            <img src="innocent/assets/image/notification.png" alt="">
-            <span>notification(<span>0</span>)</span>
+            <img class="notification-icon" src="innocent/assets/image/notification.svg" alt="">
+            <span>notification(<span  class="indicator-span text-danger">0</span>)</span>
 
 
         </p>

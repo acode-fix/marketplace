@@ -409,8 +409,7 @@ import { getToken, getProdDesImage, getProdProfileDescImg, loadDashboard,logoutU
 
           if (auth) {
 
-          
-
+      
           //console.log(productId);
 
           axios.get(`/api/product-details/${productId}`, {

@@ -2,15 +2,198 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Reviewers;
+use App\Models\Review;
+use App\Models\Notification;
 use Illuminate\Http\Request;
 use App\Models\Product;
 use App\Models\User;
+use Barryvdh\Debugbar\Facades\Debugbar;
 use Illuminate\Support\Facades\Validator;
 
 
 class ReviewersController extends Controller
 {
+
+    public function loadRatingContent(Request $request) {
+
+        $validator = Validator::make($request->all(), [
+
+            'userId' => 'required|exists:users,id',
+            'productId' => 'required|exists:products,id',
+            'shopToken' => 'required|exists:users,shop_token',
+
+        ]);
+
+        if($validator->fails())  {
+
+            return response()->json([
+                'status' => false,
+                'message' => 'validation failed',
+                'errors' => $validator->errors(),
+
+            ],422);
+        }
+
+        $productId = $request->productId;
+        $userId = $request->userId;
+        $shopToken = $request->shopToken;
+
+
+        $getProduct = Product::with('user')->where('id', $productId)
+                             ->where('user_id', $userId)->whereHas('user', function($query) use ($shopToken) {
+                             $query->where('shop_token', $shopToken);
+
+        })->first();
+
+       // debugbar::info($getProduct);
+
+       if($getProduct) {
+
+        return response()->json([
+            'status' => true,
+            'message' => 'product fetched successfully',
+            'products' => $getProduct,
+
+        ],200);
+
+       }
+
+
+       return response()->json([
+        'status' => false,
+        'message' => 'product not found',
+
+       ],404);
+
+
+
+
+
+
+
+
+
+
+
+    }
+
+
+
+ public function store(Request $request) {
+
+       // debugbar::info($request->all());
+
+        $validator = Validator::make($request->all(),[
+            'user_id' => 'required|exists:users,id',
+            'product_id' => 'required|exists:products,id',
+            'comment' => 'required|string',
+            'rate' => 'required|numeric|min:0|max:5',
+        ]);
+
+        if($validator->fails()) {
+            return response()->json([
+                'status' => false,
+                'message' => 'validation failed',
+                'errors' => $validator->errors(),
+
+            ],422);
+
+
+        }
+
+       $review = Review::create([
+          'user_id' => $request->user_id,
+          'product_id' => $request->product_id,
+          'comment' => $request->comment,
+          'rate' => $request->rate,
+        ]);
+
+        if($review)  {
+
+                $notifications = Notification::where('notifiable_id', $request->user_id)
+                                            ->where('data->product_id', $request->product_id)
+                                            ->orderBy('id', 'desc')->get();
+
+
+
+                if(!$notifications->isEmpty()) {
+
+                        foreach($notifications as $notification) {
+                            $notification->read_at = now();
+                            $notification->save();
+
+                        
+                        }
+
+                        return response()->json([
+                            'status' => true,
+                            'message' => 'Notification marked as read and Review saved successfully',
+            
+                        ], 200);
+                    
+                }
+
+                return response()->json([
+                    'status' =>false,
+                    'message' => 'No Match found for the notification',
+
+                ], 404);
+
+
+
+
+        }
+
+
+
+        return response()->json([
+            'status' => false,
+            'message' => 'Review Failed to save',
+
+        ], 500);
+
+
+       
+
+
+
+
+ }
+
+
+
+
+       
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*
+
+
+
 
     public function store(Request $request, Product $product)
     {
@@ -67,10 +250,13 @@ class ReviewersController extends Controller
         }
 
     }
+        */
 
      /**
      * Show the form for editing the specified resource.
      */
+
+     /*
     public function view(string $id)
     {
         //
@@ -83,7 +269,7 @@ class ReviewersController extends Controller
           'rate' => $reviewers,
       ], 200);
     }
-
+      */
         /**
      * Update the specified resource in storage.
      * @param  \Illuminate\Http\Request  $request
@@ -91,6 +277,8 @@ class ReviewersController extends Controller
      * @param  \App\Reviewers  $reviewers
      * @return \Illuminate\Http\Response
      */
+
+     /*
     public function update(Request $request, Product $product, Reviewers $reviewers, string $id)
     {
         try{
@@ -131,9 +319,13 @@ class ReviewersController extends Controller
 }
     }
 
+
+    */
     /**
      * Display the specified resource.
      */
+
+     /*
     public function viewUserMetric($id)
     {
         //
@@ -163,9 +355,13 @@ class ReviewersController extends Controller
 
         }
 
+        */
+
         /**
      * Display the specified resource.
      */
+
+     /*
         public function allUserMetric(Reviewers $reviewers)
     {
         //
@@ -208,9 +404,13 @@ class ReviewersController extends Controller
 
         }
 
+        */
+
         /**
      * Display the specified resource.
      */
+
+     /*
     public function allUserComment(Reviewers $reviewers)
     {
         $users = User::all();
@@ -249,6 +449,8 @@ class ReviewersController extends Controller
 
         }
 
+        */
+
         /**
      * Suspend the specified resource from storage.
      *
@@ -256,6 +458,9 @@ class ReviewersController extends Controller
      * @param  \App\Reviewers  $reviewers
      * @return \Illuminate\Http\Response
      */
+
+
+     /*
     public function suspend(Reviewers $reviewers)
     {
         if (auth()->user()->id !== $reviewers->user_id) {
@@ -266,6 +471,8 @@ class ReviewersController extends Controller
 
     }
 
+    */
+
     /**
      * Remove the specified resource from storage.
      *
@@ -273,6 +480,9 @@ class ReviewersController extends Controller
      * @param  \App\Reviewers  $reviewers
      * @return \Illuminate\Http\Response
      */
+
+
+     /*
     public function delete(Reviewers $reviewers)
     {
         if (auth()->user()->id !== $reviewers->user_id) {
@@ -281,6 +491,9 @@ class ReviewersController extends Controller
         $reviewers->delete();
         return response()->json(null, 204);
     }
+
+   */
+    
 
 
 

@@ -18,6 +18,7 @@ use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\BadgeController;
 use App\Models\Verification;
 
+
 // Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 //     return $request->user();
 // });
@@ -54,12 +55,12 @@ Route::get('/user/products', [ProductController::class, 'userProducts']);
 
 
 //
-Route::middleware('auth:sanctum')->group(function () {
-    Route::get('notifications', [NotificationController::class, 'index']);
-    Route::get('notifications/{id}', [NotificationController::class, 'show']);
-    Route::put('notifications/{id}/mark-as-read', [NotificationController::class, 'markAsRead']);
-    Route::delete('notifications/{id}', [NotificationController::class, 'destroy']);
-});
+// Route::middleware('auth:sanctum')->group(function () {
+//     Route::get('notifications', [NotificationController::class, 'index']);
+//     Route::get('notifications/{id}', [NotificationController::class, 'show']);
+//     Route::put('notifications/{id}/mark-as-read', [NotificationController::class, 'markAsRead']);
+//     Route::delete('notifications/{id}', [NotificationController::class, 'destroy']);
+// });
 
 
 Route::prefix('v1')->middleware('auth:sanctum')->group(function () {
@@ -132,6 +133,14 @@ Route::get('user/refer-link', [UsersController::class, 'getLink']);
 //Route UserNotification
 
 Route::get('/user/notification', [NotificationController::class, 'getNotifications']);
+Route::post('/user/update/notification', [NotificationController::class, 'updateReadNotification']);
+
+//ROUTE USER PRODUCT RATING;
+
+Route::get('/user/rating-page',[ReviewersController::class, 'loadRatingContent']);
+Route::post('/user/rating-details', [ReviewersController::class, 'Store']);
+
+
 
 
 

@@ -652,14 +652,14 @@ public function getLink(Request $request) {
 
 public function getUserId(Request $request) {
 
-   $userId = $request->user()->id;
+   $user = $request->user();
 
-   Debugbar::info($userId);
+   Debugbar::info($user);
 
    return response()->json([
     'status' => true,
     'message'=> 'ID fetched successfully',
-     'userId' => $userId,
+     'user' => $user,
 
    ],200);
 
@@ -672,12 +672,15 @@ public function sendNotification(Request $request) {
 
     foreach($pendingConnects as $connect) {
 
-    $productId = $connect->product_id;
-    $userId = $connect->user_id;
+        $productId = $connect->product_id;
+        $userId = $connect->user_id;
 
-    $user = User::findOrFail($userId);
+        $user = User::findOrFail($userId);
 
-    $user->notify(new ReviewPushNotification($userId, $productId, 'someone comment on your post'));
+        $user->notify(new ReviewPushNotification($userId, $productId, 'someone connect with your product'));
+
+        $connect->status = 1;
+        $connect->save();
     
     }
 

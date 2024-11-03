@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use App\Models\Shop;
+use App\Models\Review;
 use App\Models\ProductEngagementLog;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -31,8 +32,7 @@ class UsersController extends Controller
      */
     public function getUserData()
     {
-        // $user =  auth('sanctum')->user()->id;
-        //     $user = User::find($id);  // Find the user using model and hold its reference
+
         $user = Auth::user(); // Get the authenticated user
         return response()->json($user);
     }
@@ -554,76 +554,98 @@ public function getDetails(Request $request) {
    $userId = $request->query('userId');
    $shopNo = $request->query('shopNo');
 
-   if($userId) {
 
-   $user = User::with('products')->where('id', $userId)->where('verify_status', 1)
-                                     ->where('badge_status', 1)
-                                     ->whereNotNull('shop_token')
-                                     ->first();
 
-    if(!$user) {
 
-        return response()->json([
-            'status' => false,
-            'message' => 'Shop Verification Failed',
+        if($userId) {
 
-        ],404);
+            $user = User::with('products')->where('id', $userId)->where('verify_status', 1)
+                                            ->where('badge_status', 1)
+                                            ->whereNotNull('shop_token')
+                                            ->whereHas('products', function($query) {
+                                                $query->where('quantity', '!=', 0);
+                                            })->first();
 
-    }else {
+                
+            
+                    if(!$user) {
+                        debugbar::info($userId);
 
-        Debugbar::info($user);
+                        $user = User::where('id', $userId)->where('verify_status', 1)
+                                    ->where('badge_status', 1)
+                                    ->whereNotNull('shop_token')
+                                    ->first();
 
-        return response()->json([
-            'status' => true,
-            'message' => 'User Details Fetched Successfully',
-            'data' => $user,
+                                
+                                    
+                        return response()->json([
+                            'status' => true,
+                            'message' => 'User is verified but does not have  Product listed',
+                            'data' => $user,
 
-        ]);
+                        ],200);
 
-        
+                    }
+                    
 
-    }
+                return response()->json([
+                    'status' => true,
+                    'message' => 'Verified User Details Fetched Successfully',
+                    'data' => $user,
+            
+                    ]);
 
-  }
-
-  if($shopNo) {
-
-    debugbar::info($shopNo);
-
-    $user = User::query()->where('shop_no', $shopNo)
-                         ->whereNotNull('shop_token')
-                         ->first();
-
-    if(!$user) {
-
-        return response()->json([
-            'status' => false,
-            'message' => 'Invalid Shop Number',
-
-        ],404);
-
-    }else {
-    
-        Debugbar::info($user);
-
-        return response()->json([
-            'status' => true,
-            'message' => 'User Details Fetched Successfully',
-            'data' => $user->id,
-
-        ]);
+        } 
 
             
-    
-    }
 
-    
+        if($shopNo) {
 
-  }
+            debugbar::info($shopNo);
+
+            $user = User::query()->where('shop_no', $shopNo)
+                                ->whereNotNull('shop_token')
+                                ->first();
+
+            if(!$user) {
+
+                return response()->json([
+                    'status' => false,
+                    'message' => 'Invalid Shop Number',
+
+                ],404);
+
+            }else {
+            
+                Debugbar::info($user);
+
+                return response()->json([
+                    'status' => true,
+                    'message' => 'User Details Fetched Successfully',
+                    'data' => $user->id,
+
+                ]);
+
+                    
+            
+            }
+
+            
+
+        }
+
+
+        return response()->json([
+            'status' => false,
+            'message' => 'User verification failed',
+        ], 400);
 
 
 
 }
+
+
+
 
 
 public function getLink(Request $request) {

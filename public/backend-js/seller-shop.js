@@ -1,5 +1,5 @@
 import { serverError } from "./admin/auth-helper.js";
-import { generateAvatar, getDate, getUserProfileImage, logoutUser, getShopPrice } from "./helper/helper.js";
+import { generateAvatar, getDate, getUserProfileImage, logoutUser, getShopPrice, loadConnect, loadAvgStars } from "./helper/helper.js";
 
 
 
@@ -41,10 +41,14 @@ if (!userId) {
 
             const data = response.data.data;
 
-            //console.log(data);
+            console.log(response);
+
+      
             getProduct(data.products, data);
             loadMobileCard(data.products);
             updateUserProfile(data);
+            authUser();
+            getAvgRating();
             
 
 
@@ -81,7 +85,75 @@ if (!userId) {
     });
 
 
+    function authUser() {
+
+      axios.get('/api/v1/getuser').then((response) => {
+        console.log(response)
+
+        const authUser = response.data;
+
+        updateAuthUser(authUser);
+
+      }).catch((error) => {
+
+        console.log(error);
+
+      })
+    }
+
+    function updateAuthUser(authData) {
+
+      document.querySelectorAll('.js-name').forEach((username) => {
+        username.textContent = authData.name ?? 'No Data Provided';
+      });
+      
+      document.querySelectorAll('.js-email').forEach((userEmail) => {
+        userEmail.textContent = authData.email ?? 'No Data Provided';
+      });
+      
+       document.querySelectorAll('.js-profile').forEach((userProfile) => {
+        authData.photo_url 
+        ? userProfile.src =`/uploads/users/${authData.photo_url}` 
+        : userProfile.src = generateAvatar(authData.email);
+
+      });
+      
+    }
+
+
+    function getAvgRating() {
+
+      axios.get('/api/v1/user/avg-rating', {
+
+         params: {
+           userId,
+         }
+      }).then((response)=> {
+
+        console.log(response);
+
+        if(response.status === 200 && response.data) { 
+          const avgRating = response.data.avgRating;
+
+          loadRating(avgRating);
+
+        }
+
+      }).catch((error) => {
+
+        console.log(error);
+
+      })
+    }
+
+
     function getProduct(products, data) {
+
+        if (!Array.isArray(products)) {
+
+          return   document.querySelector('.new-card').innerHTML = `<p class="text-danger ms-1">You Have No Product Listed!!<p>`;
+        }
+
 
         let display = '';
 
@@ -118,10 +190,7 @@ if (!userId) {
               </div> `;
         });
 
-        
-
-
-        document.querySelector('.new-card').innerHTML = display ||'You Have No Product Listed!!';
+        document.querySelector('.new-card').innerHTML = display;
         const el = document.querySelectorAll('.productCard');
         getDom(el, products, data)
 
@@ -351,6 +420,10 @@ if (!userId) {
 
     function loadMobileCard(products) {
 
+      if(!Array.isArray(products)) {
+        return  document.querySelector('.mobile-card').innerHTML = `<p class="text-danger ms-1">You Have No Product Listed!!<p>`;
+      }
+
       let display = '';
 
       products.forEach((product) => {
@@ -387,22 +460,6 @@ if (!userId) {
 
     function updateUserProfile(user) {
 
-      
-
-      document.querySelectorAll('.js-name').forEach((username) => {
-        username.textContent = user.name ? user.name : 'No Data Provided';
-      });
-      
-      document.querySelectorAll('.js-email').forEach((userEmail) => {
-        userEmail.textContent = user.email ? user.email : 'No Data Provided';
-      });
-      
-       document.querySelectorAll('.js-profile').forEach((userProfile) => {
-        user.photo_url 
-        ? userProfile.src =`/uploads/users/${user.photo_url}` 
-        : userProfile.src = generateAvatar(user.email);
-
-      });
           
    const  bannerImg = user.banner 
          ?  `<img style="height:220px;" id="banner" src="/uploads/users/${user.banner}" class="card-img-top main-img-border" alt="...">` 
@@ -430,7 +487,7 @@ if (!userId) {
                     </div>
                     <div class="col">
                       <div style="float: right;">
-                        <h6 class="connect-shop2  me-2 mt-4">Connect</h6>
+                        <h6 class="connect-shop2  me-2 mt-4 js-connect">Connect</h6>
                       </div>
                     </div>
                   </div>
@@ -467,7 +524,7 @@ if (!userId) {
 
               </div>
               <div>
-                <h6 class="connect-shop3  mt-4">Connect</h6>
+                <h6 class="connect-shop3  mt-4 js-connect">Connect</h6>
               </div>
             </div> 
           </div>`;
@@ -491,26 +548,28 @@ if (!userId) {
 
         loadMobileSidebar(user)
 
+        const bannerConnectBtns = document.querySelectorAll('.js-connect');
 
-        
+        loadBannerBtn(bannerConnectBtns, user)
 
 
-          
 
-        
       
-
     }
 
     function loadSidebar(user) {
 
-      //console.log(user)
+      console.log(user)
       
       const bioText = user.bio ?? '';
       const previewLength = 100;
 
       const visibleBio = bioText.slice(0, previewLength);
       const hiddenBio = bioText.length > previewLength  ? bioText.slice(previewLength) : '';
+
+      const productLength = Array.isArray(user.products)
+                            ? `<h6 style="font-size: small;">${user.products.length}</h6>` 
+                            : `<h6 style="font-size: small;">N/A</h6>` 
 
       
       const display = `
@@ -526,14 +585,14 @@ if (!userId) {
           <div>
             <div class="side-display">
               <div>
-                <img width="10px" height="13px" src="kaz/images/location.svg" alt="">
+                <img width="10px" height="13px" src="/kaz/images/location.svg" alt="">
                 <span style="font-size: small;">From</span>
               </div>
               <h6 style="font-size: small;">${user.location ?? ''} Nigera</h6>
             </div>
             <div class="side-display">
               <div>
-                <img width="15px" src="kaz/images/profile.svg" alt="">
+                <img width="15px" src="/kaz/images/profile.svg" alt="">
                 <span style="font-size: small;">Member since</span>
               </div>
               <h6 style="font-size: small;"> ${getDate(user.created_at)}</h6>
@@ -541,14 +600,22 @@ if (!userId) {
             </div>
             <div class="side-display">
               <div>
-                <img width="15px" src="kaz/images/product.svg" alt="">
+                <img width="15px" src="/kaz/images/product.svg" alt="">
                 <span style="font-size: small;">Listed products</span>
               </div>
-              <h6 style="font-size: small;">${user.products.length ?? 0}</h6>
+              <h6 style="font-size: small;">${productLength}</h6>
 
             </div>
             <hr style="background-color: #343434;">
           
+          </div> 
+          <div class="ms-2">
+            <h6 class="card-title">Reviews</h6>
+            <div class="js-stars">
+             
+            </div>
+            <a class="view js-review" href="/review/product?user=${user.id}&shop=${user.shop_token}">View all</a>
+
           </div>`;
 
           document.querySelector('.test').innerHTML = display;
@@ -566,6 +633,18 @@ if (!userId) {
   
           }
         
+
+
+    }
+
+
+
+    function loadRating(rating) {
+
+    const stars  = loadAvgStars(rating);
+    
+    document.querySelector('.js-stars').innerHTML = stars;
+
 
 
     }
@@ -604,9 +683,15 @@ if (!userId) {
 
 
     }
-
+     
 
     function loadMobileSidebar(user) {
+
+      console.log(user);
+
+      const totalProduct = Array.isArray(user.products) 
+                           ? `<h6 class="from ">${user.products.length}</h6>`
+                           : `<h6 class="from ">N/A</h6>`;
 
       const mobileSidebar = `
         <div class="side-display">
@@ -629,7 +714,7 @@ if (!userId) {
                 <img width="15px" src="kaz/images/product.svg" alt="">
                 <span class="from ">Listed products</span>
               </div>
-              <h6 class="from ">${user.products.length ?? 0}</h6>
+              ${totalProduct}
             </div>`;
 
             document.querySelector('.js-sidebar').innerHTML = mobileSidebar;
@@ -716,6 +801,80 @@ if (!userId) {
     }
 
 
+    function loadBannerBtn(connectBtns, user) {
+
+
+      const {name, phone_number,} = user;
+
+      connectBtns.forEach((btn) => {
+
+        if(btn) {
+        
+          btn.addEventListener('click', () => {
+           // console.log(user);
+           
+            displayData(name,phone_number);
+                  
+
+           
+            
+          })
+
+
+        }
+
+      })
+
+      const sideBarConnect = document.querySelector('.connect-shop');
+
+      if(sideBarConnect) {
+
+        sideBarConnect.addEventListener('click', () => {
+
+          displayData(name,phone_number);
+      
+  
+        });
+
+
+      }
+      
+      
+     
+      
+      
+     
+
+    }
+
+
+    function displayData(name, phone_number) {
+
+      Swal.fire({
+        title: "<strong class='text-success'>Vetted Seller</strong>",
+        icon: "info",
+        html: `
+          <h6 class="fs-5">Seller Name: ${name ?? 'N/A'}</h6>
+          <h6 class="fs-5">Contact: ${phone_number ?? 'N/A'}</h6>
+         
+        `,
+        showCloseButton: true,
+        showCancelButton: true,
+        focusConfirm: false,
+        confirmButtonText: `
+          <i class="fa fa-thumbs-up"></i> Great!
+        `,
+        confirmButtonAriaLabel: "Thumbs up, great!",
+        cancelButtonText: `
+          <i class="fa fa-thumbs-down"></i>
+        `,
+        cancelButtonAriaLabel: "Thumbs down"
+      });
+
+
+    }
+
+
     document.querySelectorAll('.js-logout').forEach((logout) => {
 
       logout.addEventListener('click', (event) => {
@@ -740,7 +899,10 @@ if (!userId) {
       })
 
 
-    })
+    });
+
+
+   
     
     
 } else {

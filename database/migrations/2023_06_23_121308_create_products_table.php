@@ -20,6 +20,8 @@ return new class extends Migration
             $table->longText('description');
             $table->unsignedBigInteger('category_id');
             $table->integer('quantity');
+            $table->integer('sold')->default(0);
+            $table->integer('avg_rating')->default(0);
             $table->string('location')->nullable();
             $table->decimal('actual_price',15,2)->nullable();
             $table->decimal('promo_price',15,2)->nullable();

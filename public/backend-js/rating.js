@@ -1,4 +1,4 @@
-import {getToken, generateAvatar,getSingleImage, logoutUser} from './helper/helper.js';
+import {getToken, generateAvatar,getSingleImage, logoutUser, loadName, getDropDownImg} from './helper/helper.js';
 import { serverError } from './admin/auth-helper.js';
 
 const token = getToken();
@@ -22,7 +22,7 @@ if(token) {
   }).then((response) => {
     console.log(response);
 
-    const data = response.data.products.user;
+    const data = response.data.user;
 
     updateUserProfile(data);
     loadContent(response.data.products)
@@ -70,41 +70,14 @@ if(token) {
   function updateUserProfile(data) {
     const{name, email, photo_url} = data;
 
-    const userName = `
-         <h6 class="name">${name ?? 'No Name Provided'}</h6>
-        <h6 class="mired-text fw-light ps-4">${email ?? 'No Email Provided'}</h6>
-        `;
+
+
+   const userName = loadName(name,email);
 
    document.querySelector('.js-name').innerHTML = userName;
 
-   const img = photo_url 
-    ? `<img  class="img-fluid  js-profile" src="/uploads/users/${photo_url}" alt="" id="profileDropdownBtn">`
-    : `<img  class="img-fluid js-profile" src="${generateAvatar(email)}" alt="" id="profileDropdownBtn">`;
 
-  const dropDownImg = photo_url 
-    ? `<img id="profile_image" class="js-profile"   src="/uploads/users/${photo_url}" alt="">` 
-    : ` <img id="profile_image" class="js-profile"  src="${generateAvatar(email)}" alt="">`;
-
-   const dropDown = `
-               ${img}
-              <div class="dropdown-menu" id="dropdownMenu">
-                <div class="container drop-struct">
-                  ${dropDownImg}
-                  <div class="ms-2 pt-1">
-                    <h6>${name ?? 'No Name Provided'}</h6>
-                    <h6 style="font-size: small;">${email ?? 'No Email Provided'}</h6>
-                  </div>
-                </div>
-                <hr style="background-color: black; margin-left: 10px;margin-right: 10px;">
-                <div style="margin-top: -9px;">
-                  <a href="/settings">Dashboard</a>
-                  <a href="/refer">Refer A Friend</a>
-                  <a href="/privacy">Privacy Policy</a>
-                  <a id="log-out" href="#">Log Out</a>
-
-                </div>
-
-              </div>`;
+   const dropDown = getDropDownImg(photo_url,email);
 
     document.querySelector('.js-profile-dropdown').innerHTML = dropDown;
 

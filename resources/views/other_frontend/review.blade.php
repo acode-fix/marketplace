@@ -28,11 +28,11 @@
 <body>
   <div class="header-section">
     <div class="arrow-div">
-      <a href="{{ url('/') }}"><img class="arrow" src="kaz/images/Arrow.png" alt=""></a>
+      <a href="{{ url('/') }}"><img class="arrow" src="{{asset('kaz/images/Arrow.png')}}" alt=""></a>
       <h6 style="font-size: 20px;" class="fw-light ms-4">Reviews</h6>
     </div>
     <div class="left-section">
-      <a href="{{ url('/') }}"><img class="img-fluid ms-3" src="kaz/images/logo.png" alt=""></a>
+      <a href="{{ url('/') }}"><img class="img-fluid ms-3" src="{{asset('kaz/images/logo.png')}}" alt=""></a>
       <h6 class="ms-5 fw-bold profile">Reviews</h6>
     </div>
 
@@ -50,15 +50,15 @@
       <div class="create">
         <button type="button" class="btn btn-warning btn-height me-5"> + create Ads</button>
       </div>
-      <div class="me-1">
-        <h6 class="name">Loading</h6>
-        <h6 class="mired-text fw-light">loading</h6>
+      <div class="me-1 js-name">
+        {{-- <h6 class="name">Loading</h6>
+        <h6 class="mired-text fw-light">loading</h6> --}}
       </div>
-      <div class="profile-dropdown">
-        <img class="img-fluid profile-picture" src="kaz/images/dp.png" alt="" id="profileDropdownBtn">
+      <div class="profile-dropdown js-profile-dropdown">
+        {{-- <img class="img-fluid profile-picture" src="{{asset('kaz/images/dp.png')}}" alt="" id="profileDropdownBtn">
         <div class="dropdown-menu" id="dropdownMenu">
           <div class="container drop-struct">
-            <img class="pt-1" width="50px" src="kaz/images/dp.png" alt="">
+            <img class="pt-1" width="50px" src="{{asset('kaz/images/dp.png')}}" alt="">
             <div class="ms-2 pt-1">
               <h6>Mired Augustine</h6>
               <h6 style="font-size: small;">Miredaugustine@gmail.com</h6>
@@ -73,7 +73,7 @@
 
           </div>
 
-        </div>
+        </div> --}}
       </div>
     </div>
 
@@ -96,7 +96,10 @@
     <div class="side-barr">
       <div class="card sidebar-card mb-3 text-dark ms-2 mt-3" style="width:240px;">
         <div class="card-body ">
-          <div class="ms-2">
+          <div class="test">
+
+          </div>
+          {{-- <div class="ms-2">
             <h6 class="card-title">About me</h6>
             <p style="font-size: small; " class="card-text our-company">
               Our company is a full service creation agency that specializes in defining top-notch
@@ -113,14 +116,14 @@
           <div>
             <div class="side-display">
               <div>
-                <img width="10px" height="13px" src="kaz/images/location.svg" alt="">
+                <img width="10px" height="13px" src="{{asset('kaz/images/location.svg')}}" alt="">
                 <span style="font-size: small;">From</span>
               </div>
               <h6 style="font-size: small;">Abuja,Nigera</h6>
             </div>
             <div class="side-display">
               <div>
-                <img width="15px" src="kaz/images/profile.svg" alt="">
+                <img width="15px" src="{{asset('kaz/images/profile.svg')}}" alt="">
                 <span style="font-size: small;">Member since</span>
               </div>
               <h6 style="font-size: small;">Dec,2022</h6>
@@ -128,7 +131,7 @@
             </div>
             <div class="side-display">
               <div>
-                <img width="15px" src="kaz/images/product.svg" alt="">
+                <img width="15px" src="{{asset('kaz/images/product.svg')}}" alt="">
                 <span style="font-size: small;">Listed products</span>
               </div>
               <h6 style="font-size: small;">12</h6>
@@ -139,23 +142,23 @@
           <div class="ms-2">
             <h6 class="card-title">Reviews</h6>
             <div>
-              <img src="kaz/images/star-active.svg" class="img-fluid image-rate" width="15px" alt="">
-              <img src="kaz/images/star-active.svg" class="img-fluid image-rate" width="15px" alt="">
-              <img src="kaz/images/star-active.svg" class="img-fluid image-rate" width="15px" alt="">
-              <img src="kaz/images/star-active.svg" class="img-fluid image-rate" width="15px" alt="">
-              <img src="kaz/images/star-nill.svg" class="img-fluid image-rate" width="15px" alt=""> <span
+              <img src="{{asset('kaz/images/star-active.svg')}}" class="img-fluid image-rate" width="15px" alt="">
+              <img src="{{asset('kaz/images/star-active.svg')}}" class="img-fluid image-rate" width="15px" alt="">
+              <img src="{{asset('kaz/images/star-active.svg')}}" class="img-fluid image-rate" width="15px" alt="">
+              <img src="{{asset('kaz/images/star-active.svg')}}" class="img-fluid image-rate" width="15px" alt="">
+              <img src="{{asset('kaz/images/star-nill.svg')}}" class="img-fluid image-rate" width="15px" alt=""> <span
                 style="font-size: small;">(4.5)</span>
             </div>
             <a class="view" href="{{ url('/rating') }}">View all</a>
 
-          </div>
+          </div> --}}
 
 
         </div>
       </div>
       <div style="color: black; width:240px ;" class="ms-2 connect-sidebar card">
         <div class="connect-struct">
-          <img width="40px" class="ms-4" src="kaz/images/dp.png" alt="">
+          <img style="border-radius: 30px; height:40px" class="ms-4 sidebar-pic" src="" alt="">
           <h6 class="connect-shop me-4">Connect</h6>
         </div>
       </div>
@@ -177,7 +180,7 @@
             <div class="ms-2 total-border">
               <h6 class="fw-light ">Total Reviews</h6>
               <div class="mt-3" style="display: flex;align-items: center;">
-                <h6 class="no-text">235</h6>
+                <h6 class="no-text js-total-review">235</h6>
                 <div class="arrow-up ms-1">
                   <i class="fa-solid fa-arrow-up"></i><span>3.2%</span>
                 </div>
@@ -186,258 +189,283 @@
             </div>
             <div>
               <h6 class="fw-light">Average Rating</h6>
-              <div class="mt-3" style="display: flex;align-items: center;">
-                <h6 class="no-text">4.5</h6>
+              <div class="mt-3 js-avg-rating" style="display: flex;align-items: center;">
+                {{-- <h6 class="no-text">4.5</h6>
                 <div class="ms-2">
-                  <img width="10px" src="kaz/images/Rate.png" alt="">
-                  <img width="10px" src="kaz/images/Rate.png" alt="">
-                  <img width="10px" src="kaz/images/Rate.png" alt="">
-                  <img width="10px" src="kaz/images/Rate.png" alt="">
-                  <img width="10px" src="kaz/images/Rate.png" alt="">
-                </div>
+                  <img width="10px" src="{{asset('kaz/images/Rate.png')}}" alt="">
+                  <img width="10px" src="{{asset('kaz/images/Rate.png')}}" alt="">
+                  <img width="10px" src="{{asset('kaz/images/Rate.png')}}" alt="">
+                  <img width="10px" src="{{asset('kaz/images/Rate.png')}}" alt="">
+                  <img width="10px" src="{{asset('kaz/images/Rate.png')}}" alt="">
+                </div> --}}
               </div>
               <h6 class="fw-light rate-break mt-2">Average rating this year</h6>
             </div>
-            <div>
-              <div style="display: flex;">
-                <div class="rate-layout">
-                  <img width="10px" src="kaz/images/Rate.png" alt="">
-                  <h6 class="ps-2 rate-no">5</h6>
-                </div>
-                <div class="rate-layout">
-                  <div style="height: 8px; width: 200px;" class="progress ms-2">
-                    <div class="progress-bar  progress-bar-striped progress-bar-animated bg-success"
-                      style="width: 100%;"></div>
+            <div class="js-break-down" >
+              {{-- <div class="progress-5">
+                <div style="display: flex;">
+                  <div class="rate-layout">
+                    <img width="10px" src="{{asset('kaz/images/Rate.png')}}" alt="">
+                    <h6 class="ps-2 rate-no">5</h6>
                   </div>
-                  <h6 class="ms-2 rate-no">200</h6>
-                </div>
-              </div>
-              <div class="" style="display: flex;">
-                <div class="rate-layout ">
-                  <img width="10px" src="kaz/images/Rate.png" alt="">
-                  <h6 class="ps-2 rate-no">4</h6>
-                </div>
-                <div class="rate-layout">
-                  <div style="height: 8px; width: 150px;" class="progress ms-2">
-                    <div class="progress-bar  progress-bar-striped progress-bar-animated bg-primary"
-                      style="width: 100%;"></div>
-                  </div>
-                  <h6 class="ms-2 rate-no">20</h6>
-                </div>
-              </div>
-              <div class="" style="display: flex;">
-                <div class="rate-layout ">
-                  <img width="10px" src="kaz/images/Rate.png" alt="">
-                  <h6 class="ps-2 rate-no">3</h6>
-                </div>
-                <div class="rate-layout">
-                  <div style="height: 8px; width: 100px;" class="progress ms-2">
-                    <div class="progress-bar  progress-bar-striped progress-bar-animated bg-warning"
-                      style="width: 100%;"></div>
-                  </div>
-                  <h6 class="ms-2 rate-no">15</h6>
-                </div>
-              </div>
-              <div class="" style="display: flex;">
-                <div class="rate-layout ">
-                  <img width="10px" src="kaz/images/Rate.png" alt="">
-                  <h6 class="ps-2 rate-no">2</h6>
-                </div>
-                <div class="rate-layout">
-                  <div style="height: 8px; width: 50px;" class="progress ms-2">
-                    <div class="progress-bar  progress-bar-striped progress-bar-animated bg-danger"
-                      style="width: 100%;"></div>
-                  </div>
-                  <h6 class="ms-2 rate-no">5</h6>
-                </div>
-              </div>
-              <div class="" style="display: flex;">
-                <div class="rate-layout ">
-                  <img width="10px" src="kaz/images/Rate.png" alt="">
-                  <h6 class="ps-2 rate-no">1</h6>
-                </div>
-                <div class="rate-layout">
-                  <div style="height: 8px; width: 10px;" class="progress ms-2">
-                    <div class="progress-bar  progress-bar-striped progress-bar-animated bg-dark" style="width: 100%;">
+                  <div class="rate-layout">
+                    <div style="height: 8px; width: 200px;" class="progress ms-2">
+                      <div class="progress-bar  progress-bar-striped progress-bar-animated bg-success"
+                        style="width: 100%;"></div>
                     </div>
+                    <h6 class="ms-2 rate-no">0</h6>
                   </div>
-                  <h6 class="ms-2 rate-no">0</h6>
                 </div>
+
               </div>
-              <h6 class="fw-light rate-break mt-1">Rating breakdown over the years</h6>
+               
+              <div class="progress-4">
+                <div  style="display: flex;">
+                  <div class="rate-layout ">
+                    <img width="10px" src="{{asset('kaz/images/Rate.png')}}" alt="">
+                    <h6 class="ps-2 rate-no">4</h6>
+                  </div>
+                  <div class="rate-layout">
+                    <div style="height: 8px; width: 150px;" class="progress ms-2">
+                      <div class="progress-bar  progress-bar-striped progress-bar-animated bg-primary"
+                        style="width: 100%;"></div>
+                    </div>
+                    <h6 class="ms-2 rate-no">0</h6>
+                  </div>
+                </div>
+
+              </div>
+              <div class="progress-3">
+                <div class="" style="display: flex;">
+                  <div class="rate-layout ">
+                    <img width="10px" src="{{asset('kaz/images/Rate.png')}}" alt="">
+                    <h6 class="ps-2 rate-no">3</h6>
+                  </div>  
+                  <div class="rate-layout">
+                    <div style="height: 8px; width: 100px;" class="progress ms-2">
+                      <div class="progress-bar  progress-bar-striped progress-bar-animated bg-warning"
+                        style="width: 100%;"></div>
+                    </div>
+                    <h6 class="ms-2 rate-no">0</h6>
+                  </div>
+                </div>
+
+              </div>
+              <div class="progress-2">
+                <div class="" style="display: flex;">
+                  <div class="rate-layout ">
+                    <img width="10px" src="{{asset('kaz/images/Rate.png')}}" alt="">
+                    <h6 class="ps-2 rate-no">2</h6>
+                  </div>
+                  <div class="rate-layout">
+                    <div style="height: 8px; width: 50px;" class="progress ms-2">
+                      <div class="progress-bar  progress-bar-striped progress-bar-animated bg-danger"
+                        style="width: 100%;"></div>
+                    </div>
+                    <h6 class="ms-2 rate-no">0</h6>
+                  </div>
+                </div>
+                
+              </div>
+
+              <div class="progress-1">
+                <div class="" style="display: flex;">
+                  <div class="rate-layout ">
+                    <img width="10px" src="{{asset('kaz/images/Rate.png')}}" alt="">
+                    <h6 class="ps-2 rate-no"> 1</h6>
+                  </div>
+                  <div class="rate-layout">
+                    <div style="height: 8px; width: 10px;" class="progress ms-2">
+                      <div class="progress-bar  progress-bar-striped progress-bar-animated bg-dark" style="width: 100%;">
+                      </div>
+                    </div>
+                    <h6 class="ms-2 rate-no">0</h6>
+                  </div>
+                </div> 
+
+              </div> --}}
+               {{-- <h6 class="fw-light rate-break mt-1">Rating breakdown over the years</h6> --}}
 
             </div>
           </div>
         </div>
-        <div class="row">
+        <div class="js-review-test">     
+              {{-- <div class="row">
+                <div class="col-11 mt-5">
+                  <hr class="underline">
+                </div>
+              </div>
+              <div class="row mt-4">
+                <div class="col-4 ms-5 ">
+                  <div style="display: flex;align-items: center;">
+                    <img width="60px" src="{{asset('kaz/images/dp.png')}}" alt="">
+                    <div class="ms-3">
+                      <h6 class="benson">Gary Benson</h6>
+                      <div style="display: flex;">
+                        <img width="10px" height="18px" src="{{asset('kaz/images/location.svg')}}" alt="">
+                        <h6 class="fw-light ms-1 lagos">Lagos, Nigeria</h6>
+                      </div>
+                    </div>
+
+                  </div>
+
+                </div>
+                <div class="col">
+                  <div class="mt-2" style="display: flex;align-items: center;">
+                    <div>
+                      <img width="10px" src="{{asset('kaz/images/Rate.png')}}" alt="">
+                      <img width="10px" src="{{asset('kaz/images/Rate.png')}}" alt="">
+                      <img width="10px" src="{{asset('kaz/images/Rate.png')}}" alt="">
+                      <img width="10px" src="{{asset('kaz/images/Rate.png')}}" alt="">
+                      <img width="10px" src="{{asset('kaz/images/Rate.png')}}" alt="">
+                      <img width="10px" src="{{asset('kaz/images/Rate.png')}}" alt="">
+                    </div>
+                    <h6 class="rate-four ps-2 ">(4)</h6>
+                    <h6 class="rate-four ps-2 ">25-04-2024</h6>
+
+                  </div>
+                  <p class="rate-four mt-2 fw-light">Sleek and intuitive design that enhances user experience.</p>
+                  <p class="rate-four-text fw-light">Aesthetically pleasing and easy to navigate,ensuring smooth interaction
+                    every time</p>
+
+
+                </div>
+                <div class="col">
+                  <img width="60px" src="{{asset('kaz/images/dp.png')}}" alt="">
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-11 mt-5">
+                  <hr class="underline">
+                </div>
+              </div>
+              <div class="row mt-4">
+                <div class="col-4 ms-5 ">
+                  <div style="display: flex;align-items: center;">
+                    <img width="60px" src="{{asset('kaz/images/dp.png')}}" alt="">
+                    <div class="ms-3">
+                      <h6 class="benson">Gary Benson</h6>
+                      <div style="display: flex;">
+                        <img width="10px" height="18px" src="{{asset('kaz/images/location.svg')}}" alt="">
+                        <h6 class="fw-light ms-1 lagos">Lagos, Nigeria</h6>
+                      </div>
+                    </div>
+
+                  </div>
+
+                </div>
+                <div class="col">
+                  <div class="mt-2" style="display: flex;align-items: center;">
+                    <div>
+                    <img width="10px" src="{{asset('kaz/images/Rate.png')}}" alt="">
+                      <img width="10px" src="{{asset('kaz/images/Rate.png')}}" alt="">
+                      <img width="10px" src="{{asset('kaz/images/Rate.png')}}" alt="">
+                      <img width="10px" src="{{asset('kaz/images/Rate.png')}}" alt="">
+                      <img width="10px" src="{{asset('kaz/images/Rate.png')}}" alt="">
+                      <img width="10px" src="{{asset('kaz/images/Rate.png')}}" alt="">
+                    </div>
+                    <h6 class="rate-four ps-2">(4)</h6>
+                    <h6 class="rate-four ps-2">25-04-2024</h6>
+
+                  </div>
+                  <p class="rate-four mt-2 fw-light">Sleek and intuitive design that enhances user experience.</p>
+                  <p class="rate-four-text fw-light">Aesthetically pleasing and easy to navigate,ensuring smooth interaction
+                    every time</p>
+
+
+                </div>
+                <div class="col">
+                  <img src="" alt="">
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-11 mt-5">
+                  <hr class="underline">
+                </div>
+              </div>
+              <div class="row mt-4">
+                <div class="col-4 ms-5 ">
+                  <div style="display: flex;align-items: center;">
+                    <img width="60px" src="{{asset('kaz/images/dp.png')}}" alt="">
+                    <div class="ms-3">
+                      <h6 class="benson">Gary Benson</h6>
+                      <div style="display: flex;">
+                        <img width="10px" height="18px" src="{{asset('kaz/images/location.svg')}}" alt="">
+                        <h6 class="fw-light ms-1 lagos">Lagos, Nigeria</h6>
+                      </div>
+                    </div>
+
+                  </div>
+
+                </div>
+                <div class="col">
+                  <div class="mt-2" style="display: flex;align-items: center;">
+                    <div>
+                      <img width="10px" src="{{asset('kaz/images/Rate.png')}}" alt="">
+                      <img width="10px" src="{{asset('kaz/images/Rate.png')}}" alt="">
+                      <img width="10px" src="{{asset('kaz/images/Rate.png')}}" alt="">
+                      <img width="10px" src="{{asset('kaz/images/Rate.png')}}" alt="">
+                      <img width="10px" src="{{asset('kaz/images/Rate.png')}}" alt="">
+                      <img width="10px" src="{{asset('kaz/images/Rate.png')}}" alt="">
+                    </div>
+                    <h6 class="rate-four ps-2">(4)</h6>
+                    <h6 class="rate-four ps-2">25-04-2024</h6>
+
+                  </div>
+                  <p class="rate-four mt-2 fw-light">Sleek and intuitive design that enhances user experience.</p>
+                  <p class="rate-four-text fw-light">Aesthetically pleasing and easy to navigate,ensuring smooth interaction
+                    every time</p>
+
+
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-11 mt-5">
+                  <hr class="underline">
+                </div>
+              </div>
+              <div class="row mt-4">
+                <div class="col-4 ms-5 ">
+                  <div style="display: flex;align-items: center;">
+                    <img width="60px" src="{{asset('kaz/images/dp.png')}}" alt="">
+                    <div class="ms-3">
+                      <h6 class="benson">Gary Benson</h6>
+                      <div style="display: flex;">
+                        <img width="10px" height="18px" src="{{asset('kaz/images/location.svg')}}" alt="">
+                        <h6 class="fw-light ms-1 lagos">Lagos, Nigeria</h6>
+                      </div>
+                    </div>
+
+                  </div>
+
+                </div>
+                <div class="col">
+                  <div class="mt-2" style="display: flex;align-items: center;">
+                    <div>
+                      <img width="10px" src="{{asset('kaz/images/Rate.png')}}" alt="">
+                      <img width="10px" src="{{asset('kaz/images/Rate.png')}}" alt="">
+                      <img width="10px" src="{{asset('kaz/images/Rate.png')}}" alt="">
+                      <img width="10px" src="{{asset('kaz/images/Rate.png')}}" alt="">
+                      <img width="10px" src="{{asset('kaz/images/Rate.png')}}" alt="">
+                      <img width="10px" src="{{asset('kaz/images/Rate.png')}}" alt="">
+                    </div>
+                    <h6 class="rate-four ps-2">(4)</h6>
+                    <h6 class="rate-four ps-2">25-04-2024</h6>
+
+                  </div>
+                  <p class="rate-four mt-2 fw-light">Sleek and intuitive design that enhances user experience.</p>
+                  <p class="rate-four-text fw-light">Aesthetically pleasing and easy to navigate,ensuring smooth interaction
+                    every time</p>
+
+
+                </div>
+              </div>
+              <div class="row">
           <div class="col-11 mt-5">
             <hr class="underline">
           </div>
-        </div>
-        <div class="row mt-4">
-          <div class="col-4 ms-5 ">
-            <div style="display: flex;align-items: center;">
-              <img width="60px" src="kaz/images/dp.png" alt="">
-              <div class="ms-3">
-                <h6 class="benson">Gary Benson</h6>
-                <div style="display: flex;">
-                  <img width="10px" height="18px" src="kaz/images/location.svg" alt="">
-                  <h6 class="fw-light ms-1 lagos">Lagos, Nigeria</h6>
-                </div>
-              </div>
-
-            </div>
-
-          </div>
-          <div class="col">
-            <div class="mt-2" style="display: flex;align-items: center;">
-              <div>
-                <img width="10px" src="kaz/images/Rate.png" alt="">
-                <img width="10px" src="kaz/images/Rate.png" alt="">
-                <img width="10px" src="kaz/images/Rate.png" alt="">
-                <img width="10px" src="kaz/images/Rate.png" alt="">
-                <img width="10px" src="kaz/images/Rate.png" alt="">
-                <img width="10px" src="kaz/images/Rate.png" alt="">
-              </div>
-              <h6 class="rate-four ps-2 ">(4)</h6>
-              <h6 class="rate-four ps-2 ">25-04-2024</h6>
-
-            </div>
-            <p class="rate-four mt-2 fw-light">Sleek and intuitive design that enhances user experience.</p>
-            <p class="rate-four-text fw-light">Aesthetically pleasing and easy to navigate,ensuring smooth interaction
-              every time</p>
-
-
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-11 mt-5">
-            <hr class="underline">
-          </div>
-        </div>
-        <div class="row mt-4">
-          <div class="col-4 ms-5 ">
-            <div style="display: flex;align-items: center;">
-              <img width="60px" src="kaz/images/dp.png" alt="">
-              <div class="ms-3">
-                <h6 class="benson">Gary Benson</h6>
-                <div style="display: flex;">
-                  <img width="10px" height="18px" src="kaz/images/location.svg" alt="">
-                  <h6 class="fw-light ms-1 lagos">Lagos, Nigeria</h6>
-                </div>
-              </div>
-
-            </div>
-
-          </div>
-          <div class="col">
-            <div class="mt-2" style="display: flex;align-items: center;">
-              <div>
-                <img width="10px" src="kaz/images/Rate.png" alt="">
-                <img width="10px" src="kaz/images/Rate.png" alt="">
-                <img width="10px" src="kaz/images/Rate.png" alt="">
-                <img width="10px" src="kaz/images/Rate.png" alt="">
-                <img width="10px" src="kaz/images/Rate.png" alt="">
-                <img width="10px" src="kaz/images/Rate.png" alt="">
-              </div>
-              <h6 class="rate-four ps-2">(4)</h6>
-              <h6 class="rate-four ps-2">25-04-2024</h6>
-
-            </div>
-            <p class="rate-four mt-2 fw-light">Sleek and intuitive design that enhances user experience.</p>
-            <p class="rate-four-text fw-light">Aesthetically pleasing and easy to navigate,ensuring smooth interaction
-              every time</p>
-
-
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-11 mt-5">
-            <hr class="underline">
-          </div>
-        </div>
-        <div class="row mt-4">
-          <div class="col-4 ms-5 ">
-            <div style="display: flex;align-items: center;">
-              <img width="60px" src="kaz/images/dp.png" alt="">
-              <div class="ms-3">
-                <h6 class="benson">Gary Benson</h6>
-                <div style="display: flex;">
-                  <img width="10px" height="18px" src="kaz/images/location.svg" alt="">
-                  <h6 class="fw-light ms-1 lagos">Lagos, Nigeria</h6>
-                </div>
-              </div>
-
-            </div>
-
-          </div>
-          <div class="col">
-            <div class="mt-2" style="display: flex;align-items: center;">
-              <div>
-                <img width="10px" src="kaz/images/Rate.png" alt="">
-                <img width="10px" src="kaz/images/Rate.png" alt="">
-                <img width="10px" src="kaz/images/Rate.png" alt="">
-                <img width="10px" src="kaz/images/Rate.png" alt="">
-                <img width="10px" src="kaz/images/Rate.png" alt="">
-                <img width="10px" src="kaz/images/Rate.png" alt="">
-              </div>
-              <h6 class="rate-four ps-2">(4)</h6>
-              <h6 class="rate-four ps-2">25-04-2024</h6>
-
-            </div>
-            <p class="rate-four mt-2 fw-light">Sleek and intuitive design that enhances user experience.</p>
-            <p class="rate-four-text fw-light">Aesthetically pleasing and easy to navigate,ensuring smooth interaction
-              every time</p>
-
-
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-11 mt-5">
-            <hr class="underline">
-          </div>
-        </div>
-        <div class="row mt-4">
-          <div class="col-4 ms-5 ">
-            <div style="display: flex;align-items: center;">
-              <img width="60px" src="kaz/images/dp.png" alt="">
-              <div class="ms-3">
-                <h6 class="benson">Gary Benson</h6>
-                <div style="display: flex;">
-                  <img width="10px" height="18px" src="kaz/images/location.svg" alt="">
-                  <h6 class="fw-light ms-1 lagos">Lagos, Nigeria</h6>
-                </div>
-              </div>
-
-            </div>
-
-          </div>
-          <div class="col">
-            <div class="mt-2" style="display: flex;align-items: center;">
-              <div>
-                <img width="10px" src="kaz/images/Rate.png" alt="">
-                <img width="10px" src="kaz/images/Rate.png" alt="">
-                <img width="10px" src="kaz/images/Rate.png" alt="">
-                <img width="10px" src="kaz/images/Rate.png" alt="">
-                <img width="10px" src="kaz/images/Rate.png" alt="">
-                <img width="10px" src="kaz/images/Rate.png" alt="">
-              </div>
-              <h6 class="rate-four ps-2">(4)</h6>
-              <h6 class="rate-four ps-2">25-04-2024</h6>
-
-            </div>
-            <p class="rate-four mt-2 fw-light">Sleek and intuitive design that enhances user experience.</p>
-            <p class="rate-four-text fw-light">Aesthetically pleasing and easy to navigate,ensuring smooth interaction
-              every time</p>
-
-
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-11 mt-5">
-            <hr class="underline">
-          </div>
-        </div>
+              </div> --}}
+      </div>
       </div>
 
 
@@ -445,7 +473,7 @@
 
 
     <div class="mt-5 sellers-footer">
-      <div><img src="kaz/images/Logo.png" alt=""></div>
+      <div><img src="{{asset('kaz/images/Logo.png')}}" alt=""></div>
       <div>
         <p class="fw-light text-footer">About<br>us</p>
       </div>
@@ -462,10 +490,10 @@
         <p class="fw-light  text-footer">Report <br> a seller</p>
       </div>
       <div class="down">
-        <img height="35px" width="35px" src="kaz/images/facebook.png" alt="">
-        <img height="30px" width="30px" src="kaz/images/twitter.png" alt="">
-        <img height="29px" width="29px" src="kaz/images/whatsapp.png" alt="">
-        <img height="30px" width="30px" src="kaz/images/message.png" alt="">
+        <img height="35px" width="35px" src="{{asset('kaz/images/facebook.png')}}" alt="">
+        <img height="30px" width="30px" src="{{asset('kaz/images/twitter.png')}}" alt="">
+        <img height="29px" width="29px" src="{{asset('kaz/images/whatsapp.png')}}" alt="">
+        <img height="30px" width="30px" src="{{asset('kaz/images/message.png')}}" alt="">
       </div>
 
     </div>
@@ -500,9 +528,9 @@
         <div class="">
           <div style="display: flex;justify-content: space-between;">
             <div class="drill">
-              <img class="" width="70px" src="kaz/images/dp.png" class="me-5" alt="">
+              <img class="" width="70px" src="{{asset('kaz/images/dp.png')}}" class="me-5" alt="">
               <div class="camera3-m">
-                <img class="badge3-cam-m" height="20px" width="15px" src="kaz/images/badge.png" alt="">
+                <img class="badge3-cam-m" height="20px" width="15px" src="{{asset('kaz/images/badge.png')}}" alt="">
               </div>
               <div class="ms-2">
                 <h5 class="pt-3 mired-drill-m">Drill Houston</h5>
@@ -537,11 +565,11 @@
           <div class="star">
             <h6 class="no-text">4.5</h6>
             <div class="ms-1">
-              <img src="kaz/images/star-active.svg" alt="">
-              <img src="kaz/images/star-active.svg" alt="">
-              <img src="kaz/images/star-active.svg" alt="">
-              <img src="kaz/images/star-active.svg" alt="">
-              <img src="kaz/images/star-nill.svg" alt="">
+              <img src="{{asset('kaz/images/star-active.svg')}}" alt="">
+              <img src="{{asset('kaz/images/star-active.svg')}}" alt="">
+              <img src="{{asset('kaz/images/star-active.svg')}}" alt="">
+              <img src="{{asset('kaz/images/star-active.svg')}}" alt="">
+              <img src="{{asset('kaz/images/star-nill.svg')}}" alt="">
             </div>
           </div>
         </div>
@@ -556,7 +584,7 @@
         <div>
           <div style="display: flex;">
             <div class="rate-layout">
-              <img width="15px" src="kaz/images/star-nill.svg" alt="">
+              <img width="15px" src="{{asset('kaz/images/star-nill.svg')}}" alt="">
               <h6 class="ps-2 rate-no">5</h6>
             </div>
             <div class="rate-layout">
@@ -569,7 +597,7 @@
           </div>
           <div class="" style="display: flex;">
             <div class="rate-layout ">
-              <img width="15px" src="kaz/images/star-nill.svg" alt="">
+              <img width="15px" src="{{asset('kaz/images/star-nill.svg')}}" alt="">
               <h6 class="ps-2 rate-no">4</h6>
             </div>
             <div class="rate-layout">
@@ -582,7 +610,7 @@
           </div>
           <div class="" style="display: flex;">
             <div class="rate-layout ">
-              <img width="15px" src="kaz/images/star-nill.svg" alt="">
+              <img width="15px" src="{{asset('kaz/images/star-nill.svg')}}" alt="">
               <h6 class="ps-2 rate-no">3</h6>
             </div>
             <div class="rate-layout">
@@ -595,7 +623,7 @@
           </div>
           <div class="" style="display: flex;">
             <div class="rate-layout ">
-              <img width="15px" src="kaz/images/star-nill.svg" alt="">
+              <img width="15px" src="{{asset('kaz/images/star-nill.svg')}}" alt="">
               <h6 class="ps-2 rate-no">2</h6>
             </div>
             <div class="rate-layout">
@@ -608,7 +636,7 @@
           </div>
           <div class="" style="display: flex;">
             <div class="rate-layout ">
-              <img width="15px" src="kaz/images/star-nill.svg" alt="">
+              <img width="15px" src="{{asset('kaz/images/star-nill.svg')}}" alt="">
               <h6 class="ps-2 rate-no">1</h6>
             </div>
             <div class="rate-layout">
@@ -628,21 +656,21 @@
       <div class="row">
         <div class="structure-m">
           <div class="structure-m2">
-            <img width="60px" src="kaz/images/dp.png" alt="">
+            <img width="60px" src="{{asset('kaz/images/dp.png')}}" alt="">
             <div class="ps-2">
               <h6 class="">Gary Benson</h6>
-              <img width="10px" src="kaz/images/location.svg " alt=""><span style="font-size: small;"
+              <img width="10px" src="{{asset('kaz/images/location.svg')}}" alt=""><span style="font-size: small;"
                 class="ps-1">portharcourt, Nigeria</span>
 
             </div>
           </div>
           <div class="">
             <h6 style="font-size: small;">25-04-2024</h6>
-            <img src="kaz/images/star-active.svg" alt="">
-            <img src="kaz/images/star-active.svg" alt="">
-            <img src="kaz/images/star-active.svg" alt="">
-            <img src="kaz/images/star-active.svg" alt="">
-            <img src="kaz/images/star-nill.svg" alt=""><span class="ps-2" style="font-size: small;">4</span>
+            <img src="{{asset('kaz/images/star-active.svg')}}" alt="">
+            <img src="{{asset('kaz/images/star-active.svg')}}" alt="">
+            <img src="{{asset('kaz/images/star-active.svg')}}" alt="">
+            <img src="{{asset('kaz/images/star-active.svg')}}" alt="">
+            <img src="{{asset('kaz/images/star-nill.svg')}}" alt=""><span class="ps-2" style="font-size: small;">4</span>
           </div>
 
         </div>
@@ -654,21 +682,21 @@
       <div class="row">
         <div class="structure-m">
           <div class="structure-m2">
-            <img width="60px" src="kaz/images/dp.png" alt="">
+            <img width="60px" src="{{asset('kaz/images/dp.png')}}" alt="">
             <div class="ps-2">
               <h6 class="">Gary Benson</h6>
-              <img width="10px" src="kaz/images/location.svg " alt=""><span style="font-size: small;"
+              <img width="10px" src="{{asset('kaz/images/location.svg')}}" alt=""><span style="font-size: small;"
                 class="ps-1">portharcourt, Nigeria</span>
 
             </div>
           </div>
           <div class="">
             <h6 style="font-size: small;">25-04-2024</h6>
-            <img src="kaz/images/star-active.svg" alt="">
-            <img src="kaz/images/star-active.svg" alt="">
-            <img src="kaz/images/star-active.svg" alt="">
-            <img src="kaz/images/star-active.svg" alt="">
-            <img src="kaz/images/star-nill.svg" alt=""><span class="ps-2" style="font-size: small;">4</span>
+            <img src="{{asset('kaz/images/star-active.svg')}}" alt="">
+            <img src="{{asset('kaz/images/star-active.svg')}}" alt="">
+            <img src="{{asset('kaz/images/star-active.svg')}}" alt="">
+            <img src="{{asset('kaz/images/star-active.svg')}}" alt="">
+            <img src="{{asset('kaz/images/star-nill.svg')}}" alt=""><span class="ps-2" style="font-size: small;">4</span>
           </div>
 
         </div>
@@ -680,21 +708,21 @@
       <div class="row">
         <div class="structure-m">
           <div class="structure-m2">
-            <img width="60px" src="kaz/images/dp.png" alt="">
+            <img width="60px" src="{{asset('kaz/images/dp.png')}}" alt="">
             <div class="ps-2">
               <h6 class="">Gary Benson</h6>
-              <img width="10px" src="kaz/images/location.svg " alt=""><span style="font-size: small;"
+              <img width="10px" src="{{asset('kaz/images/location.svg')}}" alt=""><span style="font-size: small;"
                 class="ps-1">portharcourt, Nigeria</span>
 
             </div>
           </div>
           <div class="">
             <h6 style="font-size: small;">25-04-2024</h6>
-            <img src="kaz/images/star-active.svg" alt="">
-            <img src="kaz/images/star-active.svg" alt="">
-            <img src="kaz/images/star-active.svg" alt="">
-            <img src="kaz/images/star-active.svg" alt="">
-            <img src="kaz/images/star-nill.svg" alt=""><span class="ps-2" style="font-size: small;">4</span>
+            <img src="{{asset('kaz/images/star-active.svg')}}" alt="">
+            <img src="{{asset('kaz/images/star-active.svg')}}" alt="">
+            <img src="{{asset('kaz/images/star-active.svg')}}" alt="">
+            <img src="{{asset('kaz/images/star-active.svg')}}" alt="">
+            <img src="{{asset('kaz/images/star-nill.svg')}}" alt=""><span class="ps-2" style="font-size: small;">4</span>
           </div>
 
         </div>
@@ -706,21 +734,21 @@
       <div class="row">
         <div class="structure-m">
           <div class="structure-m2">
-            <img width="60px" src="kaz/images/dp.png" alt="">
+            <img width="60px" src="{{asset('kaz/images/dp.png')}}" alt="">
             <div class="ps-2">
               <h6 class="">Gary Benson</h6>
-              <img width="10px" src="kaz/images/location.svg " alt=""><span style="font-size: small;"
+              <img width="10px" src="{{asset('kaz/images/location.svg')}}" alt=""><span style="font-size: small;"
                 class="ps-1">portharcourt, Nigeria</span>
 
             </div>
           </div>
           <div class="">
             <h6 style="font-size: small;">25-04-2024</h6>
-            <img src="kaz/images/star-active.svg" alt="">
-            <img src="kaz/images/star-active.svg" alt="">
-            <img src="kaz/images/star-active.svg" alt="">
-            <img src="kaz/images/star-active.svg" alt="">
-            <img src="kaz/images/star-nill.svg" alt=""><span class="ps-2" style="font-size: small;">4</span>
+            <img src="{{asset('kaz/images/star-active.svg')}}" alt="">
+            <img src="{{asset('kaz/images/star-active.svg')}}" alt="">
+            <img src="{{asset('kaz/images/star-active.svg')}}" alt="">
+            <img src="{{asset('kaz/images/star-active.svg')}}" alt="">
+            <img src="{{asset('kaz/images/star-nill.svg')}}" alt=""><span class="ps-2" style="font-size: small;">4</span>
           </div>
 
         </div>
@@ -735,65 +763,8 @@
   </div>
   </div>
 
-
-
-
-
-
-  <script>
-    // Fetch the user data
-    const token = localStorage.getItem('apiToken'); // Get the token from local storage
-
-if (token) {
-    axios.get('/api/v1/getuser', {
-        headers: {
-            'Authorization': 'Bearer ' + token
-        }
-    })
-    .then(response => {
-        const user = response.data;
-        updateUserProfile(user);
-    })
-    .catch(error => {
-        console.error('Error fetching user data:', error);
-        if (error.response && error.response.status === 401) {
-            Swal.fire({
-                icon: 'error',
-                title: 'Unauthorized',
-                text: 'Your session has expired. Please log in again.'
-            }).then(() => {
-                window.location.href = '/login'; // Redirect to login page
-            });
-        }
-    });
-} else {
-    Swal.fire({
-        icon: 'error',
-        title: 'Missing Token',
-        text: 'Authentication token is missing. Please log in.'
-    }).then(() => {
-        window.location.href = '/login'; // Redirect to login page
-    });
-}
-
-function updateUserProfile(user) {
-    const nameElement = document.querySelector('.right-section .name');
-    const emailElement = document.querySelector('.right-section .mired-text');
-    const profileImageElement = document.querySelector('.right-section .profile-picture');
-
-    if (user) {
-        nameElement.textContent = user.username || 'Unknown User';
-        emailElement.textContent = user.email || 'No email provided';
-        // profileImageElement.src = user.photo_url ? user.photo_url : 'kaz/images/dp.png';
-        const imageUrl = user.photo_url ? `/uploads/users/${user.photo_url}` : 'kaz/images/dp.png';
-        profileImageElement.src = imageUrl;
-    } else {
-        console.error('User data is null or undefined');
-    }
-}
-</script>
-
-
+ 
+<script type="module" src="{{ asset('backend-js/review.js') }}"></script>
 </body>
 
 </html>

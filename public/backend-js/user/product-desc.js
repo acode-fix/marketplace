@@ -1,4 +1,59 @@
-   import {loadDashboard, getProdProfileDescImg, getBadge, loadConnect, getToken} from "../helper/helper.js";
+   import {loadDashboard, getProdProfileDescImg, getBadge, loadConnect, getToken, logoutUser} from "../helper/helper.js";
+
+
+   const token = getToken();
+
+   if (token) {
+
+    axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+
+    axios.get('/api/v1/getuser', {
+       
+    })
+    .then(response => {
+        const user = response.data;
+
+        //console.log(user)
+
+        loadDashboard(user);
+        document.getElementById('logout-link').addEventListener('click', () => {
+
+            const auth = getToken();
+        
+            if(auth) {
+        
+            
+        
+                Swal.fire({
+                  title: "Are you sure?",
+                  text: "You won't be able to revert this!",
+                  icon: "warning",
+                  showCancelButton: true,
+                  confirmButtonColor: "#3085d6",
+                  cancelButtonColor: "#d33",
+                  confirmButtonText: "Yes,I am sure!"
+                  }).then((result) => {
+                  if (result.isConfirmed) {
+                    logoutUser();
+                    
+                  }
+              });
+        
+            }
+          
+          })
+        
+    
+            const imgDesk = document.getElementById('js-profile-desk');
+            getProdProfileDescImg(user, imgDesk);
+    })
+    .catch(error => {
+        console.error('Error fetching user data:', error);
+        
+    });
+
+
+   }
 
    document.addEventListener('DOMContentLoaded', function () {
        const viewShopButton = document.getElementById('viewShopButton');
@@ -30,6 +85,8 @@
 
        // console.log(selectedProduct);
 
+       
+
 
        // Display product details if selectedProduct is available
        if (selectedProduct) {
@@ -53,7 +110,9 @@
                event.preventDefault();
                if (selectedProduct) {
                    const userId = selectedProduct.user.id;
-                   const token = localStorage.setItem('userId', JSON.stringify(userId));
+                   //console.log(userId);
+
+                   localStorage.setItem('userId', JSON.stringify(userId));
 
                    window.location.href = '/sellers-shop';
 
@@ -86,42 +145,6 @@
 
 
    function displayProductDetails(product) {
-
-       loadDashboard(product);
-
-       document.getElementById('logout-link').addEventListener('click', () => {
-
-        const auth = getToken();
-    
-        if(auth) {
-    
-        
-    
-            Swal.fire({
-              title: "Are you sure?",
-              text: "You won't be able to revert this!",
-              icon: "warning",
-              showCancelButton: true,
-              confirmButtonColor: "#3085d6",
-              cancelButtonColor: "#d33",
-              confirmButtonText: "Yes,I am sure!"
-              }).then((result) => {
-              if (result.isConfirmed) {
-                logoutUser();
-                
-              }
-          });
-    
-        }
-      
-      })
-    
-
-        const imgDesk = document.getElementById('js-profile-desk');
-        getProdProfileDescImg(product, imgDesk);
-        
-    
-
 
        // Display product details in the UI
 
@@ -348,6 +371,8 @@
            console.error('Product with ID ' + productId + ' not found.');
        }
    }
+
+
 
 
 

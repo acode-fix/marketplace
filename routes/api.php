@@ -71,7 +71,6 @@ Route::get('/getuser', [UsersController::class, 'getUserData']);
 Route::get('/referral-link', [UsersController::class, 'getReferralLink']);
 Route::delete('/user', [UsersController::class, 'deleteAccount']);
 Route::get('/userDetails', [UsersController::class, 'getUserPayment']);
-
 Route::post('/shop/update',[UsersController::class, 'uploadBanner']);
 
 // Get userId;
@@ -141,6 +140,12 @@ Route::get('/user/rating-page',[ReviewersController::class, 'loadRatingContent']
 Route::post('/user/rating-details', [ReviewersController::class, 'Store']);
 
 
+//ROUTE REVIEW PAGE;
+
+Route::get('/user/review',[ReviewersController::class, 'loadReviewPage']);
+Route::get('/user/avg-rating', [ReviewersController::class, 'avgReview']);
+
+
 
 
 
@@ -182,12 +187,12 @@ Route::get('/seller-shop/{userId}', [UsersController::class, 'showSellerShop']);
 
 
 //reviews
-Route::post('/reviewers', [ReviewersController::class, 'store']);
-Route::get('/reviewers/{id}', [ReviewersController::class, 'view']);
-Route::post('/reviewers/{id}',[ReviewersController::class, 'update']);
-Route::get('/review/{id}', [ReviewersController::class, 'viewUserMetric']);
-Route::get('/reviewall', [ReviewersController::class, 'allUserMetric']);
-Route::get('/reviewcomment', [ReviewersController::class, 'allUserComment']);
+// Route::post('/reviewers', [ReviewersController::class, 'store']);
+// Route::get('/reviewers/{id}', [ReviewersController::class, 'view']);
+// Route::post('/reviewers/{id}',[ReviewersController::class, 'update']);
+// Route::get('/review/{id}', [ReviewersController::class, 'viewUserMetric']);
+// Route::get('/reviewall', [ReviewersController::class, 'allUserMetric']);
+// Route::get('/reviewcomment', [ReviewersController::class, 'allUserComment']);
 //Route::get('/reviewers', [ReviewersController::class, 'show']);
 
 //categories

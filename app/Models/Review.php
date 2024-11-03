@@ -11,6 +11,34 @@ class Review extends Model
     protected $guarded = [];
 
 
+    public function product() {
+        return $this->belongsTo(Product::class);
+        
+    }
+
+
+    public function user() {
+        return $this->belongsTo(User::class, 'reviewer_id');
+    }
+
+    public static function avgProductRating($id) {
+
+         $reviews = Review::where('product_id', $id)->get();
+
+         $totalRating = $reviews->sum('rate');
+         $totalReview = $reviews->count();
+
+         $avgRating = $totalRating / $totalReview;
+
+
+
+         return $avgRating;
+        
+    }
+
+
+   
+
     // /**
     //  * Get the product that owns the review.
     //  */
@@ -26,13 +54,13 @@ class Review extends Model
     // {
     //     return $this->belongsTo('App\User');
     // }
-    static function getReviewByUser($user_id){
-        return Review::where(['user_id'=>$user_id])->get();
+//     static function getReviewByUser($user_id){
+//         return Review::where(['user_id'=>$user_id])->get();
 
-    }
-    static function getComment($comment){
-        return  Review::where(['comment'=>$comment])->get();
-  }
+//     }
+//     static function getComment($comment){
+//         return  Review::where(['comment'=>$comment])->get();
+//   }
 
 
 

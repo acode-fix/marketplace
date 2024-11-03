@@ -346,9 +346,11 @@ function getVerifiedSellerShop(shopNo) {
 
          const userId = response.data.data;
 
+         //console.log(userId);
+
          localStorage.setItem('userId', JSON.stringify(userId))
 
-         window.location.href = '/sellers-shop'
+         window.location.href = '/sellers-shop';
 
         }
 

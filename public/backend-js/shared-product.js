@@ -158,7 +158,7 @@ import { getToken, getProdDesImage, getProdProfileDescImg, loadDashboard,logoutU
           if(auth) {
 
           const userId = user.id;
-          const token = localStorage.setItem('userId', JSON.stringify(userId));
+          localStorage.setItem('userId', JSON.stringify(userId));
 
           window.location.href = '/sellers-shop';
 

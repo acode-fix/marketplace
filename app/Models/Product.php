@@ -13,14 +13,14 @@ class Product extends Model
 
     protected $fillable = [
         'user_id', 'title', 'description', 'category_id', 'quantity',
-        'location', 'actual_price', 'promo_price', 'condition', 'image_url', 'ask_for_price'
+        'location', 'actual_price', 'promo_price', 'condition', 'image_url', 'ask_for_price', 'sold', 'avg_rating'
     ];
 
     protected $casts = [
         'ask_for_price' => 'boolean',  // Ensure this attribute is cast to a boolean
     ];
 
-    protected $guarded = [];
+   // protected $guarded = [];
 
     // protected $casts = [
     //     'image_url' => 'json'
@@ -45,6 +45,11 @@ class Product extends Model
         public function user()
     {
         return $this->belongsTo(User::class);
+    }
+
+    public function reviews() {
+
+        return $this->hasMany(Review::class);
     }
 
 

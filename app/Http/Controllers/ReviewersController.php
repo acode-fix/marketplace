@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\Models\Product;
 use App\Models\User;
 use Barryvdh\Debugbar\Facades\Debugbar;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Validator;
 
 
@@ -35,15 +36,15 @@ class ReviewersController extends Controller
         }
 
         $productId = $request->productId;
-        $userId = $request->userId;
+        //$userId = $request->userId;
         $shopToken = $request->shopToken;
 
 
-        $getProduct = Product::with('user')->where('id', $productId)
-                             ->where('user_id', $userId)->whereHas('user', function($query) use ($shopToken) {
-                             $query->where('shop_token', $shopToken);
+        $user = $request->user()->id;
 
-        })->first();
+        $getUser = User::where('id', $user)->where('shop_token', $shopToken)->first();
+
+        $getProduct = Product::with('user')->where('id', $productId)->first();
 
        // debugbar::info($getProduct);
 
@@ -52,6 +53,7 @@ class ReviewersController extends Controller
         return response()->json([
             'status' => true,
             'message' => 'product fetched successfully',
+            'user' => $getUser,
             'products' => $getProduct,
 
         ],200);
@@ -101,14 +103,40 @@ class ReviewersController extends Controller
 
         }
 
+       $productRated = Product::with('user')->where('id', $request->product_id)->first();
+
+       $user_id = $request->user()->id;
+
        $review = Review::create([
-          'user_id' => $request->user_id,
+          'user_id' => $productRated->user_id,
+          'reviewer_id' => $user_id,
           'product_id' => $request->product_id,
           'comment' => $request->comment,
           'rate' => $request->rate,
         ]);
 
         if($review)  {
+
+
+                $product = Product::getProduct($request->product_id);
+
+                if($product && $product->quantity > 0) {
+
+                    $quantity = ($product->quantity - 1);
+                    $sold =  ($product->sold + 1 );
+
+                    $avgProductRating = Review::avgProductRating($request->product_id);
+
+                    $product->update([
+                        'quantity' => $quantity,
+                        'sold' => $sold,
+                         'avg_rating' => $avgProductRating,
+
+                    ]);
+
+                }
+
+                
 
                 $notifications = Notification::where('notifiable_id', $request->user_id)
                                             ->where('data->product_id', $request->product_id)
@@ -160,6 +188,174 @@ class ReviewersController extends Controller
 
  }
 
+ 
+
+ public function loadReviewPage(Request $request) {
+
+  $validator = Validator::make($request->all(), [
+    'user_id' => 'required|',
+    'shop_token' => 'required|exists:users,shop_token',
+
+  ]);
+
+  if($validator->fails()) {
+
+    return response()->json([
+        'status' => false,
+        'message' => 'validation failed',
+        'errors' => $validator->errors(),
+
+    ],422);
+
+  }
+
+  //$userId = $request->user()->id;
+
+  $userId = $request->user_id;
+
+  $reviews =  Review::where('user_id', $userId)->get();
+
+  //debugbar::info($reviews);
+
+  if(!$reviews->isEmpty()) {
+
+    $totalReview =  $reviews->count();
+    $totalRating = $reviews->sum('rate');
+
+    $star5 = $reviews->where('rate', 5)->count(); 
+    $star4 = $reviews->where('rate', 4)->count();
+    $star3 = $reviews->where('rate', 3)->count();
+    $star2 = $reviews->where('rate', 2)->count();
+    $star1 = $reviews->where('rate', 1)->count();
+
+                    //   foreach ($reviews as $key => $review) {
+                    
+                    //     $totalRating += $review->rate;
+                    //     $totalReview ++;
+                    
+                    //   }
+
+
+  
+    $averageRatingPerUser =  $totalReview > 0  ?  $totalRating / $totalReview  : 0; 
+  
+
+    
+    $user = Product::with('user')->where('user_id', $userId)->get();
+
+
+    $productReviews = Product::with(['reviews', 'reviews.user'])->where('user_id', $userId)->get();
+  
+    //debugbar::info($totalReview, $totalRating, $averageRating, $products);
+
+      return response()->json([
+        'status' => true,
+        'productReviews' => $productReviews,
+        'avgRating' => $averageRatingPerUser,
+        'user' => $user,
+        'totalReview' => $totalReview,
+        'rate' => [1 => $star1, 
+                   2 => $star2,
+                   3 => $star3,
+                   4 => $star4,
+                   5 => $star5,
+        ]
+
+      ],200);
+
+    }    else  {
+
+        $user = Product::with('user')->where('id', $userId)->get();
+
+        if($user->isEmpty()) {
+        
+            $user = User::find($userId);
+     
+            return response()->json([
+                'status' => true,
+                'message' => 'No Review Found',
+                'user' =>  $user,
+                'avgRating' => 0,
+                'rate' => [],
+                'productReviews' => [],
+
+            ],200);
+
+
+
+        }
+
+    
+
+
+
+
+   }
+
+
+   
+
+   }
+
+   public function avgReview(Request $request) {
+
+    $userId = $request->userId;
+
+    //debugbar::info($userId);
+
+    $validator = Validator::make($request->all(),[
+        'userId' => 'required|exists:users,id',
+
+    ]);
+
+
+        if($validator->fails()) {
+
+            return response()->json([
+                'status' => false,
+                'message' => 'Validation Failed',
+                'errors' => $validator->errors(),
+
+            ]);
+
+        }
+
+    $reviews =  Review::where('user_id', $userId)->get();
+
+
+    
+        if(!$reviews->isEmpty()) {
+
+            $totalReview =  $reviews->count();
+            $totalRating = $reviews->sum('rate'); 
+
+            $averageRatingPerUser =  $totalReview > 0  ?  $totalRating / $totalReview  : 0; 
+
+
+            return response()->json([
+                'status' => true,
+                'message' => 'Average review fetched successfully',
+                'avgRating' => $averageRatingPerUser,
+
+            ],200);
+
+
+         }
+
+
+    return response()->json([
+        'status' => true,
+        'message' => 'empty Review',
+        'avgRating' => 0,
+
+    ],200);
+
+
+
+}
+
+
+
 
 
 
@@ -185,318 +381,8 @@ class ReviewersController extends Controller
 
 
 
-
-
-
-
-
-/*
-
-
-
-
-    public function store(Request $request, Product $product)
-    {
-        //
-        try {
-            //code...
-          //  $yourToken = $request->bearerToken();
-
-           //$token = \Laravel\Sanctum\PersonalAccessToken::findToken($yourToken);
-       // return $token;
-
-        //  $user_id = $token->tokenable_id;
-
-        $validateReviewer = Validator::make($request->all(), [
-            'product_id' => 'required',
-            'comment' => 'required|string',
-            'rate' => 'required|numeric|min:0|max:5',
-
-        ]);
-        if($validateReviewer->fails()){
-            return response()->json([
-                'status' => false,
-                'message' => 'validation error',
-                'errors' => $validateReviewer->errors()
-            ], 401);
-        }
-
-
-             $prod =  Product::getProduct($request->product_id);
-             $reviewer_id = User::getAuthUser()->id;
-
-        $reviewers = Reviewers::create([
-            'user_id' => $prod->user_id,
-            'reviewer_id' => $reviewer_id,
-            'product_id' => $request->product_id,
-            'comment' => $request->comment,
-            'rate' => $request->rate,
-
-        ]);
-        // $reviewers->save();
-
-        return response()->json([
-            'status' => true,
-            'message' => 'Review Added',
-            'rate' => $reviewers,
-        ], 200);
-
-        } catch (\Throwable $th) {
-            //throw $th;
-            return response()->json([
-                'status' => false,
-                'message' => $th->getMessage()
-            ], 500);
-        }
-
-    }
-        */
-
-     /**
-     * Show the form for editing the specified resource.
-     */
-
-     /*
-    public function view(string $id)
-    {
-        //
-
-        $reviewers =  Reviewers::find($id);
-
-        return response()->json([
-          'status' => true,
-          'message' => 'review',
-          'rate' => $reviewers,
-      ], 200);
-    }
-      */
-        /**
-     * Update the specified resource in storage.
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Product  $product
-     * @param  \App\Reviewers  $reviewers
-     * @return \Illuminate\Http\Response
-     */
-
-     /*
-    public function update(Request $request, Product $product, Reviewers $reviewers, string $id)
-    {
-        try{
-        $validateReviewer = Validator::make($request->all(), [
-            'product_id' => 'required',
-            'comment' => 'required|string',
-            'rate' => 'required|numeric|min:0|max:5',
-
-        ]);
-
-
-
-       if($validateReviewer->fails()){
-           return response()->json([
-               'status' => false,
-               'message' => 'validation error',
-               'errors' => $validateReviewer->errors()
-           ], 401);
-       }
-
-       $validatedData = array_filter($validateReviewer->getData());
-
-    $reviewers = Reviewers::find($id);
-    $review =  $reviewers->update($validatedData);
-
-             return response()->json([
-        'status' => true,
-        'message' => 'Review Updated',
-        'review' => $reviewers
-    ], 200);
-
-
-} catch (\Throwable $th) {
-    return response()->json([
-        'status' => false,
-        'message' => $th->getMessage()
-    ], 500);
-}
-    }
-
-
-    */
-    /**
-     * Display the specified resource.
-     */
-
-     /*
-    public function viewUserMetric($id)
-    {
-        //
-        // $reviewers = Reviewers::where('user_id', 'rate');
-        // $data = $reviewers->with('rate')->get();
-        // return $data->rate->avg('rate');
-       // $reviewers = Reviewers::where(['user_id'=>$user_id])->get();
-       $reviewers =  Reviewers::getReviewByUser($id);
-
-        $data = [];
-        if($reviewers->isNotEmpty()){
-            $r =   $sumRate = 0;
-            foreach($reviewers as $rv){
-
-                $r++;
-              $sumRate += $rv->rate;
-
-            }
-               $avg = (($sumRate)/($r*5)*5);
-
-             return response()->json([
-                'status' => true,
-                'rate' =>  round($avg, 2),
-            ], 200);
-
-        }
-
-        }
-
-        */
-
-        /**
-     * Display the specified resource.
-     */
-
-     /*
-        public function allUserMetric(Reviewers $reviewers)
-    {
-        //
-    $users = User::all();
-
-    $data = [];
-             $c = 0;
-        foreach ($users as $user) {
-
-        $data[$c]['id']  = $user->id;
-        $data[$c]['name']  = $user->name;
-
-    $reviewers =  Reviewers::getReviewByUser($user->id);
-
-    // $allreview = Reviewers::with('user_id')->get();
-
-         if($reviewers->isNotEmpty()){
-             $r =   $sumRate = 0;
-             foreach($reviewers as $rv){
-
-                 $r++;
-               $sumRate += $rv->rate;
-
-             }
-                $avg = (($sumRate)/($r*5)*5);
-
-         }else
-             $avg = 0;
-
-             $data[$c]['rate']  = round($avg,2);
-                 $c++;
-        }
-
-
-        return response()->json([
-            'status' => true,
-            'data' =>  $data,
-        ], 200);
-
-
-        }
-
-        */
-
-        /**
-     * Display the specified resource.
-     */
-
-     /*
-    public function allUserComment(Reviewers $reviewers)
-    {
-        $users = User::all();
-
-    $data = [];
-             $c = 0;
-        foreach ($users as $user) {
-
-        $data[$c]['id']  = $user->id;
-        $data[$c]['name']  = $user->name;
-
-   $reviewers =  Reviewers::getReviewByUser($user->id);
-
-   if($reviewers->isNotEmpty()){
-    $r =   $com = 0;
-    foreach($reviewers as $rv){
-
-        $r++;
-      $com = $rv->comment;
-
-    }
-       $comment = $com;
-
-}else
-    $comment = 0;
-
-             $data[$c]['comment']  = $comment;
-                 $c++;
-        }
-
-
-        return response()->json([
-            'status' => true,
-            'data' =>  $data,
-        ], 200);
-
-        }
-
-        */
-
-        /**
-     * Suspend the specified resource from storage.
-     *
-     * @param  \App\Product  $product
-     * @param  \App\Reviewers  $reviewers
-     * @return \Illuminate\Http\Response
-     */
-
-
-     /*
-    public function suspend(Reviewers $reviewers)
-    {
-        if (auth()->user()->id !== $reviewers->user_id) {
-            return response()->json(['message' => 'User suspended']);
-        }
-        $reviewers->suspend();
-        return response()->json(null, 204);
-
-    }
-
-    */
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Product  $product
-     * @param  \App\Reviewers  $reviewers
-     * @return \Illuminate\Http\Response
-     */
-
-
-     /*
-    public function delete(Reviewers $reviewers)
-    {
-        if (auth()->user()->id !== $reviewers->user_id) {
-            return response()->json(['message' => 'Action Forbidden']);
-        }
-        $reviewers->delete();
-        return response()->json(null, 204);
-    }
-
-   */
     
 
 
 
     }
-
-

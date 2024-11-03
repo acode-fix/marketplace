@@ -127,7 +127,7 @@ Route::get('/product_des', function () {
     return view('other_frontend.product_des');
 });
 
-Route::get('/review', function () {
+Route::get('/review/{id}', function () {
     return view('other_frontend.review');
 });
 Route::get('/search', function () {

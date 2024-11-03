@@ -138,7 +138,7 @@
           
           </div> --}}
 
-          <div class="ms-2">
+          {{-- <div class="ms-2">
             <h6 class="card-title">Reviews</h6>
             <div>
               <img src="kaz/images/star-active.svg" class="img-fluid image-rate" width="15px" alt="">
@@ -148,9 +148,9 @@
               <img src="kaz/images/star-nill.svg" class="img-fluid image-rate" width="15px" alt=""> <span
                 style="font-size: small;">(4.5)</span>
             </div>
-            <a class="view" href="{{ url('/review') }}">View all</a>
+            <a class="view js-review" href="{{ url('/review') }}">View all</a>
 
-          </div>
+          </div> --}}
 
 
         </div>

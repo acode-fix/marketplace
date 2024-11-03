@@ -71,7 +71,7 @@ public function index()
     if ($totalProducts <= 16) {
         // Fetch all products with user data
        // $data = Product::with('user:id,is_verified')->get();
-       $data = Product::with('user')->get();
+       $data = Product::with('user')->where('quantity', '!=', 0)->get();
         return response()->json($data);
     } else {
         $numberOfProductsToDisplay = 16;
@@ -79,7 +79,7 @@ public function index()
         // Fetch a random set of products
         $randomProducts = 
        // Product::with('user:id,is_verified')
-       Product::with('user')
+       Product::with('user')->where('quantity', '!=', 0)
                                  ->inRandomOrder()
                                  ->limit($numberOfProductsToDisplay)
                                  ->get();
@@ -93,7 +93,10 @@ public function index()
 //
 public function getProductDetails($id) {
 
-    $product = Product::with('user')->find($id);
+    $product = Product::with('user')
+                      ->where('quantity', '!=', 0)
+                      ->where('id', $id)
+                      ->first();
 
     if (!$product) {
         return response()->json([
@@ -165,7 +168,7 @@ public function filterProducts(Request $request)
 {
     try {
 
-        $query = Product::with('user');
+        $query = Product::with('user')->where('quantity', '!=', 0);
 
         if ($request->has('condition') && $request->condition !== '') {
             $query->where('condition', $request->condition);
@@ -336,7 +339,9 @@ return response()->json([
     public function getProduct(string $id)
     {
     
-        $product =  Product::find($id);
+        $product =  Product::where('quantity', '!=', 0)
+                           ->where('id', $id)
+                           ->first();
 
         if($product) {
 
@@ -371,7 +376,9 @@ return response()->json([
     try {
         $user = User::findOrFail($id); // Use findOrFail to automatically handle 404 if user is not found
 
-        $products = Product::where('user_id', $user->id)->get();
+        $products = Product::where('user_id', $user->id)
+                             ->where('quantity', '!=', 0)
+                             ->get();
 
         return response()->json([
             'status' => true,
@@ -511,7 +518,8 @@ public function searchProducts(Request $request) {
       ->orWhere('description', 'LIKE', "%{$search}%")
       ->orWhere('location', 'LIKE', "%{$search}%");
                
-   })->get();
+   }) ->where('quantity', '!=', 0)
+      ->get();
 
       
 
@@ -561,7 +569,8 @@ public function searchShopProducts(Request $request) {
                     ->orWhere('location', 'like', "%{$searchParams}%");
      
 
-   })->get();
+   })->where('quantity', '!=', 0)
+   ->get();
 
    return response()->json([
         'status' => true,
@@ -586,7 +595,10 @@ public function getProductLink(Request $request) {
 
  $id = $request->productId;
 
- $product = Product::with('user')->find($id);
+ $product = Product::with('user')
+                    ->where('id', $id)
+                    ->where('quantity', '!=', 0)
+                    ->first();
 
  if(!$product) {
     return response()->json([
@@ -630,7 +642,8 @@ public function getSharedProductDetails(Request $request) {
                        ->whereHas('user', function($query) use($shopToken) {
                         $query->where('shop_token', $shopToken);
 
-    })->first();
+    })->where('quantity', '!=', 0)
+      ->first();
 
     if(!$product) {
         return response()->json([
@@ -644,7 +657,9 @@ public function getSharedProductDetails(Request $request) {
 
     $userId = $product->user_id;
 
-    $otherProducts = Product::with('user')->where('user_id', $userId)->get();
+    $otherProducts = Product::with('user')
+                            ->where('quantity', '!=', 0)
+                            ->where('user_id', $userId)->get();
 
         return response()->json([
             'status' => true,
@@ -692,7 +707,8 @@ public function  storeProductEngagement(Request $request) {
    }
 
    $productId = $request->id;
-   $userId = $request->user_id;
+  // $userId = $request->user_id;
+  $userId = $request->user()->id;
 
   $engagement = ProductEngagementLog::create([
     'user_id' => $userId,
@@ -805,7 +821,9 @@ public function  storeProductEngagement(Request $request) {
 
         public function showProduct($id)
     {
-        $product = Product::findOrFail($id);
+        $product = Product::where('id', $id)
+                          ->where('quantity', '!=', 0)
+                          ->first();
         return view('other_frontend.product_des', compact('product'));
     }
 
@@ -815,7 +833,9 @@ public function  storeProductEngagement(Request $request) {
     public function getSellerDetails($productId)
     {
         // Find the product by ID
-        $product = Product::find($productId);
+        $product = Product::where('id', $productId)
+                          ->where('quantity', '!=', 0)
+                          ->first();
 
         if (!$product) {
             return response()->json(['error' => 'Product not found'], 404);
@@ -827,6 +847,7 @@ public function  storeProductEngagement(Request $request) {
         // Get other products by the same seller
         $otherProducts = Product::where('user_id', $seller->id)
                                 ->where('id', '!=', $productId)
+                                ->where('quantity', '!=', 0)
                                 ->get();
 
         return response()->json([
@@ -838,7 +859,9 @@ public function  storeProductEngagement(Request $request) {
 
     public function getProductsBySeller($sellerId)
 {
-    $products = Product::where('user_id', $sellerId)->get();
+    $products = Product::where('user_id', $sellerId)
+                       ->where('quantity', '!=', 0)
+                       ->get();
     return response()->json($products);
 }
 
@@ -856,7 +879,11 @@ public function  storeProductEngagement(Request $request) {
                 return response()->json(['message' => 'User not authenticated'], 401);
             }
 
-            $products = Product::with('user')->where('user_id', $user->id)->get();
+            $products = Product::with('user')
+                               ->where('user_id', $user->id)
+                               ->where('quantity', '!=', 0)
+                               ->get();
+                               
             return response()->json([
                     'status' => true,
                     'message' => 'Product Listed',

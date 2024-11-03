@@ -1,5 +1,7 @@
 import dayjs from 'https://unpkg.com/dayjs@1.11.10/esm/index.js';
 
+
+
 export function validationError(responseErrors) {
 
   let allErrors = [];
@@ -106,7 +108,7 @@ export function getIndexProfileImage(user, profileImageElement) {
 
 export function getDate(currentDate) {
 
-return   dayjs(currentDate).format('MMMM, YYYY');
+return   dayjs(currentDate).format('MMM, YYYY');
 
 }
 
@@ -142,7 +144,7 @@ return  user.photo_url ? `<img src="/uploads/users/${user.photo_url}" alt=".prof
 
 export function getProdProfileDescImg(product, element) {
 
-  const user = product.user;
+  const user = product.user ?? product ;
 
   return  user.photo_url ? element.src = `/uploads/users/${user.photo_url}` : element.src = `${generateAvatar(user.email)}`;
 
@@ -197,7 +199,8 @@ export  function logoutUser() {
 
 export function loadDashboard(product) {
 
- const user = product.user;
+ 
+ const user = product.user ?? product;
 
  //USING OBJECT DESTRUCTURING
  const{photo_url, email} = user;          
@@ -291,3 +294,191 @@ export function loadConnect(product) {
 }
 
 
+export  function loadName(name,email) {
+
+  return  `
+  <h6 class="name">${name ?? 'No Name Provided'}</h6>
+ <h6 class="mired-text fw-light ps-4">${email ?? 'No Email Provided'}</h6>
+ `;
+}
+
+
+
+export function getDropDownImg(photo_url, email, name) {
+
+
+    const img = photo_url 
+  ? `<img  class="img-fluid  js-profile" src="/uploads/users/${photo_url}" alt="" id="profileDropdownBtn">`
+  : `<img  class="img-fluid js-profile" src="${generateAvatar(email)}" alt="" id="profileDropdownBtn">`;
+
+const dropDownImg = photo_url 
+  ? `<img id="profile_image" class="js-profile"   src="/uploads/users/${photo_url}" alt="">` 
+  : ` <img id="profile_image" class="js-profile"  src="${generateAvatar(email)}" alt="">`;
+
+ const dropDown = `
+             ${img}
+            <div class="dropdown-menu" id="dropdownMenu">
+              <div class="container drop-struct">
+                ${dropDownImg}
+                <div class="ms-2 pt-1">
+                  <h6>${name ?? 'No Name Provided'}</h6>
+                  <h6 style="font-size: small;">${email ?? 'No Email Provided'}</h6>
+                </div>
+              </div>
+              <hr style="background-color: black; margin-left: 10px;margin-right: 10px;">
+              <div style="margin-top: -9px;">
+                <a href="/settings">Dashboard</a>
+                <a href="/refer">Refer A Friend</a>
+                <a href="/privacy">Privacy Policy</a>
+                <a id="log-out" href="#">Log Out</a>
+
+              </div>
+
+            </div>`;
+
+
+  return dropDown;
+
+
+
+
+}
+
+
+export function loadSidebar(user) {
+
+  //console.log(user)
+
+  const bioText = user.bio ?? '';
+  const previewLength = 100;
+
+  const visibleBio = bioText.slice(0, previewLength);
+  const hiddenBio = bioText.length > previewLength  ? bioText.slice(previewLength) : '';
+
+  const totalProduct = user ? user.length : null;
+
+
+
+  
+  const display = `
+   <div class="ms-2">
+        <h6 class="card-title">About me</h6>
+        <p  style="font-size: small; " class="card-text our-company">
+         ${visibleBio }
+        <span id="moreText" style="display: none;"> ${hiddenBio}.</span>
+          ${hiddenBio ? '<a href="#" id="readMoreBtn"> ......Read more</a>' : ''} 
+        </p>
+      </div>
+      <hr style="background-color: #343434;">
+      <div>
+        <div class="side-display">
+          <div>
+            <img width="10px" height="13px" src="/kaz/images/location.svg" alt="">
+            <span style="font-size: small;">From</span>
+          </div>
+          <h6 style="font-size: small;">${user.location ?? ''} Nigera</h6>
+        </div>
+        <div class="side-display">
+          <div>
+            <img width="15px" src="/kaz/images/profile.svg" alt="">
+            <span style="font-size: small;">Member since</span>
+          </div>
+          <h6 style="font-size: small;"> ${getDate(user.created_at)}</h6>
+
+        </div>
+        <div class="side-display">
+          <div>
+            <img width="15px" src="/kaz/images/product.svg" alt="">
+            <span style="font-size: small;">Listed products</span>
+          </div>
+          <h6 style="font-size: small;">${totalProduct ? totalProduct : 'N/A'}</h6>
+
+        </div>
+        <hr style="background-color: #343434;">
+      
+      </div> 
+      <div class="ms-2">
+        <h6 class="card-title">Reviews</h6>
+        <div class="js-stars">
+          <img src="/kaz/images/star-active.svg" class="img-fluid image-rate" width="15px" alt="">
+          <img src="/kaz/images/star-active.svg" class="img-fluid image-rate" width="15px" alt="">
+          <img src="/kaz/images/star-active.svg" class="img-fluid image-rate" width="15px" alt="">
+          <img src="/kaz/images/star-active.svg" class="img-fluid image-rate" width="15px" alt="">
+          <img src="/kaz/images/star-nill.svg" class="img-fluid image-rate" width="15px" alt=""> <span
+            style="font-size: small;">(4.5)</span>
+        </div>
+        <a class="view js-review" href="">View all</a>
+
+      </div>`;
+
+     const starEl = document.querySelector('.js-stars');
+
+
+      if(hiddenBio) {
+        var moreText = document.getElementById("moreText");
+        var readMoreBtn = document.getElementById("readMoreBtn");
+
+        // Function to close the accordion
+        function closeAccordion() {
+            moreText.style.display = "none";
+            readMoreBtn.textContent = ".......Read more";
+        }
+
+      
+      
+        // Toggle accordion on read more button click
+        readMoreBtn.addEventListener("click", function(e) {
+            e.preventDefault();
+            if (moreText.style.display === "none") {
+                moreText.style.display = "inline";
+                readMoreBtn.textContent = "Read less";
+            } else {
+                closeAccordion();
+            }
+        });
+      
+        // Close accordion when clicking outside of it
+        document.addEventListener("click", function(e) {
+            var isClickInsideAccordion = readMoreBtn.contains(e.target) || moreText.contains(e.target);
+            if (!isClickInsideAccordion) {
+                closeAccordion();
+            }
+        });
+
+
+
+      }
+    
+
+      
+
+     
+
+
+  
+    
+return  display;
+
+}
+
+
+export function loadAvgStars(averageRatings) {
+  
+  const avgRating = Math.floor(averageRatings);
+
+  let stars = '';
+
+  for (let i = 0; i < 5; i++) {
+
+    stars += i < avgRating  ? `<img src="/kaz/images/star-active.svg" class="img-fluid image-rate" width="15px" alt="">`
+                         :  ` <img src="/kaz/images/star-nill.svg" class="img-fluid image-rate" width="15px" alt="">`;
+
+
+
+  }
+
+  stars += `<span style="font-size: small;">(${avgRating})</span>`;
+
+  return stars;
+  
+}

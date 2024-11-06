@@ -7,6 +7,57 @@ const token = localStorage.getItem('apiToken');
 axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
 
 
+if(!token) {
+
+    document.querySelectorAll('.js-auth').forEach((unAuthEl) => {
+
+        if(unAuthEl) {
+
+            unAuthEl.addEventListener('click', (event) => {
+                event.preventDefault();
+                promptLogin();
+            });
+
+         }
+
+       
+
+    });
+
+  document.querySelectorAll('.js-default').forEach((defaultImg) => {
+
+    if(defaultImg) {
+
+        defaultImg.src = `/innocent/assets/image/avatar.svg`;
+
+    }
+
+  });
+
+
+ const guestDashboard =   ` <div class="profile_card_user_name">
+                <img class="mt-2" id="profile_image" src="/innocent/assets/image/avatar.svg" alt="Profile Image"
+                style="width: 50px; height:50px; border-radius:50px;">
+                <p id="profile_name">Guest User
+                </p>
+                <p><span id="profile_email">GuestUser@gmail.com</span></p>
+            </div>
+            <hr>
+            <div class="accont_features">
+                <p><a href="">Account Setting </a></p>
+                <p><a href=""> Reffer a Friend </a></p>
+                <p> <a href="">Privacy and Policy </a></p>
+                <p><a href="#" id="logoutLink">Log out</a></p>
+            </div>`;
+
+
+ document.querySelector('.js-guest').innerHTML = guestDashboard;
+
+
+}
+
+
+
 
 
 axios.get('/api/allproduct')
@@ -231,6 +282,7 @@ function updateUserProfile(user) {
     const profileImageElement = document.getElementById('profile_image');
     const profilePictureElement = document.getElementById('profile_picture');
     const profilePictureMobileElement = document.getElementById('profile_picture_mobile');
+    const userRequestEl = document.querySelector('.js-tell-us');
 
     if (user) {
         nameElement.innerHTML = `${user.username ?? 'No Username Provided'} <br>`;
@@ -239,6 +291,7 @@ function updateUserProfile(user) {
         getIndexProfileImage(user, profileImageElement);
         getIndexProfileImage(user, profilePictureElement);
         getIndexProfileImage(user, profilePictureMobileElement);
+        getIndexProfileImage(user, userRequestEl);
 
     
 
@@ -283,7 +336,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 const products = response.data.data;
                 localStorage.setItem('allProducts', JSON.stringify(products));
                 localStorage.setItem('categoryName', categoryName);
-                window.location.href = "/category_search";
+                window.location.href = `/category_search/search?category=${categoryId}`;
             })
             .catch(function (error) {
                 console.error('Error fetching products:', error);
@@ -309,23 +362,30 @@ document.querySelector('.js-send').addEventListener('click', () => {
 
  const shopNo =  document.querySelector('.js-input-value').value;
 
-    if (shopNo.trim()  === '' ) {
-
-        Swal.fire({
-                icon: 'error',
-                title: 'Verified Seller Shop',
-                text: 'Shop No Is Required', })
-
-    }else {
-
-        getVerifiedSellerShop(shopNo)
-
-   }
-
+  getVerifiedSellerShop(shopNo)
 
 });
 
+document.querySelector('.js-mobile-send').addEventListener('click', () => {
+
+    const shopNo = document.querySelector('.js-mobile-input').value;
+
+    getVerifiedSellerShop(shopNo);
+})
+
 function getVerifiedSellerShop(shopNo) {
+
+
+    if(shopNo.trim() === '') {
+
+    
+        Swal.fire({
+                icon: 'error',
+                title: 'Verified Seller Shop',
+                text: 'Shop No Is Required', });
+
+       return
+    }
 
     
     axios.get('/api/v1/verified-seller/details', {
@@ -387,36 +447,142 @@ function getVerifiedSellerShop(shopNo) {
 }
 
 
+document.querySelector('.js-change-to-input').addEventListener('click', () => {
+
+    if(!token) {
+        return
+    }
+    changeToInput() ;
+    
+})
 
 
 
-if(!token) {
+document.querySelector('.js-send-input').addEventListener('click', () => {
 
-  document.querySelectorAll('.js-start-selling').forEach((sellingPage) => {
+    if(!token) {
+        return
+    }
 
-    sellingPage.addEventListener('click', (event) => {
-        event.preventDefault();
-        promptLogin();
-        
+    send();
+
+    const input = document.querySelector('.js-tell-us-input').value;
+
+
+    axios.post('/api/v1/user/product-request', { input }, {
+        headers: {
+            'Content-type': 'application/json',
+        }
+    }).then((response) => {
+
+       // console.log(response);
+
+        if(response.status === 200 && response.data) {
+
+            const msg = response.data.message;
+
+            Swal.fire({
+                icon: 'success',
+                title: 'Product Request',
+                text: msg,
+            })
+
+            
+        }
+
+    }).catch((error) => {
+      //  console.log(error);
+
+        if(error.response) {
+
+            if(error.response.status === 422 && error.response.data) {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'validation Error',
+                    text: error.response.data.message,
+                })
+
+            }
+
+
+
+            if(error.response.status === 500) {
+
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Server Error',
+                    text: 'Something went wrong!! Please try again later'
+                })
+
+
+            }
+        }
+
     })
 
-  });
 
 
-  document.querySelector('.js-send').addEventListener('click', (event) => {
-    event.preventDefault()
-    promptLogin();
 
-  });
+});
 
 
-  document.querySelector('.js-search').addEventListener('click',(event) => {
-    event.preventDefault();
-    promptLogin();  
+function changeToInput() {
+    document.querySelector(".tell_us_paragraph").style.display="none"
+    document.querySelector(".tell_us_what_u_want_input_area").style.display="flex"
+    document.querySelector(".tell_us_input").focus();
+    document.querySelector(".tell_us_input").value="";
+  }
+  
+  function send() {
+    var inputText = document.querySelector(".tell_us_input").value.trim();
+    if (inputText === "") {
+      var myModal = new bootstrap.Modal(document.getElementById('tell_us_what_u_want_input_condition'));
+        myModal.show();
+    } else {
+      document.querySelector(".tell_us_what_u_want_input_area").style.display="none"
+      document.querySelector(".loader").style.display="block";
+      setTimeout(function(){
+        document.querySelector(".loader").style.display="none";
+        document.querySelector(".submmited").style.display="block";
+        setTimeout(function(){
+            document.querySelector(".submmited").style.display="none";
+            document.querySelector(".tell_us_paragraph").style.display="block";
+        }, 2000);
+      }, 2000);
+    }
+  }
 
-  })
 
-}
+
+
+
+// if(!token) {
+
+//   document.querySelectorAll('.js-start-selling').forEach((sellingPage) => {
+
+//     sellingPage.addEventListener('click', (event) => {
+//         event.preventDefault();
+//         promptLogin();
+        
+//     })
+
+//   });
+
+
+//   document.querySelector('.js-send').addEventListener('click', (event) => {
+//     event.preventDefault()
+//     promptLogin();
+
+//   });
+
+
+//   document.querySelector('.js-search').addEventListener('click',(event) => {
+//     event.preventDefault();
+//     promptLogin();  
+
+//   })
+
+// }
 
 
 

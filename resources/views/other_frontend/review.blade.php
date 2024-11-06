@@ -177,15 +177,15 @@
         </div>
         <div class="row">
           <div class="col-10 main-size mt-4">
-            <div class="ms-2 total-border">
-              <h6 class="fw-light ">Total Reviews</h6>
+            <div class="ms-2 total-border js-total">
+              {{-- <h6 class="fw-light ">Total Reviews</h6>
               <div class="mt-3" style="display: flex;align-items: center;">
                 <h6 class="no-text js-total-review">235</h6>
-                <div class="arrow-up ms-1">
+                <div class="arrow-up ms-1 js-arrow">
                   <i class="fa-solid fa-arrow-up"></i><span>3.2%</span>
                 </div>
               </div>
-              <h6 class="fw-light rate-break mt-2">Growth in review this year</h6>
+              <h6 class="fw-light rate-break mt-2">Growth in review</h6> --}}
             </div>
             <div>
               <h6 class="fw-light">Average Rating</h6>
@@ -199,7 +199,7 @@
                   <img width="10px" src="{{asset('kaz/images/Rate.png')}}" alt="">
                 </div> --}}
               </div>
-              <h6 class="fw-light rate-break mt-2">Average rating this year</h6>
+              <h6 class="fw-light rate-break mt-2">Average rating</h6>
             </div>
             <div class="js-break-down" >
               {{-- <div class="progress-5">

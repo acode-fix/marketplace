@@ -161,10 +161,13 @@
 
        const carousel = document.getElementById('js-carousel-img');
         getProdProfileDescImg(product, carousel);
-         
-        const {verify_status, badge_status} = product.user
+
+        const {verify_status, badge_status, id, shop_token} = product.user
        const badgeElement = document.querySelector('.js-badge');
        badgeElement.src = verify_status === 1 && badge_status === 1 ? 'innocent/assets/image/badge.png' : '';
+
+       const reviewEl = document.querySelector('.js-review');
+       reviewEl.href = `/review/product?user=${id}&shop=${shop_token}`
 
 
 
@@ -190,6 +193,7 @@
                          <img src="innocent/assets/image/Rate.png" alt="">
                          <span class="rate_value">loading</span>
                      </span>
+                     <span><a class="review-link ps-2 text-success" href="/review/product?user=${id}&shop=${shop_token}">Reviews</a></span>
                  </p>
              </div>
              <div class="products_details_head">
@@ -357,6 +361,8 @@
            document.querySelector('.stock').textContent = selectedProduct.stock + ' in stock';
            document.querySelector('.condition').textContent = selectedProduct.condition;
            document.querySelector('.user_state_mobile').textContent = selectedProduct.location;
+
+           
 
            if (selectedProduct.ask_for_price) {
                document.querySelector('.promo_price2').textContent = 'ASK FOR PRICE';

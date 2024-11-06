@@ -144,6 +144,10 @@ return  user.photo_url ? `<img src="/uploads/users/${user.photo_url}" alt=".prof
 
 export function getProdProfileDescImg(product, element) {
 
+  if(!product) {
+    return  element.src = `/innocent/assets/image/avatar.svg`;
+  }
+
   const user = product.user ?? product ;
 
   return  user.photo_url ? element.src = `/uploads/users/${user.photo_url}` : element.src = `${generateAvatar(user.email)}`;
@@ -199,7 +203,26 @@ export  function logoutUser() {
 
 export function loadDashboard(product) {
 
- 
+if (!product) {
+
+  const fallback = `<div class="profile_card_user_name">
+          <img class="avatar" src="/innocent/assets/image/avatar.svg" alt="">
+          <p>Guest User<br>
+            <span>GuestUser@gmail.com</span>
+          </p>
+        </div>
+        <hr>
+        <div class="accont_features">
+                <p>Account Setting </p>
+               <p> Reffer a Friend </p>
+                <p>Privacy and Policy </p>
+               <p> Sign out</p>
+
+        </div>`;
+
+    return    document.querySelector('.profile_card').innerHTML = fallback;
+}
+  
  const user = product.user ?? product;
 
  //USING OBJECT DESTRUCTURING
@@ -481,4 +504,18 @@ export function loadAvgStars(averageRatings) {
 
   return stars;
   
+}
+
+export function filter(locationElement, verifyElement,) {
+
+  const locationText = locationElement ? locationElement.textContent : ' ';
+  const verification = verifyElement ? verifyElement.checked : false;
+
+  const location = locationText.trim();
+  const verifyStatus = verification ? 1 : 0;
+
+
+  return {location, verifyStatus,};
+
+
 }

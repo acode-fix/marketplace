@@ -145,6 +145,10 @@ Route::post('/user/rating-details', [ReviewersController::class, 'Store']);
 Route::get('/user/review',[ReviewersController::class, 'loadReviewPage']);
 Route::get('/user/avg-rating', [ReviewersController::class, 'avgReview']);
 
+//ROUTE PRODUCT REQUEST;
+
+Route::post('/user/product-request', [UsersController::class, 'storeProductRequest']);
+
 
 
 
@@ -165,6 +169,7 @@ Route::get('/user/avg-rating', [ReviewersController::class, 'avgReview']);
 //product
 //Route::get('/allproduct', [ProductController::class, 'index']);
 Route::get('/product/filter', [ProductController::class, 'filterProducts']);
+Route::get('/product/category-filter', [ProductController::class, 'filterProductByCategory']);
 Route::post('/product', [ProductController::class, 'store']);
 Route::get('/product/user/{id}', [ProductController::class, 'showUser']);
 

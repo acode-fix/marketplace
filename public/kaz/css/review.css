@@ -390,3 +390,13 @@
   height:50px;
   border-radius:40px;
 }
+
+
+.mobile-text1 {
+  background-color: #ffe5e5;
+  font-size: 12px;
+  padding: 2px 4px 2px 4px;
+  color: #ff0000;
+  border-radius: 8px;
+
+}

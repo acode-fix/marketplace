@@ -164,7 +164,7 @@ async function getUnreadNotification(notifications) {
   const messagePromises = notifications.map(async (notification) => {
       const data = JSON.parse(notification.data);
 
-      console.log(data);
+     // console.log(data);
 
      // console.log(shopToken);
 
@@ -218,9 +218,14 @@ async function getUnreadNotification(notifications) {
 
 function notificationStatus(messages) {
 
-    document.querySelector('.indicator-span').innerHTML = messages.length;
+    if( document.querySelector('.indicator-span')) {
+
+      document.querySelector('.indicator-span').innerHTML = messages.length;
+
+    }
 
   //  console.log(messages.length)
+
   
     if(messages.length > 0 ) {
   

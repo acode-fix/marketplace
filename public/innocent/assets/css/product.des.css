@@ -1876,3 +1876,11 @@ z-index: 999999999999999999999999;
     height: 50px;
     width: 50px;
 }
+
+.review-link {
+    font-size: small;
+}
+.avatar {
+    width: 60px;
+}
+

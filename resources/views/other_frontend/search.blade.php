@@ -74,8 +74,8 @@
                 <p class="product_condition_p">Product Condition</p>
                 <div class="product_condition_desktop">
 
-                    <button class="button new js-button" data-filter-value = 'new' onclick="toggleButton(this)">New</button>
-                    <button class="button used js-button" data-filter-value = 'fairly_used' onclick="toggleButton(this)">Fairly Used</button>
+                    <button class="button new js-new" data-filter-value = 'new' onclick="toggleButton(this)">New</button>
+                    <button class="button used js-used" data-filter-value = 'fairly_used' onclick="toggleButton(this)">Fairly Used</button>
 
                     <!-- Button trigger modal -->
                     <div data-bs-toggle="modal" data-bs-target="#location_input_modal" class="clickMe_div">
@@ -153,8 +153,8 @@
 
 
                         <div class="filter_labels_mobile">Product Condition <br>
-                            <button class="button2 new2" onclick="toggleButton2(this)">New</button>
-                            <button class="button2 used2" onclick="toggleButton2(this)">Fairly Used</button>
+                            <button class="button2 new2  js-new-mobile" data-filter-value = 'new' onclick="toggleButton2(this)">New</button>
+                            <button class="button2 used2 js-used-mobile" data-filter-value = 'fairly_used' onclick="toggleButton2(this)">Fairly Used</button>
 
                         </div>
                         <div class="filter_labels_mobile"><span style="margin-left: 10px;">Location </span> <br>
@@ -175,7 +175,7 @@
                             verified seller</p>
                         <div style="margin-left: 10%;">
                             <label class="switch">
-                                <input type="checkbox">
+                                <input class="js-check-mobile" type="checkbox">
                                 <span class="slider"></span>
                             </label>
                         </div>

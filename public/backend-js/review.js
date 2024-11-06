@@ -29,13 +29,14 @@ if(token) {
       const totalReview = response.data.totalReview;
       const progress = response.data.rate;
       const reviewDetails = response.data.productReviews;
+      const percentChange = response.data.percentChange;
 
     
   
 
       authUser();
       getProducts(products,avgRating);
-      loadDashboardRating(avgRating, totalReview)
+      loadDashboardRating(avgRating, totalReview, percentChange)
       loadProgressBar(progress);
       loadReviewContent(reviewDetails);
   
@@ -150,12 +151,12 @@ if(token) {
 
   
 
-  function loadDashboardRating(avgRating, allReview) {
+  function loadDashboardRating(avgRating, allReview, percentChange) {
 
-    const totalReview = document.querySelector('.js-total-review');
+   // const totalReview = document.querySelector('.js-total-review');
     const starDisplay =  document.querySelector('.js-avg-rating');
 
-     totalReview.textContent = allReview;
+    // totalReview.textContent = allReview;
 
      const total = Math.floor(avgRating); 
 
@@ -181,6 +182,32 @@ if(token) {
 
         starDisplay.innerHTML = `<p class="no-rating">No ratings yet</p>`;
       }
+
+
+
+  const validatPercent = Math.sign(percentChange);
+
+
+   const  percetValue =   validatPercent === 1 ||  validatPercent === 0 
+                   ?  `<div class="arrow-up ms-1  js-arrow"> <i class="fa-solid fa-arrow-up"></i><span>${percentChange}%</span></div>`
+                   : `  <div class="arrow-up ms-1 mobile-text1 js-arrow "> <i class="fa-solid fa-arrow-down"></i><span>${percentChange}%</span></div>`;
+
+
+    const totalReview = `
+      <h6 class="fw-light ">Total Reviews</h6>
+          <div class="mt-3" style="display: flex;align-items: center;">
+            <h6 class="no-text js-total-review">${allReview}</h6>
+            ${percetValue}
+          </div>
+        <h6 class="fw-light rate-break mt-2">Growth in review</h6>`
+
+
+  document.querySelector('.js-total').innerHTML = totalReview;
+
+
+
+
+
 
   }
 

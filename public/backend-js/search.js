@@ -1,4 +1,4 @@
-import { getToken, getSingleImage, getBadge, getPrice } from "./helper/helper.js";
+import { getToken, getSingleImage, getBadge, getPrice, filter } from "./helper/helper.js";
 import { serverError } from "./admin/auth-helper.js";
 
 const token = getToken();
@@ -101,7 +101,7 @@ if(token) {
 
     if(products.length === 0) {
 
-      const text = `<p class="text-danger fs-5">Sorry No Match Was Found!!<p/>`
+      const text = `<p class="text-danger fs-5 text-center">Sorry No Match Was Found!!<p/>`
       document.querySelector('.js-display').innerHTML =  text;
 
 
@@ -169,29 +169,63 @@ if(token) {
 
  });
 
+
+ const newButton = document.querySelector('.js-new');
+ const usedButton =  document.querySelector('.js-used');
+ const verifyElement = document.querySelector('.js-check');
+
+ [newButton, usedButton, verifyElement].forEach((button) => {
+
+  if(button) {
+
+    button.addEventListener('click', () => {
+      
+        const condition = button.dataset.filterValue;
+     
+        const locationElement = document.getElementById('clickMe');
+        const verifyElement = document.querySelector('.js-check');
+     
+        const{location, verifyStatus}   =  filter(locationElement, verifyElement,);
+     
+        searchFilter(location, verifyStatus, condition);
+     
+    })
+  }
+
+ });
+
+
+ const mobileNewBtn = document.querySelector('.js-new-mobile');
+ const usedMobileBtn = document.querySelector('.js-used-mobile');
+ const verifyMobileEl = document.querySelector('.js-check-mobile');
+
+ [mobileNewBtn, usedMobileBtn, verifyMobileEl].forEach((button) => {
+
+  if(button) {
+
+    button.addEventListener('click', () => {
+      
+        const condition = button.dataset.filterValue;
+     
+        const locationElement = document.getElementById('clickMe2');
+        const verifyElement = document.querySelector('.js-check-mobile');
+     
+        const{location, verifyStatus}   =  filter(locationElement, verifyElement,);
+     
+        searchFilter(location, verifyStatus, condition);
+     
+    })
+  }
+
+
+ });
+
+
   
- document.querySelectorAll('.js-button').forEach((button) => {
 
-  button.addEventListener('click', () => {
-  const buttonValue = button.dataset.filterValue;
+  function searchFilter(location, verifyStatus, condition) {
 
-   filter(buttonValue);
-  });
-
-  });
-
-  const locationElement = document.getElementById('clickMe');
-  const verifyElement = document.querySelector('.js-check');
-
-  function filter(condition) {
-
-    const locationText = locationElement ? locationElement.textContent : ' ';
-    const verification = verifyElement ? verifyElement.checked : false;
-
-    const location = locationText.trim();
-    const verifyStatus = verification ? 1 : 0;
-
-   // console.log(condition + location + verifyStatus)
+    console.log(condition + location + verifyStatus)
 
     axios.get('/api/v1/product/filter', {
       params: {

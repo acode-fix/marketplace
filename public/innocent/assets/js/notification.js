@@ -17,8 +17,6 @@
 
 if(document.getElementById('notification_icon')) {
 
-
-
 document.getElementById('notification_icon').addEventListener('click', function(e) {
     e.stopPropagation();
     document.getElementById("notification_main").style.display = "block";

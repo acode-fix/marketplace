@@ -143,6 +143,23 @@ function updateUserProfile(user) {
                     });
 
 
+                 const reviewEL =  document.querySelector('.review-page');
+
+                 if(reviewEL) {
+
+                    reviewEL.addEventListener('click', (event) => {
+                        event.preventDefault();
+    
+                        window.location.href = `/review/product?user=${user.id}&shop=${user.shop_token}`;
+    
+                     });
+
+                 }
+
+
+                 
+
+
 
                     
                 

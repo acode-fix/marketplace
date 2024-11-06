@@ -44,6 +44,15 @@
             </span>
         </div>
     </div>
+    <div class="sidebar-link">
+        <div class="links {{ Request::is('review*') ? 'active-link clicked' : '' }}">
+            <span>
+                <a class="review-page" href="{{ url('/review') }}"> <img class="profile-logo" height="20px" width="17px"
+                        src="kaz/images/wallet.svg" alt=""> <span class="profile-text">Reviews</span></a>
+                
+            </span>
+        </div>
+    </div>
     <hr style="color: black;">
     <div class="sidebar-link">
         <div class="links {{ Request::is('privacy*') ? 'active-link clicked' : '' }}">
@@ -82,3 +91,4 @@
         </div>
     </div>
 </div>
+

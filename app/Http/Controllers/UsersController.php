@@ -9,6 +9,7 @@ use App\Models\ProductEngagementLog;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Auditlog;
+use App\Models\UserProductRequest;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Hash;
@@ -712,6 +713,59 @@ public function sendNotification(Request $request) {
 ], 200);
 
 }
+
+
+    public function storeProductRequest(Request $request) {
+
+        $validator = Validator::make($request->all(),[
+            'input' => 'required|string',
+
+        ]);
+
+        if($validator->fails()) {
+
+            return response()->json([
+                'status' => false,
+                'message' => 'Validation Failed',
+                'errors' => $validator->errors(),
+
+            ],422);
+        }
+
+
+        $user_id = $request->user()->id;
+
+
+    $storeRequest = UserProductRequest::create([
+
+                'user_id' => $user_id,
+                'request' => $request->input,
+                    
+
+        ]);
+
+
+
+        if($storeRequest) {
+
+            return response()->json([
+                'status' => true,
+                'message' => 'Request saved successfully'
+
+            ],200);
+        }
+
+
+
+        return response()->json([
+            'status' => false,
+            'message' => 'Request was not saved',
+
+        ],500);
+
+
+
+    }
 
 
 

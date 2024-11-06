@@ -5,6 +5,8 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
+
+
 class Review extends Model
 {
     use HasFactory;
@@ -28,16 +30,16 @@ class Review extends Model
          $totalRating = $reviews->sum('rate');
          $totalReview = $reviews->count();
 
-         $avgRating = $totalRating / $totalReview;
+         $avgRating = $totalRating > 0 ? ($totalRating / $totalReview ) : 0;
 
 
 
-         return $avgRating;
+         return    floor($avgRating);
         
     }
 
-
-   
+  
+ 
 
     // /**
     //  * Get the product that owns the review.

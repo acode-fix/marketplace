@@ -102,7 +102,7 @@ Route::get('/become', function () {
 Route::get('/bio', function () {
     return view('other_frontend.bio');
 });
-Route::get('/category_search', function () {
+Route::get('/category_search/{id}', function () {
     return view('other_frontend.category_search');
 });
 Route::get('/create_ads', function () {

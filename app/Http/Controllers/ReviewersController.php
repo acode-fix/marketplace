@@ -10,6 +10,7 @@ use App\Models\User;
 use Barryvdh\Debugbar\Facades\Debugbar;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Validator;
+use DateTime;
 
 
 class ReviewersController extends Controller
@@ -245,8 +246,71 @@ class ReviewersController extends Controller
 
 
     $productReviews = Product::with(['reviews', 'reviews.user'])->where('user_id', $userId)->get();
-  
-    //debugbar::info($totalReview, $totalRating, $averageRating, $products);
+
+        // Create a new DateTime object for the current date
+        $today = new DateTime();
+
+        // Clone the object to get the start of the previous week (Monday)
+        $startOfPreviousWeek = clone $today;
+        $startOfPreviousWeek->modify('monday last week');
+
+        // Clone the object to get the end of the previous week (Sunday)
+        $endOfPreviousWeek = clone $today;
+        $endOfPreviousWeek->modify('sunday last week');
+
+        // Format and display the dates
+        $firstDatePrevWeek = $startOfPreviousWeek->format('Y-m-d');
+        $lastDatePrevWeek = $endOfPreviousWeek->format('Y-m-d');
+
+
+        $today = new DateTime();
+
+        // Clone the object to get the start of the week (Monday)
+        $startOfWeek = clone $today;
+        $startOfWeek->modify('monday this week');
+
+        // Clone the object to get the end of the week (Sunday)
+        $endOfWeek = clone $today;
+        $endOfWeek->modify('sunday this week');
+
+        // Format and display the dates
+        $firstDateCurrWeek = $startOfWeek->format('Y-m-d');
+        $lastDateCurrWeek = $endOfWeek->format('Y-m-d');
+
+        $currentWeekReviews =  Review::where('user_id', $userId)
+                                     ->whereBetween('created_at', [$firstDateCurrWeek, $lastDateCurrWeek])
+                                     ->count();
+
+        $prevWeekReviews = Review::where('user_id', $userId)
+                                 ->whereBetween('created_at', [$firstDatePrevWeek, $lastDatePrevWeek])
+                                 ->count();
+
+
+        if($prevWeekReviews > 0) {
+
+          $reviewDifference =  $prevWeekReviews - $currentWeekReviews  ;
+          $percentChange = ( $reviewDifference / $prevWeekReviews ) * 100;
+
+
+        } else {
+
+             //If no previous week reviews
+            $percentChange = $currentWeekReviews > 0 ? 100 : 0;
+
+               
+        }
+
+        // If current week is less than previous week, set to negative change;
+       if ($currentWeekReviews < $prevWeekReviews) {
+
+            $reviewDifference =  $prevWeekReviews - $currentWeekReviews;
+            $percentChange = ($reviewDifference / $prevWeekReviews) * 100;
+        }
+        
+
+
+
+
 
       return response()->json([
         'status' => true,
@@ -254,6 +318,7 @@ class ReviewersController extends Controller
         'avgRating' => $averageRatingPerUser,
         'user' => $user,
         'totalReview' => $totalReview,
+        'percentChange' => $percentChange,
         'rate' => [1 => $star1, 
                    2 => $star2,
                    3 => $star3,
@@ -262,6 +327,7 @@ class ReviewersController extends Controller
         ]
 
       ],200);
+      
 
     }    else  {
 
@@ -352,36 +418,8 @@ class ReviewersController extends Controller
 
 
 
-}
+  }
 
-
-
-
-
-
-       
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    
 
 
 

@@ -142,6 +142,7 @@
                                     <img src="innocent/assets/image/Rate.png" alt="">
                                     <span class="rate_value">loading</span>
                                 </span>
+                                <span><a class="js-review review-link ps-2 text-success" href="">Reviews</a></span>
                             </p>
                         </div>
                         <div class="close_product_des"><a href="{{ url('/') }}"><i class="fa-solid fa-close "></i></a></div>

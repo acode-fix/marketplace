@@ -15,6 +15,8 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Log;
 use Illuminate\View\View;
 
+use function PHPUnit\Framework\isEmpty;
+
 class ProductController extends Controller
 {
 
@@ -208,6 +210,48 @@ public function filterProducts(Request $request)
 }
 
 
+public function filterProductByCategory(Request $request){
+
+    //debugbar::info($request->all());
+
+    $location = $request->location;
+    $condition = $request->condition;
+    $verifyStatus = $request->verifyStatus;
+
+    $query = Product::with('user')
+                    ->where('quantity', '!=', 0)
+                    ->where('category_id', $request->category)
+                    ->when($request->has('location'), function($q) use ($location) {
+                        $q->where('location',$location);
+                    })
+                    ->when($request->has('condition'), function($q) use ($condition) {
+                        $q->where('condition', $condition);
+
+                    })
+                    ->when($request->has('verifyStatus'), function($q) use ($verifyStatus) {
+                        $q->whereHas('user', function($q) use ($verifyStatus) {
+                            $q->where('verify_status', $verifyStatus);
+
+                        });
+                    });
+
+    $products = $query->get();
+
+
+    return response()->json([
+        'status' => true,
+        'message' => 'Product Category Filtered Successfully',
+        'products' => $products,
+
+    ],200);
+
+
+    
+
+
+}
+
+
     /**
      * Store a newly created resource in storage.
      */
@@ -266,7 +310,7 @@ public function filterProducts(Request $request)
             'condition' => $request->condition,
             'ask_for_price' => $request->ask_for_price,
             'image_url.*' => json_encode([]), // Initialize with an empty array
-]);
+     ]);
 
 // dd($product);
 

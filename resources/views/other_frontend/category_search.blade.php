@@ -65,7 +65,7 @@
              <!-- Filter Section -->
              <div class="filter_section">
                 <p>
-                    <img src="innocent/assets/image/filter.png" alt="">
+                    <img src="{{asset('innocent/assets/image/filter.png')}}" alt="">
                     <p  class="filter">Filter</p>
                     <p class="filter_line"></p>
 
@@ -86,8 +86,8 @@
             <p class="product_condition_p">Product Condition</p>
             <div  class="product_condition_desktop">
 
-                <button class="button new" onclick="toggleButton(this)">New</button>
-                <button class="button used" onclick="toggleButton(this)">Fairly Used</button>
+                <button class="button new js-new" data-filter-value = 'new' onclick="toggleButton(this)">New</button>
+                <button class="button used js-used" data-filter-value = 'fairly_used' onclick="toggleButton(this)">Fairly Used</button>
 
                  <!-- Button trigger modal -->
                  <div  data-bs-toggle="modal" data-bs-target="#location_input_modal" class="clickMe_div" >
@@ -102,7 +102,7 @@
 
                     <p>verified seller</p>
                     <label class="switch">
-                        <input type="checkbox">
+                        <input  class="js-check" type="checkbox">
                         <span class="slider"></span>
                     </label>
                 </div>
@@ -255,7 +255,7 @@
     <!-- Footer Section -->
     <div class="footer_contanier">
         <div>
-            <img src="logo.png" alt="">
+            <img src=" {{asset('innocent/assets/image/logo.png')}}" alt="">
         </div>
         <nav class="footer_links">
             <a href="">About Us</a>
@@ -283,7 +283,7 @@
                     <span class="close_modal_content_signup_login" data-bs-dismiss="modal" aria-label="Close">&times;</span>
                     <h5 id="sign_up">Sign Up</h5>
                     <p>Welcome to</p>
-                    <img src="innocent/assets/image/logo.png" alt="">
+                    <img src="{{asset('innocent/assets/image/logo.png')}}" alt="">
                     <!-- Sign Up Form -->
 
                     <div class="form-group">
@@ -307,10 +307,10 @@
                     <hr>
                     <div class="auth_icons">
                         <div class="facebook_icon" style="cursor: pointer;">
-                            <img src="innocent/assets/image/Facebook Logo.png" alt="">
+                            <img src="{{ asset('innocent/assets/image/Facebook Logo.png')}}" alt="">
                         </div>
                         <div class="gmail_icon" style="cursor: pointer;">
-                            <img src="innocent/assets/image/gmail.png" alt="">
+                            <img src="{{ asset('innocent/assets/image/gmail.png') }}" alt="">
                         </div>
                     </div>
                     <p>Already have an account? <a href="#" onclick="login()" class="signup_links">Login</a></p>
@@ -325,7 +325,7 @@
                     <span class="close_modal_content_signup_login" data-bs-dismiss="modal" aria-label="Close">&times;</span>
                     <h5 id="sign_up">Log in</h5>
                     <p>Welcome back to</p>
-                    <img src="innocent/assets/image/logo.png" alt="">
+                    <img src=" {{asset('innocent/assets/image/logo.png')}}" alt="">
                     <!-- Login Form -->
 
                     <div class="form-group">
@@ -343,10 +343,10 @@
                     <hr>
                     <div class="auth_icons">
                         <div class="facebook_icon" style="cursor: pointer;">
-                            <img src="innocent/assets/image/Facebook Logo.png" alt="">
+                            <img src="{{ asset('innocent/assets/image/Facebook Logo.png') }}" alt="">
                         </div>
                         <div class="gmail_icon" style="cursor: pointer;">
-                            <img src="innocent/assets/image/gmail.png" alt="">
+                            <img src="{{asset('innocent/assets/image/gmail.png')}}" alt="">
                         </div>
                     </div>
                     <button class="signup_continue_button continueBtn">continue</button>
@@ -516,86 +516,10 @@
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 
     <script>
-document.addEventListener('DOMContentLoaded', function () {
-    const products = JSON.parse(localStorage.getItem('allProducts'));
-    const categoryName = localStorage.getItem('categoryName');
-    const categoryTitle = document.getElementById('categoryTitle');
-    const productCardDisplay1 = document.getElementById('productCardDisplay');
-    const productCardDisplay2 = document.getElementById('productCardDisplay2');
 
-    categoryTitle.innerText = categoryName;
-    renderProducts(products);
-
-
-    function renderProducts(products) {
-       productCardDisplay1.innerHTML = ''; // Clear the container first
-         productCardDisplay2.innerHTML = ''; // Clear the container first
-
-
-        products.forEach(function (product, index) {
-            // Render product card
-        const card = createProductCard(product);
-
-            // Insert product into appropriate container
-            if (index < 8) {
-                productCardDisplay1.appendChild(card);
-            } else {
-                productCardDisplay2.appendChild(card);
-            }
-
-        });
-
-    }
-
-    function createProductCard(product) {
-        const card = document.createElement('div');
-        card.className = 'card';
-
-        let product_img_url = '';
-        JSON.parse(product.image_url).forEach((el, i) => {
-            if (i === 0) product_img_url = el;
-        });
-
-        //console.log(product);
-
-         const badge = product.user.verify_status === 1  ? `<img class="logo-bag" src="kaz/images/badge.png" alt="">` : `<img src="innocent/assets/image/logo icon.svg" alt="">`;
-
-        card.innerHTML = `
-            <a href="{{ url('/product_des') }}" class="product_card_link" data-product='${JSON.stringify(product)}'>
-                            <div class="card product_card">
-                                <h6 class="sold"> Sold ${product.sold || 0} <br> <img src="innocent/assets/image/Rate.png" alt=""> ${product.rating || 0}</h6>
-                                <img src="uploads/products/${product_img_url || 'default.jpg'}" class="card-img-top w-100 product_image" alt="${product.title}">
-                                <div class="product_card_title">
-                                    <div class="main_and_promo_price_area">
-                                        ${
-                                            product.ask_for_price
-                                            ? '<p class="ask-for-price" style="color:red; padding-right: 2px; font-size:23px">Ask for price</p>'
-                                            : `
-                                                <p class="promo_price">$${product.promo_price || ''}</p>
-                                                <div class="main_price"><p class="main_price_amount">$${product.actual_price || ''}</p></div>
-                                            `
-                                        }
-                                    </div>
-                                    <p class="product_name">${product.title}</p>
-                                    <span class="product_card_location"><i class="fa-solid fa-location-dot"></i> ${product.location}</span>
-                                    ${badge}
-                                    <span class="connect"><strong>connect</strong></span>
-                                </div>
-                            </div>
-                        </a>
-
-        `;
-
-        card.querySelector('.product_card_link').addEventListener('click', function (event) {
-            event.preventDefault();
-            localStorage.setItem('selectedProduct', this.getAttribute('data-product'));
-            window.location.href = this.href;
-        });
-
-        return card;
-    }
-});
 </script>
+
+<script type="module" src="{{asset('backend-js/category-search.js')}}"></script>
 
 
 

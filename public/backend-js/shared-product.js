@@ -22,7 +22,7 @@ import { getToken, getProdDesImage, getProdProfileDescImg, loadDashboard,logoutU
 
       loadCarousel(singleProduct);
       getCarouselImg(singleProduct);
-      updateUserProfile(singleProduct);
+      updateUserProfile();
 
       //console.log(singleProduct);
        const {verify_status, badge_status} = singleProduct.user;
@@ -90,6 +90,7 @@ import { getToken, getProdDesImage, getProdProfileDescImg, loadDashboard,logoutU
                       5.0
                   </span >
               </span>
+               <span><a class="review-link js-link ps-2 text-success" href="">Reviews</a></span>
           </p> 
           <div class="close_product_des"><a href="{{ url('/') }}"><i class="fa-solid fa-close "></i></a></div>
       </div>
@@ -172,7 +173,17 @@ import { getToken, getProdDesImage, getProdProfileDescImg, loadDashboard,logoutU
 
     connectBtn.addEventListener('click', (event) => {
       event.preventDefault();
-      loadConnect(product);
+
+      const auth = getToken();
+
+      if(auth) {
+
+        loadConnect(product);
+
+      }
+
+    
+      
       
     })
 
@@ -190,6 +201,7 @@ import { getToken, getProdDesImage, getProdProfileDescImg, loadDashboard,logoutU
                     5.0
                 </span >
             </span>
+             <span><a class="review-link js-link ps-2 text-success" href="">Reviews</a></span>
         </p> 
         <div class="products_details_head">
             <p class="sold2">
@@ -205,9 +217,40 @@ import { getToken, getProdDesImage, getProdProfileDescImg, loadDashboard,logoutU
             </p>
      </div>`;
 
+  
      document.querySelector('.js-user-info').innerHTML = mobileHeader;
 
+     const reviewLinks = document.querySelectorAll('.js-link');
+
+     reviewLinks.forEach((link) => {
+      if(link) {
+        link. addEventListener('click', (event) => {
+          event.preventDefault();
+    
+          const token = localStorage.getItem('apiToken');
+
+  
+          if(!token) {
+
+            getToken();
+            
+          } else {
+
+            window.location.href = `/review/product?user=${user.id}&shop=${user.shop_token}`;
+          }
+         })
+      }
+
+     })
+     
+    
+
   }
+
+
+
+
+
 
 
   function getCarouselImg(product) {
@@ -292,48 +335,83 @@ import { getToken, getProdDesImage, getProdProfileDescImg, loadDashboard,logoutU
 
   }
 
-  function updateUserProfile(product) {
-
  
 
+  function updateUserProfile() {
+
    const imgDesk = document.getElementById('js-profile-desk');
-   const imgMobile =  document.getElementById('js-profile-mobile');
+   
+   const token = localStorage.getItem('apiToken');
 
-   getProdProfileDescImg(product, imgDesk);
-   //getProdProfileDescImg(product, imgMobile);
+  // console.log(token);
 
-   loadDashboard(product)
-
-   document.getElementById('logout-link').addEventListener('click', () => {
-
-    const auth = getToken();
-
-    if(auth) {
-
-    
-
-        Swal.fire({
-          title: "Are you sure?",
-          text: "You won't be able to revert this!",
-          icon: "warning",
-          showCancelButton: true,
-          confirmButtonColor: "#3085d6",
-          cancelButtonColor: "#d33",
-          confirmButtonText: "Yes,I am sure!"
-          }).then((result) => {
-          if (result.isConfirmed) {
-            logoutUser();
-            
-          }
-      });
-
-    }
+  if(token) {
   
-  })
+    axios.get('/api/v1/getuser', {
+      headers : {
+        'Authorization': `Bearer ${token}`
+      }
+    }).then((response) => {
+      console.log(response);
+
+      if(response.status === 200 && response.data) {
+
+        const authData = response.data;
+
+        loadDashboard(authData);
+        getProdProfileDescImg(authData, imgDesk);
+
+        document.getElementById('logout-link').addEventListener('click', () => {
+
+          const auth = getToken();
+      
+          if(auth) {
+      
+          
+      
+              Swal.fire({
+                title: "Are you sure?",
+                text: "You won't be able to revert this!",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#3085d6",
+                cancelButtonColor: "#d33",
+                confirmButtonText: "Yes,I am sure!"
+                }).then((result) => {
+                if (result.isConfirmed) {
+                  logoutUser();
+                  
+                }
+            });
+      
+          }
+        
+        })
+        
+
+      }
+
+    }).catch((error) => {
+      console.log(error);
+
+    })
+  } else {
+
+    const unAuthUser = null;
+
+    loadDashboard(unAuthUser);
+    getProdProfileDescImg(unAuthUser, imgDesk);
 
 
 
+  }
 
+
+  
+
+   
+
+  
   }
 
 

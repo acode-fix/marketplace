@@ -35,17 +35,17 @@
     <div id="index">
         <!-- Navbar and Search Button -->
         <div class="navbar-1 fixed-top">
-            <img  src="innocent/assets/image/main logo.svg" class="buy_and_sell_logo" alt="" data-bs-toggle="modal" data-bs-target="#signup_login-modal">
+           <img src="innocent/assets/image/main logo.svg" class="buy_and_sell_logo js-logo" alt="" data-bs-toggle="modal" data-bs-target="#signup_login-modal">
             <div class="search-bar">
                 <div class="location-icon"><i class="fa-solid fa-location-dot"></i></div>
                 <select placeholder="Country" class="country-input">
-                    <option selected>USA</option>
-                    <option value="1">Canada</option>
+                    {{-- <option selected>USA</option>
+                    <option value="1">Canada</option> --}}
                     <option value="2">Nigeria</option>
-                    <option value="3">Russia</option>
+                    {{-- <option value="3">Russia</option> --}}
                 </select>
                 <div class="vertical-bar"></div>
-                <a class="js-search" href="{{ url('/search') }}">
+                <a class="js-auth" href="{{ url('/search') }}">
                     <span onclick="localStorage.setItem('previousPage', '{{ url('/') }}')">
                         <input type="text" placeholder="Find what to buy..." class="find-what-to-buy">
                         <button type="button" class="search">Search</button>
@@ -54,18 +54,18 @@
             </div>
             <div  id="notification_icon_div"><img class="notification-icon" src="innocent/assets/image/notification.svg" alt="Logo"
                     id="notification_icon"></div>
-            <div  id="notification_icon_div2"> <a href="{{ url('/notification_mobile') }}"><img
-                        src="innocent/assets/image/notification.png" alt="Logo"></a></div>
+            <div  id="notification_icon_div2"> <a href="{{ url('/notification_mobile') }}"><img class="notification-icon js-auth"
+                        src="innocent/assets/image/notification.svg" alt="Logo"></a></div>
 
-            <div><img id="profile_picture" src="" alt=".profile picture " class="profile_picture"></div>
+            <div><img id="profile_picture" src="" alt=".profile picture " class="profile_picture mt-2 js-default"></div>
             <a href="{{ url('/settings') }}">
                 <img id="profile_picture_mobile" src="" alt=".profile picture "
-                    class="profile_picture_mobile"></a>
+                    class="profile_picture_mobile js-default"></a>
 
         </div>
 
         <!-- prifile card -->
-        <div class="profile_card">
+        <div class="profile_card js-guest">
             <div class="profile_card_user_name">
                 <img class="mt-2" id="profile_image" src="" alt="Profile Image"
                 style="width: 50px; height:50px; border-radius:50px;">
@@ -121,7 +121,7 @@
 
                 </div>
             </div>
-            <a href="{{ url('/start_selling') }}" class="start-selling js-start-selling">
+            <a href="{{ url('/start_selling') }}" class="start-selling js-auth">
                 <p class="do_you">Do you have <br> anything to sell?</p>
                 <img src="innocent/assets/image/logo icon.svg" alt="" style="width: 60px;">
                 <p class="start_selling_p2">Start Selling</p>
@@ -182,7 +182,7 @@
                     </div>
                 </div>
                 <!-- <a href="start_selling.html"><img src="innocent/assets/image/Start selling 3.png" alt="" class="start_selling_filter"></a> -->
-                <a href="{{ url('/start_selling') }}" class="start_selling_div js-start-selling">
+                <a href="{{ url('/start_selling') }}" class="start_selling_div js-auth">
                     <img src="innocent/assets/image/logo icon.svg" alt="">
                     <p class="start_selling_p">
                         <span class="start_selling_span"> do you have anything to sell</span><br>
@@ -196,20 +196,20 @@
 
 
 
-                <div id="shop_number_mobile_icon" class="shop_number_mobile_icon" onclick="enter_shop_no_mobile()"><img
+                <div id="shop_number_mobile_icon" class="shop_number_mobile_icon js-auth" onclick="enter_shop_no_mobile()"><img
                         src="innocent/assets/image/shop.svg" alt=""></div>
                 <div id="shop_number_mobile" class="shop_number_mobile">
                     <i class="fa-solid fa-close close_shop_no" onclick=" return_enter_shop_no_mobile()"></i>
 
-                    <input type="text" class="form-control js-shop-no" id="shop_no_input_mobile" placeholder="enter shop no ">
+                    <input type="text" class="form-control js- mobile-input" id="shop_no_input_mobile" placeholder="enter shop no ">
 
-                    <img class="" src="innocent/assets/image/send 3.svg" alt="" id="send"
+                    <img class="js-mobile-send" src="innocent/assets/image/send 3.svg" alt="" id="send"
                         onclick=" return_enter_shop_no_mobile()">
                         
                 </div>
 
 
-                <div id="shop_no_dekstop" class="shop" onclick="enter_shop_no()"><img
+                <div id="shop_no_dekstop" class="shop js-auth" onclick="enter_shop_no()"><img
                         src="innocent/assets/image/shop.svg" alt=""></div>
                 <div id="shop_no_dekstop2" class="shop3">
                 
@@ -232,56 +232,56 @@
 
                 <div class="category_mobile">
                     <!-- Category Images -->
-                    <a href="#" class="category-link" data-category-id="1" data-category-name="Gadgets">
+                    <a href="#" class="category-link js-auth" data-category-id="1" data-category-name="Gadgets">
                         <div class="image2">
                             <img src="innocent/assets/image/category 1.png">
                             <div class="text2">Gadgets</div>
                         </div>
                     </a>
-                    <a href="#" class="category-link" data-category-id="2" data-category-name="Vehicles">
+                    <a href="#" class="category-link js-auth" data-category-id="2" data-category-name="Vehicles">
                         <div class="image2">
                             <img src="innocent/assets/image/category 2.png">
                             <div class="text2">Vehicles</div>
                         </div>
                     </a>
-                    <a href="#" class="category-link" data-category-id="3" data-category-name="Houses">
+                    <a href="#" class="category-link js-auth" data-category-id="3" data-category-name="Houses">
                         <div class="image2">
                             <img src="innocent/assets/image/category 3.png">
                             <div class="text2">Houses</div>
                         </div>
                     </a>
-                    <a href="#" class="category-link" data-category-id="4" data-category-name="Fashion">
+                    <a href="#" class="category-link js-auth" data-category-id="4" data-category-name="Fashion">
                         <div class="image2">
                             <img src="innocent/assets/image/category 4.png">
                             <div class="text2">Fashion</div>
                         </div>
                     </a>
-                    <a href="#" class="category-link" data-category-id="5" data-category-name="Jobs">
+                    <a href="#" class="category-link js-auth" data-category-id="5" data-category-name="Jobs">
                         <div class="image2">
                             <img src="innocent/assets/image/category 5.png">
                             <div class="text2">Jobs</div>
                         </div>
                     </a>
-                    <a href="#" class="category-link" data-category-id="6" data-category-name="Cosmetics">
+                    <a href="#" class="category-link js-auth" data-category-id="6" data-category-name="Cosmetics">
                         <div class="image2">
                             <img src="innocent/assets/image/category 6.png">
                             <div class="text2">Cosmetics</div>
                         </div>
                     </a>
-                    <a href="#" class="category-link" data-category-id="7" data-category-name="Fruits">
+                    <a href="#" class="category-link js-auth" data-category-id="7" data-category-name="Fruits">
                             <div class="image2">
                                 <img src="innocent/assets/image/category 7.png">
                                 <div class="text2">Fruits</div>
                             </div>
                         </a>
-                        <a href="#" class="category-link" data-category-id="8" data-category-name="Kitchen Utensils">
+                        <a href="#" class="category-link js-auth" data-category-id="8" data-category-name="Kitchen Utensils">
                             <div class="image2">
                                 <img src="innocent/assets/image/category 8.png">
                                 <div class="text2">Kitchen utensils</div>
                             </div>
                         </a>
                         <div class="others_mobile">
-                            <a href="#" class="category-link" data-category-id="9" data-category-name="Others" class="others_mobile_link">
+                            <a href="#" class="category-link js-auth" data-category-id="9" data-category-name="Others" class="others_mobile_link">
                                 <div>
 
                                     <p>others</p>
@@ -298,55 +298,55 @@
                     <div class="category_desktop_arrow"><i class="fa-solid fa-circle-arrow-left " id="leftArrow"></i></div>
                     <div class="category_desktop" id="imageGallery">
                         <!-- Category Images Gallery -->
-                        <a href="#" class="category-link" data-category-id="1" data-category-name="Gadgets">
+                        <a href="#" class="category-link js-auth" data-category-id="1" data-category-name="Gadgets">
                             <div class="image">
                                 <img src="innocent/assets/image/category 1.png">
                                 <div class="text">Gadgets</div>
                             </div>
                         </a>
-                        <a href="#" class="category-link" data-category-id="2" data-category-name="Vehicles">
+                        <a href="#" class="category-link js-auth" data-category-id="2" data-category-name="Vehicles">
                             <div class="image">
                                 <img src="innocent/assets/image/category 2.png">
                                 <div class="text">Vehicles</div>
                             </div>
                         </a>
-                        <a href="#" class="category-link" data-category-id="3" data-category-name="Houses">
+                        <a href="#" class="category-link js-auth" data-category-id="3" data-category-name="Houses">
                             <div class="image">
                                 <img src="innocent/assets/image/category 3.png">
                                 <div class="text">Houses</div>
                             </div>
                         </a>
-                        <a href="#" class="category-link" data-category-id="4" data-category-name="Fashion">
+                        <a href="#" class="category-link js-auth" data-category-id="4" data-category-name="Fashion">
                             <div class="image">
                                 <img src="innocent/assets/image/category 4.png">
                                 <div class="text">Fashion</div>
                             </div>
                         </a>
-                        <a href="#" class="category-link" data-category-id="5" data-category-name="Jobs">
+                        <a href="#" class="category-link js-auth" data-category-id="5" data-category-name="Jobs">
                             <div class="image">
                                 <img src="innocent/assets/image/category 5.png">
                                 <div class="text">Jobs</div>
                             </div>
                         </a>
-                        <a href="#" class="category-link" data-category-id="6" data-category-name="Cosmetics">
+                        <a href="#" class="category-link js-auth" data-category-id="6" data-category-name="Cosmetics">
                             <div class="image">
                                 <img src="innocent/assets/image/category 6.png">
                                 <div class="text">Cosmetics</div>
                             </div>
                         </a>
-                        <a href="#" class="category-link" data-category-id="7" data-category-name="Fruits">
+                        <a href="#" class="category-link js-auth" data-category-id="7" data-category-name="Fruits">
                             <div class="image">
                                 <img src="innocent/assets/image/category 7.png">
                                 <div class="text">Fruits</div>
                             </div>
                         </a>
-                        <a href="#" class="category-link" data-category-id="8" data-category-name="Kitchen Utensils">
+                        <a href="#" class="category-link js-auth" data-category-id="8" data-category-name="Kitchen Utensils">
                             <div class="image">
                                 <img src="innocent/assets/image/category 8.png">
                                 <div class="text">Kitchen Utensils</div>
                             </div>
                         </a>
-                        <a href="#" class="category-link" data-category-id="9" data-category-name="Others" class="link">
+                        <a href="#" class="category-link js-auth" data-category-id="9" data-category-name="Others" class="link">
                             <div class="image others">
                                 <p>Others</p>
                             </div>
@@ -356,7 +356,7 @@
                 </div>
 
 
-                <a href="{{ url('/start_selling') }}">
+                <a class="js-auth" href="{{ url('/start_selling') }}">
                     <div class="startselling2">
                         <img src="innocent/assets/image/logo icon.svg" alt="">
                         <p>Start Selling</p>
@@ -575,8 +575,8 @@
                 </div>
 
                 <!--tell us what is it-->
-                <div class="tell_us_what_u_want animate animate-left ">
-                    <p class="tell_us_paragraph" onclick="changeToInput()">
+                <div  class="tell_us_what_u_want animate animate-left  js-auth">
+                    <p class="tell_us_paragraph js-change-to-input js-auth" >
                         <img src="innocent/assets/image/pen.png" alt="" class="pen">
                         Can't find what you are looking for?
                         <span>Tell us what it is!</span><br>
@@ -585,10 +585,10 @@
                 </div>
 
                 <div class="tell_us_what_u_want_input_area">
-                    <img src="innocent/assets/image/dp.png" alt="" class="tell_us_what_u_want_profile">
+                    <img src="innocent/assets/image/dp.png" alt="" class="tell_us_what_u_want_profile js-tell-us">
                     <div class="vertical_bar"></div>
-                    <input type="text" name="" class="tell_us_input" placeholder="write the details here">
-                    <button class="send" onclick="send()">send</button>
+                    <input type="text" name="details" class="tell_us_input js-tell-us-input" placeholder="write the details here">
+                    <button class="send js-send-input js-auth">send</button>
 
                 </div>
                 <p class="submmited">submmited✅</p>
@@ -1072,377 +1072,7 @@
 
  <script  src="{{ asset('backend-js/user/auth.js') }}"></script>
  <script type="module" src="{{ asset('backend-js/index.js') }}"></script>
-
-
-    {{-- AXIOUS JAVASCRIPT --}}
-    <script>
-/*
-axios.get('/api/allproduct')
-
-.then(function (response) {
-    const products = response.data;
-
-   // console.log(products);
-    localStorage.setItem('allProducts', JSON.stringify(products));
-    renderProductsAndSections(products);
-})
-.catch(function (error) {
-    console.log(error);
-});
-
-const token = localStorage.getItem('apiToken');
-
-//THIS IS FOR PRODUCTS
-function applyFilter() {
-
-    if(!token) {
-
-        promptLogin();
-    }
-    
-
-    const locationFilter = document.getElementById('clickMe').innerText.trim();
-    const verifiedSeller = document.getElementById('verifiedSeller').checked;
-
-    let condition = '';
-    const conditionButton = document.querySelector('.product_condition_desktop .button.clicked');
-
-    if (conditionButton) {
-
-       conditionButtonValue = conditionButton.getAttribute('data-value');
-       condition = conditionButtonValue.trim().toLowerCase();
-       
-    }
-
-    const filters = {
-        condition: condition,
-        location: locationFilter,
-        verifiedSeller: verifiedSeller
-    };
-
-    console.log('Filters applied:', filters);
-
-    axios.get('/api/v1/product/filter', { params: filters })
-        .then(function (response) {
-            const products = response.data;
-            renderProductsAndSections(products);
-        })
-        .catch(function (error) {
-            console.error('Error fetching filtered products:', error);
-        });
-}
-
-// Function to handle condition button toggle
-function toggleButton(button) {
-    if(!token) {
-        promptLogin();
-    }
-
-
-    document.querySelectorAll('.product_condition_desktop .button').forEach(btn => btn.classList.remove('clicked'));
-    button.classList.add('clicked');
-    applyFilter();
-}
-
-
-document.addEventListener('DOMContentLoaded', function () {
-    
-
-    document.querySelectorAll('.product_condition_desktop .button').forEach(button => {
-        button.addEventListener('click', function() {  
-            if(!token) {
-                promptLogin();
-            }
-
-            toggleButton(this);
-        });
-    });
-
-    document.getElementById('verifiedSeller').addEventListener('change', function() {
-        if(!token) {
-
-           promptLogin();
-        }
-
-        applyFilter();
-    });
-
-    document.getElementById('clickMe').addEventListener('input', function() {
-        if(!token) {
-
-        promptLogin();
-    }
-        applyFilter();
-    });
-});
-
-
-function renderProductsAndSections(products) {
-    const productCardDisplay1 = document.getElementById('productCardDisplay');
-    const productCardDisplay2 = document.getElementById('productCardDisplay2');
-
-    productCardDisplay1.innerHTML = ''; // Clear the container first
-    productCardDisplay2.innerHTML = ''; // Clear the container first
-
-    products.forEach((product, index) => {
-        // Render product card
-
-        console.log(product)
-        const card = createProductCard(product);
-
-        // Insert product into appropriate container
-        if (index < 9) {
-            productCardDisplay1.appendChild(card);
-        } else {
-            productCardDisplay2.appendChild(card);
-        }
-    });
-}
-
-function createProductCard(product) {
-
-    const card = document.createElement('div');
-            card.className = 'card';
-
-    let product_img_url = '';
-    JSON.parse(product.image_url).forEach((el, i) => {
-        if (i === 0) product_img_url = el;
-    });
-
-    card.innerHTML = `
-        <a href="{{ url('/product_des') }}" class="product_card_link" data-product='${JSON.stringify(product)}'>
-            <div class="card product_card">
-                <h6 class="sold"> Sold ${product.sold || 0} <br> <img src="innocent/assets/image/Rate.png" alt=""> ${product.rating || 0}</h6>
-                <img src="uploads/products/${product_img_url || 'default.jpg'}" class="card-img-top w-100 product_image" alt="${product.title}">
-                <div class="product_card_title">
-                    <div class="main_and_promo_price_area">
-                        ${
-                            product.ask_for_price
-                            ? '<p class="ask-for-price" style="color:red; padding-right: 2px; font-size:23px">Ask for price</p>'
-                            : `
-                                <p class="promo_price">$${product.promo_price || ''}</p>
-                                <div class="main_price"><p class="main_price_amount">$${product.actual_price || ''}</p></div>
-                            `
-                        }
-                    </div>
-
-                    <p class="product_name">${product.title}</p>
-                    <span class="product_card_location"><i class="fa-solid fa-location-dot"></i> ${product.location}</span>
-                    <img src="innocent/assets/image/logo icon.svg" alt="">
-                    <span class="connect"><strong>connect</strong></span>
-                </div>
-            </div>
-        </a>
-    `;
-
-    card.querySelector('.product_card_link').addEventListener('click', function (event) {
-        event.preventDefault();
-        //console.log( this.getAttribute('data-product'))
-        localStorage.setItem('selectedProduct', this.getAttribute('data-product'));
-
-      console.log(window.location.href = this.href);
-    });
-
-    return card;
-}
-
-
- // FETCH THE USER DATA
-document.addEventListener('DOMContentLoaded', () => {
-    if (token) {
-        fetchUserData(token);
-    } 
-});
-
-function fetchUserData(token) {
-
-    axios.get('/api/v1/getuser', {
-        headers: {
-            'Authorization': 'Bearer ' + token
-        }
-    })
-    .then(response => {
-        const user = response.data;
-
-        //console.log(user)
-
-        updateUserProfile(user);
-    })
-    .catch(error => {
-        console.error('Error fetching user data:', error);
-        if (error.response && error.response.status === 401) {
-            promptLogin('Your session has expired. Please log in again.');
-        }
-    });
-}
-
-function updateUserProfile(user) {
-
-    const nameElement = document.getElementById('profile_name');
-    const emailElement = document.getElementById('profile_email');
-    const profileImageElement = document.getElementById('profile_image');
-    const profilePictureElement = document.getElementById('profile_picture');
-    const profilePictureMobileElement = document.getElementById('profile_picture_mobile');
-
-    if (user) {
-        nameElement.innerHTML = `${user.username ?? 'No Username Provided'} <br>`;
-        emailElement.innerHTML = user.email ?? 'No email provided';
-        
-
-        const imageUrl = user.photo_url ? `/uploads/users/${user.photo_url}` : 'innocent/assets/image/dp.png';
-        profileImageElement.src = imageUrl;
-        profilePictureElement.src = imageUrl;
-        profilePictureMobileElement.src = imageUrl;
-
-        
-
-    } else {
-        console.error('User data is null or undefined');
-    }
-}
-
-
-function promptLogin() {
-    Swal.fire({
-        icon: 'error',
-        title: 'Login Required',
-        text: 'Please login to continue'
-    }).then(() => {
-    
-        const myModal = new bootstrap.Modal(document.querySelector('#signup_login-modal'));
-        myModal.show();
-
-
-
-    });
-}
-
-
-document.addEventListener('DOMContentLoaded', function () {
-    const categoryLinks = document.querySelectorAll('.category-link');
-
-    categoryLinks.forEach(link => {
-        link.addEventListener('click', function (event) {
-            if(!token) {
-
-                promptLogin();
-            }
-            event.preventDefault();
-            const categoryId = this.getAttribute('data-category-id');
-            const categoryName = this.getAttribute('data-category-name');
-            
-
-            axios.get(`/api/v1/categories/${categoryId}`, {
-                headers: {
-                    'Authorization': `Bearer ${token}`
-                }
-            })
-            .then(function (response) {
-                const products = response.data.data;
-                localStorage.setItem('allProducts', JSON.stringify(products));
-                localStorage.setItem('categoryName', categoryName);
-                window.location.href = "{{ url('/category_search') }}";
-            })
-            .catch(function (error) {
-                console.error('Error fetching products:', error);
-            });
-        });
-    });
-});
-
-
-document.getElementById('notification_icon').addEventListener('click', function(e) {
-    e.stopPropagation();
-    if(!token) {
-        document.getElementById("notification_main").style.display = "none";
-        promptLogin();
-
-    }
-    
-  });
-
-
-
-document.querySelector('.js-send').addEventListener('click', () => {
-
- const shopNo =  document.querySelector('.js-input-value').value;
-
-    if (shopNo.trim()  === '' ) {
-
-        Swal.fire({
-                icon: 'error',
-                title: 'Verified Seller Shop',
-                text: 'Shop No Is Required', })
-
-    }else {
-
-    axios.get('/api/v1/verified-seller/details', {
-
-        params: {
-            shopNo,
-
-        },
-        headers: {
-            'Content-type': 'application/json',
-            'Authorization': `Bearer ${token}`,
-        }
-    }).then((response) =>{
-
-        console.log(response)
-
-        if(response.status === 200 && response.data) {
-
-         const userId = response.data.data;
-
-         localStorage.setItem('userId', JSON.stringify(userId))
-
-         window.location.href = '/sellers-shop'
-
-        }
-
-    }).catch((error) => {
-
-        console.log(error);
-
-        if(error.response) {
-
-            if(error.response.status === 404 && error.response.data) {
-
-                Swal.fire({
-                icon: 'error',
-                title: 'Verified Seller Shop',
-                text: error.response.data.message});
-
-            }
-
-        }else {   
-
-            Swal.fire({
-                 icon: 'error',
-                 title: 'Request Error',
-                 text: 'Something went wrong. Please try again later.', });
-
-
-        }
-
-        
-        
-    });
-
-
-   }
-
-
-});
-
-
-
-
-
-*/
-
-    </script>
-    <script type="module"  src="{{ asset('backend-js/notification.js') }}"></script>
+ <script type="module"  src="{{ asset('backend-js/notification.js') }}"></script>
     
 </body>
 

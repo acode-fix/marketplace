@@ -9,6 +9,9 @@
     <link rel="stylesheet" href="{{ asset('innocent/assets/css/notification_mobile.css') }}">
     <link rel="stylesheet" href="{{ asset('innocent/assets/icons/css/all.min.css') }}">
     <link rel="stylesheet" href="{{ asset('innocent/assets/icons/css/fontawesome.min.css') }}">
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+    <script src="https://js.pusher.com/8.2.0/pusher.min.js"></script>
     <style>
     </style>
 </head>
@@ -27,7 +30,7 @@
 
         <div class="notifications_region">
 
-            <a href="{{ url('/rating') }}">
+            {{-- <a href="{{ url('/rating') }}">
                 <div class="notification">
                     <div class="notification_details">
                         <div class="notification_image"><img src="innocent/assets/image/logo icon.svg"
@@ -151,7 +154,7 @@
 
                     </div>
                 </div>
-            </a>
+            </a> --}}
             <div class="d-flex ">
                 <i id="volumeHighIcon" class="fa-solid fa-volume-high notification_volume"
                     onclick="turnOnNotifications()"></i>
@@ -168,6 +171,8 @@
     </div>
 
     <script src="{{ asset('innocent/assets/js/notification.js') }}"></script>
+    <script type="module" src="{{ asset('backend-js/mobile-notification.js') }}"></script>
+    <script type="module"  src="{{ asset('backend-js/notification.js') }}"></script>
 
 </body>
 

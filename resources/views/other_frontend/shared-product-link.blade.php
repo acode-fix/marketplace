@@ -45,16 +45,16 @@
                 </span>
            </a>
         </div>
-        <div id="notification_icon_div"><img src="{{asset('innocent/assets/image/notification.png')}}" alt="Logo" id="notification_icon"></div>
+        {{-- <div id="notification_icon_div"><img src="{{asset('innocent/assets/image/notification.png')}}" alt="Logo" id="notification_icon"></div> --}}
         <div id="notification_icon_div2"> <a href="{{ url('/notification_mobile') }}"><img src="{{asset('innocent/assets/image/notification.png')}}" alt="Logo" ></a></div>
      
-         <img id="js-profile-desk" src="" alt=".profile picture " class="profile_picture">
+         <img  id="js-profile-desk" src="" alt=".profile picture " class="profile_picture">
          <img id="js-profile-mobile" src="" alt=".profile picture " class="profile_picture_mobile">
     </div>
 
     <!-- prifile card -->
     <div class="profile_card">
-        <div class="profile_card_user_name">
+        {{-- <div class="profile_card_user_name">
           <img src="{{asset('innocent/assets/image/dp.png')}}" alt="">
           <p>Mired Augustine <br>
             <span>miredaugustine@gmail.com</span>
@@ -67,7 +67,7 @@
                 <p>Privacy and Policy </p>
                <p> Sign out</p>
 
-        </div>
+        </div> --}}
        
     </div>
 
@@ -1019,8 +1019,8 @@
                     <p class="mt-2">Notification sound</p>
                 </div>
 
-            </div>
-        </div>
+            </div> 
+        </div>  
 
 
     </div>

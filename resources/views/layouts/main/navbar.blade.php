@@ -4,7 +4,7 @@
         <h6 class="arrow-text" class="fw-light ms-4">@yield('navtitle','Shop')</h6>
     </div>
     <div class="left-section">
-        <a href="{{ url('/') }}"><img class="img-fluid ms-3" src="kaz/images/logo.png" alt=""></a>
+        <a href="{{ url('/') }}"><img class="main-logo ms-3" src="kaz/images/transparent_logo.png" alt=""></a>
         <h6 class="ms-5 fw-bold profile">@yield('navtitle','Shop')</h6>
     </div>
 

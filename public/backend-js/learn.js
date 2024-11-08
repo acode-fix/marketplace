@@ -1,3 +1,6 @@
+import { displayHelpCenter } from "./helper/helper.js";
+
+
 document.addEventListener('DOMContentLoaded', function () {
   const token = localStorage.getItem('apiToken');
 
@@ -36,7 +39,42 @@ document.addEventListener('DOMContentLoaded', function () {
 .catch(function (error) {
     console.error('Error fetching learn data:', error);
 });
+
+
+document.querySelector('.js-learn-help').addEventListener('click', (event) => {
+    event.preventDefault();
+
+    displayHelpCenter();
+
+
+
 });
+
+
+
+
+
+
+
+
+
+
+
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 /*
 const cardContent = `
 <iframe style="width: 335px;" class="video-size" src="${item.url}" title="${item.title}" frameborder="0"

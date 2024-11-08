@@ -48,7 +48,7 @@
         <div class="links {{ Request::is('review*') ? 'active-link clicked' : '' }}">
             <span>
                 <a class="review-page" href="{{ url('/review') }}"> <img class="profile-logo" height="20px" width="17px"
-                        src="kaz/images/wallet.svg" alt=""> <span class="profile-text">Reviews</span></a>
+                        src="kaz/images/rating.svg" alt=""> <span class="profile-text">Reviews</span></a>
                 
             </span>
         </div>

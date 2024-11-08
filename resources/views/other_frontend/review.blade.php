@@ -32,7 +32,7 @@
       <h6 style="font-size: 20px;" class="fw-light ms-4">Reviews</h6>
     </div>
     <div class="left-section">
-      <a href="{{ url('/') }}"><img class="img-fluid ms-3" src="{{asset('kaz/images/logo.png')}}" alt=""></a>
+      <a href="{{ url('/') }}"><img class="ms-3 main-logo" src="{{asset('kaz/images/transparent_logo.png')}}" alt=""></a>
       <h6 class="ms-5 fw-bold profile">Reviews</h6>
     </div>
 
@@ -76,6 +76,7 @@
         </div> --}}
       </div>
     </div>
+   
 
     <div class="menu-toggle">
       <input type="checkbox" id="menu-checkbox" class="menu-checkbox">
@@ -85,7 +86,7 @@
         <li><a href="{{ url('/settings') }}">Dashboard</a></li>
         <li><a href="{{ url('/refer') }}">Refer A Friend</a></li>
         <li><a href="{{ url('/privacy') }}">Privacy Policy</a></li>
-        <li><a href="#">Log Out</a></li>
+        <li><a class="log-out" href="#">Log Out</a></li>
         <hr style="background-color: black; width: 70%;">
         <li><a style="color: #ff0000;" href="{{ url('/delete') }}">Delete Account</a></li>
       </ul>
@@ -158,8 +159,8 @@
       </div>
       <div style="color: black; width:240px ;" class="ms-2 connect-sidebar card">
         <div class="connect-struct">
-          <img style="border-radius: 30px; height:40px" class="ms-4 sidebar-pic" src="" alt="">
-          <h6 class="connect-shop me-4">Connect</h6>
+          <img style="border-radius: 30px; width:40px; height:40px" class="ms-4 sidebar-pic" src="" alt="">
+          <h6 class="connect-shop me-4 js-connect-btn">Connect</h6>
         </div>
       </div>
 
@@ -467,38 +468,35 @@
               </div> --}}
       </div>
       </div>
-
-
     </div>
-
-
-    <div class="mt-5 sellers-footer">
-      <div><img src="{{asset('kaz/images/Logo.png')}}" alt=""></div>
+    <div  class="sellers-footer">
+      <div><img class="main-logo" src="{{asset('kaz/images/transparent_logo.png')}}" alt=""></div>
       <div>
-        <p class="fw-light text-footer">About<br>us</p>
+        <a href=""><p class="fw-light text-footer">About<br>us</p></a>
       </div>
       <div>
-        <p class="fw-light  text-footer"> Terms and <br> Conditions</p>
+        <a href=""><p class="fw-light  text-footer"> Terms and <br> Conditions</p></a>
       </div>
       <div>
-        <p class="fw-light  text-footer">Help <br>center</p>
+        <a href=""><p class="fw-light  text-footer js-review-help">Help <br>center</p></a>
       </div>
       <div>
-        <p class="fw-light  text-footer">Privacy & <br> Cookies <br>Policy</p>
+        <a href="/privacy"><p class="fw-light  text-footer">Privacy &<br>Policy</p></a>
       </div>
-      <div>
-        <p class="fw-light  text-footer">Report <br> a seller</p>
-      </div>
+      {{-- <div>
+        <a href=""><p class="fw-light  text-footer">Report <br> a seller</p></a>
+      </div> --}}
       <div class="down">
         <img height="35px" width="35px" src="{{asset('kaz/images/facebook.png')}}" alt="">
         <img height="30px" width="30px" src="{{asset('kaz/images/twitter.png')}}" alt="">
         <img height="29px" width="29px" src="{{asset('kaz/images/whatsapp.png')}}" alt="">
         <img height="30px" width="30px" src="{{asset('kaz/images/message.png')}}" alt="">
       </div>
-
+  
     </div>
-
   </div>
+
+ 
 
   <!-- mobile-view  -->
   <div class="mobile-view">
@@ -527,21 +525,21 @@
       <div class="row ">
         <div class="">
           <div style="display: flex;justify-content: space-between;">
-            <div class="drill">
-              <img class="" width="70px" src="{{asset('kaz/images/dp.png')}}" class="me-5" alt="">
+            <div class="drill js-drill-profile">
+              {{-- <img class="" width="70px" src="{{asset('kaz/images/dp.png')}}" class="me-5" alt="">
               <div class="camera3-m">
                 <img class="badge3-cam-m" height="20px" width="15px" src="{{asset('kaz/images/badge.png')}}" alt="">
-              </div>
+              </div> 
               <div class="ms-2">
                 <h5 class="pt-3 mired-drill-m">Drill Houston</h5>
                 <h6 class="mired-email">drillHouston@gmail.com</h6>
                 <h6 class="veri-m pt-1">verified seller</h6>
 
-              </div>
+              </div> --}}
 
             </div>
             <div>
-              <h6 class="connect-shop4  mt-2">Connect</h6>
+              <h6 class="connect-shop4  mt-2 js-connect-btn">Connect</h6>
 
             </div>
           </div>
@@ -550,8 +548,8 @@
         </div>
       </div>
       <h6 class="mt-4 ps-3 mb-2">Reviews</h6>
-      <div class="card-body review-m">
-        <div class="review-text">
+      <div class="card-body review-m js-main-review">
+        {{-- <div class="review-text">
           <p>Total Review</p>
           <p>Average Rating</p>
         </div>
@@ -576,13 +574,12 @@
         <div class="growth">
           <p style="font-size: x-small;">Growth in review this year</p>
           <p style="font-size: x-small;">Average rating this year</p>
-        </div>
-
+        </div> --}}
 
       </div>
       <div class="card-body review-m mt-3">
-        <div>
-          <div style="display: flex;">
+        <div class="js-progress-bar">
+          {{-- <div style="display: flex;">
             <div class="rate-layout">
               <img width="15px" src="{{asset('kaz/images/star-nill.svg')}}" alt="">
               <h6 class="ps-2 rate-no">5</h6>
@@ -601,7 +598,7 @@
               <h6 class="ps-2 rate-no">4</h6>
             </div>
             <div class="rate-layout">
-              <div style="height: 8px; width: 180px;" class="progress ms-2">
+              <div style="height: 8px; width: 220px;" class="progress ms-2">
                 <div class="progress-bar  progress-bar-striped progress-bar-animated bg-primary" style="width: 100%;">
                 </div>
               </div>
@@ -614,7 +611,7 @@
               <h6 class="ps-2 rate-no">3</h6>
             </div>
             <div class="rate-layout">
-              <div style="height: 8px; width: 150px;" class="progress ms-2">
+              <div style="height: 8px; width: 220px;" class="progress ms-2">
                 <div class="progress-bar  progress-bar-striped progress-bar-animated bg-warning" style="width: 100%;">
                 </div>
               </div>
@@ -627,7 +624,7 @@
               <h6 class="ps-2 rate-no">2</h6>
             </div>
             <div class="rate-layout">
-              <div style="height: 8px; width: 100px;" class="progress ms-2">
+              <div style="height: 8px; width: 220px;" class="progress ms-2">
                 <div class="progress-bar  progress-bar-striped progress-bar-animated bg-danger" style="width: 100%;">
                 </div>
               </div>
@@ -640,20 +637,23 @@
               <h6 class="ps-2 rate-no">1</h6>
             </div>
             <div class="rate-layout">
-              <div style="height: 8px; width: 10px;" class="progress ms-2">
+              <div style="height: 8px; width: 220px;" class="progress ms-2">
                 <div class="progress-bar  progress-bar-striped progress-bar-animated bg-dark" style="width: 100%;">
                 </div>
               </div>
               <h6 class="ms-2 rate-no">0</h6>
             </div>
           </div>
-          <h6 class="fw-light rate-break mt-1">Rating breakdown over the years</h6>
+          <h6 class="fw-light rate-break mt-1">Rating breakdown</h6> --}}
 
         </div>
 
       </div>
       <hr style="background-color: #343434;">
-      <div class="row">
+      <div class="js-content">
+
+      </div>
+       {{-- <div class="row">
         <div class="structure-m">
           <div class="structure-m2">
             <img width="60px" src="{{asset('kaz/images/dp.png')}}" alt="">
@@ -676,6 +676,9 @@
         </div>
         <p class="fw-light sleek mt-3">Sleek and intuitive design that enhances user experience.
           Aesthetically pleasing and easy to navigate,ensuring smooth interaction every time</p>
+        <div>
+          <img src="" alt="">
+        </div>
 
       </div>
       <hr class="m-text">
@@ -755,8 +758,8 @@
         <p class="fw-light sleek mt-3">Sleek and intuitive design that enhances user experience.
           Aesthetically pleasing and easy to navigate,ensuring smooth interaction every time</p>
 
-      </div>
-      <hr class="m-text mb-4">
+      </div>  --}}
+      {{-- <hr class="m-text mb-4"> --}}
 
     </div>
   </div>

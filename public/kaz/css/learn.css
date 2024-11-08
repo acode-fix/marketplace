@@ -820,3 +820,23 @@ sidebar-link .footer img {
   transform: translateY(-8px);
   /* Move the image up by 5px */
 }
+
+.footer-desktop a {
+  text-decoration: none;
+  color: black;
+  font-weight: bold;
+  transition: all 0.3s;
+}
+
+
+.footer-desktop a p:hover {
+  cursor: pointer;
+  color: #Fe3d3d;
+  transform: translateY(-8px);
+  
+}
+.footer-height {
+  background-color: white;
+   margin-top:360px
+}
+

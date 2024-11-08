@@ -17,8 +17,8 @@
                 <h6 class="sign"></h6>
               </div>
               <div class="container mt-1">
-                <h6>Privacy Policy for Buyandsellmarketplace</h6>
-                <p class=" mt-1 fw-light"> At Buyandsellmarketplace, we value the privacy of our users and we are
+                <h6>Privacy Policy for LoopMart</h6>
+                <p class=" mt-1 fw-light"> At LoopMart marketplace, we value the privacy of our users and we are
                   committed to protecting it. This
                   privacy policy explains how we collect, use, and share information about our users. By using our
                   website, you consent to this privacy policy.
@@ -30,8 +30,8 @@
                     account, such as their name, email address, and password.</li>
                   <li> Usage Information: We collect information about how users interact with our website, including
                     pages viewed, search queries, and other actions taken on the site.</li>
-                  <li>Cookies: We use cookies and other tracking technologies to collect information about users' browsing
-                    behavior and to personalize their experience on our website.</li>
+                  {{-- <li>Cookies: We use cookies and other tracking technologies to collect information about users' browsing
+                    behavior and to personalize their experience on our website.</li> --}}
                 </ul>
                 </p>
                 <h6>Use of Information</h6>
@@ -75,7 +75,7 @@
                     <br>
                     Contact Us
                     If you have any questions or concerns about this Privacy Policy or our privacy practices, please contact
-                    us at support@buyandsellmarketplace.com.
+                    us at Adin@loopMartInfo.com.
                   </p>
               </div>
                 <p>Last updated: [25th March, 2023]</p>

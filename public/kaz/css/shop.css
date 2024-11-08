@@ -396,8 +396,35 @@ border-top-left-radius:14px;
   position: absolute;
   left: 70px;
   bottom: 20px;
+  
 
 }
+
+@media screen and (max-width:1216px) {
+
+  .camera2 {
+    bottom: 30px;
+  }
+}
+
+@media screen and (max-width:1050px) {
+
+.camera2 {
+ bottom: 30px;
+
+}
+
+}
+
+@media screen and (max-width:1030px) {
+
+  .camera2 {
+   bottom: 40px;
+  
+  }
+  
+  }
+  
 
 .camera2-m {
   width: 25px;
@@ -423,6 +450,7 @@ border-top-left-radius:14px;
 
 .icon-cam2 {
   padding: 7px;
+  
 }
 
 .icon-cam-mobile {
@@ -988,5 +1016,27 @@ border-top-left-radius:14px;
 
 
 }
+
+
+.main-logo {
+
+  max-width: 160px;
+}
+
+.new-footer a {
+  text-decoration: none;
+    color: black;
+    font-weight: bold;
+    transition: all 0.3s;
+
+}
+
+.new-footer a p:hover {
+  cursor: pointer;
+  color: #Fe3d3d;
+  transform: translateY(-8px);
+  
+}
+
 
 

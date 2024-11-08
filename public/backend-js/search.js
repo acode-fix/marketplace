@@ -1,4 +1,4 @@
-import { getToken, getSingleImage, getBadge, getPrice, filter } from "./helper/helper.js";
+import { getToken, getSingleImage, getBadge, getPrice, filter, getProdProfileDescImg, sendProductRequest, displayHelpCenter } from "./helper/helper.js";
 import { serverError } from "./admin/auth-helper.js";
 
 const token = getToken();
@@ -6,6 +6,63 @@ const token = getToken();
 axios.defaults.headers.common['Authorization'] = `Bearer ${token}`
 
 if(token) {
+
+
+  axios.get('/api/v1/getuser').then((response) => {
+
+    console.log(response);
+
+    if(response.status === 200 && response.data) {
+
+      const user = response.data;
+
+       updateProductRequest(user);
+
+
+    }
+
+  }).catch((error) => {
+
+    console.log(error);
+
+  });
+
+
+
+ function updateProductRequest(user) {
+
+  const imgEl =  document.querySelector('.js-search-product-img');
+
+  getProdProfileDescImg(user, imgEl);
+
+
+  }
+
+
+  document.querySelector('.js-search-send').addEventListener('click', () => {
+
+    
+    const input = document.querySelector('.js-search-input').value;
+
+    if(input.trim() === '') {
+        return;
+    }
+
+    sendProductRequest(input, token);
+
+  });
+
+
+  document.querySelector('.js-help-search').addEventListener('click', (event) => {
+    event.preventDefault();
+
+    displayHelpCenter();
+
+  });
+
+
+
+
 
   document.querySelector('.js-search').addEventListener('click', () => {
     filterBySearchInput();
@@ -114,17 +171,16 @@ if(token) {
       let contents = `
         <a href="/product_des" class="product_card_link">
             <div class="card product_card">
-                <h6 class="sold"> Sold 35 <br> <img src="innocent/assets/image/Rate.png"
-                        alt=""> 4.0</h6>
+                <h6 class="sold"> Sold ${product.sold} <br> <img style="margin-bottom:4px;" src="innocent/assets/image/Rate.png"
+                        alt=""> ${product.avg_rating}</h6>
                 <img src="/uploads/products/${getSingleImage(product.image_url)}"
                     class="card-img-top w-100 product_image" alt="...">
 
                 <div class="product_card_title">
                     <div class="main_and_promo_price_area">
                         ${getPrice(product)}
-
                     </div>
-                    <p class="product_name">$${product.title}</p>
+                    <p class="product_name">${product.title}</p>
                     <span class="product_card_location"><i
                             class="fa-solid fa-location-dot"></i>${product.location}</span>
                     ${getBadge(product)}

@@ -175,31 +175,31 @@ function return_enter_shop_no_mobile(){
 
 
 
-// function changeToInput() {
-//   document.querySelector(".tell_us_paragraph").style.display="none"
-//   document.querySelector(".tell_us_what_u_want_input_area").style.display="flex"
-//   document.querySelector(".tell_us_input").focus();
-//   document.querySelector(".tell_us_input").value="";
-// }
+function changeToInput() {
+  document.querySelector(".tell_us_paragraph").style.display="none"
+  document.querySelector(".tell_us_what_u_want_input_area").style.display="flex"
+  document.querySelector(".tell_us_input").focus();
+  document.querySelector(".tell_us_input").value="";
+}
 
-// function send() {
-//   var inputText = document.querySelector(".tell_us_input").value.trim();
-//   if (inputText === "") {
-//     var myModal = new bootstrap.Modal(document.getElementById('tell_us_what_u_want_input_condition'));
-//       myModal.show();
-//   } else {
-//     document.querySelector(".tell_us_what_u_want_input_area").style.display="none"
-//     document.querySelector(".loader").style.display="block";
-//     setTimeout(function(){
-//       document.querySelector(".loader").style.display="none";
-//       document.querySelector(".submmited").style.display="block";
-//       setTimeout(function(){
-//           document.querySelector(".submmited").style.display="none";
-//           document.querySelector(".tell_us_paragraph").style.display="block";
-//       }, 2000);
-//     }, 2000);
-//   }
-// }
+function send() {
+  var inputText = document.querySelector(".tell_us_input").value.trim();
+  if (inputText === "") {
+    var myModal = new bootstrap.Modal(document.getElementById('tell_us_what_u_want_input_condition'));
+      myModal.show();
+  } else {
+    document.querySelector(".tell_us_what_u_want_input_area").style.display="none"
+    document.querySelector(".loader").style.display="block";
+    setTimeout(function(){
+      document.querySelector(".loader").style.display="none";
+      document.querySelector(".submmited").style.display="block";
+      setTimeout(function(){
+          document.querySelector(".submmited").style.display="none";
+          document.querySelector(".tell_us_paragraph").style.display="block";
+      }, 2000);
+    }, 2000);
+  }
+}
 
 
 function showCard_get_started() {

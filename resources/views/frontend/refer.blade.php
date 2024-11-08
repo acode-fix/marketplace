@@ -14,7 +14,7 @@
           <div class="col">
             <div class="container">
               <h4 class="use">Use the link below to refer a friend</h4>
-              <p style="font-size: small;"> Buyandsell marketplace is a user-friendly platform
+              <p style="font-size: small;"> LoopMart marketplace is a user-friendly platform
                 that makes buying and selling goods and serviceseasy.
                 Your friend should able to navigate the website and start using it with ease.</p>
               <hr class="sign2">
@@ -83,7 +83,7 @@
             <div class="col">
               <div class="container-fluid mt-3">
                 <h4 class="use">Use the link below to refer a friend</h4>
-                <p style="font-size: small;"> Buyandsell marketplace is a user-friendly platform
+                <p style="font-size: small;"> LoopMart marketplace is a user-friendly platform
                   that makes buying and selling goods and serviceseasy.
                   Your friend should able to navigate the website and start using it with ease.</p>
                 <hr class="sign2">

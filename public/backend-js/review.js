@@ -1,4 +1,4 @@
-import { getDropDownImg, getToken, loadName, loadSidebar, logoutUser,generateAvatar, getSingleImage, getDate, loadAvgStars } from "./helper/helper.js";
+import { getDropDownImg, getToken, loadName, loadSidebar, logoutUser,generateAvatar, getSingleImage, getDate, loadAvgStars, displayHelpCenter, getUserProfileImage, displayData, generateStars } from "./helper/helper.js";
 
 const token = getToken();
 if(token) {
@@ -39,6 +39,7 @@ if(token) {
       loadDashboardRating(avgRating, totalReview, percentChange)
       loadProgressBar(progress);
       loadReviewContent(reviewDetails);
+      loadMobileReviewContent(reviewDetails);
   
       
 
@@ -62,6 +63,7 @@ if(token) {
       const authUser = response.data;
 
       updateAuthUser(authUser);
+      
 
     }).catch((error) => {
 
@@ -109,6 +111,72 @@ if(token) {
 
   }
 
+  function  updateReviewerMobileUser(reviewerData) {
+
+     const {name, email, photo_url, verify_status, badge_status, phone_number, id} = reviewerData;
+
+    const img = photo_url 
+                ? `<img  class="review-mobile-img" src="/uploads/users/${photo_url}" class="me-5" alt="">` 
+                : `<img  class="review-mobile-img"  src="${generateAvatar(email)}" class="me-5" alt="">`;
+
+    const checkBagdge =  verify_status === 1 && badge_status === 1 
+                      ? ` <div class="camera3-m"><img class="badge3-cam-m" height="20px" width="15px" src="/kaz/images/badge.png" alt="">
+                        </div>`
+                      : '';  
+                      
+    const checkSeller = checkBagdge !== '' 
+                        ? `<h6 class="veri-m pt-1 js-verified-link" data-user-id="${id}">verified seller</h6>` 
+                        : `<h6 class="veri-m pt-1 text-danger">Unverified seller</h6>`
+
+    const dashboard = `
+              ${img}
+              ${checkBagdge}
+              <div class="ms-2">
+                <h5 class="pt-3 mired-drill-m">${name ?? 'No Data Provided Yet'}</h5>
+                <h6 class="mired-email">${email ?? 'No Email Provided Yet'}</h6>
+                ${checkSeller}
+               </div>`;
+
+
+  document.querySelector('.js-drill-profile').innerHTML = dashboard;
+
+
+  document.querySelectorAll('.js-connect-btn').forEach((btn) => {
+
+    if(btn) {
+      btn.addEventListener('click', () => {
+        displayData(name, phone_number);
+      })
+    }
+
+  });
+
+  const verifiedEl = document.querySelector('.js-verified-link');
+
+  if(verifiedEl) {
+
+    verifiedEl.addEventListener('click', () => {
+      const{ userId }= verifiedEl.dataset;
+
+      console.log(userId);
+
+      
+      localStorage.setItem('userId', JSON.stringify(userId))
+
+      window.location.href = '/sellers-shop';
+
+
+
+      
+
+
+    })
+  }
+
+
+
+  }
+
 
 
 
@@ -119,25 +187,29 @@ if(token) {
       // Extract user data from products
     const data = Array.isArray(products) ? products[0] : products;
 
-    console.log(data);
-    
 
-  
-    const{email, photo_url} = data?.user ?? data;
+    const reviewerData = data?.user ?? data;
+
+    updateReviewerMobileUser(reviewerData);
 
     const userData = Array.isArray(data) ? data.user : products;
 
+
      // Update sidebar with user data
    const display =  loadSidebar(userData);
+  
+          
+   
+
 
 
     document.querySelector('.test').innerHTML = display;
 
     const sidebarPicElement = document.querySelector('.sidebar-pic');
 
-    photo_url
-     ? sidebarPicElement.src = `/uploads/users/${photo_url}` 
-     : sidebarPicElement.src = `${generateAvatar(email)}`;
+    reviewerData.photo_url
+     ? sidebarPicElement.src = `/uploads/users/${reviewerData.photo_url}` 
+     : sidebarPicElement.src = `${generateAvatar(reviewerData.email)}`;
 
 
      const starEl = document.querySelector('.js-stars');
@@ -153,24 +225,20 @@ if(token) {
 
   function loadDashboardRating(avgRating, allReview, percentChange) {
 
+   
+
    // const totalReview = document.querySelector('.js-total-review');
     const starDisplay =  document.querySelector('.js-avg-rating');
 
     // totalReview.textContent = allReview;
 
-     const total = Math.floor(avgRating); 
-
+     const total = Math.floor(avgRating);
+     
       if(total > 0) {
 
-        let stars = '';
+        const stars = calculateStars(total);
 
-        for(let i = 0; i < total; i++) {
-       
-         stars += `<img width="10px" src="/kaz/images/Rate.png" alt="">`;
- 
-        }
-
-      const avgDisplay = ` 
+       const avgDisplay = ` 
        <h6 class="no-text">${total}</h6>
           <div class="ms-2">
             ${stars}
@@ -189,14 +257,14 @@ if(token) {
 
 
    const  percetValue =   validatPercent === 1 ||  validatPercent === 0 
-                   ?  `<div class="arrow-up ms-1  js-arrow"> <i class="fa-solid fa-arrow-up"></i><span>${percentChange}%</span></div>`
-                   : `  <div class="arrow-up ms-1 mobile-text1 js-arrow "> <i class="fa-solid fa-arrow-down"></i><span>${percentChange}%</span></div>`;
+                   ?  `<div class="arrow-up ms-1  js-arrow"> <i class="fa-solid fa-arrow-up"></i><span>${percentChange ?? 0}%</span></div>`
+                   : `  <div class="arrow-up ms-1 mobile-text1 js-arrow "> <i class="fa-solid fa-arrow-down"></i><span>${percentChange ?? 0}%</span></div>`;
 
 
     const totalReview = `
       <h6 class="fw-light ">Total Reviews</h6>
           <div class="mt-3" style="display: flex;align-items: center;">
-            <h6 class="no-text js-total-review">${allReview}</h6>
+            <h6 class="no-text js-total-review">${allReview ?? 'No reviews'}</h6>
             ${percetValue}
           </div>
         <h6 class="fw-light rate-break mt-2">Growth in review</h6>`
@@ -204,11 +272,60 @@ if(token) {
 
   document.querySelector('.js-total').innerHTML = totalReview;
 
+  loadMobileDashboardRating(total, allReview, percentChange);
 
 
+  }
 
 
+  function  loadMobileDashboardRating(avgTotal, allReview, percentChange) {
 
+    const validatePercent = Math.sign(percentChange);
+
+    const  percentValue =   validatePercent === 1 ||  validatePercent === 0 
+    ?  `<div class="arrow-up ms-1"><i class="fa-solid fa-arrow-up"></i><span>${percentChange ?? 0}%</span></div>`
+    : `<div class="arrow-up ms-1 mobile-text1"><i class="fa-solid fa-arrow-down"></i><span>${percentChange ?? 0}%</span></div>`;
+ 
+
+    const mobileDashboard = `<div class="review-text">
+          <p>Total Review</p>
+          <p>Average Rating</p>
+        </div>
+        <div class="arrangement">
+          <div class="arrow-text">
+            <h6 class="no-text">${allReview ?? 'No Revews'}</h6>
+            ${percentValue}
+          </div>
+          <div class="star">
+            <h6 class="no-text">${avgTotal ?? 'No reviews'}</h6>
+            <div class="ms-1">
+            ${avgTotal > 0 ? calculateStars(avgTotal) : ''}  
+            </div>
+          </div>
+        </div>
+        <div class="growth">
+          <p style="font-size: x-small;">Growth in review</p>
+          <p style="font-size: x-small;">Average rating </p>
+        </div>`;
+
+        document.querySelector('.js-main-review').innerHTML = mobileDashboard;
+
+        
+  }
+
+
+  function calculateStars(total) {
+
+    
+    let stars = '';
+
+    for(let i = 0; i < total; i++) {
+   
+     stars += `<img width="10px" src="/kaz/images/Rate.png" alt="">`;
+
+    }
+
+    return stars;  
   }
 
 
@@ -318,16 +435,10 @@ if(token) {
 
 
   document.querySelector('.js-break-down').innerHTML = displayProgress;
+  document.querySelector('.js-progress-bar').innerHTML = displayProgress;
 
 
   }
-
-
-
-
-
-
-
 
 
 
@@ -447,14 +558,92 @@ if(token) {
   }
 
 
+  function loadMobileReviewContent(products) {
 
-  function generateStars(rating) {
-    let stars = '';
-    for (let i = 0; i < rating; i++) {
-        stars += `<img width="10px" src="/kaz/images/Rate.png" alt="">`;
-    }
-    return stars;
-}
+    console.log(products);
+
+    let content = '';
+
+    products.forEach((product) => {
+
+
+      product.reviews.forEach((review) => {
+      
+        const reviewerName = review.user.name;
+        const reviewerLocation = review.user.location;
+        const reviewerPhoto = review.user.photo_url; 
+        const reviewerEmail = review.user.email; 
+        const stars = generateStars(review.rate);
+
+        const img = reviewerPhoto
+        ? `<img  class="img-fluid  js-profile" src="/uploads/users/${reviewerPhoto}" alt="" >`
+        : `<img  class="img-fluid js-profile" src="${generateAvatar(reviewerEmail)}" alt="" >`;
+
+
+        content += `
+         <div class="row">
+        <div class="structure-m">
+          <div class="structure-m2">
+            ${img}
+            <div class="ps-2">
+              <h6 class="">${reviewerName ?? 'N/A'}</h6>
+              <img width="10px" src="/kaz/images/location.svg" alt=""><span style="font-size: small;"
+                class="ps-1">${reviewerLocation ?? 'N/A'}, Nigeria</span>
+
+            </div>
+          </div>
+          <div class="">
+            <h6 style="font-size: small;">${getDate(review.created_at)}</h6>
+           ${stars}<span class="ps-2" style="font-size: small;">${review.rate}</span>
+          </div>
+
+        </div>
+        <p class="fw-light sleek mt-3">${review.comment}</p>
+        <div class="mb-2">
+         <img width="100px" src="/uploads/products/${getSingleImage(product.image_url)}" alt="">
+        </div>
+
+      </div>
+      <hr class="m-text">`
+
+
+      })
+
+
+    });
+
+    document.querySelector('.js-content').innerHTML = content;
+
+  }
+
+
+
+//   function generateStars(rating) {
+//     let stars = '';
+//     for (let i = 0; i < rating; i++) {
+//         stars += `<img width="10px" src="/kaz/images/Rate.png" alt="">`;
+//     }
+//     return stars;
+//  }
+
+
+ document.querySelector('.js-review-help').addEventListener('click', (event) => {
+
+  event.preventDefault();
+
+  displayHelpCenter();
+  
+ });
+
+
+ const logOut = document.querySelector('.log-out');
+ 
+ logOut.addEventListener('click', (event) => {
+  event.preventDefault();
+
+  getLogOutElement(logOut);
+
+ });
   
 
 

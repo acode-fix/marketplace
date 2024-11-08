@@ -505,7 +505,7 @@
                                                 </div>
                                                 <div class="js-share-link">
                                                     <i style="height: 40px; width: 40px;"
-                                                        class="fa-solid fa-link"></i>
+                                                          class="fa-solid fa-link"></i>
                                                     <h6 class="fw-light  share-text ">Copy link</h6>
                                                 </div>
                                             </div>
@@ -551,23 +551,23 @@
 
     </div>
 
-    <div class="mt-5 new-footer">
-        <div><img src="kaz/images/Logo.png" alt=""></div>
+    <div class="mt-5 new-footer"> 
+        <div><img class="main-logo" src="kaz/images/transparent_logo.png" alt=""></div>
         <div>
-            <p class="fw-light text-footer">About<br>us</p>
+           <a href=""><p class="fw-light text-footer">About<br>us</p></a>
         </div>
         <div>
-            <p class="fw-light  text-footer"> Terms and <br> Conditions</p>
+           <a href=""><p class="fw-light  text-footer"> Terms and <br> Conditions</p></a> 
         </div>
         <div>
-            <p class="fw-light  text-footer">Help <br>center</p>
+            <a href=""><p class="fw-light  text-footer js-footer-help">Help <br>center</p></a> 
         </div>
         <div>
-            <p class="fw-light  text-footer">Privacy & <br> Cookies <br>Policy</p>
+            <a href="/privacy"><p class="fw-light  text-footer">Privacy & <br>Policy</p></a> 
         </div>
-        <div>
-            <p class="fw-light  text-footer">Report <br> a seller</p>
-        </div>
+        {{-- <div>
+            <a href=""><p class="fw-light  text-footer">Report <br> a seller</p></a> 
+        </div> --}}
         <div class="down">
             <img height="35px" width="35px" src="kaz/images/facebook.png" alt="">
             <img height="30px" width="30px" src="kaz/images/twitter.png" alt="">

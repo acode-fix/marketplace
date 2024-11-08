@@ -12,6 +12,8 @@
     <link rel="stylesheet" href="{{ asset('innocent/assets/css/alert.css') }}">
     <link rel="stylesheet" href="{{ asset('innocent/assets/icons/css/all.min.css') }}">
     <link rel="stylesheet" href="{{ asset('innocent/assets/icons/css/fontawesome.min.css') }}">
+    <link href="https://fonts.cdnfonts.com/css/product-sans" rel="stylesheet">
+                
     
 
 
@@ -30,15 +32,15 @@
 
         <!-- Navbar and Search Button -->
     <div class="navbar-1 fixed-top">
-        <img src="innocent/assets/image/main logo.svg"  class="search_buy_and_sell_logo " alt="" onclick="window.location.href='{{ url('/') }}';">
+        <img src="{{asset('innocent/assets/image/transparent_logo.png')}}"  class="search_buy_and_sell_logo " alt="" onclick="window.location.href='{{ url('/') }}';">
 
         <div class="search-bar">
             <div class="location-icon"><i class="fa-solid fa-location-dot"></i></div>
             <select placeholder="Country" class="country-input">
-                <option selected>USA</option>
-                <option value="1">Canada</option>
+                <option selected>Nigeria</option>
+                {{-- <option value="1">Canada</option>
                 <option value="2">Nigeria</option>
-                <option value="3">Russia</option>
+                <option value="3">Russia</option> --}}
             </select>
             <div class="vertical-bar"></div>
             <a href="{{ url('/search') }}">
@@ -48,8 +50,8 @@
                 </span>
            </a>
         </div>
-        <div id="notification_icon_div"><img class="notification-icon" src="innocent/assets/image/notification.svg" alt="Logo" id="notification_icon"></div>
-        <div id="notification_icon_div2"> <a href="{{ url('/notification_mobile') }}"><img src="innocent/assets/image/notification.png" alt="Logo" ></a></div>
+        <div id="notification_icon_div"><img class="notification-icon" src="{{asset('innocent/assets/image/notification.svg')}}" alt="Logo" id="notification_icon"></div>
+        <div id="notification_icon_div2"> <a href="{{ url('/notification_mobile') }}"><img src="{{asset('innocent/assets/image/notification.png')}}" alt="Logo" ></a></div>
 
          {{-- <div><img id="profile_picture" src="" alt=".profile picture " class="profile_picture js-product-desc-img"></div>
          <div><img id="profile_picture_mobile" src="" alt=".profile picture " class="profile_picture_mobile js-product-desc-img"></div> --}}
@@ -115,7 +117,7 @@
                 </p>
             </div> --}}
         </div>
-        <img src="{{asset('innocent/assets/image/main logo.svg')}}" alt="" class="buy_and_sell_logo_product_des_mobile">
+        <img src="{{asset('innocent/assets/image/transparent_logo.png')}}" alt="" class="buy_and_sell_logo_product_des_mobile">
 
     </div>
 
@@ -139,7 +141,7 @@
                                 <i class="fa-solid fa-location-dot" style="font-size: 12px;"></i>
                                 <span class="user_state">loading</span>
                                 <span class="rate">
-                                    <img src="innocent/assets/image/Rate.png" alt="">
+                                    <img style="margin-bottom: 4px" src="{{asset('innocent/assets/image/Rate.png')}}" alt="">
                                     <span class="rate_value">loading</span>
                                 </span>
                                 <span><a class="js-review review-link ps-2 text-success" href="">Reviews</a></span>
@@ -208,7 +210,7 @@
                           </button>
 
                         <button  class="product_card_connect_button js-connect-btn">
-                           <a href="#">connect <img src="innocent/assets/image/Shopping bag.png" alt="" ></a>
+                           <a href="#">connect <img src="{{asset('innocent/assets/image/Shopping bag.png')}}" alt="" ></a>
                         </button>
                     </div>
                 </div>
@@ -230,8 +232,8 @@
                                 <!-- Example Product Card -->
                                 <a href="#" class="product_card_link" data-product-id="1">
                                     <div class="card product_card">
-                                        <h6 class="sold"> Sold 35 <br> <img src="innocent/assets/image/Rate.png" alt=""> 4.0</h6>
-                                        <img src="innocent/assets/image/pexels-pixabay-164558.jpg" class="card-img-top w-100 product_image" alt="...">
+                                        <h6 class="sold"> Sold 35 <br> <img src="{{asset('innocent/assets/image/Rate.png')}}" alt=""> 4.0</h6>
+                                        <img src="{{asset('innocent/assets/image/pexels-pixabay-164558.jpg')}}" class="card-img-top w-100 product_image" alt="...">
                                         <div class="product_card_title">
                                             <div class="main_and_promo_price_area">
                                                 <p class="promo_price">$100,000,000</p>
@@ -239,7 +241,7 @@
                                             </div>
                                             <p class="product_name">3 Bed Room Flat</p>
                                             <span class="product_card_location"><i class="fa-solid fa-location-dot"></i>  Abuja</span>
-                                            <img src="innocent/assets/image/logo icon.svg" alt="">
+                                            <img src="{{asset('innocent/assets/image/logo icon.png')}}" alt="">
                                             <span class="connect"><strong>connect</strong></span>
                                         </div>
                                     </div>
@@ -253,21 +255,26 @@
 
             <!-- Promotion Section -->
             <div class="promotion">
-                <img src="innocent/assets/image/Annoucement.png" alt="" class="Announcement">
+                <img src="{{asset('innocent/assets/image/Annoucement.png')}}" alt="" class="Announcement">
                 <p>
-                    <img src="innocent/assets/image/main logo.svg" alt="" width="180px" ><br><br>
-                        <img src="innocent/assets/image/Annoucement.png" alt="" class="Announcement2">
+                    <img src="{{asset('innocent/assets/image/transparent_logo.png')}}" alt="" width="180px" ><br><br>
+                        <img src="{{asset('innocent/assets/image/Annoucement.png')}}" alt="" class="Announcement2">
                         <strong>Reach more audience by promoting your Product(s)</strong><br>
+                        Get an active badge by becoming a verified seller <br> and enjoy multiple benefits that comes with being a verified seller
+                        <br><br><br>
+                        <a class="js-become-link" href="/become"><button class="get_started animate animate-pulse4">Get
+                            Started</button></a>
+                        {{-- <strong>Reach more audience by promoting your Product(s)</strong><br>
                         determine your target audience location, interest, select a <br>
                         convenient budget and duration
                     <br><br><br>
-                   <button class="get_started animate animate-pulse4"  onclick="showCard_get_started()">Get Started</button>
+                   <button class="get_started animate animate-pulse4"  onclick="showCard_get_started()">Get Started</button> --}}
                 </p>
             </div>
 
                 <div class="promotion_card card" id="promotion_card" style="display: none;">
                     <i class="fa-solid fa-close close_get_started" onclick="hideCard_get_started()"></i>
-                    <img src="innocent/assets/image/Annoucement.png" alt="">
+                    <img src="{{asset('innocent/assets/image/Annoucement.png')}}" alt="">
                     <div class="card_content_get_started">
                        <p>chosse your promotion option <br>
                         <span>select your promotion option</span>
@@ -320,7 +327,7 @@
             <!--tell us what is it-->
             <div class="tell_us_what_u_want animate animate-left ">
                 <p class="tell_us_paragraph" onclick="changeToInput()">
-                    <img src="innocent/assets/image/pen.png" alt="" class="pen">
+                    <img src="{{asset('innocent/assets/image/pen.png')}}" alt="" class="pen">
                     Can't find what you are looking for?
                     <span>Tell us what it is!</span><br>
                     and we'll do our best to assist you.
@@ -328,10 +335,10 @@
             </div>
 
             <div class="tell_us_what_u_want_input_area">
-                <img src="innocent/assets/image/dp.png" alt="" class="tell_us_what_u_want_profile">
+                <img src="{{asset('innocent/assets/image/dp.png')}}" alt="" class="tell_us_what_u_want_profile js-img-tell">
                <div class="vertical_bar"></div>
-                <input type="text" name="" class="tell_us_input" placeholder="write the details here">
-                <button class="send" onclick="send()">send</button>
+                <input type="text" name="" class="tell_us_input js-input-mobile" placeholder="write the details here">
+                <button class="send js-send-mobile" onclick="send()">send</button>
 
             </div>
              <p class="submmited" >submmited✅</p>
@@ -364,20 +371,25 @@
             </div>
             <!-- Promotion Section -->
             <div class="promotion promotion2">
-                <img src="innocent/assets/image/Annoucement.png" alt="" class="Announcement">
+                <img src="{{asset('innocent/assets/image/Annoucement.png')}}" alt="" class="Announcement">
                 <p>
-                    <img src="innocent/assets/image/main logo.svg" alt="" width="180px" ><br><br>
-                        <img src="innocent/assets/image/Annoucement.png" alt="" class="Announcement2">
+                    <img src="{{asset('innocent/assets/image/transparent_logo.png')}}" alt="" width="180px" ><br><br>
+                        <img src="{{asset('innocent/assets/image/Annoucement.png')}}" alt="" class="Announcement2">
                         <strong>Reach more audience by promoting your Product(s)</strong><br>
+                        Get an active badge by becoming a verified seller <br> and enjoy multiple benefits that comes with being a verified seller
+                        <br><br><br>
+                        <a class="js-become-link" href="/become"><button class="get_started animate animate-pulse4">Get
+                            Started</button></a>
+                        {{-- <strong>Reach more audience by promoting your Product(s)</strong><br>
                         determine your target audience location, interest, select a <br>
                         convenient budget and duration
                     <br><br><br>
-                    <button class="get_started animate animate-pulse4" onclick="showCard_get_started2()">Get Started</button>
+                    <button class="get_started animate animate-pulse4" onclick="showCard_get_started2()">Get Started</button> --}}
                 </p>
             </div>
             <div class="promotion_card card" id="promotion_card2" style="display: none;">
                 <i class="fa-solid fa-close close_get_started" onclick="hideCard_get_started2()"></i>
-                <img src="innocent/assets/image/Annoucement.png" alt="">
+                <img src="{{asset('innocent/assets/image/Annoucement.png')}}" alt="">
                 <div class="card_content_get_started">
                    <p>chosse your promotion option <br>
                     <span>select your promotion option</span>
@@ -432,7 +444,7 @@
             <!--tell us what is it-->
             <div class="tell_us_what_u_want tell_us_what_u_want2 animate animate-left ">
                 <p class="tell_us_paragraph tell_us_paragraph2" onclick="changeToInput2()">
-                    <img src="innocent/assets/image/pen.png" alt="" class="pen">
+                    <img src="{{asset('innocent/assets/image/pen.png')}}" alt="" class="pen">
                     Can't find what you are looking for?
                     <span>Tell us what it is!</span><br>
                     and we'll do our best to assist you.
@@ -440,10 +452,10 @@
             </div>
 
             <div class="tell_us_what_u_want_input_area tell_us_what_u_want_input_area2">
-                <img src="innocent/assets/image/dp.png" alt="" class="tell_us_what_u_want_profile tell_us_what_u_want_profile2">
+                <img src="{{asset('innocent/assets/image/dp.png')}}" alt="" class="tell_us_what_u_want_profile tell_us_what_u_want_profile2 js-img-tell">
                <div class="vertical_bar"></div>
-                <input type="text" name="" class="tell_us_input tell_us_input2" placeholder="write the details here">
-                <button class="send " onclick="send2()">send</button>
+                <input type="text" name="details" class="tell_us_input tell_us_input2  js-input2" placeholder="write the details here">
+                <button class="send js-send-input" onclick="send2()">send</button>
 
             </div>
              <p class="submmited submmited2" >submmited✅</p>
@@ -459,7 +471,7 @@
             <!-- Navbar and Search Button -->
 
             <p class="notification_indicator">
-                <img class="notification-icon" src="innocent/assets/image/notification.svg" alt="">
+                <img class="notification-icon" src="{{asset('innocent/assets/image/notification.svg')}}" alt="">
                 <span>notification(<span  class="indicator-span text-danger">0</span>)</span>
 
 
@@ -596,7 +608,7 @@
                     <i id="volumeMuteIcon" class="fa-solid fa-volume-mute notification_volume" style="display: none;"
                         onclick="turnOffNotifications()"></i>
                     <audio id="notificationSound">
-                        <source src="innocent/assets/notification_sound/mixkit-bell-notification-933.wav" type="audio/mpeg">
+                        <source src="{{asset('innocent/assets/notification_sound/mixkit-bell-notification-933.wav')}}" type="audio/mpeg">
                     </audio>
                     <p class="mt-2">Notification sound</p>
                 </div>
@@ -608,20 +620,20 @@
     <!-- Footer Section -->
     <div class="footer_contanier">
         <div>
-            <img src="innocent/assets/image/logo.png" alt="">
+            <img class="main-logo" src="{{asset('innocent/assets/image/transparent_logo.png')}}" alt="">
         </div>
         <nav class="footer_links">
             <a href="">About Us</a>
             <a href="">Terms and condition</a>
-            <a href="">Help center</a>
-            <a href="">Privacy & cookies policy</a>
-            <a href="">Report a seller</a>
+            <a class="js-help-desc" href="">Help center</a>
+            <a href="{{ url('/privacy') }}">Privacy &  policy</a>
+            {{-- <a href="">Report a seller</a> --}}
         </nav>
         <div class="footer_icons">
-            <img src="innocent/assets/image/facebook.png" alt="">
-            <img src="innocent/assets/image/twitter.png" alt="">
-            <img src="innocent/assets/image/linkedin.png" alt="">
-            <img src="innocent/assets/image/message.png" alt="">
+            <img src="{{asset('innocent/assets/image/facebook.png')}}" alt="">
+            <img src="{{asset('innocent/assets/image/twitter.png')}}" alt="">
+            <img src="{{asset('innocent/assets/image/linkedin.png')}}" alt="">
+            <img src="{{asset('innocent/assets/image/message.png')}}" alt="">
         </div>
     </div>
 

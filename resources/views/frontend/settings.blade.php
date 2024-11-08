@@ -365,7 +365,7 @@
             <hr style="background-color: black;">
           </div>
           <div class="col-8 mb-3">
-            <div class="location-struct">
+            {{-- <div class="location-struct">
               <h6 class="me-2">location</h6>
               <label class="switch">
                 <input type="checkbox" name="location" id="locationSwitch">
@@ -374,7 +374,7 @@
             </div>
             <div>
               <p class="fw-light">Turn current location on</p>
-            </div>
+            </div> --}}
           </div>
           <div class="col-2 mb-5 post-btn">
             <button id="saveBtn" type="submit" class="btn btn-warning">Save</button>
@@ -473,7 +473,7 @@
           <div class="hover-text" id="hover-text3">become verified seller</div>
         </div>
         <div style="display: flex; ">
-          <div>
+          {{-- <div>
             <div class="location-struct-m">
               <h6 class="me-2">Location</h6>
               <label class="switch">
@@ -482,7 +482,7 @@
               </label>
             </div>
             <p class="turn-text">Turn on Current Location</p>
-          </div>
+          </div> --}}
 
         </div>
       </div>

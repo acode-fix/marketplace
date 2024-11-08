@@ -11,6 +11,10 @@
     <link rel="stylesheet" href="{{ asset('innocent/assets/css/alert.css') }}">
     <link rel="stylesheet" href="{{ asset('innocent/assets/icons/css/all.min.css') }}">
     <link rel="stylesheet" href="{{ asset('innocent/assets/icons/css/fontawesome.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('innocent/assets/css/modal.css') }}">
+    <link href="https://fonts.cdnfonts.com/css/product-sans" rel="stylesheet">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   
     
 </head>
@@ -28,17 +32,18 @@
 
         <!-- Navbar and Search Button -->
     <div class="navbar-1 fixed-top">
-        <img src="{{asset('innocent/assets/image/main logo.svg')}}"  class="search_buy_and_sell_logo " alt="" onclick="window.location.href='{{ url('/') }}';">
+        <a class="js-logo-link" href=""><img  class="search_buy_and_sell_logo js-logo-img" src="{{ asset('innocent\assets\image\transparent_logo.png')}}" alt=""  data-bs-toggle="" data-bs-target="" ></a>
+        {{-- <img src="{{asset('innocent/assets/image/transparent_logo.png')}}"  class="search_buy_and_sell_logo " alt="" onclick="window.location.href='{{ url('/') }}';"> --}}
         <div class="search-bar">
             <div class="location-icon"><i class="fa-solid fa-location-dot"></i></div>
             <select placeholder="Country" class="country-input">
-                <option selected>USA</option>
-                <option value="1">Canada</option>
+                <option selected>Nigeria</option>
+                {{-- <option value="1">Canada</option>
                 <option value="2">Nigeria</option>
-                <option value="3">Russia</option>
+                <option value="3">Russia</option> --}}
             </select>
             <div class="vertical-bar"></div>
-            <a href="{{ url('/search') }}">
+            <a class="js-search-bar-input" href="{{ url('/search') }}">
                 <span  onclick="localStorage.setItem('previousPage', '{{ url('/product_des') }}')">
                    <input type="text" placeholder="Find what to buy..." class="find-what-to-buy">
                    <button type="button" class="search">Search</button>
@@ -102,7 +107,7 @@
                 </p>
             </div>   --}}
         </div>
-        <img src="{{asset('innocent/assets/image/logo.png')}}" alt=".profile picture" class="search_buy_and_sell_logo ">
+        <img src="{{asset('innocent/assets/image/transparent_logo.png')}}" alt=".profile picture" class="search_buy_and_sell_logo ">
     </div>
     
   
@@ -362,13 +367,18 @@
             <div class="promotion">
                 <img src="{{asset('innocent/assets/image/Annoucement.png')}}" alt="" class="Announcement">
                 <p>
-                    <img src="{{asset('innocent/assets/image/logo.png')}}" alt=""><br><br>
+                    <img src="{{asset('innocent/assets/image/transparent_logo.png')}}" alt="" width="180px" ><br><br>
                         <img src="{{asset('innocent/assets/image/Annoucement.png')}}" alt="" class="Announcement2">
                         <strong>Reach more audience by promoting your Product(s)</strong><br>
+                        Get an active badge by becoming a verified seller <br> and enjoy multiple benefits that comes with being a verified seller
+                        <br><br><br>
+                        <a class="js-become-link" href="/become"><button class="get_started animate animate-pulse4">Get
+                            Started</button></a>
+                        {{-- <strong>Reach more audience by promoting your Product(s)</strong><br>
                         determine your target audience location, interest, select a <br>
-                        convenient budget and duration 
+                        convenient budget and duration
                     <br><br><br>
-                   <button class="get_started animate animate-pulse4"  onclick="showCard_get_started()">Get Started</button>
+                   <button class="get_started animate animate-pulse4"  onclick="showCard_get_started()">Get Started</button> --}}
                 </p>
             </div>
                         
@@ -523,20 +533,20 @@
             
             <!--tell us what is it-->
             <div class="tell_us_what_u_want animate animate-left ">
-                <p class="tell_us_paragraph" onclick="changeToInput()">
-                    <img src="{{asset('innocent/assets/image/pen.png')}}" alt="" class="pen">
-                    Can't find what you are looking for? 
+                <p class="tell_us_paragraph js-change-to-input" onclick="changeToInput()">
+                    <img src="{{asset('innocent/assets/image/pen.png') }}" alt="" class="pen">
+                    Can't find what you are looking for?
                     <span>Tell us what it is!</span><br>
                     and we'll do our best to assist you.
                 </p>
             </div>
-            
+
             <div class="tell_us_what_u_want_input_area">
-                <img src="{{asset('innocent/assets/image/dp.png')}}" alt="" class="tell_us_what_u_want_profile">
+                <img src="" alt="" class="tell_us_what_u_want_profile js-img-tell">
                <div class="vertical_bar"></div>
-                <input type="text" name="" class="tell_us_input" placeholder="write the details here">
-                <button class="send" onclick="send()">send</button>
-            
+                <input type="text" name="" class="tell_us_input js-input-mobile" placeholder="write the details here">
+                <button class="send js-send-mobile" onclick="send()">send</button>
+
             </div>
              <p class="submmited" >submmited✅</p>
              <div class="loader" class="loader"></div>
@@ -688,13 +698,18 @@
             <div class="promotion promotion2">
                 <img src="{{asset('innocent/assets/image/Annoucement.png')}}" alt="" class="Announcement">
                 <p>
-                    <img src="{{asset('innocent/assets/image/logo.png')}}" alt=""><br><br>
+                    <img src="{{asset('innocent/assets/image/transparent_logo.png')}}" alt="" width="180px" ><br><br>
                         <img src="{{asset('innocent/assets/image/Annoucement.png')}}" alt="" class="Announcement2">
                         <strong>Reach more audience by promoting your Product(s)</strong><br>
+                        Get an active badge by becoming a verified seller <br> and enjoy multiple benefits that comes with being a verified seller
+                        <br><br><br>
+                        <a class="js-become-link" href="/become"><button class="get_started animate animate-pulse4">Get
+                            Started</button></a>
+                        {{-- <strong>Reach more audience by promoting your Product(s)</strong><br>
                         determine your target audience location, interest, select a <br>
-                        convenient budget and duration 
+                        convenient budget and duration
                     <br><br><br>
-                    <button class="get_started animate animate-pulse4" onclick="showCard_get_started2()">Get Started</button>
+                    <button class="get_started animate animate-pulse4" onclick="showCard_get_started2()">Get Started</button> --}}
                 </p>
             </div>
             <div class="promotion_card card" id="promotion_card2" style="display: none;">
@@ -849,26 +864,213 @@
             <!--tell us what is it-->
            
             <!--tell us what is it-->
-            <div class="tell_us_what_u_want  tell_us_what_u_want2 animate animate-left ">
-                <p class="tell_us_paragraph tell_us_paragraph2" onclick="changeToInput2()">
+            <div class="tell_us_what_u_want tell_us_what_u_want2 animate animate-left ">
+                <p class="tell_us_paragraph tell_us_paragraph2 js-change-to-input" onclick="changeToInput2()">
                     <img src="{{asset('innocent/assets/image/pen.png')}}" alt="" class="pen">
-                    Can't find what you are looking for? 
+                    Can't find what you are looking for?
                     <span>Tell us what it is!</span><br>
                     and we'll do our best to assist you.
                 </p>
             </div>
-            
+
             <div class="tell_us_what_u_want_input_area tell_us_what_u_want_input_area2">
-                <img src="{{asset('innocent/assets/image/dp.png')}}" alt="" class="tell_us_what_u_want_profile tell_us_what_u_want_profile2">
+                <img src="" alt="" class="tell_us_what_u_want_profile tell_us_what_u_want_profile2 js-img-tell">
                <div class="vertical_bar"></div>
-                <input type="text" name="" class="tell_us_input tell_us_input2" placeholder="write the details here">
-                <button class="send " onclick="send2()">send</button>
-            
+                <input type="text" name="details" class="tell_us_input tell_us_input2  js-input2" placeholder="write the details here">
+                <button class="send js-send-input" onclick="send2()">send</button>
+
             </div>
              <p class="submmited submmited2" >submmited✅</p>
              <div class="loader loader2" ></div>
         </div>
     </div>
+
+
+    <div class="modal fade" id="signup_login-modal" class="myModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+    aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog">
+        <div class="modal-content modal_content_signup_login">
+
+
+            <div class="sign_up_modal">
+                <i class="fa-solid fa-close close_modal_content_signup_login" data-bs-dismiss="modal"
+                    aria-label="Close"> </i>
+
+                <h5 id="sign_up">Sign Up</h5>
+                <p>Welcome to</p>
+                <img src="{{asset('innocent/assets/image/transparent_logo.png')}}" alt="" width="150px">
+                <!-- Sign Up Form -->
+
+                <div class="form-group">
+                    <label for="email" class="form-label"></label>
+                    <input required type="email" class="form-control input_field" id="signup_email" placeholder="Email">
+                </div>
+                <div class="form-group">
+                    <p class="showPasswordBtn"> <i class="fa-solid fa-eye mt-4"></i></p>
+                    <label for="password" class="form-label"></label>
+                    <input required type="password" class="form-control password_inputs input_field" id="signup_password" placeholder="Password">
+                </div>
+
+                <p id="or_sign_up_using">or sign up using</p>
+                <br><br>
+                <hr>
+                <div class="auth_icons">
+                    <div class="facebook_icon" style="cursor: pointer;">
+                        <img src="{{asset('innocent/assets/image/Facebook Logo.png')}}" alt="">
+                    </div>
+                    <div class="gmail_icon" style="cursor: pointer;">
+                        <img src="{{asset('innocent/assets/image/gmail.png')}}" alt="">
+                    </div>
+                </div>
+                <p>Already have an account? <a href="#" onclick="login()" class="signup_links">Login</a></p>
+                <button class="signup_continue_button continueBtn" onclick="signup()">continue</button>
+                <p>By signing up you accept <span class="signup_links">Our Terms and Policy</span></p>
+
+            </div>
+
+
+            <div id="loginModal" class="login_modal" style="display: none;">
+
+                <i class="fa-solid fa-close close_modal_content_signup_login" data-bs-dismiss="modal"
+                    aria-label="Close"> </i>
+                <h5 id="sign_up">Log in</h5>
+                <p>Welcome back to</p>
+                <img src="{{asset('innocent/assets/image/transparent_logo.png')}}" alt="" width="150px">
+                <!-- Login Form -->
+
+                <div class="form-group">
+                    <label for="email" class="form-label"></label>
+                    <input required type="email" class="form-control input_field" id="login_email" placeholder="Email">
+                </div>
+                <div class="form-group">
+                    <p class="showPasswordBtn"> <i class="fa-solid fa-eye mt-4"></i></p>
+                    <label for="password" class="form-label"></label>
+                    <input required type="password" class="form-control password_inputs input_field" id="login_password"
+                        placeholder="Password">
+
+                </div>
+                <p class="forget_password_login" onclick="showResetPassword()">Forgot password</p>
+                <p id="or_login_using" >or Login using</p><br>
+                <hr>
+                <div class="auth_icons">
+                    <div class="facebook_icon" style="cursor: pointer;">
+                        <img src="{{asset('innocent/assets/image/Facebook Logo.png')}}" alt="">
+                    </div>
+                    <div class="gmail_icon" style="cursor: pointer;">
+                        <img src="{{asset('innocent/assets/image/gmail.png')}}" alt="">
+                    </div>
+                </div>
+                <button class="signup_continue_button continueBtn" onclick="loginUser()">continue</button>
+                <p style="margin-top: 20px;">Don't have an account? <span><a href="#" onclick="showSignUpModal()"
+                            class="signup_links">Sign up</a></span></p>
+
+            </div>
+
+
+
+
+            <div class="resetpassword" style="display: none;">
+
+                <i class="fa-solid fa-close close_modal_content_signup_login" data-bs-dismiss="modal"
+                    aria-label="Close"> </i>
+                <h5 id="sign_up">Reset</h5>
+                <p class="forgot_password"> <span class="forgot_password_head">Forgot your password? </span>
+                    <br>
+                    enter the email address that is associated with your account and we'll send you a link to
+                    reset your password.
+                </p>
+                <div class="reset_email">
+                    <div class="form-group">
+                        <label for="email" class="form-label"></label>
+                        <input required type="email" class="form-control input_field" id="reset_email" placeholder="Email">
+                    </div>
+                </div>
+                <button class="signup_continue_button" onclick="sendResetOtp()">Request Reset Password
+                    link</button>
+                <p class="already_have_an_account">Already have an account? <span><a href="#" onclick="login2()"
+                            class="signup_links">Login</a></span></p>
+
+            </div>
+
+
+            <!-- Verify OTP Modal -->
+{{-- <div class="modal fade" id="verifyOtpModal" tabindex="-1" role="dialog" aria-labelledby="verifyOtpModalLabel" aria-hidden="true">
+<div class="modal-dialog" role="document">
+<div class="modal-content">
+    <div class="modal-header">
+        <h5 id="sign_up">Verify OTP</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <p class="forgot_password"><span class="forgot_password_head">Enter the OTP sent to your email</span></p>
+        <div class="reset_email">
+            <div class="form-group">
+                <label for="otp" class="form-label"></label>
+                <input type="text" class="form-control input_field" id="otp" placeholder="Enter OTP">
+            </div>
+        </div>
+        <button class="signup_continue_button" onclick="verifyOtp()">Verify OTP</button>
+    </div>
+</div>
+</div>
+</div> --}}
+
+
+            <div class="chagepassword" id="changepassword" style="display: none;">
+
+                <p class="type_new_password"> <span class="type_new_password_head">Welcome back </span> <br>
+                    type in your new password
+                </p>
+                <div class="form-group">
+                    <p class="showPasswordBtn"> <i class="fa-solid fa-eye mt-4"></i></p>
+                    <label for="newPassword" class="form-label"></label>
+                    <input type="password"
+                        class="form-control password_inputs reset_password_inputs input_field" id="newPassword"
+                        placeholder="New Password">
+                </div>
+                <div class="form-group">
+                    <p class="showPasswordBtn"> <i class="fa-solid fa-eye mt-4"></i></p>
+                    <label for="confirmPassword" class="form-label"></label>
+                    <input type="password"
+                        class="form-control password_inputs reset_password_inputs input_field"
+                        id="confirmPassword" placeholder="Confirm New Password">
+                </div>
+                <button
+                    class="signup_continue_button change_password_button continueBtn continueBtn_error" onclick="resetPassword()">Continue</button>
+                <p>Already have an account? <span><a href="#" onclick="login3()" class="signup_links">Login</a></span></p>
+
+            </div>
+
+        </div>
+    </div>
+
+</div>
+        <!-- OTP Verification Modal -->
+        <div style="display: none;" class="modal fade" id="verifyOtpModal" tabindex="-1" role="dialog" aria-labelledby="verifyOtpModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 id="sign_up">Verify OTP</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            <div class="modal-body">
+                <div class="reset_email">
+                    <div class="form-group">
+                        <label for="otp" class="form-label"></label>
+                        <input required type="text" class="form-control input_field" id="otp" placeholder="Enter OTP">
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="signup_continue_button" onclick="verifyOtp()">Verify OTP</button>
+            </div>
+            </div>
+            </div>
+            </div>
 
      <!-- 
         notification codes -->
@@ -1028,22 +1230,23 @@
     <!-- Footer Section -->
     <div class="footer_contanier">
         <div>
-            <img src="logo.png" alt="">
+            <img class="main-logo" src="{{asset('innocent/assets/image/transparent_logo.png')}}" alt="">
         </div>
         <nav class="footer_links">
             <a href="">About Us</a>
             <a href="">Terms and condition</a>
-            <a href="">Help center</a>
-            <a href="">Privacy & cookies policy</a>
-            <a href="">Report a seller</a>
+            <a class="js-help-shared" href="">Help center</a>
+            <a href="{{ url('/privacy') }}">Privacy &  policy</a>
+            {{-- <a href="">Report a seller</a> --}}
         </nav>
         <div class="footer_icons">
-            <img src="{{asset('innocent/assets/image/facebook.png')}}" alt="">
-            <img src="{{asset('innocent/assets/image/twitter.png')}}" alt="">
-            <img src="{{asset('innocent/assets/image/linkedin.png')}}" alt="">
-            <img src="{{asset('innocent/assets/image/message.png')}}" alt="">
+            <img src="{{asset('innocent/assets/image/facebook.png') }}" alt="">
+            <img src="{{asset('innocent/assets/image/twitter.png ') }}" alt="">
+            <img src="{{asset('innocent/assets/image/linkedin.png') }}" alt="">
+            <img src="{{asset('innocent/assets/image/message.png') }}" alt="">
         </div>
     </div>
+
     
   <!-- Modal -->
   <div class="modal fade" id="tell_us_what_u_want_input_condition" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -1065,9 +1268,11 @@
     <script src="{{ asset('innocent/assets/js/animation.js') }}"></script>
     <script src="{{ asset('innocent/assets/js/product_des.js') }}"></script>
     <script src="{{ asset('innocent/assets/js/notification.js') }}"></script>
+    <script src="{{ asset('innocent/assets/js/modal.js') }}"></script>
 
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script type="module" src="{{ asset('backend-js/shared-product.js') }}" ></script>
+    <script  src="{{ asset('backend-js/user/auth.js') }}"></script>
 </body>
 </html>

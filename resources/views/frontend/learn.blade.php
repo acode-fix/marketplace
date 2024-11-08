@@ -23,32 +23,33 @@
         </div>
       </div>
 
-      <div style="background-color: white;">
+      
+       <div class="footer-height">
         <div class="footer footer-desktop">
           <div class="row buy border-top footer mt-5 ">
             <div class="col mt-3 ">
               <div style="text-align: center; ">
-                <img src="kaz/images/logo.png" class="img-fluid" alt="">
+                <img class="main-logo" src="kaz/images/transparent_logo.png" class="img-fluid" alt="">
               </div>
             </div>
           </div>
         </div>
         <div style="text-align: center; word-wrap: none;" class="row pt-4 footer footer-desktop">
           <div class="col">
-            <p class="fw-light">About <br> us</p>
+            <a href=""><p class="fw-light">About <br> us</p></a>
           </div>
           <div class="col">
-            <p class="fw-light"> Terms and <br> Conditions</p>
+            <a href=""><p class="fw-light"> Terms and <br> Conditions</p></a>
           </div>
           <div class="col">
-            <p class="fw-light">Help <br>center</p>
+            <a href=""><p class="fw-light js-learn-help">Help <br>center</p></a>
           </div>
           <div class="col">
-            <p class="fw-light">Privacy & <br> Cookies <br>Policy</p>
+            <a href="/privacy"><p class="fw-light">Privacy & <br>Policy</p></a>
           </div>
-          <div class="col ">
+          {{-- <div class="col ">
             <p class="fw-light">Report <br> a seller</p>
-          </div>
+          </div> --}}
         </div>
         <div class="row footer footer-desktop">
           <div style="text-align: center;" class="col">
@@ -58,9 +59,9 @@
             <img height="30px" width="30px" src="kaz/images/message.png" alt="">
           </div>
         </div>
-      </div>
+      </div> 
     </div>
-
+   
     <!-- mobile-view  -->
     <div class="mobile-view">
       <div class="container-fluid">

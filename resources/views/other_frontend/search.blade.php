@@ -30,10 +30,10 @@
             <div class="search-bar">
                 <div class="location-icon"><i class="fa-solid fa-location-dot"></i></div>
                 <select placeholder="Country" class="country-input">
-                    <option selected>USA</option>
-                    <option value="1">Canada</option>
+                    <option selected>Nigeria</option>
+                    {{-- <option value="1">Canada</option>
                     <option value="2">Nigeria</option>
-                    <option value="3">Russia</option>
+                    <option value="3">Russia</option> --}}
                 </select>
                 <div class="vertical-bar"></div>
                 <span>
@@ -43,7 +43,7 @@
                 </span>
             </div>
         
-          <img src="innocent/assets/image/main logo.svg" alt="" class="search_buy_and_sell_logo">
+         <a href="{{ url('/') }}"><img src="{{ asset('innocent/assets/image/transparent_logo.png')}}" alt="" class="search_buy_and_sell_logo"></a>
         </div>
 
         <!-- Sidebar and Main Body Section -->
@@ -87,7 +87,7 @@
                 <br>
                 <div class="row">
                     <div class="col d-flex">
-                        <img src="innocent/assets/image/badge.png" alt="" class="verify_badge">
+                        <img src="{{ asset('innocent/assets/image/badge.png') }}" alt="" class="verify_badge">
 
                         <p style="font-size: 15px;">verified seller</p>
                         <label class="switch">
@@ -97,7 +97,7 @@
                     </div>
                 </div>
                 <a href="{{ url('/start_selling') }}" class="start_selling_div">
-                    <img src="innocent/assets/image/logo icon.svg" alt="">
+                    <img src="{{ asset('innocent/assets/image/logo icon.svg') }}" alt="">
                     <p class="start_selling_p">
                         <span class="start_selling_span"> do you have anything to sell</span><br>
                         <span class="start_selling_span2">start selling</span>
@@ -171,7 +171,7 @@
 
 
                     <div style="display: flex;">
-                        <p> <img src="innocent/assets/image/badge.png" alt="" style="width: 22px;height: 20px;">
+                        <p> <img src="{{ asset('innocent/assets/image/badge.png') }}" alt="" style="width: 22px;height: 20px;">
                             verified seller</p>
                         <div style="margin-left: 10%;">
                             <label class="switch">
@@ -351,22 +351,27 @@
                 </div>
                 <!-- Promotion Section -->
                 <div class="promotion">
-                    <img src="innocent/assets/image/Annoucement.png" alt="" class="Annoucement">
+                    <img src="{{ asset('innocent/assets/image/Annoucement.png ') }}" alt="" class="Annoucement">
                     <p>
-                        <img src="innocent/assets/image/main logo.svg" alt="" class="buy_and_sell_logo_promotion" ><br><br>
-                        <img src="innocent/assets/image/Annoucement.png" alt="" class="Annoucement2">
+                        <img src="{{ asset('innocent/assets/image/transparent_logo.png ') }}" alt="" class="buy_and_sell_logo_promotion" ><br><br>
+                        <img src="{{asset('innocent/assets/image/Annoucement.png') }}" alt="" class="Annoucement2">
                         <strong>Reach more audience by promoting your Product(s)</strong><br>
+                        Get an active badge by becoming a verified seller <br> and enjoy multiple benefits that comes with being a verified seller
+                        <br><br><br>
+                        <a class="js-become-link" href="/become"><button class="get_started animate animate-pulse4">Get
+                            Started</button></a>
+                        {{-- <strong>Reach more audience by promoting your Product(s)</strong><br>
                         determine your target audience location, interest, <br> select a
                         convenient budget and duration
                         <br><br><br>
                         <button class="get_started animate animate-pulse4" onclick="showCard_get_started()">Get
-                            Started</button>
+                            Started</button> --}}
                     </p>
                 </div>
 
                 <div class="promotion_card card" id="promotion_card" style="display: none;">
                     <i class="fa-solid fa-close close_get_started" onclick="hideCard_get_started()"></i>
-                    <img src="innocent/assets/image/Annoucement.png" alt="">
+                    <img src="{{asset('innocent/assets/image/Annoucement.png') }}" alt="">
                     <div class="card_content_get_started">
                         <p>chosse your promotion option <br>
                             <span>select your promotion option</span>
@@ -542,7 +547,7 @@
 
                 <div class="tell_us_what_u_want animate animate-left ">
                     <p class="tell_us_paragraph" onclick="changeToInput()">
-                        <img src="innocent/assets/image/pen.png" alt="" class="pen">
+                        <img src="{{asset('innocent/assets/image/pen.png') }}" alt="" class="pen">
                         Can't find what you are looking for?
                         <span>Tell us what it is!</span><br>
                         and we'll do our best to assist you.
@@ -550,10 +555,10 @@
                 </div>
 
                 <div class="tell_us_what_u_want_input_area">
-                    <img src="innocent/assets/image/dp.png" alt="" class="tell_us_what_u_want_profile">
+                    <img src="" alt="" class="tell_us_what_u_want_profile js-search-product-img">
                     <div class="vertical_bar"></div>
-                    <input type="text" name="" class="tell_us_input" placeholder="write the details here">
-                    <button class="send" onclick="send()">send</button>
+                    <input type="text" name="" class="tell_us_input js-search-input" placeholder="write the details here">
+                    <button class="send js-search-send" onclick="send()">send</button>
 
                 </div>
                 <p class="submmited">submmited✅</p>
@@ -562,22 +567,22 @@
         </div>
 
         <!-- Footer Section -->
-        <div class="footer_contanier" id="footer">
+        <div class="footer_contanier">
             <div>
-                <img src="{{asset('innocent/assets/image/logo.png')}}"  alt="">
+                <img class="main-logo" src="{{asset('innocent/assets/image/transparent_logo.png') }}" alt="">
             </div>
             <nav class="footer_links">
                 <a href="">About Us</a>
                 <a href="">Terms and condition</a>
-                <a href="">Help center</a>
-                <a href="">Privacy & cookies policy</a>
-                <a href="">Report a seller</a>
+                <a class="js-help-search" href="">Help center</a>
+                <a href="/privacy">Privacy &  policy</a>
+                {{-- <a href="">Report a seller</a> --}}
             </nav>
             <div class="footer_icons">
-                <img src="innocent/assets/image/facebook.png" alt="">
-                <img src="innocent/assets/image/twitter.png" alt="">
-                <img src="innocent/assets/image/linkedin.png" alt="">
-                <img src="innocent/assets/image/message.png" alt="">
+                <img src="{{asset('innocent/assets/image/facebook.png') }}" alt="">
+                <img src="{{asset('innocent/assets/image/twitter.png') }}" alt="">
+                <img src="{{asset('innocent/assets/image/linkedin.png') }}" alt="">
+                <img src="{{asset('innocent/assets/image/message.png') }}" alt="">
             </div>
         </div>
     </div>

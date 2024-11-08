@@ -39,7 +39,7 @@ export function displaySwal(errorMsg) {
 
 export function getToken () {
 
-  const token = localStorage.getItem('apiToken')
+ const token = localStorage.getItem('apiToken')
 
 if(!token) {
 
@@ -60,6 +60,21 @@ return false
   return token;
 }
 
+}
+
+export  function promptLogin() {
+  Swal.fire({
+      icon: 'error',
+      title: 'Login Required',
+      text: 'Please login to continue'
+  }).then(() => {
+  
+      const myModal = new bootstrap.Modal(document.querySelector('#signup_login-modal'));
+      myModal.show();
+
+
+
+  });
 }
 
 
@@ -142,17 +157,17 @@ return  user.photo_url ? `<img src="/uploads/users/${user.photo_url}" alt=".prof
 
 }
 
-export function getProdProfileDescImg(product, element) {
+ export function getProdProfileDescImg(product, element) {
 
-  if(!product) {
-    return  element.src = `/innocent/assets/image/avatar.svg`;
-  }
+      if(!product) {
+        return  element.src = `/innocent/assets/image/avatar.svg`;
+      }
 
   const user = product.user ?? product ;
 
   return  user.photo_url ? element.src = `/uploads/users/${user.photo_url}` : element.src = `${generateAvatar(user.email)}`;
 
-}
+  }
 
 
 export  function logoutUser() {
@@ -519,3 +534,123 @@ export function filter(locationElement, verifyElement,) {
 
 
 }
+
+export function displayHelpCenter() {
+
+  Swal.fire({
+    title: "<strong>Help Center</strong>",
+    icon: "info",
+    html: `
+      <h6 class="fs-5">Direct your complain to our email</h6>
+      <h6 class="fs-5">Admin@loopMartinfo.com</h6>
+      <h6 class="fs-5">We will respond within 24hrs</h6>
+     
+    `,
+    showCloseButton: true,
+    showCancelButton: true,
+    focusConfirm: false,
+    confirmButtonText: `
+      <i class="fa fa-thumbs-up"></i> Great!
+    `,
+    confirmButtonAriaLabel: "Thumbs up, great!",
+    cancelButtonText: `
+      <i class="fa fa-thumbs-down"></i>
+    `,
+    cancelButtonAriaLabel: "Thumbs down"
+  });
+
+
+}
+
+export function displayData(name, phone_number) {
+
+  Swal.fire({
+    title: "<strong class='text-success'>Connect</strong>",
+    icon: "info",
+    html: `
+      <h6 class="fs-5">Seller Name: ${name ?? 'N/A'}</h6>
+      <h6 class="fs-5">Contact: ${phone_number ?? 'N/A'}</h6>
+     
+    `,
+    showCloseButton: true,
+    showCancelButton: true,
+    focusConfirm: false,
+    confirmButtonText: `
+      <i class="fa fa-thumbs-up"></i> Great!
+    `,
+    confirmButtonAriaLabel: "Thumbs up, great!",
+    cancelButtonText: `
+      <i class="fa fa-thumbs-down"></i>
+    `,
+    cancelButtonAriaLabel: "Thumbs down"
+  });
+
+
+}
+
+
+export function generateStars(rating) {
+  let stars = '';
+  for (let i = 0; i < rating; i++) {
+      stars += `<img width="10px" src="/kaz/images/Rate.png" alt="">`;
+  }
+  return stars;
+}
+
+
+export  function sendProductRequest(input, token) {
+
+  axios.post('/api/v1/user/product-request', { input }, {
+      headers: {
+          'Authorization': `Bearer ${token}`,
+          'Content-type': 'application/json',
+      }
+  }).then((response) => {
+
+     // console.log(response);
+
+      if(response.status === 200 && response.data) {
+
+          const msg = response.data.message;
+
+          Swal.fire({
+              icon: 'success',
+              title: 'Product Request',
+              text: msg,
+          })
+
+          
+      }
+
+  }).catch((error) => {
+    //  console.log(error);
+
+      if(error.response) {
+
+          if(error.response.status === 422 && error.response.data) {
+              Swal.fire({
+                  icon: 'error',
+                  title: 'validation Error',
+                  text: error.response.data.message,
+              })
+
+          }
+
+
+
+          if(error.response.status === 500) {
+
+              Swal.fire({
+                  icon: 'error',
+                  title: 'Server Error',
+                  text: 'Something went wrong!! Please try again later'
+              });
+
+
+          }
+      }
+
+  })
+
+ }
+

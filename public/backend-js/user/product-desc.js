@@ -1,4 +1,4 @@
-   import {loadDashboard, getProdProfileDescImg, getBadge, loadConnect, getToken, logoutUser} from "../helper/helper.js";
+   import {loadDashboard, getProdProfileDescImg, getBadge, loadConnect, getToken, logoutUser, displayHelpCenter, sendProductRequest} from "../helper/helper.js";
 
 
    const token = getToken();
@@ -46,6 +46,18 @@
     
             const imgDesk = document.getElementById('js-profile-desk');
             getProdProfileDescImg(user, imgDesk);
+
+            document.querySelectorAll('.js-img-tell').forEach((img) => {
+
+                if(img) {
+
+                    getProdProfileDescImg(user, img);
+
+                }
+
+            });
+
+        
     })
     .catch(error => {
         console.error('Error fetching user data:', error);
@@ -151,7 +163,7 @@
        //console.log(product);
        document.querySelector('.user_state').textContent = product.location;
        document.querySelector('.user_name2').textContent = product.user.name;
-       document.querySelector('.rate_value').textContent = product.rate;
+       document.querySelector('.rate_value').textContent = product.avg_rating;
        document.querySelector('.sold3').textContent = 'sold ' + (product.sold || 0);
        document.querySelector('.stock2').textContent = product.quantity + ' in stock';
        document.querySelector('.condition2').textContent = product.condition;
@@ -191,18 +203,18 @@
                      <span class="user_state_mobile">${product.location ?? 'No Data Provided'}</span>
                      <span class="rate">
                          <img src="innocent/assets/image/Rate.png" alt="">
-                         <span class="rate_value">loading</span>
+                         <span class="rate_value">${product.avg_rating}</span>
                      </span>
                      <span><a class="review-link ps-2 text-success" href="/review/product?user=${id}&shop=${shop_token}">Reviews</a></span>
                  </p>
              </div>
              <div class="products_details_head">
                  <p class="sold2">
-                     loading
+                  sold ${product.sold ?? 0}
                  </p>
      
                  <p class="stock">
-                     ${product.quantity ?? 'No Data Provided'}
+                     ${product.quantity ?? 'No Data Provided'} in stock
                  </p>
      
                  <p class="condition">
@@ -314,7 +326,7 @@
        card.innerHTML = `
              <a href="/product_des" class="product_card_link" data-product='${JSON.stringify(product)}'>
                  <div class="card product_card">
-                     <h6 class="sold"> Sold ${product.sold || 0} <br> <img src="innocent/assets/image/Rate.png" alt=""> ${product.rating || 0}</h6>
+                     <h6 class="sold"> Sold ${product.sold || 0} <br> <img src="innocent/assets/image/Rate.png" alt=""> ${product.avg_rating || 0}</h6>
                      <img src="uploads/products/${product_img_url || 'default.jpg'}"  class="card-img-top w-100 product_image" alt="${product.title}">
                      <div class="product_card_title">
                          <div class="main_and_promo_price_area">
@@ -377,6 +389,42 @@
            console.error('Product with ID ' + productId + ' not found.');
        }
    }
+
+   document.querySelector('.js-help-desc').addEventListener('click', (event) => {
+    event.preventDefault();
+
+    displayHelpCenter();
+
+   });
+
+   document.querySelector('.js-send-input').addEventListener('click', () => {
+    
+    const input = document.querySelector('.js-input2').value;
+
+    if(input.trim() === '') {
+        return;
+    }
+
+    sendProductRequest(input,token);
+
+
+   });
+
+   document.querySelector('.js-send-mobile').addEventListener('click', () => {
+
+    const input = document.querySelector('.js-input-mobile').value;
+
+    if(input.trim() === '') {
+        return;
+    }
+
+    sendProductRequest(input, token);
+
+   });
+
+
+  
+  
 
 
 

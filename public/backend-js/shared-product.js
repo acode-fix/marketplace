@@ -1,8 +1,60 @@
-import { getToken, getProdDesImage, getProdProfileDescImg, loadDashboard,logoutUser, getSingleImage, getBadge, getPrice, loadConnect } from "./helper/helper.js";
+import { getToken, getProdDesImage, getProdProfileDescImg, loadDashboard,logoutUser, getSingleImage, getBadge, getPrice, loadConnect, sendProductRequest, displayHelpCenter, promptLogin} from "./helper/helper.js";
 
   const currentUrl = new URL(window.location.href);
   const id = currentUrl.searchParams.get('id');
   const shopToken = currentUrl.searchParams.get('check');
+
+  sessionStorage.setItem('sharedPage', currentUrl);
+
+  const token = localStorage.getItem('apiToken');
+
+
+  const logoImg =  document.querySelector('.js-logo-img');
+const logoLink = document.querySelector('.js-logo-link');
+
+  if(!token) {
+
+   logoLink.addEventListener('click', (event) => {
+        event.preventDefault();
+
+    });
+
+    
+    logoImg.addEventListener('click', () => {
+        
+        logoImg.dataset.bsToggle = 'modal';
+        logoImg.dataset.bsTarget = '#signup_login-modal';
+
+    });
+
+    const becomeLinks = document.querySelectorAll('.js-become-link');
+
+    becomeLinks.forEach((link) => {
+     link.addEventListener('click', (event) => {
+         event.preventDefault();
+         promptLogin();
+     
+     
+         
+        });
+ 
+    });
+
+    document.querySelectorAll('.js-img-tell').forEach((img) => {
+
+      if(img) {
+
+          img.src = `/innocent/assets/image/avatar.svg`;
+
+      }
+
+  });
+ 
+
+  }
+
+
+
 
   axios.post('/api/product/shared', {
    id,
@@ -87,7 +139,7 @@ import { getToken, getProdDesImage, getProdProfileDescImg, loadDashboard,logoutU
                   <span class="user_state">${product.location ?? 'No Location Provided'}</span>
                   <span class="rate">
                       <img src="/innocent/assets/image/Rate.png" alt="">
-                      5.0
+                      ${product.avg_rating ?? 0}
                   </span >
               </span>
                <span><a class="review-link js-link ps-2 text-success" href="">Reviews</a></span>
@@ -97,7 +149,7 @@ import { getToken, getProdDesImage, getProdProfileDescImg, loadDashboard,logoutU
       
       <div class="products_details_head2">
           <p class="sold3">
-              sold 10
+              sold ${product.sold ?? 0}
           </p>
           
           <p class="stock2">
@@ -155,14 +207,18 @@ import { getToken, getProdDesImage, getProdProfileDescImg, loadDashboard,logoutU
 
         document.getElementById('js-viewshop').addEventListener('click', (event) => {
           event.preventDefault();
-          const auth = getToken();
-          if(auth) {
+        //  const auth = getToken();
+            
+          if(token) {
 
           const userId = user.id;
           localStorage.setItem('userId', JSON.stringify(userId));
 
           window.location.href = '/sellers-shop';
 
+          } else {
+
+            promptLogin();
           }
 
         });
@@ -174,13 +230,16 @@ import { getToken, getProdDesImage, getProdProfileDescImg, loadDashboard,logoutU
     connectBtn.addEventListener('click', (event) => {
       event.preventDefault();
 
-      const auth = getToken();
-
-      if(auth) {
+      if(token) {
 
         loadConnect(product);
 
+      } else {
+
+      promptLogin()
+
       }
+
 
     
       
@@ -198,14 +257,14 @@ import { getToken, getProdDesImage, getProdProfileDescImg, loadDashboard,logoutU
                 <span>lagos,</span> 
                 <span class="rate">
                     <img src="/innocent/assets/image/Rate.png" alt="">
-                    5.0
+                    ${product.avg_rating ?? 0}
                 </span >
             </span>
              <span><a class="review-link js-link ps-2 text-success" href="">Reviews</a></span>
         </p> 
         <div class="products_details_head">
             <p class="sold2">
-                sold 10
+                sold ${product.sold ?? 0}
             </p>
             
             <p class="stock">
@@ -227,12 +286,9 @@ import { getToken, getProdDesImage, getProdProfileDescImg, loadDashboard,logoutU
         link. addEventListener('click', (event) => {
           event.preventDefault();
     
-          const token = localStorage.getItem('apiToken');
-
-  
           if(!token) {
 
-            getToken();
+            promptLogin();
             
           } else {
 
@@ -349,7 +405,7 @@ import { getToken, getProdDesImage, getProdProfileDescImg, loadDashboard,logoutU
   
     axios.get('/api/v1/getuser', {
       headers : {
-        'Authorization': `Bearer ${token}`
+        'Authorization': `Bearer ${token}`,
       }
     }).then((response) => {
       console.log(response);
@@ -366,8 +422,6 @@ import { getToken, getProdDesImage, getProdProfileDescImg, loadDashboard,logoutU
           const auth = getToken();
       
           if(auth) {
-      
-          
       
               Swal.fire({
                 title: "Are you sure?",
@@ -386,7 +440,24 @@ import { getToken, getProdDesImage, getProdProfileDescImg, loadDashboard,logoutU
       
           }
         
-        })
+        });
+
+
+        
+
+        document.querySelectorAll('.js-img-tell').forEach((img) => {
+
+            if(img) {
+
+                getProdProfileDescImg(authData, img);
+
+            }
+
+        });
+
+
+
+        
         
 
       }
@@ -406,13 +477,10 @@ import { getToken, getProdDesImage, getProdProfileDescImg, loadDashboard,logoutU
 
   }
 
-
-  
-
-   
-
-  
   }
+
+
+  
 
 
   function loadProducts(otherProducts) {
@@ -425,12 +493,12 @@ import { getToken, getProdDesImage, getProdProfileDescImg, loadDashboard,logoutU
     otherProducts.forEach((product, index) => {
 
       //OBJECT DESTRUCTURING;
-      const {image_url, title, location, id} = product;
+      const {image_url, title, location, id, sold, avg_rating} = product;
 
     let  displayProduct = `
        <a href="" class="product_card_link js-id" data-product-id="${id}">
               <div class="card product_card">
-                  <h6 class="sold"> Sold 7 <br> <img src="/innocent/assets/image/Rate.png" alt=""> 3.6</h6>
+                  <h6 class="sold"> Sold ${sold} <br> <img  style="margin-bottom: 4px" src="/innocent/assets/image/Rate.png" alt=""> ${avg_rating}</h6>
                   <img src="/uploads/products/${getSingleImage(image_url)}" class="card-img-top w-100 product_image" alt="...">
               
                   <div class="product_card_title">
@@ -481,11 +549,9 @@ import { getToken, getProdDesImage, getProdProfileDescImg, loadDashboard,logoutU
           event.preventDefault();
             
           //Using object destructuring 
-          const {productId} = card.dataset;
+          const {productId} = card.dataset; 
 
-          const auth = getToken(); 
-
-          if (auth) {
+          if (token) {
 
       
           //console.log(productId);
@@ -528,6 +594,8 @@ import { getToken, getProdDesImage, getProdProfileDescImg, loadDashboard,logoutU
 
           });
 
+        }else {
+          promptLogin();
         }
 
         })
@@ -537,6 +605,17 @@ import { getToken, getProdDesImage, getProdProfileDescImg, loadDashboard,logoutU
       });
 
   }
+
+  document.querySelector('.js-search-bar-input').addEventListener('click', (event) => {
+    
+    if(!token) {
+      event.preventDefault();
+
+      promptLogin();
+    }
+
+
+  })
 
  
   
@@ -553,7 +632,7 @@ function loadMobileProduct(products) {
   const  display = `
   <a href="#" class="product_card_link">
          <div class="card product_card">
-             <h6 class="sold"> Sold 35 <br> <img src="/innocent/assets/image/Rate.png" alt=""> 4.0</h6>
+             <h6 class="sold"> Sold ${product.sold ?? 0} <br> <img src="/innocent/assets/image/Rate.png" alt="">${product.avg_rating}</h6>
              <img src="/uploads/products/${getSingleImage(image_url)}" class="card-img-top w-100 product_image" alt="...">
          
              <div class="product_card_title">
@@ -585,6 +664,76 @@ function loadMobileProduct(products) {
 
 
   }
+
+
+  document.querySelector('.js-send-input').addEventListener('click', () => {
+    
+    const input = document.querySelector('.js-input2').value;
+
+    if(input.trim() === '') {
+        return;
+    }
+
+    const token = localStorage.getItem('apiToken');
+
+    sendProductRequest(input,token);
+
+
+   });
+
+   document.querySelector('.js-send-mobile').addEventListener('click', () => {
+
+    const input = document.querySelector('.js-input-mobile').value;
+
+    if(input.trim() === '') {
+        return;
+    }
+
+    
+    const token = localStorage.getItem('apiToken');
+
+
+    sendProductRequest(input, token);
+
+   });
+
+
+   document.querySelector('.js-help-shared').addEventListener('click', (event) => {
+    event.preventDefault();
+
+    if(!token) {
+
+      promptLogin();
+
+      return
+    }
+
+    displayHelpCenter();
+
+   });
+
+
+   document.querySelectorAll('.js-change-to-input').forEach((input) => {
+
+    if(input) {
+      
+      input.addEventListener('click', () => {
+
+        if(!token) {
+    
+          promptLogin();
+    
+          return
+        }
+    
+       })
+    }
+
+   })
+   
+   
+
+   
 
 
 

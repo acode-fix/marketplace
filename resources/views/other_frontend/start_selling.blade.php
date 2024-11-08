@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="{{ asset('innocent/assets/icons/css/all.min.css') }}">
     <link rel="stylesheet" href="{{ asset('innocent/assets/icons/css/fontawesome.min.css') }}">
     <link rel="stylesheet" href="{{ asset('innocent/assets/css/alert.css') }}">
+    <link href="https://fonts.cdnfonts.com/css/product-sans" rel="stylesheet"> 
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
     <style>
 
@@ -25,7 +26,7 @@
             <span class="navbar_heading">Upload Product</span>
         </p>
 
-        <img src="innocent/assets/image/main logo.svg" alt="" class="buy_and_sell_logo_start_selling">
+        <a href="{{ url('/') }}"><img src="{{asset('innocent/assets/image/transparent_logo.png') }}" alt="" class="buy_and_sell_logo_start_selling"></a>
 
     </div>
 
@@ -44,42 +45,42 @@
 
         <!-- Category Images -->
         <div class="image2" onclick="selectCategory(this, 1)">
-            <img src="innocent/assets/image/category 1.png">
+            <img src="{{asset('innocent/assets/image/category 1.png')}}">
             <div class="text2">Gadgets</div>
             <div class="checked-icon">✅️</div>
         </div>
         <div class="image2" onclick="selectCategory(this, 2)">
-            <img src="innocent/assets/image/category 2.png">
+            <img src="{{asset('innocent/assets/image/category 2.png')}}">
             <div class="text2">Vehicles</div>
             <div class="checked-icon">✅️</div>
         </div>
         <div class="image2" onclick="selectCategory(this, 3)">
-            <img src="innocent/assets/image/category 3.png">
+            <img src="{{asset('innocent/assets/image/category 3.png')}}">
             <div class="text2">Houses</div>
             <div class="checked-icon">✅️</div>
         </div>
         <div class="image2" onclick="selectCategory(this, 4)">
-            <img src="innocent/assets/image/category 4.png">
+            <img src="{{asset('innocent/assets/image/category 4.png')}}">
             <div class="text2">Fashion</div>
             <div class="checked-icon">✅️</div>
         </div>
         <div class="image2" onclick="selectCategory(this, 5)">
-            <img src="innocent/assets/image/category 5.png">
+            <img src="{{asset('innocent/assets/image/category 5.png')}}">
             <div class="text2">Jobs</div>
             <div class="checked-icon">✅️</div>
         </div>
         <div class="image2" onclick="selectCategory(this, 6)">
-            <img src="innocent/assets/image/category 6.png">
+            <img src="{{asset('innocent/assets/image/category 6.png')}}">
             <div class="text2">Cosmetics</div>
             <div class="checked-icon">✅️</div>
         </div>
         <div class="image2" onclick="selectCategory(this, 7)">
-            <img src="innocent/assets/image/category 7.png">
+            <img src="{{asset('innocent/assets/image/category 7.png')}}">
             <div class="text2">Fruits</div>
             <div class="checked-icon">✅️</div>
         </div>
         <div class="image2" onclick="selectCategory(this, 8)">
-            <img src="innocent/assets/image/category 8.png">
+            <img src="{{asset('innocent/assets/image/category 8.png')}}">
             <div class="text2">Kitchen utensils</div>
             <div class="checked-icon">✅️</div>
         </div>
@@ -97,49 +98,49 @@
             <!-- Category Images Gallery -->
 
             <div class="image" onclick="selectCategory(this, 1)">
-                <img src="innocent/assets/image/category 1.png">
+                <img src="{{asset('innocent/assets/image/category 1.png')}}">
                 <div class="text2">Gadgets</div>
                 <div class="checked-icon">✅️</div>
             </div>
 
             <div class="image" onclick="selectCategory(this, 2)">
-                <img src="innocent/assets/image/category 2.png">
+                <img src="{{asset('innocent/assets/image/category 2.png')}}">
                 <div class="text2">Vehicles</div>
                 <div class="checked-icon">✅️</div>
             </div>
 
             <div class="image" onclick="selectCategory(this, 3)">
-                <img src="innocent/assets/image/category 3.png">
+                <img src="{{asset('innocent/assets/image/category 3.png')}}">
                 <div class="text2">Houses</div>
                 <div class="checked-icon">✅️</div>
             </div>
 
             <div class="image" onclick="selectCategory(this, 4)">
-                <img src="innocent/assets/image/category 4.png">
+                <img src="{{asset('innocent/assets/image/category 4.png')}}">
                 <div class="text2">Fashion</div>
                 <div class="checked-icon">✅️</div>
             </div>
 
             <div class="image" onclick="selectCategory(this, 5)">
-                <img src="innocent/assets/image/category 5.png">
+                <img src="{{asset('innocent/assets/image/category 5.png')}}">
                 <div class="text2">Jobs</div>
                 <div class="checked-icon">✅️</div>
             </div>
 
             <div class="image" onclick="selectCategory(this, 6)">
-                <img src="innocent/assets/image/category 6.png">
+                <img src="{{asset('innocent/assets/image/category 6.png')}}">
                 <div class="text2">Cosmetics</div>
                 <div class="checked-icon">✅️</div>
             </div>
 
 
             <div class="image" onclick="selectCategory(this, 7)">
-                <img src="innocent/assets/image/category 7.png">
+                <img src="{{asset('innocent/assets/image/category 7.png')}}">
                 <div class="text2">Fruits</div>
                 <div class="checked-icon">✅️</div>
             </div>
             <div class="image" onclick="selectCategory(this, 8)">
-                <img src="innocent/assets/image/category 8.png">
+                <img src="{{asset('innocent/assets/image/category 8.png')}}">
                 <div class="text2"> utensils</div>
                 <div class="checked-icon">✅️</div>
             </div>
@@ -163,10 +164,9 @@
 
 
                 <input type="file" id="fileInput" name="image_url[]" accept="image/*" style="display: none;" multiple>
-
                 <div id="imageContainer">
                     <div id="uploadButton">
-                        <img src="innocent/assets/image/upload.png" alt="Logo" class="upload_camera">
+                        <img src="{{asset('innocent/assets/image/Upload.png')}}" alt="Logo" class="upload_camera">
                         <p class="photo_discribtion">maximum picture size: <span class="photo_discribtion_2">5mb</span><br>
                             supported format: <span class="photo_discribtion_2">Jpg & Png</span>
                         </p>
@@ -340,7 +340,7 @@
       <div class="modal-content upload_sucess">
         <p class="upload_sucess_modal_p">
             <i class="fa-solid fa-angle-left" data-bs-dismiss="modal" aria-label="Close"></i>
-            <img src="innocent/assets/image/main logo.svg" alt="" class="upload_logo" width="120px">
+            <img src="{{asset('innocent/assets/image/main logo.svg')}}" alt="" class="upload_logo" width="120px">
         </p>
         <p class="upload_sucess_modal_p2">
             <i class="fa-solid fa-check"></i>
@@ -395,248 +395,175 @@
   </div>
 
 
-    <script src="{{ asset('innocent/assets/js/start_selling.js') }}"></script>
+    <script src="{{ asset('innocent/assets/js/start_selling.js')}}"></script>
     <script src="{{ asset('innocent/assets/js/animation.js') }}"></script>
-    <script src="{{ asset('innocent/assets/js/upload_image.js') }}"></script>
+    {{-- <script src="{{ asset('innocent/assets/js/upload_image.js') }}"></script> --}}
     <script src="{{ asset('innocent/assets/js/bootstrap.js') }}"></script>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script type="module" src="{{ asset('backend-js/user/profile-update.js') }}"></script>
+   <script type="module" src="{{ asset('backend-js/user/start-selling.js') }}"></script>
 
     <script>
-    // document.addEventListener('DOMContentLoaded', function() {
-    //     const priceSwitch = document.getElementById('priceSwitch');
-    //     const priceFields = document.getElementById('priceFields');
-
-    //     // Hide price fields initially if the switch is checked
-    //     if (priceSwitch.checked) {
-    //         priceFields.style.display = 'none';
-    //     }
-
-    //     // Toggle price fields visibility based on the switch state
-    //     priceSwitch.addEventListener('change', function() {
-    //         if (priceSwitch.checked) {
-    //             priceFields.style.display = 'none';
-    //         } else {
-    //             priceFields.style.display = 'block';
-    //         }
-    //     });
-
-    //     document.getElementById('productForm').addEventListener('submit', function(event) {
-    //         event.preventDefault();
-
-    //         let formData = new FormData(this);
-
-    //         // Add ask_for_price to formData based on the switch state
-    //         formData.append('ask_for_price', priceSwitch.checked ? 1 : 0);
-
-    //         // Conditionally remove actual_price and promo_price if the switch is on
-    //         if (priceSwitch.checked) {
-    //             formData.delete('actual_price');
-    //             formData.delete('promo_price');
-    //         }
-
-    //         for (let pair of formData.entries()) {
-    //             console.log(pair[0] + ': ' + pair[1]);
-    //         }
-
-    //         const token = localStorage.getItem('apiToken');
-
-    //         axios.post('/api/v1/product', formData, {
-    //             headers: {
-    //                 'Content-Type': 'multipart/form-data',
-    //                 'Authorization': 'Bearer ' + token
-    //             }
-    //         })
-    //         .then(function(response) {
-    //             console.log(response.data);
-    //             if (response.data.status) {
-    //                 const modal = new bootstrap.Modal(document.getElementById('exampleModal'));
-    //                      modal.show();
-    //                 //      modal._element.addEventListener('hidden.bs.modal', function () {
-    //                 //     window.location.href = '/index'; // Redirect to index page after modal is hidden
-    //                 // });
-    //               // Redirect to the index page after a short delay
-    //             setTimeout(function() {
-    //                 window.location.href = '/';
-    //             }, 5000); // 5000 milliseconds = 5 seconds
-    //             } else {
-    //                 Swal.fire({
-    //                     icon: 'error',
-    //                     title: 'Failed to create product',
-    //                     text: response.data.message
-    //                 });
-    //             }
-    //         })
-    //         .catch(function(error) {
-    //             console.log(error.response.data);
-    //             Swal.fire({
-    //                 icon: 'error',
-    //                 title: 'An error occurred',
-    //                 text: error.response.data.message + ' ' + 'All fields are required'
-    //             });
-    //         });
-    //     });
-    // });
-
-    function descValidation() {
-       const desc = document.querySelector('.js-desc').value;
-       const descText = desc.trim();
    
-       let isvalid = false;
+//     function descValidation() {
+//        const desc = document.querySelector('.js-desc').value;
+//        const descText = desc.trim();
+   
+//        let isvalid = false;
 
-       if(descText.length > 500){
+//        if(descText.length > 500){
 
-         document.querySelector('.error').textContent = '* Product Description Must Not Exceed 500 Words !! *'
+//          document.querySelector('.error').textContent = '* Product Description Must Not Exceed 500 Words !! *'
 
-         isvalid = true;
-       }
+//          isvalid = true;
+//        }
 
-       return isvalid;
-    }
+//        return isvalid;
+//     }
 
     
 
-    document.addEventListener('DOMContentLoaded', function() {
-    const priceSwitch = document.getElementById('priceSwitch');
-    const priceFields = document.getElementById('priceFields');
-    let selectedFiles = []; // Store all selected files
+// document.addEventListener('DOMContentLoaded', function() {
+//     const priceSwitch = document.getElementById('priceSwitch');
+//     const priceFields = document.getElementById('priceFields');
+//     let selectedFiles = []; // Store all selected files
 
-    // Hide price fields initially if the switch is checked
-    if (priceSwitch.checked) {
-        priceFields.style.display = 'none';
-    }
+//     // Hide price fields initially if the switch is checked
+//     if (priceSwitch.checked) {
+//         priceFields.style.display = 'none';
+//     }
 
-    // Toggle price fields visibility based on the switch state
-    priceSwitch.addEventListener('change', function() {
-        if (priceSwitch.checked) {
-            priceFields.style.display = 'none';
-        } else {
-            priceFields.style.display = 'block';
-        }
-    });
+//     // Toggle price fields visibility based on the switch state
+//     priceSwitch.addEventListener('change', function() {
+//         if (priceSwitch.checked) {
+//             priceFields.style.display = 'none';
+//         } else {
+//             priceFields.style.display = 'block';
+//         }
+//     });
 
-    document.getElementById('fileInput').addEventListener('change', function() {
-        // Append the newly selected files to the existing list
-        Array.from(this.files).forEach(file => {
-            selectedFiles.push(file);  // Add the file to the selectedFiles array
-        });
+//     document.getElementById('fileInput').addEventListener('change', function() {
+//         // Append the newly selected files to the existing list
+//         Array.from(this.files).forEach(file => {
+//             selectedFiles.push(file);  // Add the file to the selectedFiles array
+//         });
 
-       // console.log('Currently selected files:', selectedFiles.map(f => f.name));
+//        // console.log('Currently selected files:', selectedFiles.map(f => f.name));
 
-        // Reset the file input field to allow new selections
-        this.value = '';  // Reset after each change so the same file can be selected again
-    });
+//         // Reset the file input field to allow new selections
+//         this.value = '';  // Reset after each change so the same file can be selected again
+//     });
 
-    document.getElementById('productForm').addEventListener('submit', function(event) {
-        event.preventDefault();
+//     document.getElementById('productForm').addEventListener('submit', function(event) {
+//         event.preventDefault();
 
-        if(descValidation()) {
+//         if(descValidation()) {
 
-            return;
-        }
+//             return;
+//         }
 
-        let formData = new FormData(this);
+//         let formData = new FormData(this);
 
         
         
 
-        // Add ask_for_price to formData based on the switch state
-        formData.append('ask_for_price', priceSwitch.checked ? 1 : 0);
+//         // Add ask_for_price to formData based on the switch state
+//         formData.append('ask_for_price', priceSwitch.checked ? 1 : 0);
 
-        // Conditionally remove actual_price and promo_price if the switch is on
-        if (priceSwitch.checked) {
-            formData.delete('actual_price');
-            formData.delete('promo_price');
-        }
+//         // Conditionally remove actual_price and promo_price if the switch is on
+//         if (priceSwitch.checked) {
+//             formData.delete('actual_price');
+//             formData.delete('promo_price');
+//         }
 
-        const imageArray = [];
+//         const imageArray = [];
 
-        // Loop through the accumulated selected files and append them to formData
-        selectedFiles.forEach((file, index) => {
-            formData.append('image_url[]', file); // Append each file to formData
-            imageArray.push(file.name); // Store file names in the array
-            //console.log(`Appending file ${index}: ${file.name}`); // Log each file name
-        });
+//         // Loop through the accumulated selected files and append them to formData
+//         selectedFiles.forEach((file, index) => {
+//             formData.append('image_url[]', file); // Append each file to formData
+//             imageArray.push(file.name); // Store file names in the array
+//             //console.log(`Appending file ${index}: ${file.name}`); // Log each file name
+//         });
 
-        // Append the JSON string of image URLs to the formData
-        formData.append('image_url_json', JSON.stringify(imageArray));
+//         // Append the JSON string of image URLs to the formData
+//         formData.append('image_url_json', JSON.stringify(imageArray));
 
-       // console.log(imageArray);
+//        // console.log(imageArray);
 
-        // Debug formData content
-        for (let pair of formData.entries()) {
-            if (pair[1] instanceof File) {
-               console.log(`${pair[0]}: File Name - ${pair[1].name}, Size - ${pair[1].size} bytes, Type - ${pair[1].type}`);
-            } else {
-               // console.log(`${pair[0]}: ${pair[1]}`);
-            }
-        }
+//         // Debug formData content
+//         for (let pair of formData.entries()) {
+//             if (pair[1] instanceof File) {
+//                console.log(`${pair[0]}: File Name - ${pair[1].name}, Size - ${pair[1].size} bytes, Type - ${pair[1].type}`);
+//             } else {
+//                // console.log(`${pair[0]}: ${pair[1]}`);
+//             }
+//         }
 
-        const token = localStorage.getItem('apiToken');
+//         const token = localStorage.getItem('apiToken');
        
     
 
-        axios.post('/api/v1/product', formData, {
-            headers: {
-                'Content-Type': 'multipart/form-data',
-                'Authorization': `Bearer ${token}`
-            }
-        })
-        .then(function(response) {  
+//         axios.post('/api/v1/product', formData, {
+//             headers: {
+//                 'Content-Type': 'multipart/form-data',
+//                 'Authorization': `Bearer ${token}`
+//             }
+//         })
+//         .then(function(response) {  
 
-            if (response.data.status) {
-                const modal = new bootstrap.Modal(document.getElementById('exampleModal'));
-                modal.show();
+//             if (response.data.status) {
+//                 const modal = new bootstrap.Modal(document.getElementById('exampleModal'));
+//                 modal.show();
 
-                // Redirect to the index page after a short delay
-                setTimeout(function() {
-                    window.location.href = '/';
-                }, 5000);
-            } else {
-                Swal.fire({
-                    icon: 'error',
-                    title: 'Failed to create product',
-                    text: response.data.message
-                });
-            }
-        })
-        .catch(function(error) {
-           // console.log(error.response)
+//                 // Redirect to the index page after a short delay
+//                 setTimeout(function() {
+//                     window.location.href = '/';
+//                 }, 5000);
+//             } else {
+//                 Swal.fire({
+//                     icon: 'error',
+//                     title: 'Failed to create product',
+//                     text: response.data.message
+//                 });
+//             }
+//         })
+//         .catch(function(error) {
+//            // console.log(error.response)
            
-            if(error.response) {
+//             if(error.response) {
 
-                if(error.response.status === 401 && error.response.data) {
+//                 if(error.response.status === 401 && error.response.data) {
                        
-                    const responseErrors = error.response.data.errors;
+//                     const responseErrors = error.response.data.errors;
                 
 
-                    let allErrors = []
+//                     let allErrors = []
 
-                    for(let field in responseErrors) {
+//                     for(let field in responseErrors) {
 
-                     const fieldError = responseErrors[field];
+//                      const fieldError = responseErrors[field];
 
-                     fieldError.forEach((message) => {
-                        allErrors.push(message);
+//                      fieldError.forEach((message) => {
+//                         allErrors.push(message);
 
-                     })
-                    }
+//                      })
+//                     }
 
-              const errorMsg = allErrors.join('\n');
+//               const errorMsg = allErrors.join('\n');
 
-              Swal.fire({ 
-                icon: 'error',
-                title: 'Validation Error',
-                text:  errorMsg ,
-            });
+//               Swal.fire({ 
+//                 icon: 'error',
+//                 title: 'Validation Error',
+//                 text:  errorMsg ,
+//             });
 
             
-                }
-            }
+//                 }
+//             }
 
-        });
-    });
-});
+//         });
+//     });
+// });
 
 </script>
 

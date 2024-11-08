@@ -577,6 +577,9 @@ public function getDetails(Request $request) {
                                     ->whereNotNull('shop_token')
                                     ->first();
 
+
+                        debugbar::info($user);
+
                                 
                                     
                         return response()->json([

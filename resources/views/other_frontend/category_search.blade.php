@@ -41,10 +41,10 @@
         <div class="search-bar">
             <div class="location-icon"><i class="fa-solid fa-location-dot"></i></div>
             <select placeholder="Country" class="country-input">
-                <option selected>USA</option>
-                <option value="1">Canada</option>
+                <option selected>Nigeria</option>
+                {{-- <option value="1">Canada</option>
                 <option value="2">Nigeria</option>
-                <option value="3">Russia</option>
+                <option value="3">Russia</option> --}}
             </select>
             <div class="vertical-bar"></div>
            <a href="{{ url('/search') }}"> <span onclick="localStorage.setItem('previousPage', '{{ url('/category_search') }}')" >
@@ -52,7 +52,7 @@
             <button id="search" type="button" class="search" onclick="check_input()">Search</button>
             </span></a>
         </div>
-        <img src="{{ asset('innocent/assets/image/main logo.svg') }}" alt="" class="search_buy_and_sell_logo">
+        <a href="{{ url('/') }}"><img src="{{asset('innocent/assets/image/transparent_logo.png')}}" alt="" class="search_buy_and_sell_logo"></a>
 
     </div>
 
@@ -165,15 +165,21 @@
             </div>
             <!-- Promotion Section -->
             <div class="promotion">
-                <img src="{{ asset('innocent/assets/image/Annoucement.png') }}" alt="" class="Annoucement">
+                <img src="{{asset('innocent/assets/image/Annoucement.png') }}" alt="" class="Annoucement">
                 <p>
-                    <img src="{{ asset('innocent/assets/image/main logo.svg') }}" alt="" class="buy_and_sell_logo_promotion" ><br><br>
-                        <img src="{{ asset('innocent/assets/image/Annoucement.png') }}" alt="" class="Annoucement2">
-                        <strong>Reach more audience by promoting your Product(s)</strong><br>
-                        determine your target audience location, interest, <br> select a
-                        convenient budget and duration
+                    <img src="{{asset('innocent/assets/image/transparent_logo.png') }}" alt="" class="buy_and_sell_logo_promotion" ><br><br>
+                    <img src="{{asset('innocent/assets/image/Annoucement.png') }}" alt="" class="Annoucement2">
+                    <strong>Reach more audience by promoting your Product(s)</strong><br>
+                    Get an active badge by becoming a verified seller <br> and enjoy multiple benefits that comes with being a verified seller
                     <br><br><br>
-                   <button class="get_started animate animate-pulse4"  onclick="showCard_get_started()">Get Started</button>
+                    <a class="js-become-link" href="/become"><button class="get_started animate animate-pulse4">Get
+                        Started</button></a>
+                    {{-- <strong>Reach more audience by promoting your Product(s)</strong><br>
+                    determine your target audience location, interest, <br> select a
+                    convenient budget and duration
+                    <br><br><br>
+                    <button class="get_started animate animate-pulse4" onclick="showCard_get_started()">Get
+                        Started</button> --}}
                 </p>
             </div>
 
@@ -239,11 +245,12 @@
                 </p>
             </div>
 
+
             <div class="tell_us_what_u_want_input_area">
-                <img src="{{ asset('innocent/assets/image/dp.png') }}" alt="" class="tell_us_what_u_want_profile">
-               <div class="vertical_bar"></div>
-                <input type="text" name="" class="tell_us_input" placeholder="write the details here">
-                <button class="send" onclick="send()">send</button>
+                <img src="" alt="" class="tell_us_what_u_want_profile js-search-product-img">
+                <div class="vertical_bar"></div>
+                <input type="text" name="" class="tell_us_input js-search-input" placeholder="write the details here">
+                <button class="send js-search-send" onclick="send()">send</button>
 
             </div>
              <p class="submmited" >submmited✅</p>
@@ -254,23 +261,23 @@
 
     <!-- Footer Section -->
     <div class="footer_contanier">
-        <div>
-            <img src=" {{asset('innocent/assets/image/logo.png')}}" alt="">
-        </div>
-        <nav class="footer_links">
-            <a href="">About Us</a>
-            <a href="">Terms and condition</a>
-            <a href="">Help center</a>
-            <a href="">Privacy & cookies policy</a>
-            <a href="">Report a seller</a>
-        </nav>
-        <div class="footer_icons">
-            <img src="{{ asset('innocent/assets/image/facebook.png') }}" alt="">
-            <img src="{{ asset('innocent/assets/image/twitter.png') }}" alt="">
-            <img src="{{ asset('innocent/assets/image/linkedin.png') }}" alt="">
-            <img src="{{ asset('innocent/assets/image/message.png') }}" alt="">
-        </div>
-    </div>
+            <div>
+                <img class="main-logo" src="{{asset('innocent/assets/image/transparent_logo.png') }}" alt="">
+            </div>
+            <nav class="footer_links">
+                <a href="">About Us</a>
+                <a href="">Terms and condition</a>
+                <a class="js-help-search" href="">Help center</a>
+                <a href="{{ url('/privacy') }}">Privacy &  policy</a>
+                {{-- <a href="">Report a seller</a> --}}
+            </nav>
+            <div class="footer_icons">
+                <img src="{{asset('innocent/assets/image/facebook.png') }}" alt="">
+                <img src="{{asset('innocent/assets/image/twitter.png') }}" alt="">
+                <img src="{{asset('innocent/assets/image/linkedin.png') }}" alt="">
+                <img src="{{asset('innocent/assets/image/message.png') }}" alt="">
+            </div>
+     </div>
 
     <!-- Modal -->
     <div class="modal fade" id="signup_login-modal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">

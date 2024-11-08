@@ -33,6 +33,22 @@
   font-size: 30px;
   color: #1a2b88;
   font-weight: bold;
+  
+}
+
+@media screen and (max-width:1068px) {
+
+  .no-text {
+    font-size: 25px;
+  }
+}
+.js-verified-link {
+  cursor: pointer;
+
+}
+
+.js-verified-link:hover {
+ color:  #75d14a;
 }
 
 .arrow-up {
@@ -399,4 +415,27 @@
   color: #ff0000;
   border-radius: 8px;
 
+}
+
+
+.sellers-footer a {
+  text-decoration: none;
+  color: black;
+  font-weight: bold;
+  transition: all 0.3s;
+}
+
+
+.sellers-footer a p:hover {
+  cursor: pointer;
+  color: #Fe3d3d;
+  transform: translateY(-8px);
+  
+}
+
+.review-mobile-img {
+
+  width: 70px;
+  height: 70px;
+  border-radius: 40px;
 }

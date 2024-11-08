@@ -30,7 +30,7 @@
       <h6 style="font-size: 20px;" class="fw-light ms-4">Sellers Shop</h6>
     </div>
     <div class="left-section">
-      <a href="{{ url('/') }}"><img class="img-fluid ms-3" src="kaz/images/logo.png" alt=""></a>
+      <a href="{{ url('/') }}"><img class="ms-3 main-logo" src="{{asset('kaz/images/transparent_logo.png')}}" alt=""></a>
       <h6 class="ms-5 fw-bold profile">Sellers Shop</h6>
     </div>
 
@@ -435,28 +435,29 @@
     </div>
 
     <div class="mt-5 sellers-footer">
-      <div><img src="kaz/images/Logo.png" alt=""></div>
+      <div><img class="main-logo" src="{{asset('kaz/images/transparent_logo.png')}}" alt=""></div>
       <div>
-        <p class="fw-light text-footer">About<br>us</p>
+        <a href=""><p class="fw-light text-footer">About<br>us</p></a>
       </div>
       <div>
-        <p class="fw-light  text-footer"> Terms and <br> Conditions</p>
+        <a href=""><p class="fw-light  text-footer"> Terms and <br> Conditions</p></a>
       </div>
       <div>
-        <p class="fw-light  text-footer">Help <br>center</p>
+        <a href=""><p class="fw-light  text-footer js-seller-help">Help <br>center</p></a>
       </div>
       <div>
-        <p class="fw-light  text-footer">Privacy & <br> Cookies <br>Policy</p>
+        <a href="/privacy"><p class="fw-light  text-footer">Privacy &<br>Policy</p></a>
       </div>
-      <div>
-        <p class="fw-light  text-footer">Report <br> a seller</p>
-      </div>
+      {{-- <div>
+        <a href=""><p class="fw-light  text-footer">Report <br> a seller</p></a>
+      </div> --}}
       <div class="down">
-        <img height="35px" width="35px" src="kaz/images/facebook.png" alt="">
-        <img height="30px" width="30px" src="kaz/images/twitter.png" alt="">
-        <img height="29px" width="29px" src="kaz/images/whatsapp.png" alt="">
-        <img height="30px" width="30px" src="kaz/images/message.png" alt="">
+        <img height="35px" width="35px" src="{{asset('kaz/images/facebook.png')}}" alt="">
+        <img height="30px" width="30px" src="{{asset('kaz/images/twitter.png')}}" alt="">
+        <img height="29px" width="29px" src="{{asset('kaz/images/whatsapp.png')}}" alt="">
+        <img height="30px" width="30px" src="{{asset('kaz/images/message.png')}}" alt="">
       </div>
+  
 
     </div>
 
@@ -509,15 +510,18 @@
       </div>
       <div style="margin-top: 10px;" class="row">
         <div class="col-5">
-          <div class="card-body main-card-mobile-rm ">
-            <h6>Reviews</h6>
+          <div class="card-body main-card-mobile-rm js-mobile-review-stars">
+            <h6>Reviews</h6> 
+            <div class=" mobile-stars">
+
+            </div>
+            {{-- <img src="kaz/images/star-active.svg" alt="">
             <img src="kaz/images/star-active.svg" alt="">
             <img src="kaz/images/star-active.svg" alt="">
             <img src="kaz/images/star-active.svg" alt="">
-            <img src="kaz/images/star-active.svg" alt="">
-            <img src="kaz/images/star-nill.svg" alt="">
-            <div class="pt-1">
-              <a class="view-m" href="{{ url('/review') }}"><i>View all</i></a><span class="bracket ps-3">(4.5)</span>
+            <img src="kaz/images/star-nill.svg" alt=""> --}}
+            <div class="pt-1 ">
+               <a class="view-m js-mobile-verify-link" href=""><i>View all</i></a><span class="bracket ps-3 mobile-avg-rate"></span>
             </div>
 
           </div>

@@ -1,10 +1,68 @@
-import { getToken, filter } from "./helper/helper.js";
+import { getToken, filter, getProdProfileDescImg, sendProductRequest,displayHelpCenter } from "./helper/helper.js";
 
 const token = getToken();
 
 if (token) {
 
  axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+
+
+ 
+ axios.get('/api/v1/getuser').then((response) => {
+
+  console.log(response);
+
+  if(response.status === 200 && response.data) {
+
+    const user = response.data;
+
+     updateProductRequest(user);
+
+
+  }
+
+}).catch((error) => {
+
+  console.log(error);
+
+});
+
+
+
+function updateProductRequest(user) {
+
+const imgEl =  document.querySelector('.js-search-product-img');
+
+getProdProfileDescImg(user, imgEl);
+
+
+}
+
+document.querySelector('.js-search-send').addEventListener('click', () => {
+
+    
+  const input = document.querySelector('.js-search-input').value;
+
+  if(input.trim() === '') {
+      return;
+  }
+
+  sendProductRequest(input, token);
+
+});
+
+
+document.querySelector('.js-help-search').addEventListener('click', (event) => {
+  event.preventDefault();
+
+  displayHelpCenter();
+
+});
+
+
+
+
+
 
  const newButton = document.querySelector('.js-new');
  const used = document.querySelector('.js-used');
@@ -122,7 +180,7 @@ if (token) {
       card.innerHTML = `
           <a href="/product_des" class="product_card_link" data-product='${JSON.stringify(product)}'>
                           <div class="card product_card">
-                              <h6 class="sold"> Sold ${product.sold || 0} <br> <img src="/innocent/assets/image/Rate.png" alt=""> ${product.rating || 0}</h6>
+                              <h6 class="sold"> Sold ${product.sold || 0} <br> <img src="/innocent/assets/image/Rate.png" alt=""> ${product.avg_rating || 0}</h6>
                               <img src="/uploads/products/${product_img_url || 'default.jpg'}" class="card-img-top w-100 product_image" alt="${product.title}">
                               <div class="product_card_title">
                                   <div class="main_and_promo_price_area">

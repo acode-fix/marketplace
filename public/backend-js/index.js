@@ -1,4 +1,4 @@
-import { getIndexProfileImage } from "./helper/helper.js";
+import { displayHelpCenter, getIndexProfileImage, sendProductRequest } from "./helper/helper.js";
 
 
 const token = localStorage.getItem('apiToken');
@@ -6,8 +6,25 @@ const token = localStorage.getItem('apiToken');
 
 axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
 
+const logoImg =  document.querySelector('.js-logo-img');
+const logoLink = document.querySelector('.js-logo-link');
 
 if(!token) {
+
+   logoLink.addEventListener('click', (event) => {
+        event.preventDefault();
+
+    });
+
+    
+    logoImg.addEventListener('click', () => {
+        
+        logoImg.dataset.bsToggle = 'modal';
+        logoImg.dataset.bsTarget = '#signup_login-modal';
+
+    })
+
+
 
     document.querySelectorAll('.js-auth').forEach((unAuthEl) => {
 
@@ -24,15 +41,33 @@ if(!token) {
 
     });
 
-  document.querySelectorAll('.js-default').forEach((defaultImg) => {
+    document.querySelectorAll('.js-default').forEach((defaultImg) => {
 
-    if(defaultImg) {
+        if(defaultImg) {
 
-        defaultImg.src = `/innocent/assets/image/avatar.svg`;
+            defaultImg.src = `/innocent/assets/image/avatar.svg`;
 
-    }
+        }
 
-  });
+    });
+
+   const becomeLinks = document.querySelectorAll('.js-become-link');
+
+   becomeLinks.forEach((link) => {
+    link.addEventListener('click', (event) => {
+        event.preventDefault();
+        promptLogin();
+    
+    
+        
+       });
+
+   });
+
+
+   
+
+   
 
 
  const guestDashboard =   ` <div class="profile_card_user_name">
@@ -54,8 +89,17 @@ if(!token) {
  document.querySelector('.js-guest').innerHTML = guestDashboard;
 
 
-}
+}else {
 
+
+
+logoImg.addEventListener('click', () => {
+    logoImg.dataset.bsToggle = '';
+    logoImg.dataset.bsTarget = '';
+})
+
+
+}
 
 
 
@@ -209,9 +253,9 @@ function createProductCard(product) {
 
 
     card.innerHTML = `
-        <a href="/product_des" class="product_card_link" data-product='${JSON.stringify(product)}'>
+        <a href="/product_des" class="product_card_link js-auth-card" data-product='${JSON.stringify(product)}'>
             <div class="card product_card">
-                <h6 class="sold"> Sold ${product.sold || 0} <br> <img src="innocent/assets/image/Rate.png" alt=""> ${product.rating || 0}</h6>
+                <h6 class="sold"> Sold ${product.sold || 0} <br> <img src="innocent/assets/image/Rate.png" alt=""> ${product.avg_rating || 0}</h6>
                 <img src="uploads/products/${product_img_url || 'default.jpg'}" class="card-img-top w-100 product_image" alt="${product.title}">
                 <div class="product_card_title">
                     <div class="main_and_promo_price_area">
@@ -236,6 +280,13 @@ function createProductCard(product) {
 
     card.querySelector('.product_card_link').addEventListener('click', function (event) {
         event.preventDefault();
+
+        if(!token) {
+            promptLogin();
+
+            return
+            
+        }
         //console.log( this.getAttribute('data-product'))
         localStorage.setItem('selectedProduct', this.getAttribute('data-product'));
 
@@ -301,7 +352,7 @@ function updateUserProfile(user) {
 }
 
 
-function promptLogin() {
+ function promptLogin() {
     Swal.fire({
         icon: 'error',
         title: 'Login Required',
@@ -360,6 +411,13 @@ document.getElementById('notification_icon').addEventListener('click', function(
 
 document.querySelector('.js-send').addEventListener('click', () => {
 
+    if(!token) {
+
+        promptLogin();
+
+        return
+    }
+
  const shopNo =  document.querySelector('.js-input-value').value;
 
   getVerifiedSellerShop(shopNo)
@@ -367,6 +425,13 @@ document.querySelector('.js-send').addEventListener('click', () => {
 });
 
 document.querySelector('.js-mobile-send').addEventListener('click', () => {
+
+    if(!token) {
+
+        promptLogin();
+
+        return
+    }
 
     const shopNo = document.querySelector('.js-mobile-input').value;
 
@@ -468,60 +533,26 @@ document.querySelector('.js-send-input').addEventListener('click', () => {
 
     const input = document.querySelector('.js-tell-us-input').value;
 
+    if(input.trim() === '') {
+        return;
+    }
 
-    axios.post('/api/v1/user/product-request', { input }, {
-        headers: {
-            'Content-type': 'application/json',
-        }
-    }).then((response) => {
+     sendProductRequest(input, token);
 
-       // console.log(response);
+});
 
-        if(response.status === 200 && response.data) {
+document.querySelector('.js-help').addEventListener('click', (event) => {
 
-            const msg = response.data.message;
+    event.preventDefault();
 
-            Swal.fire({
-                icon: 'success',
-                title: 'Product Request',
-                text: msg,
-            })
+    if(!token) {
 
-            
-        }
+        promptLogin();
+        return;
+        
+    }
 
-    }).catch((error) => {
-      //  console.log(error);
-
-        if(error.response) {
-
-            if(error.response.status === 422 && error.response.data) {
-                Swal.fire({
-                    icon: 'error',
-                    title: 'validation Error',
-                    text: error.response.data.message,
-                })
-
-            }
-
-
-
-            if(error.response.status === 500) {
-
-                Swal.fire({
-                    icon: 'error',
-                    title: 'Server Error',
-                    text: 'Something went wrong!! Please try again later'
-                })
-
-
-            }
-        }
-
-    })
-
-
-
+    displayHelpCenter();
 
 });
 
@@ -538,6 +569,7 @@ function changeToInput() {
     if (inputText === "") {
       var myModal = new bootstrap.Modal(document.getElementById('tell_us_what_u_want_input_condition'));
         myModal.show();
+        
     } else {
       document.querySelector(".tell_us_what_u_want_input_area").style.display="none"
       document.querySelector(".loader").style.display="block";
@@ -556,33 +588,6 @@ function changeToInput() {
 
 
 
-// if(!token) {
-
-//   document.querySelectorAll('.js-start-selling').forEach((sellingPage) => {
-
-//     sellingPage.addEventListener('click', (event) => {
-//         event.preventDefault();
-//         promptLogin();
-        
-//     })
-
-//   });
-
-
-//   document.querySelector('.js-send').addEventListener('click', (event) => {
-//     event.preventDefault()
-//     promptLogin();
-
-//   });
-
-
-//   document.querySelector('.js-search').addEventListener('click',(event) => {
-//     event.preventDefault();
-//     promptLogin();  
-
-//   })
-
-// }
 
 
 

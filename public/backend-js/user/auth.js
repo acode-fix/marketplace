@@ -1,3 +1,8 @@
+ 
+
+ const myModal = new bootstrap.Modal(document.querySelector('#signup_login-modal'));
+ const otpModal = new bootstrap.Modal(document.querySelector('#verifyOtpModal'));
+ 
  function signup() {
   const email = document.getElementById("signup_email").value;
   const password = document.getElementById("signup_password").value;
@@ -29,7 +34,15 @@
               title: 'Registration Successful',
               text: responseData.message,
               willClose: () => {
-                  window.location.href = '/'; // Redirect to dashboard or desired page
+
+             myModal.hide();
+            
+             const url =   sessionStorage.getItem('sharedPage');
+             
+             url ?  window.location.reload() : window.location.href = '/';
+
+             
+
               }
           });
       } else  
@@ -110,7 +123,15 @@
               title: 'Login Successful',
               text: responseData.message,
               willClose: () => {
-                  window.location.href = '/';; // Redirect to dashboard or desired page
+
+                myModal.hide();
+
+                const url =  sessionStorage.getItem('sharedPage');
+             
+                url ?  window.location.reload() : window.location.href = '/';
+
+               // const myModal = new bootstrap.Modal(document.querySelector('#signup_login-modal'));
+                
               }
           });
       } else {
@@ -204,6 +225,8 @@
           title: 'OTP Verified',
           text: 'OTP has been verified successfully.',
           onClose: function() {
+
+              otpModal.hide();
               // After OTP verification, show the password change modal
               changePassword(); // Assuming you have a function to show the password change modal
           }
@@ -250,8 +273,10 @@
           icon: 'success',
           title: 'Password Reset Successful',
           text: 'Your password has been reset successfully.',
-          onClose: function() {
-              window.location.href = '/'
+          willClose: function() {
+            const url =  sessionStorage.getItem('sharedPage');
+             
+            url ?  window.location.reload() : window.location.href = '/';
           }
       });
   })
@@ -279,6 +304,7 @@
                 // Remove the token from localStorage
                 localStorage.removeItem('apiToken');
                 localStorage.clear();
+                
 
                 // Remove the token from Axios default headers
                 delete axios.defaults.headers.common['Authorization'];
@@ -313,6 +339,11 @@
 
 
 // Add this JavaScript code to handle the logout process
+const logOut = document.getElementById('logoutLink');
+
+if(logOut)  {
+
+
 
 document.getElementById('logoutLink').addEventListener('click', function(event) {
 
@@ -336,5 +367,5 @@ document.getElementById('logoutLink').addEventListener('click', function(event) 
 });
 
 
-
+}
 

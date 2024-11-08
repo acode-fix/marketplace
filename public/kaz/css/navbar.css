@@ -172,6 +172,7 @@ input[type="search"] {
 }
 
 .sellers-footer {
+  margin-top: 484px;
   background-color: white;
   display: flex;
   margin-left: 250px;

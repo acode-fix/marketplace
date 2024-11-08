@@ -1,6 +1,8 @@
 import {
     validationError,
-    getShopPrice
+    getShopPrice,
+    displayHelpCenter,
+    generateStars
 } from "./helper/helper.js";
 import {
     serverError
@@ -267,8 +269,17 @@ document.addEventListener("DOMContentLoaded", function () {
                 productList.innerHTML = '';
                 let productCard = '';
 
+        
+                if(products.length === 0) {
+
+                return    productList.innerHTML = '<p class="text-danger">You have no product listed!!</p>';
+                
+                }
+
+                
+
                 products.forEach((product) => {
-                    //console.log(product)
+                    console.log(product)
                     const imageUrls = JSON.parse(product.image_url);
                     const firstImageUrl = imageUrls.length > 0 ? imageUrls[0] : '';
 
@@ -282,12 +293,10 @@ document.addEventListener("DOMContentLoaded", function () {
                      
                       <div class="star-layout">
                           <div>
-                              <img src="kaz/images/Rate.png" class="img-fluid image-rate" width="10px" alt="">
-                              <img src="kaz/images/Rate.png" class="img-fluid image-rate" width="10px" alt="">
-                              <img src="kaz/images/Rate.png" class="img-fluid image-rate" width="10px" alt="">
+                             ${generateStars(product.avg_rating)}
                           </div>
                           <div>
-                              <h6 class="ps-1 rate-no">5.0</h6>
+                              <h6 class="ps-1 rate-no">${product.avg_rating}</h6>
                           </div>
                       </div>
                   </div>
@@ -779,7 +788,17 @@ document.addEventListener("DOMContentLoaded", function () {
 
             });
 
-          }
+            }
+
+
+            
+            document.querySelector('.js-footer-help').addEventListener('click', (event) => {
+
+                event.preventDefault();
+
+                displayHelpCenter();
+
+            })
 
 
 
@@ -793,6 +812,13 @@ document.addEventListener("DOMContentLoaded", function () {
 
             let mobileProduct = '';
 
+            if(products.length === 0) {
+
+              return  mobileCard.innerHTML =   '<p class="text-danger">You have no product listed!!</p>';
+            }
+
+            
+
 
             products.forEach((product) => {
                 // console.log(product)
@@ -803,30 +829,30 @@ document.addEventListener("DOMContentLoaded", function () {
                 //console.log(firstImageUrl);
 
                 mobileProduct += `
-  <div class="card card-preview js-mobile-card" data-bs-toggle="modal" data-bs-target="#exampleModal2"
-  data-bs-whatever="@mdo" data-product-id="${product.id}">
-  <div class="sold-mobile">
-      <h6 class="amount-sold-m ps-1 pt-1">Sold 100</h6>
-      <img src="kaz/images/Rate.png" class="img-fluid ps-1" width="13px"
-          alt=""><span class="img-rate ps-1">3.6</span>
-  </div>
-  <img src="uploads/products/${firstImageUrl}"
-      class="card-img-top w-100 image-border" alt="...">
-  <div class="card-body">
-      ${getShopPrice(product)}
-      <p class="card-text infinix-text pt-3">${product.title}.</p>
-      <div class="footer-card-mobile">
-          <div>
-              <img style="margin-left:-10px;" width="8px"
-                  src="kaz/images/location.svg" alt=""><span
-                  class="location-text ps-1">${product.location}, Nigera</span>
-          </div>
-          <button style="margin-top: -10px;" type="button"
-              class="dropbtn1">...</button>
-      </div>
+                    <div class="card card-preview js-mobile-card" data-bs-toggle="modal" data-bs-target="#exampleModal2"
+                    data-bs-whatever="@mdo" data-product-id="${product.id}">
+                    <div class="sold-mobile">
+                        <h6 class="amount-sold-m ps-1 pt-1">Sold ${product.sold ?? 0}</h6>
+                        <img src="kaz/images/Rate.png" class="img-fluid ps-1" width="13px"
+                            alt=""><span class="img-rate ps-1">${product.avg_rating ?? 0}</span>
+                    </div>
+                    <img src="uploads/products/${firstImageUrl}"
+                        class="card-img-top w-100 image-border" alt="...">
+                    <div class="card-body">
+                        ${getShopPrice(product)}
+                        <p class="card-text infinix-text pt-3">${product.title}.</p>
+                        <div class="footer-card-mobile">
+                            <div>
+                                <img style="margin-left:-10px;" width="8px"
+                                    src="kaz/images/location.svg" alt=""><span
+                                    class="location-text ps-1">${product.location}, Nigera</span>
+                            </div>
+                            <button style="margin-top: -10px;" type="button"
+                                class="dropbtn1">...</button>
+                        </div>
 
-  </div>
-</div>`;
+                    </div>
+                    </div>`;
 
             });
 

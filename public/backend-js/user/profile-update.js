@@ -124,6 +124,7 @@ function updateUserProfile(user) {
                         if(user.verify_status === 1 && user.badge_status === 1) {
                         verify.textContent = 'Verified Seller';
                         verify.style.color = '#14ae5c';
+                        //verify.href= `/review/product?user=${user.id}&shop=${user.shop_token}`;
 
                     } else {
                         verify.textContent = 'Unverified Seller';
@@ -145,12 +146,14 @@ function updateUserProfile(user) {
 
                  const reviewEL =  document.querySelector('.review-page');
 
+                
+
                  if(reviewEL) {
 
                     reviewEL.addEventListener('click', (event) => {
                         event.preventDefault();
     
-                        window.location.href = `/review/product?user=${user.id}&shop=${user.shop_token}`;
+                       window.location.href = `/review/product?user=${user.id}&shop=${user.shop_token}`;
     
                      });
 

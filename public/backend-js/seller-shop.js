@@ -1,5 +1,5 @@
 import { serverError } from "./admin/auth-helper.js";
-import { generateAvatar, getDate, getUserProfileImage, logoutUser, getShopPrice, loadConnect, loadAvgStars } from "./helper/helper.js";
+import { generateAvatar, getDate, getUserProfileImage, logoutUser, getShopPrice, loadConnect, loadAvgStars, displayData, displayHelpCenter, generateStars } from "./helper/helper.js";
 
 
 
@@ -7,7 +7,9 @@ const token = localStorage.getItem('apiToken');
 
 axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
 
-const userId = localStorage.getItem('userId');
+const userId = JSON.parse(localStorage.getItem('userId'));
+
+
 
 if (!userId) {
 
@@ -35,7 +37,7 @@ if (!userId) {
 
     }).then((response) => {
 
-       // console.log(response)
+        console.log(response)
 
         if (response.status === 200 && response.data) {
 
@@ -162,19 +164,17 @@ if (!userId) {
             display += `
           <div>
                 <div class="card card-preview productCard" data-product-id="${product.id}">
-                  <h6 class="sold">Sold 75</h6>
+                  <h6 class="sold">Sold ${product.sold ?? 0}</h6>
                   <img src="/uploads/products/${image(product.image_url)}" class="card-img-top w-100 image-border" alt="...">
                   <div class="card-body">
                     <div class="card-structure">
                     ${getShopPrice(product)}
                       <div class="star-layout">
                         <div>
-                          <img src="kaz/images/Rate.png" class="img-fluid image-rate" width="10px" alt="">
-                          <img src="kaz/images/Rate.png" class="img-fluid image-rate" width="10px" alt="">
-                          <img src="kaz/images/Rate.png" class="img-fluid image-rate" width="10px" alt="">
+                        ${generateStars(product.avg_rating)}
                         </div>
                         <div>
-                          <h6 class="ps-1 rate-no">5.0</h6>
+                          <h6 class="ps-1 rate-no">${product.avg_rating ?? 0}</h6>
                         </div>
                       </div>
                     </div>
@@ -234,7 +234,6 @@ if (!userId) {
                 getImagePath(product);
 
             
-                // Placeholder data for the new card (replace with your own code)
                 //testing Photo = 455514555c4ffcf103a53bdf7a834d24.jpg;
                 var newCardHTML = `
             <div id="customContainer" class="custom-container">
@@ -248,7 +247,7 @@ if (!userId) {
                         </div>
                         <div class="middle">
                           <h6 class="sold-10 fw-light me-2">
-                            sold 10
+                            sold ${product.sold ?? 0}
                           </h6> 
                           <h6 class="stock fw-light me-2">
                             ${product.quantity ?? '0'} in stock
@@ -274,9 +273,9 @@ if (!userId) {
                         <div class="last-box" style="display: flex; justify-content: space-between;">
                            <div class="rate-box">
                             <img width="10px" src="kaz/images/Rate.png" alt="">
-                            <h6 class="rate-js ps-1">5.0</h6>
+                            <h6 class="rate-js ps-1">${product.avg_rating ?? 0}</h6>
                           </div>
-                          <h6 id="connect" class="connect me-4">Connect</h6>
+                          <h6 id="connect" class="connect me-4 js-connect-overlay">Connect</h6>
                         </div>
       
                       </div>
@@ -285,6 +284,9 @@ if (!userId) {
                 </div>
             </div>
         `;
+
+        
+
                 // Append the new card HTML to the container
                 document.getElementById("loadedCardContainer").innerHTML = newCardHTML;
 
@@ -326,6 +328,14 @@ if (!userId) {
 
                 });
 
+                const overlayBtn = document.querySelector('.js-connect-overlay');
+
+                overlayBtn.addEventListener('click', () => {
+
+                  displayData(data.name, data.phone_number)
+
+                });
+
             });
 
 
@@ -349,8 +359,8 @@ if (!userId) {
                 <div style="display: flex; align-items: center;">
                  ${img}
                 <div class="gary">
-                <h6 class="ps-2 gary-text">${user.name} .........</h6>
-                <img class="ms-1 "height="14px" width="14px" src="kaz/images/location.svg" alt=""><span class="location-text ps-1">${user.location ?? ''}, Nigera</span>
+                <h6 class="ps-2 gary-text">${user.username ?? 'N/A'}</h6>
+                <img class="ms-1 "height="14px" width="14px" src="kaz/images/location.svg" alt=""><span class="location-text ps-1">${user.location ?? 'N/A'}</span>
               </div>`;
     
     
@@ -432,14 +442,14 @@ if (!userId) {
         <a class="link-card" href="/product_des">
               <div class="card card-preview" data-card-id="1">
                 <div class="sold-mobile">
-                  <h6 class="amount-sold-m ps-1 pt-1">Sold 100</h6>
+                  <h6 class="amount-sold-m ps-1 pt-1">Sold ${product.sold ?? 0}</h6>
                   <img src="kaz/images/Rate.png" class="img-fluid ps-1" width="13px" alt=""><span
-                    class="img-rate ps-1">3.6</span>
+                    class="img-rate ps-1">${product.avg_rating ?? 0}</span>
                 </div>
                 <img src="/uploads/products/${image(product.image_url)}" class="card-img-top w-100 image-border" alt="...">
                 <div class="card-body">
                 ${getShopPrice(product)}
-                  <p class="card-text infinix-text pt-3">${product.title}.</p>
+                  <p class="card-text infinix-text pt-3">${product.title}</p>
                   <div class="footer-card-mobile">
                     <div style="display: flex;align-items: center;">
                       <img style="margin-left:-10px;" width="8px" src="kaz/images/location.svg" alt=""><span
@@ -479,7 +489,7 @@ if (!userId) {
                           <img class="badge-cam" height="20px" width="15px" src="kaz/images/badge.png" alt="">
                         </div>
                         <div class="mt-4 ms-4">
-                          <h5 class="">${user.name ? user.name : 'No Data Provided'}<span style="font-size: small;">(Shop No: ${user.shop_no ? user.shop_no : 'No Data Provided'})</span></h5>
+                          <h5 class="">${user.name ? user.name : 'No Data Provided'}<span style="font-size: small;">(Shop No: ${user.shop_no ? user.shop_no : 'N/A'})</span></h5>
                           <h6 class="mired-email">${user.email ? user.email : 'No Data Provided'}</h6>
                           <a class="verified-link" href="#">verified seller</a>
                         </div>
@@ -644,6 +654,8 @@ if (!userId) {
     const stars  = loadAvgStars(rating);
     
     document.querySelector('.js-stars').innerHTML = stars;
+    document.querySelector('.mobile-stars').innerHTML = stars;
+    document.querySelector('.mobile-avg-rate').textContent = `(${Math.floor(rating)})`;
 
 
 
@@ -741,11 +753,23 @@ if (!userId) {
 
         }
 
+        document.querySelector('.js-mobile-verify-link').href = `/review/product?user=${user.id}&shop=${user.shop_token}`;
+
+
+
+
+
+      
+
+            
       
 
 
 
     }
+
+
+   
 
     function mobileReadMore() {
       
@@ -848,31 +872,7 @@ if (!userId) {
     }
 
 
-    function displayData(name, phone_number) {
-
-      Swal.fire({
-        title: "<strong class='text-success'>Vetted Seller</strong>",
-        icon: "info",
-        html: `
-          <h6 class="fs-5">Seller Name: ${name ?? 'N/A'}</h6>
-          <h6 class="fs-5">Contact: ${phone_number ?? 'N/A'}</h6>
-         
-        `,
-        showCloseButton: true,
-        showCancelButton: true,
-        focusConfirm: false,
-        confirmButtonText: `
-          <i class="fa fa-thumbs-up"></i> Great!
-        `,
-        confirmButtonAriaLabel: "Thumbs up, great!",
-        cancelButtonText: `
-          <i class="fa fa-thumbs-down"></i>
-        `,
-        cancelButtonAriaLabel: "Thumbs down"
-      });
-
-
-    }
+  
 
 
     document.querySelectorAll('.js-logout').forEach((logout) => {
@@ -898,6 +898,14 @@ if (!userId) {
   
       })
 
+
+    });
+
+
+    document.querySelector('.js-seller-help').addEventListener('click', (event) => {
+      event.preventDefault();
+
+      displayHelpCenter();
 
     });
 

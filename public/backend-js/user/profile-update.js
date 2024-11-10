@@ -23,6 +23,7 @@ if (token) {
        if (error.response && error.response.status === 401) {
            Swal.fire({
                icon: 'error',
+               confirmButtonColor: '#ffb705',
                title: 'Unauthorized',
                text: 'Your session has expired. Please log in again.'
            }).then(() => {
@@ -39,7 +40,8 @@ if (token) {
    Swal.fire({
        icon: 'error',
        title: 'Unauthenticated User',
-       text: 'Please log in.'
+       text: 'Please log in.',
+       confirmButtonColor: '#ffb705',
    }).then(() => {
        window.location.href = '/'; 
        
@@ -225,7 +227,7 @@ function updateUserProfile(user) {
                 text: "You won't be able to revert this!",
                 icon: "warning",
                 showCancelButton: true,
-                confirmButtonColor: "#3085d6",
+                confirmButtonColor: '#ffb705',
                 cancelButtonColor: "#d33",
                 confirmButtonText: "Yes,I am sure!"
                 }).then((result) => {
@@ -270,18 +272,21 @@ function updateUserProfile(user) {
                     
                     localStorage.removeItem('apiToken');
                     localStorage.clear();
+                    window.location.href = '/';
           
-                    Swal.fire({
-                        icon: 'success',
-                        title: 'Logout Successful',
-                        text: responseData.message,
-                        willClose: function() {
-                            window.location.href = '/'; // Redirect to login page
-                         }
-                    });
+                    // Swal.fire({
+                    //     icon: 'success',
+                    //     confirmButtonColor: '#ffb705',
+                    //     title: 'Logout Successful',
+                    //     text: responseData.message,
+                    //     willClose: function() {
+                    //         window.location.href = '/'; 
+                    //      }
+                    // });
                 } else {
                     Swal.fire({
                         icon: 'error',
+                        confirmButtonColor: '#ffb705',
                         title: 'Logout Failed',
                         text: 'Unexpected response from the server. Please try again later.'
                     });
@@ -292,6 +297,7 @@ function updateUserProfile(user) {
       
                 Swal.fire({
                     icon: 'error',
+                    confirmButtonColor: '#ffb705',
                     title: 'Logout Failed',
                     text: errorData.message || 'There was an error while logging out. Please try again later.'
                 });

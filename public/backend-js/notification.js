@@ -69,8 +69,7 @@ async function loadNotification(data) {
                       <div class="message_area">
                           <p class="time">${item.comment}</p>
                           <p class="message"><strong>Congratulations</strong><br>It is a perfect time to give a review .</p>
-                          <p class="time">${item.user_id}</p>
-                          <p class="time">${item.product_id}</p>
+                         
                           
                       </div>
                       ${productImageHtml ?? `<img src="innocent/assets/image/laptop2.jpg" alt="Picture" class="notification_product_image">`}
@@ -89,8 +88,9 @@ async function loadNotification(data) {
 
   
 
-  const notification = document.querySelector('.notifications_region');
+  const notification = document.querySelector('.notifications_layout');
   if (notification) {
+
       notification.innerHTML += messages.join('');  // Insert all notifications at once
 
  
@@ -182,8 +182,7 @@ async function getUnreadNotification(notifications) {
                       <div class="message_area">
                           <p class="time">${data.comment}</p>
                           <p class="message"><strong>Congratulations</strong><br>It is a perfect time to give a review .</p>
-                          <p class="time">${data.user_id}</p>
-                          <p class="time">${data.product_id}</p>
+                         
                           
                       </div>
                       ${productImageHtml ?? `<img src="innocent/assets/image/laptop2.jpg" alt="Picture" class="notification_product_image">`}
@@ -204,7 +203,7 @@ async function getUnreadNotification(notifications) {
   
 
   // Insert the messages into the notifications region
-  const notificationContainer = document.querySelector('.notifications_region');
+  const notificationContainer = document.querySelector('.notifications_layout');
   if (notificationContainer) {
       notificationContainer.innerHTML += messages.join('');
   }

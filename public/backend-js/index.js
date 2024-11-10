@@ -1,4 +1,4 @@
-import { displayHelpCenter, getIndexProfileImage, sendProductRequest } from "./helper/helper.js";
+import { displayHelpCenter, getIndexProfileImage, sendProductRequest, promptLogin, formatPrice, getShopPrice, getIndexPrice } from "./helper/helper.js";
 
 
 const token = localStorage.getItem('apiToken');
@@ -251,6 +251,8 @@ function createProductCard(product) {
 
    const badge = verify_status === 1 && badge_status === 1 ? `<img class="logo-bag" src="kaz/images/badge.png" alt="">` : `<img src="innocent/assets/image/logo icon.svg" alt="">`;
 
+   //${getShopPrice(product)}
+
 
     card.innerHTML = `
         <a href="/product_des" class="product_card_link js-auth-card" data-product='${JSON.stringify(product)}'>
@@ -259,14 +261,7 @@ function createProductCard(product) {
                 <img src="uploads/products/${product_img_url || 'default.jpg'}" class="card-img-top w-100 product_image" alt="${product.title}">
                 <div class="product_card_title">
                     <div class="main_and_promo_price_area">
-                        ${
-                            product.ask_for_price
-                            ? '<p class="ask-for-price" style="color:red; padding-right: 2px; font-size:23px">Ask for price</p>'
-                            : `
-                                <p class="promo_price">$${product.promo_price || ''}</p>
-                                <div class="main_price"><p class="main_price_amount">$${product.actual_price || ''}</p></div>
-                            `
-                        }
+                        ${getIndexPrice(product)}
                     </div>
 
                     <p class="product_name">${product.title}</p>
@@ -351,33 +346,45 @@ function updateUserProfile(user) {
     }
 }
 
-
+/*
  function promptLogin() {
-    Swal.fire({
-        icon: 'error',
-        title: 'Login Required',
-        text: 'Please login to continue'
-    }).then(() => {
+
+    let myModal = bootstrap.Modal.getInstance(document.querySelector('#signup_login-modal')) || 
+    new bootstrap.Modal(document.querySelector('#signup_login-modal'));
+
+    myModal.show();
+
+    // Swal.fire({
+    //     icon: 'error',
+    //     title: 'Login Required',
+    //     text: 'Please login to continue',
+    //     confirmButtonColor: '#ffb705',
+    // }).then(() => {
     
-        const myModal = new bootstrap.Modal(document.querySelector('#signup_login-modal'));
-        myModal.show();
+    //     const myModal = new bootstrap.Modal(document.querySelector('#signup_login-modal'));
+    //     myModal.show();
 
 
 
-    });
+    // });
 }
 
+*/
 
 document.addEventListener('DOMContentLoaded', function () {
     const categoryLinks = document.querySelectorAll('.category-link');
 
     categoryLinks.forEach(link => {
         link.addEventListener('click', function (event) {
+           
+            event.preventDefault();
+
             if(!token) {
 
                 promptLogin();
+
+                return;
             }
-            event.preventDefault();
             const categoryId = this.getAttribute('data-category-id');
             const categoryName = this.getAttribute('data-category-name');
             
@@ -402,6 +409,8 @@ document.getElementById('notification_icon').addEventListener('click', function(
     if(!token) {
         document.getElementById("notification_main").style.display = "none";
         promptLogin();
+
+        return;
 
     }
     
@@ -447,7 +456,9 @@ function getVerifiedSellerShop(shopNo) {
         Swal.fire({
                 icon: 'error',
                 title: 'Verified Seller Shop',
-                text: 'Shop No Is Required', });
+                text: 'Shop No Is Required',
+                confirmButtonColor: '#ffb705',
+             });
 
        return
     }
@@ -490,6 +501,7 @@ function getVerifiedSellerShop(shopNo) {
                 Swal.fire({
                 icon: 'error',
                 title: 'Verified Seller Shop',
+                confirmButtonColor: '#ffb705',
                 text: error.response.data.message});
 
             }
@@ -499,7 +511,8 @@ function getVerifiedSellerShop(shopNo) {
             Swal.fire({
                  icon: 'error',
                  title: 'Request Error',
-                 text: 'Something went wrong. Please try again later.', });
+                 text: 'Something went wrong. Please try again later.',
+                 confirmButtonColor: '#ffb705', });
 
 
         }

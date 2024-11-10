@@ -111,6 +111,7 @@ if(token) {
 
             icon: 'success',
             title: 'Bio-Form Submission Successful',
+            confirmButtonColor: '#ffb705',
             text: response.data.message,
             timer: 2000,
             timerProgressBar: true,
@@ -161,6 +162,7 @@ if(token) {
                   Swal.fire({
                       icon: 'error',
                       title: 'Submission Error',
+                      confirmButtonColor: '#ffb705',
                       text: error.response.data.message,
                   })
   

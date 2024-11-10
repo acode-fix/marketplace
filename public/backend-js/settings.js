@@ -42,6 +42,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 console.error('Error getting location:', error);
                 Swal.fire({
                     icon: 'error',
+                    confirmButtonColor: '#ffb705',
                     title: 'An error occurred',
                     text: 'Could not get your location. Please try again.'
                 });
@@ -114,6 +115,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 } else {
                     Swal.fire({
                         icon: 'error',
+                        confirmButtonColor: '#ffb705',
                         title: 'Failed to update profile',
                         text: response.data.message
                     });
@@ -150,6 +152,7 @@ document.addEventListener('DOMContentLoaded', function () {
                         Swal.fire({
                           icon: 'error',
                           title: 'Error Occurred',
+                          confirmButtonColor: '#ffb705',
                           text: 'Something Went Wrong!!',
                          
                       })
@@ -451,6 +454,7 @@ bioSubmit.addEventListener('click', (event) => {
             Swal.fire({
                 icon: 'success',
                 title: 'Bio-Form Submission',
+                confirmButtonColor: '#ffb705',
                 text: response.data.message,
                 showConfirmButton: false,
                 timer: 2000
@@ -500,6 +504,7 @@ bioSubmit.addEventListener('click', (event) => {
 
                 Swal.fire({
                     icon: 'error',
+                    confirmButtonColor: '#ffb705',
                     title: 'Submission Error',
                     text: error.response.data.message,
                 })
@@ -559,6 +564,7 @@ bioSubmit.addEventListener('click', (event) => {
             Swal.fire({
                 icon: 'success',
                 title: 'Badge Subscription',
+                confirmButtonColor: '#ffb705',
                 text: response.data.message,
                 showConfirmButton: false,
                 timer: 2000
@@ -591,6 +597,7 @@ bioSubmit.addEventListener('click', (event) => {
 
                 Swal.fire({
                     icon: 'error',
+                    confirmButtonColor: '#ffb705',
                     title: 'Identification Error',
                     text: error.response.data.message,
                 })
@@ -601,6 +608,7 @@ bioSubmit.addEventListener('click', (event) => {
 
                 Swal.fire({
                     icon: 'error',
+                    confirmButtonColor: '#ffb705',
                     title: 'Submission Error',
                     text: error.response.data.message,
                 })
@@ -671,6 +679,7 @@ document.querySelector('.nin_upload').addEventListener('click', () => {
                     Swal.fire({
                         icon: 'success',
                         title: 'NIN Upload',
+                        confirmButtonColor: '#ffb705',
                         text: response.data.message,
                         showConfirmButton: false,
                         timer: 2000
@@ -712,6 +721,7 @@ document.querySelector('.nin_upload').addEventListener('click', () => {
 
                     Swal.fire({
                         icon: 'error',
+                        confirmButtonColor: '#ffb705',
                         title: 'Identification Error',
                         text: error.response.data.message,
                     })
@@ -870,6 +880,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         Swal.fire({
                             icon: 'success',
                             title: 'Success!',
+                            confirmButtonColor: '#ffb705',
                             text: response.data.message,
                             showConfirmButton: false,
                             timer: 2000
@@ -922,6 +933,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
                         Swal.fire({
                             icon: 'error',
+                            confirmButtonColor: '#ffb705',
                             title: 'Upload Error',
                             text: error.response.data.message,
                         })
@@ -933,6 +945,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
                         Swal.fire({
                             icon: 'error',
+                            confirmButtonColor: '#ffb705',
                             title: 'Identification Error',
                             text: error.response.data.message,
                         })
@@ -944,6 +957,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
                         Swal.fire({
                           icon: 'error',
+                          confirmButtonColor: '#ffb705',
                           title: 'Error Occurred',
                           text: 'Something Went Wrong!!',
                          
@@ -991,6 +1005,7 @@ proceedBtn.addEventListener('click', () => {
 
                 Swal.fire({
                     icon: 'error',
+                    confirmButtonColor: '#ffb705',
                     title: 'Paystack Init Error',
                     text: error.response.data.message,
                 })
@@ -1001,6 +1016,7 @@ proceedBtn.addEventListener('click', () => {
 
                 Swal.fire({
                     icon: 'error',
+                    confirmButtonColor: '#ffb705',
                     title: 'Paystack verification',
                     text: error.response.data.message,
                 })

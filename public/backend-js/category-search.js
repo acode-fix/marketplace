@@ -1,4 +1,4 @@
-import { getToken, filter, getProdProfileDescImg, sendProductRequest,displayHelpCenter } from "./helper/helper.js";
+import { getToken, filter, getProdProfileDescImg, sendProductRequest,displayHelpCenter, getIndexPrice } from "./helper/helper.js";
 
 const token = getToken();
 
@@ -184,14 +184,7 @@ document.querySelector('.js-help-search').addEventListener('click', (event) => {
                               <img src="/uploads/products/${product_img_url || 'default.jpg'}" class="card-img-top w-100 product_image" alt="${product.title}">
                               <div class="product_card_title">
                                   <div class="main_and_promo_price_area">
-                                      ${
-                                          product.ask_for_price
-                                          ? '<p class="ask-for-price" style="color:red; padding-right: 2px; font-size:23px">Ask for price</p>'
-                                          : `
-                                              <p class="promo_price">$${product.promo_price || ''}</p>
-                                              <div class="main_price"><p class="main_price_amount">$${product.actual_price || ''}</p></div>
-                                          `
-                                      }
+                                      ${getIndexPrice(product)}
                                   </div>
                                   <p class="product_name">${product.title}</p>
                                   <span class="product_card_location"><i class="fa-solid fa-location-dot"></i> ${product.location}</span>

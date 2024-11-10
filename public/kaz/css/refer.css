@@ -3,6 +3,11 @@
   border-bottom: 1px solid #343434;
 }
 
+.swal2-confirm {
+  box-shadow: none !important;  /* Removes the outline (focus ring) */
+  outline: none !important;      /* Ensures no outline on focus */
+}
+
 .link-body {
   background-color: white;
   border: 1px solid #ffce29;

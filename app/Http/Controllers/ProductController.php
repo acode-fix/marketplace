@@ -272,9 +272,9 @@ public function filterProductByCategory(Request $request){
             // 'promo_price' => 'required',
             'condition' => ['required','in:fairly_used,new'],
             // 'price_status' => ['required','in:cash_price,negotiable'],
-           'ask_for_price' => 'required|boolean',
+            'ask_for_price' => 'required|boolean',
             'image_url' => 'required',
-        'image_url.*' => 'image|mimes:jpg,jpeg,png,gif|max:2048'
+            'image_url.*' => 'image|mimes:jpg,jpeg,png,gif|max:2048'
         ]);
 
          // Conditionally add validation rules for actual_price and promo_price
@@ -282,9 +282,9 @@ public function filterProductByCategory(Request $request){
             return !$input->ask_for_price;
         });
 
-        $validateProduct->sometimes('promo_price', 'required', function ($input) {
-            return !$input->ask_for_price;
-        });
+        // $validateProduct->sometimes('promo_price', 'required', function ($input) {
+        //     return !$input->ask_for_price;
+        // });
 
        if($validateProduct->fails()){
            return response()->json([
@@ -463,7 +463,7 @@ public function update(Request $request, $id) {
         'location' => 'required',
         'condition' => ['required','in:fairly_used,new'],
         'actual_price' => 'required|numeric',
-        'promo_price' => 'required|numeric',
+        //'promo_price' => 'required|numeric',
         'image_url' => 'required|array', 
         'image_url.*' => 'required|image|mimes:jpg,jpeg,png,gif|max:2048',
 

@@ -195,6 +195,7 @@ document.addEventListener("DOMContentLoaded", function () {
                             Swal.fire({
                                 icon: 'success',
                                 title: 'Product Link',
+                                confirmButtonColor: '#ffb705',
                                 text: 'Product link Copied To Clipboard Successfully',
                                 timer: 2000,
                                 timerProgressBar: true,
@@ -208,7 +209,7 @@ document.addEventListener("DOMContentLoaded", function () {
                                 willClose: () => {
 
                                     clearInterval(timerInterval);
-                                    window.location.href = '/shop';
+                                  //  window.location.href = '/shop';
 
                                 }
                             });
@@ -217,6 +218,7 @@ document.addEventListener("DOMContentLoaded", function () {
                             Swal.fire({
                                 icon: 'error',
                                 title: 'Product Link',
+                                confirmButtonColor: '#ffb705',
                                 text: 'Failed to copy',
                                 willClose: () => {
                                     window.location.href = '/shop';
@@ -237,6 +239,7 @@ document.addEventListener("DOMContentLoaded", function () {
                             Swal.fire({
                                 icon: 'error',
                                 title: 'Fetching Product',
+                                confirmButtonColor: '#ffb705',
                                 text: error.response.data.message,
                                 willClose: () => {
                                     window.location.href = '/shop';
@@ -283,6 +286,9 @@ document.addEventListener("DOMContentLoaded", function () {
                     const imageUrls = JSON.parse(product.image_url);
                     const firstImageUrl = imageUrls.length > 0 ? imageUrls[0] : '';
 
+                    console.log(product.avg_rating);
+
+
                     productCard += `
           <div class="card card-preview">
               <h6 class="sold">Sold ${product.sold ?? 0}</h6>
@@ -296,7 +302,7 @@ document.addEventListener("DOMContentLoaded", function () {
                              ${generateStars(product.avg_rating)}
                           </div>
                           <div>
-                              <h6 class="ps-1 rate-no">${product.avg_rating}</h6>
+                              <h6 class="ps-1 rate-no">${product.avg_rating === 0 ? '' : product.avg_rating}</h6>
                           </div>
                       </div>
                   </div>
@@ -335,6 +341,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     Swal.fire({
                         icon: 'error',
                         title: 'Search Product',
+                        confirmButtonColor: '#ffb705',
                         text: 'Please provide an input',
 
                     });
@@ -360,6 +367,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     if (input.value.trim() === '') {
                         Swal.fire({
                             icon: 'error',
+                            confirmButtonColor: '#ffb705',
                             title: 'Search Product',
                             text: 'Please provide an input',
 
@@ -426,6 +434,7 @@ document.addEventListener("DOMContentLoaded", function () {
                             Swal.fire({
                                 icon: 'error',
                                 title: 'Search Product',
+                                confirmButtonColor: '#ffb705',
                                 text: error.response.data.message,
                                 willClose() {
                                     window.location.reload();
@@ -441,6 +450,7 @@ document.addEventListener("DOMContentLoaded", function () {
                             Swal.fire({
                                 icon: 'error',
                                 title: 'Search Product',
+                                confirmButtonColor: '#ffb705',
                                 text: error.response.data.message,
                                 willClose() {
                                     window.location.reload();
@@ -497,6 +507,7 @@ document.addEventListener("DOMContentLoaded", function () {
                             const responseErrors = error.response.data.errors;
                             Swal.fire({
                                 icon: 'error',
+                                confirmButtonColor: '#ffb705',
                                 title: 'Fetching Product',
                                 text: responseErrors,
                                 willClose: () => {
@@ -650,6 +661,7 @@ document.addEventListener("DOMContentLoaded", function () {
                         Swal.fire({
                             icon: 'success',
                             title: 'Product Update Message',
+                            confirmButtonColor: '#ffb705',
                             text: response.data.message,
                             willClose: () => {
                                 window.location.href = '/shop';
@@ -672,6 +684,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
                             Swal.fire({
                                 icon: 'error',
+                                confirmButtonColor: '#ffb705',
                                 title: 'Validation Error',
                                 text: errorMsg,
 
@@ -733,6 +746,7 @@ document.addEventListener("DOMContentLoaded", function () {
                                 Swal.fire({
                                     icon: 'success',
                                     title: 'Delete Product',
+                                    confirmButtonColor: '#ffb705',
                                     text: response.data.message,
                                     willClose: () => {
                                         window.location.href = '/shop';
@@ -750,6 +764,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
                                     Swal.fire({
                                         icon: 'error',
+                                        confirmButtonColor: '#ffb705',
                                         title: 'Delete Product',
                                         text: error.response.data.message,
 
@@ -761,6 +776,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
                                     Swal.fire({
                                         icon: 'error',
+                                        confirmButtonColor: '#ffb705',
                                         title: 'Delete Product',
                                         text: error.response.data.message,
 
@@ -916,6 +932,7 @@ document.addEventListener("DOMContentLoaded", function () {
                         const responseErrors = error.response.data.errors;
                         Swal.fire({
                             icon: 'error',
+                            confirmButtonColor: '#ffb705',
                             title: 'Fetching Product',
                             text: responseErrors,
                             willClose: () => {
@@ -960,6 +977,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
                         Swal.fire({
                             icon: 'success',
+                            confirmButtonColor: '#ffb705',
                             title: 'Delete Product',
                             text: response.data.message,
                             willClose: () => {
@@ -978,6 +996,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
                             Swal.fire({
                                 icon: 'error',
+                                confirmButtonColor: '#ffb705',
                                 title: 'Delete Product',
                                 text: error.response.data.message,
 
@@ -989,6 +1008,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
                             Swal.fire({
                                 icon: 'error',
+                                confirmButtonColor: '#ffb705',
                                 title: 'Delete Product',
                                 text: error.response.data.message,
 
@@ -1061,6 +1081,7 @@ document.querySelectorAll('.js-banner-upload').forEach((banner) => {
 
                         Swal.fire({
                             icon: 'success',
+                            confirmButtonColor: '#ffb705',
                             title: 'Banner Upload',
                             text: response.data.message
                         });
@@ -1069,6 +1090,7 @@ document.querySelectorAll('.js-banner-upload').forEach((banner) => {
 
                         Swal.fire({
                             icon: 'error',
+                            confirmButtonColor: '#ffb705',
                             title: 'Banner Upload',
                             text: response.data.message
                         });
@@ -1139,6 +1161,7 @@ document.querySelectorAll('.js-profile').forEach((profile) => {
                 }).then((response) => {
                     Swal.fire({
                         icon: 'success',
+                        confirmButtonColor: '#ffb705',
                         title: 'Banner Upload',
                         text: response.data.message
                     });
@@ -1146,6 +1169,7 @@ document.querySelectorAll('.js-profile').forEach((profile) => {
 
                     Swal.fire({
                         icon: 'error',
+                        confirmButtonColor: '#ffb705',
                         title: 'Profile Upload',
                         text: response.data.message
                     })

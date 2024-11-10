@@ -26,7 +26,7 @@
       <h6 style="font-size: 20px;" class="fw-light ms-4">Rating</h6>
     </div>
     <div class="left-section">
-      <a href="{{ url('/') }}"><img class="img-fluid ms-3" src="{{asset('kaz/images/logo.png')}}" alt=""></a>
+      <a href="{{ url('/') }}"><img class="img-fluid ms-3 main-logo" src="{{asset('kaz/images/transparent_logo.png')}}" alt=""></a>
       <h6 class="ms-5 fw-bold profile">Rating</h6>
     </div>
 

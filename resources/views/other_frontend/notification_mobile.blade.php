@@ -25,10 +25,13 @@
                 <span class="notification_heading">notifications</span>
             </p>
 
-            <img src="innocent/assets/image/main logo.svg" alt="" class="notification_buy_and_sell_logo">
+            <img src="{{asset('innocent/assets/image/transparent_logo.png')}}" alt="" class="notification_buy_and_sell_logo">
         </div>
 
         <div class="notifications_region">
+            <div class="notifications_layout">
+
+            </div>
 
             {{-- <a href="{{ url('/rating') }}">
                 <div class="notification">

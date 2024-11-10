@@ -16,6 +16,7 @@ if (!userId) {
     Swal.fire({
         icon: 'error',
         title: 'Resources Unavailable',
+        confirmButtonColor: '#ffb705',
         text: 'Acess Denied!! ',
     }).then(() => {
         window.location.href = '/';
@@ -67,6 +68,7 @@ if (!userId) {
                 Swal.fire({
                     icon: 'error',
                     title: 'Verification',
+                    confirmButtonColor: '#ffb705',
                     text: error.response.data.message,
                     willClose() {
                       window.location.href = '/';
@@ -174,7 +176,7 @@ if (!userId) {
                         ${generateStars(product.avg_rating)}
                         </div>
                         <div>
-                          <h6 class="ps-1 rate-no">${product.avg_rating ?? 0}</h6>
+                          <h6 class="ps-1 rate-no">${product.avg_rating === 0 ? '' : product.avg_rating}</h6>
                         </div>
                       </div>
                     </div>
@@ -265,10 +267,9 @@ if (!userId) {
                     <div class="custom-scrollable-content">
                       <div class="ms-4 mt-2">
                         <h6>Buy ${product.title ?? ''}</h6>
-                        ${product.ask_for_price
-                          ? '<h6 class="amount-js mt-2" style="color:red; font-size:15px;">Ask for price</h6>' 
-                          : ` <h6 class="amount mt-2 ps-2">$${product.promo_price ?? 0} <span class="amount-span-js ps-4">$${product.actual_price ?? 0}</span></h6>`}
-                        
+                        <div class="pt-4 ms-2">
+                        ${getShopPrice(product)}
+                        </div>    
                         <p class="mac-text mt-2">${product.description ?? ''}</p>
                         <div class="last-box" style="display: flex; justify-content: space-between;">
                            <div class="rate-box">
@@ -885,7 +886,7 @@ if (!userId) {
           text: "You won't be able to revert this!",
           icon: "warning",
           showCancelButton: true,
-          confirmButtonColor: "#3085d6",
+          confirmButtonColor: '#ffb705',
           cancelButtonColor: "#d33",
           confirmButtonText: "Yes,I am sure!"
           }).then((result) => {
@@ -917,6 +918,7 @@ if (!userId) {
     Swal.fire({
         icon: 'error',
         title: 'Unauthenticated User',
+        confirmButtonColor: '#ffb705',
         text: 'Please log in.',
     }).then(() => {
         window.location.href = '/';

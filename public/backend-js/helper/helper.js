@@ -28,6 +28,7 @@ export function displaySwal(errorMsg) {
 
     Swal.fire({
       icon: 'error',
+      confirmButtonColor: '#ffb705',
       title: 'Validation Error',
       text: errorMsg,
   });
@@ -46,7 +47,8 @@ if(!token) {
     Swal.fire({
     icon: 'error',
     title: 'Login Required',
-    text: 'Please log in to continue.'
+    text: 'Please log in to continue.',
+    confirmButtonColor: '#ffb705',
 }).then(() => {
 
     window.location.href = '/'; 
@@ -63,18 +65,10 @@ return false
 }
 
 export  function promptLogin() {
-  Swal.fire({
-      icon: 'error',
-      title: 'Login Required',
-      text: 'Please login to continue'
-  }).then(() => {
-  
-      const myModal = new bootstrap.Modal(document.querySelector('#signup_login-modal'));
-      myModal.show();
+  let myModal = bootstrap.Modal.getInstance(document.querySelector('#signup_login-modal')) || 
+    new bootstrap.Modal(document.querySelector('#signup_login-modal'));
 
-
-
-  });
+    myModal.show();
 }
 
 
@@ -186,19 +180,22 @@ export  function logoutUser() {
 
               // Remove the token from Axios default headers
               delete axios.defaults.headers.common['Authorization'];
+              window.location.href = '/';
 
           
-              Swal.fire({
-                  icon: 'success',
-                  title: 'Logout Successful',
-                  text: responseData.message,
-                  willClose: function() {
-                      window.location.href = '/'; // Redirect to login page
-                   }
-              });
+              // Swal.fire({
+              //     icon: 'success',
+              //     confirmButtonColor: '#ffb705',
+              //     title: 'Logout Successful',
+              //     text: responseData.message,
+              //     willClose: function() {
+              //         window.location.href = '/'; // Redirect to login page
+              //      }
+              // });
           } else {
               Swal.fire({
                   icon: 'error',
+                  confirmButtonColor: '#ffb705',
                   title: 'Logout Failed',
                   text: 'Unexpected response from the server. Please try again later.'
               });
@@ -209,6 +206,7 @@ export  function logoutUser() {
 
           Swal.fire({
               icon: 'error',
+              confirmButtonColor: '#ffb705',
               title: 'Logout Failed',
               text: errorData.message || 'There was an error while logging out. Please try again later.'
           });
@@ -285,12 +283,32 @@ export function getPrice(product) {
  
 }
 
-export function getShopPrice(product) {
+  export function getShopPrice(product) {
 
-  return product.ask_for_price
-  ? '<h6 class="amount" style="color:red; font-size:15px;">Ask for price</h6>' 
-  : ` <h6 class="amount">$${product.promo_price ?? 0} <span class="amount-span">$${product.actual_price ?? 0}</span></h6>`;
-}
+  const promoPrice = formatPrice(product.promo_price);
+  const actualPrice = formatPrice(product.actual_price);
+
+  const showPromo =  promoPrice === '0';
+
+    return product.ask_for_price
+    ? '<h6 class="amount" style="color:red; font-size:15px;">Ask for price</h6>' 
+    : `<h6 class="amount">${promoPrice === '0' ? '' : '&#8358;' + promoPrice}  <span class="ps-1 ${showPromo ? '' : 'amount-span' } ">&#8358;${actualPrice}</span></h6>`;
+  }
+
+
+  export function getIndexPrice(product) {
+
+    const promoPrice = formatPrice(product.promo_price);
+    const actualPrice = formatPrice(product.actual_price);
+    const showPromo = promoPrice === '0';
+
+ return   product.ask_for_price
+    ? '<p class="ask-for-price" style="color:red; padding-right: 2px; font-size:18px">Ask for price</p>'
+    : `
+     <p class="promo_price">${promoPrice === '0' ? '' : '&#8358;' + promoPrice}</p>
+    <div class="${showPromo ? '' : 'main_price'}"><p class="main_price_amount">&#8358;${actualPrice}</p></div>
+    `
+  }
 
 
 export function loadConnect(product) {
@@ -305,6 +323,7 @@ export function loadConnect(product) {
 
   Swal.fire({
       icon: 'info',
+      confirmButtonColor: '#ffb705',
       title: `${name ?? 'Seller'} Contact: ${phone_number ?? 'N/A'}`, 
       text:  `Product Title: ${productName ?? email}`,    
   
@@ -546,6 +565,7 @@ export function displayHelpCenter() {
       <h6 class="fs-5">We will respond within 24hrs</h6>
      
     `,
+    confirmButtonColor: '#ffb705',
     showCloseButton: true,
     showCancelButton: true,
     focusConfirm: false,
@@ -615,6 +635,7 @@ export  function sendProductRequest(input, token) {
 
           Swal.fire({
               icon: 'success',
+              confirmButtonColor: '#ffb705',
               title: 'Product Request',
               text: msg,
           })
@@ -631,6 +652,7 @@ export  function sendProductRequest(input, token) {
               Swal.fire({
                   icon: 'error',
                   title: 'validation Error',
+                  confirmButtonColor: '#ffb705',
                   text: error.response.data.message,
               })
 
@@ -642,6 +664,7 @@ export  function sendProductRequest(input, token) {
 
               Swal.fire({
                   icon: 'error',
+                  confirmButtonColor: '#ffb705',
                   title: 'Server Error',
                   text: 'Something went wrong!! Please try again later'
               });
@@ -651,6 +674,17 @@ export  function sendProductRequest(input, token) {
       }
 
   })
+
+ }
+
+
+ export function formatPrice(amount) {
+
+  const formatter = new Intl.NumberFormat('en');
+
+   const price = formatter.format(amount);
+
+   return price;
 
  }
 

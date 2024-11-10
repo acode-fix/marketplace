@@ -1,4 +1,4 @@
-import { getToken, getSingleImage, getBadge, getPrice, filter, getProdProfileDescImg, sendProductRequest, displayHelpCenter } from "./helper/helper.js";
+import { getToken, getSingleImage, getBadge, getPrice, filter, getProdProfileDescImg, sendProductRequest, displayHelpCenter, getIndexPrice } from "./helper/helper.js";
 import { serverError } from "./admin/auth-helper.js";
 
 const token = getToken();
@@ -128,6 +128,7 @@ if(token) {
             Swal.fire({
               icon: 'error',
               title: 'Product Search',
+              confirmButtonColor: '#ffb705',
               text: error.response.data.message,
               willClose() {
                 window.location.reload();
@@ -178,7 +179,7 @@ if(token) {
 
                 <div class="product_card_title">
                     <div class="main_and_promo_price_area">
-                        ${getPrice(product)}
+                        ${getIndexPrice(product)}
                     </div>
                     <p class="product_name">${product.title}</p>
                     <span class="product_card_location"><i

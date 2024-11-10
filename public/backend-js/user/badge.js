@@ -38,6 +38,7 @@ if(token) {
  
              icon: 'success',
              title: 'Badge Type Submission Successful',
+             confirmButtonColor: '#ffb705',
              text: response.data.message,
              timer: 2000,
              timerProgressBar: true,
@@ -80,6 +81,7 @@ if(token) {
 
             Swal.fire({
                 icon: 'error',
+                confirmButtonColor: '#ffb705',
                 title: 'Identification Error',
                 text: error.response.data.message,
             })
@@ -91,6 +93,7 @@ if(token) {
             Swal.fire({
                 icon: 'error',
                 title: 'Submission Error',
+                confirmButtonColor: '#ffb705',
                 text: error.response.data.message,
             })
 

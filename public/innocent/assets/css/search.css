@@ -10,6 +10,11 @@
     text-decoration: none;
 }
 
+.swal2-confirm {
+    box-shadow: none !important;  /* Removes the outline (focus ring) */
+    outline: none !important;      /* Ensures no outline on focus */
+}
+
 /* Search Buy and Sell */
 .search_buy_and_sell_logo {
     max-width: 160px;

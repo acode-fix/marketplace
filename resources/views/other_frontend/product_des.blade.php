@@ -190,7 +190,7 @@
                <div class="product_descriptoin_card">
                     <p class="product_name_on_sidebar">Loading</p>
                     <hr>
-                    <div class="main_and_promo_price_des_sidebar">
+                    <div class="main_and_promo_price_des_sidebar js-price">
                     <p class="promo_price2">loading</p>
                      <p class="main_price2">loading</p>
 

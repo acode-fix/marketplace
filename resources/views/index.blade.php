@@ -14,7 +14,7 @@
     <link rel="stylesheet" href="{{ asset('innocent/assets/css/alert.css') }}">
     <link rel="stylesheet" href="{{ asset('innocent/assets/icons/css/all.min.css') }}">
     <link rel="stylesheet" href="{{ asset('innocent/assets/icons/css/fontawesome.min.css') }}">
-    <link href="https://fonts.cdnfonts.com/css/product-sans" rel="stylesheet"> 
+    
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
@@ -27,7 +27,7 @@
 
 </head>
 <style>
-
+ 
 </style>
 
 <body>
@@ -38,13 +38,20 @@
         <div class="navbar-1 fixed-top">
             <a class="js-logo-link" href=""><img  class="buy_and_sell_logo js-logo-img" src="{{ asset('innocent\assets\image\transparent_logo.png')}}" alt="" data-bs-toggle="" data-bs-target="" ></a>
             <div class="search-bar">
-                <div class="location-icon"><i class="fa-solid fa-location-dot"></i></div>
-                <select placeholder="Country" class="country-input">
-                    {{-- <option selected>USA</option>
-                    <option value="1">Canada</option> --}}
-                    <option value="2">Nigeria</option>
-                    {{-- <option value="3">Russia</option> --}}
-                </select>
+                <div class="location-icon">
+                 {{-- <i class="fa-solid fa-location-dot"></i>  --}}
+                 <img style="width: 4%" src="{{ asset('innocent/assets/image/nigeria.png') }}" alt="">
+                </div>
+                <div style="margin-left: 8px;" class="country-input">
+                    Nigeria
+                </div>
+                {{-- <select placeholder="Country" class="country-input">
+                    <option selected>Nigeria</option>
+                     <option selected>USA</option>
+                    <option value="1">Canada</option>
+                    <option value="2">Nigeria</option>  
+                    <option value="3">Russia</option> 
+                </select>  --}}
                 <div class="vertical-bar"></div>
                 <a class="js-auth" href="{{ url('/search') }}">
                     <span onclick="localStorage.setItem('previousPage', '{{ url('/') }}')">
@@ -833,6 +840,10 @@
         </p>
 
         <div class="notifications_region">
+            <div class="notifications_layout">
+
+            </div>
+           
 
             {{-- <a href="{{ url('rating') }}" >
                 <div class="notification">

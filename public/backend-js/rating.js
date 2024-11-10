@@ -39,6 +39,7 @@ if(token) {
           icon: 'error',
           title: 'Access Denied',
           text: 'Invalid Credentials',
+          confirmButtonColor: '#ffb705',
           willClose: function() {
               window.location.href = '/';
            }
@@ -52,6 +53,7 @@ if(token) {
           icon: 'error',
           title: 'Products Rating',
           text: 'Products Details Not Available',
+          confirmButtonColor: '#ffb705',
           willClose: function() {
               window.location.href = '/';
            }
@@ -268,6 +270,7 @@ const text = document.querySelector('.js-input');
         icon: 'success',
         title: 'Product Rating/Review',
         text: 'Thank You For Rating This Product',
+        confirmButtonColor: '#ffb705',
         willClose() {
           window.location.href = '/';
         }
@@ -285,6 +288,7 @@ const text = document.querySelector('.js-input');
         Swal.fire({
           icon: 'error',
           title: 'Validation Error',
+          confirmButtonColor: '#ffb705',
           text: error.response.data.message,
         });
 
@@ -296,6 +300,7 @@ const text = document.querySelector('.js-input');
         Swal.fire({
           icon: 'error',
           title: 'Notification Error',
+          confirmButtonColor: '#ffb705',
           text: error.response.data.message,
         });
 
@@ -340,7 +345,7 @@ const mobileNo = document.querySelector('.js-mobile-no');
             text: "This means you are not rating the product",
             icon: "warning",
             showCancelButton: true,
-            confirmButtonColor: "#3085d6",
+            confirmButtonColor: '#ffb705',
             cancelButtonColor: "#d33",
             confirmButtonText: "Yes,I am sure!"
             }).then((result) => {
@@ -392,6 +397,7 @@ function readNotification() {
             Swal.fire({
               icon: 'error',
               title: 'Validation Error',
+              confirmButtonColor: '#ffb705',
               text: error.response.data.message,
             });
   
@@ -421,7 +427,7 @@ function getLogOutElement(logOut) {
       text: "You won't be able to revert this!",
       icon: "warning",
       showCancelButton: true,
-      confirmButtonColor: "#3085d6",
+      confirmButtonColor: '#ffb705',
       cancelButtonColor: "#d33",
       confirmButtonText: "Yes,I am sure!"
       }).then((result) => {
@@ -444,7 +450,7 @@ document.getElementById('nav-logOut').addEventListener('click', (event) => {
     text: "You won't be able to revert this!",
     icon: "warning",
     showCancelButton: true,
-    confirmButtonColor: "#3085d6",
+    confirmButtonColor: '#ffb705',
     cancelButtonColor: "#d33",
     confirmButtonText: "Yes,I am sure!"
     }).then((result) => {

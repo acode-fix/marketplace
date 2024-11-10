@@ -2,6 +2,11 @@
   color: red !important;
 }
 
+.swal2-confirm {
+  box-shadow: none !important;  /* Removes the outline (focus ring) */
+  outline: none !important;      /* Ensures no outline on focus */
+}
+
 .your {
   line-height: 0.9em;
 }

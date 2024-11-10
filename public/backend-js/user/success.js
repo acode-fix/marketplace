@@ -35,6 +35,7 @@ if(token) {
 
                 Swal.fire({
                     icon: 'error',
+                    confirmButtonColor: '#ffb705',
                     title: 'Paystack Init Error',
                     text: error.response.data.message,
                 })
@@ -45,6 +46,7 @@ if(token) {
 
                 Swal.fire({
                     icon: 'error',
+                    confirmButtonColor: '#ffb705',
                     title: 'Paystack verification',
                     text: error.response.data.message,
                 })

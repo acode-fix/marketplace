@@ -6,6 +6,10 @@ body {
   font-family: "poppins";
 
 }
+.swal2-confirm {
+  box-shadow: none !important;  /* Removes the outline (focus ring) */
+  outline: none !important;      /* Ensures no outline on focus */
+}
 
 .header {
   display: flex;

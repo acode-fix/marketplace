@@ -3,6 +3,10 @@
   align-items: center;
 }
 
+.swal2-confirm {
+  box-shadow: none !important;  /* Removes the outline (focus ring) */
+  outline: none !important;      /* Ensures no outline on focus */
+}
 .review-m {
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.01);
   background-color: white;
@@ -196,4 +200,8 @@
 .js-mobile-no {
 
   cursor: pointer;
+}
+
+.main-logo {
+  max-width: 160px;
 }

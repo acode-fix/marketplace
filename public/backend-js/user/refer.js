@@ -39,6 +39,7 @@ if(token) {
 
           Swal.fire({
             icon: 'error',
+            confirmButtonColor: '#ffb705',
             title: 'Authentication Error',
             text: message,
             willClose() {
@@ -100,6 +101,7 @@ if(token) {
     }).then(() => {
       Swal.fire({
             icon: 'success',
+            confirmButtonColor: '#ffb705',
             title: 'Thank you for inviting your friends',
             text: linkInput.value,
             willClose() {

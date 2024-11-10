@@ -19,7 +19,7 @@ if(token)  {
           text: "This action is irreversible and will delete your account and all associated data.",
           icon: 'warning',
           showCancelButton: true,
-          confirmButtonColor: '#d33',
+          confirmButtonColor: '#ffb705',
           cancelButtonColor: '#3085d6',
           confirmButtonText: 'Yes, delete it!',
           cancelButtonText: 'Cancel'
@@ -36,6 +36,7 @@ if(token)  {
                           'Deleted!',
                           response.data.message,
                           'success'
+                          
                       ).then(() => {
                           localStorage.removeItem('apiToken');
                           localStorage.clear(); 

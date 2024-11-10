@@ -1,4 +1,4 @@
-   import {loadDashboard, getProdProfileDescImg, getBadge, loadConnect, getToken, logoutUser, displayHelpCenter, sendProductRequest} from "../helper/helper.js";
+   import {loadDashboard, getProdProfileDescImg, getBadge, loadConnect, getToken, logoutUser, displayHelpCenter, sendProductRequest,getIndexPrice, formatPrice} from "../helper/helper.js";
 
 
    const token = getToken();
@@ -29,7 +29,7 @@
                   text: "You won't be able to revert this!",
                   icon: "warning",
                   showCancelButton: true,
-                  confirmButtonColor: "#3085d6",
+                  confirmButtonColor: '#ffb705',
                   cancelButtonColor: "#d33",
                   confirmButtonText: "Yes,I am sure!"
                   }).then((result) => {
@@ -233,8 +233,21 @@
            document.querySelector('.promo_price2').textContent = 'ASK FOR PRICE';
            document.querySelector('.main_price2').textContent = '';
        } else {
-           document.querySelector('.promo_price2').textContent = '$' + (product.promo_price || '');
-           document.querySelector('.main_price2').textContent = '$' + (product.actual_price || '');
+            const promoPrice =  formatPrice(product.promo_price);
+            const mainPrice =   formatPrice(product.actual_price);
+            const showPromo = promoPrice === '0';
+
+            const price = `
+                         <p class="promo_price2">${promoPrice === '0' ? '' : '&#8358;' + promoPrice}</p>
+                         <p class="${showPromo ? '' : 'main_price_check'} main_price2">${'&#8358;' + mainPrice}</p>`;
+
+          document.querySelector('.js-price').innerHTML = price;
+
+
+
+            
+        //    document.querySelector('.promo_price2').innerHTML = '&#8358;' + (formatPrice(product.promo_price) || '');
+        //    document.querySelector('.main_price2').innerHTML = '&#8358;' + ( formatPrice(product.actual_price) || '');
        }
 
        // Update the image carousel
@@ -330,10 +343,7 @@
                      <img src="uploads/products/${product_img_url || 'default.jpg'}"  class="card-img-top w-100 product_image" alt="${product.title}">
                      <div class="product_card_title">
                          <div class="main_and_promo_price_area">
-                             ${product.ask_for_price ? '<p class="ask-for-price" style="color:red; padding-right: 2px; font-size:23px">Ask for price</p>' : `
-                                 <p class="promo_price">$${product.promo_price || ''}</p>
-                                 <div class="main_price"><p class="main_price_amount">$${product.actual_price || ''}</p></div>
-                             `}
+                            ${getIndexPrice(product)}
                          </div>
                          <p class="product_name">${product.title}</p>
                          <span class="product_card_location"><i class="fa-solid fa-location-dot"></i> ${product.location}</span>
@@ -433,6 +443,7 @@
    function promptLogin(message) {
        Swal.fire({
            icon: 'error',
+           confirmButtonColor: '#ffb705',
            title: 'Login Required',
            text: message
        }).then(() => {

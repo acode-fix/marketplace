@@ -5,6 +5,11 @@
   border-radius: 4px;
 }
 
+.swal2-confirm {
+  box-shadow: none !important;  /* Removes the outline (focus ring) */
+  outline: none !important;      /* Ensures no outline on focus */
+}
+
 .view-shop:hover {
   background-color: #1a2b88;
   color: white;

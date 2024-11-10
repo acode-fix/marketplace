@@ -463,7 +463,7 @@ if(token) {
         text: "You won't be able to revert this!",
         icon: "warning",
         showCancelButton: true,
-        confirmButtonColor: "#3085d6",
+        confirmButtonColor: '#ffb705',
         cancelButtonColor: "#d33",
         confirmButtonText: "Yes,I am sure!"
         }).then((result) => {

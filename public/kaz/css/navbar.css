@@ -4,6 +4,10 @@ body {
   font-family: "poppins";
   background-color: #f6f8fc;
 }
+.swal2-confirm {
+  box-shadow: none !important;  /* Removes the outline (focus ring) */
+  outline: none !important;      /* Ensures no outline on focus */
+}
 
 
 /* holds the whole header/nav-bar style */

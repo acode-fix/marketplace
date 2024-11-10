@@ -1,4 +1,4 @@
-import { getToken, getProdDesImage, getProdProfileDescImg, loadDashboard,logoutUser, getSingleImage, getBadge, getPrice, loadConnect, sendProductRequest, displayHelpCenter, promptLogin} from "./helper/helper.js";
+import { getToken, getProdDesImage, getProdProfileDescImg, loadDashboard,logoutUser, getSingleImage, getBadge, getPrice, loadConnect, sendProductRequest, displayHelpCenter, promptLogin, getIndexPrice} from "./helper/helper.js";
 
   const currentUrl = new URL(window.location.href);
   const id = currentUrl.searchParams.get('id');
@@ -106,6 +106,7 @@ const logoLink = document.querySelector('.js-logo-link');
         Swal.fire({
           icon: 'error',
           title: 'Resources Unavailable',
+          confirmButtonColor: '#ffb705',
           text: error.response.data.message,
       }).then(() => {
           window.location.href = '/';
@@ -175,14 +176,7 @@ const logoLink = document.querySelector('.js-logo-link');
     <p class="product_name_on_sidebar" > Buy Hp ${product.title ?? 'N/A'}</p>         
           <hr>
           <div class="main_and_promo_price_des_sidebar">
-          ${
-            product.ask_for_price
-            ? '<p class="ask-for-price" style="color:red; padding-right: 2px; font-size:23px">Ask for price</p>'
-            : `
-                <p class="promo_price">$${product.promo_price || ''}</p>
-                <div class="main_price"><p class="main_price_amount">$${product.actual_price || ''}</p></div>
-            `
-        }
+          ${ getIndexPrice(product)}
             
           </div>
         
@@ -428,7 +422,7 @@ const logoLink = document.querySelector('.js-logo-link');
                 text: "You won't be able to revert this!",
                 icon: "warning",
                 showCancelButton: true,
-                confirmButtonColor: "#3085d6",
+                confirmButtonColor: '#ffb705',
                 cancelButtonColor: "#d33",
                 confirmButtonText: "Yes,I am sure!"
                 }).then((result) => {
@@ -503,12 +497,8 @@ const logoLink = document.querySelector('.js-logo-link');
               
                   <div class="product_card_title">
                       <div class="main_and_promo_price_area">
-                      ${
-                       getPrice(product)
-                    }
-                      </div>
-                      
-                          
+                      ${ getIndexPrice(product) }
+                      </div> 
                           <p class="product_name">${title ?? 'N/A'}</p>
                           <span class="product_card_location"><i class="fa-solid fa-location-dot"></i>  ${location ?? 'N/A'}</span>
                           ${getBadge(product)}
@@ -580,6 +570,7 @@ const logoLink = document.querySelector('.js-logo-link');
 
                 Swal.fire({
                   icon: 'error',
+                  confirmButtonColor: '#ffb705',
                   title: 'Resources Unavailable',
                   text: error.response.data.message,
               }).then(() => {

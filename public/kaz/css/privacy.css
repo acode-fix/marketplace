@@ -7,6 +7,12 @@
 
 }
 
+
+.swal2-confirm {
+  box-shadow: none !important;  /* Removes the outline (focus ring) */
+  outline: none !important;      /* Ensures no outline on focus */
+}
+
 .sign {
   width: 75%;
   border-bottom: 1px solid #343434;

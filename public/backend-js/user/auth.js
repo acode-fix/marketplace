@@ -29,27 +29,35 @@
           // Set the token in Axios default headers for subsequent requests
           axios.defaults.headers.common['Authorization'] = `Bearer ${responseData.token}`;
 
-          Swal.fire({
-              icon: 'success',
-              title: 'Registration Successful',
-              text: responseData.message,
-              willClose: () => {
-
-             myModal.hide();
+          myModal.hide();
             
              const url =   sessionStorage.getItem('sharedPage');
              
              url ?  window.location.reload() : window.location.href = '/';
 
+        //   Swal.fire({
+        //       icon: 'success',
+        //       title: 'Registration Successful',
+        //       text: responseData.message,
+        //       confirmButtonColor: '#ffb705',
+        //       willClose: () => {
+
+        //      myModal.hide();
+            
+        //      const url =   sessionStorage.getItem('sharedPage');
+             
+        //      url ?  window.location.reload() : window.location.href = '/';
+
              
 
-              }
-          });
+        //       }
+        //   });
       } else  
           
       {
           Swal.fire({
               icon: 'error',
+              confirmButtonColor: '#ffb705',
               title: 'Registration Failed',
               text: 'Unexpected response from the server. Please try again later.'
           });
@@ -89,6 +97,7 @@
 
   Swal.fire({ 
               icon: 'error',
+              confirmButtonColor: '#ffb705',
               title: 'Login Failed',
               text:  errorMsg || invalidCredentials,
           });
@@ -116,24 +125,30 @@
           
           // Set the token in Axios default headers for subsequent requests
           axios.defaults.headers.common['Authorization'] = `Bearer ${responseData.data.token}`;
+
+          myModal.hide();
+
+          const url =  sessionStorage.getItem('sharedPage');
+       
+          url ?  window.location.reload() : window.location.href = '/';
           
 
-          Swal.fire({
-              icon: 'success',
-              title: 'Login Successful',
-              text: responseData.message,
-              willClose: () => {
+        //   Swal.fire({
+        //       icon: 'success',
+        //       title: 'Login Successful',
+        //       text: responseData.message,
+        //       willClose: () => {
 
-                myModal.hide();
+        //         myModal.hide();
 
-                const url =  sessionStorage.getItem('sharedPage');
+        //         const url =  sessionStorage.getItem('sharedPage');
              
-                url ?  window.location.reload() : window.location.href = '/';
+        //         url ?  window.location.reload() : window.location.href = '/';
 
-               // const myModal = new bootstrap.Modal(document.querySelector('#signup_login-modal'));
+            
                 
-              }
-          });
+        //       }
+        //   });
       } else {
           
 
@@ -188,6 +203,8 @@
           icon: 'success',
           title: 'OTP Sent',
           text: 'An OTP has been sent to your email address.',
+          confirmButtonColor: '#ffb705',
+          
           onClose: function() {
           // After sending the OTP, show the OTP verification modal
           $('#verifyOtpModal').modal('show');
@@ -200,6 +217,7 @@
       // Display an error message to the user
       Swal.fire({
           icon: 'error',
+          confirmButtonColor: '#ffb705',
           title: 'Failed to Send OTP',
           text: 'There was an error while sending the OTP. Please try again later.'
       });
@@ -224,6 +242,7 @@
           icon: 'success',
           title: 'OTP Verified',
           text: 'OTP has been verified successfully.',
+          confirmButtonColor: '#ffb705',
           onClose: function() {
 
               otpModal.hide();
@@ -238,6 +257,7 @@
       // Display an error message to the user
       Swal.fire({
           icon: 'error',
+          confirmButtonColor: '#ffb705',
           title: 'Failed to Verify OTP',
           text: 'Invalid OTP. Please enter the correct OTP and try again.'
       });
@@ -255,7 +275,8 @@
       Swal.fire({
           icon: 'error',
           title: 'Password Mismatch',
-          text: 'The new passwords do not match. Please try again.'
+          text: 'The new passwords do not match. Please try again.',
+          confirmButtonColor: '#ffb705',
       });
       return;
   }
@@ -273,6 +294,7 @@
           icon: 'success',
           title: 'Password Reset Successful',
           text: 'Your password has been reset successfully.',
+          confirmButtonColor: '#ffb705',
           willClose: function() {
             const url =  sessionStorage.getItem('sharedPage');
              
@@ -286,6 +308,7 @@
       // Display an error message to the user
       Swal.fire({
           icon: 'error',
+          confirmButtonColor: '#ffb705',
           title: 'Failed to Reset Password',
           text: msgError,
       });
@@ -309,18 +332,22 @@
                 // Remove the token from Axios default headers
                 delete axios.defaults.headers.common['Authorization'];
 
+                window.location.href = '/'; 
+
             
-                Swal.fire({
-                    icon: 'success',
-                    title: 'Logout Successful',
-                    text: responseData.message,
-                    onClose: function() {
-                        window.location.href = '/'; // Redirect to login page
-                     }
-                });
+                // Swal.fire({
+                //     icon: 'success',
+                //     title: 'Logout Successful',
+                //     text: responseData.message,
+                //     confirmButtonColor: '#ffb705',
+                //     onClose: function() {
+                //         window.location.href = '/';
+                //      }
+                // });
             } else {
                 Swal.fire({
                     icon: 'error',
+                    confirmButtonColor: '#ffb705',
                     title: 'Logout Failed',
                     text: 'Unexpected response from the server. Please try again later.'
                 });
@@ -331,6 +358,7 @@
 
             Swal.fire({
                 icon: 'error',
+                confirmButtonColor: '#ffb705',
                 title: 'Logout Failed',
                 text: errorData.message || 'There was an error while logging out. Please try again later.'
             });
@@ -354,7 +382,7 @@ document.getElementById('logoutLink').addEventListener('click', function(event) 
     text: "You won't be able to revert this!",
     icon: "warning",
     showCancelButton: true,
-    confirmButtonColor: "#3085d6",
+    confirmButtonColor: '#ffb705',
     cancelButtonColor: "#d33",
     confirmButtonText: "Yes,I am sure!"
     }).then((result) => {

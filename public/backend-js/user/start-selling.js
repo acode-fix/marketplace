@@ -115,6 +115,7 @@ document.getElementById('productForm').addEventListener('submit', function(event
        } else {
            Swal.fire({
                icon: 'error',
+               confirmButtonColor: '#ffb705',
                title: 'Failed to create product',
                text: response.data.message
            });
@@ -146,6 +147,7 @@ document.getElementById('productForm').addEventListener('submit', function(event
 
          Swal.fire({ 
            icon: 'error',
+           confirmButtonColor: '#ffb705',
            title: 'Validation Error',
            text:  errorMsg ,
        });

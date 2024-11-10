@@ -151,6 +151,7 @@ if(token) {
                 
                            icon: 'success',
                            title: 'Selfie Submission Successful',
+                           confirmButtonColor: '#ffb705',
                            text: response.data.message,
                            timer: 2000,
                            timerProgressBar: true,
@@ -207,6 +208,7 @@ if(token) {
   
                           Swal.fire({
                               icon: 'error',
+                              confirmButtonColor: '#ffb705',
                               title: 'Upload Error',
                               text: error.response.data.message,
                           })
@@ -219,6 +221,7 @@ if(token) {
                           Swal.fire({
                               icon: 'error',
                               title: 'Identification Error',
+                              confirmButtonColor: '#ffb705',
                               text: error.response.data.message,
                           })
   

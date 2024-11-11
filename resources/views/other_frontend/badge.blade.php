@@ -11,6 +11,7 @@
   <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+  <link rel="stylesheet" href="{{ asset('innocent/assets/css/preloader.css')}}">
   <style>
 
 
@@ -19,9 +20,19 @@
 </head>
 
 <body>
+
+  <div class="preloader">
+    <img src="{{ asset('innocent/assets/image/Shopping bag.png') }}" alt="Loading icon" class="bag-icon" />
+    <div class="dots">
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+    </div>
+   </div>
+
   <div class="header">
     <div>
-      <a href="{{ url('/id') }}"> <img class="arrow ms-2" src="kaz/images/Arrow.png" alt=""></a>
+      <a href="{{ url('/id') }}"> <img class="arrow ms-2" src="{{ asset('/kaz/images/Arrow.png') }}" alt=""></a>
 
     </div>
     <div>
@@ -32,15 +43,15 @@
     <div class="container main">
       <div class="vetted-div">
         <div style="margin-top: -30px;">
-          <img class="img-fluid dp ms-3" width="60px" src="kaz/images/dp.png" alt="">
+          <img class="img-fluid dp ms-3" width="60px" src="{{ asset('/kaz/images/dp.png') }}" alt="">
           <div class="vetted">
-            <img width="20px" height="20px" src="kaz/images/badge.png" alt="">
+            <img width="20px" height="20px" src="{{ asset('') }}{{ asset('/kaz/images/badge.png') }}" alt="">
           </div>
         </div>
         <div class="ms-4  augustine1">
           <div style="display: flex; align-items: start;">
             <h5 class="modal-mire">Mired Augustine </h5>
-            <img class=" ms-2 " src="kaz/images/badge.png" alt="">
+            <img class=" ms-2 " src="{{ asset('/kaz/images/badge.png') }}" alt="">
           </div>
           <h6 class="modal-augustine" style="margin-top: -10px;">miredaugustine@gmail.com</h6>
           <h6 class="vetted-seller pt-2 fw-bold">vetted seller badge</h6>
@@ -49,7 +60,7 @@
         <div class="augustine2">
           <div style="display: flex; align-items: start;">
             <h5 class="modal-mire">Mired Augustine </h5>
-            <img class="ms-2 " src="kaz/images/vetted.svg" alt="">
+            <img class="ms-2 " src="{{ asset('/kaz/images/vetted.svg') }}" alt="">
           </div>
           <h6 class="modal-augustine" style="margin-top: -10px;">miredaugustine@gmail.com</h6>
           <h6 class="vetted-seller pt-2 fw-bold">vetted seller badge</h6>
@@ -127,7 +138,8 @@
 
   </div>
 
-  <script type="module" src="{{ asset('backend-js/user/badge.js') }}"></script> 
+  <script type="module" src="{{ asset('backend-js/user/badge.js') }}"></script>
+  <script src="{{ asset('innocent/assets/js/preloader.js') }}"></script> 
 </body>
 
 </html>

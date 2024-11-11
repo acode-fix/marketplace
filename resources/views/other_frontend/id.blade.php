@@ -7,6 +7,7 @@
   <title>Document</title>
   <link rel="stylesheet" href="{{ asset('kaz/css/bootstrap.css') }}">
   <link rel="stylesheet" href="{{ asset('kaz/css/id.css') }}">
+  <link rel="stylesheet" href="{{ asset('innocent/assets/css/preloader.css')}}">
   <script src="{{ asset('kaz/js/id.js') }}"></script>
   <style>
 
@@ -14,9 +15,18 @@
 </head>
 
 <body>
+  <div class="preloader">
+    <img src="{{ asset('innocent/assets/image/Shopping bag.png') }}" alt="Loading icon" class="bag-icon" />
+    <div class="dots">
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+    </div>
+</div>
+
   <div class="header">
     <div>
-      <a href="{{ url('/nin') }}"> <img class="arrow ms-2" src="kaz/images/Arrow.png" alt=""></a>
+      <a href="{{ url('/nin') }}"> <img class="arrow ms-2" src="{{ asset('/kaz/images/Arrow.png') }}" alt=""></a>
 
     </div>
     <div>
@@ -35,7 +45,7 @@
           </div>
         </div>
         <div class="top-cam">
-          <!-- <img  id="upload"   src="kaz/images/selfie.svg" alt=""> -->
+          <!-- <img  id="upload"   src="/kaz/images/selfie.svg" alt=""> -->
           <div class="cam-main">
             <label id="use-camera" class="container ">
               <h6>Click here to Scan Your ID</h6>
@@ -62,6 +72,8 @@
     </a>
 
   </div>
+
+  <script src="{{ asset('innocent/assets/js/preloader.js') }}"></script>
 
 </body>
 

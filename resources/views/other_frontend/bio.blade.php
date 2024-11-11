@@ -7,6 +7,7 @@
   <title>Document</title>
   <link rel="stylesheet" href="{{ asset('kaz/css/bootstrap.css') }}">
   <link rel="stylesheet" href="{{ asset('kaz/css/bio.css') }}">
+  <link rel="stylesheet" href="{{ asset('innocent/assets/css/preloader.css')}}">
   <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
@@ -19,9 +20,18 @@
 </head>
 
 <body>
+  
+  <div class="preloader">
+    <img src="{{ asset('innocent/assets/image/Shopping bag.png') }}" alt="Loading icon" class="bag-icon" />
+    <div class="dots">
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+    </div>
+   </div>
   <div class="header">
     <div>
-      <a href="{{ url('/become') }}"> <img class="arrow ms-2" src="kaz/images/Arrow.png" alt=""></a>
+      <a href="{{ url('/become') }}"> <img class="arrow ms-2" src="{{ asset('/kaz/images/Arrow.png') }}" alt=""></a>
 
     </div>
     <div>
@@ -104,6 +114,7 @@
 
   </script>
   <script type="module" src="{{ asset('backend-js/user/bio.js') }}"></script>
+  <script src="{{ asset('innocent/assets/js/preloader.js') }}"></script>
 </body>
 
 </html>

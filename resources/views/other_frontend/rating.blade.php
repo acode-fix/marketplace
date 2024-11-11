@@ -8,6 +8,7 @@
   <link rel="stylesheet" href="{{ asset('kaz/css/bootstrap.css') }}">
   <link rel="stylesheet" href="{{ asset('kaz/css/navbar.css') }}">
   <link rel="stylesheet" href="{{ asset('kaz/css/rating.css') }}">
+  <link rel="stylesheet" href="{{ asset('innocent/assets/css/preloader.css')}}">
   <script src="{{ asset('kaz/js/rating.js') }}"></script>
   <script src="{{ asset('kaz/js/bootstrap.js') }}"></script>
 
@@ -19,7 +20,18 @@
   </style>
 </head>
 
+
 <body>
+ 
+   <div class="preloader">
+       <img src="{{ asset('innocent/assets/image/Shopping bag.png') }}" alt="Loading icon" class="bag-icon" />
+       <div class="dots">
+           <div class="dot"></div>
+           <div class="dot"></div>
+           <div class="dot"></div>
+       </div>
+   </div>
+
   <div class="header-section">
     <div class="arrow-div">
       <a href="{{ url('/') }}"><img class="arrow" src="{{asset('kaz/images/Arrow.png')}}" alt=""></a>
@@ -221,6 +233,7 @@
 
 
 <script type="module" src="{{ asset('backend-js/rating.js') }}"></script>
+<script src="{{ asset('innocent/assets/js/preloader.js') }}"></script> 
 </body>
 
 </html>

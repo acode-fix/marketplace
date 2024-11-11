@@ -122,8 +122,8 @@
 
                 </div>
                 <div class="container-fluid">
-                  <h6 class="mobile-size mt-3">Privacy Policy for Buyandsellmarketplace</h6>
-                  <p class=" mt-1 fw-light mobile-size"> At Buyandsellmarketplace, we value the privacy of our users and
+                  <h6 class="mobile-size mt-3">Privacy Policy for LoopMart marketplace</h6>
+                  <p class=" mt-1 fw-light mobile-size"> At LoopMart marketplace, we value the privacy of our users and
                     we are committed to protecting it. This
                     privacy policy explains how we collect, use, and share information about our users. By using our
                     website, you consent to this privacy policy.

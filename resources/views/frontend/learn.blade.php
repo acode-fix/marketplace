@@ -29,7 +29,7 @@
           <div class="row buy border-top footer mt-5 ">
             <div class="col mt-3 ">
               <div style="text-align: center; ">
-                <img class="main-logo" src="kaz/images/transparent_logo.png" class="img-fluid" alt="">
+                <img class="main-logo" src="{{ asset('kaz/images/transparent_logo.png') }}" class="img-fluid" alt="">
               </div>
             </div>
           </div>
@@ -53,10 +53,10 @@
         </div>
         <div class="row footer footer-desktop">
           <div style="text-align: center;" class="col">
-            <img height="35px" width="35px" src="kaz/images/facebook.png" alt="">
-            <img height="30px" width="30px" src="kaz/images/twitter.png" alt="">
-            <img height="29px" width="29px" src="kaz/images/whatsapp.png" alt="">
-            <img height="30px" width="30px" src="kaz/images/message.png" alt="">
+            <img height="35px" width="35px" src="{{ asset('/kaz/images/facebook.png') }}" alt="">
+            <img height="30px" width="30px" src="{{ asset('/kaz/images/twitter.png') }}" alt="">
+            <img height="29px" width="29px" src="{{ asset('/kaz/images/whatsapp.png') }}" alt="">
+            <img height="30px" width="30px" src="{{ asset('/kaz/images/message.png') }}" alt="">
           </div>
         </div>
       </div> 

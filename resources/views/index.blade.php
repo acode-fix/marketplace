@@ -9,11 +9,12 @@
     <link rel="stylesheet" href="{{ asset('innocent/assets/css/style.css') }}">
     <link rel="stylesheet" href="{{ asset('innocent/assets/css/animation.css') }}">
     <link rel="stylesheet" href="{{ asset('innocent/assets/css/modal.css') }}">
-    <link rel="stylesheet" href="{{ asset('innocent/assets/css/notification.css') }}">
+    <link rel="stylesheet" href="{{ asset('innocent/assets/css/notification.css')}}">
     <link rel="stylesheet" href="{{ asset('innocent/assets/css/location.css') }}">
     <link rel="stylesheet" href="{{ asset('innocent/assets/css/alert.css') }}">
     <link rel="stylesheet" href="{{ asset('innocent/assets/icons/css/all.min.css') }}">
     <link rel="stylesheet" href="{{ asset('innocent/assets/icons/css/fontawesome.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('innocent/assets/css/preloader.css')}}">
     
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -27,10 +28,21 @@
 
 </head>
 <style>
- 
+
+
+
 </style>
 
 <body>
+
+    <div class="preloader">
+        <img src="{{ asset('innocent/assets/image/Shopping bag.png') }}" alt="Loading icon" class="bag-icon" />
+        <div class="dots">
+            <div class="dot"></div>
+            <div class="dot"></div>
+            <div class="dot"></div>
+        </div>
+    </div>
 
     <div id="scrollToTop"><i class="fa-solid fa-arrow-up"></i></div>
     <div id="index">
@@ -1084,12 +1096,14 @@
     <script src="{{ asset('innocent/assets/js/animation.js') }}"></script>
     <script src="{{ asset('innocent/assets/js/location.js') }}"></script>
     <script src="{{ asset('innocent/assets/js/modal.js') }}"></script>
+    <script src="{{ asset('innocent/assets/js/preloader.js') }}"></script>
     
 
 
  <script  src="{{ asset('backend-js/user/auth.js') }}"></script>
  <script type="module" src="{{ asset('backend-js/index.js') }}"></script>
  <script type="module"  src="{{ asset('backend-js/notification.js') }}"></script>
+
     
 </body>
 

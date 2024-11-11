@@ -7,6 +7,7 @@
   <title>Document</title>
   <link rel="stylesheet" href="{{ asset('kaz/css/bootstrap.css') }}">
   <link rel="stylesheet" href="{{ asset('kaz/css/become.css') }}">
+  <link rel="stylesheet" href="{{ asset('innocent/assets/css/preloader.css')}}">
   <script src="{{ asset('kaz/js/bootstrap.js') }}"></script>
   <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
@@ -16,10 +17,19 @@
   </style>
 </head>
 
-<body>
+<body>  
+  <div class="preloader">
+    <img src="{{ asset('innocent/assets/image/Shopping bag.png') }}" alt="Loading icon" class="bag-icon" />
+    <div class="dots">
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+    </div>
+   </div>
+
   <div class="header">
     <div>
-      <a href="{{ url('/shop') }}"><img class="arrow ms-2" src="kaz/images/Arrow.png" alt=""></a>
+      <a href="{{ url('/shop') }}"><img class="arrow ms-2" src="{{ asset('/kaz/images/Arrow.png') }}" alt=""></a>
 
     </div>
     <div>
@@ -34,13 +44,13 @@
         <li>
           <h6><span class="fw-bold">Enhanced Trust and Credibility :</span><span class=" modal-text fw-light"> A
               verified badge signals to potential buyers that the seller's identity and
-              information have been verified by the us (buy and sell marketplace).This can enhance trust and credibility
+              information have been verified by the us (LoopMart marketplace).This can enhance trust and credibility
               especially
               for new or lesser-known sellers.
             </span></h6>
         </li>
         <li class="mt-2">
-          <h6><span class="fw-bold">Increased Visibility:</span><span class=" modal-text fw-light">We (buy and sell
+          <h6><span class="fw-bold">Increased Visibility:</span><span class=" modal-text fw-light">We (LoopMart
               market place) prioritize verfied sellers in search results and feautured
               listings.This increased visibility can lead to more exposure and sales opportunities for verified sellers
             </span></h6>
@@ -72,7 +82,7 @@
         <li class="mt-2">
           <h6><span class="fw-bold">Long-term Reputation Building:</span><span class=" modal-text fw-light">Maintaining
               a verified status over time can contribute to building a positive
-              reputation for ypu as a seller and your brand on buy and sell marketplace,which can lead to repeat
+              reputation for you as a seller and your brand on buy and sell marketplace,which can lead to repeat
               business and word-of-mouth refferals.
             </span></h6>
         </li>
@@ -97,6 +107,7 @@
 
 
   <script type="module" src="{{ asset('backend-js/user/become.js') }}"></script>
+  <script src="{{ asset('innocent/assets/js/preloader.js') }}"></script>
 </body>
 
 </html>

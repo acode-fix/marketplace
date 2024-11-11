@@ -24,7 +24,7 @@
     <div class="row ">
       <div class="col ">
         <div class="main">
-          <img width="10%" src="kaz/images/Asset 3.svg" class="img-fluid" alt="">
+          <img width="10%" src="{{ asset('/kaz/images/Asset 3.svg') }}" class="img-fluid" alt="">
           <h6 class="mt-2 ">Sorry we don't like to tell you there is an error,<br> seems there is one </h6>
         </div>
 

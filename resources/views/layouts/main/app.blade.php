@@ -7,6 +7,14 @@
 
 
 <body>
+     <div class="preloader">
+          <img src="{{ asset('innocent/assets/image/Shopping bag.png') }}" alt="Loading icon" class="bag-icon" />
+          <div class="dots">
+              <div class="dot"></div>
+              <div class="dot"></div>
+              <div class="dot"></div>
+          </div>
+      </div>
 
 @include('layouts.main.navbar')
 

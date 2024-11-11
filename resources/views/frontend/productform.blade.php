@@ -4,12 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="{{ asset('innocent/assets/css/bootstrap.css') }}">
-    <link rel="stylesheet" href="{{ asset('innocent/assets/css/start_selling.css') }}">
-    <link rel="stylesheet" href="{{ asset('innocent/assets/css/animation.css') }}">
-    <link rel="stylesheet" href="{{ asset('innocent/assets/icons/css/all.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('innocent/assets/icons/css/fontawesome.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('innocent/assets/css/alert.css') }}">
+    <link rel="stylesheet" href="{{ asset('{{ asset('') }}/innocent/assets/css/bootstrap.css') }}">
+    <link rel="stylesheet" href="{{ asset('{{ asset('') }}/innocent/assets/css/start_selling.css') }}">
+    <link rel="stylesheet" href="{{ asset('{{ asset('') }}/innocent/assets/css/animation.css') }}">
+    <link rel="stylesheet" href="{{ asset('{{ asset('') }}/innocent/assets/icons/css/all.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('{{ asset('') }}/innocent/assets/icons/css/fontawesome.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('{{ asset('') }}/innocent/assets/css/alert.css') }}">
 
     <style>
 
@@ -25,7 +25,7 @@
         <h5>Select product category</h5>
         <div class="category_mobile">
             <div class="image2" onclick="selectCategory(this, 1)">
-                <img src="innocent/assets/image/category 1.png">
+                <img src="{{ asset('/innocent/assets/image/category 1.png') }}">
                 <div class="text2">Gadgets</div>
                 <div class="checked-icon">✅️</div>
             </div>
@@ -37,7 +37,7 @@
             <input type="file" id="fileInput" name="image_url[]" accept="image/*" style="display: none;" multiple>
             <div id="imageContainer">
                 <div id="uploadButton">
-                    <img src="innocent/assets/image/upload.png" alt="Upload">
+                    <img src="{{ asset('/innocent/assets/image/upload.png') }}" alt="Upload">
                     <p>maximum picture size: 5mb<br>supported format: Jpg & Png</p>
                 </div>
             </div>
@@ -66,10 +66,10 @@
 
 
 
-    <script src="{{ asset('innocent/assets/js/start_selling.js') }}"></script>
-    <script src="{{ asset('innocent/assets/js/animation.js') }}"></script>
-    <script src="{{ asset('innocent/assets/js/upload_image.js') }}"></script>
-    <script src="{{ asset('innocent/assets/js/bootstrap.js') }}"></script>
+    <script src="{{ asset('/innocent/assets/js/start_selling.js') }}"></script>
+    <script src="{{ asset('/innocent/assets/js/animation.js') }}"></script>
+    <script src="{{ asset('/innocent/assets/js/upload_image.js') }}"></script>
+    <script src="{{ asset('/innocent/assets/js/bootstrap.js') }}"></script>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 
 

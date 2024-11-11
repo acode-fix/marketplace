@@ -14,7 +14,7 @@
           <div style="float: right;">
             <div onmouseover="showText()" onmouseout="hideText()" class="badge-shop me-3 mb-2modal-font"
               data-bs-toggle="modal" data-bs-target="#staticBackdrop">
-              <img height="20px" width="15px" src="kaz/images/badge.png" alt="">
+              <img height="20px" width="15px" src="{{ asset('/kaz/images/badge.png') }}" alt="">
               <a class="revalidate-link" ><h6 style="font-size: small;" class="ps-1 verify-text">Verify Now</h6></a>
             </div>
             <div id="hover-text" class="hover-text ps-1">become verified seller</div>
@@ -27,15 +27,14 @@
           <div class="modal-dialog modal-lg">
             <div class="modal-content">
               <div class="modal-header modal-top">
-                <img id="modal-arrow" class="modal-arrow" src="kaz/images/Arrow.png" alt="">
+                <img id="modal-arrow" class="modal-arrow" src="{{ asset('/kaz/images/Arrow.png') }}" alt="">
                 <h6 class="modal-title ms-4 fw-bold" id="exampleModalLabel">Become a verified Seller</h6>
                 <button type="button" class="btn-close btn-sm" data-bs-dismiss="modal" aria-label="Close"></button>
               </div>
               <div class="modal-body">
                <form id="bio-form">
                 <div id="page1">
-                  <h6 class="fw-bold">The verified badge offers several benefits to sellers like yourself on buy and
-                    sell marketplace</h6>
+                  <h6 class="fw-bold">The verified badge offers several benefits to sellers like yourself on LoopMart marketplace</h6>
                   <ol class="list-style mt-2">
                     <li>
                       <h6><span class="fw-bold">Enhanced Trust and Credibility:</span><span
@@ -47,8 +46,7 @@
                         </span></h6>
                     </li>
                     <li class="mt-3">
-                      <h6><span class="fw-bold">Increased Visibility:</span><span class=" modal-text fw-light">We (buy
-                          and sell market place) prioritize verfied sellers in search results and feautured
+                      <h6><span class="fw-bold">Increased Visibility:</span><span class=" modal-text fw-light">We (LoopMart market place) prioritize verfied sellers in search results and feautured
                           listings.This increased visibility can lead to more exposure and sales opportunities for
                           verified sellers
                         </span></h6>
@@ -172,7 +170,7 @@
                   <div class="mt-5" style="text-align: center;">
                     <h2 class="fw-light">NIN</h2>
                     <p>Kind Upload Your Natonal <br>Identification Card </p>
-                    <img id="preview-image" class="mt-4" src="kaz/images/Nin upload.svg" alt="">
+                    <img id="preview-image" class="mt-4" src="{{ asset('/kaz/images/Nin upload.svg') }}" alt="">
                   </div>
                   <div class="mt-5" style="text-align: center; ">
                     <form id="nin_form"> 
@@ -194,7 +192,7 @@
                       </div>
                     </div>
                     <div class="" style="text-align: center; margin-top: -28px;">
-                      <!-- <img  id="upload"   src="kaz/images/selfie.svg" alt=""> -->
+                      <!-- <img  id="upload"   src="/kaz/images/selfie.svg" alt=""> -->
                       <div class="use-struct">
                         <label id="use-camera" class="">
                           <h6> Click Here To Take a selfie</h6>
@@ -227,9 +225,9 @@
                       <div class="col">
                         <div class="vetted-div">
                           <div style="margin-top: -30px;">
-                            <img class="img-fluid dp ms-3" width="60px" src="kaz/images/dp.png" alt="">
+                            <img class="img-fluid dp ms-3" width="60px" src="{{ asset('/kaz/images/dp.png') }}" alt="">
                             <div class="vetted">
-                              <img src="kaz/images/badge.png" alt="">
+                              <img src="{{ asset('/kaz/images/badge.png') }}" alt="">
                             </div>
                           </div>
                           <div class="ms-4 mt-3">
@@ -237,7 +235,7 @@
                             <h6 class="modal-augustine" style="margin-top: -10px;">miredaugustine@gmail.com</h6>
                             <h6 class="vetted-seller pt-2 fw-bold">vetted seller badge</h6>
                           </div>
-                          <img class="img-vetted" src="kaz/images/badge.png" alt="">
+                          <img class="img-vetted" src="{{ asset('/kaz/images/badge.png') }}" alt="">
                         </div>
                         <div class="mt-4">
                           <!-- <h6>Monthly</h6> -->
@@ -284,7 +282,7 @@
                 <div id="page6" style="display: none;">
                   <!-- Content for page 6 -->
                   <div style="text-align: center; margin-top: 40px;">
-                    <img src="kaz/images/success.svg" alt="">
+                    <img src="{{ asset('/kaz/images/success.svg') }}" alt="">
                     <h6 style="margin-top: 40px;" class="fw-bold ">Successful!</h6>
                     <p class="fw-light approval-text mt-3">Your document has been uploded.<br>
                       Awaiting Approval normally approval <br>
@@ -463,7 +461,7 @@
         <div onmouseover="showText3()" onmouseout="hideText3()">
           <div class="verify-badge-m">
 
-            <img class="" height="20px" width="15px" src="kaz/images/badge.png" alt="">
+            <img class="" height="20px" width="15px" src="{{ asset('') }}/kaz/images/badge.png" alt="">
             <a class="js-verify-url" href="{{ url('/become') }}">
               <h6 class="verify-m ps-1 verify-text">Verify Now</h6>
             </a>

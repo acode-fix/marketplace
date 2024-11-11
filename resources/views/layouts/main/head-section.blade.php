@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="{{ asset('kaz/css/shop.css') }}">
     <link rel="stylesheet" href="{{ asset('kaz/css1/all.min.css') }}">
     <link rel="stylesheet" href="{{ asset('kaz/css1/fontawesome.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('innocent/assets/css/preloader.css')}}">
     <script src="{{ asset('kaz/js/bootstrap.js') }}"></script>
     <script src="{{ asset('kaz/js/shop.js') }}"></script>
     
@@ -20,5 +21,6 @@
   <script src="{{ asset('kaz/js/ads.js') }}"></script>
 
   <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <script src="{{ asset('innocent/assets/js/preloader.js') }}"></script>
 
 </head>

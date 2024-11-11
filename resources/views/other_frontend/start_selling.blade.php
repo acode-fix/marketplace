@@ -10,6 +10,8 @@
     <link rel="stylesheet" href="{{ asset('innocent/assets/icons/css/all.min.css') }}">
     <link rel="stylesheet" href="{{ asset('innocent/assets/icons/css/fontawesome.min.css') }}">
     <link rel="stylesheet" href="{{ asset('innocent/assets/css/alert.css') }}">
+    <link rel="stylesheet" href="{{ asset('innocent/assets/css/preloader.css')}}">
+    <script src="{{ asset('innocent/assets/js/preloader.js') }}"></script> 
     <link href="https://fonts.cdnfonts.com/css/product-sans" rel="stylesheet"> 
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
     <style>
@@ -18,6 +20,16 @@
 
 </head>
 <body>
+
+  
+    <div class="preloader">
+        <img src="{{ asset('innocent/assets/image/Shopping bag.png') }}" alt="Loading icon" class="bag-icon" />
+        <div class="dots">
+            <div class="dot"></div>
+            <div class="dot"></div>
+            <div class="dot"></div>
+        </div>
+    </div>
     <!-- First part, the nav and search button -->
 
     <div class="navbar fixed-top">

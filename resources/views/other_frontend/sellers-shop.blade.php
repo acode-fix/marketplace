@@ -11,6 +11,7 @@
   <link rel="stylesheet" href="{{ asset('kaz/css/sellers.css') }}">
   <link rel="stylesheet" href="{{ asset('kaz/css1/all.min.css') }}">
   <link rel="stylesheet" href="{{ asset('kaz/css1/fontawesome.min.css') }}">
+  <link rel="stylesheet" href="{{ asset('innocent/assets/css/preloader.css')}}">
   <script src="{{ asset('kaz/js/bootstrap.js') }}"></script>
    <script src="{{ asset('kaz/js/read.js') }}"></script>
 
@@ -24,20 +25,30 @@
 </head>
 
 <body>
+  
+    <div class="preloader">
+        <img src="{{ asset('innocent/assets/image/Shopping bag.png') }}" alt="Loading icon" class="bag-icon" />
+        <div class="dots">
+            <div class="dot"></div>
+            <div class="dot"></div>
+            <div class="dot"></div>
+        </div>
+    </div>
+
   <div class="header-section">
     <div class="arrow-div">
-      <a href="{{ url('/') }}"><img class="arrow" src="kaz/images/Arrow.png" alt=""></a>
+      <a href="{{ url('/') }}"><img class="arrow" src="{{ asset('/kaz/images/Arrow.png') }}" alt=""></a>
       <h6 style="font-size: 20px;" class="fw-light ms-4">Sellers Shop</h6>
     </div>
     <div class="left-section">
-      <a href="{{ url('/') }}"><img class="ms-3 main-logo" src="{{asset('kaz/images/transparent_logo.png')}}" alt=""></a>
+      <a href="{{ url('/') }}"><img class="ms-3 main-logo" src="{{asset('/kaz/images/transparent_logo.png')}}" alt=""></a>
       <h6 class="ms-5 fw-bold profile">Sellers Shop</h6>
     </div>
 
     <!-- <div class="middle-section">
       <div class="search-border">
         <input type="search" id="search" placeholder="&nbsp Search product...">
-        <button class="search-btn btn-light mt-1 pt-1 pb-2 me-1"><img src="kaz/images/Search.png" class="img-fluid search-img" alt=""> search</button>
+        <button class="search-btn btn-light mt-1 pt-1 pb-2 me-1"><img src="{{ asset('') }}/kaz/images/Search.png" class="img-fluid search-img" alt=""> search</button>
       </div>
     </div> -->
     <!-- <div class="create">
@@ -113,14 +124,14 @@
           <div>
             <div class="side-display">
               <div>
-                <img width="10px" height="13px" src="kaz/images/location.svg" alt="">
+                <img width="10px" height="13px" src="{{ asset('') }}/kaz/images/location.svg" alt="">
                 <span style="font-size: small;">From</span>
               </div>
               <h6 style="font-size: small;">Abuja,Nigera</h6>
             </div>
             <div class="side-display">
               <div>
-                <img width="15px" src="kaz/images/profile.svg" alt="">
+                <img width="15px" src="{{ asset('') }}/kaz/images/profile.svg" alt="">
                 <span style="font-size: small;">Member since</span>
               </div>
               <h6 style="font-size: small;">May,2022</h6>
@@ -128,7 +139,7 @@
             </div>
             <div class="side-display">
               <div>
-                <img width="15px" src="kaz/images/product.svg" alt="">
+                <img width="15px" src="{{ asset('') }}/kaz/images/product.svg" alt="">
                 <span style="font-size: small;">Listed products</span>
               </div>
               <h6 style="font-size: small;">12</h6>
@@ -141,11 +152,11 @@
           {{-- <div class="ms-2">
             <h6 class="card-title">Reviews</h6>
             <div>
-              <img src="kaz/images/star-active.svg" class="img-fluid image-rate" width="15px" alt="">
-              <img src="kaz/images/star-active.svg" class="img-fluid image-rate" width="15px" alt="">
-              <img src="kaz/images/star-active.svg" class="img-fluid image-rate" width="15px" alt="">
-              <img src="kaz/images/star-active.svg" class="img-fluid image-rate" width="15px" alt="">
-              <img src="kaz/images/star-nill.svg" class="img-fluid image-rate" width="15px" alt=""> <span
+              <img src="{{ asset('') }}/kaz/images/star-active.svg" class="img-fluid image-rate" width="15px" alt="">
+              <img src="{{ asset('') }}/kaz/images/star-active.svg" class="img-fluid image-rate" width="15px" alt="">
+              <img src="{{ asset('') }}/kaz/images/star-active.svg" class="img-fluid image-rate" width="15px" alt="">
+              <img src="{{ asset('') }}/kaz/images/star-active.svg" class="img-fluid image-rate" width="15px" alt="">
+              <img src="{{ asset('') }}/kaz/images/star-nill.svg" class="img-fluid image-rate" width="15px" alt=""> <span
                 style="font-size: small;">(4.5)</span>
             </div>
             <a class="view js-review" href="{{ url('/review') }}">View all</a>
@@ -169,15 +180,15 @@
         <div class="row ">
           <div class="col  content-margin">
               {{-- <div style="width: 90%;" class="card mb-3  main-card-preview">
-                <img style="height:220px;" id="banner" src="kaz/images/Picture of product (Tablet).png"
+                <img style="height:220px;" id="banner" src="{{ asset('') }}/kaz/images/Picture of product (Tablet).png"
                  class="card-img-top main-img-border" alt="...">
                 <div class="card-body">
                   <div class="row">
                     <div class="col mt-2">
                       <div style="display: flex; align-items: center;">
-                        <img src="kaz/images/dp.png" class="ms-2" alt="">
+                        <img src="{{ asset('') }}/kaz/images/dp.png" class="ms-2" alt="">
                         <div class="camera2">
-                          <img class="badge-cam" height="20px" width="15px" src="kaz/images/badge.png" alt="">
+                          <img class="badge-cam" height="20px" width="15px" src="{{ asset('') }}/kaz/images/badge.png" alt="">
                         </div>
                         <div class="mt-4 ms-4">
                           <h5 class="">Drill Houston <span style="font-size: small;">(unique_id)</span></h5>
@@ -214,15 +225,15 @@
                {{--<div>
                 <div class="card card-preview" id="productCard" data-card-index="0">
                   <h6 class="sold">Sold 75</h6>
-                  <img src="kaz/images/Picture of product (USB).png" class="card-img-top w-100 image-border" alt="...">
+                  <img src="{{ asset('') }}/kaz/images/Picture of product (USB).png" class="card-img-top w-100 image-border" alt="...">
                   <div class="card-body">
                     <div class="card-structure">
                       <h6 class="amount">$3,990.00 <span class="amount-span">$5,999.00</span></h6>
                       <div class="star-layout">
                         <div>
-                          <img src="kaz/images/Rate.png" class="img-fluid image-rate" width="10px" alt="">
-                          <img src="kaz/images/Rate.png" class="img-fluid image-rate" width="10px" alt="">
-                          <img src="kaz/images/Rate.png" class="img-fluid image-rate" width="10px" alt="">
+                          <img src="{{ asset('') }}/kaz/images/Rate.png" class="img-fluid image-rate" width="10px" alt="">
+                          <img src="{{ asset('') }}/kaz/images/Rate.png" class="img-fluid image-rate" width="10px" alt="">
+                          <img src="{{ asset('') }}/kaz/images/Rate.png" class="img-fluid image-rate" width="10px" alt="">
                         </div>
                         <div>
                           <h6 class="ps-1 rate-no">5.0</h6>
@@ -231,7 +242,7 @@
                     </div>
                     <div class="footer-card">
                       <p class="card-text infinix-text pt-3">Infinix hot 5 (ultralight 5gb ram, 500mph</p>
-                      <img class="mt-3 logo-bag" src="kaz/images/logo icon.png" alt="">
+                      <img class="mt-3 logo-bag" src="{{ asset('') }}/kaz/images/logo icon.png" alt="">
                     </div>
                   </div>
                 </div>
@@ -241,15 +252,15 @@
               </div> 
                <div class="card card-preview" data-card-index="0">
                 <h6 class="sold">Sold 75</h6>
-                <img src="kaz/images/Picture of product (USB).png" class="card-img-top w-100 image-border" alt="...">
+                <img src="{{ asset('') }}/kaz/images/Picture of product (USB).png" class="card-img-top w-100 image-border" alt="...">
                 <div class="card-body">
                   <div class="card-structure">
                     <h6 class="amount">$3,990.00 <span class="amount-span">$5,999.00</span></h6>
                     <div class="star-layout">
                       <div>
-                        <img src="kaz/images/Rate.png" class="img-fluid image-rate" width="10px" alt="">
-                        <img src="kaz/images/Rate.png" class="img-fluid image-rate" width="10px" alt="">
-                        <img src="kaz/images/Rate.png" class="img-fluid image-rate" width="10px" alt="">
+                        <img src="{{ asset('') }}/kaz/images/Rate.png" class="img-fluid image-rate" width="10px" alt="">
+                        <img src="{{ asset('') }}/kaz/images/Rate.png" class="img-fluid image-rate" width="10px" alt="">
+                        <img src="{{ asset('') }}/kaz/images/Rate.png" class="img-fluid image-rate" width="10px" alt="">
                       </div>
                       <div>
                         <h6 class="ps-1 rate-no">5.0</h6>
@@ -258,21 +269,21 @@
                   </div>
                   <div class="footer-card">
                     <p class="card-text infinix-text pt-3">Infinix hot 5 (ultralight 5gb ram, 500mph</p>
-                    <img class="mt-3 logo-bag" src="kaz/images/logo icon.png" alt="">
+                    <img class="mt-3 logo-bag" src="{{ asset('') }}/kaz/images/logo icon.png" alt="">
                   </div>
                 </div>
               </div>
               <div class="card card-preview">
                 <h6 class="sold">Sold 75</h6>
-                <img src="kaz/images/Picture of product (USB).png" class="card-img-top w-100 image-border" alt="...">
+                <img src="{{ asset('') }}/kaz/images/Picture of product (USB).png" class="card-img-top w-100 image-border" alt="...">
                 <div class="card-body">
                   <div class="card-structure">
                     <h6 class="amount">$3,990.00 <span class="amount-span">$5,999.00</span></h6>
                     <div class="star-layout">
                       <div>
-                        <img src="kaz/images/Rate.png" class="img-fluid image-rate" width="10px" alt="">
-                        <img src="kaz/images/Rate.png" class="img-fluid image-rate" width="10px" alt="">
-                        <img src="kaz/images/Rate.png" class="img-fluid image-rate" width="10px" alt="">
+                        <img src="{{ asset('') }}/kaz/images/Rate.png" class="img-fluid image-rate" width="10px" alt="">
+                        <img src="{{ asset('') }}/kaz/images/Rate.png" class="img-fluid image-rate" width="10px" alt="">
+                        <img src="{{ asset('') }}/kaz/images/Rate.png" class="img-fluid image-rate" width="10px" alt="">
                       </div>
                       <div>
                         <h6 class="ps-1 rate-no">5.0</h6>
@@ -281,21 +292,21 @@
                   </div>
                   <div class="footer-card">
                     <p class="card-text infinix-text pt-3">Infinix hot 5 (ultralight 5gb ram, 500mph</p>
-                    <img class="mt-3 logo-bag" src="kaz/images/logo icon.png" alt="">
+                    <img class="mt-3 logo-bag" src="{{ asset('') }}/kaz/images/logo icon.png" alt="">
                   </div>
                 </div>
               </div>
               <div class="card card-preview">
                 <h6 class="sold">Sold 75</h6>
-                <img src="kaz/images/Picture of product (USB).png" class="card-img-top w-100 image-border" alt="...">
+                <img src="{{ asset('') }}/kaz/images/Picture of product (USB).png" class="card-img-top w-100 image-border" alt="...">
                 <div class="card-body">
                   <div class="card-structure">
                     <h6 class="amount">$3,990.00 <span class="amount-span">$5,999.00</span></h6>
                     <div class="star-layout">
                       <div>
-                        <img src="kaz/images/Rate.png" class="img-fluid image-rate" width="10px" alt="">
-                        <img src="kaz/images/Rate.png" class="img-fluid image-rate" width="10px" alt="">
-                        <img src="kaz/images/Rate.png" class="img-fluid image-rate" width="10px" alt="">
+                        <img src="{{ asset('') }}/kaz/images/Rate.png" class="img-fluid image-rate" width="10px" alt="">
+                        <img src="{{ asset('') }}/kaz/images/Rate.png" class="img-fluid image-rate" width="10px" alt="">
+                        <img src="{{ asset('') }}/kaz/images/Rate.png" class="img-fluid image-rate" width="10px" alt="">
                       </div>
                       <div>
                         <h6 class="ps-1 rate-no">5.0</h6>
@@ -304,21 +315,21 @@
                   </div>
                   <div class="footer-card">
                     <p class="card-text infinix-text pt-3">Infinix hot 5 (ultralight 5gb ram, 500mph</p>
-                    <img class="mt-3 logo-bag" src="kaz/images/logo icon.png" alt="">
+                    <img class="mt-3 logo-bag" src="{{ asset('') }}/kaz/images/logo icon.png" alt="">
                   </div>
                 </div>
               </div>
               <div class="card card-preview">
                 <h6 class="sold">Sold 75</h6>
-                <img src="kaz/images/Picture of product (USB).png" class="card-img-top w-100 image-border" alt="...">
+                <img src="{{ asset('') }}/kaz/images/Picture of product (USB).png" class="card-img-top w-100 image-border" alt="...">
                 <div class="card-body">
                   <div class="card-structure">
                     <h6 class="amount">$3,990.00 <span class="amount-span">$5,999.00</span></h6>
                     <div class="star-layout">
                       <div>
-                        <img src="kaz/images/Rate.png" class="img-fluid image-rate" width="10px" alt="">
-                        <img src="kaz/images/Rate.png" class="img-fluid image-rate" width="10px" alt="">
-                        <img src="kaz/images/Rate.png" class="img-fluid image-rate" width="10px" alt="">
+                        <img src="{{ asset('') }}/kaz/images/Rate.png" class="img-fluid image-rate" width="10px" alt="">
+                        <img src="{{ asset('') }}/kaz/images/Rate.png" class="img-fluid image-rate" width="10px" alt="">
+                        <img src="{{ asset('') }}/kaz/images/Rate.png" class="img-fluid image-rate" width="10px" alt="">
                       </div>
                       <div>
                         <h6 class="ps-1 rate-no">5.0</h6>
@@ -327,21 +338,21 @@
                   </div>
                   <div class="footer-card">
                     <p class="card-text infinix-text pt-3">Infinix hot 5 (ultralight 5gb ram, 500mph</p>
-                    <img class="mt-3 logo-bag" src="kaz/images/logo icon.png" alt="">
+                    <img class="mt-3 logo-bag" src="{{ asset('') }}/kaz/images/logo icon.png" alt="">
                   </div>
                 </div>
               </div>
               <div class="card card-preview">
                 <h6 class="sold">Sold 75</h6>
-                <img src="kaz/images/Picture of product (USB).png" class="card-img-top w-100 image-border" alt="...">
+                <img src="{{ asset('') }}/kaz/images/Picture of product (USB).png" class="card-img-top w-100 image-border" alt="...">
                 <div class="card-body">
                   <div class="card-structure">
                     <h6 class="amount">$3,990.00 <span class="amount-span">$5,999.00</span></h6>
                     <div class="star-layout">
                       <div>
-                        <img src="kaz/images/Rate.png" class="img-fluid image-rate" width="10px" alt="">
-                        <img src="kaz/images/Rate.png" class="img-fluid image-rate" width="10px" alt="">
-                        <img src="kaz/images/Rate.png" class="img-fluid image-rate" width="10px" alt="">
+                        <img src="{{ asset('') }}/kaz/images/Rate.png" class="img-fluid image-rate" width="10px" alt="">
+                        <img src="{{ asset('') }}/kaz/images/Rate.png" class="img-fluid image-rate" width="10px" alt="">
+                        <img src="{{ asset('') }}/kaz/images/Rate.png" class="img-fluid image-rate" width="10px" alt="">
                       </div>
                       <div>
                         <h6 class="ps-1 rate-no">5.0</h6>
@@ -350,21 +361,21 @@
                   </div>
                   <div class="footer-card">
                     <p class="card-text infinix-text pt-3">Infinix hot 5 (ultralight 5gb ram, 500mph</p>
-                    <img class="mt-3 logo-bag" src="kaz/images/logo icon.png" alt="">
+                    <img class="mt-3 logo-bag" src="{{ asset('') }}/kaz/images/logo icon.png" alt="">
                   </div>
                 </div>
               </div>
               <div class="card card-preview">
                 <h6 class="sold">Sold 75</h6>
-                <img src="kaz/images/Picture of product (USB).png" class="card-img-top w-100 image-border" alt="...">
+                <img src="{{ asset('') }}/kaz/images/Picture of product (USB).png" class="card-img-top w-100 image-border" alt="...">
                 <div class="card-body">
                   <div class="card-structure">
                     <h6 class="amount">$3,990.00 <span class="amount-span">$5,999.00</span></h6>
                     <div class="star-layout">
                       <div>
-                        <img src="kaz/images/Rate.png" class="img-fluid image-rate" width="10px" alt="">
-                        <img src="kaz/images/Rate.png" class="img-fluid image-rate" width="10px" alt="">
-                        <img src="kaz/images/Rate.png" class="img-fluid image-rate" width="10px" alt="">
+                        <img src="{{ asset('') }}/kaz/images/Rate.png" class="img-fluid image-rate" width="10px" alt="">
+                        <img src="{{ asset('') }}/kaz/images/Rate.png" class="img-fluid image-rate" width="10px" alt="">
+                        <img src="{{ asset('') }}/kaz/images/Rate.png" class="img-fluid image-rate" width="10px" alt="">
                       </div>
                       <div>
                         <h6 class="ps-1 rate-no">5.0</h6>
@@ -373,21 +384,21 @@
                   </div>
                   <div class="footer-card">
                     <p class="card-text infinix-text pt-3">Infinix hot 5 (ultralight 5gb ram, 500mph</p>
-                    <img class="mt-3 logo-bag" src="kaz/images/logo icon.png" alt="">
+                    <img class="mt-3 logo-bag" src="{{ asset('') }}/kaz/images/logo icon.png" alt="">
                   </div>
                 </div>
               </div>
               <div class="card card-preview">
                 <h6 class="sold">Sold 75</h6>
-                <img src="kaz/images/Picture of product (USB).png" class="card-img-top w-100 image-border" alt="...">
+                <img src="{{ asset('') }}/kaz/images/Picture of product (USB).png" class="card-img-top w-100 image-border" alt="...">
                 <div class="card-body">
                   <div class="card-structure">
                     <h6 class="amount">$3,990.00 <span class="amount-span">$5,999.00</span></h6>
                     <div class="star-layout">
                       <div>
-                        <img src="kaz/images/Rate.png" class="img-fluid image-rate" width="10px" alt="">
-                        <img src="kaz/images/Rate.png" class="img-fluid image-rate" width="10px" alt="">
-                        <img src="kaz/images/Rate.png" class="img-fluid image-rate" width="10px" alt="">
+                        <img src="{{ asset('') }}/kaz/images/Rate.png" class="img-fluid image-rate" width="10px" alt="">
+                        <img src="{{ asset('') }}/kaz/images/Rate.png" class="img-fluid image-rate" width="10px" alt="">
+                        <img src="{{ asset('') }}/kaz/images/Rate.png" class="img-fluid image-rate" width="10px" alt="">
                       </div>
                       <div>
                         <h6 class="ps-1 rate-no">5.0</h6>
@@ -396,21 +407,21 @@
                   </div>
                   <div class="footer-card">
                     <p class="card-text infinix-text pt-3">Infinix hot 5 (ultralight 5gb ram, 500mph</p>
-                    <img class="mt-3 logo-bag" src="kaz/images/logo icon.png" alt="">
+                    <img class="mt-3 logo-bag" src="{{ asset('') }}/kaz/images/logo icon.png" alt="">
                   </div>
                 </div>
               </div>
               <div class="card card-preview">
                 <h6 class="sold">Sold 75</h6>
-                <img src="kaz/images/Picture of product (USB).png" class="card-img-top w-100 image-border" alt="...">
+                <img src="{{ asset('') }}/kaz/images/Picture of product (USB).png" class="card-img-top w-100 image-border" alt="...">
                 <div class="card-body">
                   <div class="card-structure">
                     <h6 class="amount">$3,990.00 <span class="amount-span">$5,999.00</span></h6>
                     <div class="star-layout">
                       <div>
-                        <img src="kaz/images/Rate.png" class="img-fluid image-rate" width="10px" alt="">
-                        <img src="kaz/images/Rate.png" class="img-fluid image-rate" width="10px" alt="">
-                        <img src="kaz/images/Rate.png" class="img-fluid image-rate" width="10px" alt="">
+                        <img src="{{ asset('') }}/kaz/images/Rate.png" class="img-fluid image-rate" width="10px" alt="">
+                        <img src="{{ asset('') }}/kaz/images/Rate.png" class="img-fluid image-rate" width="10px" alt="">
+                        <img src="{{ asset('') }}/kaz/images/Rate.png" class="img-fluid image-rate" width="10px" alt="">
                       </div>
                       <div>
                         <h6 class="ps-1 rate-no">5.0</h6>
@@ -419,7 +430,7 @@
                   </div>
                   <div class="footer-card">
                     <p class="card-text infinix-text pt-3">Infinix hot 5 (ultralight 5gb ram, 500mph</p>
-                    <img class="mt-3 logo-bag" src="kaz/images/logo icon.png" alt="">
+                    <img class="mt-3 logo-bag" src="{{ asset('') }}/kaz/images/logo icon.png" alt="">
                   </div>
                 </div>
               </div>
@@ -435,7 +446,7 @@
     </div>
 
     <div class="mt-5 sellers-footer">
-      <div><img class="main-logo" src="{{asset('kaz/images/transparent_logo.png')}}" alt=""></div>
+      <div><img class="main-logo" src="{{asset('{{ asset('') }}/kaz/images/transparent_logo.png')}}" alt=""></div>
       <div>
         <a href=""><p class="fw-light text-footer">About<br>us</p></a>
       </div>
@@ -452,10 +463,10 @@
         <a href=""><p class="fw-light  text-footer">Report <br> a seller</p></a>
       </div> --}}
       <div class="down">
-        <img height="35px" width="35px" src="{{asset('kaz/images/facebook.png')}}" alt="">
-        <img height="30px" width="30px" src="{{asset('kaz/images/twitter.png')}}" alt="">
-        <img height="29px" width="29px" src="{{asset('kaz/images/whatsapp.png')}}" alt="">
-        <img height="30px" width="30px" src="{{asset('kaz/images/message.png')}}" alt="">
+        <img height="35px" width="35px" src="{{asset('/kaz/images/facebook.png')}}" alt="">
+        <img height="30px" width="30px" src="{{asset('/kaz/images/twitter.png')}}" alt="">
+        <img height="29px" width="29px" src="{{asset('/kaz/images/whatsapp.png')}}" alt="">
+        <img height="30px" width="30px" src="{{asset('/kaz/images/message.png')}}" alt="">
       </div>
   
 
@@ -467,14 +478,14 @@
   <!-- mobile-view  -->
   <div class="mobile-view">
     <div style="margin-top: -20px;" class="card  main-card-mobile">
-       {{-- <img style="height:180px;" id="banner" src="kaz/images/thumbnail-2.webp" class="card-img-top main-img-border2"
+       {{-- <img style="height:180px;" id="banner" src="{{ asset('') }}/kaz/images/thumbnail-2.webp" class="card-img-top main-img-border2"
         alt="...">
       <div class="card-body">
         <div style="display: flex;justify-content: space-between;">
           <div class="drill">
-            <img class="" width="50px" src="kaz/images/dp.png" class="" alt="">
+            <img class="" width="50px" src="{{ asset('') }}/kaz/images/dp.png" class="" alt="">
             <div class="camera2-m">
-              <img class="badge-cam-m" height="20px" width="15px" src="kaz/images/badge.png" alt="">
+              <img class="badge-cam-m" height="20px" width="15px" src="{{ asset('') }}/kaz/images/badge.png" alt="">
             </div>
             <div class="ms-3 mb-2 ">
               <h5 class="pt-3 mired-drill-m">Drill Houston</h5>
@@ -515,11 +526,11 @@
             <div class=" mobile-stars">
 
             </div>
-            {{-- <img src="kaz/images/star-active.svg" alt="">
-            <img src="kaz/images/star-active.svg" alt="">
-            <img src="kaz/images/star-active.svg" alt="">
-            <img src="kaz/images/star-active.svg" alt="">
-            <img src="kaz/images/star-nill.svg" alt=""> --}}
+            {{-- <img src="{{ asset('') }}/kaz/images/star-active.svg" alt="">
+            <img src="{{ asset('') }}/kaz/images/star-active.svg" alt="">
+            <img src="{{ asset('') }}/kaz/images/star-active.svg" alt="">
+            <img src="{{ asset('') }}/kaz/images/star-active.svg" alt="">
+            <img src="{{ asset('') }}/kaz/images/star-nill.svg" alt=""> --}}
             <div class="pt-1 ">
                <a class="view-m js-mobile-verify-link" href=""><i>View all</i></a><span class="bracket ps-3 mobile-avg-rate"></span>
             </div>
@@ -531,14 +542,14 @@
           <div class="card-body main-card-mobile-rm js-sidebar">
             {{-- <div class="side-display">
               <div>
-                <img width="8px" height="10px" src="kaz/images/location.svg" alt="">
+                <img width="8px" height="10px" src="{{ asset('') }}/kaz/images/location.svg" alt="">
                 <span class="from ">From</span>
               </div>
               <h6 class="from ">Abuja,Nigera</h6>
             </div>
             <div class="side-display">
               <div>
-                <img width="15px" src="kaz/images/profile.svg" alt="">
+                <img width="15px" src="{{ asset('') }}/kaz/images/profile.svg" alt="">
                 <span class="from ">Member since</span>
               </div>
               <h6 class="from ">May,2022</h6>
@@ -546,7 +557,7 @@
             </div>
             <div class="side-display">
               <div>
-                <img width="15px" src="kaz/images/product.svg" alt="">
+                <img width="15px" src="{{ asset('') }}/kaz/images/product.svg" alt="">
                 <span class="from ">Listed products</span>
               </div>
               <h6 class="from ">12</h6>
@@ -565,16 +576,16 @@
               <div class="card card-preview" data-card-id="1">
                 <div class="sold-mobile">
                   <h6 class="amount-sold-m ps-1 pt-1">Sold 100</h6>
-                  <img src="kaz/images/Rate.png" class="img-fluid ps-1" width="13px" alt=""><span
+                  <img src="{{ asset('') }}/kaz/images/Rate.png" class="img-fluid ps-1" width="13px" alt=""><span
                     class="img-rate ps-1">3.6</span>
                 </div>
-                <img src="kaz/images/Picture of product (USB).png" class="card-img-top w-100 image-border" alt="...">
+                <img src="{{ asset('') }}/kaz/images/Picture of product (USB).png" class="card-img-top w-100 image-border" alt="...">
                 <div class="card-body">
                   <h6 class="amount">$3,990.00 <span class="amount-span">$5,999.00</span></h6>
                   <p class="card-text infinix-text pt-3">25gb USB flash Drive.</p>
                   <div class="footer-card-mobile">
                     <div style="display: flex;align-items: center;">
-                      <img style="margin-left:-10px;" width="8px" src="kaz/images/location.svg" alt=""><span
+                      <img style="margin-left:-10px;" width="8px" src="{{ asset('') }}/kaz/images/location.svg" alt=""><span
                         class="location-text ps-1">Lagos, Nigera</span>
                     </div>
                     <button style="margin-top: -10px;" type="button" class="dropbtn">...</button>
@@ -587,16 +598,16 @@
               <div class="card card-preview" data-card-id="1">
                 <div class="sold-mobile">
                   <h6 class="amount-sold-m ps-1 pt-1">Sold 100</h6>
-                  <img src="kaz/images/Rate.png" class="img-fluid ps-1" width="13px" alt=""><span
+                  <img src="{{ asset('') }}/kaz/images/Rate.png" class="img-fluid ps-1" width="13px" alt=""><span
                     class="img-rate ps-1">3.6</span>
                 </div>
-                <img src="kaz/images/Picture of product (USB).png" class="card-img-top w-100 image-border" alt="...">
+                <img src="{{ asset('') }}/kaz/images/Picture of product (USB).png" class="card-img-top w-100 image-border" alt="...">
                 <div class="card-body">
                   <h6 class="amount">$3,990.00 <span class="amount-span">$5,999.00</span></h6>
                   <p class="card-text infinix-text pt-3">25gb USB flash Drive.</p>
                   <div class="footer-card-mobile">
                     <div style="display: flex;align-items: center;">
-                      <img style="margin-left:-10px;" width="8px" src="kaz/images/location.svg" alt=""><span
+                      <img style="margin-left:-10px;" width="8px" src="{{ asset('') }}/kaz/images/location.svg" alt=""><span
                         class="location-text ps-1">Lagos, Nigera</span>
                     </div>
                     <button style="margin-top: -10px;" type="button" class="dropbtn">...</button>
@@ -609,16 +620,16 @@
               <div class="card card-preview" data-card-id="1">
                 <div class="sold-mobile">
                   <h6 class="amount-sold-m ps-1 pt-1">Sold 100</h6>
-                  <img src="kaz/images/Rate.png" class="img-fluid ps-1" width="13px" alt=""><span
+                  <img src="{{ asset('') }}/kaz/images/Rate.png" class="img-fluid ps-1" width="13px" alt=""><span
                     class="img-rate ps-1">3.6</span>
                 </div>
-                <img src="kaz/images/Picture of product (USB).png" class="card-img-top w-100 image-border" alt="...">
+                <img src="{{ asset('') }}/kaz/images/Picture of product (USB).png" class="card-img-top w-100 image-border" alt="...">
                 <div class="card-body">
                   <h6 class="amount">$3,990.00 <span class="amount-span">$5,999.00</span></h6>
                   <p class="card-text infinix-text pt-3">25gb USB flash Drive.</p>
                   <div class="footer-card-mobile">
                     <div style="display: flex;align-items: center;">
-                      <img style="margin-left:-10px;" width="8px" src="kaz/images/location.svg" alt=""><span
+                      <img style="margin-left:-10px;" width="8px" src="{{ asset('') }}/kaz/images/location.svg" alt=""><span
                         class="location-text ps-1">Lagos, Nigera</span>
                     </div>
                     <button style="margin-top: -10px;" type="button" class="dropbtn">...</button>
@@ -631,16 +642,16 @@
               <div class="card card-preview" data-card-id="1">
                 <div class="sold-mobile">
                   <h6 class="amount-sold-m ps-1 pt-1">Sold 100</h6>
-                  <img src="kaz/images/Rate.png" class="img-fluid ps-1" width="13px" alt=""><span
+                  <img src="{{ asset('') }}/kaz/images/Rate.png" class="img-fluid ps-1" width="13px" alt=""><span
                     class="img-rate ps-1">3.6</span>
                 </div>
-                <img src="kaz/images/Picture of product (USB).png" class="card-img-top w-100 image-border" alt="...">
+                <img src="{{ asset('') }}/kaz/images/Picture of product (USB).png" class="card-img-top w-100 image-border" alt="...">
                 <div class="card-body">
                   <h6 class="amount">$3,990.00 <span class="amount-span">$5,999.00</span></h6>
                   <p class="card-text infinix-text pt-3">25gb USB flash Drive.</p>
                   <div class="footer-card-mobile">
                     <div style="display: flex;align-items: center;">
-                      <img style="margin-left:-10px;" width="8px" src="kaz/images/location.svg" alt=""><span
+                      <img style="margin-left:-10px;" width="8px" src="{{ asset('') }}/kaz/images/location.svg" alt=""><span
                         class="location-text ps-1">Lagos, Nigera</span>
                     </div>
                     <button style="margin-top: -10px;" type="button" class="dropbtn">...</button>
@@ -653,16 +664,16 @@
               <div class="card card-preview" data-card-id="1">
                 <div class="sold-mobile">
                   <h6 class="amount-sold-m ps-1 pt-1">Sold 100</h6>
-                  <img src="kaz/images/Rate.png" class="img-fluid ps-1" width="13px" alt=""><span
+                  <img src="{{ asset('') }}/kaz/images/Rate.png" class="img-fluid ps-1" width="13px" alt=""><span
                     class="img-rate ps-1">3.6</span>
                 </div>
-                <img src="kaz/images/Picture of product (USB).png" class="card-img-top w-100 image-border" alt="...">
+                <img src="{{ asset('') }}/kaz/images/Picture of product (USB).png" class="card-img-top w-100 image-border" alt="...">
                 <div class="card-body">
                   <h6 class="amount">$3,990.00 <span class="amount-span">$5,999.00</span></h6>
                   <p class="card-text infinix-text pt-3">25gb USB flash Drive.</p>
                   <div class="footer-card-mobile">
                     <div style="display: flex;align-items: center;">
-                      <img style="margin-left:-10px;" width="8px" src="kaz/images/location.svg" alt=""><span
+                      <img style="margin-left:-10px;" width="8px" src="{{ asset('') }}/kaz/images/location.svg" alt=""><span
                         class="location-text ps-1">Lagos, Nigera</span>
                     </div>
                     <button style="margin-top: -10px;" type="button" class="dropbtn">...</button>
@@ -675,16 +686,16 @@
               <div class="card card-preview" data-card-id="1">
                 <div class="sold-mobile">
                   <h6 class="amount-sold-m ps-1 pt-1">Sold 100</h6>
-                  <img src="kaz/images/Rate.png" class="img-fluid ps-1" width="13px" alt=""><span
+                  <img src="{{ asset('') }}/kaz/images/Rate.png" class="img-fluid ps-1" width="13px" alt=""><span
                     class="img-rate ps-1">3.6</span>
                 </div>
-                <img src="kaz/images/Picture of product (USB).png" class="card-img-top w-100 image-border" alt="...">
+                <img src="{{ asset('') }}/kaz/images/Picture of product (USB).png" class="card-img-top w-100 image-border" alt="...">
                 <div class="card-body">
                   <h6 class="amount">$3,990.00 <span class="amount-span">$5,999.00</span></h6>
                   <p class="card-text infinix-text pt-3">25gb USB flash Drive.</p>
                   <div class="footer-card-mobile">
                     <div style="display: flex;align-items: center;">
-                      <img style="margin-left:-10px;" width="8px" src="kaz/images/location.svg" alt=""><span
+                      <img style="margin-left:-10px;" width="8px" src="{{ asset('') }}/kaz/images/location.svg" alt=""><span
                         class="location-text ps-1">Lagos, Nigera</span>
                     </div>
                     <button style="margin-top: -10px;" type="button" class="dropbtn">...</button>
@@ -697,16 +708,16 @@
               <div class="card card-preview" data-card-id="1">
                 <div class="sold-mobile">
                   <h6 class="amount-sold-m ps-1 pt-1">Sold 100</h6>
-                  <img src="kaz/images/Rate.png" class="img-fluid ps-1" width="13px" alt=""><span
+                  <img src="{{ asset('') }}/kaz/images/Rate.png" class="img-fluid ps-1" width="13px" alt=""><span
                     class="img-rate ps-1">3.6</span>
                 </div>
-                <img src="kaz/images/Picture of product (USB).png" class="card-img-top w-100 image-border" alt="...">
+                <img src="{{ asset('') }}/kaz/images/Picture of product (USB).png" class="card-img-top w-100 image-border" alt="...">
                 <div class="card-body">
                   <h6 class="amount">$3,990.00 <span class="amount-span">$5,999.00</span></h6>
                   <p class="card-text infinix-text pt-3">25gb USB flash Drive.</p>
                   <div class="footer-card-mobile">
                     <div style="display: flex;align-items: center;">
-                      <img style="margin-left:-10px;" width="8px" src="kaz/images/location.svg" alt=""><span
+                      <img style="margin-left:-10px;" width="8px" src="{{ asset('') }}/kaz/images/location.svg" alt=""><span
                         class="location-text ps-1">Lagos, Nigera</span>
                     </div>
                     <button style="margin-top: -10px;" type="button" class="dropbtn">...</button>
@@ -719,16 +730,16 @@
               <div class="card card-preview" data-card-id="1">
                 <div class="sold-mobile">
                   <h6 class="amount-sold-m ps-1 pt-1">Sold 100</h6>
-                  <img src="kaz/images/Rate.png" class="img-fluid ps-1" width="13px" alt=""><span
+                  <img src="{{ asset('') }}/kaz/images/Rate.png" class="img-fluid ps-1" width="13px" alt=""><span
                     class="img-rate ps-1">3.6</span>
                 </div>
-                <img src="kaz/images/Picture of product (USB).png" class="card-img-top w-100 image-border" alt="...">
+                <img src="{{ asset('') }}/kaz/images/Picture of product (USB).png" class="card-img-top w-100 image-border" alt="...">
                 <div class="card-body">
                   <h6 class="amount">$3,990.00 <span class="amount-span">$5,999.00</span></h6>
                   <p class="card-text infinix-text pt-3">25gb USB flash Drive.</p>
                   <div class="footer-card-mobile">
                     <div style="display: flex;align-items: center;">
-                      <img style="margin-left:-10px;" width="8px" src="kaz/images/location.svg" alt=""><span
+                      <img style="margin-left:-10px;" width="8px" src="{{ asset('') }}/kaz/images/location.svg" alt=""><span
                         class="location-text ps-1">Lagos, Nigera</span>
                     </div>
                     <button style="margin-top: -10px;" type="button" class="dropbtn">...</button>
@@ -746,6 +757,7 @@
   </div>
 
 <script type="module" src="{{ asset('backend-js/seller-shop.js') }}"></script>
+<script src="{{ asset('innocent/assets/js/preloader.js') }}"></script> 
 </body>
 
 </html>

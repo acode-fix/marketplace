@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="{{ asset('innocent/assets/css/alert.css') }}">
     <link rel="stylesheet" href="{{ asset('innocent/assets/icons/css/all.min.css') }}">
     <link rel="stylesheet" href="{{ asset('innocent/assets/icons/css/fontawesome.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('innocent/assets/css/preloader.css')}}">
     <link href="https://fonts.cdnfonts.com/css/product-sans" rel="stylesheet">
                 
     
@@ -22,6 +23,14 @@
 </style>
 
 <body>
+   <div class="preloader">
+       <img src="{{ asset('innocent/assets/image/Shopping bag.png') }}" alt="Loading icon" class="bag-icon" />
+       <div class="dots">
+           <div class="dot"></div>
+           <div class="dot"></div>
+           <div class="dot"></div>
+       </div>
+   </div>
     <div class="body">
 
     <div >
@@ -667,6 +676,7 @@
   <script type="module" src="{{ asset('backend-js/user/profile-update.js') }}"></script>
   <script type="module" src="{{ asset('backend-js/user/product-desc.js') }}"></script>
  <script type="module"  src="{{ asset('backend-js/notification.js') }}"></script> 
+ <script src="{{ asset('innocent/assets/js/preloader.js') }}"></script>
 
 
 

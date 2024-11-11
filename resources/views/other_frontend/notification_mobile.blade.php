@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="{{ asset('innocent/assets/css/notification_mobile.css') }}">
     <link rel="stylesheet" href="{{ asset('innocent/assets/icons/css/all.min.css') }}">
     <link rel="stylesheet" href="{{ asset('innocent/assets/icons/css/fontawesome.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('innocent/assets/css/preloader.css')}}">
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
     <script src="https://js.pusher.com/8.2.0/pusher.min.js"></script>
@@ -17,6 +18,16 @@
 </head>
 
 <body>
+
+    <div class="preloader">
+        <img src="{{ asset('innocent/assets/image/Shopping bag.png') }}" alt="Loading icon" class="bag-icon" />
+        <div class="dots">
+            <div class="dot"></div>
+            <div class="dot"></div>
+            <div class="dot"></div>
+        </div>
+    </div>
+
     <div class="notification_main">
         <!-- Navbar and Search Button -->
         <div class=" notification_navbar fixed-top">
@@ -164,7 +175,7 @@
                 <i id="volumeMuteIcon" class="fa-solid fa-volume-mute notification_volume" style="display: none;"
                     onclick="turnOffNotifications()"></i>
                 <audio id="notificationSound">
-                    <source src="innocent/assets/notification_sound/mixkit-bell-notification-933.wav" type="audio/mpeg">
+                    <source src="{{ asset('/innocent/assets/notification_sound/mixkit-bell-notification-933.wav') }}" type="audio/mpeg">
                 </audio>
                 <p class="mt-2">Notification sound</p>
             </div>
@@ -176,6 +187,7 @@
     <script src="{{ asset('innocent/assets/js/notification.js') }}"></script>
     <script type="module" src="{{ asset('backend-js/mobile-notification.js') }}"></script>
     <script type="module"  src="{{ asset('backend-js/notification.js') }}"></script>
+    <script src="{{ asset('innocent/assets/js/preloader.js') }}"></script> 
 
 </body>
 

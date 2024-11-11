@@ -570,7 +570,7 @@ public function getDetails(Request $request) {
                 
             
                     if(!$user) {
-                        debugbar::info($userId);
+                       // debugbar::info($userId);
 
                         $user = User::where('id', $userId)->where('verify_status', 1)
                                     ->where('badge_status', 1)
@@ -580,14 +580,28 @@ public function getDetails(Request $request) {
 
                         debugbar::info($user);
 
-                                
-                                    
-                        return response()->json([
-                            'status' => true,
-                            'message' => 'User is verified but does not have  Product listed',
-                            'data' => $user,
+                        if(!$user) {
 
-                        ],200);
+                            return response()->json([
+                                'status' => false,
+                                'message' => 'User is Unverified',
+                                
+    
+                            ],404);
+
+
+                        }else  {
+
+                            return response()->json([
+                                'status' => true,
+                                'message' => 'User is verified but does not have  Product listed',
+                                'data' => $user,
+    
+                            ],200);
+
+                        }
+             
+                       
 
                     }
                     

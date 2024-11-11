@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="{{ asset('innocent/assets/icons/css/fontawesome.min.css') }}">
     <link rel="stylesheet" href="{{ asset('innocent/assets/css/search.css') }}">
     <link rel="stylesheet" href="{{ asset('innocent/assets/css/alert.css') }}">
+    <link rel="stylesheet" href="{{ asset('innocent/assets/css/preloader.css')}}">
 
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
@@ -20,6 +21,15 @@
 </head>
 
 <body>
+    
+    <div class="preloader">
+        <img src="{{ asset('innocent/assets/image/Shopping bag.png') }}" alt="Loading icon" class="bag-icon" />
+        <div class="dots">
+            <div class="dot"></div>
+            <div class="dot"></div>
+            <div class="dot"></div>
+        </div>
+    </div>
     <div id="scrollToTop"><i class="fa-solid fa-arrow-up"></i></div>
     <!-- search page -->
     <div id="search">
@@ -575,7 +585,7 @@
                 <a href="">About Us</a>
                 <a href="">Terms and condition</a>
                 <a class="js-help-search" href="">Help center</a>
-                <a href="/privacy">Privacy &  policy</a>
+                <a href="{{ url('/privacy') }}">Privacy &  policy</a>
                 {{-- <a href="">Report a seller</a> --}}
             </nav>
             <div class="footer_icons">
@@ -796,6 +806,7 @@
 
 
     <script type="module" src="{{ asset('backend-js/search.js') }}"></script>
+    <script src="{{ asset('innocent/assets/js/preloader.js') }}"></script> 
 </body>
 
 </html>

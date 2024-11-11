@@ -11,6 +11,7 @@
   <link rel="stylesheet" href="{{ asset('kaz/css/review.css') }}">
   <link rel="stylesheet" href="{{ asset('kaz/css1/all.min.css') }}">
   <link rel="stylesheet" href="{{ asset('kaz/css1/fontawesome.min.css') }}">
+  <link rel="stylesheet" href="{{ asset('innocent/assets/css/preloader.css')}}">
   <script src="{{ asset('kaz/js/bootstrap.js') }}"></script>
   <script src="{{ asset('kaz/js/review.js') }}"></script>
 
@@ -26,6 +27,14 @@
 </head>
 
 <body>
+   <div class="preloader">
+       <img src="{{ asset('innocent/assets/image/Shopping bag.png') }}" alt="Loading icon" class="bag-icon" />
+       <div class="dots">
+           <div class="dot"></div>
+           <div class="dot"></div>
+           <div class="dot"></div>
+       </div>
+   </div>
   <div class="header-section">
     <div class="arrow-div">
       <a href="{{ url('/') }}"><img class="arrow" src="{{asset('kaz/images/Arrow.png')}}" alt=""></a>
@@ -481,7 +490,7 @@
         <a href=""><p class="fw-light  text-footer js-review-help">Help <br>center</p></a>
       </div>
       <div>
-        <a href="/privacy"><p class="fw-light  text-footer">Privacy &<br>Policy</p></a>
+        <a href="{{ url('/privacy') }}"><p class="fw-light  text-footer">Privacy &<br>Policy</p></a>
       </div>
       {{-- <div>
         <a href=""><p class="fw-light  text-footer">Report <br> a seller</p></a>
@@ -768,6 +777,7 @@
 
  
 <script type="module" src="{{ asset('backend-js/review.js') }}"></script>
+<script src="{{ asset('innocent/assets/js/preloader.js') }}"></script> 
 </body>
 
 </html>

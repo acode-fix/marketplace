@@ -17,7 +17,7 @@
     <div class="row">
       <div class="col">
         <div class="main">
-          <img width="15%" src="kaz/images/No listing.svg" alt="">
+          <img width="15%" src="{{ asset('/kaz/images/No listing.svg') }}" alt="">
           <h6 class="mt-2 ">Sorry,seems the product you are looking for is not listed.</h6>
 
         </div>

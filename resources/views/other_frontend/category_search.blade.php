@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="{{ asset('innocent/assets/css/location.css') }}">
     <link rel="stylesheet" href="{{ asset('innocent/assets/icons/css/all.min.css') }}">
     <link rel="stylesheet" href="{{ asset('innocent/assets/icons/css/fontawesome.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('innocent/assets/css/preloader.css')}}">
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/moment@2.29.1/min/moment.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
@@ -26,6 +27,14 @@
 </style>
 
 <body>
+    <div class="preloader">
+        <img src="{{ asset('innocent/assets/image/Shopping bag.png') }}" alt="Loading icon" class="bag-icon" />
+        <div class="dots">
+            <div class="dot"></div>
+            <div class="dot"></div>
+            <div class="dot"></div>
+        </div>
+    </div>
 
 
 <div id="scrollToTop"><i class="fa-solid fa-arrow-up"></i></div>
@@ -522,11 +531,9 @@
 
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 
-    <script>
-
-</script>
 
 <script type="module" src="{{asset('backend-js/category-search.js')}}"></script>
+<script src="{{ asset('innocent/assets/js/preloader.js') }}"></script>
 
 
 

@@ -7,6 +7,8 @@
   <title>Document</title>
   <link rel="stylesheet" href="{{ asset('kaz/css/bootstrap.css') }}">
   <link rel="stylesheet" href="{{ asset('kaz/css/success.css') }}">
+  <link rel="stylesheet" href="{{ asset('innocent/assets/css/preloader.css')}}">
+  <script src="{{ asset('innocent/assets/js/preloader.js') }}"></script> 
   <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
@@ -16,9 +18,17 @@
 </head>
 
 <body>
+  <div class="preloader">
+    <img src="{{ asset('innocent/assets/image/Shopping bag.png') }}" alt="Loading icon" class="bag-icon" />
+    <div class="dots">
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+    </div>
+</div>
   <div class="header">
     <div>
-      <a href="{{ url('/badge') }}"> <img class="arrow ms-2" src="kaz/images/Arrow.png" alt=""></a>
+      <a href="{{ url('/badge') }}"> <img class="arrow ms-2" src="{{ asset('/kaz/images/Arrow.png') }}" alt=""></a>
 
     </div>
     <div>
@@ -27,7 +37,7 @@
   </div>
   <div class="scroll-text">
     <div class="badge-top">
-      <img src="kaz/images/success.svg" alt="">
+      <img src="{{ asset('/kaz/images/success.svg') }}" alt="">
       <h6 style="margin-top: 40px;" class="fw-bold ">Successful!</h6>
       <p class="fw-light approval-text mt-4">Your document has been uploded.<br>
         Awaiting Approval normally approval <br>
@@ -42,6 +52,7 @@
   
 
   <script type="module" src="{{ asset('backend-js/user/success.js') }}"></script>
+  
 </body>
 
 </html>

@@ -5,9 +5,12 @@
     <link rel="stylesheet" href="{{ asset('kaz/css/bootstrap.css') }}">
     <link rel="stylesheet" href="{{ asset('kaz/css/settings.css') }}">
     <link rel="stylesheet" href="{{ asset('kaz/css/shop.css') }}">
+    <link rel="stylesheet" href="{{ asset('innocent/assets/css/preloader.css')}}">
+    <script src="{{ asset('innocent/assets/js/preloader.js') }}"></script>
     <script src="{{ asset('kaz/js/bootstrap.js') }}"></script>
     <script src="{{ asset('kaz/js/settings.js') }}"></script>
     <script src="{{ asset('kaz/js/camera.js') }}"></script>
+
 
 
 {{-- CSS STYLES FOR WALLET PAGE --}}

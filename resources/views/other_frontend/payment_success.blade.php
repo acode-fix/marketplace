@@ -15,18 +15,20 @@
 
 <body>
   
- <div class="preloader">
-     <img src="{{ asset('innocent/assets/image/Shopping bag.png') }}" alt="Loading icon" class="bag-icon" />
-     <div class="dots">
-         <div class="dot"></div>
-         <div class="dot"></div>
-         <div class="dot"></div>
-     </div>
- </div>
+  <div class="preloader">
+    <div class="preloader-content">
+      <img  src="{{ asset('innocent/assets/image/brand-icon.png') }}" class="bag-icon" alt="Bag Icon">
+      <div class="dots">
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+      </div>
+    </div>
+</div>
   <div class="header">
     <div>
     
-      <a href="{{ url('/') }}"><img style="width:150px" src="{{ asset('/kaz/images/main logo.svg') }}"  class="img-fluid" alt=""></a>
+      <a href="{{ url('/') }}"><img style="width:150px" src="{{ asset('/kaz/images/transparent_logo.svg') }}"  class="img-fluid" alt=""></a>
       
     </div>
     <div>

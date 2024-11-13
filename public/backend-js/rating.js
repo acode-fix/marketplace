@@ -20,7 +20,7 @@ if(token) {
 
     }
   }).then((response) => {
-    console.log(response);
+   // console.log(response);
 
     const data = response.data.user;
 
@@ -29,7 +29,7 @@ if(token) {
 
   }).catch((error) => {
 
-    console.log(error);
+  //  console.log(error);
 
     if(error.response) {
 
@@ -253,7 +253,7 @@ const text = document.querySelector('.js-input');
     formData.append('user_id', userId);
     formData.append('product_id', productId);
 
- console.log([...formData]);
+ //console.log([...formData]);
 
   axios.post('/api/v1/user/rating-details',
    formData, {
@@ -263,7 +263,7 @@ const text = document.querySelector('.js-input');
 
     }
   }).then((response) => {
-    console.log(response);
+   // console.log(response);
 
     if(response.status === 200 && response.data) {
       Swal.fire({
@@ -279,7 +279,7 @@ const text = document.querySelector('.js-input');
     }
 
   }).catch((error) => {
-    console.log(error);
+//    console.log(error);
 
     if(error.response) {
 
@@ -381,7 +381,7 @@ function readNotification() {
       axios.post('/api/v1/user/update/notification', 
         { notificationId, productId },
     ).then((response) => {
-        console.log(response);
+      //  console.log(response);
 
         if(response.status === 200 && response.data) {
 
@@ -389,7 +389,7 @@ function readNotification() {
             
         }
     }).catch((error) => {
-        console.log(error);
+     //   console.log(error);
         if(error.response) {
 
           if(error.response.status === 422 && error.response.data) {

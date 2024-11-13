@@ -313,7 +313,7 @@ export function getPrice(product) {
 
 export function loadConnect(product) {
 
-  console.log(product);
+ // console.log(product);
 
   const {title, id, user_id} = product;
   const {name, phone_number, email} = product.user;
@@ -331,7 +331,7 @@ export function loadConnect(product) {
 
   const token = localStorage.getItem('apiToken');
 
-  console.log(id)
+//  console.log(id)
 
 
   axios.post('/api/v1/product/engagement', {id, user_id}, {
@@ -341,10 +341,10 @@ export function loadConnect(product) {
   
 
   }).then((response) => {
-    console.log(response);
+ //   console.log(response);
 
   }).catch((error) => {
-    console.log(error);
+ //   console.log(error);
   })
 
 
@@ -561,7 +561,7 @@ export function displayHelpCenter() {
     icon: "info",
     html: `
       <h6 class="fs-5">Direct your complain to our email</h6>
-      <h6 class="fs-5">Admin@loopMartinfo.com</h6>
+      <h6 class="fs-5">Info@loopMartinfo.com</h6>
       <h6 class="fs-5">We will respond within 24hrs</h6>
      
     `,
@@ -570,22 +570,29 @@ export function displayHelpCenter() {
     showCancelButton: true,
     focusConfirm: false,
     confirmButtonText: `
-      <i class="fa fa-thumbs-up"></i> Great!
+      <i class="fa fa-thumbs-up"></i> Go To Mail
     `,
     confirmButtonAriaLabel: "Thumbs up, great!",
-    cancelButtonText: `
-      <i class="fa fa-thumbs-down"></i>
-    `,
+    // cancelButtonText: `
+    //   <i class="fa fa-thumbs-down"></i>
+    // `,
     cancelButtonAriaLabel: "Thumbs down"
-  });
+  }).then((result)=> {
+    if(result.isConfirmed) {
 
+      window.location.href = "mailto:Admin@loopMartInfo.com?subject=Help Center Inquiry&body=Hello,"
+
+
+    }
+  })
+  
 
 }
 
 export function displayData(name, phone_number) {
 
   Swal.fire({
-    title: "<strong class='text-success'>Connect</strong>",
+    title: "<strong class='text-warning'>Connect</strong>",
     icon: "info",
     html: `
       <h6 class="fs-5">Seller Name: ${name ?? 'N/A'}</h6>
@@ -595,6 +602,7 @@ export function displayData(name, phone_number) {
     showCloseButton: true,
     showCancelButton: true,
     focusConfirm: false,
+    confirmButtonColor: '#ffb705',
     confirmButtonText: `
       <i class="fa fa-thumbs-up"></i> Great!
     `,

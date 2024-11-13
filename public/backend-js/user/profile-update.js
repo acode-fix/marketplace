@@ -19,7 +19,7 @@ if (token) {
        
           
    }).catch(error => {
-       console.log('Error fetching user data:', error);
+     //  console.log('Error fetching user data:', error);
        if (error.response && error.response.status === 401) {
            Swal.fire({
                icon: 'error',

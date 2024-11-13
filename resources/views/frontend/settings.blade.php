@@ -122,7 +122,7 @@
                         <span class="error" id="nationality_error"></span>
                       </div>
                       <div class="col-md-6 mt-4">
-                        <label for="name" class="form-label fw-bold n">Name</label>
+                        <label for="name" class="form-label fw-bold n">Fullname</label>
                         <input name="name" oninput="hideIcon(this)" id="search-modal1" type="text" class="form-control username"
                           placeholder="Your legalName">
                           <span class="error" id="name_error"></span>
@@ -195,7 +195,7 @@
                       <!-- <img  id="upload"   src="/kaz/images/selfie.svg" alt=""> -->
                       <div class="use-struct">
                         <label id="use-camera" class="">
-                          <h6> Click Here To Take a selfie</h6>
+                          <h6 class="text-success"> Click Here To Take a selfie</h6>
                           <h6 class="fw-light mt-2"> Please ensure all your face within the border of the scanner</h6>
 
                         </label>
@@ -300,7 +300,7 @@
               </div>
               <div style="border: none;" class="modal-footer">
                 <button style="width: 15%;" id="previousBtn" type="button"
-                  class="btn btn-md btn-warning">Previous</button>
+                  class="btn btn-md btn-secondary">Previous</button>
                 <button style="width: 15%;" id="nextBtn" type="button"
                   class="btn btn-md btn-warning js-btn">Next</button>
               </div>
@@ -332,7 +332,7 @@
           <div class="col-8 mb-3">
             <label for="usernameInput" class="form-label">Username</label>
             <input type="text" name="username" class="form-control" id="usernameInput"
-              placeholder="This is your profile display name on buyandsell">
+              placeholder="This is your profile display name on LoopMart">
           </div>
           {{-- <input type="text" name="username" id="usernameInput" readonly style="display: none;"> --}}
           <div class="col-2 mt-3 post-btn">
@@ -350,9 +350,9 @@
               class="btn btn-info">Edit</button>
           </div>
           <div class="col-8 mb-3">
-            <label for="phoneInput" class="form-label">Call Phone Number</label>
+            <label for="phoneInput" class="form-label">Contact Phone Number</label>
             <input type="number" name="phone_number" class="form-control" id="phoneInput"
-              placeholder="This contact will be used by visitors on buyandsell to reach you via phone call">
+              placeholder="This contact will be used by visitors on LoopMart to reach you via phone call">
           </div>
           <div class="col-2 mt-3 post-btn">
             <button id="editPhoneBtn" style="background-color: whitesmoke;" type="button"
@@ -428,7 +428,7 @@
       <div class="col-10 mb-3">
         <label for="usernameInput" class="form-label">Username</label>
         <input type="text" class="form-control" name="username" id="usernameInput1"
-          placeholder="This is your profile display name on buyandsell">
+          placeholder="This is your profile display name on LoopMart">
       </div>
       <div class="col-2 mt-3 post-btn">
         <button id="editUsernameBtn1" style="background-color: whitesmoke;" type="button"
@@ -448,7 +448,7 @@
       <div class="col-10 mb-3">
         <label for="phoneInput" class="form-label">Call Phone Number</label>
         <input type="number" class="form-control" name="phone_number" id="phoneInput1"
-          placeholder="This contact will be used by visitors on buyandsell to reach you via phone call">
+          placeholder="This contact will be used by visitors on LoopMart to reach you via phone call">
       </div>
       <div class="col-2 mt-3 post-btn">
         <button id="editPhoneBtn1" style="background-color: whitesmoke;" type="button"

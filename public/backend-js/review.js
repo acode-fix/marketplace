@@ -20,7 +20,7 @@ if(token) {
 
   }).then((response) => {
 
-    console.log(response)
+  //  console.log(response)
 
     if(response.status === 200 && response.data) {
 
@@ -46,7 +46,7 @@ if(token) {
     }
 
   }).catch((error) => {
-    console.log(error);
+  //  console.log(error);
 
     if(error.response) {
       
@@ -58,7 +58,7 @@ if(token) {
   function authUser() {
 
     axios.get('/api/v1/getuser').then((response) => {
-      console.log(response)
+    //  console.log(response)
 
       const authUser = response.data;
 
@@ -67,7 +67,7 @@ if(token) {
 
     }).catch((error) => {
 
-      console.log(error);
+  //    console.log(error);
 
     })
   }
@@ -158,7 +158,7 @@ if(token) {
     verifiedEl.addEventListener('click', () => {
       const{ userId }= verifiedEl.dataset;
 
-      console.log(userId);
+    //  console.log(userId);
 
       
       localStorage.setItem('userId', JSON.stringify(userId))
@@ -531,7 +531,7 @@ if(token) {
           <p class="rate-four mt-2 fw-light">${review.comment}.</p>
         </div>
         <div class="col">
-          <img width="60px" src="/uploads/products/${getSingleImage(product.image_url)}" alt="">
+          <img width="60px"  src="/uploads/products/${getSingleImage(product.image_url)}" alt="">
         </div>
       </div>`;
 
@@ -560,7 +560,7 @@ if(token) {
 
   function loadMobileReviewContent(products) {
 
-    console.log(products);
+  //  console.log(products);
 
     let content = '';
 

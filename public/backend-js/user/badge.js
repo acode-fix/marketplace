@@ -21,7 +21,7 @@ if(token) {
       const formData = new FormData(form);
 
       for(let field of formData) {
-        console.log(field[0] +':' + field[1]);
+      //  console.log(field[0] +':' + field[1]);
       }
 
       axios.post('/api/v1/verify/badge', formData, {
@@ -120,5 +120,5 @@ if(token) {
   })
 
 }else {
-  console.log('no');
+ // console.log('no');
 }

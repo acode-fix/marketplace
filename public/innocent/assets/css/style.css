@@ -226,13 +226,15 @@ a:hover {
 /* Country Input Media Query */
 @media screen and (max-width: 550px) {
     .country-input {
-
-        width: 28%;
+        width: 15%;
+        /* width: 28%; */
         padding: 5px 10px;
         float: left;
         padding-left: 20px;
-        font-size: 11px;
+        font-size: 13px;
+        
     }
+ 
 }
 
 /* Find What to Buy Input */
@@ -1388,6 +1390,9 @@ input:checked+.slider:before {
     margin: 6px 12px 5px 4px;
 
 }
+.real {
+    color: red;
+}
 
 .top_sales {
 
@@ -1396,7 +1401,7 @@ input:checked+.slider:before {
     transition-delay: 0.2s;
     display: block;
     margin-left: 20px;
-    position: absolute;
+    /* position: absolute; */
 }
 
 .top_sales_margin {
@@ -2279,7 +2284,6 @@ input:checked+.slider:before {
     position: absolute;
     width: 30px;
     height: 30px;
-
     border-radius: 50%;
     border: 4px solid #ccc;
     border-top-color: #ffce29;

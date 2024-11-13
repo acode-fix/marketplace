@@ -23,13 +23,15 @@
 </style>
 
 <body>
-   <div class="preloader">
-       <img src="{{ asset('innocent/assets/image/Shopping bag.png') }}" alt="Loading icon" class="bag-icon" />
-       <div class="dots">
-           <div class="dot"></div>
-           <div class="dot"></div>
-           <div class="dot"></div>
-       </div>
+    <div class="preloader">
+        <div class="preloader-content">
+          <img  src="{{ asset('innocent/assets/image/brand-icon.png') }}" class="bag-icon" alt="Bag Icon">
+          <div class="dots">
+            <div class="dot"></div>
+            <div class="dot"></div>
+            <div class="dot"></div>
+          </div>
+        </div>
    </div>
     <div class="body">
 
@@ -45,12 +47,15 @@
 
         <div class="search-bar">
             <div class="location-icon"><i class="fa-solid fa-location-dot"></i></div>
-            <select placeholder="Country" class="country-input">
+            <div style="margin-left: 8px;" class="country-input">
+                Nigeria
+            </div>
+            {{-- <select placeholder="Country" class="country-input">
                 <option selected>Nigeria</option>
-                {{-- <option value="1">Canada</option>
+                <option value="1">Canada</option>
                 <option value="2">Nigeria</option>
-                <option value="3">Russia</option> --}}
-            </select>
+                <option value="3">Russia</option> 
+            </select> --}}
             <div class="vertical-bar"></div>
             <a href="{{ url('/search') }}">
                 <span  onclick="localStorage.setItem('previousPage', '{{ url('/product_des') }}')">
@@ -632,17 +637,18 @@
             <img class="main-logo" src="{{asset('innocent/assets/image/transparent_logo.png')}}" alt="">
         </div>
         <nav class="footer_links">
-            <a href="">About Us</a>
+            <a href="{{ url('/about') }}">About Us</a>
             <a href="">Terms and condition</a>
-            <a class="js-help-desc" href="">Help center</a>
+            <a class="js-help-desc" href="">Help desk</a>
             <a href="{{ url('/privacy') }}">Privacy &  policy</a>
             {{-- <a href="">Report a seller</a> --}}
         </nav>
         <div class="footer_icons">
-            <img src="{{asset('innocent/assets/image/facebook.png')}}" alt="">
+            <a href="https://web.facebook.com/loopmart/"><img src="{{asset('innocent/assets/image/facebook.png')}}" alt=""></a>
             <img src="{{asset('innocent/assets/image/twitter.png')}}" alt="">
             <img src="{{asset('innocent/assets/image/linkedin.png')}}" alt="">
-            <img src="{{asset('innocent/assets/image/message.png')}}" alt="">
+            <a href="mailto:info@gmail.com.ng"><img src="{{asset('innocent/assets/image/message.png')}}" alt=""></a>
+
         </div>
     </div>
 

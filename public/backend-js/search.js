@@ -10,7 +10,7 @@ if(token) {
 
   axios.get('/api/v1/getuser').then((response) => {
 
-    console.log(response);
+   // console.log(response);
 
     if(response.status === 200 && response.data) {
 
@@ -23,7 +23,7 @@ if(token) {
 
   }).catch((error) => {
 
-    console.log(error);
+   // console.log(error);
 
   });
 
@@ -282,7 +282,7 @@ if(token) {
 
   function searchFilter(location, verifyStatus, condition) {
 
-    console.log(condition + location + verifyStatus)
+   // console.log(condition + location + verifyStatus)
 
     axios.get('/api/v1/product/filter', {
       params: {

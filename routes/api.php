@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AuditlogController;
 use App\Http\Controllers\CategoriesController;
 use App\Http\Controllers\UsersController;
@@ -98,6 +99,11 @@ Route::post('/approve/user', [VerificationController::class, 'approveUserVerific
 Route::post('/reject/user', [VerificationController::class, 'rejectUserVerification']);
 
 
+//Route admin user menu;
+
+Route::get('admin/registered-user',[AdminController::class, 'index']);
+
+
 //Verified Seller Shop Route;
 
 Route::get('/verified-seller/details', [UsersController::class, 'getDetails']);
@@ -148,9 +154,6 @@ Route::get('/user/avg-rating', [ReviewersController::class, 'avgReview']);
 //ROUTE PRODUCT REQUEST;
 
 Route::post('/user/product-request', [UsersController::class, 'storeProductRequest']);
-
-
-
 
 
 

@@ -35,6 +35,7 @@ login.addEventListener('click', () => {
       Swal.fire({
         icon: 'success',
         title: 'Admin Login',
+        confirmButtonColor: '#ffb705',
         text: response.data.message,
         timer: 2000,
         timerProgressBar: true,
@@ -168,6 +169,7 @@ export function logoutUser() {
               Swal.fire({
                   icon: 'success',
                   title: 'Logout Successful',
+                  confirmButtonColor: '#ffb705',
                   text: responseData.message,
                   willClose: function() {
                       window.location.href = '/admin/login'; // Redirect to login page
@@ -176,6 +178,7 @@ export function logoutUser() {
           } else {
               Swal.fire({
                   icon: 'error',
+                  confirmButtonColor: '#ffb705',
                   title: 'Logout Failed',
                   text: 'Unexpected response from the server. Please try again later.'
               });
@@ -186,6 +189,7 @@ export function logoutUser() {
 
           Swal.fire({
               icon: 'error',
+              confirmButtonColor: '#ffb705',
               title: 'Logout Failed',
               text: errorData.message || 'There was an error while logging out. Please try again later.'
           });

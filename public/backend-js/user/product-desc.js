@@ -146,7 +146,7 @@
 
         if(selectedProduct) {
 
-            console.log(selectedProduct);
+          //  console.log(selectedProduct);
             loadConnect(selectedProduct);   
         }
 

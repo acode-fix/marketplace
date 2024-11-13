@@ -114,7 +114,7 @@ axios.get('/api/allproduct')
     renderProductsAndSections(products);
 })
 .catch(function (error) {
-    console.log(error);
+  //  console.log(error);
 });
 
 
@@ -156,13 +156,13 @@ function applyFilter() {
         verifyStatus: verifiedSeller,
     };
 
-    console.log('Filters applied:', filters);
+   // console.log('Filters applied:', filters);
    
 
     axios.get('/api/v1/product/filter', { params: filters},)
         .then(function (response) {
             const products = response.data;
-            console.log(products);
+        //    console.log(products);
             renderProductsAndSections(products);
         })
         .catch(function (error) {
@@ -246,7 +246,7 @@ function createProductCard(product) {
         if (i === 0) product_img_url = el;
     });
 
-    console.log(product);
+   // console.log(product);
     const{verify_status, badge_status} = product.user;
 
    const badge = verify_status === 1 && badge_status === 1 ? `<img class="logo-bag" src="kaz/images/badge.png" alt="">` : `<img src="innocent/assets/image/logo icon.svg" alt="">`;
@@ -342,7 +342,7 @@ function updateUserProfile(user) {
     
 
     } else {
-        console.error('User data is null or undefined');
+      //  console.error('User data is null or undefined');
     }
 }
 
@@ -397,7 +397,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 window.location.href = `/category_search/search?category=${categoryId}`;
             })
             .catch(function (error) {
-                console.error('Error fetching products:', error);
+          //      console.error('Error fetching products:', error);
             });
         });
     });
@@ -476,7 +476,7 @@ function getVerifiedSellerShop(shopNo) {
         }
     }).then((response) =>{
 
-        console.log(response)
+      //  console.log(response)
 
         if(response.status === 200 && response.data) {
 
@@ -492,7 +492,7 @@ function getVerifiedSellerShop(shopNo) {
 
     }).catch((error) => {
 
-        console.log(error);
+    //    console.log(error);
 
         if(error.response) {
 

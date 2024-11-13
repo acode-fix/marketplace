@@ -98,7 +98,7 @@ const logoLink = document.querySelector('.js-logo-link');
     }
 
   }).catch((error) => {
-    console.log(error);
+   // console.log(error);
     if(error.response) {
 
       if(error.response.status  === 404  && error.response.data) {
@@ -402,7 +402,7 @@ const logoLink = document.querySelector('.js-logo-link');
         'Authorization': `Bearer ${token}`,
       }
     }).then((response) => {
-      console.log(response);
+    //  console.log(response);
 
       if(response.status === 200 && response.data) {
 
@@ -457,7 +457,7 @@ const logoLink = document.querySelector('.js-logo-link');
       }
 
     }).catch((error) => {
-      console.log(error);
+  //    console.log(error);
 
     })
   } else {

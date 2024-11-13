@@ -8,6 +8,7 @@ if(!token) {
   Swal.fire({
     icon: 'error',
     title: 'Unauthenticated User',
+    confirmButtonColor: '#ffb705',
     text: 'Please log in.'
 }).then(() => {
 

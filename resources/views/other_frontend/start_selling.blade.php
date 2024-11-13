@@ -23,13 +23,15 @@
 
   
     <div class="preloader">
-        <img src="{{ asset('innocent/assets/image/Shopping bag.png') }}" alt="Loading icon" class="bag-icon" />
-        <div class="dots">
+        <div class="preloader-content">
+          <img  src="{{ asset('innocent/assets/image/brand-icon.png') }}" class="bag-icon" alt="Bag Icon">
+          <div class="dots">
             <div class="dot"></div>
             <div class="dot"></div>
             <div class="dot"></div>
+          </div>
         </div>
-    </div>
+   </div>
     <!-- First part, the nav and search button -->
 
     <div class="navbar fixed-top">

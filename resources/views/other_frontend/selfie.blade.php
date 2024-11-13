@@ -17,14 +17,16 @@
 </head>
 
 <body>
-    <div class="preloader">
-        <img src="{{ asset('innocent/assets/image/Shopping bag.png') }}" alt="Loading icon" class="bag-icon" />
-        <div class="dots">
-            <div class="dot"></div>
-            <div class="dot"></div>
-            <div class="dot"></div>
-        </div>
+  <div class="preloader">
+    <div class="preloader-content">
+      <img  src="{{ asset('innocent/assets/image/brand-icon.png') }}" class="bag-icon" alt="Bag Icon">
+      <div class="dots">
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+      </div>
     </div>
+</div>
   <div class="header">
     <div>
       <a href="{{ url('/nin') }}"> <img class="arrow ms-2" src="{{ asset('/kaz/images/Arrow.png') }}" alt=""></a>
@@ -48,7 +50,7 @@
         <div class="top-cam">
           <div class="cam-main">
             <label id="use-camera" class="container">
-              <h6>Click Here To Take a Selfie</h6>
+              <h6 class="text-success">Click Here To Take a Selfie</h6>
               <h6 class="fw-light mt-2"> Please ensure all your face within the border of the scanner</h6>
               <span id="error"></span>
 

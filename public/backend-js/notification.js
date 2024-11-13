@@ -10,16 +10,16 @@ axios.get('/api/v1/userId', {
         'Authorization' : `Bearer ${token}`
     }
 }).then((response) => {
-    console.log(response);
+   // console.log(response);
 
     const userId = response.data.user.id;
     shopToken = response.data.user.shop_token;
 
-    console.log(userId);
+  //  console.log(userId);
   
 
   // Enable pusher logging - don't include this in production
-Pusher.logToConsole = true;
+//Pusher.logToConsole = true;
   
 
 var pusher = new Pusher('cb55ced3464e97586728', {
@@ -30,7 +30,7 @@ var channel = pusher.subscribe('marketplace');
 
 channel.bind("Illuminate\\Notifications\\Events\\BroadcastNotificationCreated", function(data) {
 
-    console.log(userId);
+  //  console.log(userId);
         
         if(data.user_id === userId){
 
@@ -43,7 +43,7 @@ channel.bind("Illuminate\\Notifications\\Events\\BroadcastNotificationCreated", 
 
 }).catch((error) => {
     if(error.response) {
-        console.log(error);
+   //     console.log(error);
         
 
         
@@ -55,7 +55,7 @@ channel.bind("Illuminate\\Notifications\\Events\\BroadcastNotificationCreated", 
 
 async function loadNotification(data) {
   let content = [data];
-  console.log(content);
+ // console.log(content);
 
   const notificationPromises = content.map(async (item) => {
       const productImageHtml = await loadProductDetails(item.product_id);
@@ -117,7 +117,7 @@ async function loadProductDetails(id) {
           }
       }
   } catch (error) {
-      console.log(error);
+     // console.log(error);
   }
 
   return null; // Return null if no image found or error occurs
@@ -132,7 +132,7 @@ axios.get('/api/v1/user/notification',  {
   }
 
 }).then((response) => {
-  console.log(response);
+ // console.log(response);
 
   if(response.status === 200 && response.data) {
 
@@ -145,7 +145,7 @@ axios.get('/api/v1/user/notification',  {
 
 
 }).catch((error) => {
-  console.log(error);
+ // console.log(error);
 
   if(error.response) {
 

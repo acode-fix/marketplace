@@ -1,6 +1,11 @@
 body {
   overflow-x: hidden;
 }
+.next-edit {
+  background-color: #ffb705;
+  box-shadow: none !important;  
+  outline: none !important; 
+}
 
 .swal2-confirm {
   box-shadow: none !important;  /* Removes the outline (focus ring) */

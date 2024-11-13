@@ -197,7 +197,7 @@
   })
   .then(function (response) {
       // Handle success response
-      console.log(response.data);
+    //  console.log(response.data);
       // Display a success message to the user
       Swal.fire({
           icon: 'success',
@@ -236,7 +236,7 @@
   })
   .then(function (response) {
       // Handle success response
-      console.log(response.data);
+   //   console.log(response.data);
       // Display a success message to the user
       Swal.fire({
           icon: 'success',
@@ -253,7 +253,7 @@
   })
   .catch(function (error) {
       // Handle error response
-      console.log(error.response.data);
+  //    console.log(error.response.data);
       // Display an error message to the user
       Swal.fire({
           icon: 'error',

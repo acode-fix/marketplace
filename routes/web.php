@@ -186,6 +186,10 @@ Route::get('/admin/view/user', function() {
     return view('admin.verify.user_details');
 });
 
+Route::get('/admin/dashboard/alluser', function() {
+    return view('admin.user.alluser');
+});
+
 Route::get('/product/shared/{link}', [ProductController::class, 'loadSharedProduct' ]);
 
 Route::get('/test', [BadgeController::class, 'verifyBadge']);
@@ -195,4 +199,12 @@ Route::get('/notification', [UsersController::class, 'sendNotification']);
 Route::get('/rating/{id}', function () {
     return view('other_frontend.rating');
 });
+
+
+Route::get('/about', function() {
+    return view('other_frontend.about');
+
+});
+
+
 

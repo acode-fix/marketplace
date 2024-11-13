@@ -27,14 +27,16 @@
 </head>
 
 <body>
-   <div class="preloader">
-       <img src="{{ asset('innocent/assets/image/Shopping bag.png') }}" alt="Loading icon" class="bag-icon" />
-       <div class="dots">
-           <div class="dot"></div>
-           <div class="dot"></div>
-           <div class="dot"></div>
-       </div>
-   </div>
+  <div class="preloader">
+    <div class="preloader-content">
+      <img  src="{{ asset('innocent/assets/image/brand-icon.png') }}" class="bag-icon" alt="Bag Icon">
+      <div class="dots">
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+      </div>
+    </div>
+</div>
   <div class="header-section">
     <div class="arrow-div">
       <a href="{{ url('/') }}"><img class="arrow" src="{{asset('kaz/images/Arrow.png')}}" alt=""></a>
@@ -478,16 +480,17 @@
       </div>
       </div>
     </div>
+    
     <div  class="sellers-footer">
-      <div><img class="main-logo" src="{{asset('kaz/images/transparent_logo.png')}}" alt=""></div>
+      <div><a href="{{ url('/') }}"><img class="main-logo" src="{{asset('kaz/images/transparent_logo.png')}}" alt=""></a></div>
       <div>
-        <a href=""><p class="fw-light text-footer">About<br>us</p></a>
+        <a href="{{ url('/') }}"><p class="fw-light text-footer">About<br>us</p></a>
       </div>
       <div>
         <a href=""><p class="fw-light  text-footer"> Terms and <br> Conditions</p></a>
       </div>
       <div>
-        <a href=""><p class="fw-light  text-footer js-review-help">Help <br>center</p></a>
+        <a href=""><p class="fw-light  text-footer js-review-help">Help <br>desk</p></a>
       </div>
       <div>
         <a href="{{ url('/privacy') }}"><p class="fw-light  text-footer">Privacy &<br>Policy</p></a>
@@ -496,10 +499,10 @@
         <a href=""><p class="fw-light  text-footer">Report <br> a seller</p></a>
       </div> --}}
       <div class="down">
-        <img height="35px" width="35px" src="{{asset('kaz/images/facebook.png')}}" alt="">
+        <a href="https://web.facebook.com/loopmart/"><img height="35px" width="35px" src="{{asset('kaz/images/facebook.png')}}" alt=""></a>
         <img height="30px" width="30px" src="{{asset('kaz/images/twitter.png')}}" alt="">
-        <img height="29px" width="29px" src="{{asset('kaz/images/whatsapp.png')}}" alt="">
-        <img height="30px" width="30px" src="{{asset('kaz/images/message.png')}}" alt="">
+        <a href="https://wa.link/ymloc0"><img height="29px" width="29px" src="{{asset('kaz/images/whatsapp.png')}}" alt=""></a>
+        <a href="mailto:info@gmail.com.ng"><img height="30px" width="30px" src="{{asset('kaz/images/message.png')}}" alt=""></a>  
       </div>
   
     </div>

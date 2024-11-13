@@ -3,7 +3,7 @@
     Verification
   </x-slot:title>
 
-  <div class="row mt-5 ms-5">
+  <div class="row mt-5">
     <div class="col-lg-10">
       <div class="card ">
         <div class="card-body">
@@ -127,12 +127,6 @@
 
  
 
-  <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
-  <script src="https://cdn.datatables.net/2.1.7/js/dataTables.js"></script>
-  <script src="https://cdn.datatables.net/2.1.7/js/dataTables.bootstrap5.js"></script>
-  <script src="https://cdn.datatables.net/responsive/3.0.3/js/dataTables.responsive.js"></script>
-  <script src="https://cdn.datatables.net/responsive/3.0.3/js/responsive.bootstrap5.js"></script>
 
  <script type="module" src="{{asset('backend-js/admin/verify-view.js')}}"></script>
  {{-- <script>

@@ -5,5 +5,5 @@
 
 
 
-
+<script type="module" src="{{ asset('backend-js/admin/helper/helper.js') }}"></script>
 </x-adminLayout>

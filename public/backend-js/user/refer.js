@@ -11,7 +11,7 @@ if(token) {
  
     axios.get('/api/v1/user/refer-link',).then((response) => {
 
-      console.log(response);
+     // console.log(response);
 
       if (response.status === 200 && response.data) {
 
@@ -29,7 +29,7 @@ if(token) {
 
     }).catch((error) => {
 
-      console.log(error); 
+    //  console.log(error); 
 
       if(error.response) {
 
@@ -114,6 +114,6 @@ if(token) {
     }
    
 }else {
-  console.log(error);
+ // console.log(error);
 }
 

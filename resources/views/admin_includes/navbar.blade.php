@@ -1,10 +1,10 @@
 <div class="header-section">
   <div class="arrow-div">
     <a href="index.html"><img class="arrow" src="{{asset('kaz/images/Arrow.png')}}" alt=""></a>
-    <h6 style="font-size: 20px;" class="fw-light ms-4">Sellers Shop</h6>
+    <h6 style="font-size: 20px;" class="fw-light ms-4">Dashboard</h6>
   </div>
   <div class="left-section">
-    <a href="index.html"><img class="img-fluid ms-3" src="{{asset('kaz/images/logo.png')}}" alt=""></a>
+    <a href="index.html"><img class="img-fluid ms-3 main-logo" src="{{asset('kaz/images/transparent_logo.png')}}" alt=""></a>
     <h6 class="ms-5 fw-bold profile">Dashboard</h6>
   </div>
 

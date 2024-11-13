@@ -27,11 +27,11 @@
                   <button value="submit" type="button" class="btn btn-warning btn-sm  " id="linkButton">Copy</button>
                 </form>
               </div>
-              <div style="float: right; margin-top: 10px;">
-                <img height="30px" width="30px" src="{{ asset('/kaz/images/facebook.png') }}" alt="">
+              <div class="media-link" style="float: right; margin-top: 10px;">
+                <a href="https://web.facebook.com/loopmart/"><img height="30px" width="30px" src="{{ asset('/kaz/images/facebook.png') }}" alt=""></a>
                 <img height="30px" width="30px" src="{{ asset('/kaz/images/twitter.png') }}" alt="">
-                <img height="30px" width="30px" src="{{ asset('/kaz/images/linkedin.png') }}" alt="">
-                <img height="30px" width="30px" src="{{ asset('/kaz/images/message.png') }}" alt="">
+                <a href="https://wa.link/ymloc0"><img height="25px" width="25px" src="{{ asset('kaz/images/whatsapp.png') }}" alt=""></a>
+                <a href="mailto:info@gmail.com.ng"><img height="30px" width="30px" src="{{ asset('/kaz/images/message.png') }}" alt=""></a> 
               </div>
               <div class="row mt-5">
                 <div class="col">

@@ -20,7 +20,7 @@ if(token) {
 
         for (let field of formData) {
 
-          console.log(field[0] + '' + field[1])
+         // console.log(field[0] + '' + field[1])
           
         }
 
@@ -29,7 +29,7 @@ if(token) {
             'Content-type': 'multipart/form-data',
           }
         }).then((response) => {
-          console.log(response);
+       //   console.log(response);
 
           if(response.status === 200 && response.data) {
 
@@ -149,7 +149,7 @@ if(token) {
       saveButton.style.display = 'none'; // Hide save button initially
       video.play(); // Start video autoplay
     } catch (e) {
-      console.log(e.toString());
+     // console.log(e.toString());
     }
   }
 
@@ -205,7 +205,7 @@ if(token) {
 
     for(let field of formData) {
 
-      console.log(field[0] + ':' + field[1]);
+    //  console.log(field[0] + ':' + field[1]);
 
     }
 
@@ -308,5 +308,5 @@ if(token) {
 
 }else {
 
-  console.log('no')
+//  console.log('no')
 }

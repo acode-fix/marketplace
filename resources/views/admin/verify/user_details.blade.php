@@ -15,6 +15,9 @@
       padding: 10px 20px; 
       width: 600px;
     }
+    #nin-file {
+
+    }
     
  
 
@@ -24,7 +27,7 @@
 <body>
   <div class="header">
     <div>
-      <a href="#"><img style="width:150px" src="{{asset('kaz/images/main logo.svg')}}" class="img-fluid" alt=""></a>
+      <a href="#"><img style="width:150px" src="{{asset('kaz/images/transparent_logo.png')}}" class="img-fluid ms-4" alt=""></a>
     </div>
     <div>
       <h6 class="me-4 mt-2">Become a verified seller</h6>
@@ -126,7 +129,7 @@
                   </tr>
                   <tr>
                     <th>NIN File</th>
-                    <td id="nin-error"><a target="_blank" onclick="test(this)" href=""><img id="nin-file"  src="" alt=""></a></td>
+                    <td id="nin-error"><a target="_blank" onclick="test(this)" href=""><img id="nin-file" height="200px"  src="" alt=""></a></td>
                   </tr>
                   <tr>
                     <th>Selfie Photo</th>

@@ -1,5 +1,5 @@
-<div  class="mt-5 new-footer">
-  <div><img src="{{asset('kaz/images/Logo.png')}}" alt=""></div>
+<div   class=" new-footer">
+  <div><img class="main-logo" src="{{asset('kaz/images/transparent_logo.png')}}" alt=""></div>
   <div>
     <p class="fw-light text-footer">About<br>us</p>
   </div>

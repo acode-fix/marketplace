@@ -25,7 +25,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     axios.get('/api/v1/user/badge').then((response) => {
-        console.log(response);
+      //  console.log(response);
 
         const expiryData = response.data.badge.expiry_date;
 
@@ -174,7 +174,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     }
                 }).then((response) => {
 
-                    console.log(response)
+                 //   console.log(response)
 
                     if (response.status === 200 && response.data) {
                         const key = response.data.data;
@@ -282,11 +282,11 @@ document.addEventListener("DOMContentLoaded", function () {
                 
 
                 products.forEach((product) => {
-                    console.log(product)
+                   // console.log(product)
                     const imageUrls = JSON.parse(product.image_url);
                     const firstImageUrl = imageUrls.length > 0 ? imageUrls[0] : '';
 
-                    console.log(product.avg_rating);
+                  //  console.log(product.avg_rating);
 
 
                     productCard += `
@@ -397,7 +397,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
                 }).then((response) => {
 
-                    console.log(response);
+                 //   console.log(response);
 
                     if (response.status === 200 && response.data) {
 
@@ -425,7 +425,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
                 }).catch((error) => {
 
-                    console.log(error);
+                  //  console.log(error);
 
                     if (error.response) {
 
@@ -500,6 +500,7 @@ document.addEventListener("DOMContentLoaded", function () {
                         document.getElementById('actual_price').value = productData.actual_price;
                         document.getElementById('promo_price').value = productData.promo_price;
                         document.getElementById('condition').value = productData.condition;
+                        document.getElementById('category').value = productData.category_id;
                     }).catch((error) => {
 
                         if (error.response) {
@@ -587,7 +588,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
                 input.addEventListener('change', function() {
 
-                    console.log(this.files);
+                //    console.log(this.files);
 
                     if(this.files && this.files.length > 0) {
 
@@ -1023,7 +1024,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
         })
         .catch(error => {
-            console.error('Error fetching products:', error);
+          //  console.error('Error fetching products:', error);
         });
 
 

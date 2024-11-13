@@ -108,6 +108,7 @@ document.addEventListener('click', (event) => {
                     Swal.fire({
                         icon: 'error',
                         title: 'Loading All User',
+                        confirmButtonColor: '#ffb705',
                         text: error.response.data.message,
                     })
             
@@ -151,6 +152,7 @@ document.addEventListener('click',(event) => {
 
                     icon: 'success',
                     title: 'Verification Approval',
+                    confirmButtonColor: '#ffb705',
                     text: message,
                     timer: 2000,
                     timerProgressBar: true,
@@ -184,6 +186,7 @@ document.addEventListener('click',(event) => {
                         Swal.fire({
                             icon: 'error',
                             title: 'Verification Approval',
+                            confirmButtonColor: '#ffb705',
                             text: error.response.data.message,
         
                             willClose(){
@@ -199,6 +202,7 @@ document.addEventListener('click',(event) => {
                         Swal.fire({
                             icon: 'error',
                             title: 'Verification Approval',
+                            confirmButtonColor: '#ffb705',
                             text: error.response.data.message,
         
                             willClose(){
@@ -272,6 +276,7 @@ document.querySelector('.js-yes').addEventListener('click', () => {
 
                     icon: 'success',
                     title: 'Verification Rejection',
+                    confirmButtonColor: '#ffb705',
                     text: message,
                     timer: 2000,
                     timerProgressBar: true,
@@ -306,6 +311,7 @@ document.querySelector('.js-yes').addEventListener('click', () => {
                     Swal.fire({
                         icon: 'error',
                         title: 'Verification Rejection',
+                        confirmButtonColor: '#ffb705',
                         text: error.response.data.message,
     
                         willClose(){
@@ -492,6 +498,7 @@ document.querySelector('.reject-menu').addEventListener('click', () => {
                 Swal.fire({
                     icon: 'error',
                     title: 'Loading Rejected User',
+                    confirmButtonColor: '#ffb705',
                     text: error.response.data.message,
                     willClose() {
                         window.location.reload();

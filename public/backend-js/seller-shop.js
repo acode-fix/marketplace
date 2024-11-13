@@ -38,7 +38,7 @@ if (!userId) {
 
     }).then((response) => {
 
-        console.log(response)
+       // console.log(response)
 
         if (response.status === 200 && response.data) {
 
@@ -59,7 +59,7 @@ if (!userId) {
 
     }).catch((error) => {
 
-        console.log(error);
+       // console.log(error);
 
         if (error.response) {
 
@@ -92,7 +92,7 @@ if (!userId) {
     function authUser() {
 
       axios.get('/api/v1/getuser').then((response) => {
-        console.log(response)
+     //   console.log(response)
 
         const authUser = response.data;
 
@@ -100,7 +100,7 @@ if (!userId) {
 
       }).catch((error) => {
 
-        console.log(error);
+      //  console.log(error);
 
       })
     }
@@ -134,7 +134,7 @@ if (!userId) {
          }
       }).then((response)=> {
 
-        console.log(response);
+      //  console.log(response);
 
         if(response.status === 200 && response.data) { 
           const avgRating = response.data.avgRating;
@@ -145,7 +145,7 @@ if (!userId) {
 
       }).catch((error) => {
 
-        console.log(error);
+     //   console.log(error);
 
       })
     }
@@ -231,7 +231,7 @@ if (!userId) {
 
                 const product = getOverlayProduct(products, id);
 
-                console.log(product);
+           //     console.log(product);
 
                 getImagePath(product);
 
@@ -382,7 +382,7 @@ if (!userId) {
             imagePaths.push(`/uploads/products/${image}`)
         });
 
-        console.log(imagePaths);
+      //  console.log(imagePaths);
 
     }
 
@@ -391,22 +391,22 @@ if (!userId) {
     function showImage(index) {
         var imageContainer = document.getElementById("slideshowImage");
         if (imageContainer) {
-            console.log("Current index:", index);
-            console.log("Image path:", imagePaths[index]);
+          //  console.log("Current index:", index);
+          //  console.log("Image path:", imagePaths[index]);
             imageContainer.src = imagePaths[index];
         }
     }
 
     function showNextImage() {
         currentIndex = (currentIndex + 1) % imagePaths.length;
-        console.log("Next index:", currentIndex);
+       // console.log("Next index:", currentIndex);
         showImage(currentIndex);
     }
 
     // Function to show the previous image
     function showPreviousImage() {
         currentIndex = (currentIndex - 1 + imagePaths.length) % imagePaths.length;
-        console.log("Previous index:", currentIndex);
+       // console.log("Previous index:", currentIndex);
         showImage(currentIndex);
     }
 
@@ -570,7 +570,7 @@ if (!userId) {
 
     function loadSidebar(user) {
 
-      console.log(user)
+     // console.log(user)
       
       const bioText = user.bio ?? '';
       const previewLength = 100;
@@ -700,7 +700,7 @@ if (!userId) {
 
     function loadMobileSidebar(user) {
 
-      console.log(user);
+     // console.log(user);
 
       const totalProduct = Array.isArray(user.products) 
                            ? `<h6 class="from ">${user.products.length}</h6>`

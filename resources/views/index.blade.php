@@ -36,13 +36,17 @@
 <body>
 
     <div class="preloader">
-        <img src="{{ asset('innocent/assets/image/Shopping bag.png') }}" alt="Loading icon" class="bag-icon" />
-        <div class="dots">
+        <div class="preloader-content">
+          <img  src="{{ asset('innocent/assets/image/brand-icon.png') }}" class="bag-icon" alt="Bag Icon">
+          <div class="dots">
             <div class="dot"></div>
             <div class="dot"></div>
             <div class="dot"></div>
+          </div>
         </div>
-    </div>
+   </div>
+
+
 
     <div id="scrollToTop"><i class="fa-solid fa-arrow-up"></i></div>
     <div id="index">
@@ -51,8 +55,8 @@
             <a class="js-logo-link" href=""><img  class="buy_and_sell_logo js-logo-img" src="{{ asset('innocent\assets\image\transparent_logo.png')}}" alt="" data-bs-toggle="" data-bs-target="" ></a>
             <div class="search-bar">
                 <div class="location-icon">
-                 {{-- <i class="fa-solid fa-location-dot"></i>  --}}
-                 <img style="width: 4%" src="{{ asset('innocent/assets/image/nigeria.png') }}" alt="">
+                 <i class="fa-solid fa-location-dot"></i> 
+                
                 </div>
                 <div style="margin-left: 8px;" class="country-input">
                     Nigeria
@@ -382,6 +386,7 @@
                         <p>Start Selling</p>
                     </div>
                 </a>
+                {{-- <h5 class="top_sales  animate animate-right">Top Sales</h5> --}}
                 <h5 class="top_sales  animate animate-right">Top Sales</h5>
 
                 <!-- Product Cards -->
@@ -628,17 +633,18 @@
                 <img class="main-logo" src="{{asset('innocent/assets/image/transparent_logo.png')}}" alt="">
             </div>
             <nav class="footer_links">
-                <a class="js-become-link" href="">About Us</a>
+                <a class="js-become-link" href="{{ url('/about') }}">About Us</a>
                 <a class="js-become-link" href="">Terms and condition</a>
-                <a class="js-become-link js-help" href="">Help center</a>
+                <a class="js-become-link js-help" href="">Help desk</a>
                 <a class="js-become-link" href="{{ url('/privacy')}}">Privacy</a>
                 {{-- <a href="">Report a seller</a> --}}
             </nav>
             <div class="footer_icons">
-                <img src="{{asset('innocent/assets/image/facebook.png')}}" alt="">
+                <a class="js-become" href="https://web.facebook.com/loopmart/"><img src="{{asset('innocent/assets/image/facebook.png')}}" alt=""></a>
                 <img src="{{asset('innocent/assets/image/twitter.png')}}" alt="">
                 <img src="{{asset('innocent/assets/image/linkedin.png')}}" alt="">
-                <img src="{{asset('innocent/assets/image/message.png')}}" alt="">
+                <a class="js-become" href="mailto:info@gmail.com.ng"><img src="{{asset('innocent/assets/image/message.png')}}" alt=""></a>
+
             </div>
         </div>
 

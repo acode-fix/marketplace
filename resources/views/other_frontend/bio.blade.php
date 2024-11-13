@@ -22,13 +22,15 @@
 <body>
   
   <div class="preloader">
-    <img src="{{ asset('innocent/assets/image/Shopping bag.png') }}" alt="Loading icon" class="bag-icon" />
-    <div class="dots">
+    <div class="preloader-content">
+      <img  src="{{ asset('innocent/assets/image/brand-icon.png') }}" class="bag-icon" alt="Bag Icon">
+      <div class="dots">
         <div class="dot"></div>
         <div class="dot"></div>
         <div class="dot"></div>
+      </div>
     </div>
-   </div>
+</div>
   <div class="header">
     <div>
       <a href="{{ url('/become') }}"> <img class="arrow ms-2" src="{{ asset('/kaz/images/Arrow.png') }}" alt=""></a>
@@ -52,7 +54,7 @@
             <span class="error" id="email_error"></span>
         </div>
         <div class="col mt-2  ms-3 me-3">
-          <label for="name" class="form-label fw-bold">Name</label>
+          <label for="name" class="form-label fw-bold">Fullname</label>
           <input oninput="hideIcon(this)" id="search-modal1" type="text" class="form-control name"
             placeholder="Your legal Name" name="name">
             <span class="error" id="name_error"></span>

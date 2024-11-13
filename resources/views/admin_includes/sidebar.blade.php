@@ -11,7 +11,7 @@
         <div class="submenu">
           <ul>
             <li><a href="{{ route('admin.dashboard') }}">Dashboard</a></li>
-            <li><a href="{{ url('settings') }}">Settings</a></li>
+            <li><a href="" id="get-users">View Users</a></li>
           </ul>
         </div>
       </div>

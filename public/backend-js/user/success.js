@@ -13,7 +13,7 @@ if(token) {
     axios.get('api/v1/payment/init', {
 
     }).then((response) => {
-        console.log(response);
+      //  console.log(response);
  
         if (response.data) {
 
@@ -22,12 +22,12 @@ if(token) {
             window.location.href = url;
         }
 
-        console.log(response);
+      //  console.log(response);
 
     })
     
     .catch((error) => {
-        console.log(error);
+       // console.log(error);
 
         if(error.response) {
 
@@ -73,5 +73,5 @@ if(token) {
 
 
 }else {
-  console.log('no')
+ // console.log('no')
 }

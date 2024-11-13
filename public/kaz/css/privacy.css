@@ -1,56 +1,40 @@
 .our {
   background-color: white;
-  padding: 15px;
+  padding: 20px;
+  font-size: 20px;
   border-radius: 8px;
-
-
+  width: 30%; 
 
 }
 
+.privacy-height {
+  height: 2500px
+}
 
+@media screen and (max-width:1106px) {
+  .privacy-height {
+    height: 3000px;
+  }
+}
 .swal2-confirm {
   box-shadow: none !important;  /* Removes the outline (focus ring) */
   outline: none !important;      /* Ensures no outline on focus */
 }
 
-.sign {
+
+/* .sign {
   width: 75%;
   border-bottom: 1px solid #343434;
   line-height: 0.1em;
-}
+} */
 
-  .sign2{
+  /* .sign2{
   border-bottom: 1px solid rgb(218, 17, 17);
   width: 100%;
 
 
-}
+} */
 
-
-
-@media screen and (max-width:1261px) {
-  .sign {
-    width: 70%;
-  }
-}
-
-@media screen and (max-width:1261px) {
-  .sign {
-    width: 65%;
-  }
-}
-
-@media screen and (max-width:1261px) {
-  .sign {
-    width: 65%;
-  }
-}
-
-@media screen and (max-width:993px) {
-  .sign {
-    width: 60%;
-  }
-}
 
 .mobile-size {
   font-size: small;

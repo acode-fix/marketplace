@@ -15,6 +15,7 @@ export function sendResetOtp(value) {
       Swal.fire({
           icon: 'success',
           title: 'OTP Sent',
+          confirmButtonColor: '#ffb705',
           text: 'An OTP has been sent to your email address.', 
           willClose: function() {
             // After sending the OTP, show the OTP verification modal
@@ -40,6 +41,7 @@ export function sendResetOtp(value) {
 
         Swal.fire({
           icon: 'error',
+          confirmButtonColor: '#ffb705',
           title: 'Failed to Send OTP',
           text: 'There was an error while sending the OTP. Please try again later.',
       });
@@ -85,6 +87,7 @@ export function sendResetOtp(value) {
 
     Swal.fire({
       icon: 'error',
+      confirmButtonColor: '#ffb705',
       title: '',
       text: 'Something Went Wrong!! Try Again Later',
 
@@ -113,6 +116,7 @@ export function verifyOtp(adminEmail, adminOtp) {
       // Display a success message to the user
       Swal.fire({
           icon: 'success',
+          confirmButtonColor: '#ffb705',
           title: 'OTP Verified',
           text: 'OTP has been verified successfully.',
           
@@ -136,6 +140,7 @@ export function verifyOtp(adminEmail, adminOtp) {
       }else {
       Swal.fire({
         icon: 'error',
+        confirmButtonColor: '#ffb705',
         title: 'Failed to Verify OTP',
         text: 'Invalid OTP. Please enter the correct OTP and try again.'
     });
@@ -157,6 +162,7 @@ export  function resetPassword(adminOtp, adminPassword, adminConfirmPassword) {
   if (newPassword !== confirmPassword) {
       Swal.fire({
           icon: 'error',
+          confirmButtonColor: '#ffb705',
           title: 'Password Mismatch',
           text: 'The new passwords do not match. Please try again.'
       });
@@ -176,6 +182,7 @@ export  function resetPassword(adminOtp, adminPassword, adminConfirmPassword) {
           icon: 'success',
           title: 'Password Reset Successful',
           text: 'Your password has been reset successfully.',
+          confirmButtonColor: '#ffb705',
           willClose: function() {
               window.location.href = '/admin/login';
           }
@@ -202,6 +209,7 @@ export  function resetPassword(adminOtp, adminPassword, adminConfirmPassword) {
         
         Swal.fire({
           icon: 'error',
+          confirmButtonColor: '#ffb705',
           title: 'Validation Error',
           text: errorMsg,
             

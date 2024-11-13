@@ -29,34 +29,36 @@
           <div class="row buy border-top footer mt-5 ">
             <div class="col mt-3 ">
               <div style="text-align: center; ">
-                <img class="main-logo" src="{{ asset('kaz/images/transparent_logo.png') }}" class="img-fluid" alt="">
+                <a href="{{ url('/') }}"> <img class="main-logo" src="{{ asset('kaz/images/transparent_logo.png') }}" class="img-fluid" alt=""></a>
+               
               </div>
             </div>
           </div>
         </div>
         <div style="text-align: center; word-wrap: none;" class="row pt-4 footer footer-desktop">
           <div class="col">
-            <a href=""><p class="fw-light">About <br> us</p></a>
+            <a href="{{ url('about') }}"><p class="fw-light">About <br> us</p></a>
           </div>
           <div class="col">
             <a href=""><p class="fw-light"> Terms and <br> Conditions</p></a>
           </div>
           <div class="col">
-            <a href=""><p class="fw-light js-learn-help">Help <br>center</p></a>
+            <a href=""><p class="fw-light js-learn-help">Help <br>desk</p></a>
           </div>
           <div class="col">
-            <a href="/privacy"><p class="fw-light">Privacy & <br>Policy</p></a>
+            <a href="{{ url('/privacy') }}"><p class="fw-light">Privacy & <br>Policy</p></a>
           </div>
           {{-- <div class="col ">
             <p class="fw-light">Report <br> a seller</p>
           </div> --}}
         </div>
+       
         <div class="row footer footer-desktop">
           <div style="text-align: center;" class="col">
-            <img height="35px" width="35px" src="{{ asset('/kaz/images/facebook.png') }}" alt="">
+            <a href="https://web.facebook.com/loopmart/"> <img height="35px" width="35px" src="{{ asset('/kaz/images/facebook.png') }}" alt=""></a>
             <img height="30px" width="30px" src="{{ asset('/kaz/images/twitter.png') }}" alt="">
-            <img height="29px" width="29px" src="{{ asset('/kaz/images/whatsapp.png') }}" alt="">
-            <img height="30px" width="30px" src="{{ asset('/kaz/images/message.png') }}" alt="">
+            <a href="https://wa.link/ymloc0"><img height="29px" width="29px" src="{{ asset('/kaz/images/whatsapp.png') }}" alt=""></a>
+            <a href="mailto:info@gmail.com.ng"> <img height="30px" width="30px" src="{{ asset('/kaz/images/message.png') }}" alt=""></a>
           </div>
         </div>
       </div> 

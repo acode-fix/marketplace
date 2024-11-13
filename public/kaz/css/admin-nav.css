@@ -1,0 +1,515 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Sora:wght@100..800&display=swap');
+
+body {
+  font-family: "poppins";
+  background-color: #f6f8fc;
+}
+.swal2-confirm {
+  box-shadow: none !important;  /* Removes the outline (focus ring) */
+  outline: none !important;      /* Ensures no outline on focus */
+}
+
+
+/* holds the whole header/nav-bar style */
+.header-section {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 120px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  background-color: white;
+  border-bottom-color: rgb(228, 228, 228);
+  box-shadow: 0px 4px 8px -2px rgba(0, 0, 0, 0.10);
+
+
+}
+
+/* style the  h6  */
+h6 {
+  margin: 0;
+}
+
+/* style the right section */
+.right-section {
+  display: flex;
+  align-items: center;
+
+}
+
+.left-section {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.arrow-div {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.arrow {
+  width: 45px;
+}
+
+/* style the profile picture */
+.profile-picture {
+  height: 40px;
+}
+
+/*style the email address */
+.mired-text {
+  font-size: small;
+  padding-right: 4px;
+}
+
+/* style the user name */
+.name {
+  padding-left: 16px;
+  font-size: 18px;
+}
+
+/* style the middle section */
+.middle-section {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 40%;
+
+}
+
+/* style the search-img */
+.search-img {
+  width: 20px;
+}
+
+/* style the search button */
+.search-btn {
+  border: none;
+  outline: none;
+  float: right;
+
+
+}
+
+/* style the input search */
+input[type="search"] {
+  padding: 10px;
+  width: 70%;
+  max-width: 100%;
+  outline: none;
+  border: none;
+}
+
+/* style the search-border */
+.search-border {
+
+  width: 100%;
+  border: 1px solid rgb(188, 183, 183);
+  border-radius: 4px;
+
+}
+
+/* adjust the widths of the search-border,input  type and middle section respectively */
+@media screen and (max-width:1173px) {
+
+  .search-border {
+    width: 95%;
+  }
+
+  input[type="search"] {
+    width: 50%;
+  }
+
+  .middle-section {
+    width: 37%;
+  }
+
+
+}
+
+/* adjust the widths of the search-border,input  type and middle section respectively*/
+@media screen and (max-width:1097px) {
+  .search-border {
+    width: 95%;
+  }
+
+  input[type="search"] {
+    width: 50%;
+  }
+
+  .middle-section {
+    width: 32%;
+  }
+
+
+}
+
+@media screen and (max-width:1097px) {
+  .search-border {
+    width: 95%;
+  }
+
+  input[type="search"] {
+    width: 50%;
+  }
+
+  .middle-section {
+    width: 29%;
+  }
+
+
+}
+
+.new-footer {
+  background-color: white;
+  display: flex;
+  margin-left: 200px;
+  justify-content: space-evenly;
+  text-align: center;
+  align-items: center;
+  height: 160px;
+  margin-top: 380px;
+}
+
+
+
+
+
+/* the classes will not display at this sceeen size*/
+@media screen and (max-width:970px) {
+ 
+
+  .new-footer {
+    display: none;
+  }
+
+  .middle-section {
+    display: none;
+  }
+
+  .create {
+    display: none;
+  }
+
+  .right-section {
+    display: none;
+  }
+
+  .side-bar {
+    display: none;
+  }
+
+  .content {
+    display: block;
+  }
+
+  .left-section {
+    display: none;
+  }
+
+  .rating {
+    display: none;
+  }
+
+
+}
+
+/* style the hamburger menu*/
+.menu-toggle {
+  position: relative;
+  font-size: 35px;
+  right: 7px;
+
+}
+
+/*hides the checkbox */
+.menu-checkbox {
+  display: none;
+}
+
+/*style the menu btn */
+.menu-btn {
+  cursor: pointer;
+  padding: 10px;
+  background-color: white;
+  color: black;
+}
+
+/* style the overlay*/
+.menu-overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+/*style the menu  */
+.menu {
+  display: none;
+  position: fixed;
+  top: 80px;
+  right: 20px;
+  width: 200px;
+  background-color: #fff;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  border-radius: 8px;
+  font-size: 15px;
+}
+
+/* style the menu list*/
+.menu li {
+  list-style: none;
+}
+
+/*style the menu link */
+.menu li a {
+  display: block;
+  padding: 10px;
+  text-decoration: none;
+  color: #333;
+}
+
+/* opens the checkbox and overlay*/
+.menu-checkbox:checked+.menu-overlay {
+  display: block;
+}
+
+/*opens the checkbox ,overlay and menu */
+.menu-checkbox:checked+.menu-overlay+.menu {
+  display: block;
+}
+
+/* hides the hamburgger menu,arrrow img and the second layout*/
+@media screen and (min-width:970px) {
+  .menu-toggle {
+    display: none;
+  }
+
+  .mobile-view {
+    display: none;
+  }
+
+  .arrow-div {
+    display: none;
+  }
+  
+
+}
+
+/* style the arrow image*/
+.arrow {
+  width: 45px;
+}
+
+/* sidebar style */
+.side-bar {
+  position: fixed;
+  top: 120px;
+  left: 0;
+  width: 200px;
+  height: 100%;
+  color: #fff;
+  padding: 20px;
+  background-color: white;
+  box-shadow: 0px 4px 8px -2px rgba(0, 0, 0, 0.19);
+
+}
+
+/* holds the sidebar,content bar and the mobile view bar */
+.main {
+  margin-top: 140px;
+
+}
+
+/*  style the main content*/
+.content {
+  margin-left: 207px;
+  /* height: 910px; */
+  overflow-x: hidden;
+
+
+
+}
+
+/* style the side-bar content  */
+.sidebar-link {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
+  height: 40px;
+  border-radius: 10px;
+  margin-top: 4px;
+}
+
+/* style the individual limks */
+.links {
+  display: flex;
+  align-items: center;
+  width: 150px;
+  height: 200px;
+}
+
+.links a {
+  text-decoration: none;
+  color: black
+}
+
+.links.clicked a {
+  text-decoration: none;
+  color: blue;
+
+}
+.delete.clicked a {
+  text-decoration: none;
+  color: #ff0000;
+
+}
+
+.active-link {
+  border: 1px solid rgb(236, 231, 231);
+  width: 150px;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  border-radius: 10px;
+  box-shadow: 0px 4px 4px -2px rgba(0, 0, 0, 0.2);
+  
+
+}
+
+.profile-text {
+  font-size: small;
+  margin-left: 10px;
+}
+
+/* style the links logo */
+.profile-logo {
+  margin-left: 10px;
+}
+
+
+/* style the svg size*/
+.svg-size {
+  height: 20px;
+  width: 20px
+}
+
+.svg-size1 {
+  height: 15px;
+  width: 15px
+}
+
+::placeholder {
+  font-size: small;
+}
+
+
+.profile-dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-menu {
+  display: none;
+  position: absolute;
+  top: 50px;
+  right: 0;
+  background-color: white;
+  min-width: 260px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  z-index: 1;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.dropdown-menu a {
+  font-size: small;
+  color: black;
+  padding: 6px 6px;
+  margin-top: 2px;
+  text-decoration: none;
+  display: block;
+  padding-left: 15px;
+}
+
+.dropdown-menu a:hover {
+  background-color: #f1f1f1;
+}
+
+/* Show the dropdown menu when the profile picture is clicked */
+.show {
+  display: block;
+}
+
+.drop-struct {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+
+
+.new-footer .down img {
+  cursor: pointer;
+  transition: transform 0.3s ease;
+  /* Smooth transition effect */
+
+
+}
+
+.new-footer .down img:hover {
+  cursor: pointer;
+  transform: translateY(-8px);
+  /* Move the image up by 5px */
+}
+
+.sellers-footer .down img {
+  cursor: pointer;
+  transition: transform 0.3s ease;
+  /* Smooth transition effect */
+
+
+}
+
+.sellers-footer .down img:hover {
+  cursor: pointer;
+  transform: translateY(-8px);
+  /* Move the image up by 5px */
+}
+
+.new-footer div {
+  cursor: pointer;
+}
+
+.sellers-footer div {
+  cursor: pointer;
+}
+
+.nav-profile-picture {
+  border: 0px solid transparent;
+  cursor: pointer;
+  width: 50px;
+  height:50px;
+  border-radius:40px;
+}
+.main-logo {
+  max-width: 150px;
+}
+
+@media screen and (max-width: 970px) {
+  .content {
+    margin-left: 0; 
+    width: 100%; 
+    transition: margin-left 0.3s ease; 
+  }
+}
+
+

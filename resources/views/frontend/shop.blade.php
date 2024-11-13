@@ -430,21 +430,37 @@
                                       <textarea class="form-control" id="description"  name = "description"></textarea>
                                     </div>
                                 </form>
-                                <button style="float: right" type="button" class="btn btn-primary next-to-step-2">Next</button>
+                                <button style="float: right" type="button" class="btn next-edit next-to-step-2">Next</button>
                               </div>
                       
                               <!-- Step 2 -->
                               <div class="modal-step-2" style="display: none;">
                                 <form id="edit-product-form-2"  enctype="multipart/form-data">
                                     <div class="mb-3">
+                                        <label for="category" class="col-form-label">Category:</label>
+                                        <select id="category" name="category" class="form-select" aria-label="Default select example">
+                                            <option selected="">Categories</option>
+                                            <option value="1">Smart Gadgets</option>
+                                            <option value="2">Vehicles</option> 
+                                            <option value="3">Landed Property</option>
+                                            <option value="4">Fashion</option>
+                                            <option value="5">Jobs</option>
+                                            <option value="6">Beauty/Cosmetics</option>
+                                            <option value="7">Fruits</option>
+                                            <option value="8">Utensils</option>
+                                            <option value="9">Others</option>       
+                                        </select>
+                                    </div>
+                                    <div class="mb-3">
                                         <label for="actual_price" class="col-form-label">Actual Price:</label>
                                         <input type="number" class="form-control" id="actual_price"  name = "actual_price">
                                     </div>
                                     <div class="mb-3">
-                                        <label for="promo_price" class="col-form-label">Promo Price:</label>
+                                        <label for="promo_price" class="col-form-label">Promo Price<span class="text-danger">(optional)</span>:</label>
                                         <input type="number" class="form-control" id="promo_price"  name = "promo_price">
                                     </div>
                                     <div class="mb-3">
+                                    <label for="condition" class="col-form-label">Condition:</label>
                                     <select id="condition" name="condition" class="form-select" aria-label="Default select example">
                                         <option selected="">Condition</option>
                                         <option value="fairly_used">Fairly Used</option>
@@ -454,10 +470,11 @@
                                 </form>
                                 <div class="mb-3">
                                     <label for="formFile" class="form-label">Upload</label>
+                                    <p class="text-danger">you can upload multiple images</p>
                                     <input class="form-control" id="fileInput" type="file"   name="image_url[]"  multiple>
                                 </div> 
                                 <button type="button" class="btn btn-secondary previous-to-step-1" >Previous</button>
-                                <button type="submit" class="btn btn-primary" id="save-product">Update</button>
+                                <button type="submit" class="btn next-edit" id="save-product">Update</button>
                                 
                                 
                               </div>
@@ -499,7 +516,7 @@
                                                     <h6 class="fw-light  share-text ">twitter</h6>
                                                 </div>
                                                 <div>
-                                                    <img width="40px" src="{{ asset('') }}/kaz/images/Whatsapp logo.png"
+                                                    <img width="40px" src="{{ asset('/kaz/images/Whatsapp logo.png') }}"
                                                         alt="">
                                                     <h6 class="fw-light  share-text ">whatsapp</h6>
                                                 </div>
@@ -552,27 +569,28 @@
     </div>
 
     <div class="mt-5 new-footer"> 
-        <div><img class="main-logo" src="{{ asset('/kaz/images/transparent_logo.png') }}" alt=""></div>
+        <div><a href="{{ url('/') }}"><img class="main-logo" src="{{ asset('/kaz/images/transparent_logo.png') }}" alt=""></a></div>
         <div>
-           <a href=""><p class="fw-light text-footer">About<br>us</p></a>
+           <a href="{{ url('/about') }}"><p class="fw-light text-footer pt-1">About<br>us</p></a>
         </div>
         <div>
            <a href=""><p class="fw-light  text-footer"> Terms and <br> Conditions</p></a> 
         </div>
         <div>
-            <a href=""><p class="fw-light  text-footer js-footer-help">Help <br>center</p></a> 
+            <a href=""><p class="fw-light  text-footer js-footer-help">Help <br>desk</p></a> 
         </div>
         <div>
-            <a href="/privacy"><p class="fw-light  text-footer">Privacy & <br>Policy</p></a> 
+            <a href="{{ url('/privacy') }}"><p class="fw-light  text-footer">Privacy & <br>Policy</p></a> 
         </div>
         {{-- <div>
             <a href=""><p class="fw-light  text-footer">Report <br> a seller</p></a> 
         </div> --}}
         <div class="down">
-            <img height="35px" width="35px" src="{{ asset('/kaz/images/facebook.png') }}" alt="">
+            <a href="https://web.facebook.com/loopmart/"><img height="35px" width="35px" src="{{ asset('/kaz/images/facebook.png') }}" alt=""></a>
             <img height="30px" width="30px" src="{{ asset('/kaz/images/twitter.png') }}" alt="">
-            <img height="29px" width="29px" src="{{ asset('/kaz/images/whatsapp.png') }}" alt="">
-            <img height="30px" width="30px" src="{{ asset('/kaz/images/message.png') }}" alt="">
+            <a href="https://wa.link/ymloc0"> <img height="29px" width="29px" src="{{ asset('/kaz/images/whatsapp.png') }}" alt=""></a>
+            <a href="mailto:info@gmail.com.ng"><img height="30px" width="30px" src="{{ asset('/kaz/images/message.png') }}" alt=""></a>
+            
         </div>
 
     </div>

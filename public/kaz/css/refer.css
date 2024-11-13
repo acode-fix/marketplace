@@ -84,3 +84,14 @@
   margin-top: 75%;
 }
 
+
+.media-link img {
+  transition: transform 0.3s ease;
+  /* Smooth transition effect */
+}
+
+.media-link img:hover {
+  transform: translateY(-5px);
+  cursor: pointer;
+}
+

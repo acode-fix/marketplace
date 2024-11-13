@@ -10,7 +10,7 @@ if (token) {
  
  axios.get('/api/v1/getuser').then((response) => {
 
-  console.log(response);
+ // console.log(response);
 
   if(response.status === 200 && response.data) {
 
@@ -23,7 +23,7 @@ if (token) {
 
 }).catch((error) => {
 
-  console.log(error);
+//  console.log(error);
 
 });
 
@@ -109,7 +109,7 @@ document.querySelector('.js-help-search').addEventListener('click', (event) => {
 
     }).then((response) => {
 
-      console.log(response);
+   //   console.log(response);
 
       if(response.status === 200 && response.data) {
 
@@ -118,7 +118,7 @@ document.querySelector('.js-help-search').addEventListener('click', (event) => {
       }
 
     }).catch((error) => {
-      console.log(error);
+   //   console.log(error);
     })
 
 

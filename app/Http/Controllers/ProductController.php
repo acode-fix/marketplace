@@ -464,8 +464,9 @@ public function update(Request $request, $id) {
         'condition' => ['required','in:fairly_used,new'],
         'actual_price' => 'required|numeric',
         //'promo_price' => 'required|numeric',
-        'image_url' => 'required|array', 
-        'image_url.*' => 'required|image|mimes:jpg,jpeg,png,gif|max:2048',
+        'image_url' => 'required|array',
+        'category'  => 'required|exists:categories,id',
+        //'image_url.*' => 'required|image|mimes:jpg,jpeg,png,gif|max:2048',
 
     ]);
 
@@ -517,6 +518,7 @@ public function update(Request $request, $id) {
   $product->promo_price = $request->input('promo_price');
   $product->condition = $request->input('condition');
   $product->image_url = json_encode($imageNames);
+  $product->category_id = $request->input('category');
 
   $product->save();
 

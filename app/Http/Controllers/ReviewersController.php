@@ -333,10 +333,12 @@ class ReviewersController extends Controller
 
         $user = Product::with('user')->where('id', $userId)->get();
 
+        debugbar::info($user);
+
         if($user->isEmpty()) {
         
             $user = User::find($userId);
-     
+            
             return response()->json([
                 'status' => true,
                 'message' => 'No Review Found',
@@ -350,6 +352,18 @@ class ReviewersController extends Controller
 
 
         }
+
+
+        return response()->json([
+            'status' => true,
+            'message' => 'No Review Found',
+            'user' =>  $user,
+            'avgRating' => 0,
+            'rate' => [],
+            'productReviews' => [],
+
+        ],200);
+
 
     
 

@@ -11,6 +11,7 @@ if(!token) {
   Swal.fire({
     icon: 'error',
     title: 'Unauthenticated User',
+    confirmButtonColor: '#ffb705',
     text: 'Please log in.'
 }).then(() => {
 
@@ -47,7 +48,7 @@ logOut.addEventListener('click', function(event) {
           text: "You won't be able to revert this!",
           icon: "warning",
           showCancelButton: true,
-          confirmButtonColor: "#3085d6",
+          confirmButtonColor: '#ffb705',
           cancelButtonColor: "#d33",
           confirmButtonText: "Yes,I am sure!"
 
@@ -96,6 +97,7 @@ document.getElementById('view').addEventListener('click', () => {
 
         Swal.fire({
             icon: 'error',
+            confirmButtonColor: '#ffb705',
             title: 'Loading All User',
             text: error.response.data.message,
         })
@@ -108,6 +110,14 @@ document.getElementById('view').addEventListener('click', () => {
   })
 
 });
+
+
+document.getElementById('get-users').addEventListener('click', (event) => {
+  event.preventDefault();
+
+  window.location.href = '/admin/dashboard/alluser';
+
+})
 
 
 

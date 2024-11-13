@@ -23,7 +23,7 @@ document.addEventListener('DOMContentLoaded', function () {
         let formData = new FormData(form);
 
         for (let pair of formData.entries()) {
-            console.log(pair[0] + ': ' + pair[1]);
+           // console.log(pair[0] + ': ' + pair[1]);
         }
 
         const token = localStorage.getItem('apiToken');
@@ -173,7 +173,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
 axios.get('/api/v1/user/badge').then((response) => {
-    console.log(response);
+  //  console.log(response);
 
     const expiryData = response.data.badge.expiry_date;
     const expiryDate = dayjs(expiryData).format('D MMM, YYYY');
@@ -299,7 +299,7 @@ function collectData() {
 
     for (let field of formData) {
 
-        console.log(field[0] + ':' + field[1])
+    //    console.log(field[0] + ':' + field[1])
     }
 }
 
@@ -447,7 +447,7 @@ bioSubmit.addEventListener('click', (event) => {
 
 
     }).then((response) => {
-        console.log(response);
+   //     console.log(response);
 
         if(response.status === 200 && response.data) {
 
@@ -546,7 +546,7 @@ bioSubmit.addEventListener('click', (event) => {
     const formData = new FormData(form);
 
     for(let field of formData) {
-        console.log(field[0] + ':' + field[1]);
+     //   console.log(field[0] + ':' + field[1]);
 
     }
 
@@ -660,7 +660,7 @@ document.querySelector('.nin_upload').addEventListener('click', () => {
 
         for(let field of formData) {
 
-            console.log(field[0] + ':' + field[1])
+       //     console.log(field[0] + ':' + field[1])
         }
 
         
@@ -671,7 +671,7 @@ document.querySelector('.nin_upload').addEventListener('click', () => {
             },
             'method': 'post',
         }).then((response) => {
-            console.log(response);
+       //     console.log(response);
 
             if(response.data) {
 
@@ -783,7 +783,7 @@ document.addEventListener('DOMContentLoaded', () => {
             useCamera.style.display = 'none'; // Hide the use camera button
             video.play(); // Start video autoplay
         } catch (e) {
-            console.log(e.toString());
+         //   console.log(e.toString());
         }
     }
 
@@ -858,7 +858,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             for (let field of formData) {
 
-                console.log(field[0] + ':' + field[1]);
+            //    console.log(field[0] + ':' + field[1]);
 
             }
 
@@ -871,7 +871,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             }).then((response) => {
 
-                console.log(response)
+            //    console.log(response)
 
                 if (response.data) {
 
@@ -983,7 +983,7 @@ proceedBtn.addEventListener('click', () => {
     axios.get('api/v1/payment/init', {
 
     }).then((response) => {
-        console.log(response);
+      //  console.log(response);
  
         if (response.data) {
 
@@ -992,12 +992,12 @@ proceedBtn.addEventListener('click', () => {
             window.location.href = url;
         }
 
-        console.log(response);
+     //   console.log(response);
 
     })
     
     .catch((error) => {
-        console.log(error);
+     //   console.log(error);
 
         if(error.response) {
 

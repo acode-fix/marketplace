@@ -142,9 +142,9 @@ document.querySelector('.js-help-search').addEventListener('click', (event) => {
        productCardDisplay2.innerHTML = ''; // Clear the container first
 
        if(products.length === 0) {
-
+        
          productCardDisplay1.innerHTML = '<p class="text-danger fs-5 text-center">Sorry, No match was found!!</p>';
-         productCardDisplay2.innerHTML = '<p class="text-danger fs-5 text-center">Sorry, No match was found!!</p>'
+        // productCardDisplay2.innerHTML = '<p class="text-danger fs-5 text-center">Sorry, No match was found!!</p>'
 
        }
 

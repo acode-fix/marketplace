@@ -95,7 +95,7 @@
 
        const allProducts = JSON.parse(localStorage.getItem('allProducts'));
 
-       // console.log(selectedProduct);
+       console.log(selectedProduct);
 
        
 
@@ -104,8 +104,11 @@
        if (selectedProduct) {
 
            displayProductDetails(selectedProduct);
+         
 
-        const {id, verify_status, badge_status} = selectedProduct.user;
+        // const {id, verify_status, badge_status} = selectedProduct.user;
+
+        const {id, verify_status, badge_status} = selectedProduct;
 
            // Show "View Shop" button if the seller is verified
            if (id && verify_status === 1 && badge_status === 1) {
@@ -121,7 +124,8 @@
            viewShopButton.addEventListener('click', function (event) {
                event.preventDefault();
                if (selectedProduct) {
-                   const userId = selectedProduct.user.id;
+                   //const userId = selectedProduct.user.id;
+                   const userId = selectedProduct.id;
                    //console.log(userId);
 
                    localStorage.setItem('userId', JSON.stringify(userId));
@@ -158,11 +162,14 @@
 
    function displayProductDetails(product) {
 
+    
+
        // Display product details in the UI
 
        //console.log(product);
        document.querySelector('.user_state').textContent = product.location;
-       document.querySelector('.user_name2').textContent = product.user.name;
+    //    document.querySelector('.user_name2').textContent = product.user.name;
+    document.querySelector('.user_name2').textContent = product.name;
        document.querySelector('.rate_value').textContent = product.avg_rating;
        document.querySelector('.sold3').textContent = 'sold ' + (product.sold || 0);
        document.querySelector('.stock2').textContent = product.quantity + ' in stock';
@@ -174,7 +181,8 @@
        const carousel = document.getElementById('js-carousel-img');
         getProdProfileDescImg(product, carousel);
 
-        const {verify_status, badge_status, id, shop_token} = product.user
+        // const {verify_status, badge_status, id, shop_token} = product.user
+        const {verify_status, badge_status, id, shop_token,} = product;
        const badgeElement = document.querySelector('.js-badge');
        badgeElement.src = verify_status === 1 && badge_status === 1 ? 'innocent/assets/image/badge.png' : '';
 
@@ -196,7 +204,7 @@
        const mobileHeader = `
          <div><img id="js-profile-mobile" src="" alt=".profile picture " class="user_photo"></div>
              <div class="user_name_area">
-                 <p class="user_name">${product.user.name ?? 'No Data Provided'}</p>
+                 <p class="user_name">${product.name ?? 'No Data Provided'}</p>
      
                  <p class="location">
                      ${badge}

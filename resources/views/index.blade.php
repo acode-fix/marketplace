@@ -617,7 +617,7 @@
                 <div class="tell_us_what_u_want_input_area">
                     <img src="" alt="" class="tell_us_what_u_want_profile js-tell-us">
                     <div class="vertical_bar"></div>
-                    <input type="text" name="details" class="tell_us_input js-tell-us-input" placeholder="write the details here">
+                    <input type="text" name="details" class="tell_us_input js-tell-us-input" placeholder="write the details of what you are searching for">
                     <button class="send js-send-input js-auth">send</button>
 
                 </div>
@@ -687,7 +687,7 @@
                         </div>
                         <p>Already have an account? <a href="#" onclick="login()" class="signup_links">Login</a></p>
                         <button class="signup_continue_button continueBtn" onclick="signup()">continue</button>
-                        <p>By signing up you accept <span class="signup_links">Our Terms and Policy</span></p>
+                        <p>By signing up you accept <span><a  class="signup_links" href="">Our Terms and Policy</a></span></p>
 
                     </div>
 

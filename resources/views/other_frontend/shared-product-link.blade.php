@@ -559,7 +559,7 @@
             <div class="tell_us_what_u_want_input_area">
                 <img src="" alt="" class="tell_us_what_u_want_profile js-img-tell">
                <div class="vertical_bar"></div>
-                <input type="text" name="" class="tell_us_input js-input-mobile" placeholder="write the details here">
+                <input type="text" name="" class="tell_us_input js-input-mobile" placeholder="write the details of what you are searching for the details here">
                 <button class="send js-send-mobile" onclick="send()">send</button>
 
             </div>
@@ -891,7 +891,7 @@
             <div class="tell_us_what_u_want_input_area tell_us_what_u_want_input_area2">
                 <img src="" alt="" class="tell_us_what_u_want_profile tell_us_what_u_want_profile2 js-img-tell">
                <div class="vertical_bar"></div>
-                <input type="text" name="details" class="tell_us_input tell_us_input2  js-input2" placeholder="write the details here">
+                <input type="text" name="details" class="tell_us_input tell_us_input2  js-input2" placeholder="write the details of what you are searching for the details here">
                 <button class="send js-send-input" onclick="send2()">send</button>
 
             </div>

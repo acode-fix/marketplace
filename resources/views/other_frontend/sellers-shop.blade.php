@@ -448,7 +448,7 @@
     </div>
 
     <div class="mt-5 sellers-footer">
-      <div><img class="main-logo" src="{{asset('{{ asset('') }}/kaz/images/transparent_logo.png')}}" alt=""></div>
+      <div><img class="main-logo" src="{{asset('/kaz/images/transparent_logo.png') }}" alt=""></div>
       <div>
         <a href=""><p class="fw-light text-footer">About<br>us</p></a>
       </div>

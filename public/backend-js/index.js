@@ -109,7 +109,7 @@ axios.get('/api/allproduct')
 .then(function (response) {
     const products = response.data;
 
-   // console.log(products);
+   console.log(products);
     localStorage.setItem('allProducts', JSON.stringify(products));
     renderProductsAndSections(products);
 })
@@ -150,6 +150,8 @@ function applyFilter() {
        
     }
 
+  
+
     const filters = {
         condition: condition,
         location: locationFilter,
@@ -162,7 +164,7 @@ function applyFilter() {
     axios.get('/api/v1/product/filter', { params: filters},)
         .then(function (response) {
             const products = response.data;
-        //    console.log(products);
+           console.log(products);
             renderProductsAndSections(products);
         })
         .catch(function (error) {
@@ -246,8 +248,9 @@ function createProductCard(product) {
         if (i === 0) product_img_url = el;
     });
 
-   // console.log(product);
-    const{verify_status, badge_status} = product.user;
+    console.log(product);
+   // const{verify_status, badge_status} = product.user;
+    const{verify_status, badge_status,} = product?.user ?? product;
 
    const badge = verify_status === 1 && badge_status === 1 ? `<img class="logo-bag" src="kaz/images/badge.png" alt="">` : `<img src="innocent/assets/image/logo icon.svg" alt="">`;
 
@@ -346,30 +349,7 @@ function updateUserProfile(user) {
     }
 }
 
-/*
- function promptLogin() {
 
-    let myModal = bootstrap.Modal.getInstance(document.querySelector('#signup_login-modal')) || 
-    new bootstrap.Modal(document.querySelector('#signup_login-modal'));
-
-    myModal.show();
-
-    // Swal.fire({
-    //     icon: 'error',
-    //     title: 'Login Required',
-    //     text: 'Please login to continue',
-    //     confirmButtonColor: '#ffb705',
-    // }).then(() => {
-    
-    //     const myModal = new bootstrap.Modal(document.querySelector('#signup_login-modal'));
-    //     myModal.show();
-
-
-
-    // });
-}
-
-*/
 
 document.addEventListener('DOMContentLoaded', function () {
     const categoryLinks = document.querySelectorAll('.category-link');

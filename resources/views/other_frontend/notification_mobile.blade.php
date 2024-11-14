@@ -38,7 +38,7 @@
                 <span class="notification_heading">notifications</span>
             </p>
 
-            <img src="{{asset('innocent/assets/image/transparent_logo.png')}}" alt="" class="notification_buy_and_sell_logo">
+           <a href="{{ url('/') }}"><img src="{{asset('innocent/assets/image/transparent_logo.png')}}" alt="" class="notification_buy_and_sell_logo"></a> 
         </div>
 
         <div class="notifications_region">

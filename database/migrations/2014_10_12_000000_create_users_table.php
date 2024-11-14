@@ -17,15 +17,15 @@ return new class extends Migration
             $table->string('username')->nullable();
             $table->string('password');
             $table->string('phone_number')->nullable();
-            $table->string('whatsapp')->nullable();
+          //  $table->string('whatsapp')->nullable();
             $table->string('address')->nullable();
             $table->string('email')->unique();
             $table->string('email_verified_at')->nullable();
             $table->longText('bio')->nullable();
             $table->string('photo_url')->nullable();
-            $table->string('location')->nullable();
+            $table->string('user_location')->nullable();
             $table->unsignedBigInteger('shop_no')->nullable();
-            $table->string('stage')->default(1);   // 1 - initial signup , 2- update bio-data
+           // $table->string('stage')->default(1); 
             $table->string('referral_code')->nullable()->unique(); 
             $table->integer('verify_status')->default(0);
             $table->integer('badge_status')->default(0);

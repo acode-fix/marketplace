@@ -71,20 +71,47 @@ public function index()
     $totalProducts = Product::count();
 
     if ($totalProducts <= 16) {
-        // Fetch all products with user data
-       // $data = Product::with('user:id,is_verified')->get();
-       $data = Product::with('user')->where('quantity', '!=', 0)->get();
+        
+      // $data = Product::with('user')->where('quantity', '!=', 0)->get();
+
+       $data = Product::where('quantity', '!=', 0)
+                       ->join('users', 'products.user_id', '=', 'users.id' )
+                       ->select('products.*',
+                                'users.badge_status',
+                                'users.verify_status',
+                                'users.email',
+                                'users.shop_token',
+                                'users.name',
+                                'users.username',      
+                        )
+                       ->orderBy('users.badge_status', 'desc')
+                       ->get();
+
         return response()->json($data);
     } else {
         $numberOfProductsToDisplay = 16;
 
         // Fetch a random set of products
-        $randomProducts = 
-       // Product::with('user:id,is_verified')
-       Product::with('user')->where('quantity', '!=', 0)
+        $randomProducts = Product::where('quantity', '!=', 0)
+                                 ->join('users', 'products.user_id', '=', 'users.id' )
+                                 ->select('products.*',
+                                          'users.badge_status',
+                                          'users.verify_status',
+                                          'users.email',
+                                          'users.shop_token',
+                                          'users.name',
+                                          'users.username',
+                                  )
+                                 ->orderBy('users.badge_status', 'desc') 
                                  ->inRandomOrder()
                                  ->limit($numberOfProductsToDisplay)
                                  ->get();
+
+
+    //    Product::with('user')->where('quantity', '!=', 0)
+    //                              ->inRandomOrder()
+    //                              ->limit($numberOfProductsToDisplay)
+    //                              ->get();
 
         return response()->json($randomProducts);
     }

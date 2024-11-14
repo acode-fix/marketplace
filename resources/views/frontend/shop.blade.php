@@ -504,15 +504,15 @@
                                             </p>
                                             <div class="modal-share">
                                                 <div>
-                                                    <img src="{{ asset('') }}/kaz/images/facebook.png" alt="">
+                                                    <img src="{{ asset('/kaz/images/facebook.png') }}" alt="">
                                                     <h6 class="fw-light  share-text ">Facebook</h6>
                                                 </div>
                                                 <div>
-                                                    <img src="{{ asset('') }}/kaz/images/linkedin.png" alt="">
+                                                    <img src="{{ asset('/kaz/images/linkedin.png') }}" alt="">
                                                     <h6 class="fw-light   share-text">linkedin</h6>
                                                 </div>
                                                 <div>
-                                                    <img src="{{ asset('') }}/kaz/images/twitter.png" alt="">
+                                                    <img src="{{ asset('/kaz/images/twitter.png') }}" alt="">
                                                     <h6 class="fw-light  share-text ">twitter</h6>
                                                 </div>
                                                 <div>

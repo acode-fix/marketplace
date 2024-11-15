@@ -1,4 +1,4 @@
-<x-adminLayout>
+<x-admin-layout>
   <x-slot:title>
     View :: Users
   </x-slot>
@@ -83,4 +83,4 @@
   
   
   <script type="module" src="{{ asset('backend-js/admin/user/alluser.js') }}"></script>
-  </x-adminLayout>  
+  </x-admin-layout>  

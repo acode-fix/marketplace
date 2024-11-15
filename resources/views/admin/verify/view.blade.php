@@ -1,4 +1,4 @@
-<x-adminLayout>
+<x-admin-layout>
   <x-slot:title>
     Verification
   </x-slot:title>
@@ -135,4 +135,4 @@
   }) 
 </script> --}}
  
-</x-adminLayout>
+</x-admin-layout>

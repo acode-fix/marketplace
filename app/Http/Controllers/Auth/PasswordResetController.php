@@ -16,10 +16,6 @@ use Illuminate\Support\Facades\Validator;
 use Barryvdh\Debugbar\Facades\Debugbar;
 use Symfony\Component\ErrorHandler\Debug;
 
-
-
-
-
 class PasswordResetController extends Controller
 {
     //
@@ -31,7 +27,7 @@ class PasswordResetController extends Controller
             $user = User::where('email', $request->email)->first();
 
             if (!$user) {
-                return response()->json(['message' => 'User not found'], 404);
+                return response()->json(['message' => 'Invalid Email Address'], 404);
             }
 
             // Generate a random OTP
@@ -48,9 +44,12 @@ class PasswordResetController extends Controller
                 ]
             );
 
-            Mail::raw('Your OTP is: ' . $otp, function ($message) use ($request) {
-                $message->to($request->email)->subject('Reset Password OTP');
-            });
+
+            Mail::to($request->email)->send(new OtpMail($otp));
+
+            // Mail::raw('Your OTP is: ' . $otp, function ($message) use ($request) {
+            //     $message->to($request->email)->subject('Reset Password OTP');
+            // });
 
             // In a real scenario, you would send the OTP via email
             // For testing, we return it in the response

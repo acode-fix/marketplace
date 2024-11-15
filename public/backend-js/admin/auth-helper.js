@@ -31,6 +31,20 @@ export function sendResetOtp(value) {
   }).catch((error) => {
 
     if (error.response) {
+
+      if(error.response.status === 404 && error.response.data) {
+
+        const response = error.response.data.message;
+ 
+         Swal.fire({
+             icon: 'error',
+             confirmButtonColor: '#ffb705',
+             title: 'Failed to Send OTP',
+             text: `${response}`
+         });
+
+
+     }
       
 
       if(error.response.status === 500) {

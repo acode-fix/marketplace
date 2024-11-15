@@ -747,10 +747,12 @@
                             <div class="form-group">
                                 <label for="email" class="form-label"></label>
                                 <input required type="email" class="form-control input_field" id="reset_email" placeholder="Email">
+                                <span  class="text-danger reset-error"></span>
                             </div>
                         </div>
-                        <button class="signup_continue_button" onclick="sendResetOtp()">Request Reset Password
-                            link</button>
+                          
+                        <button  class="signup_continue_button" onclick="sendResetOtp()">Request Reset Password
+                            link</button> 
                         <p class="already_have_an_account">Already have an account? <span><a href="#" onclick="login2()"
                                     class="signup_links">Login</a></span></p>
 

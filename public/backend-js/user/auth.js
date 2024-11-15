@@ -192,13 +192,17 @@
     
   const email = document.getElementById("reset_email").value;
 
+  if(email.trim() === '') {
+
+    return document.querySelector('.reset-error').textContent = 'Email is required';
+
+  }
+
   axios.post('/api/forgot-password', {
       email: email,
   })
   .then(function (response) {
-      // Handle success response
-    //  console.log(response.data);
-      // Display a success message to the user
+      
       Swal.fire({
           icon: 'success',
           title: 'OTP Sent',
@@ -212,15 +216,35 @@
       });
   })
   .catch(function (error) {
-      // Handle error response
-      console.log(error.response.data);
-      // Display an error message to the user
-      Swal.fire({
-          icon: 'error',
-          confirmButtonColor: '#ffb705',
-          title: 'Failed to Send OTP',
-          text: 'There was an error while sending the OTP. Please try again later.'
-      });
+
+    if(error.response) {
+
+        if(error.response.status === 404 && error.response.data) {
+
+           const response = error.response.data.message;
+    
+            Swal.fire({
+                icon: 'error',
+                confirmButtonColor: '#ffb705',
+                title: 'Failed to Send OTP',
+                text: `${response}`
+            });
+
+
+        }else {
+
+            Swal.fire({
+                icon: 'error',
+                confirmButtonColor: '#ffb705',
+                title: 'Failed to Send OTP',
+                text: 'There was an error while sending the OTP. Please try again later.'
+            });
+        }
+
+
+    }
+    
+     
   });
 }
 

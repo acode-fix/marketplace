@@ -109,7 +109,7 @@ axios.get('/api/allproduct')
 .then(function (response) {
     const products = response.data;
 
-   console.log(products);
+   //console.log(products);
     localStorage.setItem('allProducts', JSON.stringify(products));
     renderProductsAndSections(products);
 })
@@ -248,7 +248,7 @@ function createProductCard(product) {
         if (i === 0) product_img_url = el;
     });
 
-    console.log(product);
+   // console.log(product);
    // const{verify_status, badge_status} = product.user;
     const{verify_status, badge_status,} = product?.user ?? product;
 

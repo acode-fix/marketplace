@@ -176,22 +176,26 @@ class UsersController extends Controller
 
            $userType = $user->user_type;
 
+
+
           // Debugbar::info($request->user());
 
 
       // Debugbar::info($user);
-      // Debugbar::info($user->user_type);
+     //  Debugbar::info($user->user_type);
 
-       if($userType !== 1) {
+    //    if($userType !== 1) {
 
-        return response()->json([
-            'status' => false,
-            'message' => 'Unauthorized Access',
+    //     return response()->json([
+    //         'status' => false,
+    //         'message' => 'Unauthorized Access',
 
-        ], 403);
+    //     ], 403);
         
 
-       }else if ($userType === 1) {
+    //    }else 
+       
+       if ($userType === 1) {
 
         $token = $request->user()->createToken(env('APP_NAME','defaultAppName'))->plainTextToken;
 
@@ -201,6 +205,16 @@ class UsersController extends Controller
             'token' => $token,
 
         ],200);
+
+       } else{
+
+        return response()->json([
+            'status' => false,
+            'message' => 'Unauthorized Access',
+
+        ], 403);
+        
+
 
        }
 

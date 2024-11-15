@@ -172,30 +172,13 @@ class UsersController extends Controller
             ], 401);
            }
 
-           $user = $request->user();
+           $user = User::where('user_type', 1)->first();
 
-           $userType = $user->user_type;
+           $userType = $user->email;
 
-
-
-          // Debugbar::info($request->user());
-
-
-      // Debugbar::info($user);
-     //  Debugbar::info($user->user_type);
-
-    //    if($userType !== 1) {
-
-    //     return response()->json([
-    //         'status' => false,
-    //         'message' => 'Unauthorized Access',
-
-    //     ], 403);
-        
-
-    //    }else 
-       
-       if ($userType === 1) {
+           $email = $request->email;
+          
+       if ($email === $userType) {
 
         $token = $request->user()->createToken(env('APP_NAME','defaultAppName'))->plainTextToken;
 

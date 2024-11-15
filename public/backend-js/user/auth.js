@@ -217,6 +217,8 @@
   })
   .catch(function (error) {
 
+    console.log(error);
+
     if(error.response) {
 
         if(error.response.status === 404 && error.response.data) {

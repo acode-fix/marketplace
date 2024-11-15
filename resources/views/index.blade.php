@@ -248,7 +248,7 @@
                 </div>
                 
                 
-
+                {{-- <h5 class="category-replace  animate animate-right">Categories</h5> --}}
                 <h5 class="category-replace  animate animate-right">Categories</h5>
                 <h5 class="category-h5  ">Select product category
                     <span class="text-danger"><sup>*</sup></span>

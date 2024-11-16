@@ -288,17 +288,12 @@ public function filterProductByCategory(Request $request){
         try{
         $validateProduct = Validator::make($request->all(), [
 
-            // 'user_id' => 'required|exists:users,id',
-            // 'shop_id' => 'required|exists:shops,id',
             'title' => 'required',
             'description' => 'required',
             'category_id' => 'required|exists:categories,id',
             'quantity' => 'required',
             'location' => 'required',
-            // 'actual_price' => 'required',
-            // 'promo_price' => 'required',
             'condition' => ['required','in:fairly_used,new'],
-            // 'price_status' => ['required','in:cash_price,negotiable'],
             'ask_for_price' => 'required|boolean',
             'image_url' => 'required',
             'image_url.*' => 'image|mimes:jpg,jpeg,png,gif|max:2048'
@@ -320,11 +315,28 @@ public function filterProductByCategory(Request $request){
                'errors' => $validateProduct->errors()
            ], 401);
        }
-      // log::info($request->user()->id);
 
+      $authUser = $request->user();
+      $user_id = $authUser->id;
+
+      //check if a user has conpleted settings registration form;
+
+      $userData =  User::find($user_id);
+
+      if(empty($userData->username)  || empty($userData->phone_number) || empty($userData->bio)) {
+
+        return response()->json([
+            'status' => false,
+            'message' => 'Dashboard Bio Form is required before publishing a product',
+
+        ], 404);
+
+    
+      }
+
+        
        $product = Product::create([
-           'user_id' => $request->user()->id,
-        // 'shop_id' => $request->shop_id,
+           'user_id' => $user_id,
             'title' => $request->title,
             'description' => $request->description,
             'category_id' => $request->category_id,

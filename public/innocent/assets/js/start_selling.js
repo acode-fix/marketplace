@@ -89,83 +89,164 @@ document.getElementById('product-name').addEventListener('focus', function() {
 
 
 
-var selectedImages = 0;
+// var selectedImages = 0;
 
-document.getElementById('imageContainer').addEventListener('click', function() {
+// document.getElementById('imageContainer').addEventListener('click', function() {
+//     document.getElementById('fileInput').click();
+// });
+
+// document.getElementById('fileInput').addEventListener('change', function() {
+
+//     var file = this.files[0];
+//     if (file) {
+
+//         if (selectedImages < 3) {
+//             if (file.type === 'image/jpeg' || file.type === 'image/png') {
+//                 if (file.size <= 5242880) { // 5MB
+//                     var reader = new FileReader();
+//                     reader.onload = function(e) {
+//                         var image = document.createElement('img');
+//                         image.className = 'uploaded_image'; // Add unique class to the uploaded image
+//                         image.onload = function() {
+//                             if (image.naturalWidth > 100 || image.naturalHeight > 100) {
+//                                 var aspectRatio = image.naturalWidth / image.naturalHeight;
+//                                 if (image.naturalWidth > image.naturalHeight) {
+//                                     image.width = 100;
+//                                     image.height = 100 / aspectRatio;
+//                                 } else {
+//                                     image.height = 100;
+//                                     image.width = 100 * aspectRatio;
+//                                 }
+//                             }
+//                         };
+//                         image.src = e.target.result;
+//                         var frame = document.querySelector('.frame img') ?
+//                             document.querySelector('.frame2 img') ?
+//                                 document.querySelector('.frame3 img') ? null : document.querySelector('.frame3') : document.querySelector('.frame2') : document.querySelector('.frame');
+//                         if (frame) {
+//                             frame.innerHTML = '';
+//                             frame.appendChild(image);
+//                             frame.style.display = 'flex';
+
+//                             var closeButton = document.createElement('span');
+//                             closeButton.innerHTML = '×';
+//                             closeButton.className = 'close_button';
+//                             closeButton.addEventListener('click', function() {
+//                                 frame.innerHTML = '';
+//                                 frame.style.display = 'none';
+//                                 selectedImages--;
+//                                 if (selectedImages === 0) {
+//                                     document.querySelector('.frame_container').style.display = 'none';
+//                                     document.querySelector('.upload_preview').style.display = 'none';
+//                                     document.querySelector('.thumbnail').style.display = 'none';
+//                                 }
+//                             });
+//                             frame.appendChild(closeButton);
+//                             selectedImages++;
+//                         }
+//                     };
+//                     reader.readAsDataURL(file);
+//                     document.querySelector('.frame_container').style.display = 'flex';
+//                     document.querySelector('.upload_preview').style.display = 'block';
+//                     document.querySelector('.thumbnail').style.display = 'block';
+//                 } else {
+//                  //Size must be less than 5MB
+//                 var myModal = new bootstrap.Modal(document.getElementById('product_upload_condition1'));
+//                 myModal.show();
+//                 }
+//             } else {
+//                //Image must be PNG or JPG
+//                 var myModal = new bootstrap.Modal(document.getElementById('product_upload_condition2'));
+//                 myModal.show();
+//             }
+//         } else {
+//            //You can only upload a maximum of three images
+//             var myModal = new bootstrap.Modal(document.getElementById('product_upload_condition3'));
+//             myModal.show();
+//         }
+//     }
+// });
+
+
+document.getElementById('imageContainer').addEventListener('click', function () {
     document.getElementById('fileInput').click();
 });
 
-document.getElementById('fileInput').addEventListener('change', function() {
+document.getElementById('fileInput').addEventListener('change', function () {
+    const files = Array.from(this.files);
+    const maxImages = 3;
+    const maxSize = 5242880; // 5MB
+    const frameContainer = document.querySelector('.frame_container');
+    const uploadPreview = document.querySelector('.upload_preview');
+    const thumbnail = document.querySelector('.thumbnail');
+    const frames = [document.querySelector('.frame'), document.querySelector('.frame2'), document.querySelector('.frame3')];
 
-    var file = this.files[0];
-    if (file) {
+    // Clear all frames
+    frames.forEach(frame => {
+        frame.innerHTML = '';
+        frame.style.display = 'none';
+    });
 
-        if (selectedImages < 3) {
-            if (file.type === 'image/jpeg' || file.type === 'image/png') {
-                if (file.size <= 5242880) { // 5MB
-                    var reader = new FileReader();
-                    reader.onload = function(e) {
-                        var image = document.createElement('img');
-                        image.className = 'uploaded_image'; // Add unique class to the uploaded image
-                        image.onload = function() {
-                            if (image.naturalWidth > 100 || image.naturalHeight > 100) {
-                                var aspectRatio = image.naturalWidth / image.naturalHeight;
-                                if (image.naturalWidth > image.naturalHeight) {
-                                    image.width = 100;
-                                    image.height = 100 / aspectRatio;
-                                } else {
-                                    image.height = 100;
-                                    image.width = 100 * aspectRatio;
-                                }
-                            }
-                        };
-                        image.src = e.target.result;
-                        var frame = document.querySelector('.frame img') ?
-                            document.querySelector('.frame2 img') ?
-                                document.querySelector('.frame3 img') ? null : document.querySelector('.frame3') : document.querySelector('.frame2') : document.querySelector('.frame');
-                        if (frame) {
+    if (files.length > maxImages) {
+        // Show modal for max image limit
+        var myModal = new bootstrap.Modal(document.getElementById('product_upload_condition3'));
+        myModal.show();
+        return;
+    }
+
+    files.forEach((file, index) => {
+        if (file.type === 'image/jpeg' || file.type === 'image/png') {
+            if (file.size <= maxSize) {
+                const reader = new FileReader();
+                reader.onload = function (e) {
+                    const image = document.createElement('img');
+                    image.className = 'uploaded_image';
+                    image.src = e.target.result;
+
+                    // Determine the frame to place the image
+                    const frame = frames[index];
+                    if (frame) {
+                        frame.innerHTML = '';
+                        frame.appendChild(image);
+                        frame.style.display = 'flex';
+
+                        // Add delete button
+                        const closeButton = document.createElement('span');
+                        closeButton.innerHTML = '×';
+                        closeButton.className = 'close_button';
+                        closeButton.addEventListener('click', function () {
                             frame.innerHTML = '';
-                            frame.appendChild(image);
-                            frame.style.display = 'flex';
+                            frame.style.display = 'none';
+                        });
+                        frame.appendChild(closeButton);
 
-                            var closeButton = document.createElement('span');
-                            closeButton.innerHTML = '×';
-                            closeButton.className = 'close_button';
-                            closeButton.addEventListener('click', function() {
-                                frame.innerHTML = '';
-                                frame.style.display = 'none';
-                                selectedImages--;
-                                if (selectedImages === 0) {
-                                    document.querySelector('.frame_container').style.display = 'none';
-                                    document.querySelector('.upload_preview').style.display = 'none';
-                                    document.querySelector('.thumbnail').style.display = 'none';
-                                }
-                            });
-                            frame.appendChild(closeButton);
-                            selectedImages++;
+                        // Mark the first image as the thumbnail
+                        if (index === 0) {
+                            thumbnail.style.display = 'block';
                         }
-                    };
-                    reader.readAsDataURL(file);
-                    document.querySelector('.frame_container').style.display = 'flex';
-                    document.querySelector('.upload_preview').style.display = 'block';
-                    document.querySelector('.thumbnail').style.display = 'block';
-                } else {
-                 //Size must be less than 5MB
-                var myModal = new bootstrap.Modal(document.getElementById('product_upload_condition1'));
-                myModal.show();
-                }
+                    }
+                };
+                reader.readAsDataURL(file);
             } else {
-               //Image must be PNG or JPG
-                var myModal = new bootstrap.Modal(document.getElementById('product_upload_condition2'));
+                // Image size exceeds 5MB
+                var myModal = new bootstrap.Modal(document.getElementById('product_upload_condition1'));
                 myModal.show();
             }
         } else {
-           //You can only upload a maximum of three images
-            var myModal = new bootstrap.Modal(document.getElementById('product_upload_condition3'));
+            // Invalid file type
+            var myModal = new bootstrap.Modal(document.getElementById('product_upload_condition2'));
             myModal.show();
         }
+    });
+
+    // Show preview areas if at least one image is selected
+    if (files.length > 0) {
+        frameContainer.style.display = 'flex';
+        uploadPreview.style.display = 'block';
     }
 });
+    
+
 
 
 

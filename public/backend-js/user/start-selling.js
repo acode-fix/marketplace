@@ -57,9 +57,6 @@ document.getElementById('productForm').addEventListener('submit', function(event
 
    let formData = new FormData(this);
 
-   
-   
-
    // Add ask_for_price to formData based on the switch state
    formData.append('ask_for_price', priceSwitch.checked ? 1 : 0);
 
@@ -86,7 +83,7 @@ document.getElementById('productForm').addEventListener('submit', function(event
    // Debug formData content
    for (let pair of formData.entries()) {
        if (pair[1] instanceof File) {
-          console.log(`${pair[0]}: File Name - ${pair[1].name}, Size - ${pair[1].size} bytes, Type - ${pair[1].type}`);
+        //  console.log(`${pair[0]}: File Name - ${pair[1].name}, Size - ${pair[1].size} bytes, Type - ${pair[1].type}`);
        } else {
           // console.log(`${pair[0]}: ${pair[1]}`);
        }
@@ -112,14 +109,7 @@ document.getElementById('productForm').addEventListener('submit', function(event
            setTimeout(function() {
                window.location.href = '/';
            }, 5000);
-       } else {
-           Swal.fire({
-               icon: 'error',
-               confirmButtonColor: '#ffb705',
-               title: 'Failed to create product',
-               text: response.data.message
-           });
-       }
+       } 
    })
    .catch(function(error) {
       // console.log(error.response)
@@ -153,6 +143,24 @@ document.getElementById('productForm').addEventListener('submit', function(event
        });
 
        
+           }
+
+
+           if(error.response.status === 404 && error.response.data) {
+            console.log(error);
+
+                    Swal.fire({ 
+                        icon: 'error',
+                        confirmButtonColor: '#ffb705',
+                        title: 'Bio Validation Error',
+                        text:  error.response.data.message,
+                        willClose:() => {
+                            window.location.href = '/settings';
+
+                        }
+                    });
+     
+
            }
        }
 

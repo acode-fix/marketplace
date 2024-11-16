@@ -177,8 +177,8 @@
             </p>
 
 
-
-                <input type="file" id="fileInput" name="image_url[]" accept="image/*" style="display: none;" multiple>
+            
+                 <input type="file" id="fileInput" name="image_url[]" accept="image/*" style="display: none;" multiple>
                 <div id="imageContainer">
                     <div id="uploadButton">
                         <img src="{{asset('innocent/assets/image/Upload.png')}}" alt="Logo" class="upload_camera">
@@ -187,7 +187,7 @@
                         </p>
                     </div>
 
-                </div>
+                </div> 
                 <div class="uploads">
                     <p class="upload_preview">upload preview</p>
                 </div>
@@ -218,9 +218,9 @@
             <input type="text" placeholder="how many in stock," class="photo_inputs" name="quantity">
             <div class="product_condition">
                 <p>
-                 condition
+              Product condition
             <button type="button"  value="used" class="button used" onclick="toggleButton(this, 'fairly_used')">Fairly Used</button>
-             <button type="button" value="new" class="button new" onclick="toggleButton(this, 'new')">New</button>
+             <button type="button" value="new" class="button new text-center" onclick="toggleButton(this, 'new')">New</button>
                 </p>
             <input type="text" name="condition" id="toggle-button" readonly style="display: none;">
 

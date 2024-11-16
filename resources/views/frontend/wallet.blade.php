@@ -128,7 +128,7 @@
             <table class="table">
               <tbody>
                 <tr>
-                <th style="padding: 50px; border-bottom:none;"><h5 class="fw-light">This page is under construction. Expect something amazing soon</h5> </th>
+                <th style="padding: 50px; border-bottom:none;"><h6 class="fw-light">This page is under construction. Expect something amazing soon</h6> </th>
                </tr>
               </tbody>
             </table> 

@@ -7,15 +7,15 @@
 
   <div class="main">
 
-    <div class="content" style="text-align: center">
+    <div class="content" style="text-align: center; margin-top:200px">
         <div class="container">
             <div class="row">
               <div class="col-9">
                 <table class="table">
                   <tbody>
                     <tr>
-                    <th style="padding: 50px;"><h2>This page is under construction. Expect something amazing soon</h2> </th>
-                </tr>
+                    <th style="padding: 50px; border-bottom:none;"><h4 class="fw-light">This page is under construction. Expect something amazing soon</h4> </th>
+                   </tr>
                   </tbody>
                 </table>
               </div>
@@ -250,7 +250,7 @@
   </div>
 
   <!-- mobile-view -->
-  {{-- <div class="mobile-view">
+  <div class="mobile-view">
     <div class="container-fluid">
       <div class="row">
         <div class="mobile-struct">
@@ -273,6 +273,25 @@
           </div>
         </div>
       </div>
+      
+      <div class="container mt-5">
+        <div class="row ">
+          <div class="col">
+            <table   class="table ">
+              <tbody>
+                <tr>
+                <th style="padding: 50px; border-bottom:none"><h6 class="fw-light">This page is under construction. Expect something amazing soon</h6> </th>
+               </tr>
+              </tbody>
+            </table> 
+            
+          </div>
+        </div>
+  
+
+      </div>
+     
+{{--       
       <div class="row mt-4">
         <div class="col ">
           <table class="table container-fluid">
@@ -634,28 +653,14 @@
             <a class="page-link" href="#">Next</a>
           </li>
         </ul>
-      </nav>
+      </nav> --}}
 
 
 
     </div>
-  </div> --}}
+  </div>
 
-  <div class="mobile-view" style="margin-left:100px">
-    <div class="container">
-        <div class="row">
-          <div class="col-9">
-            <table class="table">
-              <tbody>
-                <tr>
-                <th style="padding: 50px;"><h2>This page is under construction. Expect something amazing soon</h2> </th>
-            </tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
-    </div>
-    </div>
+ 
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10/dist/sweetalert2.all.min.js"></script>
     

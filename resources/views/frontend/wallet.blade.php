@@ -9,14 +9,14 @@
   <div class="main">
 
 
-    <div class="content" style="text-align: center">
+    <div class="content" style="text-align: center;  margin-top:200px">
         <div class="container">
             <div class="row">
               <div class="col-9">
                 <table class="table">
                   <tbody>
                     <tr>
-                    <th style="padding: 50px;"><h2>This page is under construction. Expect something amazing soon</h2> </th>
+                      <th style="padding: 50px; border-bottom:none;"><h4 class="fw-light">This page is under construction. Expect something amazing soon</h4> </th>
                 </tr>
                   </tbody>
                 </table>
@@ -97,31 +97,47 @@
   </div>
 
    <!-- mobile-view  -->
-   {{-- <div class="mobile-view">
+    <div class="mobile-view">
     <div class="container-fluid">
       <div class="row">
         <div class="mobile-struct">
           <div class="mobile-link-btn">
-            <a href="shop.html">Shop</a>
+            <a href="{{ url('/shop') }}">Shop</a>
           </div>
           <div class="mobile-link-btn">
-            <a href="settings.html">Settings</a>
+            <a href="{{ url('/settings') }}">Settings</a>
           </div>
           <div class="mobile-link-btn">
-            <a href="learn.html">Learn</a>
+            <a href="{{ url('/learn') }}">Learn</a>
           </div>
 
           <div class="mobile-link-btn">
-            <a href="ads.html"> Ads</a>
+            <a href="{{ url('/ads') }}"> Ads</a>
           </div>
 
           <div class="mobile-link-btn1">
-            <a href="wallet.html"> Wallet</a>
+            <a href="{{ url('/wallet') }}"> Wallet</a>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="container mt-5">
+        <div class="row">
+          <div class="col">
+            <table class="table">
+              <tbody>
+                <tr>
+                <th style="padding: 50px; border-bottom:none;"><h5 class="fw-light">This page is under construction. Expect something amazing soon</h5> </th>
+               </tr>
+              </tbody>
+            </table> 
+            
           </div>
         </div>
       </div>
       <!-- <div class="row mt-4">  -->
-      <div class="container">
+      {{-- <div class="container">
         <table class="table accordion mt-5">
           <tr>
             <th class="border-remove points-border">
@@ -176,31 +192,16 @@
           </div>
 
         </div>
-      </div>
+      </div> --}}
 
 
 
 
 
     </div>
-  </div> --}}
+  </div> 
 
- 
-  <div class="mobile-view" style="margin-left:100px">
-    <div class="container">
-        <div class="row">
-          <div class="col-9">
-            <table class="table">
-              <tbody>
-                <tr>
-                <th style="padding: 50px;"><h2>This page is under construction. Expect something amazing soon</h2> </th>
-            </tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
-    </div>
-    </div>
+
 
 
   

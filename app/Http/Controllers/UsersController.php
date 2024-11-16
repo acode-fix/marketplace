@@ -241,24 +241,16 @@ class UsersController extends Controller
      */
     public function accountSettings( Request $request)
     {
-        //
         try {
 
             $validateUser = Validator::make($request->all(), [
 
-                // 'name' => 'required',
                 'username' => 'required|max:255|unique:users,username,',
-                'phone_number' => 'required',
+                'phone_number' => ['required', 'regex:/^(080|091|090|070|081)[0-9]{8}$/'],
                 'bio' => 'required',
-               'photo_url' => 'required|image|mimes:jpg,jpeg,png,gif,svg|max:1024',
-               'location' => 'string|max:255|nullable',
-               // 'whatsapp' => 'required',
-                // 'address' => 'required',
-                // 'stage' => 'required',
-                // 'is_verified' => 'boolean|nullable',
-                // 'shop_id' => 'string|nullable',
-                // 'badge_type' => 'in:monthly,yearly|nullable',
-                // 'badge_expiry' => 'date|nullable',
+                'photo_url' => 'required|image|mimes:jpg,jpeg,png,gif,svg|max:1024',
+                
+              
             ]);
 
             if($validateUser->fails()){
@@ -269,25 +261,16 @@ class UsersController extends Controller
                 ], 422);
             }
 
-            $id =  auth('sanctum')->user()->id;
-            $user = User::find($id);  // Find the user using model and hold its reference
-            // $user->name=$request->input('name');
+        
+            $id =  $request->user()->id;
+
+            debugbar::info($id);
+            $user = User::find($id); 
+
             $user->username=$request->input('username');
             $user->phone_number=$request->input('phone_number');
             $user->bio=$request->input('bio');
-            $user->location=$request->input('location');
-            // $user->whatsapp=$request->input('whatsapp');
-            // $user->address=$request->input('address');
-            // $user->stage=$request->input('stage');
-            // $user->is_verified=$request->input('is_verified');
-            // $user->shop_id=$request->input('shop_id');
-            // $user->badge_type=$request->input('badge_type');
-            // $user->badge_expiry=$request->input('badge_expiry');
-
-        //  $validatedData = array_filter($validateUser->getData());
-
-        // $user = User::find($id);
-        // $user =  $user->update($validatedData);
+          
 
         $imageName = null;
     if (request()->hasFile('photo_url')) {
@@ -313,6 +296,7 @@ class UsersController extends Controller
             ], 500);
     }
 }
+    
 
 
    public function uploadBanner(Request $request) {

@@ -259,3 +259,20 @@ function previewImage(input, previewImgId) {
         reader.readAsDataURL(input.files[0]);
     }
 }
+
+function previewImageMobile(input, previewImgId) {
+  if (input.files && input.files[0]) {
+      var reader = new FileReader();
+
+      reader.onload = function (e) {
+          var img = document.getElementById(previewImgId);
+          img.src = e.target.result;
+          img.style.width = '50px'; // Set the width
+          img.style.height = '50px'; // Set the height
+          img.style.borderRadius = '100%'; // Set the border radius
+      };
+
+      reader.readAsDataURL(input.files[0]);
+  }
+}
+

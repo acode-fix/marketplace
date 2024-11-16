@@ -93,35 +93,37 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     function sendUpdateRequest(formData, token) {
-        axios.post(`/api/auth/update`, formData, {
+        axios.post(`/api/v1/auth/update`, formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data',
                     'Authorization': 'Bearer ' + token
                 }
             })
             .then(function (response) {
-                // console.log(response.data);
+               // console.log(response);
 
-                if (response.data.status) {
+                if(response.status === 200 && response.data) {
+
+                  if (response.data.status) {
+
                     Swal.fire({
                         icon: 'success',
                         title: 'Success!',
                         text: 'Your profile has been updated.',
                         showConfirmButton: false,
                         timer: 4000
-                    }).then(() => {
-                        window.location.href = '/settings';
-                    });
-                } else {
-                    Swal.fire({
-                        icon: 'error',
-                        confirmButtonColor: '#ffb705',
-                        title: 'Failed to update profile',
-                        text: response.data.message
-                    });
-                }
-            })
+                        }).then(() => {
+                            window.location.href = '/settings';
+                     });
+
+
+                   }
+
+               
+            }})
             .catch(function (error) {
+
+               // console.log(error);
 
                 if (error.response) {
 

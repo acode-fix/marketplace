@@ -30,7 +30,6 @@ Route::get('/allproduct', [ProductController::class, 'index']);
 
 Route::post('/auth/register', [UsersController::class, 'register']);
 Route::post('/auth/login', [UsersController::class, 'loginUser']);
-Route::post('/auth/update',[UsersController::class, 'accountSettings']);
 Route::post('/admin/login', [UsersController::class, 'adminLogin']);
 
 //PRODUCT SHARED LINK;
@@ -67,6 +66,7 @@ Route::get('/user/products', [ProductController::class, 'userProducts']);
 Route::prefix('v1')->middleware('auth:sanctum')->group(function () {
 
 Route::get('/users', [UsersController::class, 'view']);
+Route::post('/auth/update',[UsersController::class, 'accountSettings']);
 Route::post('/auth/logout',[UsersController::class, 'logoutUser']);
 Route::get('/getuser', [UsersController::class, 'getUserData']);
 Route::get('/referral-link', [UsersController::class, 'getReferralLink']);

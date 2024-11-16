@@ -411,14 +411,14 @@
       @csrf
       
       <div class="col-10 upload-div">
-        <img style="height: 60px; width: 60px;" id="previewImgMobile" class="img-fluid js-previewImgMobile" src="" alt="">
-        <h6 class="ms-2">Upload your profile picture <br>
+        <img style="height: 50px; width: 50px;border-radius:100%" id="previewImgMobile" class="img-fluid js-previewImgMobile" src="" alt="">
+        <h6 class="ms-2"><span class="upload-text">Upload your profile picture</span> <br>
           <span class="fw-light identify-text">This helps visitors to recognize you on buy and sell</span>
         </h6>
       </div>
       <div class="col-2 post-btn">
         <input type="file" name="photo_url" id="mobile-btn" accept="image/*" hidden
-          onchange="previewImage(this, 'previewImgMobile')">
+          onchange="previewImageMobile(this, 'previewImgMobile')">
         <label class="label3" for="mobile-btn">Upload Photo</label>
       </div>
       <div class="col-10">
@@ -461,7 +461,7 @@
         <div onmouseover="showText3()" onmouseout="hideText3()">
           <div class="verify-badge-m">
 
-            <img class="" height="20px" width="15px" src="{{ asset('') }}/kaz/images/badge.png" alt="">
+            <img class="" height="20px" width="15px" src="{{ asset('/kaz/images/badge.png') }}" alt="">
             <a class="js-verify-url" href="{{ url('/become') }}">
               <h6 class="verify-m ps-1 verify-text">Verify Now</h6>
             </a>
@@ -495,7 +495,7 @@
 
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10/dist/sweetalert2.all.min.js"></script>
-<script type="module" src="{{ asset('backend-js/settings.js') }}"></script>
+<script type="module" src="{{ asset('backend-js/settings.js')}}"></script>
 
 <script>
   

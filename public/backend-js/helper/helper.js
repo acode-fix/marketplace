@@ -563,7 +563,7 @@ export function displayHelpCenter() {
     icon: "info",
     html: `
       <h6 class="fs-5">Direct your complain to our email</h6>
-      <h6 class="fs-5">Info@loopMartinfo.com</h6>
+      <h6 class="fs-5">helpdesk@loopMartinfo.com</h6>
       <h6 class="fs-5">We will respond within 24hrs</h6>
      
     `,
@@ -582,7 +582,7 @@ export function displayHelpCenter() {
   }).then((result)=> {
     if(result.isConfirmed) {
 
-      window.location.href = "mailto:Admin@loopMartInfo.com?subject=Help Center Inquiry&body=Hello,"
+      window.location.href = "mailto:helpdesk@loopMartInfo.com?subject=Help Center Inquiry&body=Hello,"
 
 
     }

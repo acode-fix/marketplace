@@ -96,7 +96,7 @@
         credibility,and ultimately thier sales performance on the marketplace.
       </h6>
       <a href="{{ url('/bio') }}">
-        <button type="button" class="btn btn-warning become-next-btn  btn-lg">Next</button>
+        <button type="button" class="btn btn-warning become-next-btn mt-4  btn-lg">Next</button>
       </a> 
     </div>
     

@@ -13,7 +13,7 @@ if(token) {
     axios.get('api/v1/payment/init', {
 
     }).then((response) => {
-      //  console.log(response);
+       console.log(response);
  
         if (response.data) {
 
@@ -27,7 +27,7 @@ if(token) {
     })
     
     .catch((error) => {
-       // console.log(error);
+       console.log(error);
 
         if(error.response) {
 

@@ -68,7 +68,7 @@ button a {
   color: black;
 }
 
-@media screen and (max-width:517px) {
+/* @media screen and (max-width:517px) {
   .next-btn {
     padding-left: 42%;
     padding-right: 42%;
@@ -81,4 +81,4 @@ button a {
     bottom: 7px;
   }
 
-}
+} */

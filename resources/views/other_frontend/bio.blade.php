@@ -51,7 +51,7 @@
         <div class="col mt-4 ms-3 me-3">
           <label for="inputEmail4" class="form-label fw-bold">Email</label>
           <input oninput="hideIcon(this)" id="search-modal" name ="email" type="text" class="form-control email"
-            placeholder="Ceredesign@gmail.com">
+            placeholder="Enter your email here">
             <span class="error" id="email_error"></span>
         </div>
         <div class="col mt-2  ms-3 me-3">
@@ -99,7 +99,7 @@
 
 
         <a href="{{ url('/nin') }}">
-          <button type="button" class="btn btn-warning next-btn btn-lg">Next</button>
+          <button type="button" class="btn btn-warning next-btn btn-lg mt-5">Next</button>
         </a>
       </form>
     </div>

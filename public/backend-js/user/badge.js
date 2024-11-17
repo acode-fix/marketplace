@@ -1,9 +1,65 @@
-import { getToken, validationError, displaySwal } from "../helper/helper.js";
-import { serverError } from "../admin/auth-helper.js";
+import { getToken, validationError, displaySwal ,generateAvatar} from "../helper/helper.js";
+import { serverError } from "../admin/auth-helper.js"; 
 
 const token = getToken();
 
 if(token) {
+
+  axios.get('/api/v1/getuser', {
+    headers: {
+      'Authorization': `Bearer ${token}`
+    }
+  }).then((response) => {
+    console.log(response)
+  if(response.status === 200 && response.data) {
+
+    const data = response.data
+
+    loadUserDetails(data)
+
+  }
+    
+  }).catch((error) => {
+    console.log(error);
+
+  });
+
+
+  function loadUserDetails(data) {
+
+    const img = data.photo_url 
+                ? `<img class="img-fluid dp ms-3 badge-img"  src="/uploads/users/${data.photo_url}" alt="">`
+                : `<img class="img-fluid dp ms-3"  src="${generateAvatar(data.email)}" alt="">`
+
+
+    const display = ` <div style="margin-top: -30px;">
+          ${img}
+          <div class="vetted">
+            <img  width="20px" height="20px" src="/kaz/images/badge.png" alt="">
+          </div>
+        </div>
+        <div class="ms-4  augustine1">
+          <div style="display: flex; align-items: start;">
+            <h5 class="modal-mire">${data.name ?? 'N/A'}</h5>
+            <img class="ms-2" src="/kaz/images/badge.png" alt="">
+          </div>
+          <h6 class="modal-augustine" style="margin-top: -10px;">${data.email}</h6>
+          <h6 class="vetted-seller pt-2 fw-bold">vetted seller badge</h6>
+        </div>
+
+        <div class="augustine2">
+          <div style="display: flex; align-items: start;">
+            <h5 class="modal-mire">${data.name} </h5>
+             <img class="ms-2" src="/kaz/images/badge.png" alt=""> 
+          </div>
+          <h6 class="modal-augustine" style="margin-top: -10px;">${data.email}</h6>
+          <h6 class="vetted-seller pt-2 fw-bold">vetted seller badge</h6>
+        </div>`;
+
+        document.querySelector('.js-content').innerHTML = display;
+  }
+
+
 
   document.querySelector('.next-btn').addEventListener('click', (event) => {
     event.preventDefault();

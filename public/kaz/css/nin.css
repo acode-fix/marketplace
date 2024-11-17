@@ -48,13 +48,15 @@ padding-bottom: 70px;
   
 } */
 .next-btn {
-  position: fixed;
+  width: 100%;
+  margin-top: 50px;
+  /* position: fixed;
   bottom: 15px;
   left: 50%;
   transform: translateX(-50%);
   width: auto;
   padding-left: 45%;
-  padding-right: 45%;
+  padding-right: 45%; */
 }
 
 button a {
@@ -62,7 +64,7 @@ button a {
   color: black;
 }
 
-@media screen and (max-width:517px) {
+/* @media screen and (max-width:517px) {
   .next-btn {
     padding-left: 42%;
     padding-right: 42%;
@@ -75,7 +77,7 @@ button a {
     padding-left: 15%;
     padding-right: 15%
   }
-}
+} */
 
 .main {
   padding-top: 90px;

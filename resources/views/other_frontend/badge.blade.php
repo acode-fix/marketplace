@@ -44,17 +44,17 @@
   </div>
   <div class="scroll-text">
     <div class="container main">
-      <div class="vetted-div">
-        <div style="margin-top: -30px;">
+      <div class="vetted-div js-content">
+        {{-- <div style="margin-top: -30px;">
           <img class="img-fluid dp ms-3" width="60px" src="{{ asset('/kaz/images/dp.png') }}" alt="">
           <div class="vetted">
-            <img width="20px" height="20px" src="{{ asset('') }}{{ asset('/kaz/images/badge.png') }}" alt="">
+            <img  width="20px" height="20px" src="{{ asset('/kaz/images/badge.png') }}" alt="">
           </div>
         </div>
         <div class="ms-4  augustine1">
           <div style="display: flex; align-items: start;">
             <h5 class="modal-mire">Mired Augustine </h5>
-            <img class=" ms-2 " src="{{ asset('/kaz/images/badge.png') }}" alt="">
+            <img class="ms-2" src="{{ asset('/kaz/images/badge.png') }}" alt="">
           </div>
           <h6 class="modal-augustine" style="margin-top: -10px;">miredaugustine@gmail.com</h6>
           <h6 class="vetted-seller pt-2 fw-bold">vetted seller badge</h6>
@@ -63,11 +63,11 @@
         <div class="augustine2">
           <div style="display: flex; align-items: start;">
             <h5 class="modal-mire">Mired Augustine </h5>
-            <img class="ms-2 " src="{{ asset('/kaz/images/vetted.svg') }}" alt="">
+             <img class="ms-2" src="{{ asset('/kaz/images/badge.png') }}" alt=""> 
           </div>
           <h6 class="modal-augustine" style="margin-top: -10px;">miredaugustine@gmail.com</h6>
           <h6 class="vetted-seller pt-2 fw-bold">vetted seller badge</h6>
-        </div>
+        </div> --}}
 
 
       </div>
@@ -96,30 +96,7 @@
         </form>
 
       </div>  
-      {{-- <div class="mt-4 container second ">
-        <!-- <h6 class="fw-bold">Monthly</h6> -->
-        <form id="form2" action="">
-          <div class="month2" onclick="selectPlan2('month2')">
-            <h6 class="fw-bold">Monthly</h6>
-            <div class="layout">
-              <p class="badge-text">Your badge cost #2500 per month to stay
-                active on your profile </p>
-              <input class="form-check-input me-5  radio-btn" type="radio" name="badge"
-                id="flexRadioDefault3" value="monthly">
-            </div>
-          </div>
-          <div class="year2" onclick="selectPlan2('year2')">
-            <h6 class="fw-bold">Yearly</h6>
-            <div class="layout">
-              <p class="badge-text"> Your badge cost #20,000 and save 33%
-                per year to stay active on your profile </p>
-              <input class="form-check-input  me-5" type="radio" name="badge" id="flexRadioDefault4" value="yearly">
-            </div>
-          </div>
-
-        </form>
-
-      </div> --}}
+     
       <div class="container">
         <h6 class="mt-4 ms-2 fw-bold">Remember the benefits</h6>
         <ol class="modal-benefits ">
@@ -134,9 +111,13 @@
       </div>
 
     </div>
-    <a href="">
-      <button type="button" class="btn btn-warning next-btn btn-lg">Next</button>
-    </a>
+    <div class="container">
+      <a href="">
+        <button type="button" class="btn btn-warning next-btn btn-lg mt-5">Next</button>
+      </a>
+
+    </div>
+   
 
 
   </div>

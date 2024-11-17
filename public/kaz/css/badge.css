@@ -31,6 +31,17 @@ body {
 }
 
 .next-btn {
+  width: 100%;
+  /* position: fixed;
+  bottom: 15px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: auto;
+  padding-left: 45%;
+  padding-right: 45%; */
+}
+
+/* .next-btn {
   position: fixed;
   bottom: 15px;
   left: 50%;
@@ -38,24 +49,14 @@ body {
   width: auto;
   padding-left: 45%;
   padding-right: 45%;
-}
-
-.next-btn {
-  position: fixed;
-  bottom: 15px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: auto;
-  padding-left: 45%;
-  padding-right: 45%;
-}
-
+} */
+/* 
 @media screen and (max-width:517px) {
   .next-btn {
     padding-left: 42%;
     padding-right: 42%;
   }
-}
+} */
 
 @media screen and (min-width:970px) {
   /* .next-btn{
@@ -69,9 +70,17 @@ body {
   padding-top: 120px;
 }
 
+.badge-img {
+  height: 60px;
+  width: 60px;
+  border-radius: 100%;
+}
+
+
 .vetted {
+  position: relative;
   background-color: whitesmoke;
-  position: absolute;
+  /* position: absolute; */
   border-radius: 50%;
   margin-top: -20px;
   margin-left: 55px;

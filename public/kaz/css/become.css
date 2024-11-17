@@ -37,14 +37,15 @@ body {
 }
 
 .become-next-btn {
-  position: fixed;
+  /* position: fixed; */
+  width: 100%;
   /* bottom: 15px; */
-  bottom:  -30px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: auto;
-  padding-left: 45%;
-  padding-right: 45%;
+  /* bottom:  -30px; */
+  /* left: 50%; */
+  /* transform: translateX(-50%);  */
+  /* width: auto; */
+  /* padding-left: 45%;
+  padding-right: 45%; */
   z-index: 100;
 }
 

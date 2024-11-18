@@ -16,7 +16,7 @@
     <link href="https://fonts.cdnfonts.com/css/product-sans" rel="stylesheet"> 
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
     <style>
-
+ 
     </style>
 
 </head>
@@ -117,6 +117,7 @@
                 <div class="text2">Gadgets</div>
                 <div class="checked-icon">✅️</div>
             </div>
+           
 
             <div class="image" onclick="selectCategory(this, 2)">
                 <img src="{{asset('innocent/assets/image/category 2.png')}}">
@@ -215,7 +216,7 @@
                 <div class="vertical-bar"></div>
                 <input type="text" placeholder="promo(optional)" class="promo_price" name="promo_price">
             </div>
-            <input type="text" placeholder="how many in stock," class="photo_inputs" name="quantity">
+            <input type="number" placeholder="how many in stock," class="photo_inputs" name="quantity">
             <div class="product_condition">
                 <p>
               Product condition
@@ -257,12 +258,14 @@
             <p class="maximum_character">500 characters max</p>
             <textarea  placeholder="product descriptoin" name="description" class="product_descriptoin_input js-desc"></textarea><span class="error"></span>
             {{-- <button type="submit" class="upload_your_product animate " data-bs-toggle="modal" data-bs-target="#exampleModal"> --}}
-            <button type="submit" class="upload_your_product animate ">
+            <button type="submit" class="upload_your_product animate start-selling-btn">
 
-                <p class="upload_your_product_p">
-                <img src="innocent/assets/image/logo icon.svg" alt="">
+                <p class="upload_your_product_p js-upload-text">
+                <img src="{{ asset('innocent/assets/image/logo icon.svg')}}" alt="">
                 Upload your Product
-              </p>
+                </p>
+                <div id="btn-loader" class="loader"></div>
+
             </button>
             <p class="upload_terms animate ">By selecting the *Upload Your Product* option you acknowledge
               and agree to the Terms of Use, commit to following the Safety
@@ -355,7 +358,7 @@
       <div class="modal-content upload_sucess">
         <p class="upload_sucess_modal_p">
             <i class="fa-solid fa-angle-left" data-bs-dismiss="modal" aria-label="Close"></i>
-            <img src="{{asset('innocent/assets/image/transparent_logo.svg')}}" alt="" class="upload_logo" width="120px">
+            <img src="{{asset('innocent/assets/image/transparent_logo.png')}}" alt="" class="upload_logo" width="120px">
         </p>
         <p class="upload_sucess_modal_p2">
             <i class="fa-solid fa-check"></i>
@@ -421,6 +424,7 @@
  
 
 </script>
+
 
 
 </body>

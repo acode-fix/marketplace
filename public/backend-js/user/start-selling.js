@@ -50,7 +50,18 @@ document.getElementById('fileInput').addEventListener('change', function() {
 document.getElementById('productForm').addEventListener('submit', function(event) {
    event.preventDefault();
 
+  const loader =  document.getElementById('btn-loader');
+  const startBtn = document.querySelector('.start-selling-btn');
+  const uploadText = document.querySelector('.js-upload-text');
+
+  startBtn.disabled = true;
+  uploadText.style.display = 'none';
+  loader.style.display = 'block';
+
    if(descValidation()) {
+    uploadText.style.display = 'block';
+    loader.style.display = 'none';
+    startBtn.disabled = false;
 
        return;
    }
@@ -99,9 +110,14 @@ document.getElementById('productForm').addEventListener('submit', function(event
            'Authorization': `Bearer ${token}`
        }
    })
-   .then(function(response) {  
+   .then(function(response) { 
+    
+    uploadText.style.display = 'block';
+    loader.style.display = 'none';
+    startBtn.disabled = false;
 
        if (response.data.status) {
+
            const modal = new bootstrap.Modal(document.getElementById('exampleModal'));
            modal.show();
 
@@ -112,7 +128,10 @@ document.getElementById('productForm').addEventListener('submit', function(event
        } 
    })
    .catch(function(error) {
-      // console.log(error.response)
+
+      uploadText.style.display = 'block';
+      loader.style.display = 'none';
+      startBtn.disabled = false;
       
        if(error.response) {
 

@@ -632,7 +632,7 @@
                     <div style="display: flex; align-items: center;justify-content: space-between;">
                         <div style="display: flex;align-items: center;">
                             <form id="profile-image-form2" action="">
-                                <img id="{{ asset('/kaz/images-dp2') }}" class="js-images-dp mobile-image" src="" alt="">
+                                <img id="images-dp2" class="js-images-dp mobile-image" src="" alt="">
                                 <div class="camera-mobile">
                                     <img  class="icon-cam-mobile js-profile"
                                         src="{{ asset('/kaz/images/camera-shop.svg') }}" alt="">

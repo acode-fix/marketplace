@@ -69,8 +69,8 @@ function updateUserProfile(user) {
    if (user) {
 
             if (nameElement && emailElement && profileImageElement){
-            nameElement.textContent = user.username ?? 'No Username';
-            emailElement.textContent = user.email ?? 'No email provided';
+            nameElement.textContent = user.username ?? 'N/A';
+            emailElement.textContent = user.email ?? 'N/A';
             
             user.photo_url 
             ? profileImageElement.src = `/uploads/users/${user.photo_url}` 
@@ -112,12 +112,12 @@ function updateUserProfile(user) {
                     });
 
                     bannerName.forEach((name) => {
-                        name.textContent = user.username ?? 'No Username Provided';
+                        name.textContent = user.username ?? 'N/A';
 
                     })
 
                     bannerEmail.forEach((email) => {
-                        email.textContent = user.email ?? 'No Email Provided';
+                        email.textContent = user.email ?? 'N/A';
 
                     });
 

@@ -302,8 +302,8 @@ class UsersController extends Controller
    public function uploadBanner(Request $request) {
 
     $validator = Validator::make($request->all(), [
-        'banner' => 'image|mimes:jpg,jpeg,png,gif,svg|max:2048',
-        'photo_url' => 'image|mimes:jpg,jpeg,png,gif,svg|max:2048',
+        'banner' => 'image|mimes:jpg,jpeg,png,gif,svg|max:1024',
+        'photo_url' => 'image|mimes:jpg,jpeg,png,gif,svg|max:1024',
     ]);
 
     if($validator->fails()) {
@@ -311,7 +311,7 @@ class UsersController extends Controller
             'status' => false,
             'message' => 'validation error',
             'errors' => $validator->errors(),
-        ]);
+        ],422);
     }
 
     if ($request->hasFile('banner')) {

@@ -1034,6 +1034,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
 document.querySelectorAll('.js-banner-upload').forEach((banner) => {
 
+    
+
     banner.addEventListener('click', () => {
         // Create an input element of type 'file'
         var input = document.createElement('input');
@@ -1061,6 +1063,8 @@ document.querySelectorAll('.js-banner-upload').forEach((banner) => {
             reader.onload = function (e) {
                 // Set the src attribute of the product image to the uploaded image
                 document.getElementById('banner').src = e.target.result;
+                document.getElementById('banner2').src = e.target.result;
+
 
 
                 const formData = new FormData();
@@ -1078,23 +1082,53 @@ document.querySelectorAll('.js-banner-upload').forEach((banner) => {
                         },
                     })
                     .then((response) => {
-                        // console.log(response)
+                         //console.log(response)
 
-                        Swal.fire({
-                            icon: 'success',
-                            confirmButtonColor: '#ffb705',
-                            title: 'Banner Upload',
-                            text: response.data.message
-                        });
+                        if(response.status === 200 && response.data) {
 
-                    }).catch((response) => {
+                            Swal.fire({
+                                icon: 'success',
+                                confirmButtonColor: '#ffb705',
+                                title: 'Banner Upload',
+                                text: response.data.message,
+                                
+                               
+                            });
 
-                        Swal.fire({
-                            icon: 'error',
-                            confirmButtonColor: '#ffb705',
-                            title: 'Banner Upload',
-                            text: response.data.message
-                        });
+                        }
+
+                       
+
+                    }).catch((error) => {
+
+                        
+
+                      if(error.response) {
+
+                        if(error.response.status === 422 && error.response.data) {
+
+                            Swal.fire({
+                                icon: 'error',
+                                confirmButtonColor: '#ffb705',
+                                title: 'Banner Upload',
+                                text: error.response.data.message
+                            });
+
+
+                        }
+
+                        if(error.response.status === 500) {
+
+                            serverError();
+                        }
+                      }
+
+                        // Swal.fire({
+                        //     icon: 'error',
+                        //     confirmButtonColor: '#ffb705',
+                        //     title: 'Banner Upload',
+                        //     text: error.response.message
+                        // });
 
 
 
@@ -1111,7 +1145,9 @@ document.querySelectorAll('.js-banner-upload').forEach((banner) => {
         };
 
 
-    })
+    });
+
+   
 
 
 });
@@ -1145,6 +1181,7 @@ document.querySelectorAll('.js-profile').forEach((profile) => {
             reader.onload = function (e) {
                 // Set the src attribute of the product image to the uploaded image
                 document.getElementById('images-dp').src = e.target.result;
+                document.getElementById('images-dp2').src = e.target.result;
 
 
 
@@ -1160,20 +1197,40 @@ document.querySelectorAll('.js-profile').forEach((profile) => {
                         // 'Authorization': `Bearer ${token}`,
                     },
                 }).then((response) => {
-                    Swal.fire({
-                        icon: 'success',
-                        confirmButtonColor: '#ffb705',
-                        title: 'Banner Upload',
-                        text: response.data.message
-                    });
-                }).catch(() => {
+                    if(response.status === 200 && response.data) {
 
-                    Swal.fire({
-                        icon: 'error',
-                        confirmButtonColor: '#ffb705',
-                        title: 'Profile Upload',
-                        text: response.data.message
-                    })
+                        Swal.fire({
+                            icon: 'success',
+                            confirmButtonColor: '#ffb705',
+                            title: 'profile Image Upload',
+                            text: response.data.message,
+                           
+                        });
+
+                    }
+                    
+                }).catch((error) => {
+
+                    if(error.response) {
+
+                  
+                    if(error.response.status === 422 && error.response.data) {
+
+                        Swal.fire({
+                            icon: 'error',
+                            confirmButtonColor: '#ffb705',
+                            title: 'Profile Image Upload',
+                            text: error.response.message
+                        })
+
+
+                    }
+
+                    if(error.response.status === 500) {
+                        serverError();
+                    }
+                    
+                  }
 
                 })
 

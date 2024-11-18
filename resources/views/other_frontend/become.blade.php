@@ -95,14 +95,15 @@
         benefit sellers by improving thier visibility,
         credibility,and ultimately thier sales performance on the marketplace.
       </h6>
-      
-    </div>
-    
-    <div class="container">
+
+
       <a href="{{ url('/bio') }}">
         <button type="button" class="btn btn-warning become-next-btn   btn-lg">Next</button>
       </a> 
+      
     </div>
+    
+    
 
   </div>
   

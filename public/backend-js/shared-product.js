@@ -1,4 +1,4 @@
-import { getToken, getProdDesImage, getProdProfileDescImg, loadDashboard,logoutUser, getSingleImage, getBadge, getPrice, loadConnect, sendProductRequest, displayHelpCenter, promptLogin, getIndexPrice} from "./helper/helper.js";
+import { getToken, getProdDesImage, getProdProfileDescImg, loadDashboard,logoutUser, getSingleImage, getBadge, getPrice, loadConnect, sendProductRequest, displayHelpCenter, promptLogin, getIndexPrice, formatProductCondition} from "./helper/helper.js";
 
   const currentUrl = new URL(window.location.href);
   const id = currentUrl.searchParams.get('id');
@@ -158,7 +158,7 @@ const logoLink = document.querySelector('.js-logo-link');
           </p>
           
           <p class="condition2">
-              ${product.condition ?? ''}
+              ${formatProductCondition(product)}
           </p>
     </div>`;
 
@@ -266,7 +266,7 @@ const logoLink = document.querySelector('.js-logo-link');
             </p>
             
             <p class="condition">
-                ${product.condition ?? 'N/A'}
+                ${formatProductCondition(product)}
             </p>
      </div>`;
 
@@ -492,7 +492,7 @@ const logoLink = document.querySelector('.js-logo-link');
     let  displayProduct = `
        <a href="" class="product_card_link js-id" data-product-id="${id}">
               <div class="card product_card">
-                  <h6 class="sold"> Sold ${sold} <br> <img  style="margin-bottom: 4px" src="/innocent/assets/image/Rate.png" alt=""> ${avg_rating}</h6>
+                  <h6 class="sold">${formatProductCondition(product)} <br> <img  style="margin-bottom: 4px" src="/innocent/assets/image/Rate.png" alt=""> ${avg_rating}</h6>
                   <img src="/uploads/products/${getSingleImage(image_url)}" class="card-img-top w-100 product_image" alt="...">
               
                   <div class="product_card_title">
@@ -623,12 +623,12 @@ function loadMobileProduct(products) {
   const  display = `
   <a href="#" class="product_card_link">
          <div class="card product_card">
-             <h6 class="sold"> Sold ${product.sold ?? 0} <br> <img src="/innocent/assets/image/Rate.png" alt="">${product.avg_rating}</h6>
+             <h6 class="sold">${formatProductCondition(product)} <br> <img src="/innocent/assets/image/Rate.png" alt="">${product.avg_rating}</h6>
              <img src="/uploads/products/${getSingleImage(image_url)}" class="card-img-top w-100 product_image" alt="...">
          
              <div class="product_card_title">
                  <div class="main_and_promo_price_area">
-                     ${getPrice(product)}
+                    ${ getIndexPrice(product) }
                  </div>
                  <p class="product_name">${title}</p>
                  <span class="product_card_location"><i class="fa-solid fa-location-dot"></i>  ${location ?? 'N/A'}</span>

@@ -33,12 +33,12 @@ if(token) {
           audio: false,
           video: {
               width: {
-                  min: 249,
-                  max: 249
+                  min: 250,
+                  max: 250
               },
               height: {
-                  min: 242,
-                  max: 242
+                  min: 260,
+                  max: 260
               }
           }
       };

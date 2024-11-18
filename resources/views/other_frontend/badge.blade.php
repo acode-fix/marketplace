@@ -35,7 +35,7 @@
 
   <div class="header">
     <div>
-      <a href="{{ url('/id') }}"> <img class="arrow ms-2" src="{{ asset('/kaz/images/Arrow.png') }}" alt=""></a>
+      <a href="{{ url('/selfie') }}"> <img class="arrow ms-2" src="{{ asset('/kaz/images/Arrow.png') }}" alt=""></a>
 
     </div>
     <div>

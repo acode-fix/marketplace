@@ -97,15 +97,12 @@
       </h6>
  
     </div>
+  </div>
 
-    <div class="container-fluid">
-      <a href="{{ url('/bio') }}">
-        <button type="button" class="btn btn-warning become-next-btn   btn-lg">Next</button>
-      </a> 
-    </div>
-    
-    
-
+  <div class="container-fluid">
+    <a href="{{ url('/bio') }}">
+      <button type="button" class="btn btn-warning become-next-btn   btn-lg">Next</button>
+    </a> 
   </div>
   
 

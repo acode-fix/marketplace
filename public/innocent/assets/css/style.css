@@ -283,7 +283,8 @@ a:hover {
         width: 40%;
         padding: 5px 10px;
         font-size: 12px;
-        margin-left: 20px;
+        /* margin-left: 20px; */
+        margin-left: 40px;
     }
 }
 
@@ -294,7 +295,8 @@ a:hover {
         width: 48%;
         padding: 5px 10px;
         font-size: 12px;
-        margin-left: 5px;
+        /* margin-left: 5px; */
+        margin-left: 30px;
     }
 }
 

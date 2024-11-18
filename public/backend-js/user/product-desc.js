@@ -1,4 +1,4 @@
-   import {loadDashboard, getProdProfileDescImg, getBadge, loadConnect, getToken, logoutUser, displayHelpCenter, sendProductRequest,getIndexPrice, formatPrice} from "../helper/helper.js";
+   import {loadDashboard, getProdProfileDescImg, getBadge, loadConnect, getToken, logoutUser, displayHelpCenter, sendProductRequest,getIndexPrice, formatPrice, formatProductCondition} from "../helper/helper.js";
 
 
    const token = getToken();
@@ -173,7 +173,8 @@
        document.querySelector('.rate_value').textContent = product.avg_rating;
        document.querySelector('.sold3').textContent = 'sold ' + (product.sold || 0);
        document.querySelector('.stock2').textContent = product.quantity + ' in stock';
-       document.querySelector('.condition2').textContent = product.condition;
+       //document.querySelector('.condition2').textContent = product.condition;
+       document.querySelector('.condition2').textContent = formatProductCondition(product);
        document.querySelector('.description').textContent = product.description;
        document.querySelector('.product_name_on_sidebar').textContent = product.title;
 
@@ -226,7 +227,7 @@
                  </p>
      
                  <p class="condition">
-                     ${product.condition ?? 'No Data Provided'}
+                     ${formatProductCondition(product)}
                  </p>
               </div>`;
 

@@ -698,3 +698,21 @@ export  function sendProductRequest(input, token) {
 
  }
 
+ export function formatProductCondition(product) {
+
+  if(product.condition === 'new') {
+
+      return  product.condition;
+
+  }else if(product.condition === 'fairly_used') {
+
+      const originalString = product.condition;
+
+   return  originalString.replace('fairly_', '');
+
+  }else {
+      return 'N/A';
+  }
+
+}
+

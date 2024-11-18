@@ -214,7 +214,7 @@ class VerificationController extends Controller
             'name' => 'required|string',
             'address' => 'required|string',
             'gender' => 'required|in:male,female',
-            'phone_number' => 'required|string',
+            'phone_number' =>['required', 'regex:/^(080|091|090|070|081)[0-9]{8}$/'],
             
 
         ]);

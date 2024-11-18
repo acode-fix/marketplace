@@ -10,7 +10,7 @@ if(token) {
       'Authorization': `Bearer ${token}`
     }
   }).then((response) => {
-    console.log(response)
+    //console.log(response)
   if(response.status === 200 && response.data) {
 
     const data = response.data
@@ -20,7 +20,7 @@ if(token) {
   }
     
   }).catch((error) => {
-    console.log(error);
+   // console.log(error);
 
   });
 

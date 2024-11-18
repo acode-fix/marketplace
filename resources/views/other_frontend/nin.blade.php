@@ -57,7 +57,7 @@
         </form>
       </div>
     </div>
-    <form action="">
+    {{-- <form action="">
       <div class="first-struct">
         <div class="cam-struct">
           <label id="use-camera" class="label">Use Camera</label>
@@ -70,7 +70,7 @@
           class=" btn btn-success btn-lg  ">Retake</button>
         <button style="display: none;" id="save-button" type="button" class=" btn btn-success btn-lg ">Save</button>
       </div>
-    </form>
+    </form> --}}
 
 
     <div class="tc">

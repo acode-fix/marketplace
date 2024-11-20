@@ -14,7 +14,6 @@ body {
 
 .active-btn {
   background-color: #14ae5c;
-  ;
   color: #f4f6f6;
 }
 
@@ -1045,6 +1044,64 @@ border-top-left-radius:14px;
   cursor: pointer;
   color: #Fe3d3d;
   transform: translateY(-8px);
+  
+}
+
+     
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 32px;
+  height: 13px;
+  margin-left: auto;
+  margin-top: 5px;
+}
+
+.switch input { 
+  display: none;
+}
+
+.slider {
+width: 31px;
+  position: absolute;
+  cursor: pointer;
+  top: -1px;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  transition: .4s;
+  border-radius: 20px;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 18px;
+  width: 18px;
+  top: -2px;
+  left: 0;
+  bottom: 0px;
+  background-color: white;
+  transition: .4s;
+  border-radius: 50%;
+  box-shadow: -3px 2px 3px rgba(0, 0, 0, 0.4);
+
+}
+
+input:checked + .slider {
+  background-color: rgb(46, 46, 40);
+}
+
+input:checked + .slider:before {
+  transform: translateX(15px);
+  background-color: #ffce29;
+}
+
+
+.ask-div {
+  display: flex;
+  justify-content: space between;
   
 }
 

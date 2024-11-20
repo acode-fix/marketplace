@@ -417,8 +417,55 @@
                                         <input type="text" class="form-control" id="title" name = "title">
                                       </div>
                                       <div class="mb-3">
-                                        <label for="Location" class="col-form-label">Location:</label>
-                                        <input type="text" class="form-control" id="location"  name = "location">
+                                        <label for="location" class="col-form-label">Location:</label>
+                                        <select id="location" name="location" class="form-select" aria-label="Default select example">
+                                            <option selected=""></option>
+                                            <option value="Abakaliki">Abakaliki</option>
+                                            <option value="Aba">Aba</option>
+                                            <option value="Abeokuta">Abeokuta</option>
+                                            <option value="Abuja">Abuja</option>
+                                            <option value="Ado Ekiti">Ado Ekiti</option>
+                                            <option value="Akure">Akure</option>
+                                            <option value="Asaba">Asaba</option>
+                                            <option value="Awka">Awka</option>
+                                            <option value="Bauchi">Bauchi</option>
+                                            <option value="Benin City">Benin City</option>
+                                            <option value="Birnin Kebbi">Birnin Kebbi</option>
+                                            <option value="Calabar">Calabar</option>
+                                            <option value="Damaturu">Damaturu</option>
+                                            <option value="Delta">Delta</option>
+                                            <option value="Dutse">Dutse</option>
+                                            <option value="Edo">Edo</option>
+                                            <option value="Ekiti">Ekiti</option>
+                                            <option value="Enugu">Enugu</option>
+                                            <option value="Gombe">Gombe</option>
+                                            <option value="Gusau">Gusau</option>
+                                            <option value="Ibadan">Ibadan</option>
+                                            <option value="Ikeja">Ikeja</option>
+                                            <option value="Ilorin">Ilorin</option>
+                                            <option value="Imo">Imo</option>
+                                            <option value="Jalingo">Jalingo</option>
+                                            <option value="Jos">Jos</option>
+                                            <option value="Kaduna">Kaduna</option>
+                                            <option value="Kano">Kano</option>
+                                            <option value="Katsina">Katsina</option>
+                                            <option value="Lafia">Lafia</option>
+                                            <option value="Lagos">Lagos</option>
+                                            <option value="Lokoja">Lokoja</option>
+                                            <option value="Maiduguri">Maiduguri</option>
+                                            <option value="Makurdi">Makurdi</option>
+                                            <option value="Minna">Minna</option>
+                                            <option value="Ogun">Ogun</option>
+                                            <option value="Owerri">Owerri</option>
+                                            <option value="Owere">Owere</option>
+                                            <option value="Port Harcourt">Port Harcourt</option>
+                                            <option value="Sokoto">Sokoto</option>
+                                            <option value="Umuahia">Umuahia</option>
+                                            <option value="Uyo">Uyo</option>
+                                            <option value="Yenagoa">Yenagoa</option>
+                                            <option value="Yola">Yola</option>
+                                            <option value="Zaria">Zaria</option>
+                                        </select>
                                       </div>
                                       <div class="mb-3">
                                         <label for="quantity" class="col-form-label">Quantity:</label>
@@ -451,11 +498,11 @@
                                             <option value="9">Others</option>       
                                         </select>
                                     </div>
-                                    <div class="mb-3">
+                                    <div class="mb-3 actual-price">
                                         <label for="actual_price" class="col-form-label">Actual Price:</label>
                                         <input type="number" class="form-control" id="actual_price"  name = "actual_price">
                                     </div>
-                                    <div class="mb-3">
+                                    <div class="mb-3 promo-price">
                                         <label for="promo_price" class="col-form-label">Promo Price<span class="text-danger">(optional)</span>:</label>
                                         <input type="number" class="form-control" id="promo_price"  name = "promo_price">
                                     </div>
@@ -466,6 +513,14 @@
                                         <option value="fairly_used">Fairly Used</option>
                                         <option value="new">New</option>   
                                     </select>
+                                    <div  class="mt-3 ask-div">
+                                        <p>Ask for price
+                                        </p>
+                                        <label class="switch">
+                                            <input name="ask_for_price" type="checkbox"  id="priceSwitch">
+                                            <span class="slider"></span>
+                                        </label>
+                                    </div>
                                   </div>  
                                 </form>
                                 <div class="mb-3">
@@ -594,6 +649,7 @@
         </div>
 
     </div>
+    
     <!-- mobile-view  -->
     <div class="mobile-view">
         <div class="container-fluid">
@@ -891,8 +947,8 @@
                                     <button style="width: 100%;" type="button"
                                         class="btn btn-warning modal-edit1 btn-lg pt-3 pb-3 mt-2 "
                                         id="deleteButton">Delete</button> <!-- Added an id to the Delete button -->
-                                    <button style="width: 100%;" type="button"
-                                        class="btn btn-warning modal-edit-boost btn-lg pt-3 pb-3 mt-3">Boost</button>
+                                    <a href="{{ url('/ads') }}"><button style="width: 100%;" type="button"
+                                        class="btn btn-warning modal-edit-boost btn-lg pt-3 pb-3 mt-3">Boost</button></a>
                                 </div>
                                 <div id="page4" class="page1" style="display: none;">
                                     <div class="modal-struct">
@@ -960,8 +1016,55 @@
                                       <input type="text" class="form-control title" name ="title">
                                     </div>
                                     <div class="mb-3">
-                                      <label for="Location" class="col-form-label">Location:</label>
-                                      <input type="text" class="form-control location"  name = "location">
+                                      <label for="location" class="col-form-label">Location:</label>
+                                      <select  name="location" class="form-select location" aria-label="Default select example">
+                                          <option selected=""></option>
+                                          <option value="Abakaliki">Abakaliki</option>
+                                          <option value="Aba">Aba</option>
+                                          <option value="Abeokuta">Abeokuta</option>
+                                          <option value="Abuja">Abuja</option>
+                                          <option value="Ado Ekiti">Ado Ekiti</option>
+                                          <option value="Akure">Akure</option>
+                                          <option value="Asaba">Asaba</option>
+                                          <option value="Awka">Awka</option>
+                                          <option value="Bauchi">Bauchi</option>
+                                          <option value="Benin City">Benin City</option>
+                                          <option value="Birnin Kebbi">Birnin Kebbi</option>
+                                          <option value="Calabar">Calabar</option>
+                                          <option value="Damaturu">Damaturu</option>
+                                          <option value="Delta">Delta</option>
+                                          <option value="Dutse">Dutse</option>
+                                          <option value="Edo">Edo</option>
+                                          <option value="Ekiti">Ekiti</option>
+                                          <option value="Enugu">Enugu</option>
+                                          <option value="Gombe">Gombe</option>
+                                          <option value="Gusau">Gusau</option>
+                                          <option value="Ibadan">Ibadan</option>
+                                          <option value="Ikeja">Ikeja</option>
+                                          <option value="Ilorin">Ilorin</option>
+                                          <option value="Imo">Imo</option>
+                                          <option value="Jalingo">Jalingo</option>
+                                          <option value="Jos">Jos</option>
+                                          <option value="Kaduna">Kaduna</option>
+                                          <option value="Kano">Kano</option>
+                                          <option value="Katsina">Katsina</option>
+                                          <option value="Lafia">Lafia</option>
+                                          <option value="Lagos">Lagos</option>
+                                          <option value="Lokoja">Lokoja</option>
+                                          <option value="Maiduguri">Maiduguri</option>
+                                          <option value="Makurdi">Makurdi</option>
+                                          <option value="Minna">Minna</option>
+                                          <option value="Ogun">Ogun</option>
+                                          <option value="Owerri">Owerri</option>
+                                          <option value="Owere">Owere</option>
+                                          <option value="Port Harcourt">Port Harcourt</option>
+                                          <option value="Sokoto">Sokoto</option>
+                                          <option value="Umuahia">Umuahia</option>
+                                          <option value="Uyo">Uyo</option>
+                                          <option value="Yenagoa">Yenagoa</option>
+                                          <option value="Yola">Yola</option>
+                                          <option value="Zaria">Zaria</option>
+                                      </select>
                                     </div>
                                     <div class="mb-3">
                                       <label for="quantity" class="col-form-label">Quantity:</label>
@@ -973,18 +1076,33 @@
                                     <textarea class="form-control description"  name = "description"></textarea>
                                   </div>
                               </form>
-                              <button style="float: right" type="button" class="btn btn-primary next-to-step-2">Next</button>
+                              <button style="float: right" type="button" class="btn btn-warning next-to-step-2">Next</button>
                             </div>
                     
                             <!-- Step 2 -->
                             <div class="modal-step-2" style="display: none;">
                               <form id="edit-product-form-mobile2"  enctype="multipart/form-data">
-                                  <div class="mb-3">
-                                      <label for="actual_price" class="col-form-label">Actual Price:</label>
+                                <div class="mb-3">
+                                    <label for="category" class="col-form-label">Category:</label>
+                                    <select  name="category" class="form-select category" aria-label="Default select example">
+                                        <option selected="">Categories</option>
+                                        <option value="1">Smart Gadgets</option>
+                                        <option value="2">Vehicles</option> 
+                                        <option value="3">Landed Property</option>
+                                        <option value="4">Fashion</option>
+                                        <option value="5">Jobs</option>
+                                        <option value="6">Beauty/Cosmetics</option>
+                                        <option value="7">Fruits</option>
+                                        <option value="8">Utensils</option>
+                                        <option value="9">Others</option>       
+                                    </select>
+                                </div>
+                                  <div class="mb-3 mobile-actual-price">
+                                      <label for="actual_price" class="col-form-label ">Actual Price:</label>
                                       <input type="number" class="form-control actual_price"  name = "actual_price">
                                   </div>
-                                  <div class="mb-3">
-                                      <label for="promo_price" class="col-form-label">Promo Price:</label>
+                                  <div class="mb-3 mobile-promo-price">
+                                      <label for="promo_price" class="col-form-label ">Promo Price<span class="text-danger">(optional)</span>:</label>
                                       <input type="number" class="form-control promo_price"  name = "promo_price">
                                   </div>
                                   <div class="mb-3">
@@ -994,13 +1112,22 @@
                                       <option value="new">New</option>   
                                   </select>
                                 </div>
+                                <div  class="mt-3 ask-div">
+                                    <p>Ask for price
+                                    </p>
+                                    <label class="switch">
+                                        <input name="ask_for_price" type="checkbox"  id="mobile-priceSwitch">
+                                        <span class="slider"></span>
+                                    </label>
+                                </div>
                               </form>
                               <div class="mb-3">
                                 <label for="formFile" class="form-label">Upload</label>
+                                <p class="text-danger">you can upload multiple images</p>
                                 <input id="inputMobile" class="form-control" type="file"   multiple name="image_url[]">
                               </div>
                               <button type="button" class="btn btn-secondary previous-to-step-1" >Previous</button>
-                              <button type="submit" class="btn btn-primary" id="save-product-mobile">Update</button>
+                              <button type="submit" class="btn btn-warning" id="save-product-mobile">Update</button>
                             </div>
                           </div>
                         </div>

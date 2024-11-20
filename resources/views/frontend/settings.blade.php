@@ -313,8 +313,7 @@
       <div class="container">
         
         <form action="" id="settingForm" class="row" enctype="multipart/form-data">
-          @csrf
-
+        
           <div class="col-8 upload-div">
             <img style="height:80px; width:80px;" id="previewImgDesktop" class="img-fluid js-previewImgDesktop" src="" alt="">
             <h6 class="ms-4">Upload your profile picture <br>

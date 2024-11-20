@@ -497,15 +497,16 @@ public function update(Request $request, $id) {
 
     $validator = Validator::make($request->all(),[
         'title' => 'required|string',
-        'description' => 'required | string',
+        'description' => 'required |string',
         'quantity'  => 'required|numeric',
         'location' => 'required',
         'condition' => ['required','in:fairly_used,new'],
-        'actual_price' => 'required|numeric',
-        //'promo_price' => 'required|numeric',
-        'image_url' => 'required|array',
+        'actual_price' => 'required_if:ask_for_price,false',
+        'promo_price' => 'sometimes|required_if:ask_for_price,false',
+        //'image_url' => 'required|array',
         'category'  => 'required|exists:categories,id',
-        //'image_url.*' => 'required|image|mimes:jpg,jpeg,png,gif|max:2048',
+        'ask_for_price'=> 'sometimes|required|accepted',
+        'image_url.*' => 'required|image|mimes:jpg,jpeg,png,gif|max:1024',
 
     ]);
 
@@ -553,8 +554,9 @@ public function update(Request $request, $id) {
   $product->description = $request->input('description');
   $product->quantity = $request->input('quantity');
   $product->location = $request->input('location');
-  $product->actual_price = $request->input('actual_price');
-  $product->promo_price = $request->input('promo_price');
+  $product->actual_price = $request->input('actual_price') ?? null;
+  $product->promo_price =  $request->input('promo_price') ?? null;
+  $product->ask_for_price = $request->input('ask_for_price') ? 1 : 0;
   $product->condition = $request->input('condition');
   $product->image_url = json_encode($imageNames);
   $product->category_id = $request->input('category');

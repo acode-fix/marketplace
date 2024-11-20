@@ -245,10 +245,10 @@ class UsersController extends Controller
 
             $validateUser = Validator::make($request->all(), [
 
-                'username' => 'required|max:255|unique:users,username,',
-                'phone_number' => ['required', 'regex:/^(080|091|090|070|081)[0-9]{8}$/'],
-                'bio' => 'required',
-                'photo_url' => 'required|image|mimes:jpg,jpeg,png,gif,svg|max:1024',
+                'username' => 'nullable|max:255|unique:users,username,'.$request->user()->id,
+                'phone_number' => ['nullable', 'regex:/^(080|091|090|070|081)[0-9]{8}$/'],
+                'bio' => 'nullable|string',
+                'photo_url' => 'nullable|image|mimes:jpg,jpeg,png,gif,svg|max:1024',
                 
               
             ]);
@@ -264,29 +264,52 @@ class UsersController extends Controller
         
             $id =  $request->user()->id;
 
-            debugbar::info($id);
+            
             $user = User::find($id); 
+            debugbar::info($user);
 
-            $user->username=$request->input('username');
-            $user->phone_number=$request->input('phone_number');
-            $user->bio=$request->input('bio');
+            if($request->has('username') && trim($request->input('username')) !== '') {
+
+                $user->username = $request->input('username');
+            }
+
+            if($request->has('phone_number') && trim($request->input('phone_number')) !== '') {
+
+                $user->phone_number=$request->input('phone_number');
+
+            }
+
+            if($request->has('bio') && trim($request->input('bio')) !== '') {
+
+                $user->bio=$request->input('bio');
+
+            }
+
+            
+            
+            
           
 
         $imageName = null;
-    if (request()->hasFile('photo_url')) {
+     if (request()->hasFile('photo_url')) {
         $file = request()->file('photo_url');
         $imageName = md5($file->getClientOriginalName() . time()) . "." . $file->getClientOriginalExtension();
         $file->move('./uploads/users/', $imageName);
 
-    }
-             $user->photo_url=$imageName;
-            $user->save();  // Update the data
+        $user->photo_url=$imageName;
+         
+      }
 
-            return response()->json([
-                'status' => true,
-                'message' => 'User Updated Succesfully',
-                'review' => $user,
-            ], 200);
+      $user->save();
+
+
+      return response()->json([
+        'status' => true,
+        'message' => 'User Updated Succesfully',
+        'review' => $user,
+    ], 200);
+
+            
         }
 
             catch (\Throwable $th) {
@@ -295,6 +318,12 @@ class UsersController extends Controller
                 'message' => $th->getMessage()
             ], 500);
     }
+
+
+
+
+
+
 }
     
 

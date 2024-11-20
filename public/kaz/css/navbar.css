@@ -236,6 +236,7 @@ input[type="search"] {
   }
 
 
+
 }
 
 /* style the hamburger menu*/
@@ -306,6 +307,8 @@ input[type="search"] {
   display: block;
 }
 
+
+
 /* hides the hamburgger menu,arrrow img and the second layout*/
 @media screen and (min-width:970px) {
   .menu-toggle {
@@ -320,6 +323,7 @@ input[type="search"] {
     display: none;
   }
 
+  
 }
 
 /* style the arrow image*/

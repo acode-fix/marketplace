@@ -11,6 +11,7 @@
   <link rel="stylesheet" href="{{ asset('innocent/assets/css/preloader.css')}}">
   <style>
 
+
   </style>
 </head>
 
@@ -29,7 +30,7 @@
   <div class="header">
     <div>
     
-      <a href="{{ url('/') }}"><img style="width:150px" src="{{ asset('/kaz/images/transparent_logo.svg') }}"  class="img-fluid" alt=""></a>
+      <a href="{{ url('/') }}"><img style="width:150px" src="{{ asset('/kaz/images/transparent_logo.png') }}"  class="img-fluid ms-3" alt=""></a>
       
     </div>
     <div>
@@ -51,7 +52,8 @@
       </div>
         
       @endif
-      @if(session('message'))
+
+      @if(session('message')) 
       <div class="container">
         <img src="{{ asset('/kaz/images/success.svg') }}" alt="">
         <div class="alert alert-success mt-5">
@@ -60,10 +62,10 @@
       </div>
      
       <h6 style="margin-top: 40px;" class="fw-bold ">Successful!</h6>
-      <p class="fw-light approval-text mt-4 fs-4">Your Payment has been Successful<br>
+      <p class="fw-light approval-text mt-4">Your Payment has been Successful<br>
         Awaiting  Admin Approval normally <br>
         may take up to 1hrs during business days <br>and up to 3hrs during off business days </p>
-      @endif
+       @endif 
     </div>
     
 

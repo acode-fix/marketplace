@@ -312,7 +312,7 @@ document.addEventListener("DOMContentLoaded", function () {
                       <div class="dropdown-content js-dropdown-content${product.id}">
                           <a class="share js-share" data-bs-toggle="modal" data-bs-target="#exampleModal-1" data-bs-whatever="@mdo">share</a>
                           <a class="share js-edit" data-bs-toggle="modal" data-bs-target="#exampleModal-edit" data-bs-whatever="@mdo" >Edit</a>
-                          <a href="#about">Boost</a>
+                          <a href="/ads">Boost</a>
                           <a class="share js-delete" data-bs-toggle="modal" data-bs-target="#exampleModal-2" data-bs-whatever="@mdo">Delete</a>
                       </div>
                   </div>
@@ -492,7 +492,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     }).then((response) => {
 
                         const productData = response.data.data;
-                        // console.log(response)
+                    // console.log(response)
                         document.getElementById('title').value = productData.title;
                         document.getElementById('location').value = productData.location;
                         document.getElementById('quantity').value = productData.quantity;
@@ -501,6 +501,46 @@ document.addEventListener("DOMContentLoaded", function () {
                         document.getElementById('promo_price').value = productData.promo_price;
                         document.getElementById('condition').value = productData.condition;
                         document.getElementById('category').value = productData.category_id;
+                        const askPrice = document.getElementById('priceSwitch');
+
+                      if(productData.ask_for_price) {
+                        askPrice.checked = true;
+                        document.querySelector('.actual-price').style.display = 'none';
+                        document.querySelector('.promo-price').style.display = 'none';
+
+
+                      }else {
+
+                        askPrice.checked = false;
+                        document.querySelector('.actual-price').style.display = 'block';
+                        document.querySelector('.promo-price').style.display = 'block';
+
+
+                      }
+
+
+                      askPrice.addEventListener('click', () => {
+
+                        if(askPrice.checked) {
+
+                            document.querySelector('.actual-price').style.display = 'none';
+                            document.querySelector('.promo-price').style.display = 'none';
+                        }else {
+
+                            document.querySelector('.actual-price').style.display = 'block';
+                            document.querySelector('.promo-price').style.display = 'block';
+    
+
+
+                        }
+
+                      })
+
+                  
+                      
+
+
+
                     }).catch((error) => {
 
                         if (error.response) {
@@ -598,7 +638,7 @@ document.addEventListener("DOMContentLoaded", function () {
      
                         }
      
-                        this.value = '';
+                       // this.value = '';
      
                      }
                 })
@@ -641,7 +681,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
                 // }
 
-               // console.log([...formData]);
+             //return console.log([...formData]);
             
                
                 const id = productId ? productId : mobileProductId;
@@ -674,6 +714,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
                 }).catch((error) => {
+
+                    console.log(error);
 
                     if (error.response) {
 
@@ -902,7 +944,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
             //console.log(mobileProductId);
             //hide the mobile-view modal btn
-            var modal = new bootstrap.Modal(document.getElementById('exampleModal2'));
+            var modal = new bootstrap.Modal(document.getElementById('exampleModal2'))
             document.querySelector('.js-modal-edit').addEventListener('click', () => {
                 modal.hide();
                // console.log(mobileProductId);
@@ -924,7 +966,49 @@ document.addEventListener("DOMContentLoaded", function () {
                         document.querySelector('.description').value = productData.description;
                         document.querySelector('.actual_price').value = productData.actual_price;
                         document.querySelector('.promo_price').value = productData.promo_price;
+                        document.querySelector('.category').value = productData.category_id;
                         document.getElementById('condition-mobile').value = productData.condition;
+
+                        const askPrice = document.getElementById('mobile-priceSwitch');
+
+                        if(productData.ask_for_price) {
+                          askPrice.checked = true;
+                          document.querySelector('.mobile-actual-price').style.display = 'none';
+                          document.querySelector('.mobile-promo-price').style.display = 'none';
+  
+  
+                        }else {
+  
+                          askPrice.checked = false;
+                          document.querySelector('.mobile-actual-price').style.display = 'block';
+                          document.querySelector('.mobile-promo-price').style.display = 'block';
+  
+  
+                        }
+  
+  
+                        askPrice.addEventListener('click', () => {
+  
+                          if(askPrice.checked) {
+  
+                              document.querySelector('.mobile-actual-price').style.display = 'none';
+                              document.querySelector('.mobile-promo-price').style.display = 'none';
+                          }else {
+  
+                              document.querySelector('.mobile-actual-price').style.display = 'block';
+                              document.querySelector('.mobile-promo-price').style.display = 'block';
+      
+  
+  
+                          }
+  
+                        })
+  
+
+
+
+
+                        
                     }
                 }).catch((error) => {
 

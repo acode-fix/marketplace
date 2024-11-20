@@ -53,14 +53,17 @@ document.getElementById('productForm').addEventListener('submit', function(event
   const loader =  document.getElementById('btn-loader');
   const startBtn = document.querySelector('.start-selling-btn');
   const uploadText = document.querySelector('.js-upload-text');
+  const loadingText = document.getElementById('loading-text');
 
   startBtn.disabled = true;
   uploadText.style.display = 'none';
   loader.style.display = 'block';
+  loadingText.style.display = 'block';
 
    if(descValidation()) {
     uploadText.style.display = 'block';
     loader.style.display = 'none';
+    loadingText.style.display = 'none';
     startBtn.disabled = false;
 
        return;
@@ -115,6 +118,7 @@ document.getElementById('productForm').addEventListener('submit', function(event
     uploadText.style.display = 'block';
     loader.style.display = 'none';
     startBtn.disabled = false;
+    loadingText.style.display = 'none';
 
        if (response.data.status) {
 
@@ -131,6 +135,7 @@ document.getElementById('productForm').addEventListener('submit', function(event
 
       uploadText.style.display = 'block';
       loader.style.display = 'none';
+      loadingText.style.display = 'none';
       startBtn.disabled = false;
       
        if(error.response) {

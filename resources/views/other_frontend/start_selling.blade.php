@@ -262,10 +262,13 @@
 
                 <p class="upload_your_product_p js-upload-text">
                 <img src="{{ asset('innocent/assets/image/logo icon.svg')}}" alt="">
-                Upload your Product
+                 Upload your Product
                 </p>
-                <div id="btn-loader" class="loader"></div>
-
+                <div  style="display: flex; align-items:center;">
+                    <div id="btn-loader" class="loader"></div>
+                    <p id="loading-text" class="text-white ms-1 mt-1">loading...</p>
+                </div>
+               
             </button>
             <p class="upload_terms animate ">By selecting the *Upload Your Product* option you acknowledge
               and agree to the Terms of Use, commit to following the Safety

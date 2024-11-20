@@ -82,7 +82,7 @@ if(!token) {
                 <p><a href="">Account Setting </a></p>
                 <p><a href=""> Reffer a Friend </a></p>
                 <p> <a href="">Privacy and Policy </a></p>
-                <p><a href="#" id="logoutLink">Log out</a></p>
+                <p><a href="#" id="logoutLink">Log In</a></p>
             </div>`;
 
 

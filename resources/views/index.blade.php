@@ -30,8 +30,6 @@
 </head>
 <style>
 
-
-
 </style>
 
 <body>
@@ -47,7 +45,7 @@
         </div>
    </div>
 
-
+  
 
     <div id="scrollToTop"><i class="fa-solid fa-arrow-up"></i></div>
     <div id="index">
@@ -154,6 +152,7 @@
 
         </div>
 
+
         <!-- Sidebar and Main Body Section -->
         <div class="sidebar-container">
             <div class="sidebar">
@@ -218,6 +217,8 @@
 
             <!-- Main Body Section -->
             <div class="main">
+
+                
 
 
 
@@ -389,6 +390,7 @@
                 </a>
                 {{-- <h5 class="top_sales  animate animate-right">Top Sales</h5> --}}
                 <h5 class="top_sales  animate animate-right">Top Sales</h5>
+
 
                 <!-- Product Cards -->
                 <div class="product_card_container top_sales_margin">
@@ -687,7 +689,15 @@
                             </div>
                         </div>
                         <p>Already have an account? <a href="#" onclick="login()" class="signup_links">Login</a></p>
-                        <button class="signup_continue_button continueBtn" onclick="signup()">continue</button>
+                        <button type="submit" class="signup_continue_button continueBtn" onclick="signup()">
+                              <span class="signup-text">continue</span>
+                             <div class="loader-div" aria-hidden="true">
+                                <div class="loader-text"></div>
+                                 <span class="ms-1 text-dark">loading...</span>
+                             </div>
+                     
+                    
+                     </button>
                         <p>By signing up you accept <span><a  class="signup_links" href="">Our Terms and Policy</a></span></p>
 
                     </div>
@@ -724,7 +734,14 @@
                                 <img src="{{asset('innocent/assets/image/gmail.png')}}" alt="">
                             </div>
                         </div>
-                        <button class="signup_continue_button continueBtn" onclick="loginUser()">continue</button>
+                        <button type="submit" class="signup_continue_button continueBtn login-btn" onclick="loginUser()">
+                            <span class="login-text">continue</span>
+                             <div class="login-loader-div" aria-hidden="true">
+                                <div class="login-loader-text"></div>
+                                 <span class="ms-1 text-dark">loading...</span>
+                             </div>
+                        
+                        </button> 
                         <p style="margin-top: 20px;">Don't have an account? <span><a href="#" onclick="showSignUpModal()"
                                     class="signup_links">Sign up</a></span></p>
 
@@ -751,8 +768,13 @@
                             </div>
                         </div>
                           
-                        <button  class="signup_continue_button" onclick="sendResetOtp()">Request Reset Password
-                            link</button> 
+                        <button  class="signup_continue_button request-btn" onclick="sendResetOtp()">
+                            <span class="request-text">Request Reset Password link</span>
+                            <div class="request-loader-div" aria-hidden="true">
+                               <div class="request-loader-text"></div>
+                                <span class="ms-1 text-dark">loading...</span>
+                            </div>
+                        </button> 
                         <p class="already_have_an_account">Already have an account? <span><a href="#" onclick="login2()"
                                     class="signup_links">Login</a></span></p>
 
@@ -804,7 +826,13 @@
                                 id="confirmPassword" placeholder="Confirm New Password">
                         </div>
                         <button
-                            class="signup_continue_button change_password_button continueBtn continueBtn_error" onclick="resetPassword()">Continue</button>
+                            class="signup_continue_button change_password_button continueBtn continueBtn_error change-btn" onclick="resetPassword()">
+                            <span class="change-text">Reset Password</span>
+                            <div class="change-loader-div" aria-hidden="true">
+                                <div class="change-loader-text"></div>
+                                <span class="ms-1 text-dark">loading...</span>
+                            </div>
+                         </button> 
                         <p>Already have an account? <span><a href="#" onclick="login3()" class="signup_links">Login</a></span></p>
 
                     </div>
@@ -834,7 +862,14 @@
     </div>
 </div>
 <div class="modal-footer">
-    <button type="button" class="signup_continue_button" onclick="verifyOtp()">Verify OTP</button>
+    <button type="button" class="signup_continue_button verify-btn" onclick="verifyOtp()">
+        <span class="verify-text">Verify OTP</span>
+        <div class="verify-loader-div" aria-hidden="true">
+            <div class="verify-loader-text"></div>
+            <span class="ms-1 text-dark">loading...</span>
+        </div>
+    
+    </button>
 </div>
 </div>
 </div>

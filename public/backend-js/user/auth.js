@@ -2,10 +2,36 @@
 
  const myModal = new bootstrap.Modal(document.querySelector('#signup_login-modal'));
  const otpModal = new bootstrap.Modal(document.querySelector('#verifyOtpModal'));
+
+ 
+
+ function showLoader(continueBtn, signupText, loader) {
+
+  continueBtn.disabled = true;
+  loader.style.display = 'flex';
+  signupText.style.display = 'none';
+  continueBtn.setAttribute('arial-busy', 'true')
+
+ }
+
+ function hideLoader(continueBtn, signupText, loader) {
+
+    continueBtn.disabled = false;
+    loader.style.display = 'none';
+    signupText.style.display = 'block';
+    continueBtn.removeAttribute('arial-busy');
+
+ }
  
  function signup() {
   const email = document.getElementById("signup_email").value;
   const password = document.getElementById("signup_password").value;
+
+ const continueBtn = document.querySelector('.continueBtn');
+ const signupText = document.querySelector('.signup-text');
+ const loader = document.querySelector('.loader-div');
+    
+  showLoader(continueBtn, signupText, loader);
 
   axios.post('/api/auth/register', {
       email: email,
@@ -13,6 +39,8 @@
       password_confirmation: password
   })
   .then(function (response) {
+
+    hideLoader();
      //    console.log(response)
       const responseData = response.data;
 
@@ -34,24 +62,6 @@
              const url =   sessionStorage.getItem('sharedPage');
              
              url ?  window.location.reload() : window.location.href = '/';
-
-        //   Swal.fire({
-        //       icon: 'success',
-        //       title: 'Registration Successful',
-        //       text: responseData.message,
-        //       confirmButtonColor: '#ffb705',
-        //       willClose: () => {
-
-        //      myModal.hide();
-            
-        //      const url =   sessionStorage.getItem('sharedPage');
-             
-        //      url ?  window.location.reload() : window.location.href = '/';
-
-             
-
-        //       }
-        //   });
       } else  
           
       {
@@ -65,6 +75,9 @@
   })
 
   .catch(function (error) {
+
+    hideLoader(continueBtn, signupText,  loader);
+
      if (error.response) {
       if(error.response.status ===  401 && error.response.data) {
           const responseErrors = error.response.data.errors;
@@ -109,11 +122,19 @@
   const email = document.getElementById("login_email").value;
   const password = document.getElementById("login_password").value;
 
+const continueBtn = document.querySelector('.login-btn');
+const signupText = document.querySelector('.login-text');
+const loader = document.querySelector('.login-loader-div');
+
+  showLoader(continueBtn, signupText, loader);
+
   axios.post('/api/auth/login', {
       email: email,
       password: password
   }) 
   .then(function (response) {
+
+    hideLoader(continueBtn, signupText, loader);
       const responseData = response.data;
       if (responseData.status) {
           // Store the token in localStorage
@@ -157,6 +178,8 @@
       
   })
   .catch(function (error) {
+
+    hideLoader(continueBtn, signupText, loader);
   
       if (error.response) {
 
@@ -192,8 +215,14 @@
     
   const email = document.getElementById("reset_email").value;
 
-  if(email.trim() === '') {
+  const continueBtn = document.querySelector('.request-btn');
+  const signupText = document.querySelector('.request-text');
+  const loader = document.querySelector('.request-loader-div');
 
+ showLoader(continueBtn, signupText, loader);
+
+  if(email.trim() === '') {
+    hideLoader(continueBtn, signupText, loader);
     return document.querySelector('.reset-error').textContent = 'Email is required';
 
   }
@@ -202,6 +231,7 @@
       email: email,
   })
   .then(function (response) {
+    hideLoader(continueBtn, signupText, loader);
       
       Swal.fire({
           icon: 'success',
@@ -216,6 +246,8 @@
       });
   })
   .catch(function (error) {
+
+    hideLoader(continueBtn, signupText, loader);
 
    // console.log(error);
 
@@ -256,11 +288,20 @@
   const email = document.getElementById("reset_email").value;
   const otp = document.getElementById("otp").value;
 
+  const continueBtn = document.querySelector('.verify-btn');
+  const signupText = document.querySelector('.verify-text');
+  const loader = document.querySelector('.verify-loader-div');
+
+ showLoader(continueBtn, signupText, loader);
+
   axios.post('/api/verify-otp', {
       email: email,
       otp: otp
   })
   .then(function (response) {
+
+    hideLoader(continueBtn, signupText, loader);
+
       // Handle success response
    //   console.log(response.data);
       // Display a success message to the user
@@ -278,6 +319,7 @@
       });
   })
   .catch(function (error) {
+    hideLoader(continueBtn, signupText, loader);
       // Handle error response
   //    console.log(error.response.data);
       // Display an error message to the user
@@ -297,7 +339,15 @@
   const newPassword = document.getElementById("newPassword").value;
   const confirmPassword = document.getElementById("confirmPassword").value;
 
+  const continueBtn = document.querySelector('.change-btn');
+  const signupText = document.querySelector('.change-text');
+  const loader = document.querySelector('.change-loader-div');
+
+ showLoader(continueBtn, signupText, loader);
+
   if (newPassword !== confirmPassword) {
+
+    hideLoader(continueBtn, signupText, loader);
       Swal.fire({
           icon: 'error',
           title: 'Password Mismatch',
@@ -314,6 +364,7 @@
       password_confirmation: confirmPassword
   })
   .then(function (response) {
+    hideLoader(continueBtn, signupText, loader);
    
       // Display a success message to the user
       Swal.fire({
@@ -329,6 +380,8 @@
       });
   })
   .catch(function (error) {
+
+    hideLoader(continueBtn, signupText, loader);
       // Handle error response
        msgError = error.response.data.message;
       // Display an error message to the user

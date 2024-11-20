@@ -506,7 +506,7 @@ public function update(Request $request, $id) {
         //'image_url' => 'required|array',
         'category'  => 'required|exists:categories,id',
         'ask_for_price'=> 'sometimes|required|accepted',
-        'image_url.*' => 'required|image|mimes:jpg,jpeg,png,gif|max:1024',
+        'image_url.*' => 'sometimes|image|mimes:jpg,jpeg,png,gif|max:1024',
 
     ]);
 
@@ -519,7 +519,7 @@ public function update(Request $request, $id) {
 
 
     }
-    
+      $imageNames = [];
 
     if($request->has('image_url')) {
 
@@ -527,9 +527,7 @@ public function update(Request $request, $id) {
         debugbar::info($files);
         if (!is_array($files)) {
             $files = [$files];
-        }
-
-        $imageNames = [];
+        }       
        
         foreach ($files as $file) {
 
@@ -558,8 +556,12 @@ public function update(Request $request, $id) {
   $product->promo_price =  $request->input('promo_price') ?? null;
   $product->ask_for_price = $request->input('ask_for_price') ? 1 : 0;
   $product->condition = $request->input('condition');
-  $product->image_url = json_encode($imageNames);
   $product->category_id = $request->input('category');
+
+  if(count($imageNames) !== 0) {
+    $product->image_url = json_encode($imageNames);
+
+  }
 
   $product->save();
 

@@ -56,11 +56,10 @@ body {
 
 
 @media screen and (min-width:970px) {
-  /* .next-btn{
-    width: auto;
-  padding-left: 20%;
-  padding-right: 20%
-} */
+  .become-next-btn {
+    width: 20%;
+    float: right;
+  }
 }
 
 button a {

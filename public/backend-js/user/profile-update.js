@@ -160,6 +160,32 @@ function updateUserProfile(user) {
                      });
 
                  }
+                       
+             const modalImg =  user.photo_url
+                               ? `<img class="img-fluid dp ms-3" style="width:60px; height:60px; border-radius:50px" src="/uploads/users/${user.photo_url}" alt=""></img>`
+                               : `<img class="img-fluid dp ms-3"  src="${generateAvatar(user.email)}" alt="">`;
+                               
+                 const modalContent = `
+                        <div style="margin-top: -30px;">
+                            ${modalImg}
+                            <div class="vetted">
+                              <img src="/kaz/images/badge.png" alt="">
+                            </div>
+                          </div>
+                          <div class="ms-4 mt-3">
+                            <h5 class="modal-mire">${user.username ?? 'N/A'}</h5>
+                            <h6 class="modal-augustine" style="margin-top: -10px;">${user.email ?? 'N/A'}</h6>
+                            <h6 class="vetted-seller pt-2 fw-bold">vetted seller badge</h6>
+                          </div>
+                          <img class="img-vetted" src="/kaz/images/badge.png" alt="">`;
+
+
+            const verifyModalElement =  document.querySelector('.js-verify-modal');
+
+            if(verifyModalElement) {
+
+                verifyModalElement.innerHTML = modalContent;
+            }
 
 
                  
@@ -214,6 +240,33 @@ function updateUserProfile(user) {
      //User Log Out Link in Layout.main Navbar;
 
      const mobileLogOut = document.querySelector('.js-mobile-view-logout');
+
+     const sidebarLogOut = document.querySelector('.sidebar-log-out');
+
+     if(sidebarLogOut) {
+
+        sidebarLogOut.addEventListener('click', (event) => {
+            
+            event.preventDefault();
+        
+            Swal.fire({
+                title: "Are you sure?",
+                text: "You won't be able to revert this!",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: '#ffb705',
+                cancelButtonColor: "#d33",
+                confirmButtonText: "Yes,I am sure!"
+                }).then((result) => {
+                if (result.isConfirmed) {
+                  logoutUser();
+                  
+                }
+            });
+        });
+
+
+     }
 
      //User Log out link in layout.others navbar
      const otherMobileLogOut = document.querySelector('.js-other-mobile-logout')

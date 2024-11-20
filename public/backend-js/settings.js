@@ -177,7 +177,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
 axios.get('/api/v1/user/badge').then((response) => {
-  //  console.log(response);
+   console.log(response);
 
     const expiryData = response.data.badge.expiry_date;
     const expiryDate = dayjs(expiryData).format('D MMM, YYYY');
@@ -189,6 +189,26 @@ axios.get('/api/v1/user/badge').then((response) => {
         const hoverTexts = document.querySelectorAll('.hover-text');
         const verifyUrl = document.querySelector('.js-verify-url');
         const revalidate = document.querySelector('.revalidate-link');
+
+        if(response.data.message === 'Pending Approval') {
+
+            verifyTexts.forEach((text) => {
+                if(text) {
+                    text.textContent = 'Pending';
+
+                }   
+                if(badge) {
+                    badge.dataset.bsToggle = '';
+
+                }
+  
+            });
+            
+            if(verifyUrl) {
+                verifyUrl.href = '';
+            }
+
+        }
     
 
         if(response.data.message === 'Active Badge') {

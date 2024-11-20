@@ -83,11 +83,21 @@
           <span class="png-text fw-light">Png, jpeg, pdf</span></label>
       </form>
     </div>
-
-    <a href="">
-      <button type="button" class="btn btn-warning next-btn btn-lg">Next</button>
-    </a>
   </div>
+
+  <div class="container">
+    <div class="row mx-auto">
+      <div class="col text-center">
+        <a class="" href="">
+          <button type="button" class="btn btn-warning next-btn btn-lg">Next</button>
+        </a>
+  
+      </div>
+    </div>
+
+  </div>
+ 
+ 
 
    <script type="module" src="{{ asset('backend-js/user/nin.js') }}"></script>
    <script src="{{ asset('innocent/assets/js/preloader.js') }}"></script> 

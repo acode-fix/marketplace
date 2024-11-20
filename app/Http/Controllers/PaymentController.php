@@ -241,6 +241,17 @@ class PaymentController extends Controller
 
                     $userId = $payment->user_id;
 
+                    //change status to pending;
+
+                    $user = User::where('id', $userId)->where('verify_status', 0)->first();
+
+                    if($user) {
+                        
+                        $user->verify_status = -2;
+                        $user->save();
+
+                    }
+
                     $user = User::where('id',$userId)->where('verify_status', 1)->first();
 
                     if($user) {

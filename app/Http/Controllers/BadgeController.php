@@ -29,11 +29,21 @@ class BadgeController extends Controller
         ]);
       }
 
-      if(!$status->expiry_date) {
+      if(!$status->expiry_date && $status->verify_status === 0) {
 
         return response()->json([
             'status' => true,
             'message' => 'Not Yet Verify',
+            'badge' => $status,
+
+        ]);
+      }
+
+      if($status->verify_status === -2) {
+
+        return response()->json([
+            'status' => true,
+            'message' => 'Pending Approval',
             'badge' => $status,
 
         ]);

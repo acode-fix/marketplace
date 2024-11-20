@@ -48,15 +48,14 @@ padding-bottom: 70px;
   
 } */
 .next-btn {
-  width: 100%;
-  margin-top: 50px;
-  /* position: fixed;
-  bottom: 15px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: auto;
-  padding-left: 45%;
-  padding-right: 45%; */
+  width: 30%;
+  margin-top: 315px;  
+}
+
+@media screen and  (max-width:970px) {
+  .next-btn {
+    width: 100%;
+  }
 }
 
 button a {

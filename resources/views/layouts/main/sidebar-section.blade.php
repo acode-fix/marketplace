@@ -80,6 +80,14 @@
             </span>
         </div>
     </div>
+    <div class="sidebar-link  sidebar-log-out">  
+        <div class="links">
+            <span>
+                <a class="delete" href=""><img class="profile-logo svg-size1" src="{{ asset('kaz/images/delete.svg') }}"
+                        alt=""> <span class="profile-text text-danger">Log Out</span></a>
+            </span>
+        </div>
+    </div>
     <div class="sidebar-link">
         <div class="row mt-5 footer">
             <div style="text-align: center;" class="col">

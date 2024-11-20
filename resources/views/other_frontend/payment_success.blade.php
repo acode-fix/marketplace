@@ -53,7 +53,7 @@
         
       @endif
 
-      @if(session('message')) 
+       @if(session('message'))   
       <div class="container">
         <img src="{{ asset('/kaz/images/success.svg') }}" alt="">
         <div class="alert alert-success mt-5">
@@ -65,7 +65,11 @@
       <p class="fw-light approval-text mt-4">Your Payment has been Successful<br>
         Awaiting  Admin Approval normally <br>
         may take up to 1hrs during business days <br>and up to 3hrs during off business days </p>
-       @endif 
+
+        <div id="redirect-message">
+          You will be redirected back to shop  in 10 seconds......
+        </div>
+         @endif   
     </div>
     
 
@@ -73,6 +77,9 @@
 
   </div>
   <script src="{{ asset('innocent/assets/js/preloader.js') }}"></script> 
+  <script type="module" src="{{ asset('backend-js/payment-success.js') }}"></script>
+
+  
 </body>
 
 </html>

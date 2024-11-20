@@ -1655,10 +1655,17 @@ input:checked+.slider:before {
     }
 }
 
+.used-product {
+    background-color: #68cbd8;
+}
+.new-product {
+    background-color: #69e729;
+}
+
 
 .sold {
     position: absolute;
-    background-color: #ffce29;
+    /* background-color: #ffce29; */
     font-size: small;
     text-align: justify;
     padding: 6px;

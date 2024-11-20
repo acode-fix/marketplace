@@ -79,7 +79,7 @@ if(!token) {
             </div>
             <hr>
             <div class="accont_features">
-                <p><a href="">Account Setting </a></p>
+                <p><a href="">Dashboard</a></p>
                 <p><a href=""> Reffer a Friend </a></p>
                 <p> <a href="">Privacy and Policy </a></p>
                 <p><a href="#" id="logoutLink">Log In</a></p>
@@ -253,14 +253,13 @@ function createProductCard(product) {
     const{verify_status, badge_status,} = product?.user ?? product;
 
    const badge = verify_status === 1 && badge_status === 1 ? `<img class="logo-bag" src="kaz/images/badge.png" alt="">` : `<img src="innocent/assets/image/logo icon.svg" alt="">`;
+   const sold = document.querySelector('.sold');
 
-   //${getShopPrice(product)}
-
-
+   
     card.innerHTML = `
         <a href="/product_des" class="product_card_link js-auth-card" data-product='${JSON.stringify(product)}'>
             <div class="card product_card">
-                <h6 class="sold">${formatProductCondition(product)} <br> <img src="innocent/assets/image/Rate.png" alt=""> ${product.avg_rating || 0}</h6>
+                <h6 class="sold ${formatProductCondition(product) === 'new' ? 'new-product' : 'used-product'}">${formatProductCondition(product)} <br> <img src="innocent/assets/image/Rate.png" alt=""> ${product.avg_rating || 0}</h6> 
                 <img src="uploads/products/${product_img_url || 'default.jpg'}" class="card-img-top w-100 product_image" alt="${product.title}">
                 <div class="product_card_title">
                     <div class="main_and_promo_price_area">

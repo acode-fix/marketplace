@@ -15,7 +15,7 @@
     
 
 {{-- css style from Learn page --}}
-    <link rel="stylesheet" href="{{ asset('kaz/css/learn.css') }}">
+    {{-- <link rel="stylesheet" href="{{ asset('kaz/css/learn.css') }}"> --}}
 
     {{-- CSS STYLE FROM ADS --}}
   <link rel="stylesheet" href="{{ asset('kaz/css/ads2.css') }}">

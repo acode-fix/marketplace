@@ -29,7 +29,7 @@ if(token) {
 
     const img = data.photo_url 
                 ? `<img class="img-fluid dp ms-3 badge-img"  src="/uploads/users/${data.photo_url}" alt="">`
-                : `<img class="img-fluid dp ms-3"  src="${generateAvatar(data.email)}" alt="">`
+                : `<img class="img-fluid dp ms-3 badge-img"  src="${generateAvatar(data.email)}" alt="">`
 
 
     const display = ` <div style="margin-top: -30px;">

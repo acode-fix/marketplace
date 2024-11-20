@@ -49,7 +49,7 @@ login.addEventListener('click', () => {
         willClose: () => {
 
           clearInterval(timerInterval);
-          window.location.href = 'admin/dashboard';
+          window.location.href = '/admin/dashboard';
 
         }
       })

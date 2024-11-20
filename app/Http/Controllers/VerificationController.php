@@ -27,7 +27,7 @@ class VerificationController extends Controller
     {
        //$user = User::where('user_type', 2)->get();
 
-       $user = User::with('payment')->where('user_type', 2)->where('verify_status', 0)->get();
+       $user = User::with('payment')->where('user_type', 2)->where('verify_status', -2)->get();
 
        Debugbar::info($user);
 

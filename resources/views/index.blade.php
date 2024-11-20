@@ -8,7 +8,7 @@
     <link rel="icon" href="{{ asset('innocent/assets/image/brand-icon.png') }}" type="image/x-icon">
     <link rel="stylesheet" href="{{ asset('innocent/assets/css/bootstrap.css') }}">
     <link rel="stylesheet" href="{{ asset('innocent/assets/css/style.css') }}">
-    <link rel="stylesheet" href="{{ asset('innocent/assets/css/animation.css') }}">
+    <link rel="stylesheet" href="{{ asset('innocent/assets/css/animation.css')}}">
     <link rel="stylesheet" href="{{ asset('innocent/assets/css/modal.css') }}">
     <link rel="stylesheet" href="{{ asset('innocent/assets/css/notification.css')}}">
     <link rel="stylesheet" href="{{ asset('innocent/assets/css/location.css') }}">
@@ -26,7 +26,7 @@
 <script src="https://js.pusher.com/8.2.0/pusher.min.js"></script>
 
 
-
+    
 </head>
 <style>
 
@@ -105,7 +105,7 @@
               </div> --}}
             <hr>
             <div class="accont_features">
-                <p><a href="{{ url('/settings') }}">Account Setting </a></p>
+                <p><a href="{{ url('/shop') }}">Dashboard</a></p>
                 <p><a href="{{ url('/refer') }}"> Reffer a Friend </a></p>
                 <p> <a href="{{ url('/privacy') }}">Privacy and Policy </a></p>
                 {{-- <p><a href="#"> log out</a></p> --}}
@@ -124,22 +124,22 @@
                 <div class="carousel-inner">
 
                     <div class="carousel-item active">
-                        <img src="{{asset('innocent/assets/image/carousel 6.png')}}" class="d-block w-100 " alt="...">
+                        <img src="{{asset('innocent/assets/image/c1.png')}}" class="d-block w-100 " alt="...">
                     </div>
                     <div class="carousel-item">
-                        <img src="{{asset('innocent/assets/image/carousel 1.png')}}" class="d-block w-100 " alt="...">
+                        <img src="{{asset('innocent/assets/image/c3.png')}}" class="d-block w-100 " alt="...">
                     </div>
                     <div class="carousel-item">
-                        <img src="{{asset('innocent/assets/image/carousel 2.png')}}" class="d-block w-100 " alt="...">
+                        <img src="{{asset('innocent/assets/image/c4.png')}}" class="d-block w-100 " alt="...">
                     </div>
                     <div class="carousel-item">
-                        <img src="{{asset('innocent/assets/image/carousel 3.png')}}" class="d-block w-100" alt="...">
+                        <img src="{{asset('innocent/assets/image/c5.png')}}" class="d-block w-100" alt="...">
                     </div>
                     <div class="carousel-item">
-                        <img src="{{asset('innocent/assets/image/carousel 4.png')}}" class="d-block w-100" alt="...">
+                        <img src="{{asset('innocent/assets/image/c11.png')}}" class="d-block w-100" alt="...">
                     </div>
                     <div class="carousel-item">
-                        <img src="{{asset('innocent/assets/image/carousel 5.png')}}" class="d-block w-100" alt="...">
+                        <img src="{{asset('innocent/assets/image/c2.png')}}" class="d-block w-100" alt="...">
                     </div>
 
                 </div>

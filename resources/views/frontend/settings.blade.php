@@ -109,7 +109,7 @@
                       <div class="col-md-6">
                         <label for="inputEmail4" class="form-label fw-bold">Email</label>
                         <input name="email" oninput="hideIcon(this)" id="search-modal" type="text" class="form-control email"
-                          placeholder="Ceredesign@gmail.com">
+                          placeholder="Enter Your Email">
                           <span class="error" id="email_error"></span>
                       </div>
                       <div class="col-md-6">
@@ -223,8 +223,8 @@
                   <div class="container">
                     <div class="row">
                       <div class="col">
-                        <div class="vetted-div">
-                          <div style="margin-top: -30px;">
+                        <div class="vetted-div js-verify-modal">
+                          {{-- <div style="margin-top: -30px;">
                             <img class="img-fluid dp ms-3" width="60px" src="{{ asset('/kaz/images/dp.png') }}" alt="">
                             <div class="vetted">
                               <img src="{{ asset('/kaz/images/badge.png') }}" alt="">
@@ -235,7 +235,7 @@
                             <h6 class="modal-augustine" style="margin-top: -10px;">miredaugustine@gmail.com</h6>
                             <h6 class="vetted-seller pt-2 fw-bold">vetted seller badge</h6>
                           </div>
-                          <img class="img-vetted" src="{{ asset('/kaz/images/badge.png') }}" alt="">
+                          <img class="img-vetted" src="{{ asset('/kaz/images/badge.png') }}" alt=""> --}}
                         </div>
                         <div class="mt-4">
                           <!-- <h6>Monthly</h6> -->

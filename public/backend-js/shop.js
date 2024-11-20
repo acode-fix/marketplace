@@ -25,10 +25,9 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     axios.get('/api/v1/user/badge').then((response) => {
-      //  console.log(response);
+      console.log(response);
 
         const expiryData = response.data.badge.expiry_date;
-
 
         const expiryDate = dayjs(expiryData).format('D MMMM YYYY')
 
@@ -37,6 +36,19 @@ document.addEventListener("DOMContentLoaded", function () {
             const verifyElement = document.querySelector('.become-tag');
             const verifyElementMobile = document.querySelector('.become-tag-m');
             const textElements = document.querySelectorAll('.js-hover-text');
+
+            if(response.data.message === 'Pending Approval') {
+
+                verifyElement.textContent = 'Pending';
+                verifyElement.href = '';
+
+                verifyElementMobile.textContent = 'Pending';
+                verifyElementMobile.style.fontSize = '15px';
+                verifyElementMobile.href = '';
+
+
+
+            }
 
             if (response.data.message === 'Active Badge') {
 

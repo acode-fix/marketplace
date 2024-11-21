@@ -167,7 +167,7 @@
 
        // Display product details in the UI
 
-       console.log(product);
+       //console.log(product);
        document.querySelector('.user_state').textContent = product.location;
     //    document.querySelector('.user_name2').textContent = product.user.name;
     document.querySelector('.user_name2').textContent = product.username;
@@ -186,7 +186,7 @@
         // const {verify_status, badge_status, id, shop_token} = product.user
         const {verify_status, badge_status, user_id, shop_token, username} = product;
        const badgeElement = document.querySelector('.js-badge');
-       badgeElement.src = verify_status === 1 && badge_status === 1 ? 'innocent/assets/image/badge.png' : '';
+       badgeElement.src = verify_status == 1 && badge_status == 1 ? 'innocent/assets/image/badge.png' : '';
 
        const reviewEl = document.querySelector('.js-review');
        reviewEl.href = `/review/product?user=${user_id}&shop=${shop_token}`
@@ -201,7 +201,7 @@
        document.querySelector('.user_state_mobile').textContent = product.location;
        */       
 
-       const badge = verify_status === 1 && badge_status === 1 ? '<img src="innocent/assets/image/badge.png" alt="">' : '';
+       const badge = verify_status == 1 && badge_status == 1 ? '<img src="innocent/assets/image/badge.png" alt="">' : '';
 
        const mobileHeader = `
          <div><img id="js-profile-mobile" src="" alt=".profile picture " class="user_photo"></div>

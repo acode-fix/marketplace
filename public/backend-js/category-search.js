@@ -175,7 +175,7 @@ document.querySelector('.js-help-search').addEventListener('click', (event) => {
 
       //console.log(product);
 
-       const badge = product.user.verify_status === 1  ? `<img class="logo-bag" src="/kaz/images/badge.png" alt="">` : `<img src="/innocent/assets/image/logo icon.svg" alt="">`;
+       const badge = product.user.badge_status == 1 && product.user.verify_status == 1  ? `<img class="logo-bag" src="/kaz/images/badge.png" alt="">` : `<img src="/innocent/assets/image/logo icon.svg" alt="">`;
 
       card.innerHTML = `
           <a href="/product_des" class="product_card_link" data-product='${JSON.stringify(product)}'>

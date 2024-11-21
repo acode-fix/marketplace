@@ -79,7 +79,7 @@ const logoLink = document.querySelector('.js-logo-link');
       //console.log(singleProduct);
        const {verify_status, badge_status} = singleProduct.user;
 
-      if(verify_status === 1 && badge_status === 1) {
+      if(verify_status == 1 && badge_status == 1) {
          
         loadProducts(otherProducts);
         loadMobileProduct(otherProducts);
@@ -123,7 +123,7 @@ const logoLink = document.querySelector('.js-logo-link');
 
     const user = product.user;
 
-    const badge = user.verify_status === 1 ? `<img src="/innocent/assets/image/badge.png" alt="">` : '';
+    const badge = user.verify_status == 1 && user.badge_status == 1 ? `<img src="/innocent/assets/image/badge.png" alt="">` : '';
 
     const img = getProdDesImage(product);
 
@@ -165,7 +165,7 @@ const logoLink = document.querySelector('.js-logo-link');
 
     //LOAD CAROUSEL CONTENT;
 
-    const verifyStatus = user.verify_status === 1 ? ` <button  id="js-viewshop" class="product_card_veiw_shop_button" >
+    const verifyStatus = user.verify_status == 1 && user.badge_status == 1 ? ` <button  id="js-viewshop" class="product_card_veiw_shop_button" >
                   <a href="">view shop <img src="/innocent/assets/image/badge.png" alt="" ></a>  
                 </button> ` : '';
 

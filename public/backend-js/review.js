@@ -9,8 +9,8 @@ if(token) {
   const id = url.searchParams.get('user');
   const shopToken = url.searchParams.get('shop');
 
-  //console.log(id);
-  //console.log(shopToken);
+ // console.log(id);
+ // console.log(shopToken);
 
   axios.get('/api/v1/user/review', {
      params: {
@@ -20,7 +20,7 @@ if(token) {
 
   }).then((response) => {
 
-  //  console.log(response)
+   console.log(response)
 
     if(response.status === 200 && response.data) {
 
@@ -46,7 +46,7 @@ if(token) {
     }
 
   }).catch((error) => {
-  //  console.log(error);
+  console.log(error);
 
     if(error.response) {
       
@@ -58,7 +58,7 @@ if(token) {
   function authUser() {
 
     axios.get('/api/v1/getuser').then((response) => {
-    //  console.log(response)
+     console.log(response)
 
       const authUser = response.data;
 
@@ -74,14 +74,14 @@ if(token) {
 
   function  updateAuthUser(authUser) {
 
-    const{name, email, photo_url} = authUser;
+    const{username, email, photo_url} = authUser;
 
     
-   const userName = loadName(name,email);
+   const userName = loadName(username,email);
 
    document.querySelector('.js-name').innerHTML = userName;
 
-   const dropDown = getDropDownImg(photo_url,email, name);
+   const dropDown = getDropDownImg(photo_url,email, username);
 
     document.querySelector('.js-profile-dropdown').innerHTML = dropDown;
 
@@ -113,7 +113,7 @@ if(token) {
 
   function  updateReviewerMobileUser(reviewerData) {
 
-     const {name, email, photo_url, verify_status, badge_status, phone_number, id} = reviewerData;
+     const {username, email, photo_url, verify_status, badge_status, phone_number, id} = reviewerData;
 
     const img = photo_url 
                 ? `<img  class="review-mobile-img" src="/uploads/users/${photo_url}" class="me-5" alt="">` 
@@ -132,7 +132,7 @@ if(token) {
               ${img}
               ${checkBagdge}
               <div class="ms-2">
-                <h5 class="pt-3 mired-drill-m">${name ?? 'No Data Provided Yet'}</h5>
+                <h5 class="pt-3 mired-drill-m">${username ?? 'No Data Provided Yet'}</h5>
                 <h6 class="mired-email">${email ?? 'No Email Provided Yet'}</h6>
                 ${checkSeller}
                </div>`;

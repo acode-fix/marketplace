@@ -194,7 +194,7 @@ class ReviewersController extends Controller
  public function loadReviewPage(Request $request) {
 
   $validator = Validator::make($request->all(), [
-    'user_id' => 'required|',
+    'user_id' => 'required|exists:users,id',
     'shop_token' => 'required|exists:users,shop_token',
 
   ]);
@@ -216,7 +216,9 @@ class ReviewersController extends Controller
 
   $reviews =  Review::where('user_id', $userId)->get();
 
-  //debugbar::info($reviews);
+  debugbar::info($reviews);
+
+  
 
   if(!$reviews->isEmpty()) {
 
@@ -331,11 +333,16 @@ class ReviewersController extends Controller
 
     }    else  {
 
-        $user = Product::with('user')->where('id', $userId)->get();
+        $user = Product::with('user')->where('user_id', $userId)->get();
 
         debugbar::info($user);
 
+
+
         if($user->isEmpty()) {
+
+            debugbar::info($userId);
+    
         
             $user = User::find($userId);
             

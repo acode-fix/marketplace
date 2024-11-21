@@ -102,6 +102,7 @@
 
        // Display product details if selectedProduct is available
        if (selectedProduct) {
+          //       console.log(selectedProduct);
 
            displayProductDetails(selectedProduct);
          
@@ -166,10 +167,10 @@
 
        // Display product details in the UI
 
-       //console.log(product);
+       console.log(product);
        document.querySelector('.user_state').textContent = product.location;
     //    document.querySelector('.user_name2').textContent = product.user.name;
-    document.querySelector('.user_name2').textContent = product.name;
+    document.querySelector('.user_name2').textContent = product.username;
        document.querySelector('.rate_value').textContent = product.avg_rating;
        document.querySelector('.sold3').textContent = 'sold ' + (product.sold || 0);
        document.querySelector('.stock2').textContent = product.quantity + ' in stock';
@@ -183,12 +184,12 @@
         getProdProfileDescImg(product, carousel);
 
         // const {verify_status, badge_status, id, shop_token} = product.user
-        const {verify_status, badge_status, id, shop_token,} = product;
+        const {verify_status, badge_status, user_id, shop_token, username} = product;
        const badgeElement = document.querySelector('.js-badge');
        badgeElement.src = verify_status === 1 && badge_status === 1 ? 'innocent/assets/image/badge.png' : '';
 
        const reviewEl = document.querySelector('.js-review');
-       reviewEl.href = `/review/product?user=${id}&shop=${shop_token}`
+       reviewEl.href = `/review/product?user=${user_id}&shop=${shop_token}`
 
 
 
@@ -205,7 +206,7 @@
        const mobileHeader = `
          <div><img id="js-profile-mobile" src="" alt=".profile picture " class="user_photo"></div>
              <div class="user_name_area">
-                 <p class="user_name">${product.name ?? 'No Data Provided'}</p>
+                 <p class="user_name">${product.username ?? 'No Data Provided'}</p>
      
                  <p class="location">
                      ${badge}
@@ -214,7 +215,7 @@
                          <img src="innocent/assets/image/Rate.png" alt="">
                          <span class="rate_value">${product.avg_rating}</span>
                      </span>
-                     <span><a class="review-link ps-2 text-success" href="/review/product?user=${id}&shop=${shop_token}">Reviews</a></span>
+                     <span><a class="review-link ps-2 text-success" href="/review/product?user=${user_id}&shop=${shop_token}">Reviews</a></span>
                  </p>
              </div>
              <div class="products_details_head">

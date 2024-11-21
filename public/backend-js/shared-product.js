@@ -121,8 +121,6 @@ const logoLink = document.querySelector('.js-logo-link');
 
   function loadCarousel(product) {
 
-   // console.log(product);
-
     const user = product.user;
 
     const badge = user.verify_status === 1 ? `<img src="/innocent/assets/image/badge.png" alt="">` : '';
@@ -275,6 +273,8 @@ const logoLink = document.querySelector('.js-logo-link');
 
      const reviewLinks = document.querySelectorAll('.js-link');
 
+   
+
      reviewLinks.forEach((link) => {
       if(link) {
         link. addEventListener('click', (event) => {
@@ -285,6 +285,8 @@ const logoLink = document.querySelector('.js-logo-link');
             promptLogin();
             
           } else {
+
+            
 
             window.location.href = `/review/product?user=${user.id}&shop=${user.shop_token}`;
           }

@@ -11,6 +11,14 @@
     outline: none !important;      /* Ensures no outline on focus */
 }
 
+.used-product {
+    background-color: #68cbd8;
+}
+.new-product {
+    background-color: #69e729;
+}
+
+
 /* Navbar */
 .navbar-1 {
     display: flex;
@@ -1052,7 +1060,7 @@ grid-template-columns: 1fr 1fr ;
 
 .sold {
     position: absolute;
-    background-color: #ffce29;
+    /* background-color: #ffce29; */
     font-size: small;
     text-align: justify;
     padding: 6px;

@@ -14,7 +14,26 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
   
   <style>
+    
+  .loader {
+  border: 6px solid #f3f3f3; 
+  border-top: 6px solid #ffb705;; 
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  animation: spin 2s linear infinite;
+}
 
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.loader-layout {
+   display: none; 
+  align-items: center;
+  justify-content: center;
+}
 
   </style>
 
@@ -99,7 +118,14 @@
 
 
         <a href="{{ url('/nin') }}">
-          <button type="button" class="btn btn-warning next-btn btn-lg mt-5">Next</button>
+          <button type="button" class="btn btn-warning next-btn btn-lg mt-5 bio-btn">
+            <span class="bio-text">Next</span>
+              <div class="loader-layout">
+                  <div class=" loader"></div>
+                  <span class="ms-1">Loading...</span>
+            </div>
+          
+          </button>
         </a>
       </form>
     </div>

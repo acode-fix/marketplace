@@ -1,4 +1,4 @@
-import { getToken, getSingleImage, getBadge, getPrice, filter, getProdProfileDescImg, sendProductRequest, displayHelpCenter, getIndexPrice } from "./helper/helper.js";
+import { getToken, getSingleImage, getBadge, getPrice, filter, getProdProfileDescImg, sendProductRequest, displayHelpCenter, getIndexPrice, formatProductCondition } from "./helper/helper.js";
 import { serverError } from "./admin/auth-helper.js";
 
 const token = getToken();
@@ -172,7 +172,7 @@ if(token) {
       let contents = `
         <a href="/product_des" class="product_card_link">
             <div class="card product_card">
-                <h6 class="sold"> Sold ${product.sold} <br> <img style="margin-bottom:4px;" src="innocent/assets/image/Rate.png"
+                <h6 class="sold ${formatProductCondition(product) === 'new' ? 'new-product' : 'used-product'} "> ${formatProductCondition(product)} <br> <img style="margin-bottom:4px;" src="innocent/assets/image/Rate.png"
                         alt=""> ${product.avg_rating}</h6>
                 <img src="/uploads/products/${getSingleImage(product.image_url)}"
                     class="card-img-top w-100 product_image" alt="...">

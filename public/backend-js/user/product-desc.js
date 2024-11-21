@@ -349,7 +349,7 @@
        card.innerHTML = `
              <a href="/product_des" class="product_card_link" data-product='${JSON.stringify(product)}'>
                  <div class="card product_card">
-                     <h6 class="sold">${formatProductCondition(product)} <br> <img src="innocent/assets/image/Rate.png" alt=""> ${product.avg_rating || 0}</h6>
+                     <h6 class="sold ${formatProductCondition(product) === 'new' ? 'new-product' : 'used-product'} ">${formatProductCondition(product)} <br> <img src="innocent/assets/image/Rate.png" alt=""> ${product.avg_rating || 0}</h6>
                      <img src="uploads/products/${product_img_url || 'default.jpg'}"  class="card-img-top w-100 product_image" alt="${product.title}">
                      <div class="product_card_title">
                          <div class="main_and_promo_price_area">

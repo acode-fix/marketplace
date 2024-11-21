@@ -494,7 +494,7 @@ const logoLink = document.querySelector('.js-logo-link');
     let  displayProduct = `
        <a href="" class="product_card_link js-id" data-product-id="${id}">
               <div class="card product_card">
-                  <h6 class="sold">${formatProductCondition(product)} <br> <img  style="margin-bottom: 4px" src="/innocent/assets/image/Rate.png" alt=""> ${avg_rating}</h6>
+                  <h6 class="sold ${formatProductCondition(product) === 'new' ? 'new-product' : 'used-product'}" ">${formatProductCondition(product)} <br> <img  style="margin-bottom: 4px" src="/innocent/assets/image/Rate.png" alt=""> ${avg_rating}</h6>
                   <img src="/uploads/products/${getSingleImage(image_url)}" class="card-img-top w-100 product_image" alt="...">
               
                   <div class="product_card_title">

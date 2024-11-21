@@ -328,21 +328,27 @@ function fetchUserData(token) {
 
 function updateUserProfile(user) {
 
-    const nameElement = document.getElementById('profile_name');
-    const emailElement = document.getElementById('profile_email');
+    const userDashboard = `<img class="mt-2" id="profile_image" src="" alt="Profile Image"
+    style="width: 50px; height:50px; border-radius:50px;">
+    <p id="profile_name" >${user.username ?? 'N/A'}<br>
+        <span id="profile_email">${user.email ?? 'N/A'}</span>
+      </p>`
+
+      document.querySelector('.js-index-dashboard').innerHTML = userDashboard;
+
     const profileImageElement = document.getElementById('profile_image');
     const profilePictureElement = document.getElementById('profile_picture');
     const profilePictureMobileElement = document.getElementById('profile_picture_mobile');
     const userRequestEl = document.querySelector('.js-tell-us');
 
     if (user) {
-        nameElement.innerHTML = `${user.username ?? 'No Username Provided'} <br>`;
-        emailElement.innerHTML = user.email ?? 'No email provided';
-        
+       
         getIndexProfileImage(user, profileImageElement);
         getIndexProfileImage(user, profilePictureElement);
         getIndexProfileImage(user, profilePictureMobileElement);
         getIndexProfileImage(user, userRequestEl);
+
+     
 
     
 

@@ -1,5 +1,5 @@
 
-import { getToken,validationError,displaySwal } from "../helper/helper.js";
+import { getToken,validationError,displaySwal, showLoader, hideLoader } from "../helper/helper.js";
 import { serverError } from "../admin/auth-helper.js";
 
 const token = getToken()
@@ -11,6 +11,12 @@ if(token) {
   document.querySelector('.next-btn').addEventListener('click', (event) => {
 
   event.preventDefault();
+
+  const continueBtn = document.querySelector('.bio-btn');
+  const signupText = document.querySelector('.bio-text');
+  const loader = document.querySelector('.loader-layout'); 
+
+  showLoader(continueBtn, signupText, loader);
 
    let errors;
 
@@ -77,6 +83,7 @@ if(token) {
 
   
   validation();
+  hideLoader(continueBtn, signupText, loader);
 
   const check = [];
 
@@ -89,6 +96,8 @@ if(token) {
 
     const form = document.getElementById('mobile-bio-form');
     const formData = new FormData(form);
+
+    showLoader(continueBtn, signupText, loader);
 
     for (let field of formData) {
     //  console.log(field[0] + ':' + field[1]);
@@ -103,6 +112,7 @@ if(token) {
       }).then((response) => {
 
        // console.log(response);
+       hideLoader(continueBtn, signupText, loader);
 
         if(response.status === 200 && response.data ) {
 
@@ -142,6 +152,8 @@ if(token) {
         
 
       }).catch((error) => {
+
+        showLoader(continueBtn, signupText, loader);
         
         if (error.response) {
 

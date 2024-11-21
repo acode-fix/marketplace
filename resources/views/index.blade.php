@@ -81,7 +81,7 @@
                         src="{{asset('innocent/assets/image/notification.svg')}}" alt="Logo"></a></div>
 
             <div><img id="profile_picture" src="" alt=".profile picture " class="profile_picture mt-2 js-default"></div>
-            <a href="{{ url('/settings') }}">
+            <a href="{{ url('/shop') }}">
                 <img id="profile_picture_mobile" src="" alt=".profile picture "
                     class="profile_picture_mobile js-default"></a>
 
@@ -89,20 +89,18 @@
 
         <!-- prifile card -->
         <div class="profile_card js-guest">
-            <div class="profile_card_user_name">
+            <div class="profile_card_user_name js-index-dashboard">
                 <img class="mt-2" id="profile_image" src="" alt="Profile Image"
                 style="width: 50px; height:50px; border-radius:50px;">
-                <p id="profile_name">Loading
-                </p>
-                <p><span id="profile_email">loading</span></p>
-                {{-- <p id="profile_name">Mired Augustine <br>
+                <p id="profile_name" >Mired Augustine <br>
                     <span id="profile_email">miredaugustine@gmail.com</span>
-                </p> --}}
+                  </p>
+                {{-- <p id="profile_name">Loading
+                </p> 
+                <p><span id="profile_email">loading</span></p> --}}
+                
             </div>
-            {{-- <div class="ms-2 pt-1">
-                <h6 id="profile_name">Mired Augustine</h6>
-                <h6 id="profile_email" style="font-size: small;">Miredaugustine@gmail.com</h6>
-              </div> --}}
+            
             <hr>
             <div class="accont_features">
                 <p><a href="{{ url('/shop') }}">Dashboard</a></p>

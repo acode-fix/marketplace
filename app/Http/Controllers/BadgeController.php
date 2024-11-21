@@ -20,9 +20,9 @@ class BadgeController extends Controller
 
       $status = User::find($userId);
 
-      debugbar::info($status);
+      Log::info($status);
 
-      return;
+    
 
       if(!$status) {
         return response()->json([

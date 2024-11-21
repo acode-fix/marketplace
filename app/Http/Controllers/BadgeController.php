@@ -20,11 +20,8 @@ class BadgeController extends Controller
 
       $status = User::find($userId);
 
-      Log::info($status);
-
-    
-
       if(!$status) {
+
         return response()->json([
             'status' => false,
             'message' => 'User Not Found',
@@ -34,6 +31,8 @@ class BadgeController extends Controller
       }
 
       if(!$status->expiry_date && $status->verify_status === 0) {
+        
+        log::info(['message' => 'not yet verify']);
 
         return response()->json([
             'status' => true,
@@ -45,9 +44,11 @@ class BadgeController extends Controller
 
       if($status->verify_status === -2) {
 
+        log::info(['message' => 'pending approval']);
+
         return response()->json([
             'status' => true,
-            'message' => -2,
+            'message' => 'Pending Approval',
             'badge' => $status,
 
         ],200);

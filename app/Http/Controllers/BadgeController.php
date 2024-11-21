@@ -26,7 +26,7 @@ class BadgeController extends Controller
             'message' => 'User Not Found',
 
 
-        ]);
+        ],404);
       }
 
       if(!$status->expiry_date && $status->verify_status === 0) {
@@ -36,17 +36,17 @@ class BadgeController extends Controller
             'message' => 'Not Yet Verify',
             'badge' => $status,
 
-        ]);
+        ],200);
       }
 
       if($status->verify_status === -2) {
 
         return response()->json([
             'status' => true,
-            'message' => 'Pending Approval',
+            'message' => -2,
             'badge' => $status,
 
-        ]);
+        ],200);
       }
 
 

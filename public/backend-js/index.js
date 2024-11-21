@@ -249,11 +249,10 @@ function createProductCard(product) {
         if (i === 0) product_img_url = el;
     });
 
-   // console.log(product);
-   // const{verify_status, badge_status} = product.user;
+   
     const{verify_status, badge_status,} = product?.user ?? product;
 
-   const badge = verify_status === 1 && badge_status === 1 ? `<img class="logo-bag" src="kaz/images/badge.png" alt="">` : `<img src="innocent/assets/image/logo icon.svg" alt="">`;
+   const badge =  badge_status === 1 ? `<img class="logo-bag" src="kaz/images/badge.png" alt="">` : `<img src="innocent/assets/image/logo icon.svg" alt="">`;
    const sold = document.querySelector('.sold');
 
    

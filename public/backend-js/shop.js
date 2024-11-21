@@ -38,7 +38,7 @@ document.addEventListener("DOMContentLoaded", function () {
             const verifyElementMobile = document.querySelector('.become-tag-m');
             const textElements = document.querySelectorAll('.js-hover-text');
 
-            if(response.data.message === 'Pending Approval') {
+            if(response.data.message === -2) {
 
                 verifyElement.textContent = 'Pending';
                 verifyElement.href = '';

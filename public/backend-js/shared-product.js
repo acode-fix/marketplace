@@ -625,7 +625,7 @@ function loadMobileProduct(products) {
   const  display = `
   <a href="#" class="product_card_link">
          <div class="card product_card">
-             <h6 class="sold">${formatProductCondition(product)} <br> <img src="/innocent/assets/image/Rate.png" alt="">${product.avg_rating}</h6>
+             <h6 class="sold  ${formatProductCondition(product) === 'new' ? 'new-product' : 'used-product'} ">${formatProductCondition(product)} <br> <img src="/innocent/assets/image/Rate.png" alt="">${product.avg_rating}</h6>
              <img src="/uploads/products/${getSingleImage(image_url)}" class="card-img-top w-100 product_image" alt="...">
          
              <div class="product_card_title">

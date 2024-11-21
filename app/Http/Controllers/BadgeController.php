@@ -30,10 +30,8 @@ class BadgeController extends Controller
         ],404);
       }
 
-      if(!$status->expiry_date && $status->verify_status === 0) {
+      if(is_null($status->expiry_date) && $status->verify_status == 0) {
         
-        log::info(['message' => 'not yet verify']);
-
         return response()->json([
             'status' => true,
             'message' => 'Not Yet Verify',
@@ -42,9 +40,9 @@ class BadgeController extends Controller
         ],200);
       }
 
-      if($status->verify_status === -2) {
 
-        log::info(['message' => 'pending approval']);
+
+      if($status->verify_status == -2) {
 
         return response()->json([
             'status' => true,
@@ -59,7 +57,7 @@ class BadgeController extends Controller
      $currentDate = Carbon::now();
 
 
-     if($currentDate > $expiryDate && $status->badge_status === -1) {
+     if($currentDate > $expiryDate && $status->badge_status == -1) {
 
         return  response()->json([
             'status'=> false,
@@ -68,7 +66,7 @@ class BadgeController extends Controller
 
         ], 200);
         
-     }else if($currentDate <= $expiryDate  && $status->badge_status === 1) {
+     }else if($currentDate <= $expiryDate  && $status->badge_status == 1) {
 
         return  response()->json([
             'status'=> true,

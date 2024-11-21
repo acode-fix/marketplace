@@ -530,7 +530,7 @@ if (!userId) {
                   <img class="badge-cam-m" height="20px" width="15px" src="kaz/images/badge.png" alt="">
                 </div>
                 <div class="ms-3 mb-2 ">
-                  <h5 class="pt-3 mired-drill-m">${user.name ?? ''}<span style="font-size: small;"> (Shop No: ${user.shop_no ? user.shop_no : 'No Data Provided'})</span></h5>
+                  <h5 class="pt-3 mired-drill-m">${user.username ?? ''}<span style="font-size: small;"> (Shop No: ${user.shop_no ? user.shop_no : 'No Data Provided'})</span></h5>
                   <h6 class="mired-email">${user.email ?? ''}</h6>
                   <h6 class="veri-m pt-1">verified seller</h6>
                 </div>

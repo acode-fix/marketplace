@@ -111,7 +111,7 @@
 
         const {id, verify_status, badge_status} = selectedProduct;
 
-           // Show "View Shop" button if the seller is verified
+
            if (id && verify_status == 1 && badge_status == 1) {
                viewShopButton.style.display = 'block'; // Show button
            } else {

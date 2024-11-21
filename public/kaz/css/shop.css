@@ -446,6 +446,26 @@ border-top-left-radius:14px;
 
 }
 
+@media screen and (max-width:471px) {
+
+  .camera2-m {
+    width: 25px;
+    height: 25px;
+    background-color: #e3e5e8;
+    border-radius: 50%;
+    position: absolute;
+    left: 45px;
+    bottom: 25px;
+  
+  
+  }
+
+  .mired-drill-m  {
+    font-size: small;
+  }
+
+}
+
 .camera-mobile {
   width: 25px;
   height: 25px;

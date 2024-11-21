@@ -510,13 +510,15 @@ if (!userId) {
         loadConnectBtn();
         loadSidebar(user);
 
+        
+
       const mobileBannerImg = user.banner 
             ? `<img style="height:180px;" id="banner" src="/uploads/users/${user.banner}" class="card-img-top main-img-border2" alt="...">`
             : `<img style="height:180px;" id="banner" src="${generateAvatar(user.email)}" class="card-img-top main-img-border2" alt="...">`;
 
       const userMobileImg = user.photo_url 
-            ? `<img class="js-profile"  src="/uploads/users/${user.photo_url}"  alt="">`
-            : `<img class="js-profile"  src="${generateAvatar(user.email)}"  alt="">`;
+            ? `<img class="mobile-profile"  src="/uploads/users/${user.photo_url}"  alt="">`
+            : `<img class="mobile-profile"  src="${generateAvatar(user.email)}"  alt="">`;
 
         const mobileBannerUpdate =`
            ${mobileBannerImg}

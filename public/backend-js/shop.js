@@ -2,7 +2,8 @@ import {
     validationError,
     getShopPrice,
     displayHelpCenter,
-    generateStars
+    generateStars,
+    showLoader,hideLoader
 } from "./helper/helper.js";
 import {
     serverError
@@ -496,6 +497,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 edit.addEventListener('click', () => {
 
                    // console.log(productId)
+                  
 
                     axios({
                         method: "get",
@@ -662,7 +664,9 @@ document.addEventListener("DOMContentLoaded", function () {
         })
            
 
-            function submitForm(form1, form2) {
+            function submitForm(form1, form2, continueBtn, signupText, loader) {
+
+                showLoader(continueBtn, signupText, loader);
 
 
               // console.log(selectedFiles);
@@ -710,6 +714,8 @@ document.addEventListener("DOMContentLoaded", function () {
                     },
                 }).then((response) => {
 
+                    hideLoader(continueBtn, signupText, loader);
+
                     if (response.data && response.status === 200) {
                         Swal.fire({
                             icon: 'success',
@@ -726,6 +732,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
                 }).catch((error) => {
+
+                    hideLoader(continueBtn, signupText, loader);
 
                     console.log(error);
 
@@ -771,7 +779,12 @@ document.addEventListener("DOMContentLoaded", function () {
 
                 const form2 = document.getElementById('edit-product-form-2');
 
-                submitForm(form1, form2)
+                const continueBtn = document.querySelector('.update-loader');
+                const signupText = document.querySelector('.update-text');
+                const loader = document.querySelector('.loader-layout'); 
+
+
+                submitForm(form1, form2, continueBtn, signupText, loader);
 
             });
 
@@ -1050,7 +1063,12 @@ document.addEventListener("DOMContentLoaded", function () {
                 const form1 = document.getElementById('edit-product-form-mobile1');
                 const form2 = document.getElementById('edit-product-form-mobile2');
 
-                submitForm(form1, form2);
+                const continueBtn = document.querySelector('.mobile-loader');
+                const signupText = document.querySelector('.mobile-text');
+                const loader =  document.querySelector('.mobile-loader-layout');
+
+
+                submitForm(form1, form2, continueBtn, signupText, loader);
             });
 
             document.querySelector('.js-cancel-mobile').addEventListener('click', () => {

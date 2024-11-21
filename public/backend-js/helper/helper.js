@@ -1,7 +1,5 @@
 import dayjs from 'https://unpkg.com/dayjs@1.11.10/esm/index.js';
 
-
-
 export function validationError(responseErrors) {
 
   let allErrors = [];
@@ -630,6 +628,10 @@ export function generateStars(rating) {
 
 export  function sendProductRequest(input, token) {
 
+  const continueBtn = document.querySelector('.input-btn');
+  const signupText = document.querySelector('.input-text');
+  const loader = document.querySelector('.loader-div');
+
   axios.post('/api/v1/user/product-request', { input }, {
       headers: {
           'Authorization': `Bearer ${token}`,
@@ -637,8 +639,9 @@ export  function sendProductRequest(input, token) {
       }
   }).then((response) => {
 
-     // console.log(response);
+    hideLoader(continueBtn, signupText, loader)
 
+     // console.log(response);
       if(response.status === 200 && response.data) {
 
           const msg = response.data.message;
@@ -655,6 +658,8 @@ export  function sendProductRequest(input, token) {
 
   }).catch((error) => {
     //  console.log(error);
+
+    hideLoader(continueBtn, signupText, loader)
 
       if(error.response) {
 
@@ -717,4 +722,23 @@ export  function sendProductRequest(input, token) {
   }
 
 }
+
+export function showLoader(continueBtn, signupText, loader) {
+
+  continueBtn.disabled = true;
+  loader.style.display = 'flex';
+  signupText.style.display = 'none';
+  continueBtn.setAttribute('arial-busy', 'true')
+
+ }
+
+export function hideLoader(continueBtn, signupText, loader) {
+
+    continueBtn.disabled = false;
+    loader.style.display = 'none';
+    signupText.style.display = 'block';
+    continueBtn.removeAttribute('arial-busy');
+
+ }
+ 
 

@@ -1,4 +1,5 @@
-import { displayHelpCenter, getIndexProfileImage, sendProductRequest, promptLogin, formatPrice, getShopPrice, getIndexPrice, formatProductCondition } from "./helper/helper.js";
+import { displayHelpCenter, getIndexProfileImage, sendProductRequest, promptLogin, formatPrice, getShopPrice, getIndexPrice, formatProductCondition, showLoader, hideLoader } from "./helper/helper.js";
+
 
 
 const token = localStorage.getItem('apiToken');

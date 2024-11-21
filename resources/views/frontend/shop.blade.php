@@ -529,7 +529,13 @@
                                     <input class="form-control" id="fileInput" type="file"   name="image_url[]"  multiple>
                                 </div> 
                                 <button type="button" class="btn btn-secondary previous-to-step-1" >Previous</button>
-                                <button type="submit" class="btn next-edit" id="save-product">Update</button>
+                                <button type="submit" class="btn next-edit update-loader" id="save-product">
+                                    <span class="update-text">update</span>
+                                    <div class="loader-layout">
+                                        <div class="loader"></div>
+                                        <span class="ms-1">Loading...</span>
+                                    </div>
+                                </button>
                                 
                                 
                               </div>
@@ -1127,7 +1133,13 @@
                                 <input id="inputMobile" class="form-control" type="file"   multiple name="image_url[]">
                               </div>
                               <button type="button" class="btn btn-secondary previous-to-step-1" >Previous</button>
-                              <button type="submit" class="btn btn-warning" id="save-product-mobile">Update</button>
+                              <button type="submit" class="btn btn-warning mobile-loader" id="save-product-mobile">
+                                <span class="mobile-text">update</span>
+                                    <div class="mobile-loader-layout">
+                                        <div class=" loader"></div>
+                                        <span class="ms-1">Loading...</span>
+                                    </div>
+                              </button>
                             </div>
                           </div>
                         </div>

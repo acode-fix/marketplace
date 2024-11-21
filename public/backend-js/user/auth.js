@@ -1,4 +1,3 @@
- 
 
  const myModal = new bootstrap.Modal(document.querySelector('#signup_login-modal'));
  const otpModal = new bootstrap.Modal(document.querySelector('#verifyOtpModal'));

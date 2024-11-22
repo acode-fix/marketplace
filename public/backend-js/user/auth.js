@@ -153,22 +153,7 @@ const loader = document.querySelector('.login-loader-div');
           url ?  window.location.reload() : window.location.href = '/';
           
 
-        //   Swal.fire({
-        //       icon: 'success',
-        //       title: 'Login Successful',
-        //       text: responseData.message,
-        //       willClose: () => {
-
-        //         myModal.hide();
-
-        //         const url =  sessionStorage.getItem('sharedPage');
-             
-        //         url ?  window.location.reload() : window.location.href = '/';
-
-            
-                
-        //       }
-        //   });
+        
       } else {
           
 
@@ -211,6 +196,7 @@ const loader = document.querySelector('.login-loader-div');
 
  
  function sendResetOtp() {
+
     
   const email = document.getElementById("reset_email").value;
 
@@ -238,9 +224,12 @@ const loader = document.querySelector('.login-loader-div');
           text: 'An OTP has been sent to your email address.',
           confirmButtonColor: '#ffb705',
           
-          onClose: function() {
+          willClose: function() {
           // After sending the OTP, show the OTP verification modal
           $('#verifyOtpModal').modal('show');
+          const requestPage = document.querySelector('.resetpassword');
+          requestPage.style.display = 'none';
+
           }
       });
   })
@@ -284,6 +273,7 @@ const loader = document.querySelector('.login-loader-div');
 
 // Function to verify OTP
  function verifyOtp() {
+ 
   const email = document.getElementById("reset_email").value;
   const otp = document.getElementById("otp").value;
 
@@ -312,8 +302,8 @@ const loader = document.querySelector('.login-loader-div');
           onClose: function() {
 
               otpModal.hide();
-              // After OTP verification, show the password change modal
-              changePassword(); // Assuming you have a function to show the password change modal
+            
+              changePassword(); 
           }
       });
   })
@@ -381,15 +371,31 @@ const loader = document.querySelector('.login-loader-div');
   .catch(function (error) {
 
     hideLoader(continueBtn, signupText, loader);
-      // Handle error response
-       msgError = error.response.data.message;
-      // Display an error message to the user
-      Swal.fire({
-          icon: 'error',
-          confirmButtonColor: '#ffb705',
-          title: 'Failed to Reset Password',
-          text: msgError,
-      });
+
+    if(error.response) {
+                
+        if(error.response.status === 422 && error.response.data ) {
+
+            const responseErrors = error.response.data.errors;
+
+            let allErrors = [];
+
+            for (let field in responseErrors) {
+
+                const fieldErrors = responseErrors[field];
+                fieldErrors.forEach((message) => {
+                    allErrors.push(message);
+            
+                }); 
+            }
+            const errorMsg = allErrors.join('\n')
+
+            displaySwal(errorMsg);
+
+
+        }
+    }
+
   });
 }
  

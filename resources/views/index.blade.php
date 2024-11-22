@@ -786,32 +786,6 @@
 
                     </div>
 
-
-                    <!-- Verify OTP Modal -->
-{{-- <div class="modal fade" id="verifyOtpModal" tabindex="-1" role="dialog" aria-labelledby="verifyOtpModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 id="sign_up">Verify OTP</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <p class="forgot_password"><span class="forgot_password_head">Enter the OTP sent to your email</span></p>
-                <div class="reset_email">
-                    <div class="form-group">
-                        <label for="otp" class="form-label"></label>
-                        <input type="text" class="form-control input_field" id="otp" placeholder="Enter OTP">
-                    </div>
-                </div>
-                <button class="signup_continue_button" onclick="verifyOtp()">Verify OTP</button>
-            </div>
-        </div>
-    </div>
-</div> --}}
-
-
                     <div class="chagepassword" id="changepassword" style="display: none;">
 
                         <p class="type_new_password"> <span class="type_new_password_head">Hi, Welcome Back </span> <br>

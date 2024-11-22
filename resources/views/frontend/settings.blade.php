@@ -459,7 +459,6 @@
       <div class="mt-2" style="display: flex;justify-content: space-between;">
         <div onmouseover="showText3()" onmouseout="hideText3()">
           <div class="verify-badge-m">
-
             <img class="" height="20px" width="15px" src="{{ asset('/kaz/images/badge.png') }}" alt="">
             <a class="js-verify-url" href="{{ url('/become') }}">
               <h6 class="verify-m ps-1 verify-text">Verify Now</h6>

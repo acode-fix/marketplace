@@ -14,6 +14,27 @@
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
   <style>
+    
+  .loader {
+  border: 6px solid #f3f3f3; 
+  border-top: 6px solid #ffb705;; 
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.loader-layout {
+  display: none;  
+  align-items: center;
+  justify-content: center;
+}
+
 
   </style>
 </head>
@@ -46,7 +67,16 @@
         Awaiting Approval normally approval <br>
         may take up to 1hrs during business days <br>and up to 3hrs during off business days </p>
 
-        <button  id="proceedBtn" type="button" class="btn btn-md btn-success js-btn">Proceed To Make Payment</button>
+        <button  id="proceedBtn" type="button" class="btn btn-md btn-success js-btn success-btn">
+
+          <span class="bio-text">Proceed To Make Payment</span>
+            <div class="loader-layout">
+                <div class=" loader"></div>
+                <span class="ms-1">Loading...</span>
+           </div>
+
+
+        </button>
 
     </div>
     

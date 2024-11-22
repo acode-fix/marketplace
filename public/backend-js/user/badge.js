@@ -1,4 +1,4 @@
-import { getToken, validationError, displaySwal ,generateAvatar} from "../helper/helper.js";
+import { getToken, validationError, displaySwal ,generateAvatar, showLoader, hideLoader} from "../helper/helper.js";
 import { serverError } from "../admin/auth-helper.js"; 
 
 const token = getToken();
@@ -71,6 +71,12 @@ if(token) {
       
     } else {
 
+      const continueBtn = document.querySelector('.badge-btn');
+      const signupText = document.querySelector('.bio-text');
+      const loader = document.querySelector('.loader-layout'); 
+
+      showLoader(continueBtn, signupText, loader);
+
       axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
 
       const form = document.getElementById('form1');
@@ -86,6 +92,8 @@ if(token) {
         }
       }).then((response) => {
        // console.log(response);
+
+       hideLoader(continueBtn, signupText, loader);
 
         if(response.status === 200 && response.data) {
 
@@ -120,6 +128,8 @@ if(token) {
         }
       }).catch((error) => {
         //console.log(error);
+        hideLoader(continueBtn, signupText, loader);
+
         if(error.response) {
 
           if(error.response.status === 422 && error.response.data) {

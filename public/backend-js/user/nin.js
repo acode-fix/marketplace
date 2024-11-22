@@ -1,5 +1,5 @@
 import { serverError } from "../admin/auth-helper.js";
-import { getToken, validationError, displaySwal } from "../helper/helper.js";
+import { getToken, validationError, displaySwal, showLoader, hideLoader } from "../helper/helper.js";
 
 const token = getToken();
 
@@ -9,6 +9,12 @@ if(token) {
 
   document.querySelector('.next-btn').addEventListener('click', (event) => {
     event.preventDefault();
+
+  const continueBtn = document.querySelector('.nin-btn');
+  const signupText = document.querySelector('.bio-text');
+  const loader = document.querySelector('.loader-layout'); 
+
+  showLoader(continueBtn, signupText, loader);
 
     const form = document.getElementById('mobile-nin');
     const file = document.querySelector('.mobile-file');
@@ -30,6 +36,8 @@ if(token) {
           }
         }).then((response) => {
        //   console.log(response);
+
+       hideLoader(continueBtn, signupText, loader);
 
           if(response.status === 200 && response.data) {
 
@@ -65,6 +73,8 @@ if(token) {
 
         }).catch((error) => {
          // console.log(error);
+
+         hideLoader(continueBtn, signupText, loader);
 
           if (error.response) {
 

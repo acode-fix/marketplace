@@ -1,4 +1,4 @@
-import { getToken} from "../helper/helper.js";
+import { getToken, showLoader, hideLoader} from "../helper/helper.js";
 import { serverError } from "../admin/auth-helper.js";
 
 const token = getToken();
@@ -9,11 +9,19 @@ if(token) {
     
     axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
 
+  const continueBtn = document.querySelector('.success-btn');
+  const signupText = document.querySelector('.bio-text');
+  const loader = document.querySelector('.loader-layout'); 
+
+  showLoader(continueBtn, signupText, loader);
+
 
     axios.get('api/v1/payment/init', {
 
     }).then((response) => {
-       console.log(response);
+
+        hideLoader(continueBtn, signupText, loader);
+      // console.log(response);
  
         if (response.data) {
 
@@ -27,7 +35,9 @@ if(token) {
     })
     
     .catch((error) => {
-       console.log(error);
+      // console.log(error);
+
+      hideLoader(continueBtn, signupText, loader);
 
         if(error.response) {
 

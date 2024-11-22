@@ -1,5 +1,5 @@
 import { serverError } from "../admin/auth-helper.js";
-import { getToken, validationError, displaySwal } from "../helper/helper.js";
+import { getToken, validationError, displaySwal, showLoader, hideLoader } from "../helper/helper.js";
 
 
 const token = getToken()
@@ -8,6 +8,7 @@ if(token) {
 
   document.querySelector('.next-btn').addEventListener('click', (event) => {
     event.preventDefault();
+
 
     document.getElementById('error').innerHTML = '* Selfie Capturing Is Required *';
 
@@ -109,9 +110,14 @@ if(token) {
   
       window.addEventListener('beforeunload', stopWebCam());
       if (saveButton) {
-  
-  
+
           saveButton.addEventListener('click', (event) => {
+
+            const continueBtn = document.querySelector('.selfie-btn');
+            const signupText = document.querySelector('.bio-text');
+            const loader = document.querySelector('.loader-layout'); 
+
+            showLoader(continueBtn, signupText, loader);
               window.addEventListener('beforeunload', stopWebCam());
               event.preventDefault(); // Prevent default action
   
@@ -140,8 +146,8 @@ if(token) {
   
               }).then((response) => {
   
-                  //console.log(response)
-  
+                  //console.log(response);
+                  hideLoader(continueBtn, signupText, loader);
                   if (response.data) {
   
                       if (response.status === 200) {
@@ -181,6 +187,8 @@ if(token) {
   
   
               }).catch((error) => {   
+
+                hideLoader(continueBtn, signupText, loader);
   
                   videoContainer.style.display = 'none'; // Show the video container
                   snap.style.display = 'none'; // Show the snap button

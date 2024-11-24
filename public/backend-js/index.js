@@ -284,10 +284,13 @@ function createProductCard(product) {
             return
             
         }
-        //console.log( this.getAttribute('data-product'))
-        localStorage.setItem('selectedProduct', this.getAttribute('data-product'));
 
-      console.log(window.location.href = this.href);
+        const productData = this.getAttribute('data-product');
+        const parsedData = JSON.parse(productData);
+        
+        localStorage.setItem('selectedProduct', JSON.stringify(parsedData));
+
+    window.location.href = this.href;
     });
 
     return card;

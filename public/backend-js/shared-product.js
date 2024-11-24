@@ -1,4 +1,4 @@
-import { getToken, getProdDesImage, getProdProfileDescImg, loadDashboard,logoutUser, getSingleImage, getBadge, getPrice, loadConnect, sendProductRequest, displayHelpCenter, promptLogin, getIndexPrice, formatProductCondition} from "./helper/helper.js";
+import { getToken, getProdDesImage, getProdProfileDescImg, loadDashboard,logoutUser, getSingleImage, getBadge, getPrice, loadConnect, sendProductRequest, displayHelpCenter, promptLogin, getIndexPrice, formatProductCondition, getStarted} from "./helper/helper.js";
 
   const currentUrl = new URL(window.location.href);
   const id = currentUrl.searchParams.get('id');
@@ -121,7 +121,15 @@ const logoLink = document.querySelector('.js-logo-link');
 
   function loadCarousel(product) {
 
-    const user = product.user;
+    const user = product.user; 
+    
+    const getEl = document.querySelector('.js-get-started');
+    const getEl2 = document.querySelector('.js-get-started2');
+
+     getStarted(user, getEl);
+     getStarted(user, getEl2);
+
+
 
     const badge = user.verify_status == 1 && user.badge_status == 1 ? `<img src="/innocent/assets/image/badge.png" alt="">` : '';
 
@@ -411,6 +419,8 @@ const logoLink = document.querySelector('.js-logo-link');
         const authData = response.data;
 
         loadDashboard(authData);
+
+      
         getProdProfileDescImg(authData, imgDesk);
 
         document.getElementById('logout-link').addEventListener('click', () => {
@@ -467,6 +477,16 @@ const logoLink = document.querySelector('.js-logo-link');
     const unAuthUser = null;
 
     loadDashboard(unAuthUser);
+
+    document.querySelectorAll('.js-unauth').forEach((unauth) => {
+
+          unauth.addEventListener('click', () => {
+
+            promptLogin();
+
+          });
+
+        });
     getProdProfileDescImg(unAuthUser, imgDesk);
 
 

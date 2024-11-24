@@ -14,7 +14,7 @@
         const user = response.data;
 
         const getEl = document.querySelector('.js-get-started');
-        const getEl2 = document.querySelector('.js-get-started');
+        const getEl2 = document.querySelector('.js-get-started2');
 
          getStarted(user, getEl);
          getStarted(user, getEl2);

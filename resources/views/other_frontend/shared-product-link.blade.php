@@ -46,7 +46,7 @@
 
         <!-- Navbar and Search Button -->
     <div class="navbar-1 fixed-top">
-        <a class="js-logo-link" href=""><img  class="search_buy_and_sell_logo js-logo-img" src="{{ asset('innocent\assets\image\transparent_logo.png')}}" alt=""  data-bs-toggle="" data-bs-target="" ></a>
+        <a class="js-logo-link" href="{{ url('/') }}"><img  class="search_buy_and_sell_logo js-logo-img" src="{{ asset('innocent\assets\image\transparent_logo.png')}}" alt=""  data-bs-toggle="" data-bs-target="" ></a>
         <div class="search-bar">
             <div class="location-icon"><i class="fa-solid fa-location-dot"></i></div>
             <div style="margin-left: 8px;" class="country-input">
@@ -388,7 +388,7 @@
                         <strong>Reach more audience by promoting your Product(s)</strong><br>
                         Get an active badge by becoming a verified seller <br> and enjoy multiple benefits that comes with being a verified seller
                         <br><br><br>
-                        <a class="js-become-link" href="/become"><button class="get_started animate animate-pulse4">Get
+                        <a class="js-become-link js-get-started" href="/become"><button class="get_started animate animate-pulse4">Get
                             Started</button></a>
                         {{-- <strong>Reach more audience by promoting your Product(s)</strong><br>
                         determine your target audience location, interest, select a <br>
@@ -719,7 +719,7 @@
                         <strong>Reach more audience by promoting your Product(s)</strong><br>
                         Get an active badge by becoming a verified seller <br> and enjoy multiple benefits that comes with being a verified seller
                         <br><br><br>
-                        <a class="js-become-link" href="/become"><button class="get_started animate animate-pulse4">Get
+                        <a class="js-become-link  js-get-started2" href="/become"><button class="get_started animate animate-pulse4">Get
                             Started</button></a>
                         {{-- <strong>Reach more audience by promoting your Product(s)</strong><br>
                         determine your target audience location, interest, select a <br>
@@ -939,7 +939,13 @@
                     </div>
                 </div>
                 <p>Already have an account? <a href="#" onclick="login()" class="signup_links">Login</a></p>
-                <button class="signup_continue_button continueBtn" onclick="signup()">continue</button>
+                <button class="signup_continue_button continueBtn" onclick="signup()">
+                    <span class="signup-text">continue</span>
+                    <div class="loader-div" aria-hidden="true">
+                       <div class="loader-text"></div>
+                        <span class="ms-1 text-dark">loading...</span>
+                    </div>
+                </button>
                 <p>By signing up you accept <span class="signup_links">Our Terms and Policy</span></p>
 
             </div>
@@ -976,7 +982,16 @@
                         <img src="{{asset('innocent/assets/image/gmail.png')}}" alt="">
                     </div>
                 </div>
-                <button class="signup_continue_button continueBtn" onclick="loginUser()">continue</button>
+                <button type="submit" class="signup_continue_button continueBtn login-btn" onclick="loginUser()">
+                    <span class="login-text">continue</span>
+                     <div class="login-loader-div" aria-hidden="true">
+                        <div class="login-loader-text"></div>
+                         <span class="ms-1 text-dark">loading...</span>
+                     </div>
+                
+                </button> 
+
+
                 <p style="margin-top: 20px;">Don't have an account? <span><a href="#" onclick="showSignUpModal()"
                             class="signup_links">Sign up</a></span></p>
 
@@ -1001,37 +1016,22 @@
                         <input required type="email" class="form-control input_field" id="reset_email" placeholder="Email">
                     </div>
                 </div>
-                <button class="signup_continue_button" onclick="sendResetOtp()">Request Reset Password
-                    link</button>
+                <button  class="signup_continue_button request-btn" onclick="sendResetOtp()">
+                    <span class="request-text">Request Reset Password link</span>
+                    <div class="request-loader-div" aria-hidden="true">
+                       <div class="request-loader-text"></div>
+                        <span class="ms-1 text-dark">loading...</span>
+                    </div>
+                </button> 
+
+
                 <p class="already_have_an_account">Already have an account? <span><a href="#" onclick="login2()"
                             class="signup_links">Login</a></span></p>
 
             </div>
 
 
-            <!-- Verify OTP Modal -->
-{{-- <div class="modal fade" id="verifyOtpModal" tabindex="-1" role="dialog" aria-labelledby="verifyOtpModalLabel" aria-hidden="true">
-<div class="modal-dialog" role="document">
-<div class="modal-content">
-    <div class="modal-header">
-        <h5 id="sign_up">Verify OTP</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-        </button>
-    </div>
-    <div class="modal-body">
-        <p class="forgot_password"><span class="forgot_password_head">Enter the OTP sent to your email</span></p>
-        <div class="reset_email">
-            <div class="form-group">
-                <label for="otp" class="form-label"></label>
-                <input type="text" class="form-control input_field" id="otp" placeholder="Enter OTP">
-            </div>
-        </div>
-        <button class="signup_continue_button" onclick="verifyOtp()">Verify OTP</button>
-    </div>
-</div>
-</div>
-</div> --}}
+
 
 
             <div class="chagepassword" id="changepassword" style="display: none;">
@@ -1054,7 +1054,14 @@
                         id="confirmPassword" placeholder="Confirm New Password">
                 </div>
                 <button
-                    class="signup_continue_button change_password_button continueBtn continueBtn_error" onclick="resetPassword()">Continue</button>
+                            class="signup_continue_button change_password_button continueBtn continueBtn_error change-btn" onclick="resetPassword()">
+                            <span class="change-text">Reset Password</span>
+                            <div class="change-loader-div" aria-hidden="true">
+                                <div class="change-loader-text"></div>
+                                <span class="ms-1 text-dark">loading...</span>
+                            </div>
+                         </button> 
+
                 <p>Already have an account? <span><a href="#" onclick="login3()" class="signup_links">Login</a></span></p>
 
             </div>
@@ -1082,7 +1089,16 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="signup_continue_button" onclick="verifyOtp()">Verify OTP</button>
+                <button type="button" class="signup_continue_button verify-btn" onclick="verifyOtp()">
+                    <span class="verify-text">Verify OTP</span>
+                    <div class="verify-loader-div" aria-hidden="true">
+                        <div class="verify-loader-text"></div>
+                        <span class="ms-1 text-dark">loading...</span>
+                    </div>
+                
+                </button>
+
+
             </div>
             </div>
             </div>

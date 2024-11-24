@@ -228,12 +228,14 @@ if (!product) {
         </div>
         <hr>
         <div class="accont_features">
-                <p>Account Setting </p>
-               <p> Reffer a Friend </p>
-                <p>Privacy and Policy </p>
-               <p> Sign out</p>
+                <p class="js-unauth">Account Setting </p>
+                <p class="js-unauth" > Refer a Friend </p>
+                <p class="js-unauth" >Privacy and Policy </p>
+                <p class="js-unauth" > Log in</p>
 
         </div>`;
+
+        
 
     return    document.querySelector('.profile_card').innerHTML = fallback;
 }
@@ -325,9 +327,14 @@ export function loadConnect(product) {
 
   Swal.fire({
       icon: 'info',
-      confirmButtonColor: '#ffb705',
+      confirmButtonColor: '#14ae5c',
       title: `${name ?? 'Seller'} Contact: ${phone_number ?? 'N/A'}`, 
-      text:  `Product Title: ${productName ?? email}`,    
+      text:  `Product Title: ${productName ?? email}`,
+      confirmButtonText: '<i class="fa-solid fa-phone"></i>',
+      preConfirm: () => {
+        document.location.href = `tel:${phone_number}`;
+
+      }  
   
   });
 
@@ -594,7 +601,7 @@ export function displayHelpCenter() {
 export function displayData(name, phone_number) {
 
   Swal.fire({
-    title: "<strong class='text-warning'>Connect</strong>",
+    title: "<strong class='text-success'>Connect</strong>",
     icon: "info",
     html: `
       <h6 class="fs-5">Seller Name: ${name ?? 'N/A'}</h6>
@@ -602,17 +609,13 @@ export function displayData(name, phone_number) {
      
     `,
     showCloseButton: true,
-    showCancelButton: true,
+    showCancelButton: false,
     focusConfirm: false,
-    confirmButtonColor: '#ffb705',
-    confirmButtonText: `
-      <i class="fa fa-thumbs-up"></i> Great!
-    `,
-    confirmButtonAriaLabel: "Thumbs up, great!",
-    cancelButtonText: `
-      <i class="fa fa-thumbs-down"></i>
-    `,
-    cancelButtonAriaLabel: "Thumbs down"
+    confirmButtonColor: '#14ae5c',
+    confirmButtonText: '<i class="fa-solid fa-phone"></i>',
+    preConfirm: () => {
+      document.location.href = `tel:${phone_number}`;
+    }
   });
 
 

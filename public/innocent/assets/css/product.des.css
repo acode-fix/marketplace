@@ -10,6 +10,115 @@
     box-shadow: none !important;  /* Removes the outline (focus ring) */
     outline: none !important;      /* Ensures no outline on focus */
 }
+.loader-text {
+    border: 6px solid #f3f3f3; 
+    border-top: 6px solid #ffb705; 
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    animation: spin 2s linear infinite;
+
+  }
+  
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+
+  .loader-div {
+    justify-content:center;
+    align-items:center;
+    display: none; 
+  }
+
+
+
+  .login-loader-text {
+    border: 6px solid #f3f3f3; 
+    border-top: 6px solid #ffb705; 
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    animation: spin 2s linear infinite;
+
+  }
+  
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+  
+  .login-loader-div {
+    justify-content:center;
+    align-items:center;
+    display: none;
+  }
+
+
+  .request-loader-text {
+    border: 6px solid #f3f3f3; 
+    border-top: 6px solid #ffb705; 
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    animation: spin 2s linear infinite;
+
+  }
+  
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+  
+  .request-loader-div {
+    justify-content:center;
+    align-items:center;
+    display: none;
+  }
+
+  .verify-loader-text {
+    border: 6px solid #f3f3f3; 
+    border-top: 6px solid #ffb705; 
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    animation: spin 2s linear infinite;
+
+  }
+  
+  /* @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+   */
+  .verify-loader-div {
+    justify-content:center;
+    align-items:center;
+    display: none;
+  }
+
+
+  .change-loader-text {
+    border: 6px solid #f3f3f3; 
+    border-top: 6px solid #ffb705; 
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    animation: spin 2s linear infinite;
+
+  }
+  
+  /* @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+   */
+  .change-loader-div {
+    justify-content:center;
+    align-items:center;
+    display: none;
+  }
+
 
 .used-product {
     background-color: #68cbd8;

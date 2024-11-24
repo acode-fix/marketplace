@@ -1,4 +1,4 @@
-   import {loadDashboard, getProdProfileDescImg, getBadge, loadConnect, getToken, logoutUser, displayHelpCenter, sendProductRequest,getIndexPrice, formatPrice, formatProductCondition} from "../helper/helper.js";
+   import {loadDashboard, getProdProfileDescImg, getBadge, loadConnect, getToken, logoutUser, displayHelpCenter, sendProductRequest,getIndexPrice, formatPrice, formatProductCondition, getStarted} from "../helper/helper.js";
 
 
    const token = getToken();
@@ -13,7 +13,13 @@
     .then(response => {
         const user = response.data;
 
-        //console.log(user)
+        const getEl = document.querySelector('.js-get-started');
+        const getEl2 = document.querySelector('.js-get-started');
+
+         getStarted(user, getEl);
+         getStarted(user, getEl2);
+         
+
 
         loadDashboard(user);
         document.getElementById('logout-link').addEventListener('click', () => {

@@ -160,7 +160,8 @@ function updateUserProfile(user) {
                      });
 
                  }
-                       
+
+                  
              const modalImg =  user.photo_url
                                ? `<img class="img-fluid dp ms-3" style="width:60px; height:60px; border-radius:50px" src="/uploads/users/${user.photo_url}" alt=""></img>`
                                : `<img class="img-fluid dp ms-3"  src="${generateAvatar(user.email)}" alt="">`;
@@ -198,37 +199,7 @@ function updateUserProfile(user) {
 
             
     
-            
-            
-    //   function loadDashboard(user) {
-
-            
-
-    //         const dashboardImg = user.photo_url ? `<img id=""  src="/uploads/users/${user.photo_url}" alt="Profile Image">` : '<img id="profile_image" src="" alt="Profile Image"></img>';
-    //         const dashboard = `
-    //         <div class="profile_card_user_name">
-    //           ${dashboardImg}
-    //         <p id="profile_name">${user.username ?? 'No Username Provided'}
-    //         </p>
-    //         <p><span id="profile_email">${user.email ?? 'No Data Provided'}</span></p>  
-    //         </div>
-    //         <hr>
-    //         <div class="accont_features">
-    //             <p><a href="/settings">Account Setting </a></p>
-    //             <p><a href="/refer"> Reffer a Friend </a></p>
-    //             <p> <a href="/privacy'">Privacy and Policy </a></p>
-    //             <p><a href="#" id="dash">Log out</a></p>
-    //         </div>`;
-
-    //      if(document.querySelector('.profile_card')) {
-
-    //         document.querySelector('.profile_card').innerHTML = dashboard;
-
-    //      }
-
         
-    //     }
-
         //UPDATE USER PROFILE NAVBAR ON PRODUCT DESCRIPTION PAGE;
 
        document.querySelectorAll('.js-product-desc-img').forEach((productDesc) => {

@@ -419,7 +419,7 @@
                         <strong>Reach more audience by promoting your Product(s)</strong><br>
                         Get an active badge by becoming a verified seller <br> and enjoy multiple benefits that comes with being a verified seller
                         <br><br><br>
-                        <a class="js-become-link" href="/become"><button class="get_started animate animate-pulse4">Get
+                        <a class="js-become-link js-get-started" href=""><button class="get_started animate animate-pulse4">Get
                             Started</button></a>
                         {{-- <strong>Reach more audience by promoting your Product(s)</strong><br>
                         determine your target audience location, interest, <br> select a

@@ -1,4 +1,4 @@
-import { getToken, filter, getProdProfileDescImg, sendProductRequest,displayHelpCenter, getIndexPrice,formatProductCondition } from "./helper/helper.js";
+import { getToken, filter, getProdProfileDescImg, sendProductRequest,displayHelpCenter, getIndexPrice,formatProductCondition, getStarted } from "./helper/helper.js";
 
 const token = getToken();
 
@@ -15,6 +15,12 @@ if (token) {
   if(response.status === 200 && response.data) {
 
     const user = response.data;
+
+    const getEl = document.querySelector('.js-get-started');
+
+     getStarted(user, getEl);
+
+
 
      updateProductRequest(user);
 

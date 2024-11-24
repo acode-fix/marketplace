@@ -1,4 +1,4 @@
-import { displayHelpCenter, getIndexProfileImage, sendProductRequest, promptLogin, formatPrice, getShopPrice, getIndexPrice, formatProductCondition, showLoader, hideLoader } from "./helper/helper.js";
+import { displayHelpCenter, getIndexProfileImage, sendProductRequest, promptLogin, formatPrice, getShopPrice, getIndexPrice, formatProductCondition, showLoader, hideLoader, getStarted, dropDownDetails } from "./helper/helper.js";
 
 
 
@@ -24,23 +24,6 @@ if(!token) {
         logoImg.dataset.bsTarget = '#signup_login-modal';
 
     })
-
-
-
-    document.querySelectorAll('.js-auth').forEach((unAuthEl) => {
-
-        if(unAuthEl) {
-
-            unAuthEl.addEventListener('click', (event) => {
-                event.preventDefault();
-                promptLogin();
-            });
-
-         }
-
-       
-
-    });
 
     document.querySelectorAll('.js-default').forEach((defaultImg) => {
 
@@ -80,14 +63,29 @@ if(!token) {
             </div>
             <hr>
             <div class="accont_features">
-                <p><a href="">Dashboard</a></p>
-                <p><a href=""> Reffer a Friend </a></p>
-                <p> <a href="">Privacy and Policy </a></p>
-                <p><a href="#" id="logoutLink">Log In</a></p>
+                <p><a class="js-auth" href="">Dashboard</a></p>
+                <p><a class="js-auth" href=""> Reffer a Friend </a></p>
+                <p> <a class="js-auth" href="">Privacy and Policy </a></p>
+                <p><a class="js-auth" href="#" id="logoutLink">Log In</a></p>
             </div>`;
 
 
  document.querySelector('.js-guest').innerHTML = guestDashboard;
+
+ document.querySelectorAll('.js-auth').forEach((unAuthEl) => {
+
+    if(unAuthEl) {
+
+        unAuthEl.addEventListener('click', (event) => {
+            event.preventDefault();
+            promptLogin();
+        });
+
+     }
+
+   
+
+});
 
 
 }else {
@@ -330,13 +328,9 @@ function fetchUserData(token) {
 
 function updateUserProfile(user) {
 
-    const userDashboard = `<img class="mt-2" id="profile_image" src="" alt="Profile Image"
-    style="width: 50px; height:50px; border-radius:50px;">
-    <p id="profile_name" >${user.username ?? 'N/A'}<br>
-        <span id="profile_email">${user.email ?? 'N/A'}</span>
-      </p>`
+    const userDashboard = dropDownDetails(user);
 
-      document.querySelector('.js-index-dashboard').innerHTML = userDashboard;
+    document.querySelector('.js-index-dashboard').innerHTML = userDashboard;
 
     const profileImageElement = document.getElementById('profile_image');
     const profilePictureElement = document.getElementById('profile_picture');
@@ -350,9 +344,11 @@ function updateUserProfile(user) {
         getIndexProfileImage(user, profilePictureMobileElement);
         getIndexProfileImage(user, userRequestEl);
 
-     
 
-    
+        const getEl = document.querySelector('.js-get-started');
+         
+         getStarted(user, getEl);
+
 
     } else {
       //  console.error('User data is null or undefined');

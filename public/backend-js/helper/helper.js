@@ -249,9 +249,9 @@ if (!product) {
   const dashboard = `
   <div class="profile_card_user_name">
     ${dashboardImg}
-  <p id="profile_name">${user.username ?? 'No Username Provided'}
-  </p>
-  <p><span id="profile_email">${user.email ?? 'No Data Provided'}</span></p>  
+  <p id="profile_name" >${user.username ?? 'N/A'}<br>
+        <span id="profile_email">${user.email ?? 'N/A'}</span>
+  </p> 
   </div>
   <hr>
   <div class="accont_features">
@@ -740,6 +740,25 @@ export function hideLoader(continueBtn, signupText, loader) {
     loader.style.display = 'none';
     signupText.style.display = 'block';
     continueBtn.removeAttribute('arial-busy');
+
+ }
+
+
+ export function getStarted(user, getEl) {
+
+   user.verify_status == 1 && user.badge_status == 1 ? getEl.href = '' : getEl.href = '/become' ;
+
+ }
+
+ export function dropDownDetails(user) {
+  
+  const userDashboard = `<img class="mt-2" id="profile_image" src="" alt="Profile Image"
+    style="width: 50px; height:50px; border-radius:50px;">
+    <p id="profile_name" >${user.username ?? 'N/A'}<br>
+        <span id="profile_email">${user.email ?? 'N/A'}</span>
+      </p>`;
+
+      return userDashboard;
 
  }
  

@@ -119,20 +119,21 @@ if(token) {
                 ? `<img  class="review-mobile-img" src="/uploads/users/${photo_url}" class="me-5" alt="">` 
                 : `<img  class="review-mobile-img"  src="${generateAvatar(email)}" class="me-5" alt="">`;
 
-    const checkBagdge =  verify_status === 1 && badge_status === 1 
+    const checkBagdge =  verify_status == 1 && badge_status == 1 
                       ? ` <div class="camera3-m"><img class="badge3-cam-m" height="20px" width="15px" src="/kaz/images/badge.png" alt="">
                         </div>`
                       : '';  
                       
     const checkSeller = checkBagdge !== '' 
                         ? `<h6 class="veri-m pt-1 js-verified-link" data-user-id="${id}">verified seller</h6>` 
-                        : `<h6 class="veri-m pt-1 text-danger">Unverified seller</h6>`
+                        : `<a href="/shop"><h6 class="veri-m pt-1 text-danger">Unverified seller</h6></a>`
+                      //  : `<h6 class="veri-m pt-1 text-danger"><a class="veri-m pt-1 text-danger href="/shop">Unverified seller</a></h6>`
 
     const dashboard = `
               ${img}
               ${checkBagdge}
               <div class="ms-2">
-                <h5 class="pt-3 mired-drill-m">${username ?? 'No Data Provided Yet'}</h5>
+                <h5 class="pt-3 mired-drill-m">${username ?? 'N/A'}</h5>
                 <h6 class="mired-email">${email ?? 'No Email Provided Yet'}</h6>
                 ${checkSeller}
                </div>`;

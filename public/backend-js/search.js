@@ -32,6 +32,51 @@ if(token) {
   });
 
 
+  axios.get('/api/v1/recent/search').then((response) => {
+
+    console.log(response)
+
+    const recentSearch =  response.data.searches;
+
+    loadRecentSearch(recentSearch);
+
+
+
+  }).catch((error) => {
+
+    console.log(error);
+
+  })
+ 
+  function loadRecentSearch(recentSearch) {
+
+    let display = '';
+
+    recentSearch.forEach((recent) => {
+
+      display += ` <button class="buttons" >${recent.query}</button>`
+
+    });
+
+    document.querySelector('.js-recent-content').innerHTML = display;
+
+    
+ document.querySelectorAll('.buttons').forEach((button) => {
+
+  button.addEventListener('click', () => {
+    document.getElementById("find-what-to-buy_search_page").value = button.textContent;
+    document.getElementById("search_main").style.display="block"
+    document.getElementById("search_container").style.display="none"
+    document.getElementById("search_main").style.paddingTop="90px"
+
+    filterBySearchInput();
+                                           
+  });
+
+ });
+
+  }
+
 
  function updateProductRequest(user) {
 
@@ -165,6 +210,8 @@ if(token) {
 
       const text = `<p class="text-danger fs-5 text-center">Sorry No Match Was Found!!<p/>`
       document.querySelector('.js-display').innerHTML =  text;
+      document.querySelector('.js-display2').innerHTML =  '';
+
 
 
     } else{
@@ -216,19 +263,19 @@ if(token) {
   }
 
 
- document.querySelectorAll('.buttons').forEach((button) => {
+//  document.querySelectorAll('.buttons').forEach((button) => {
 
-  button.addEventListener('click', () => {
-    document.getElementById("find-what-to-buy_search_page").value = button.textContent;
-    document.getElementById("search_main").style.display="block"
-    document.getElementById("search_container").style.display="none"
-    document.getElementById("search_main").style.paddingTop="90px"
+//   button.addEventListener('click', () => {
+//     document.getElementById("find-what-to-buy_search_page").value = button.textContent;
+//     document.getElementById("search_main").style.display="block"
+//     document.getElementById("search_container").style.display="none"
+//     document.getElementById("search_main").style.paddingTop="90px"
 
-    filterBySearchInput();
+//     filterBySearchInput();
                                            
-  });
+//   });
 
- });
+//  });
 
 
  const newButton = document.querySelector('.js-new');

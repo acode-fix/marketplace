@@ -129,8 +129,8 @@
 
                 <div class="search_container" id="search_container">
                     <div id="recent_search">recent search</div>
-                    <div class="recent_content">
-                        <button class="buttons" >car</button>
+                    <div class="recent_content js-recent-content">
+                        {{-- <button class="buttons" >car</button>
                         <button class="buttons" >house</button>
                         <button class="buttons" >manions</button>
                         <button class="buttons" >estate</button>
@@ -141,7 +141,7 @@
                         <button class="buttons" >shoe</button>
                         <button class="buttons" >bike</button>
                         <button class="buttons" >cable</button>
-                        <button class="buttons" >USB</button>
+                        <button class="buttons" >USB</button> --}}
                     </div>
                 </div>
 

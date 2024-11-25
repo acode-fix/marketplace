@@ -10,6 +10,7 @@ use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\Search;
 use Barryvdh\Debugbar\Facades\Debugbar;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Log;
@@ -590,10 +591,35 @@ public function update(Request $request, $id) {
 
 }
 
+public function getRecentSearch() {
+
+    $searches = Search::orderBy('id', 'desc')->get();
+
+    if(!$searches->isEmpty()) {
+
+        return response()->json([
+            'status' => true,
+            'message' => 'Recent Searches Fetched Successfully',
+            'searches' => $searches,
+
+        ],200);
+    }
+
+
+    return response()->json([
+
+        'status' => true,
+        'message' => 'No Recent Searches Currently Available!!',
+        'searches' => [],
+
+
+    ],200);
+}
+
 
 public function searchProducts(Request $request) {
 
-  $search = $request->searchParams;
+  $search = trim($request->searchParams);
 
   if(!$search) {
 
@@ -605,6 +631,8 @@ public function searchProducts(Request $request) {
   }
 
 
+
+
    $products =  Product::with('user')->where(function($query) use ($search) {
       $query->where('title', 'LIKE', "%{$search}%")
       ->orWhere('description', 'LIKE', "%{$search}%")
@@ -613,12 +641,28 @@ public function searchProducts(Request $request) {
    }) ->where('quantity', '!=', 0)
       ->get();
 
-      
-
-        if($products) {
+     
+        if(!$products->isEmpty()) {
 
             DebugBar::info($products);
 
+            $existingSearch = Search::where('query', $search)->first();
+
+            if(!$existingSearch) {
+     
+                if(Search::count() >= 10) {
+                
+                    $oldestSearch = Search::orderBy('id', 'asc')->first();
+
+                    $oldestSearch->update(['query' => $search]);
+
+                }else {
+
+                    Search::create(['query' => $search]);
+                }
+
+
+        }
             return response()->json([
                 'status' => true,
                 'message' => 'Product Fetched Successsfully',
@@ -626,6 +670,13 @@ public function searchProducts(Request $request) {
 
             ], 200);
         }
+
+        return response()->json([
+            'status' => true,
+            'message' => 'No Products Found For The Given Search Criteria',
+            'products' => [],
+
+        ], 200);
 
 
 

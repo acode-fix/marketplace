@@ -114,6 +114,7 @@ Route::get('/verified-seller/id', [UsersController::class, 'getUserId']);
 
 Route::get('/search/products', [ProductController::class, 'searchProducts']);
 Route::get('/search/shop/products', [ProductController::class, 'searchShopProducts']);
+Route::get('/recent/search', [ProductController::class, 'getRecentSearch']);
 
 
 //Route product link 

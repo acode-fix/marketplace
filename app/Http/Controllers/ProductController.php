@@ -706,8 +706,8 @@ public function getProductLink(Request $request) {
  $shopToken = $user->shop_token;
  $shopNo = $user->shop_no;
  $url = env('APP_URL');
- $encode = Shop::shopToken(100);
- $decoy = Str::random(40);
+ $encode = Shop::shopToken(10);
+ $decoy = Str::random(10);
 
 
  return response()->json([

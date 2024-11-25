@@ -1,14 +1,16 @@
 @extends('layouts.main.app')
 @section('title','Learn')
 @section('navtitle', 'Learn')
+<link rel="stylesheet" href="{{ asset('kaz/css/learn.css') }}">
 
 @section('content')
   <div class="main">
     <div class="content">
-      <div class="container mt-2">
-        <div class="outer-div" id="web-learn-container">
-          <!-- Example static card, remove if unnecessary -->
-          {{-- <div class="card card-main">
+      <div class="container mt-2 js-content">
+        
+        {{-- <div class="outer-div" id="web-learn-container">
+          Example static card, remove if unnecessary -->
+           <div class="card card-main">
             <iframe class="video-size" src="https://www.youtube.com/embed/FG0-p9tX0-k?si=ZANJ5IQnUEn1FIl_"
               title="YouTube video player" frameborder="0"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
@@ -19,8 +21,9 @@
                 9.1k views 7days ago
               </p>
             </div>
-          </div> --}}
-        </div>
+          </div> 
+        </div> --}}
+
       </div>
 
       
@@ -73,7 +76,7 @@
               <a href="{{ url('/shop') }}">Shop</a>
             </div>
             <div class="mobile-link-btn">
-              <a href="{{ url('/settings') }}">Settings</a>
+              <a href="{{ url('/settings') }}">Dashboard</a>
             </div>
             <div class="mobile-link-btn1">
               <a href="{{ url('/learn') }}">Learn</a>
@@ -87,7 +90,7 @@
           </div>
         </div>
         <div class="row mt-4">
-          <div class="mobile-outer-div" id="mobile-learn-container">
+          <div class="mobile-outer-div js-mobile-content">
             <!-- Example static card, remove if unnecessary -->
             {{-- <div class="card card-main">
               <iframe class="mobile-video-size" src="https://www.youtube.com/embed/FG0-p9tX0-k?si=ZANJ5IQnUEn1FIl_"

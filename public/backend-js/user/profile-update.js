@@ -146,18 +146,32 @@ function updateUserProfile(user) {
                     });
 
 
-                 const reviewEL =  document.querySelector('.review-page');
+                 const reviewEL =  document.querySelectorAll('.review-page');
 
                 
 
                  if(reviewEL) {
 
-                    reviewEL.addEventListener('click', (event) => {
-                        event.preventDefault();
-    
-                       window.location.href = `/review/product?user=${user.id}&shop=${user.shop_token}`;
-    
-                     });
+                    reviewEL.forEach((review) => {
+
+                        if(review) {
+
+                            //console.log(review)
+
+                            review.addEventListener('click', (event) => {
+                                event.preventDefault();
+            
+                               window.location.href = `/review/product?user=${user.id}&shop=${user.shop_token}`;
+            
+                             });
+
+                        }
+
+                        
+
+                    })
+
+                    
 
                  }
 

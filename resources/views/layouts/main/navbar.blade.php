@@ -33,6 +33,7 @@
         <div class="menu-overlay"></div>
         <ul class="menu">
             <li><a href="{{ url('/settings') }}">Dasboard</a></li>
+            <li><a class="review-page" href="{{ url('/review') }}">Reviews</a></li>
             <li><a href="{{ url('/refer') }}">Refer a Friend</a></li>
             <li><a href="{{ url('/privacy') }}">Privacy Policy</a></li>
             <li><a href="#" class="js-mobile-view-logout" >Log Out</a></li>

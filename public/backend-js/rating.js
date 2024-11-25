@@ -113,9 +113,9 @@ if(token) {
     const {photo_url, email, name} = product.user;
     
 
-    const img = photo_url 
-            ? `<img  class="img-content" src="/uploads/users/${photo_url}" alt="">` 
-            : `<img  class="img-content" src="${generateAvatar(email)}" alt="">`;
+   const img = photo_url 
+           ? `<img  style="height:40px; width:40px" class="img-content" src="/uploads/users/${photo_url}" alt="">` 
+           : `<img  style="height:40px; width:40px"  class="img-content" src="${generateAvatar(email)}" alt="">`;
 
     const productContent = `
           <div class="structure-m2 card-body pt-2">

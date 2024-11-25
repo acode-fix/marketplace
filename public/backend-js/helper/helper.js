@@ -566,7 +566,7 @@ export function filter(locationElement, verifyElement,) {
 export function displayHelpCenter() {
 
   Swal.fire({
-    title: "<strong>Help Center</strong>",
+    title: `<strong class="text-success">Help Center</strong>`,
     icon: "info",
     html: `
       <h6 class="fs-5">Direct your complain to our email</h6>
@@ -574,17 +574,15 @@ export function displayHelpCenter() {
       <h6 class="fs-5">We will respond within 24hrs</h6>
      
     `,
-    confirmButtonColor: '#ffb705',
+    confirmButtonColor: '#14ae5c',
     showCloseButton: true,
-    showCancelButton: true,
+   // showCancelButton: true,
     focusConfirm: false,
     confirmButtonText: `
-      <i class="fa fa-thumbs-up"></i> Go To Mail
+      <i class="fa-solid fa-envelope"></i> Go To Mail
     `,
-    confirmButtonAriaLabel: "Thumbs up, great!",
-    // cancelButtonText: `
-    //   <i class="fa fa-thumbs-down"></i>
-    // `,
+  
+    
     cancelButtonAriaLabel: "Thumbs down"
   }).then((result)=> {
     if(result.isConfirmed) {

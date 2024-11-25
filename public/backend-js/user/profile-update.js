@@ -42,6 +42,7 @@ if (token) {
        title: 'Unauthenticated User',
        text: 'Please log in.',
        confirmButtonColor: '#ffb705',
+       confirmButtonText: 'login',
    }).then(() => {
        window.location.href = '/'; 
        

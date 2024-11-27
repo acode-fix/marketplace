@@ -81,7 +81,7 @@
                         src="{{asset('innocent/assets/image/notification.svg')}}" alt="Logo"></a></div>
 
             <div><img id="profile_picture" src="" alt=".profile picture " class="profile_picture mt-2 js-default"></div>
-            <a href="{{ url('/shop') }}">
+            <a class="js-auth" href="{{ url('/shop') }}">
                 <img id="profile_picture_mobile" src="" alt=".profile picture "
                     class="profile_picture_mobile js-default"></a>
 

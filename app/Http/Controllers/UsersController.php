@@ -509,7 +509,7 @@ class UsersController extends Controller
 {
     try {
         
-        $user = Auth::user();
+        $user = $request->user();
 
         if (!$user) {
 

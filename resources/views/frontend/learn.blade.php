@@ -76,7 +76,7 @@
               <a href="{{ url('/shop') }}">Shop</a>
             </div>
             <div class="mobile-link-btn">
-              <a href="{{ url('/settings') }}">Dashboard</a>
+              <a href="{{ url('/settings') }}">Settings</a>
             </div>
             <div class="mobile-link-btn1">
               <a href="{{ url('/learn') }}">Learn</a>

@@ -102,6 +102,10 @@ Route::post('/reject/user', [VerificationController::class, 'rejectUserVerificat
 //Route admin user menu;
 
 Route::get('admin/registered-user',[AdminController::class, 'index']);
+Route::get('admin/edit/{id}', [AdminController::class, 'edit']);
+Route::post('admin/store/{id}', [AdminController::class, 'store']);
+Route::post('admin/suspend-user', [AdminController::class, 'suspend']);
+Route::post('admin/delete/{id}', [AdminController::class, 'destroy']);
 
 
 //Verified Seller Shop Route;
@@ -137,7 +141,6 @@ Route::get('user/refer-link', [UsersController::class, 'getLink']);
 
 
 //Route UserNotification
-
 Route::get('/user/notification', [NotificationController::class, 'getNotifications']);
 Route::post('/user/update/notification', [NotificationController::class, 'updateReadNotification']);
 
@@ -153,8 +156,9 @@ Route::get('/user/review',[ReviewersController::class, 'loadReviewPage']);
 Route::get('/user/avg-rating', [ReviewersController::class, 'avgReview']);
 
 //ROUTE PRODUCT REQUEST;
-
 Route::post('/user/product-request', [UsersController::class, 'storeProductRequest']);
+
+
 
 
 
@@ -230,11 +234,11 @@ Route::post('/verification/status', [VerificationController::class, 'updateVerif
 
 
 
-Route::post('/adverts', [AdvertController::class, 'store']);
-Route::get('/adverts/create', [AdvertController::class, 'create']);
-Route::post('/adverts/price', [AdvertController::class, 'calculatePrice']);
-Route::post('/adverts/{advert}', [AdvertController::class, 'update']);
-Route::post('/adverts/{advert}', [AdvertController::class, 'destroy']);
+// Route::post('/adverts', [AdvertController::class, 'store']);
+// Route::get('/adverts/create', [AdvertController::class, 'create']);
+// Route::post('/adverts/price', [AdvertController::class, 'calculatePrice']);
+// Route::post('/adverts/{advert}', [AdvertController::class, 'update']);
+// Route::post('/adverts/{advert}', [AdvertController::class, 'destroy']);
 
 
 

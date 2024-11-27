@@ -27,6 +27,28 @@
 
   
   <style>
+
+.loader-text {
+    border: 6px solid #f3f3f3; 
+    border-top: 6px solid #ffb705; 
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    animation: spin 2s linear infinite;
+
+  }
+  
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+
+  .update-layout {
+    justify-content:center;
+    align-items:center;
+    display: none; 
+  }
+
     
   </style>
 

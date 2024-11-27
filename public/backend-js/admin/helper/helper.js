@@ -70,3 +70,31 @@ export function getUserById(userId) {
 
     })
 }
+
+
+export async function getUser(userId) {
+    try {
+      const response = await axios.get('/api/v1/userDetails', {
+        params: {
+            user:userId,
+        }
+      });
+     // console.log(response);
+
+      if(response.status === 200 && response.data) {
+        const data = response.data.data
+
+        console.log(data);
+
+        return data;
+      }
+    } catch (error) {
+      if(error.response) {
+      //  console.error(error);
+
+
+      }
+
+      return null;
+    }
+  }

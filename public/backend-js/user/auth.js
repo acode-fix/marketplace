@@ -166,6 +166,8 @@ const loader = document.querySelector('.login-loader-div');
     hideLoader(continueBtn, signupText, loader);
   
       if (error.response) {
+        
+        $('#signup_login-modal').modal('hide');
 
       if(error.response.status ===  401 && error.response.data) {
 
@@ -186,6 +188,41 @@ const loader = document.querySelector('.login-loader-div');
           const errorMsg = allErrors.join('\n')
 
           displaySwal(errorMsg, invalidCredentials);
+
+      }
+
+      if(error.response.status === 403 && error.response.data) {
+
+        
+
+            Swal.fire({
+                title: `<strong class="text-danger">Account Suspended!!</strong>`,
+                icon: "info",
+                html: `
+                <h6 class="fs-5">Direct your complain to our email</h6>
+                <h6 class="fs-5">helpdesk@loopMartinfo.com</h6>
+                <h6 class="fs-5">We will respond within 24hrs</h6>
+                
+                `,
+                confirmButtonColor: '#14ae5c',
+                showCloseButton: true,
+            // showCancelButton: true,
+                focusConfirm: false,
+                confirmButtonText: `
+                <i class="fa-solid fa-envelope"></i> Go To Mail
+                `,
+            
+                
+                cancelButtonAriaLabel: "Thumbs down"
+            }).then((result)=> {
+                if(result.isConfirmed) {
+
+                window.location.href = "mailto:helpdesk@loopMartInfo.com?subject=Help Center Inquiry&body=Hello,"
+
+
+                }
+            })
+        
 
       }
 

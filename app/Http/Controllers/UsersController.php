@@ -19,7 +19,8 @@ use App\Notifications\ReviewPushNotification;
 
 
 class UsersController extends Controller
-{
+{    
+
     /**
      * Display a listing of the resource.
      */
@@ -121,6 +122,18 @@ class UsersController extends Controller
                     'message' => 'email is not found',
 
                 ], 401);
+             }
+
+
+             if($user->user_type === -2) {
+
+                return response()->json([
+                    'status' => false,
+                    'message' => 'Account Suspendend!!'
+
+                ], 403);
+
+
              }
 
            $token = $user->createToken(env('APP_NAME','defaultAppName'))->plainTextToken;
@@ -245,7 +258,7 @@ class UsersController extends Controller
 
             $validateUser = Validator::make($request->all(), [
 
-                'username' => 'nullable|max:255|unique:users,username,'.$request->user()->id,
+                 'username' => 'nullable|max:255|unique:users,username,'.$request->user()->id,
                 'phone_number' => ['nullable', 'regex:/^(080|091|090|070|081)[0-9]{8}$/'],
                 'bio' => 'nullable|string',
                 'photo_url' => 'nullable|image|mimes:jpg,jpeg,png,gif,svg|max:1024',

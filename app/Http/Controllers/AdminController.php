@@ -187,7 +187,7 @@ class AdminController extends Controller
 
             return response()->json([
                 'status' => true,
-                'message' => 'User Susupended Successfully',
+                'message' => 'User Suspended Successfully',
 
             ], 200);
         };
@@ -275,7 +275,7 @@ class AdminController extends Controller
         }
 
         if($user->delete()) {
-            
+
             $user->tokens()->delete();
 
 

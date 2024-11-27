@@ -125,7 +125,7 @@ class UsersController extends Controller
              }
 
 
-             if($user->user_type === -2) {
+             if($user->user_type == -2) {
 
                 return response()->json([
                     'status' => false,

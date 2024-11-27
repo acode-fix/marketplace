@@ -26,6 +26,8 @@ use App\Models\Verification;
 
 //, 'permission:admin,market_user'
 
+Route::get('/userStatus', [UsersController::class, 'status']);
+
 Route::get('/allproduct', [ProductController::class, 'index']);
 
 Route::post('/auth/register', [UsersController::class, 'register']);

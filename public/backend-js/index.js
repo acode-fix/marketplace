@@ -321,9 +321,14 @@ function fetchUserData(token) {
         updateUserProfile(user);
     })
     .catch(error => {
-        console.error('Error fetching user data:', error);
-        if (error.response && error.response.status === 401) {
-           // promptLogin('Your session has expired. Please log in again.');
+      //  console.error('Error fetching user data:', error);
+        if(error.response) {
+
+            if(error.response.status === 401 && error.response.data) {
+
+                localStorage.clear();
+            
+            }
         }
     });
 }

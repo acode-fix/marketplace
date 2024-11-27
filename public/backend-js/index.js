@@ -4,6 +4,8 @@ import { displayHelpCenter, getIndexProfileImage, sendProductRequest, promptLogi
 
 const token = localStorage.getItem('apiToken');
 
+console.log(token);
+
 
 axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
 

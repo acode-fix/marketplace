@@ -15,7 +15,8 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  height: 120px;
+  /* height: 120px; */
+  height: 80px;
   position: fixed;
   top: 0;
   left: 0;
@@ -64,8 +65,9 @@ h6 {
 
 /*style the email address */
 .mired-text {
-  font-size: small;
+  /* font-size: small; */
   padding-right: 4px;
+  font-size: 16px;
 }
 
 /* style the user name */
@@ -189,10 +191,11 @@ input[type="search"] {
 
 .side-barr {
   position: fixed;
-  top: 120px;
+  /* top: 120px; */
+  top: 90px;
   left: 0;
   width: 240px;
-}
+} 
 
 /* the classes will not display at this sceeen size*/
 @media screen and (max-width:970px) {
@@ -342,7 +345,8 @@ input[type="search"] {
 /* sidebar style */
 .side-bar {
   position: fixed;
-  top: 120px;
+  /* top: 120px; */
+  top: 80px;
   left: 0;
   width: 200px;
   height: 100%;
@@ -443,8 +447,13 @@ input[type="search"] {
 */
 /* style the profile text  */
 .profile-text {
-  font-size: small;
+  /* font-size: small; */
+  font-size: 14px;
   margin-left: 10px;
+}
+.profile {
+  font-size: 18px;
+
 }
 
 /* style the links logo */

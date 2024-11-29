@@ -939,9 +939,9 @@
                     </div>
                 </div>
                 <p>Already have an account? <a href="#" onclick="login()" class="signup_links">Login</a></p>
-                <button class="signup_continue_button continueBtn" onclick="signup()">
+                <button class="signup_continue_button continueBtn-signup" onclick="signup()">
                     <span class="signup-text">continue</span>
-                    <div class="loader-div" aria-hidden="true">
+                    <div class="loader-div-signup" aria-hidden="true">
                        <div class="loader-text"></div>
                         <span class="ms-1 text-dark">loading...</span>
                     </div>

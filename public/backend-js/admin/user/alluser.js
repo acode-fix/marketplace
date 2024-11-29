@@ -1,34 +1,21 @@
-import { displaySwal, hideLoader, showLoader, validationError } from '../../helper/helper.js';
+import { displaySwal, hideLoader, showLoader, validationError, } from '../../helper/helper.js';
 import {
+    getDeletedUsers,
+    getRegisteredUser,
+    getSuspendedUsers,
     getToken,
     getUser,
-    getUserById
+    getUserById,
 } from '../helper/helper.js';
+import dayjs from 'https://unpkg.com/dayjs@1.11.10/esm/index.js';
 
 const token = getToken();
 
 axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
 
-axios.get('/api/v1/admin/registered-user').then((response) => {
-  //  console.log(response);
+async function loadUsers() {
 
-    if (response.status === 200 && response.data) {
-
-        const users = response.data.users;
-
-        loadUsers(users);
-
-
-    }
-
-}).catch((error) => {
-    console.log(error);
-
-});
-
-
-
-function loadUsers(users) {
+    const users = await getRegisteredUser();
 
     let display = `<table id="example1" class="table table-striped nowrap" style="width:100%">'
           <thead>
@@ -70,8 +57,9 @@ function loadUsers(users) {
         responsive: true
     });
 
-
 }
+
+loadUsers();
 
 
 document.addEventListener('click', (event) => {
@@ -299,9 +287,11 @@ async function loadDetails(userId) {
 
     const user =  await getUser(userId);
 
-    document.querySelector('.suspend-email').textContent = user.email ?? 'N/A';
-    document.querySelector('.suspend-name').textContent = user.name ?? 'N/A';
-    document.querySelector('.suspend-username').textContent = user.username ?? 'N/A';
+  const email =  document.querySelector('.suspend-email');
+  const name =  document.querySelector('.suspend-name');
+  const username = document.querySelector('.suspend-username');
+
+    loadModalDetails(user, email,name,username);
 
     suspendModal.show();
 
@@ -393,13 +383,15 @@ document.addEventListener('click', (event) => {
 
  async function loadDelDetails(userId) {
 
-    const user =  await getUser(userId);
+  const user =  await getUser(userId);
 
-    document.querySelector('.delete-email').textContent = user.email ?? 'N/A';
-    document.querySelector('.delete-name').textContent = user.name ?? 'N/A';
-    document.querySelector('.delete-username').textContent = user.username ?? 'N/A';
+  const email = document.querySelector('.delete-email');
+  const name = document.querySelector('.delete-name');
+  const username = document.querySelector('.delete-username');
 
-    deleteModal.show();
+  loadModalDetails(user, email,name,username);
+
+  deleteModal.show();
 
 }
 
@@ -407,7 +399,7 @@ const deleteBtn = document.querySelector('.js-delete-yes');
 
 deleteBtn.addEventListener('click', () => {
 
-    axios.post(`/api/v1/admin/delete/${deleteUserId}`,).then((response) => {
+    axios.post(`/api/v1/admin/delete/${deleteUserId}`).then((response) => {
         console.log(response)
 
         if(response.status === 200 && response.data) {
@@ -427,7 +419,7 @@ deleteBtn.addEventListener('click', () => {
 
     }).catch((error) => {
 
-        console.log(error);
+     //   console.log(error);
 
         if(error.response) {
 
@@ -459,6 +451,208 @@ deleteBtn.addEventListener('click', () => {
     })
 
 });
+
+
+async function  loadSuspendedUsers() {
+
+    const users = await getSuspendedUsers();
+
+    let display = `<table id="example2" class="table table-striped nowrap" style="width:100%">'
+          <thead>
+              <tr>
+                  <th>Name</th>
+                  <th>Email</th>
+                  <th>Address</th>
+                  <th>Phone Number</th>
+                  <th>Full Details</th>
+                  <th>Action</th>
+              </tr>
+          </thead>
+          <tbody>`;
+
+    users.forEach((user) => {
+
+        display += ` <tr>
+                  <td>${user.name ? user.name : 'No Data Yet'} </td>
+                  <td>${user.email ? user.email : 'No Data Yet'}</td>
+                  <td>${user.address ? user.address : 'No Data Yet'}</td>
+                  <td>${user.phone_number ? user.phone_number : 'No Data Yet'}</td>
+                  <td><a class="user-link" data-user-id="${user.id}" href="" >User Details</a></td> 
+                  <td>
+                  <button data-user-id="${user.id}"   type="btn" class="btn btn-success btn-sm  unsuspend ">unsuspend</button>
+                  </td>  
+              </tr>`;
+
+    });
+
+    display += `</tbody></table>`;
+
+
+    document.querySelector('.suspended').innerHTML = display;
+
+
+    $('#example2').DataTable({
+        responsive: true
+    });
+
+
+}
+
+loadSuspendedUsers();
+
+var unsuspendModal = new bootstrap.Modal(document.getElementById('unsuspendModal'));
+
+let unsuspendId;
+
+document.addEventListener('click', (event) => {
+
+    if(event.target.classList.contains('unsuspend')) {
+
+        unsuspendId = event.target.dataset.userId;
+
+        loadunsuspendDetails(unsuspendId);
+
+
+
+
+    }
+
+});
+
+async function  loadunsuspendDetails(unsuspendId) {
+
+    
+    const user =  await getUser(unsuspendId);
+    const email = document.querySelector('.unsuspend-email');
+    const name =  document.querySelector('.unsuspend-name');
+    const username =   document.querySelector('.unsuspend-username');
+
+    loadModalDetails(user, email,name,username);
+    unsuspendModal.show();
+
+    
+}
+
+const unsuspendBtn = document.querySelector('.js-unsuspend');
+
+unsuspendBtn.addEventListener('click', () => {
+
+    axios.post(`/api/v1/admin/unsuspend/${unsuspendId}`).then((response) => {
+
+        console.log(response);
+
+        if(response.status === 200 && response.data) {
+
+            const msg = response.data.message;
+            const iconAlert = 'success';
+            const titleAlert = 'Unsuspend User';
+
+            unsuspendModal.hide();
+
+            swalAlert(iconAlert, titleAlert, msg);
+
+
+
+
+        }
+    }).catch((error) => {
+      //  console.log(error);
+
+      if(error.response) {
+
+        if(error.response.status === 404 && error.response.data) {
+
+            const msg = error.response.data.message;
+            const iconAlert =  'error';
+            const titleAlert = 'User Error';
+
+            deleteModal.hide();
+
+            swalAlert(iconAlert, titleAlert, msg);
+
+        }
+
+        if(error.response.status === 500) {
+
+              const msg = error.response.data.message;
+                const iconAlert =  'error';
+                const titleAlert = 'Server Error';
+
+                deleteModal.hide();
+
+                swalAlert(iconAlert, titleAlert, msg);
+
+        }
+    }
+
+    })
+
+});
+
+
+function loadModalDetails(user,email,name,username) {
+    
+    email.textContent = user.email ?? 'N/A';
+    name.textContent = user.name ?? 'N/A';
+    username.textContent = user.username ?? 'N/A';
+
+}
+
+
+ async function loadDeletedAccounts() {
+
+    const users = await getDeletedUsers();
+
+        let display = `<table id="example3" class="table table-striped nowrap" style="width:100%">'
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Address</th>
+                <th>Phone Number</th>
+                <th>Deletion Date</th>
+                <th>Full Details</th>
+            </tr>
+        </thead>
+        <tbody>`;
+
+        users.forEach((user) => {
+
+        display += ` <tr>
+                <td>${user.name ? user.name : 'No Data Yet'} </td>
+                <td>${user.email ? user.email : 'No Data Yet'}</td>
+                <td>${user.address ? user.address : 'No Data Yet'}</td>
+                <td>${user.phone_number ? user.phone_number : 'No Data Yet'}</td>
+                <td>${formatDate(user.deleted_at) ?? 'N/A'}</td>
+                <td><a class="user-link" data-user-id="${user.id}" href="" >User Details</a></td> 
+          
+            </tr>`;
+
+        });
+
+        display += `</tbody></table>`;
+
+
+        document.querySelector('.deleted').innerHTML = display;
+
+
+        $('#example3').DataTable({
+        responsive: true
+        });
+
+
+
+}
+
+loadDeletedAccounts();
+
+function formatDate(date) {
+
+    return dayjs(date).format('D MMMM YYYY, HH:mm') || null;
+
+}
+
+
 
 
 

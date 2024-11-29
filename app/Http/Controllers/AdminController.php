@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Product;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Barryvdh\Debugbar\Facades\Debugbar;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Validator;
 
 
@@ -211,6 +213,120 @@ class AdminController extends Controller
 
     }
 
+    public function getSuspendedUsers(Request $request) {
+
+        $users = User::where('user_type', -2)->get();
+
+        if($users->isEmpty()) {
+            return response()->json([
+                'status' => true,
+                'message' => 'No Suspended Users Found',
+                'users' => [],
+
+            ],200);
+        }
+
+        return response()->json([
+            'status' => true,
+            'message' => 'Suspended Uses Fetched Successfully',
+            'users' => $users
+
+        ],200);
+
+    }
+
+
+    public function unsuspendUsers($id) {
+
+        $user = User::find($id);
+
+        if(!$user) {
+            return response()->json([
+                'status' => false,
+                'message' => 'User Not Found',
+
+            ],404);
+        }
+
+        $user->user_type = 2;
+        
+        if($user->save()) {
+
+            return response()->json([
+                'status' => true,
+                'message' => 'User Suspension Revoked',
+
+            ],200);
+        }
+
+
+        return response()->json([
+            'status' => false,
+            'message' => 'Revoking User Suspension Failed',
+
+        ],500);
+
+    }
+
+
+    public function getDeletedAccounts() {
+
+       // $users = User::whereNotNull('deleted_at')->get();
+       $users = User::onlyTrashed()->get();
+
+        if($users->isEmpty()) {
+            return response()->json([
+                'status' => true,
+                'message' => 'No Deleted Account Yet',
+                'users' => $users,
+
+            ],200);
+        } 
+
+
+        return response()->json([
+            'status' => true,
+            'message' => 'Deleted Accounts Fetched Succesfully',
+            'users' => $users,
+
+        ],200);
+
+
+
+    }
+
+
+    public function getUserProducts() {
+
+       $products = Product::with(['user', 'category'])->get();
+
+     //  debugbar::info($products);
+
+      Log::info($products);
+
+        if($products->isEmpty()) {
+            return response()->json([
+                'status' => true,
+                'message' => 'Products is Empty!!',
+                'products' => [],
+
+            ],200);
+
+        }
+
+
+        return response()->json([
+            'status' => true,
+            'message' => 'Products Fetched Successfully',
+            'products' => $products,
+
+        ],200);
+
+
+
+
+    }
+
     /**
      * Display the specified resource.
      */
@@ -277,6 +393,8 @@ class AdminController extends Controller
         }
 
         if($user->delete()) {
+            
+            Product::where('user_id', $user->id)->update(['deleted_at' => now()]);
 
             $user->tokens()->delete();
 

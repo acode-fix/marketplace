@@ -101,13 +101,21 @@ Route::post('/approve/user', [VerificationController::class, 'approveUserVerific
 Route::post('/reject/user', [VerificationController::class, 'rejectUserVerification']);
 
 
-//Route admin user menu;
+//ADMIN USER MENU ROUTES;
 
 Route::get('admin/registered-user',[AdminController::class, 'index']);
 Route::get('admin/edit/{id}', [AdminController::class, 'edit']);
 Route::post('admin/store/{id}', [AdminController::class, 'store']);
 Route::post('admin/suspend-user', [AdminController::class, 'suspend']);
-Route::post('admin/delete/{id}', [AdminController::class, 'destroy']);
+Route::post('admin/delete/{id}', [AdminController::class, 'destroy']); 
+Route::get('admin/suspended-users', [AdminController::class, 'getSuspendedUsers']);
+Route::post('admin/unsuspend/{id}', [AdminController::class, 'unsuspendUsers']);
+Route::get('admin/deleted-account', [AdminController::class, 'getDeletedAccounts']);
+
+
+//ADMIN PRODUCTS MENU ROUTES; 
+
+Route::get('admin/listed-products', [AdminController::class, 'getUserProducts']);
 
 
 //Verified Seller Shop Route;

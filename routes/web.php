@@ -191,6 +191,18 @@ Route::get('/admin/dashboard/alluser', function() {
     return view('admin.user.alluser');
 });
 
+Route::get('/admin/products/view', function() {
+
+    return view('admin.products.view');
+
+})->name('products.view');
+
+Route::get('admin/view/product-details', function() {
+    
+    return view('admin.products.fulldetails');
+
+});
+
 Route::get('/product/shared/{link}', [ProductController::class, 'loadSharedProduct' ]);
 
 Route::get('/check-badge', [BadgeController::class, 'verifyBadge']);

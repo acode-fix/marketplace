@@ -1,5 +1,6 @@
 import { serverError } from "./auth-helper.js";
 import { logoutUser } from "./auth.js";
+import { getRegisteredUser, calculateTotal, getSuspendedUsers, getDeletedUsers } from "./helper/helper.js";
 
 const token = localStorage.getItem('token');
 
@@ -117,7 +118,69 @@ document.getElementById('get-users').addEventListener('click', (event) => {
 
   window.location.href = '/admin/dashboard/alluser';
 
-})
+});
+
+
+async function fetchRegisteredUser() {
+
+const users = await getRegisteredUser();
+
+const total =  calculateTotal(users);
+const totalEl = document.querySelector('.js-total-user');
+
+if(totalEl) {
+  
+totalEl.innerHTML = `Total Number Of User :: ${total}`;
+
+}
+
+  
+}
+
+fetchRegisteredUser();
+
+
+async function  fetchSuspendedUsers() {
+
+  const users = await getSuspendedUsers();
+
+  const total = calculateTotal(users);
+
+  const totalEl = document.querySelector('.js-total-suspended-user');
+
+  if(totalEl) {
+    totalEl.innerHTML = `Total Number Of  User :: ${total}`;
+  }
+  
+}
+
+fetchSuspendedUsers();
+
+
+async function getDeletedAccounts() {
+
+  const users = await getDeletedUsers();
+
+  const total = calculateTotal(users);
+
+  const totalEl = document.querySelector('.js-total-deleted-user');
+
+  if(totalEl) {
+    totalEl.innerHTML = `Total Number Of  User :: ${total}`;
+  }
+
+
+  
+}
+
+getDeletedAccounts();
+
+
+
+
+
+
+
 
 
 

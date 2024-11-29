@@ -25,7 +25,7 @@
     100% { transform: rotate(360deg); }
   }
 
-  .loader-div {
+  .loader-div-signup {
     justify-content:center;
     align-items:center;
     display: none; 

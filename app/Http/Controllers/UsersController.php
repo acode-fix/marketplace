@@ -9,6 +9,7 @@ use App\Models\ProductEngagementLog;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Auditlog;
+use App\Models\Product;
 use App\Models\UserProductRequest;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
@@ -519,7 +520,15 @@ class UsersController extends Controller
             ], 401);
         }
 
-        
+        Product::where('user_id', $user->id)->update(['deleted_at' => now()]);
+
+        // foreach($getProducts as $getProduct) {
+
+        //     $getProduct->deleted_at = now();
+
+        //     $getProduct->save();
+
+        // }
         $user->tokens()->delete(); 
         $user->delete();
 
@@ -547,7 +556,9 @@ public function getUserPayment(Request $request) {
 
     $userId = $request->user;
 
-    $user = User::with('payment')->where('user_type', 2)->where('id', $userId)->first();
+  //  $user = User::with('payment')->where('user_type', 2)->where('id', $userId)->first();
+
+   $user = User::with('payment')->where('id', $userId)->withTrashed()->first();
 
     DeBugBar::info($user, $userId);
 

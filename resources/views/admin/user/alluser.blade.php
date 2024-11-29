@@ -17,10 +17,10 @@
                   <a class="nav-link active" data-bs-toggle="tab" href="#home">Registered</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link  approve-menu" data-bs-toggle="tab" href="#menu1">User With Products</a>
+                  <a class="nav-link  " data-bs-toggle="tab" href="#menu1">Suspended</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link reject-menu" data-bs-toggle="tab" href="#menu2">Suspended</a>
+                  <a class="nav-link " data-bs-toggle="tab" href="#menu2">Deleted</a>
                 </li>
               </ul>
 
@@ -29,11 +29,11 @@
                 <div id="home" class="container tab-pane registered active"><br>
 
                 </div>
-                <div id="menu1" class="container approved tab-pane fade"><br>
+                <div id="menu1" class="container suspended tab-pane fade"><br>
 
 
                 </div>
-                <div id="menu2" class="container rejected tab-pane fade"><br>
+                <div id="menu2" class="container deleted tab-pane fade"><br>
 
                 </div>
               </div>
@@ -198,6 +198,27 @@
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
             <button type="button" class="btn btn-danger js-delete-yes">Yes</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal fade" id="unsuspendModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" style="align-items: flex-end;">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title text-success" id="exampleModalLabel">Unsuspend :: User </h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <h6 class="mb-2">Are you sure you want to Unsuspend user with the following details:</h6>
+            <h6><strong>Email: </strong><span class="unsuspend-email text-success"></span></h6>
+            <h6><strong>FullName: </strong><span class="unsuspend-name text-success"></span></h6>
+            <h6><strong>UserName: </strong><span class="unsuspend-username text-success"></span></h6>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
+            <button type="button" class="btn btn-success js-unsuspend">Yes</button>
           </div>
         </div>
       </div>

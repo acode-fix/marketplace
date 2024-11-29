@@ -23,6 +23,10 @@ export function getToken () {
 
 }
 
+const token = getToken;
+
+axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+
 
 export function getUserById(userId) {
 
@@ -98,3 +102,138 @@ export async function getUser(userId) {
       return null;
     }
   }
+
+
+ export async function getRegisteredUser() {
+
+    const token = localStorage.getItem('token');
+
+    try {
+        const response = await axios.get('/api/v1/admin/registered-user',{
+            headers: {
+                'Authorization': `Bearer ${token}`,
+            }
+        });
+       // console.log(response);
+  
+        if(response.status === 200 && response.data) {
+          const data = response.data.users
+  
+         // console.log(data);
+  
+          return data;
+        }
+      } catch (error) {
+        if(error.response) {
+        //  console.error(error);
+  
+  
+        }
+  
+        return null;
+      }
+
+
+ }
+
+ export function calculateTotal(users){
+
+    const total = users.length;
+
+    return total;
+
+ }
+
+ export async function getSuspendedUsers() {
+
+    const token = localStorage.getItem('token');
+
+    try {
+        const response = await axios.get('/api/v1/admin/suspended-users',{
+            headers: {
+                'Authorization': `Bearer ${token}`,
+            }
+        });
+       // console.log(response);
+  
+        if(response.status === 200 && response.data) {
+          const data = response.data.users
+  
+         // console.log(data);
+  
+          return data;
+        }
+      } catch (error) {
+        if(error.response) {
+        //  console.error(error);
+  
+  
+        }
+  
+        return null;
+      }
+    
+ }
+
+export async function getDeletedUsers() {
+
+  const token = localStorage.getItem('token');
+
+  try {
+      const response = await axios.get('/api/v1/admin/deleted-account',{
+          headers: {
+              'Authorization': `Bearer ${token}`,
+          }
+      });
+     // console.log(response);
+
+      if(response.status === 200 && response.data) {
+        const data = response.data.users
+
+       // console.log(data);
+
+        return data;
+      }
+    } catch (error) {
+      if(error.response) {
+      //  console.error(error);
+
+
+      }
+
+      return null;
+    }
+
+}
+
+
+export async function getListedProducts() {
+
+  try {
+      const response = await axios.get('/api/v1/admin/listed-products',{
+        
+      });
+     // console.log(response);
+
+      if(response.status === 200 && response.data) {
+        const data = response.data.products
+
+      //  console.log(data);
+
+        return data;
+      }
+    } catch (error) {
+      if(error.response) {
+        console.error(error);
+
+
+      }
+
+      return null;
+    }
+
+
+}
+
+
+  

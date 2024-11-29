@@ -1,4 +1,4 @@
-<div   class=" new-footer">
+<div  class=" new-footer">
   <div><img class="main-logo" src="{{asset('kaz/images/transparent_logo.png')}}" alt=""></div>
   <div>
     <p class="fw-light text-footer">About<br>us</p>

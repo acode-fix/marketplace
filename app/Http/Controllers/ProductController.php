@@ -126,10 +126,19 @@ public function index()
 //
 public function getProductDetails($id) {
 
-    $product = Product::with('user')
+    // $product = Product::with('user')
+    //                   ->where('quantity', '!=', 0)
+    //                   ->where('id', $id)
+    //                   ->first();
+
+
+    
+    $product = Product::with(['user', 'category'])
                       ->where('quantity', '!=', 0)
                       ->where('id', $id)
                       ->first();
+
+    
 
     if (!$product) {
         return response()->json([

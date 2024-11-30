@@ -58,15 +58,17 @@ loadListedProducts();
 
 document.addEventListener('click', (event) => {
 
-  if(event.target.classList.contains('full-details')) {
+  event.preventDefault();
 
-    event.preventDefault();
+  if(event.target.classList.contains('full-details')) {
 
      productId = event.target.dataset.productId;
 
+    // console.log(productId);
+
+    localStorage.setItem('productId', JSON.stringify(productId));
+    window.location.href = '/admin/view/product-details';
 
   }
 
 });
-
-console.log(productId); 

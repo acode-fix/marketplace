@@ -23,9 +23,9 @@ export function getToken () {
 
 }
 
-const token = getToken;
+//const token = getToken;
 
-axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+//axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
 
 
 export function getUserById(userId) {

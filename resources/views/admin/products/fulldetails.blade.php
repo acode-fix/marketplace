@@ -46,7 +46,7 @@
     <div class="row">
       <div class="mx-auto  col-lg-12 mt-5">
           <div class="card mt-2 shadow-lg">
-              <div class="card-header bg-success text-white">User :: Info</div>
+              <div class="card-header bg-success text-white">User-Product :: Info</div>
               <div class="card-body">
                 <table style="width:100%; border-collapse: collapse;">
                   <tr>
@@ -61,10 +61,10 @@
                     <th>Phone Number</th>
                     <td id="phone_number_data"></td>
                   </tr>
-                  <tr>
+                  {{-- <tr>
                     <th>WhatsApp</th>
                     <td id="whatsapp_data"></td>
-                  </tr>
+                  </tr> --}}
                   <tr>
                     <th>Address</th>
                     <td id="address_data"></td>
@@ -73,11 +73,16 @@
                     <th>Email</th>
                     <td id="email_data"></td>
                   </tr>
-                  <tr>
-                    <th>Email Verified At</th>
-                    <td id="email_verified_at_data"></td>
-                  </tr>
-                  <tr>
+                  
+                    <th>Verification Status</th>
+                    <td id="verify_status_data"></td>
+                  </tr> 
+                </tr>
+                  
+                <th>Badge Status</th>
+                <td id="badge_status_data"></td>
+               </tr> 
+                  {{-- <tr>
                     <th>Bio</th>
                     <td id="bio_data"></td>
                   </tr>
@@ -144,7 +149,7 @@
                   <tr>
                     <th>Amount Paid</th>
                     <td id="amount_status"></td>
-                  </tr>
+                  </tr> --}}
                 </table>
                   
               </div>

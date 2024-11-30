@@ -49,7 +49,6 @@ Route::post('reset-password', [PasswordResetController::class, 'resetPassword'])
 
 Route::get('/prod', [ProductController::class, 'index']);
 Route::get('/prod/{id}', [ProductController::class, 'view']);
-// In your routes/web.php or routes/api.php
 Route::get('/product-details/{id}', [ProductController::class, 'getProductDetails']);
 
 Route::post('/product', [ProductController::class, 'store']);

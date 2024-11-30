@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="{{ asset('innocent/assets/css/notification_mobile.css') }}">
     <link rel="stylesheet" href="{{ asset('innocent/assets/icons/css/all.min.css') }}">
     <link rel="stylesheet" href="{{ asset('innocent/assets/icons/css/fontawesome.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('innocent/assets/css/preloader.css')}}">
+     <link rel="stylesheet" href="{{ asset('innocent/assets/css/preloader.css')}}"> 
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
     <script src="https://js.pusher.com/8.2.0/pusher.min.js"></script>
@@ -44,6 +44,7 @@
 
         <div class="notifications_region">
             <div class="notifications_layout">
+        
 
             </div>
 
@@ -181,6 +182,7 @@
                     <source src="{{ asset('/innocent/assets/notification_sound/mixkit-bell-notification-933.wav') }}" type="audio/mpeg">
                 </audio>
                 <p class="mt-2">Notification sound</p>
+                
             </div>
 
         </div>
@@ -188,7 +190,7 @@
     </div>
 
     <script src="{{ asset('innocent/assets/js/notification.js') }}"></script>
-    <script type="module" src="{{ asset('backend-js/mobile-notification.js') }}"></script>
+<script type="module" src="{{ asset('backend-js/mobile-notification.js') }}"></script> 
     <script type="module"  src="{{ asset('backend-js/notification.js') }}"></script>
     <script src="{{ asset('innocent/assets/js/preloader.js') }}"></script> 
 

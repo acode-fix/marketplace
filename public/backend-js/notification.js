@@ -29,11 +29,11 @@ var channel = pusher.subscribe('marketplace');
 
 channel.bind("Illuminate\\Notifications\\Events\\BroadcastNotificationCreated", function(data) {
 
-  //  console.log(userId);
+   // console.log(userId);
+   // console.log(data);
         
         if(data.user_id === userId){
 
-            //alert(`Hi ${data.comment}`) //here you can add you own logic
             loadNotification(data);  
                 
         }
@@ -54,12 +54,14 @@ channel.bind("Illuminate\\Notifications\\Events\\BroadcastNotificationCreated", 
 
 async function loadNotification(data) {
   let content = [data];
- // console.log(content);
+ 
 
   const notificationPromises = content.map(async (item) => {
+
       const productImageHtml = await loadProductDetails(item.product_id);
+    
    
-   return   productImageHtml ? `          <a class="notification-link"  href="/rating/page?user=${data.user_id}&product=${data.product_id}&shop=${shopToken}">
+   return   productImageHtml ? `<a class="notification-link"  href="/rating/page?user=${data.user_id}&product=${data.product_id}&shop=${shopToken}">
    <div class="notification">
        <div class="notification_details">
            <div class="notification_image">
@@ -75,23 +77,7 @@ async function loadNotification(data) {
        </div>
    </div>
 </a>` : '';
-          // return `
-          // <a class="notification-link"  href="/rating/page?user=${item.user_id}&product=${item.product_id}&shop=${shopToken}">
-          //     <div class="notification">
-          //         <div class="notification_details">
-          //             <div class="notification_image">
-          //                 <img src="innocent/assets/image/logo icon.svg" alt="Profile Picture">
-          //             </div>
-          //             <div class="message_area">
-          //                 <p class="time">${item.comment}</p>
-          //                 <p class="message"><strong>Congratulations</strong><br>It is a perfect time to give a review .</p>
-                         
-                          
-          //             </div>
-          //             ${productImageHtml ?? `<img src="/innocent/assets/image/laptop2.jpg" alt="Picture" class="notification_product_image">`}
-          //         </div>
-          //     </div>
-          // </a>`;
+         
   });
 
   const messages = await Promise.all(notificationPromises);
@@ -122,7 +108,7 @@ async function loadProductDetails(id) {
 
       if (response.status === 200 && response.data) {
 
-        console.log(response)
+       // console.log(response)
           const product = response.data.data;
           const image = getSingleImage(product.image_url);
 
@@ -131,7 +117,7 @@ async function loadProductDetails(id) {
           }
       }
   } catch (error) {
-     console.log(error);
+    // console.log(error);
 
   }
 
@@ -161,15 +147,7 @@ axios.get('/api/v1/user/notification',  {
 
 }).catch((error) => {
  // console.log(error);
-
-  if(error.response) {
-
-    
-
-  }
-
  
-
 })
 
 
@@ -178,8 +156,6 @@ async function getUnreadNotification(notifications) {
   // Use map to create an array of promises for each notification's HTML content
   const messagePromises = notifications.map(async (notification) => {
       const data = JSON.parse(notification.data);
-
-     // console.log(data);
 
      // console.log(shopToken);
 
@@ -203,24 +179,7 @@ async function getUnreadNotification(notifications) {
               </div>
           </a>` : '';
 
-      // Return the HTML for this notification
-      // return ` 
-      //     <a class="notification-link"  href="/rating/page?user=${data.user_id}&product=${data.product_id}&shop=${shopToken}">
-      //         <div class="notification">
-      //             <div class="notification_details">
-      //                 <div class="notification_image">
-      //                     <img src="innocent/assets/image/logo icon.svg" alt="Profile Picture">
-      //                 </div>
-      //                 <div class="message_area">
-      //                     <p class="time">${data.comment}</p>
-      //                     <p class="message"><strong>Congratulations</strong><br>It is a perfect time to give a review .</p>
-                         
-                          
-      //                 </div>
-      //                 ${productImageHtml ?? `<img src="innocent/assets/image/laptop2.jpg" alt="Picture" class="notification_product_image">`}
-      //             </div>
-      //         </div>
-      //     </a>`;
+      
   });
 
   // Wait for all notification HTML content to load

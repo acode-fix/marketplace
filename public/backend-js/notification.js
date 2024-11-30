@@ -98,17 +98,14 @@ async function loadNotification(data) {
   // Wait for all notifications to load product images before inserting HTML
   const messages = await Promise.all(notificationPromises);
 
+  const filteredMessages = messages.filter((message) => message.trim() !== '');
+
   notificationStatus(messages);
-
- 
-
-
-  
 
   const notification = document.querySelector('.notifications_layout');
   if (notification) {
 
-      notification.innerHTML += messages.join('');  // Insert all notifications at once
+      notification.innerHTML += filteredMessages.join('');  // Insert all notifications at once
 
  
       
@@ -191,7 +188,7 @@ async function getUnreadNotification(notifications) {
       // Load product image asynchronously
       const productImageHtml = await loadProductDetails(data.product_id);
 
-   return   productImageHtml ? `          <a class="notification-link"  href="/rating/page?user=${data.user_id}&product=${data.product_id}&shop=${shopToken}">
+   return   productImageHtml ? `<a class="notification-link"  href="/rating/page?user=${data.user_id}&product=${data.product_id}&shop=${shopToken}">
               <div class="notification">
                   <div class="notification_details">
                       <div class="notification_image">
@@ -231,7 +228,12 @@ async function getUnreadNotification(notifications) {
   // Wait for all notification HTML content to load
   const messages = await Promise.all(messagePromises);
 
-  notificationStatus(messages);
+  const filteredMessages = messages.filter((message) => {
+    message.trim() !== ''
+
+  });
+
+  notificationStatus(filteredMessages);
 
 
  
@@ -242,7 +244,7 @@ async function getUnreadNotification(notifications) {
   // Insert the messages into the notifications region
   const notificationContainer = document.querySelector('.notifications_layout');
   if (notificationContainer) {
-      notificationContainer.innerHTML += messages.join('');
+      notificationContainer.innerHTML += filteredMessages.join('');
   }
 
   
@@ -254,18 +256,17 @@ async function getUnreadNotification(notifications) {
 
 function notificationStatus(messages) {
 
+  const totalNotification = messages.length;
+
     if( document.querySelector('.indicator-span')) {
 
-      document.querySelector('.indicator-span').innerHTML = messages.length;
+      document.querySelector('.indicator-span').innerHTML = totalNotification;
 
     }
-
-  //  console.log(messages.length)
-
   
-    if(messages.length > 0 ) {
+    if(totalNotification > 0 ) {
   
-    document.querySelectorAll('.notification-icon').forEach((icon) => {
+        document.querySelectorAll('.notification-icon').forEach((icon) => {
         icon.src = '/innocent/assets/image/notification.png';
 
     })

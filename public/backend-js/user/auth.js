@@ -39,11 +39,11 @@ function signup() {
         })
         .then((response) => {
             hideLoader(continueBtn, signupText, loader);
-            console.log(response);
+         //   console.log(response);
             if(response.status === 200 && response.data) {
                 const responseMsg = response.data.message;
 
-                console.log(response);
+          //      console.log(response);
                 localStorage.setItem('apiToken', response.data.token);
 
                 axios.defaults.headers.common['Authorization'] = `Bearer ${response.data.token}`;

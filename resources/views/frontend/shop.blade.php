@@ -10,7 +10,7 @@
                 <div class="col">
                     <div style="width: 90%;" class="card mb-3 ms-3 main-card-preview">
                         <form id='banner-image-form' action="">
-                            <img style="height:220px; width: 100%;" id="banner" src=""
+                            <img style="height:220px; width: 100%; object-fit:cover " id="banner" src=""
                                 class="card-img-top main-img-border js-backend-img" alt="...">
                             <div class="camera js-banner-upload js-banner">
                                 <i class="fa-solid fa-camera icon-cam"></i>
@@ -706,7 +706,7 @@
     <div class="mobile_content">
         <div class="card mb-3 mt-3  main-card-mobile">
             <form id="banner-image-form2" action="">
-                <img style="height:180px;" id="banner2" src="" class="card-img-top js-backend-img" alt="...">
+                <img style="height:180px; width:100%; object-fit:cover" id="banner2" src="" class="card-img-top js-backend-img" alt="...">
                 <div class="camera  js-banner-upload  js-banner">
                     <i class="fa-solid fa-camera icon-cam"></i>
                 </div>

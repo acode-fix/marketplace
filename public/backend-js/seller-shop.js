@@ -44,7 +44,7 @@ if (!userId) {
 
             const data = response.data.data;
 
-            console.log(response);
+        //    console.log(response);
 
       
             getProduct(data.products, data);
@@ -473,8 +473,8 @@ if (!userId) {
 
           
    const  bannerImg = user.banner 
-         ?  `<img style="height:220px;" id="banner" src="/uploads/users/${user.banner}" class="card-img-top main-img-border" alt="...">` 
-         : `<img style="height:220px;" id="banner" src="${generateAvatar(user.email)}" class="card-img-top main-img-border" alt="...">`;
+         ?  `<img style="height:220px; width:100%; object-fit:cover" id="banner" src="/uploads/users/${user.banner}" class="card-img-top main-img-border" alt="...">` 
+         : `<img style="height:220px; width:100%; object-fit:cover" id="banner" src="/kaz/images/banner.svg" class="card-img-top main-img-border" alt="...">`;
 
   
 
@@ -513,8 +513,8 @@ if (!userId) {
         
 
       const mobileBannerImg = user.banner 
-            ? `<img style="height:180px;" id="banner" src="/uploads/users/${user.banner}" class="card-img-top main-img-border2" alt="...">`
-            : `<img style="height:180px;" id="banner" src="${generateAvatar(user.email)}" class="card-img-top main-img-border2" alt="...">`;
+            ? `<img style="height:180px; width:100%; object-fit:cover" id="banner" src="/uploads/users/${user.banner}" class="card-img-top main-img-border2" alt="...">`
+            : `<img style="height:180px; width:100%; object-fit:cover" id="banner" src="/kaz/images/banner.svg" class="card-img-top main-img-border2" alt="...">`;
 
       const userMobileImg = user.photo_url 
             ? `<img class="mobile-profile"  src="/uploads/users/${user.photo_url}"  alt="">`

@@ -4,7 +4,7 @@ import { displayHelpCenter, getIndexProfileImage, sendProductRequest, promptLogi
 
 const token = localStorage.getItem('apiToken');
 
-console.log(token);
+//console.log(token);
 
 
 axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
@@ -110,7 +110,7 @@ axios.get('/api/allproduct')
 .then(function (response) {
     const products = response.data;
 
-   console.log(products);
+ //  console.log(products);
     localStorage.setItem('allProducts', JSON.stringify(products));
     renderProductsAndSections(products);
 })
@@ -165,7 +165,7 @@ function applyFilter() {
     axios.get('/api/v1/product/filter', { params: filters},)
         .then(function (response) {
             const products = response.data;
-           console.log(products);
+         //  console.log(products);
             renderProductsAndSections(products);
         })
         .catch(function (error) {

@@ -101,7 +101,7 @@
 
        const allProducts = JSON.parse(localStorage.getItem('allProducts'));
 
-       console.log(selectedProduct);
+     //  console.log(selectedProduct);
 
        
 

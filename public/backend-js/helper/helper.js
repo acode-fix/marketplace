@@ -747,7 +747,29 @@ export function hideLoader(continueBtn, signupText, loader) {
 
  export function getStarted(user, getEl) {
 
-   user.verify_status == 1 && user.badge_status == 1 ? getEl.href = '' : getEl.href = '/become' ;
+  // user.verify_status == 1 && user.badge_status == 1 ? getEl.href = '' : getEl.href = '/become' ;
+
+   if(user.verify_status == 1 && user.badge_status == 1) {
+
+     getEl.href = '' ;
+    
+   }
+
+   if(user.verify_status == -2 && user.badge_status == 0) {
+    
+    getEl.href = '';
+  
+ 
+   }
+
+   if(user.verify_status == 0 && user.badge_status == 0) {
+    
+    getEl.href = '/become';
+  
+ 
+   }
+
+   
 
  }
 

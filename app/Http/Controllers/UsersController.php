@@ -746,15 +746,26 @@ public function sendNotification(Request $request) {
 
     foreach($pendingConnects as $connect) {
 
-        $productId = $connect->product_id;
+        $productConnectId = $connect->product_id;
+
         $userId = $connect->user_id;
 
         $user = User::findOrFail($userId);
+
+        $productId = Product::find($productConnectId);
+
+        if(!$productId) {
+            continue;
+        }
 
         $user->notify(new ReviewPushNotification($userId, $productId, 'someone connects with your product'));
 
         $connect->status = 1;
         $connect->save();
+
+        
+
+       
     
     }
 

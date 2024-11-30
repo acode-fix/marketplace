@@ -1,7 +1,6 @@
 import { getSingleImage } from "./helper/helper.js";
   
 
-
 const token = localStorage.getItem('apiToken');
 let shopToken;
 

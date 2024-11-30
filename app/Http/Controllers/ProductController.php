@@ -88,6 +88,7 @@ public function index()
                                 'users.phone_number',
                                 'users.id'     
                         )
+                        ->withoutTrashed()
                        ->orderBy('users.badge_status', 'desc')
                        ->get();
 
@@ -106,6 +107,7 @@ public function index()
                                           'users.name',
                                           'users.username',
                                   )
+                                  ->withoutTrashed()
                                  ->orderBy('users.badge_status', 'desc') 
                                  ->inRandomOrder()
                                  ->limit($numberOfProductsToDisplay)
@@ -434,6 +436,8 @@ return response()->json([
      */
     public function getProduct(string $id)
     {
+
+        
     
         $product =  Product::where('quantity', '!=', 0)
                            ->where('id', $id)

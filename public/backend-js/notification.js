@@ -72,7 +72,7 @@ async function loadNotification(data) {
                          
                           
                       </div>
-                      ${productImageHtml ?? `<img src="innocent/assets/image/laptop2.jpg" alt="Picture" class="notification_product_image">`}
+                      ${productImageHtml ?? `<img src="/innocent/assets/image/laptop2.jpg" alt="Picture" class="notification_product_image">`}
                   </div>
               </div>
           </a>`;
@@ -229,7 +229,7 @@ function notificationStatus(messages) {
     if(messages.length > 0 ) {
   
     document.querySelectorAll('.notification-icon').forEach((icon) => {
-        icon.src = 'innocent/assets/image/notification.png';
+        icon.src = '/innocent/assets/image/notification.png';
 
     })
     

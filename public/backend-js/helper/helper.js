@@ -747,8 +747,8 @@ export function hideLoader(continueBtn, signupText, loader) {
 
  export function getStarted(user, getEl) {
 
-  console.log(user);
-  console.log(getEl);
+  //console.log(user);
+  //console.log(getEl);
 
   // user.verify_status == 1 && user.badge_status == 1 ? getEl.href = '' : getEl.href = '/become' ;
 

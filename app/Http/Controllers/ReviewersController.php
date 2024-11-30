@@ -20,7 +20,7 @@ class ReviewersController extends Controller
 
         $validator = Validator::make($request->all(), [
 
-            'userId' => 'required|exists:users,id',
+           // 'userId' => 'required|exists:users,id',
             'productId' => 'required|exists:products,id',
             'shopToken' => 'required|exists:users,shop_token',
 

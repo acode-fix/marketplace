@@ -35,15 +35,40 @@ if(token) {
 
       if(error.response.status === 422 && error.response.data)  {
 
-        Swal.fire({
-          icon: 'error',
-          title: 'Access Denied',
-          text: 'Invalid Credentials',
-          confirmButtonColor: '#ffb705',
-          willClose: function() {
-              window.location.href = '/';
-           }
-      });
+        const responseErrors = error.response.data.errors;
+           
+
+            let allErrors = []
+
+            for(let field in responseErrors) {
+
+            const fieldError = responseErrors[field];
+
+            fieldError.forEach((message) => {
+                allErrors.push(message);
+
+            })
+            }
+
+      const errorMsg = allErrors.join('\n');
+
+      Swal.fire({ 
+        icon: 'error',
+        confirmButtonColor: '#ffb705',
+        title: 'Validation Error',
+        text:  errorMsg ,
+    });
+
+
+      //   Swal.fire({
+      //     icon: 'error',
+      //     title: 'Access Denied',
+      //     text: 'Invalid Credentials',
+      //     confirmButtonColor: '#ffb705',
+      //     willClose: function() {
+      //         window.location.href = '/';
+      //      }
+      // });
 
       }
 

@@ -436,9 +436,6 @@ return response()->json([
      */
     public function getProduct($id)
     {
-
-        
-    
         $product =  Product::where('quantity', '!=', 0)
                            ->where('id', $id)
                            ->withoutTrashed()
@@ -456,7 +453,7 @@ return response()->json([
 
         }
 
-        
+
 
             return response()->json([
                 'status' => false,

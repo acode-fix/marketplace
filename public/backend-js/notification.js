@@ -1,4 +1,4 @@
-  import { getSingleImage } from "./helper/helper.js";
+import { getSingleImage } from "./helper/helper.js";
   
 
 
@@ -109,6 +109,8 @@ async function loadProductDetails(id) {
       });
 
       if (response.status === 200 && response.data) {
+
+        console.log(response)
           const product = response.data.data;
           const image = getSingleImage(product.image_url);
 
@@ -117,7 +119,7 @@ async function loadProductDetails(id) {
           }
       }
   } catch (error) {
-     // console.log(error);
+     console.log(error);
   }
 
   return null; // Return null if no image found or error occurs

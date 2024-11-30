@@ -222,7 +222,13 @@ function notificationStatus(filteredMessages) {
     if(totalNotification > 0 ) {
   
         document.querySelectorAll('.notification-icon').forEach((icon) => {
-        icon.src = '/innocent/assets/image/notification.png';
+
+          if(icon) {
+
+            icon.src = '/innocent/assets/image/notification.png';
+
+          }
+        
 
     })
     

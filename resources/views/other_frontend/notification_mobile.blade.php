@@ -190,7 +190,7 @@
     </div>
 
     <script src="{{ asset('innocent/assets/js/notification.js') }}"></script>
-<script type="module" src="{{ asset('backend-js/mobile-notification.js') }}"></script> 
+    <script type="module" src="{{ asset('backend-js/mobile-notification.js') }}"></script> 
     <script type="module"  src="{{ asset('backend-js/notification.js') }}"></script>
     <script src="{{ asset('innocent/assets/js/preloader.js') }}"></script> 
 

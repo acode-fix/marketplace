@@ -437,6 +437,7 @@ return response()->json([
     
         $product =  Product::where('quantity', '!=', 0)
                            ->where('id', $id)
+                           ->withoutTrashed()
                            ->first();
 
         if($product) {

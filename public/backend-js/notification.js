@@ -59,23 +59,40 @@ async function loadNotification(data) {
 
   const notificationPromises = content.map(async (item) => {
       const productImageHtml = await loadProductDetails(item.product_id);
-          return `
-          <a class="notification-link"  href="/rating/page?user=${item.user_id}&product=${item.product_id}&shop=${shopToken}">
-              <div class="notification">
-                  <div class="notification_details">
-                      <div class="notification_image">
-                          <img src="innocent/assets/image/logo icon.svg" alt="Profile Picture">
-                      </div>
-                      <div class="message_area">
-                          <p class="time">${item.comment}</p>
-                          <p class="message"><strong>Congratulations</strong><br>It is a perfect time to give a review .</p>
+   
+   return   productImageHtml ? `          <a class="notification-link"  href="/rating/page?user=${data.user_id}&product=${data.product_id}&shop=${shopToken}">
+   <div class="notification">
+       <div class="notification_details">
+           <div class="notification_image">
+               <img src="innocent/assets/image/logo icon.svg" alt="Profile Picture">
+           </div>
+           <div class="message_area">
+               <p class="time">${data.comment}</p>
+               <p class="message"><strong>Congratulations</strong><br>It is a perfect time to give a review .</p>
+              
+               
+           </div>
+           ${productImageHtml ?? `<img src="innocent/assets/image/laptop2.jpg" alt="Picture" class="notification_product_image">`}
+       </div>
+   </div>
+</a>` : '';
+          // return `
+          // <a class="notification-link"  href="/rating/page?user=${item.user_id}&product=${item.product_id}&shop=${shopToken}">
+          //     <div class="notification">
+          //         <div class="notification_details">
+          //             <div class="notification_image">
+          //                 <img src="innocent/assets/image/logo icon.svg" alt="Profile Picture">
+          //             </div>
+          //             <div class="message_area">
+          //                 <p class="time">${item.comment}</p>
+          //                 <p class="message"><strong>Congratulations</strong><br>It is a perfect time to give a review .</p>
                          
                           
-                      </div>
-                      ${productImageHtml ?? `<img src="/innocent/assets/image/laptop2.jpg" alt="Picture" class="notification_product_image">`}
-                  </div>
-              </div>
-          </a>`;
+          //             </div>
+          //             ${productImageHtml ?? `<img src="/innocent/assets/image/laptop2.jpg" alt="Picture" class="notification_product_image">`}
+          //         </div>
+          //     </div>
+          // </a>`;
   });
 
   // Wait for all notifications to load product images before inserting HTML
@@ -120,6 +137,7 @@ async function loadProductDetails(id) {
       }
   } catch (error) {
      console.log(error);
+
   }
 
   return null; // Return null if no image found or error occurs
@@ -173,9 +191,7 @@ async function getUnreadNotification(notifications) {
       // Load product image asynchronously
       const productImageHtml = await loadProductDetails(data.product_id);
 
-      // Return the HTML for this notification
-      return `
-          <a class="notification-link"  href="/rating/page?user=${data.user_id}&product=${data.product_id}&shop=${shopToken}">
+   return   productImageHtml ? `          <a class="notification-link"  href="/rating/page?user=${data.user_id}&product=${data.product_id}&shop=${shopToken}">
               <div class="notification">
                   <div class="notification_details">
                       <div class="notification_image">
@@ -190,7 +206,26 @@ async function getUnreadNotification(notifications) {
                       ${productImageHtml ?? `<img src="innocent/assets/image/laptop2.jpg" alt="Picture" class="notification_product_image">`}
                   </div>
               </div>
-          </a>`;
+          </a>` : '';
+
+      // Return the HTML for this notification
+      // return ` 
+      //     <a class="notification-link"  href="/rating/page?user=${data.user_id}&product=${data.product_id}&shop=${shopToken}">
+      //         <div class="notification">
+      //             <div class="notification_details">
+      //                 <div class="notification_image">
+      //                     <img src="innocent/assets/image/logo icon.svg" alt="Profile Picture">
+      //                 </div>
+      //                 <div class="message_area">
+      //                     <p class="time">${data.comment}</p>
+      //                     <p class="message"><strong>Congratulations</strong><br>It is a perfect time to give a review .</p>
+                         
+                          
+      //                 </div>
+      //                 ${productImageHtml ?? `<img src="innocent/assets/image/laptop2.jpg" alt="Picture" class="notification_product_image">`}
+      //             </div>
+      //         </div>
+      //     </a>`;
   });
 
   // Wait for all notification HTML content to load

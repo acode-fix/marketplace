@@ -49,7 +49,7 @@ Route::post('reset-password', [PasswordResetController::class, 'resetPassword'])
 
 Route::get('/prod', [ProductController::class, 'index']);
 Route::get('/prod/{id}', [ProductController::class, 'view']);
-Route::get('/product-details/{id}', [ProductController::class, 'getProductDetails']);
+//Route::get('/product-details/{id}', [ProductController::class, 'getProductDetails']);
 
 Route::post('/product', [ProductController::class, 'store']);
 Route::get('/user/products', [ProductController::class, 'userProducts']);
@@ -191,7 +191,7 @@ Route::post('/product', [ProductController::class, 'store']);
 Route::get('/product/user/{id}', [ProductController::class, 'showUser']);
 
 Route::get('/product/{id}', [ProductController::class, 'getProduct']);
-//Route::get('/product/{id}/edit',[ProductController::class, 'edit']);
+//Route::get('/product/{id}/edit',[ProductController::class, 'edit']);  
 
 //Route::post('/product/{id}',[ProductController::class, 'update']);
 Route::post('/product/edit/{id}', [ProductController::class, 'update']);

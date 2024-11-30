@@ -434,7 +434,7 @@ return response()->json([
     /**
      * Display the specified resource.
      */
-    public function getProduct(string $id)
+    public function getProduct($id)
     {
 
         
@@ -454,7 +454,9 @@ return response()->json([
         
 
 
-        }else {
+        }
+
+        
 
             return response()->json([
                 'status' => false,
@@ -463,7 +465,7 @@ return response()->json([
             ], 404);
 
 
-        }
+    
     
 
      

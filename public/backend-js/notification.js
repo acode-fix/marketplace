@@ -95,12 +95,11 @@ async function loadNotification(data) {
           // </a>`;
   });
 
-  // Wait for all notifications to load product images before inserting HTML
   const messages = await Promise.all(notificationPromises);
 
   const filteredMessages = messages.filter((message) => message.trim() !== '');
 
-  notificationStatus(messages);
+  notificationStatus(filteredMessages);
 
   const notification = document.querySelector('.notifications_layout');
   if (notification) {
@@ -228,10 +227,8 @@ async function getUnreadNotification(notifications) {
   // Wait for all notification HTML content to load
   const messages = await Promise.all(messagePromises);
 
-  const filteredMessages = messages.filter((message) => {
-    message.trim() !== ''
+  const filteredMessages = messages.filter((message) => message.trim() !== '');
 
-  });
 
   notificationStatus(filteredMessages);
 
@@ -254,9 +251,9 @@ async function getUnreadNotification(notifications) {
 }
 
 
-function notificationStatus(messages) {
+function notificationStatus(filteredMessages) {
 
-  const totalNotification = messages.length;
+  const totalNotification = filteredMessages.length;
 
     if( document.querySelector('.indicator-span')) {
 

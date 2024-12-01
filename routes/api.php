@@ -113,8 +113,10 @@ Route::get('admin/deleted-account', [AdminController::class, 'getDeletedAccounts
 
 
 //ADMIN PRODUCTS MENU ROUTES; 
-
+Route::get('admin/product-details/{id}', [ProductController::class, 'getAdminProductDetails']);
 Route::get('admin/listed-products', [AdminController::class, 'getUserProducts']);
+Route::get('admin/delisted-products', [AdminController::class, 'getDelistedProducts']);
+Route::get('admin/products-performance', [AdminController::class, 'getProductsByPerformance']);
 
 
 //Verified Seller Shop Route;

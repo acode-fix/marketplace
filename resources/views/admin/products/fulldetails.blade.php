@@ -11,155 +11,142 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.js"></script>
   <style>
-    th, td {
-      padding: 10px 20px; 
+    th,
+    td {
+      padding: 10px 20px;
       width: 600px;
     }
-    
-    
- 
-
   </style>
 </head>
 
 <body>
   <div class="header">
     <div>
-      <a href="#"><img style="width:150px" src="{{asset('kaz/images/transparent_logo.png')}}" class="img-fluid ms-4" alt=""></a>
+      <a href="#"><img style="width:150px" src="{{asset('kaz/images/transparent_logo.png')}}" class="img-fluid ms-4"
+          alt=""></a>
     </div>
     <div>
       <h6 class="me-4 mt-2">Admin :: Dashboard</h6>
     </div>
   </div>
 
-  
+
 
   <div style="padding-top: 150px" class="container">
     <div class="row">
       <div class="col">
         <div class="text-center mt-3">
-          <h1>User :: Information</h1>
+          <h1>Product :: Information</h1>
 
         </div>
       </div>
     </div>
     <div class="row">
       <div class="mx-auto  col-lg-12 mt-5">
-          <div class="card mt-2 shadow-lg">
-              <div class="card-header bg-success text-white">User-Product :: Info</div>
-              <div class="card-body">
-                <table style="width:100%; border-collapse: collapse;">
-                  <tr>
-                    <th>Name</th>
-                    <td colspan="" id="name_data"></td>
-                  </tr>
-                  <tr>
-                    <th>Username</th>
-                    <td  id="username_data"></td>
-                  </tr>
-                  <tr>
-                    <th>Phone Number</th>
-                    <td id="phone_number_data"></td>
-                  </tr>
-                  {{-- <tr>
-                    <th>WhatsApp</th>
-                    <td id="whatsapp_data"></td>
-                  </tr> --}}
-                  <tr>
-                    <th>Address</th>
-                    <td id="address_data"></td>
-                  </tr>
-                  <tr>
-                    <th>Email</th>
-                    <td id="email_data"></td>
-                  </tr>
-                  
-                    <th>Verification Status</th>
-                    <td id="verify_status_data"></td>
-                  </tr> 
-                </tr>
-                  
+        <div class="card mt-2 shadow-lg">
+          <div class="card-header bg-success text-white">Product-Owner :: Info</div>
+          <div class="card-body">
+            <table style="width:100%; border-collapse: collapse;">
+              <tr>
+                <th>Name</th>
+                <td colspan="" id="name_data"></td>
+              </tr>
+              <tr>
+                <th>Username</th>
+                <td id="username_data"></td>
+              </tr>
+              <tr>
+                <th>Phone Number</th>
+                <td id="phone_number_data"></td>
+              </tr>
+              <tr>
+                <th>Address</th>
+                <td id="address_data"></td>
+              </tr>
+              <tr>
+                <th>Email</th>
+                <td id="email_data"></td>
+              </tr>
+              <tr>
+                <th>Verification Status</th>
+                <td><span id="verify_status"></span></td>
+
+              </tr>
+              <tr>
                 <th>Badge Status</th>
-                <td id="badge_status_data"></td>
-               </tr> 
-                  {{-- <tr>
-                    <th>Bio</th>
-                    <td id="bio_data"></td>
-                  </tr>
-                  <tr>
-                    <th>Photo URL</th>
-                    <td id="photo_url_data"></td>
-                  </tr>
-                  <tr>
-                    <th>Location</th>
-                    <td id="location_data"></td>
-                  </tr>
-                  <tr>
-                    <th>Shop No</th>
-                    <td id="shop_no_data"></td>
-                  </tr>
-                  <tr>
-                    <th>Stage</th>
-                    <td id="stage_data"></td>
-                  </tr>
-                  <tr>
-                    <th>Referral Code</th>
-                    <td id="referral_code_data"></td>
-                  </tr>
-                  <tr>
-                    <th>Verify Status</th>
-                    <td id="verify_status_data"></td>
-                  </tr>
-                  <tr>
-                    <th>Shop Token</th>
-                    <td id="shop_token_data"></td>
-                  </tr>
-                  <tr>
-                    <th>User Type</th>
-                    <td id="user_type_data"></td>
-                  </tr>
-                  <tr>
-                    <th>Banner</th>
-                    <td id="banner_data"></td>
-                  </tr>
-                  <tr>
-                    <th>Nationality</th>
-                    <td id="nationality_data"></td>
-                  </tr>
-                  <tr>
-                    <th>Gender</th>
-                    <td id="gender_data"></td>
-                  </tr>
-                  <tr>
-                    <th>NIN File</th>
-                    <td id="nin-error"><a target="_blank" onclick="test(this)" href=""><img id="nin-file" height="200px"  src="" alt=""></a></td>
-                  </tr>
-                  <tr>
-                    <th>Selfie Photo</th>
-                    <td id="selfie-error"><img id="selfie-photo" src="" alt=""></td>
-                  </tr>
-                  <tr>
-                    <th>Badge Type</th>
-                    <td id="badge_type_data"></td>
-                  </tr>
-                  <tr>
-                    <th>Payment Status</th>
-                    <td id="payment_status"></td>
-                  </tr>
-                  <tr>
-                    <th>Amount Paid</th>
-                    <td id="amount_status"></td>
-                  </tr> --}}
-                </table>
-                  
-              </div>
+                <td><span id="badge_status"></span></td>
+              </tr>  
+            </table>
+
           </div>
+        </div>
 
       </div>
 
-  </div>
-    
-    
+    </div>
+
+    <div class="row">
+      <div class="mx-auto  col-lg-12 mt-5 mb-5">
+        <div class="card mt-2 shadow-lg">
+          <div class="card-header bg-success text-white">Product :: Info</div>
+          <div class="card-body">
+            <table style="width:100%; border-collapse: collapse;">
+              <tr>
+                <th>Title</th>
+                <td colspan="" id="title_data"></td>
+              </tr>
+              <tr>
+                <th>Description</th>
+                <td id="description_data"></td>
+              </tr> 
+              <tr>
+                <th>category</th>
+                <td id="category_name_data"></td>
+              </tr>
+              <tr>
+                <th>Quantity</th>
+                <td id="quantity_data"></td>
+              </tr>
+              <tr>
+                <th>Sold</th>
+                <td id="sold_data"></td>
+              </tr>
+              <tr>
+                <th>Condition</th>
+                <td id="condition_data"></td>
+
+              </tr>
+              <tr>
+                <th>Location</th>
+                <td id="location_data"></td>
+              </tr>
+              <tr>
+                <th>Actual Price</th>
+                <td id="actual_price_data"></td>
+              </tr>
+              <tr>
+                <th>Promo Price</th>
+                <td id="promo_price_data"></td>
+              </tr>
+              <tr>
+                <th>Ask For Price</th>
+                <td id="ask_for_price_data"></td>
+              </tr>
+              <tr class="images-div">
+                <th>Product Images</th>
+                <td><span id="product-images"></span></td>
+              </tr>
+            </table>
+
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+
+
   </div>
 
 

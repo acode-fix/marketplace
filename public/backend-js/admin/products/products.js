@@ -1,4 +1,4 @@
-import { getListedProducts, getToken } from "../helper/helper.js";
+import { formatDate, getDelistedProducts, getListedProducts, getToken } from "../helper/helper.js";
 
  const token = getToken();
 
@@ -72,3 +72,54 @@ document.addEventListener('click', (event) => {
   }
 
 });
+
+
+
+async function loadDeletedProducts() {
+
+  const products = await getDelistedProducts();
+
+  let display = `<table id="example2" class="table table-striped nowrap" style="width:100%">'
+        <thead>
+            <tr> 
+                <th>S/N</th>
+                <th>Title</th>
+                <th>Category</th>
+                <th>Location</th>
+                <th>Description</th>
+                <th>Deletion Date</th>
+                <th>Full Details</th>
+               
+            </tr>
+        </thead>
+        <tbody>`;
+
+      products.forEach((product, index) => {
+
+      display += ` <tr>
+                <td>${index + 1}</td>
+                <td>${product.title ?? 'N/A'} </td>
+                <td>${product.category.name ?? 'N/A'}</td>
+                <td>${product.location ?? 'N/A'}</td>
+                <td>${product.description}</td>
+                <td>${formatDate(product.deleted_at) ?? 'N/A'}</td>
+                <td><a class="user-link full-details" data-product-id="${product.id}" href="" >Full Details</a></td>   
+            </tr>`;
+
+      });
+
+      display += `</tbody></table>`;
+
+
+    document.querySelector('.delisted-products').innerHTML = display;
+
+
+      $('#example2').DataTable({
+      responsive: true
+      });
+
+
+
+}
+
+loadDeletedProducts()

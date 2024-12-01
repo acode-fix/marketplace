@@ -1,6 +1,6 @@
 import { serverError } from "./auth-helper.js";
 import { logoutUser } from "./auth.js";
-import { getRegisteredUser, calculateTotal, getSuspendedUsers, getDeletedUsers } from "./helper/helper.js";
+import { getRegisteredUser, calculateTotal, getSuspendedUsers, getDeletedUsers, getListedProducts, getDelistedProducts } from "./helper/helper.js";
 
 const token = localStorage.getItem('token');
 
@@ -127,12 +127,8 @@ const users = await getRegisteredUser();
 
 const total =  calculateTotal(users);
 const totalEl = document.querySelector('.js-total-user');
-
-if(totalEl) {
-  
-totalEl.innerHTML = `Total Number Of User :: ${total}`;
-
-}
+ 
+displayTotal(total,totalEl)
 
   
 }
@@ -148,9 +144,7 @@ async function  fetchSuspendedUsers() {
 
   const totalEl = document.querySelector('.js-total-suspended-user');
 
-  if(totalEl) {
-    totalEl.innerHTML = `Total Number Of  User :: ${total}`;
-  }
+  displayTotal(total,totalEl)
   
 }
 
@@ -165,15 +159,63 @@ async function getDeletedAccounts() {
 
   const totalEl = document.querySelector('.js-total-deleted-user');
 
-  if(totalEl) {
-    totalEl.innerHTML = `Total Number Of  User :: ${total}`;
-  }
+   displayTotal(total,totalEl)
 
 
   
 }
 
 getDeletedAccounts();
+
+
+
+async function getActiveProducts() {
+
+  const products = await getListedProducts();
+
+  const total = calculateTotal(products);
+  const totalEl = document.querySelector('.js-total-products');
+
+  displayTotalProducts(total, totalEl)
+ 
+}
+
+getActiveProducts();
+
+async function getDeletedProducts() {
+
+  const  products = await getDelistedProducts();
+
+  const total = calculateTotal(products);
+  const totalEl = document.querySelector('.js-total-deleted-products');
+
+  displayTotalProducts(total, totalEl);
+  
+}
+getDeletedProducts();
+
+
+
+
+function displayTotal(total, totalEl) {
+
+  if(totalEl) {
+    totalEl.innerHTML = `Total Number Of  Users :: ${total}`;
+  }
+
+
+}
+
+function displayTotalProducts(total, totalEl) {
+
+  
+  if(totalEl) {
+    totalEl.innerHTML = `Total Number Of  Products :: ${total}`;
+  }
+
+
+
+}
 
 
 

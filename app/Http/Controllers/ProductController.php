@@ -128,15 +128,37 @@ public function index()
 //
 public function getProductDetails($id) {
 
-    // $product = Product::with('user')
-    //                   ->where('quantity', '!=', 0)
-    //                   ->where('id', $id)
-    //                   ->first();
-
-
-    
-    $product = Product::with(['user', 'category'])
+    $product = Product::with('user')
                       ->where('quantity', '!=', 0)
+                      ->where('id', $id)
+                      ->first();
+    
+
+    if (!$product) {
+        return response()->json([
+            'status' => false,
+            'message' => 'Product not found',
+        ], 404);
+    }
+
+    if ($product) {
+
+
+        return response()->json([
+            'status' => true,
+            'message' => 'User Products Fetched Successfully',
+            'product' => $product,
+
+        ]);
+        
+    }
+}
+
+public function getAdminProductDetails($id) {
+
+    $product = Product::with(['user', 'category']) 
+                      ->where('quantity', '!=', 0)
+                      ->withTrashed()
                       ->where('id', $id)
                       ->first();
 
@@ -158,25 +180,7 @@ public function getProductDetails($id) {
             'product' => $product,
 
         ]);
-        // return response()->json([
-        //     'id' => $product->id,
-        //     'title' => $product->title,
-        //     'description' => $product->description,
-        //     'location' => $product->location,
-        //     'image_url' => $product->image_url,
-        //     'ask_for_price' => $product->ask_for_price,
-        //     'promo_price' => $product->promo_price,
-        //     'actual_price' => $product->actual_price,
-        //     'quantity' => $product->quantity,
-        //     'condition' => $product->condition,
-        //     'isUserVerified' => $product->user->is_verified, // Include user verification status
-        //     'sellerId' => $product->user->id // Include seller ID
-        // ]);
-    } else {
-        return response()->json([
-            'status' => false,
-            'message' => 'Product not found'
-        ], 404);
+        
     }
 }
 

@@ -1,5 +1,6 @@
 import { displaySwal, hideLoader, showLoader, validationError, } from '../../helper/helper.js';
 import {
+    formatDate,
     getDeletedUsers,
     getRegisteredUser,
     getSuspendedUsers,
@@ -7,7 +8,7 @@ import {
     getUser,
     getUserById,
 } from '../helper/helper.js';
-import dayjs from 'https://unpkg.com/dayjs@1.11.10/esm/index.js';
+
 
 const token = getToken();
 
@@ -646,11 +647,6 @@ function loadModalDetails(user,email,name,username) {
 
 loadDeletedAccounts();
 
-function formatDate(date) {
-
-    return dayjs(date).format('D MMMM YYYY, HH:mm') || null;
-
-}
 
 
 

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Product;
+use App\Models\ProductEngagementLog;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Barryvdh\Debugbar\Facades\Debugbar;
@@ -324,6 +325,74 @@ class AdminController extends Controller
 
 
 
+
+    }
+
+
+    public function getDelistedProducts() {
+
+        $products = Product::with(['user', 'category'])->onlyTrashed()->get();
+
+        if($products->isEmpty()) {
+            return response()->json([
+                'status' => true,
+                'message' => 'No Deleted Products',
+                'products' => [],
+
+            ],200);
+        }
+
+        return response()->json([
+            'status' => true,
+            'message' => 'Deleted Products Fetched Successfully',
+            'products' => $products,
+
+        ],200);
+
+    }
+
+    public function getProductsByPerformance() {
+
+        $products = Product::with(['user', 'category'])->orderBy('sold','desc')->get();
+
+        $productsEngagements = ProductEngagementLog::select('product_id')
+                             ->selectRaw('COUNT(*) as total_engagement')
+                             ->groupBy('product_id')
+                             ->orderByDesc('total_engagement')
+                             ->get();
+
+        if($products->isEmpty() || $productsEngagements->isEmpty()) {
+
+            return response()->json([
+                'status'=> true,
+                'message' => 'No Products Found',
+                'products' => [],
+
+            ],200);
+
+        }
+
+           $engagedProducts = []; 
+
+        foreach($productsEngagements as $productsEngagement) {
+
+          $productId =  $productsEngagement->product_id;
+
+          $productsEngaged = Product::with('user')->where('id', $productId)->first();
+
+          $engagedProducts[] = $productsEngaged;
+
+
+        }
+
+
+        return response()->json([
+            'status' => true,
+            'message' => 'products fetched successfully',
+            'products' => $products,
+            'engagedProducts' => $engagedProducts,
+
+        ],200);
 
     }
 

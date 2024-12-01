@@ -203,6 +203,10 @@ Route::get('admin/view/product-details', function() {
 
 });
 
+Route::get('admin/products/view/product-performance', function() {
+    return view(('admin.products.sales'));
+})->name('products.sales');
+
 Route::get('/product/shared/{link}', [ProductController::class, 'loadSharedProduct' ]);
 
 Route::get('/check-badge', [BadgeController::class, 'verifyBadge']);

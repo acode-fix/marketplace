@@ -32,6 +32,37 @@
 
   </div>
 </div>
+<div class="row mt-3">
+  <div class="col">
+    <div class="card" style="width: 18rem;">
+      <div class="card-body">
+        <h5 class="card-title text-success">Listed :: Products</h5>
+        <p class="card-text js-total-products"></p> 
+      </div>
+    </div>
+
+  </div>
+
+  <div class="col">
+    <div class="card" style="width: 18rem;">
+      <div class="card-body">
+        <h5 class="card-title text-danger">Deleted :: Products</h5>
+        <p class="card-text js-total-deleted-products"></p> 
+      </div>
+    </div>
+
+  </div>
+  <div class="col">
+    <div class="card" style="width: 18rem;">
+      <div class="card-body">
+        <h5 class="card-title text-danger"></h5>
+        <p class="card-text js-total-"></p> 
+      </div>
+    </div>
+
+  </div>
+</div>
+
 
 
 

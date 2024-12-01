@@ -1,3 +1,5 @@
+import dayjs from 'https://unpkg.com/dayjs@1.11.10/esm/index.js';
+
 export function getToken () {
 
  const token = localStorage.getItem('token');
@@ -234,6 +236,40 @@ export async function getListedProducts() {
 
 
 }
+
+export async function getDelistedProducts() {
+
+  try {
+    const response = await axios.get('/api/v1/admin/delisted-products',{
+      
+    });
+   // console.log(response);
+
+    if(response.status === 200 && response.data) {
+      const data = response.data.products
+
+    //  console.log(data);
+
+      return data;
+    }
+  } catch (error) {
+    if(error.response) {
+      console.error(error);
+
+
+    }
+
+    return null;
+  }
+
+}
+
+export function formatDate(date) {
+
+  return dayjs(date).format('D MMMM YYYY, HH:mm') || null;
+
+}
+
 
 
   

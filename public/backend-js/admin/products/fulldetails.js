@@ -18,6 +18,8 @@ axios.get(`/api/v1/admin/product-details/${productId}`,).then((response) => {
         const productsData = response.data.product;
         const productCategory = response.data.product.category;
 
+        console.log(userData)
+
         updatesUserData(userData);
         updatesProductData(productsData, productCategory);
 
@@ -73,7 +75,9 @@ function updatesUserData(userData) {
                 `<p class=text-danger> Unverified </p>` :
                 userData.verify_status == -2 ?
                 `<p class=text-danger> Pending </p>` :
-                `<p class=text-success> verified </p>`;
+                userData.verify_status == -1 ?
+                `<p class=text-danger> verification Failed </p>`
+                :`<p class=text-success> verified </p>`
 
             verifyEl.innerHTML = status;
 

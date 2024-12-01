@@ -69,9 +69,9 @@ function updatesUserData(userData) {
 
             const verifyEl = document.getElementById('verify_status');
 
-            const status = userData.verify_status === 0 ?
+            const status = userData.verify_status == 0 ?
                 `<p class=text-danger> Unverified </p>` :
-                userData.verify_status === -2 ?
+                userData.verify_status == -2 ?
                 `<p class=text-danger> Pending </p>` :
                 `<p class=text-success> verified </p>`;
 
@@ -83,9 +83,9 @@ function updatesUserData(userData) {
         if (field === 'badge_status') {
 
             const badgeEl = document.getElementById('badge_status');
-            const status = userData.badge_status === 0 ?
+            const status = userData.badge_status == 0 ?
                 `<p class=text-danger>No Badge Subscription </p>` :
-                userData.verify_status === -1 ?
+                userData.verify_status == -1 ?
                 `<p class=text-danger>Expired Badge </p>` :
                 `<p class=text-success>Active Badge </p>`;
 

@@ -115,7 +115,7 @@ export function getIndexProfileImage(user, profileImageElement) {
 
 export function getDate(currentDate) {
 
-return   dayjs(currentDate).format('DD, MMM, YYYY');
+return   dayjs(currentDate, 'YYYY-MM-DD HH:mm:ss').format('DD, MMM, YYYY');
 
 }
 

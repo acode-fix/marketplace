@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use App\Models\Product;
 use App\Models\ProductEngagementLog;
 use App\Models\User;
@@ -355,13 +356,13 @@ class AdminController extends Controller
 
         $products = Product::with(['user', 'category'])->orderBy('sold','desc')->get();
 
-        $productsEngagements = ProductEngagementLog::select('product_id')
+        $productEngagements = ProductEngagementLog::select('product_id')
                              ->selectRaw('COUNT(*) as total_engagement')
                              ->groupBy('product_id')
                              ->orderByDesc('total_engagement')
                              ->get();
 
-        if($products->isEmpty() || $productsEngagements->isEmpty()) {
+        if($products->isEmpty() || $productEngagements->isEmpty()) {
 
             return response()->json([
                 'status'=> true,
@@ -371,10 +372,11 @@ class AdminController extends Controller
             ],200);
 
         }
+     
 
-           $engagedProducts = []; 
+         $engagedProducts = []; 
 
-        foreach($productsEngagements as $productsEngagement) {
+        foreach($productEngagements as $productsEngagement) {
 
           $productId =  $productsEngagement->product_id;
 
@@ -384,7 +386,8 @@ class AdminController extends Controller
 
 
         }
-
+       
+        
 
         return response()->json([
             'status' => true,
@@ -393,6 +396,31 @@ class AdminController extends Controller
             'engagedProducts' => $engagedProducts,
 
         ],200);
+
+        
+
+    }
+
+    public function getProductCategory() {
+
+            $categories = Category::all();
+
+            return response()->json([
+                'status' => true,
+                'message' => 'Product Category Fetched Successfully',
+                'categories' => $categories,
+
+            ], 200);
+    }
+
+    public function getFilteredProducts(Request $request) {
+
+
+      $condition = $request->condition;
+      $category = $request->category;
+      $price = $request->price;
+
+      debugbar::info($condition, $category, $price);
 
     }
 

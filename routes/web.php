@@ -207,6 +207,12 @@ Route::get('admin/products/view/product-performance', function() {
     return view(('admin.products.sales'));
 })->name('products.sales');
 
+
+Route::get('admin/products/view/search', function() {
+    return view(('admin.products.search'));
+})->name('products.search');
+
+
 Route::get('/product/shared/{link}', [ProductController::class, 'loadSharedProduct' ]);
 
 Route::get('/check-badge', [BadgeController::class, 'verifyBadge']);

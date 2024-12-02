@@ -117,6 +117,8 @@ Route::get('admin/product-details/{id}', [ProductController::class, 'getAdminPro
 Route::get('admin/listed-products', [AdminController::class, 'getUserProducts']);
 Route::get('admin/delisted-products', [AdminController::class, 'getDelistedProducts']);
 Route::get('admin/products-performance', [AdminController::class, 'getProductsByPerformance']);
+Route::get('admin/products-category', [AdminController::class, 'getProductCategory']);
+Route::get('admin/filter', [AdminController::class, 'getFilteredProducts']);
 
 
 //Verified Seller Shop Route;

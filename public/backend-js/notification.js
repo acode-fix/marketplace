@@ -58,6 +58,8 @@ async function loadNotification(data) {
 
   const notificationPromises = content.map(async (item) => {
 
+ //   console.log(data)
+
       const productImageHtml = await loadProductDetails(item.product_id);
     
    
@@ -117,7 +119,7 @@ async function loadProductDetails(id) {
           }
       }
   } catch (error) {
-    // console.log(error);
+     console.log(error);
 
   }
 
@@ -139,6 +141,8 @@ axios.get('/api/v1/user/notification',  {
 
     const notifications = response.data.notifications;
 
+  //  console.log(notifications);
+
     getUnreadNotification(notifications);
 
   }
@@ -157,7 +161,11 @@ async function getUnreadNotification(notifications) {
   const messagePromises = notifications.map(async (notification) => {
       const data = JSON.parse(notification.data);
 
-     // console.log(shopToken);
+     // console.log(data);
+
+     // console.log(data.product_id)
+
+    // return;
 
       // Load product image asynchronously
       const productImageHtml = await loadProductDetails(data.product_id);

@@ -1,4 +1,4 @@
-import { displayHelpCenter, getIndexProfileImage, sendProductRequest, promptLogin, formatPrice, getShopPrice, getIndexPrice, formatProductCondition, showLoader, hideLoader, getStarted, dropDownDetails } from "./helper/helper.js";
+import { displayHelpCenter, getIndexProfileImage, sendProductRequest, promptLogin, formatPrice, getShopPrice, getIndexPrice, formatProductCondition, showLoader, hideLoader, getStarted, dropDownDetails,loadResponse } from "./helper/helper.js";
 
 
 
@@ -59,9 +59,9 @@ if(!token) {
  const guestDashboard =   ` <div class="profile_card_user_name">
                 <img class="mt-2" id="profile_image" src="/innocent/assets/image/avatar.svg" alt="Profile Image"
                 style="width: 50px; height:50px; border-radius:50px;">
-                <p id="profile_name">Guest User
-                </p>
-                <p><span id="profile_email">GuestUser@gmail.com</span></p>
+                 <p id="profile_name" >Guest User <br>
+                    <span id="profile_email">GuestUser@gmail.com</span>
+                  </p>
             </div>
             <hr>
             <div class="accont_features">
@@ -353,8 +353,46 @@ function updateUserProfile(user) {
 
 
         const getEl = document.querySelector('.js-get-started');
+
+        getEl.addEventListener('click', (event) => {
+
+            event.preventDefault();
+
+            if(user.verify_status == 1 && user.badge_status == 1) {
+
+                const title = '<span class="text-success">verified seller</span>';
+                const content = '<span class="text-dark">You have an active badge</span>';
+            
+                loadResponse(title, content);
+              
+               }
+            
+               if(user.verify_status == -2 && user.badge_status == 0) {
+            
+                const title = '<span class="text-success">Pending Verification</span>';
+                const content = '<span class="text-dark">Awaiting Admin Approval </span>';
+            
+                loadResponse(title, content);
+                   
+             
+               }
+            
+               if(user.verify_status == 0 && user.badge_status == 0) {
+            
+                  window.location.href = '/become';
+            
+            
+               }
+            
+
+
+            
+
+          
+
+        })
          
-         getStarted(user, getEl);
+        
 
 
     } else {

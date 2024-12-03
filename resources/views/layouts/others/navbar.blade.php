@@ -18,7 +18,7 @@
     </div> -->
 
     <div class="right-section me-4">
-      <button type="button" class=" btn btn-warning   me-5"> + create Ads</button>
+      <a href="{{ url('/ads') }}"><button type="button" class=" btn btn-warning   me-5"> + create Ads</button></a>
       <div class="me-1">
         <h6 class="name">Loading </h6>
         <h6 class="mired-text fw-light">loading</h6>

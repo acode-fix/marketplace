@@ -419,6 +419,8 @@
                         <strong>Reach more audience by promoting your Product(s)</strong><br>
                         Get an active badge by becoming a verified seller <br> and enjoy multiple benefits that comes with being a verified seller
                         <br><br><br>
+                        {{-- <button class="get_started animate animate-pulse4 js-get-started">Get
+                            Started</button> --}}
                         <a class="js-become-link js-get-started" href=""><button class="get_started animate animate-pulse4">Get
                             Started</button></a>
                         {{-- <strong>Reach more audience by promoting your Product(s)</strong><br>
@@ -664,7 +666,7 @@
                 <div class="modal-content modal_content_signup_login">
 
 
-                    <div class="sign_up_modal">
+                    <div style="display: none" class="sign_up_modal">
                         <i class="fa-solid fa-close close_modal_content_signup_login" data-bs-dismiss="modal"
                             aria-label="Close"> </i>
 
@@ -697,19 +699,18 @@
                         <p>Already have an account? <a href="#" onclick="login()" class="signup_links">Login</a></p>
                         <button type="submit" class="signup_continue_button continueBtn-signup" onclick="signup()">
                               <span class="signup-text">continue</span>
-                             <div class="loader-div-signup" aria-hidden="true">
+                             <div class="div-signup" aria-hidden="true">
                                 <div class="loader-text"></div>
                                  <span class="ms-1 text-dark">loading...</span>
                              </div>
-                     
-                    
+                            
                      </button>
                         <p>By signing up you accept <span><a  class="signup_links" href="">Our Terms and Policy</a></span></p>
 
                     </div>
 
 
-                    <div id="loginModal" class="login_modal" style="display: none;">
+                    <div id="loginModal" class="login_modal" style="display: block;">
 
                         <i class="fa-solid fa-close close_modal_content_signup_login" data-bs-dismiss="modal"
                             aria-label="Close"> </i>

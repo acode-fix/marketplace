@@ -758,7 +758,7 @@ public function sendNotification(Request $request) {
             continue;
         }
 
-        $user->notify(new ReviewPushNotification($userId, $productId, 'someone connects with your product'));
+        $user->notify(new ReviewPushNotification($userId, $productId->id, 'someone connects with your product'));
 
         $connect->status = 1;
         $connect->save();

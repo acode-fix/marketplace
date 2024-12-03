@@ -440,6 +440,8 @@ return response()->json([
      */
     public function getProduct($id)
     {
+         debugbar::info($id);
+
         $product =  Product::where('quantity', '!=', 0)
                            ->where('id', $id)
                            ->withoutTrashed()

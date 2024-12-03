@@ -7,7 +7,7 @@ function showLoader(continueBtn, signupText, loader) {
 
     continueBtn.disabled = true;
     loader.style.display = 'flex';
-    signupText.style.display = 'none';
+    signupText.style.display ='none';
     continueBtn.setAttribute('arial-busy', 'true')
 
 }
@@ -27,7 +27,7 @@ function signup() {
 
     const continueBtn = document.querySelector('.continueBtn-signup');
     const signupText = document.querySelector('.signup-text');
-    const loader = document.querySelector('.loader-div-signup');
+    const loader = document.querySelector('.div-signup');
 
 
     showLoader(continueBtn, signupText, loader);
@@ -43,7 +43,6 @@ function signup() {
             if(response.status === 200 && response.data) {
                 const responseMsg = response.data.message;
 
-          //      console.log(response);
                 localStorage.setItem('apiToken', response.data.token);
 
                 axios.defaults.headers.common['Authorization'] = `Bearer ${response.data.token}`;
@@ -76,39 +75,6 @@ function signup() {
                 })
 
             }
-/*
-           const responseData = response.data;
-
-           console.log(responseData)
-
-           if (responseData.status) {
-                Store the token in localStorage
-                localStorage.setItem('apiToken', responseData.token);
-
-
-
-                // alert(responseData.token);
-
-                // Set the token in Axios default headers for subsequent requests
-                axios.defaults.headers.common['Authorization'] = `Bearer ${responseData.token}`;
-
-                myModal.hide();
-
-                const url = sessionStorage.getItem('sharedPage');
-
-                url ? window.location.reload() : window.location.href = '/';
-            } else
-
-            {
-                Swal.fire({
-                    icon: 'error',
-                    confirmButtonColor: '#ffb705',
-                    title: 'Registration Failed',
-                    text: 'Unexpected response from the server. Please try again later.'
-                });
-            }
-
-            */
         }).catch(function (error) {
 
             hideLoader(continueBtn, signupText, loader);
@@ -162,6 +128,7 @@ function loginUser() {
     const loader = document.querySelector('.login-loader-div');
 
     showLoader(continueBtn, signupText, loader);
+
 
     axios.post('/api/auth/login', {
             email: email,

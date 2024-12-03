@@ -10,6 +10,9 @@ body {
     font-family: 'Poppins';
                                     
 }
+#profile-email {
+    font-size: 14px;
+}
 
 
 .swal2-confirm {
@@ -32,10 +35,10 @@ body {
     100% { transform: rotate(360deg); }
   }
 
-  .loader-div-signup {
+  .div-signup {
     justify-content:center;
     align-items:center;
-    display: none;   
+    display: none; 
   }
 
 

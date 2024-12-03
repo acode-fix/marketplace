@@ -17,7 +17,7 @@
         </div>
     </div>
     <div class="create">
-        <button type="button" class="btn btn-warning btn-height"> + create Ads</button>
+        <a href="{{ url('/ads') }}"><button type="button" class="btn btn-warning btn-height"> + create Ads</button></a>
     </div>
     <div class="right-section me-4">
 

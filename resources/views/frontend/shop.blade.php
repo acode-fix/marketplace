@@ -538,7 +538,14 @@
                                             multiple>
                                     </div>
                                     <button type="button" class="btn btn-secondary previous-to-step-1">Previous</button>
-                                    <button type="submit" class="btn next-edit update-loader" id="save-product">
+                                    {{-- <button type="submit" class="btn   next-edit update-loader" id="save-product">
+                                        <span class="update-text">update</span>
+                                        <div class="loader-layout">
+                                            <div class="loader"></div>
+                                            <span class="ms-1">Loading...</span>
+                                        </div>
+                                    </button> --}}
+                                    <button type="submit" class="btn btn-success update-loader" id="save-product">
                                         <span class="update-text">update</span>
                                         <div class="loader-layout">
                                             <div class="loader"></div>
@@ -1158,7 +1165,7 @@
                                         name="image_url[]">
                                 </div>
                                 <button type="button" class="btn btn-secondary previous-to-step-1">Previous</button>
-                                <button type="submit" class="btn btn-warning mobile-loader" id="save-product-mobile">
+                                <button type="submit" class="btn btn-success mobile-loader" id="save-product-mobile">
                                     <span class="mobile-text">update</span>
                                     <div class="mobile-loader-layout">
                                         <div class=" loader"></div>

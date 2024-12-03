@@ -1,4 +1,4 @@
-   import {loadDashboard, getProdProfileDescImg, getBadge, loadConnect, getToken, logoutUser, displayHelpCenter, sendProductRequest,getIndexPrice, formatPrice, formatProductCondition, getStarted} from "../helper/helper.js";
+   import {loadDashboard, getProdProfileDescImg, getBadge, loadConnect, getToken, logoutUser, displayHelpCenter, sendProductRequest,getIndexPrice, formatPrice, formatProductCondition, loadResponse} from "../helper/helper.js";
 
 
    const token = getToken();
@@ -16,9 +16,46 @@
         const getEl = document.querySelector('.js-get-started');
         const getEl2 = document.querySelector('.js-get-started2');
 
-         getStarted(user, getEl);
-         getStarted(user, getEl2);
-         
+        [getEl, getEl2].forEach((getEl) => {
+
+            if(getEl) {
+
+                getEl.addEventListener('click', (event) => {
+                    event.preventDefault();
+                    
+                    if(user.verify_status == 1 && user.badge_status == 1) {
+
+                        const title = '<span class="text-success">verified seller</span>';
+                        const content = '<span class="text-dark">You have an active badge</span>';
+                    
+                        loadResponse(title, content);
+                      
+                       }
+                    
+                       if(user.verify_status == -2 && user.badge_status == 0) {
+                    
+                        const title = '<span class="text-success">Pending Verification</span>';
+                        const content = '<span class="text-dark">Awaiting Admin Approval </span>';
+                    
+                        loadResponse(title, content);
+                           
+                     
+                       }
+                    
+                       if(user.verify_status == 0 && user.badge_status == 0) {
+                    
+                          window.location.href = '/become';
+                    
+                    
+                       }
+                    
+        
+
+                });
+            }
+
+        })
+
 
 
         loadDashboard(user);
@@ -157,7 +194,7 @@
 
         if(selectedProduct) {
 
-          //  console.log(selectedProduct);
+          //   (selectedProduct);
             loadConnect(selectedProduct);   
         }
 

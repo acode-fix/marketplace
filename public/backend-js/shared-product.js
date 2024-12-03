@@ -1,4 +1,4 @@
-import { getToken, getProdDesImage, getProdProfileDescImg, loadDashboard,logoutUser, getSingleImage, getBadge, getPrice, loadConnect, sendProductRequest, displayHelpCenter, promptLogin, getIndexPrice, formatProductCondition, getStarted} from "./helper/helper.js";
+import { getToken, getProdDesImage, getProdProfileDescImg, loadDashboard,logoutUser, getSingleImage, getBadge, getPrice, loadConnect, sendProductRequest, displayHelpCenter, promptLogin, getIndexPrice, formatProductCondition, loadResponse} from "./helper/helper.js";
 
   const currentUrl = new URL(window.location.href);
   const id = currentUrl.searchParams.get('id');
@@ -9,7 +9,7 @@ import { getToken, getProdDesImage, getProdProfileDescImg, loadDashboard,logoutU
   const token = localStorage.getItem('apiToken');
 
 
-  const logoImg =  document.querySelector('.js-logo-img');
+const logoImg =  document.querySelector('.js-logo-img');
 const logoLink = document.querySelector('.js-logo-link');
 
   if(!token) {
@@ -49,6 +49,27 @@ const logoLink = document.querySelector('.js-logo-link');
       }
 
   });
+
+  const getEl = document.querySelector('.js-get-started');
+  const getEl2 = document.querySelector('.js-get-started2');
+
+  [getEl, getEl2].forEach((getEl) => {
+
+    if(getEl) {
+
+        getEl.addEventListener('click', (event) => {
+            event.preventDefault();
+
+         return   promptLogin();
+
+          
+            
+           
+
+        });
+    }
+
+})
  
 
   }
@@ -126,8 +147,53 @@ const logoLink = document.querySelector('.js-logo-link');
     const getEl = document.querySelector('.js-get-started');
     const getEl2 = document.querySelector('.js-get-started2');
 
-     getStarted(user, getEl);
-     getStarted(user, getEl2);
+
+    if(token) {
+      [getEl, getEl2].forEach((getEl) => {
+
+        if(getEl) {
+  
+            getEl.addEventListener('click', (event) => {
+                event.preventDefault();
+                
+                if(user.verify_status == 1 && user.badge_status == 1) {
+  
+                    const title = '<span class="text-success">verified seller</span>';
+                    const content = '<span class="text-dark">You have an active badge</span>';
+                
+                    loadResponse(title, content);
+                  
+                   }
+                
+                   if(user.verify_status == -2 && user.badge_status == 0) {
+                
+                    const title = '<span class="text-success">Pending Verification</span>';
+                    const content = '<span class="text-dark">Awaiting Admin Approval </span>';
+                
+                    loadResponse(title, content);
+                       
+                 
+                   }
+                
+                   if(user.verify_status == 0 && user.badge_status == 0) {
+                
+                      window.location.href = '/become';
+                
+                
+                   }
+                
+    
+  
+            });
+        }
+  
+    })
+  ;
+
+
+    }
+
+  
 
 
 

@@ -745,35 +745,65 @@ export function hideLoader(continueBtn, signupText, loader) {
  }
 
 
- export function getStarted(user, getEl) {
+ export function getStarted(user) {
 
-  //console.log(user);
-  //console.log(getEl);
+  //  if(user.verify_status == 1 && user.badge_status == 1) {
 
-  // user.verify_status == 1 && user.badge_status == 1 ? getEl.href = '' : getEl.href = '/become' ;
+  //   const title = '<span class="text-success">verified seller</span>';
+  //   const content = '<span class="text-dark">You have an active badge</span>';
 
-   if(user.verify_status == 1 && user.badge_status == 1) {
+  //   loadResponse(title, content);
 
-     getEl.href = '' ;
+      
+
+
     
-   }
+  //  }
 
-   if(user.verify_status == -2 && user.badge_status == 0) {
+  //  if(user.verify_status == -2 && user.badge_status == 0) {
+
+  //   const title = '<span class="text-success">Pending Verification</span>';
+  //   const content = '<span class="text-dark">Awaiting Admin Approval </span>';
+
+  //   loadResponse(title, content);
     
-    getEl.href = '';
+    
   
  
-   }
+  //  }
 
-   if(user.verify_status == 0 && user.badge_status == 0) {
-    
-    getEl.href = '/become';
+  //  if(user.verify_status == 0 && user.badge_status == 0) {
+
+  //     window.location.href = '/become';
+
+   
   
  
-   }
+  //  }
 
    
 
+ }
+
+
+ export function loadResponse(title, content) {
+
+  let timerInterval;
+      Swal.fire({
+        icon: 'info',
+        title: `${title}`,
+        confirmButtonColor: '#ffb705',
+        html: `${content}`,
+        timer: 3000,
+        timerProgressBar: true,
+        didOpen: () => {
+          Swal.showLoading();
+          timerInterval = setInterval(() => {
+            // You can add any additional logic for the timer here if needed
+          }, 1000);
+        },
+      });
+  
  }
 
  export function dropDownDetails(user) {

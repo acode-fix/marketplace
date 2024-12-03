@@ -413,14 +413,82 @@ class AdminController extends Controller
             ], 200);
     }
 
-    public function getFilteredProducts(Request $request) {
+    public function getFilteredProducts(Request $request) {         
 
 
-      $condition = $request->condition;
-      $category = $request->category;
-      $price = $request->price;
+        $condition = $request->condition;
+        $category = $request->category;
+        $actualPrice = $request->actual_price;
+        $promoPrice = $request->promo_price;
+        $askPrice = filter_var($request->ask_for_price, FILTER_VALIDATE_BOOLEAN);
 
-      debugbar::info($condition, $category, $price);
+
+       debugbar::info($condition, $category, $actualPrice, $promoPrice, $askPrice);
+
+
+       $null = (trim($condition) == '' && trim($category) == '' && trim($actualPrice) == '' && trim($promoPrice) == '' && trim($askPrice) == '');
+
+       if(empty($request->all()) || $null) {
+
+        return response()->json([
+            'status' => true,
+            'message' => 'No filtered Parameter Given!!',
+            'products' => [
+                'data' => [],
+            ],
+
+        ], 200);
+
+             
+       }
+
+        $query = Product::with(['user', 'category'])->where('quantity','!=', 0)
+                           ->when($request->condition, function($q) use ($request) {
+                            $q->where('condition', $request->condition);
+                           })
+                           ->when($request->category, function($q) use ($request) {
+                            $q->where('category_id', $request->category);
+                           })
+                           ->when($request->actual_price, function($q) use ($request) {
+                            $q->where('actual_price', $request->actual_price);
+                           })
+                           ->when($request->promo_price, function($q) use($request) {
+                            $q->where('promo_price', $request->promo_price);
+                           })
+                           ->when($request->ask_for_price, function($q) use ($askPrice) {
+                            $q->where('ask_for_price', $askPrice);
+                           });
+
+       
+      //  $products = $query->get();
+
+       $products = $query->paginate(10);
+
+
+       if($products->isEmpty()) {
+
+            return response()->json([
+                'status' => true,
+                'message' => 'No Products Matched Our Record',
+                'products' => [
+                    'data' => [],
+                ],
+
+            ], 200);
+        }
+
+
+
+        return response()->json([
+            'status' => true,
+            'message' => 'Products Filtered Successfully',
+            'products' => $products,
+
+        ]);
+                           
+
+                        
+                        
 
     }
 

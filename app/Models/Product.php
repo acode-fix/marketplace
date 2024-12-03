@@ -17,7 +17,7 @@ class Product extends Model
     ];
 
     protected $casts = [
-        'ask_for_price' => 'boolean',  // Ensure this attribute is cast to a boolean
+        'ask_for_price' => 'boolean' // Ensure this attribute is cast to a boolean
     ];
 
    // protected $guarded = [];

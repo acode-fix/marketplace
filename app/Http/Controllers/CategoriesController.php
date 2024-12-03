@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Categories;
+use App\Models\Category;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\Ads_categoryController;
 use App\Models\Product;
@@ -49,7 +49,7 @@ class CategoriesController extends Controller
     public function view(string $id)
     {
         //
-        $category =  Categories::find($id);
+        $category =  Category::find($id);
 
         return response()->json([
           'status' => true,
@@ -66,7 +66,7 @@ class CategoriesController extends Controller
         //
 
        // $product = Product::find($id);
-        $category =  Categories::find($id);
+        $category =  Category::find($id);
         $categorylist =  Product::with('user')->where('category_id',$category->id)->get();
 
 
@@ -84,7 +84,7 @@ class CategoriesController extends Controller
     public function search($search)
     {
         //
-        $category = Categories::where('name', 'LIKE', '%' . $search . '%')->get();
+        $category = Category::where('name', 'LIKE', '%' . $search . '%')->get();
 
         return response()->json([
             'status' => true,

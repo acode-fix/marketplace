@@ -20,7 +20,7 @@ if(token) {
 
   }).then((response) => {
 
-   console.log(response)
+  // console.log(response)
 
     if(response.status === 200 && response.data) {
 
@@ -58,7 +58,7 @@ if(token) {
   function authUser() {
 
     axios.get('/api/v1/getuser').then((response) => {
-     console.log(response)
+   //  console.log(response)
 
       const authUser = response.data;
 
@@ -134,7 +134,7 @@ if(token) {
               ${checkBagdge}
               <div class="ms-2">
                 <h5 class="pt-3 mired-drill-m">${username ?? 'N/A'}</h5>
-                <h6 class="mired-email">${email ?? 'No Email Provided Yet'}</h6>
+                <h6 style="font-size:12px "class="mired-email">${email ?? 'No Email Provided Yet'}</h6>
                 ${checkSeller}
                </div>`;
 
@@ -194,6 +194,9 @@ if(token) {
     updateReviewerMobileUser(reviewerData);
 
     const userData = Array.isArray(data) ? data.user : products;
+
+
+    //console.log(userData);
 
 
      // Update sidebar with user data

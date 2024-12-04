@@ -212,9 +212,9 @@
 
             {{-- <div class="price_input photo_inputs" id="PricesInput" id="priceFields"> --}}
             <div class="price_input photo_inputs" id="priceFields">
-                <input type="text" placeholder="main price" class="main_price" name="actual_price" >
+                <input type="text" placeholder="&#8358; main price" class="main_price" name="actual_price" >
                 <div class="vertical-bar"></div>
-                <input type="text" placeholder="promo(optional)" class="promo_price" name="promo_price">
+                <input type="text" placeholder="&#8358; promo(optional)" class="promo_price" name="promo_price">
             </div>
             <input type="number" placeholder="how many in stock," class="photo_inputs" name="quantity">
             <div class="product_condition">

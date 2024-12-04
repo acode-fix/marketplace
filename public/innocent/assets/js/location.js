@@ -27,6 +27,7 @@ function filterStates(value) {
   }
 }
 
+
 function changeLocation(location) {
   document.getElementById('clickMe').textContent = location;
   document.querySelector(".locationInput").value = location;

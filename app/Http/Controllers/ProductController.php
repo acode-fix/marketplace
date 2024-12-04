@@ -185,6 +185,8 @@ public function getAdminProductDetails($id) {
 }
 
     /**
+     * 
+     * 
      * Show the form for creating a new resource.
      */
 //     public function filterProducts(Request $request)
@@ -216,7 +218,52 @@ public function filterProducts(Request $request)
 {
     try {
 
-        $query = Product::with('user')->where('quantity', '!=', 0);
+
+       debugbar::info($request->newValue, $request->used, $request->location, $request->verified);
+
+       $products = Product::with('user')->where('quantity', '!=', 0)
+
+               ->when($request->newValue, function($q) use ($request) {
+                $q->where('condition', $request->newValue);
+               })
+               ->when($request->used, function($q) use ($request) {
+                $q->where('condition', $request->used);
+               })
+               ->when($request->location, function($q) use ($request) { 
+                $q->where('location', $request->location);
+               });
+
+
+      if(!is_null($request->verified)) {
+        $verified = filter_var($request->verified, FILTER_VALIDATE_BOOLEAN);
+
+        $products->whereHas('user', function ($q) use ($verified) {
+            $q->where('verify_status', $verified)
+              ->where('badge_status', 1);
+        });
+
+
+      }
+     $products =  $products->get();
+
+
+        return response()->json([
+            'status' => true,
+            'message' => 'Products Fetched Successfully',
+            'products' => $products, 
+
+        ]);
+
+
+     
+
+
+        
+               
+
+              
+
+        /*
 
         if ($request->has('condition') && $request->condition !== '') {
             $query->where('condition', $request->condition);
@@ -245,6 +292,8 @@ public function filterProducts(Request $request)
         DebugBar::info($request->condition, $location,  $status, $products);
 
         return response()->json($products);
+
+        */
 
     } catch (\Exception $e) {
         // Log the error for debugging

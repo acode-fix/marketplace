@@ -120,6 +120,105 @@ axios.get('/api/allproduct')
 
 
 
+const newBtn = document.querySelector('.js-new');
+const used = document.querySelector('.js-used');
+const locations = document.querySelectorAll('.location');
+const verified = document.querySelector('input[name="verify"]');
+
+verified.addEventListener('change', () => {
+
+    const filters = { verified: verified.checked}
+
+    applyFilter(filters);
+
+});
+
+
+locations.forEach((location) => {
+
+    location.addEventListener('click', () => {
+
+     const value = document.querySelector(".locationInput").value ;
+ 
+     const  filters ={ location : value.trim()};
+
+     applyFilter(filters);
+
+
+     
+    })
+
+});
+
+
+newBtn.addEventListener('click',() => {
+
+    newBtn.classList.toggle('newBtn');
+
+   const newValue = newBtn.dataset.value;
+
+   const filters = {newValue};
+
+
+     applyFilter(filters);
+
+});
+
+used.addEventListener('click', () => {
+
+    used.classList.toggle('usedBtn');
+
+    const usedValue = used.dataset.value;
+
+    const filters = { used: usedValue}
+
+    applyFilter(filters);
+
+});
+
+
+function applyFilter(filters) {
+
+    // console.log(filters.newValue);
+
+    axios.get('/api/v1/product/filter', { params: filters},)
+    .then(function (response) {
+
+        console.log(response);
+        
+        const products = response.data.products;
+
+        
+      if(products.length === 0) {
+
+        document.querySelector('.filter-result').style.display = 'block';
+
+        setTimeout(() => {
+            document.querySelector('.filter-result').style.display = 'none';
+            window.location.reload();
+
+        },2000);
+
+      }
+        renderProductsAndSections(products);
+
+
+    })
+    .catch(function (error) {
+        console.error('Error fetching filtered products:', error);
+    });
+}
+
+
+
+
+
+  
+
+
+
+/*
+
 document.getElementById('clickMe').addEventListener('click', () => {
     applyFilter();
 })
@@ -159,7 +258,7 @@ function applyFilter() {
         verifyStatus: verifiedSeller,
     };
 
-   // console.log('Filters applied:', filters);
+    console.log('Filters applied:', filters);
    
 
     axios.get('/api/v1/product/filter', { params: filters},)
@@ -217,12 +316,16 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 
+*/
+
+
 function renderProductsAndSections(products) {
     const productCardDisplay1 = document.getElementById('productCardDisplay');
     const productCardDisplay2 = document.getElementById('productCardDisplay2');
 
-    productCardDisplay1.innerHTML = ''; // Clear the container first
-    productCardDisplay2.innerHTML = ''; // Clear the container first
+    productCardDisplay1.innerHTML = ''; 
+    productCardDisplay2.innerHTML = ''; 
+
 
     products.forEach((product, index) => {
         // Render product card
@@ -358,7 +461,7 @@ function updateUserProfile(user) {
 
             event.preventDefault();
 
-            if(user.verify_status == 1 && user.badge_status == 1) {
+              if(user.verify_status == 1 && user.badge_status == 1) {
 
                 const title = '<span class="text-success">verified seller</span>';
                 const content = '<span class="text-dark">You have an active badge</span>';
@@ -378,10 +481,7 @@ function updateUserProfile(user) {
                }
             
                if(user.verify_status == 0 && user.badge_status == 0) {
-            
                   window.location.href = '/become';
-            
-            
                }
             
 

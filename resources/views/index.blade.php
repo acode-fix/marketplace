@@ -29,6 +29,21 @@
     
 </head>
 <style>
+    .start-sell {
+  text-decoration: none;
+  color: white;
+  background-color: #fe3d3d;
+  padding: 7px 10px 7px 10px;
+  border-radius: 10px;
+  margin-left: 20px;
+}
+
+.filter-result{
+    display: none;
+}
+
+
+
 
 </style>
 
@@ -178,14 +193,13 @@
                 <p class="product_condition_p">Product Condition</p>
                 <div class="product_condition_desktop">
 
-                    <button class="button new"  data-value="new"  onclick="toggleButton(this, 'new')">New</button>
-                    <button class="button used" data-value="fairly_used" onclick="toggleButton(this, 'fairly_used')">Fairly Used</button>
+                    <button class="button new js-new"   data-value="new">New</button>
+                    <button class="button used js-used" data-value="fairly_used">Fairly Used</button>
 
 
                     <!-- Button trigger modal -->
                     <div data-bs-toggle="modal" data-bs-target="#location_input_modal" class="clickMe_div">
                         <p data-bs-toggle="modal" data-bs-target="#location_input_modal" id="clickMe">Lagos</p>
-                        {{-- <p data-bs-toggle="modal" data-bs-target="#location_input_modal" id="clickMe" >Lagos</p> --}}
                         <i class="fa-solid fa-angle-down  angle_down" data-bs-toggle="modal"
                             data-bs-target="#location_input_modal"></i>
                     </div>
@@ -388,8 +402,13 @@
                 </a>
                 {{-- <h5 class="top_sales  animate animate-right">Top Sales</h5> --}}
                 <h5 class="top_sales  animate animate-right">Top Sales</h5>
+                 <div class="filter-result">
+                    <p class="text-danger fs-6 ps-4">No Product listed in this region yet, will you like to list a product</p>
+                    <a class="start-sell" href="{{ url('/start_selling') }}">Start Selling</a>
 
-
+                 </div>
+               
+                
                 <!-- Product Cards -->
                 <div class="product_card_container top_sales_margin">
 
@@ -1034,60 +1053,62 @@
                             <input type="text" class="locationInput" placeholder="Enter your city location"
                                 oninput="filterStates(this.value)">
                             <i class="fa-solid fa-search"></i>
+                            {{-- <input type="text" class="locationInput" placeholder="Enter your city location">
+                        <i class="fa-solid fa-search"></i> --}}
                         </div>
                     </div>
                     <div class="state_selection" id="stateSelection">
-                        <p data-bs-dismiss="modal" aria-label="Close" onclick="changeLocation('Abakaliki')">Abakaliki
+                        <p data-bs-dismiss="modal" class="location" aria-label="Close" onclick="changeLocation('Abakaliki')">Abakaliki
                         </p>
-                        <p data-bs-dismiss="modal" aria-label="Close" onclick="changeLocation('Aba')">Aba</p>
-                        <p data-bs-dismiss="modal" aria-label="Close" onclick="changeLocation('Abeokuta')">Abeokuta</p>
-                        <p data-bs-dismiss="modal" aria-label="Close" onclick="changeLocation('Abuja')">Abuja</p>
-                        <p data-bs-dismiss="modal" aria-label="Close" onclick="changeLocation('Ado Ekiti')">Ado Ekiti
+                        <p data-bs-dismiss="modal"  class="location" aria-label="Close" onclick="changeLocation('Aba')">Aba</p>
+                        <p data-bs-dismiss="modal"  class="location" aria-label="Close" onclick="changeLocation('Abeokuta')">Abeokuta</p>
+                        <p data-bs-dismiss="modal" class="location" aria-label="Close" onclick="changeLocation('Abuja')">Abuja</p>
+                        <p data-bs-dismiss="modal"  class="location" aria-label="Close" onclick="changeLocation('Ado Ekiti')">Ado Ekiti
                         </p>
-                        <p data-bs-dismiss="modal" aria-label="Close" onclick="changeLocation('Akure')">Akure</p>
-                        <p data-bs-dismiss="modal" aria-label="Close" onclick="changeLocation('Asaba')">Asaba</p>
-                        <p data-bs-dismiss="modal" aria-label="Close" onclick="changeLocation('Awka')">Awka</p>
-                        <p data-bs-dismiss="modal" aria-label="Close" onclick="changeLocation('Bauchi')">Bauchi</p>
-                        <p data-bs-dismiss="modal" aria-label="Close" onclick="changeLocation('Benin City')">Benin City
+                        <p data-bs-dismiss="modal"  class="location" aria-label="Close" onclick="changeLocation('Akure')">Akure</p>
+                        <p data-bs-dismiss="modal"  class="location" aria-label="Close" onclick="changeLocation('Asaba')">Asaba</p>
+                        <p data-bs-dismiss="modal" class="location" aria-label="Close" onclick="changeLocation('Awka')">Awka</p>
+                        <p data-bs-dismiss="modal" class="location" aria-label="Close" onclick="changeLocation('Bauchi')">Bauchi</p>
+                        <p data-bs-dismiss="modal" class="location" aria-label="Close" onclick="changeLocation('Benin City')">Benin City
                         </p>
-                        <p data-bs-dismiss="modal" aria-label="Close" onclick="changeLocation('Birnin Kebbi')">Birnin
+                        <p data-bs-dismiss="modal"  class="location"aria-label="Close" onclick="changeLocation('Birnin Kebbi')">Birnin
                             Kebbi</p>
-                        <p data-bs-dismiss="modal" aria-label="Close" onclick="changeLocation('Calabar')">Calabar</p>
-                        <p data-bs-dismiss="modal" aria-label="Close" onclick="changeLocation('Damaturu')">Damaturu</p>
-                        <p data-bs-dismiss="modal" aria-label="Close" onclick="changeLocation('Delta')">Delta</p>
-                        <p data-bs-dismiss="modal" aria-label="Close" onclick="changeLocation('Dutse')">Dutse</p>
-                        <p data-bs-dismiss="modal" aria-label="Close" onclick="changeLocation('Edo')">Edo</p>
-                        <p data-bs-dismiss="modal" aria-label="Close" onclick="changeLocation('Ekiti')">Ekiti</p>
-                        <p data-bs-dismiss="modal" aria-label="Close" onclick="changeLocation('Enugu')">Enugu</p>
-                        <p data-bs-dismiss="modal" aria-label="Close" onclick="changeLocation('Gombe')">Gombe</p>
-                        <p data-bs-dismiss="modal" aria-label="Close" onclick="changeLocation('Gusau')">Gusau</p>
-                        <p data-bs-dismiss="modal" aria-label="Close" onclick="changeLocation('Ibadan')">Ibadan</p>
-                        <p data-bs-dismiss="modal" aria-label="Close" onclick="changeLocation('Ikeja')">Ikeja</p>
-                        <p data-bs-dismiss="modal" aria-label="Close" onclick="changeLocation('Ilorin')">Ilorin</p>
-                        <p data-bs-dismiss="modal" aria-label="Close" onclick="changeLocation('Imo')">Imo</p>
-                        <p data-bs-dismiss="modal" aria-label="Close" onclick="changeLocation('Jalingo')">Jalingo</p>
-                        <p data-bs-dismiss="modal" aria-label="Close" onclick="changeLocation('Jos')">Jos</p>
-                        <p data-bs-dismiss="modal" aria-label="Close" onclick="changeLocation('Kaduna')">Kaduna</p>
-                        <p data-bs-dismiss="modal" aria-label="Close" onclick="changeLocation('Kano')">Kano</p>
-                        <p data-bs-dismiss="modal" aria-label="Close" onclick="changeLocation('Katsina')">Katsina</p>
-                        <p data-bs-dismiss="modal" aria-label="Close" onclick="changeLocation('Lafia')">Lafia</p>
-                        <p data-bs-dismiss="modal" aria-label="Close" onclick="changeLocation('Lagos')">Lagos</p>
-                        <p data-bs-dismiss="modal" aria-label="Close" onclick="changeLocation('Lokoja')">Lokoja</p>
-                        <p data-bs-dismiss="modal" aria-label="Close" onclick="changeLocation('Maiduguri')">Maiduguri
+                        <p data-bs-dismiss="modal" class="location" aria-label="Close" onclick="changeLocation('Calabar')">Calabar</p>
+                        <p data-bs-dismiss="modal" class="location" aria-label="Close" onclick="changeLocation('Damaturu')">Damaturu</p>
+                        <p data-bs-dismiss="modal" class="location" aria-label="Close" onclick="changeLocation('Delta')">Delta</p>
+                        <p data-bs-dismiss="modal"  class="location"aria-label="Close" onclick="changeLocation('Dutse')">Dutse</p>
+                        <p data-bs-dismiss="modal" class="location" aria-label="Close" onclick="changeLocation('Edo')">Edo</p>
+                        <p data-bs-dismiss="modal" class="location" aria-label="Close" onclick="changeLocation('Ekiti')">Ekiti</p>
+                        <p data-bs-dismiss="modal" class="location" aria-label="Close" onclick="changeLocation('Enugu')">Enugu</p>
+                        <p data-bs-dismiss="modal" class="location" aria-label="Close" onclick="changeLocation('Gombe')">Gombe</p>
+                        <p data-bs-dismiss="modal" class="location" aria-label="Close" onclick="changeLocation('Gusau')">Gusau</p>
+                        <p data-bs-dismiss="modal" class="location" aria-label="Close" onclick="changeLocation('Ibadan')">Ibadan</p>
+                        <p data-bs-dismiss="modal" class="location" aria-label="Close" onclick="changeLocation('Ikeja')">Ikeja</p>
+                        <p data-bs-dismiss="modal" class="location" aria-label="Close" onclick="changeLocation('Ilorin')">Ilorin</p>
+                        <p data-bs-dismiss="modal" class="location" aria-label="Close" onclick="changeLocation('Imo')">Imo</p>
+                        <p data-bs-dismiss="modal"  class="location" aria-label="Close" onclick="changeLocation('Jalingo')">Jalingo</p>
+                        <p data-bs-dismiss="modal" class="location" aria-label="Close" onclick="changeLocation('Jos')">Jos</p>
+                        <p data-bs-dismiss="modal" class="location" aria-label="Close" onclick="changeLocation('Kaduna')">Kaduna</p>
+                        <p data-bs-dismiss="modal" class="location" aria-label="Close" onclick="changeLocation('Kano')">Kano</p>
+                        <p data-bs-dismiss="modal" class="location" aria-label="Close" onclick="changeLocation('Katsina')">Katsina</p>
+                        <p data-bs-dismiss="modal" class="location" aria-label="Close" onclick="changeLocation('Lafia')">Lafia</p>
+                        <p data-bs-dismiss="modal" class="location" aria-label="Close" onclick="changeLocation('Lagos')">Lagos</p>
+                        <p data-bs-dismiss="modal" class="location" aria-label="Close" onclick="changeLocation('Lokoja')">Lokoja</p>
+                        <p data-bs-dismiss="modal" class="location" aria-label="Close" onclick="changeLocation('Maiduguri')">Maiduguri
                         </p>
-                        <p data-bs-dismiss="modal" aria-label="Close" onclick="changeLocation('Makurdi')">Makurdi</p>
-                        <p data-bs-dismiss="modal" aria-label="Close" onclick="changeLocation('Minna')">Minna</p>
-                        <p data-bs-dismiss="modal" aria-label="Close" onclick="changeLocation('Ogun')">Ogun</p>
-                        <p data-bs-dismiss="modal" aria-label="Close" onclick="changeLocation('Owerri')">Owerri</p>
-                        <p data-bs-dismiss="modal" aria-label="Close" onclick="changeLocation('Owere')">Owere</p>
-                        <p data-bs-dismiss="modal" aria-label="Close" onclick="changeLocation('Port Harcourt')">Port
+                        <p data-bs-dismiss="modal"  class="location" aria-label="Close" onclick="changeLocation('Makurdi')">Makurdi</p>
+                        <p data-bs-dismiss="modal" class="location" aria-label="Close" onclick="changeLocation('Minna')">Minna</p>
+                        <p data-bs-dismiss="modal"  class="location" aria-label="Close" onclick="changeLocation('Ogun')">Ogun</p>
+                        <p data-bs-dismiss="modal"  class="location" aria-label="Close" onclick="changeLocation('Owerri')">Owerri</p>
+                        <p data-bs-dismiss="modal"  class="location" aria-label="Close" onclick="changeLocation('Owere')">Owere</p>
+                        <p data-bs-dismiss="modal" class="location" aria-label="Close" onclick="changeLocation('Port Harcourt')">Port
                             Harcourt</p>
-                        <p data-bs-dismiss="modal" aria-label="Close" onclick="changeLocation('Sokoto')">Sokoto</p>
-                        <p data-bs-dismiss="modal" aria-label="Close" onclick="changeLocation('Umuahia')">Umuahia</p>
-                        <p data-bs-dismiss="modal" aria-label="Close" onclick="changeLocation('Uyo')">Uyo</p>
-                        <p data-bs-dismiss="modal" aria-label="Close" onclick="changeLocation('Yenagoa')">Yenagoa</p>
-                        <p data-bs-dismiss="modal" aria-label="Close" onclick="changeLocation('Yola')">Yola</p>
-                        <p data-bs-dismiss="modal" aria-label="Close" onclick="changeLocation('Zaria')">Zaria</p>
+                        <p data-bs-dismiss="modal"  class="location" aria-label="Close" onclick="changeLocation('Sokoto')">Sokoto</p>
+                        <p data-bs-dismiss="modal"  class="location" aria-label="Close" onclick="changeLocation('Umuahia')">Umuahia</p>
+                        <p data-bs-dismiss="modal"  class="location" aria-label="Close" onclick="changeLocation('Uyo')">Uyo</p>
+                        <p data-bs-dismiss="modal"  class="location" aria-label="Close" onclick="changeLocation('Yenagoa')">Yenagoa</p>
+                        <p data-bs-dismiss="modal"  class="location" aria-label="Close" onclick="changeLocation('Yola')">Yola</p>
+                        <p data-bs-dismiss="modal"  class="location" aria-label="Close" onclick="changeLocation('Zaria')">Zaria</p>
                     </div>
                 </div>
             </div>
@@ -1127,7 +1148,7 @@
 
  <script  src="{{ asset('backend-js/user/auth.js') }}"></script>
  <script type="module" src="{{ asset('backend-js/index.js') }}"></script>
- <script type="module"  src="{{ asset('backend-js/notification.js') }}"></script>
+ {{-- <script type="module"  src="{{ asset('backend-js/notification.js') }}"></script> --}}
 
     
 </body>

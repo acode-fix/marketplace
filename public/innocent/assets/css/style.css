@@ -10,8 +10,8 @@ body {
     font-family: 'Poppins';
                                     
 }
-#profile-email {
-    font-size: 14px;
+#profile_email {
+    font-size: 12px;
 }
 
 
@@ -978,6 +978,19 @@ input[type="range"] {
     background-color: rgb(104, 203, 216);
     border: 1px solid rgb(104, 203, 216);
 }
+
+.newBtn {
+    background-color: rgb(105, 231, 41);
+    border: 1px solid rgb(103, 221, 44);
+}
+
+.usedBtn {
+    background-color: rgb(104, 203, 216);
+    border: 1px solid rgb(104, 203, 216);
+}
+
+
+
 
 /* Switch */
 

@@ -115,7 +115,7 @@ export function getIndexProfileImage(user, profileImageElement) {
 
 export function getDate(currentDate) {
 
-return   dayjs(currentDate, 'YYYY-MM-DD HH:mm:ss').format('DD, MMM, YYYY');
+return   dayjs(currentDate).format('DD, MMM, YYYY');
 
 }
 
@@ -388,7 +388,7 @@ const dropDownImg = photo_url
                 ${dropDownImg}
                 <div class="ms-2 pt-1">
                   <h6>${name ?? 'No Name Provided'}</h6>
-                  <h6 style="font-size: small;">${email ?? 'No Email Provided'}</h6>
+                  <h6 style="font-size: 12px;">${email ?? 'No Email Provided'}</h6>
                 </div>
               </div>
               <hr style="background-color: black; margin-left: 10px;margin-right: 10px;">
@@ -415,16 +415,30 @@ export function loadSidebar(user) {
 
   //console.log(user)
 
-  const bioText = user.bio ?? '';
+  let userData;
+
+    if(Array.isArray(user)) {
+
+     userData = user[0] ?? null;
+
+   }else {
+
+    userData = user;
+   }
+
+  //console.log(userData);
+
+  const bioText = userData?.user?.bio ?? userData.bio;
+  const createdAt = userData?.user?.created_at ?? userData.created_at;
+
+
   const previewLength = 100;
 
-  const visibleBio = bioText.slice(0, previewLength);
-  const hiddenBio = bioText.length > previewLength  ? bioText.slice(previewLength) : '';
+  const visibleBio =  bioText ? bioText.slice(0, previewLength) : '';   
+//  const hiddenBio = bioText ? bioText.length > previewLength  ? bioText.slice(previewLength) : '' : '';
+  const hiddenBio = bioText && bioText.length > previewLength ? bioText.slice(previewLength) : '';
 
   const totalProduct = user ? user.length : null;
-
-
-
   
   const display = `
    <div class="ms-2">
@@ -439,7 +453,7 @@ export function loadSidebar(user) {
       <div>
         <div class="side-display">
           <div>
-            <img width="10px" height="13px" src="/kaz/images/location.svg" alt="">
+            <img width="10px" height="13px" src="/kaz/images/location.svg" alt="">  
             <span style="font-size: small;">From</span>
           </div>
           <h6 style="font-size: small;">${user.location ?? ''} Nigera</h6>
@@ -449,7 +463,7 @@ export function loadSidebar(user) {
             <img width="15px" src="/kaz/images/profile.svg" alt="">
             <span style="font-size: small;">Member since</span>
           </div>
-          <h6 style="font-size: small;"> ${getDate(user.created_at)}</h6>
+          <h6 style="font-size: small;"> ${getDate(createdAt)}</h6>
 
         </div>
         <div class="side-display">

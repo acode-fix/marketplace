@@ -197,7 +197,7 @@ function applyFilter(filters) {
             document.querySelector('.filter-result').style.display = 'none';
             window.location.reload();
 
-        },2000);
+        },8000);
 
       }
         renderProductsAndSections(products);

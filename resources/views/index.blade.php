@@ -29,19 +29,6 @@
     
 </head>
 <style>
-    .start-sell {
-  text-decoration: none;
-  color: white;
-  background-color: #fe3d3d;
-  padding: 7px 10px 7px 10px;
-  border-radius: 10px;
-  margin-left: 20px;
-}
-
-.filter-result{
-    display: none;
-}
-
 
 
 

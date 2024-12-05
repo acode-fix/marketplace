@@ -9,8 +9,6 @@ import { serverError } from "./auth-helper.js";
 
 const data = JSON.parse(localStorage.getItem('userData'));
 
-//console.log(data);
-
 
 function getPaymentStatus(payment) {
 
@@ -79,48 +77,55 @@ document.addEventListener('click', (event) => {
 
         const userId = event.target.dataset.userId;
 
-        axios.get('/api/v1/userDetails',  {
-            params: {
-                user:userId,
-            }
-        },
+        localStorage.setItem('userId', JSON.stringify(userId));
 
-    ).then((response) => {
-           console.log(response);
+        window.location.href = '/admin/view/user'
 
-           if(response.status === 200 && response.data) {
+    //     axios.get('/api/v1/userDetails',  {
+    //         params: {
+    //             user:userId,
+    //         }
+    //     },
 
-                const data = response.data.data;
-                localStorage.setItem('userDetail', JSON.stringify(data));
+    // ).then((response) => {
+    //        console.log(response);
 
-                window.location.href = '/admin/view/user'
+    //        if(response.status === 200 && response.data) {
 
-           }
+    //             const data = response.data.data;
+    //             localStorage.setItem('userDetail', JSON.stringify(data));
+
+    //             window.location.href = '/admin/view/user'
+
+    //        }
             
-        }).catch((error) => {
+    //     }).catch((error) => {
 
-            console.log(error);
+    //         console.log(error);
 
-            if(error.response) {
+    //         if(error.response) {
 
-                if(error.response.status === 404 && error.response.data) {
+    //             if(error.response.status === 404 && error.response.data) {
 
-                    Swal.fire({
-                        icon: 'error',
-                        title: 'Loading All User',
-                        confirmButtonColor: '#ffb705',
-                        text: error.response.data.message,
-                    })
+    //                 Swal.fire({
+    //                     icon: 'error',
+    //                     title: 'Loading All User',
+    //                     confirmButtonColor: '#ffb705',
+    //                     text: error.response.data.message,
+    //                 })
             
             
-                }
+    //             }
 
-                if(error.response.status === 500) {
-                    serverError();
-                }
-            }
+    //             if(error.response.status === 500) {
+    //                 serverError();
+    //             }
+    //         }
 
-        })
+    //     })
+
+
+
     }
 });
 

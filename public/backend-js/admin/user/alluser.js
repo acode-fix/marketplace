@@ -71,7 +71,11 @@ document.addEventListener('click', (event) => {
 
         const userId = event.target.dataset.userId;
 
-        getUserById(userId);
+        localStorage.setItem('userId', JSON.stringify(userId));
+         window.location.href = '/admin/view/user'
+
+
+       // getUserById(userId);
 
     }
 });

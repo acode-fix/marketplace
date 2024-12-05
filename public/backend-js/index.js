@@ -127,6 +127,11 @@ const verified = document.querySelector('input[name="verify"]');
 
 verified.addEventListener('change', () => {
 
+    if(!token) {
+        promptLogin()
+        return
+    }
+
     const filters = { verified: verified.checked}
 
     applyFilter(filters);
@@ -138,6 +143,11 @@ locations.forEach((location) => {
 
     location.addEventListener('click', () => {
 
+        if(!token) {
+            promptLogin()
+            return
+        }
+    
      const value = document.querySelector(".locationInput").value ;
  
      const  filters ={ location : value.trim()};
@@ -153,6 +163,12 @@ locations.forEach((location) => {
 
 newBtn.addEventListener('click',() => {
 
+    if(!token) {
+        promptLogin()
+        return
+    }
+
+
     newBtn.classList.toggle('newBtn');
 
    const newValue = newBtn.dataset.value;
@@ -165,6 +181,12 @@ newBtn.addEventListener('click',() => {
 });
 
 used.addEventListener('click', () => {
+
+    if(!token) {
+        promptLogin()
+        return
+    }
+
 
     used.classList.toggle('usedBtn');
 
@@ -184,7 +206,7 @@ function applyFilter(filters) {
     axios.get('/api/v1/product/filter', { params: filters},)
     .then(function (response) {
 
-        console.log(response);
+      //  console.log(response);
         
         const products = response.data.products;
 

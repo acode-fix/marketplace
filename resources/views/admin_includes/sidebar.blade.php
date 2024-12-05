@@ -53,5 +53,23 @@
         </div>
       </div>
     </div>
+
+    <div class="sidebar-link mt-4">
+      <div class="links {{ Request::is('admin/badge/view*') ? 'active-link clicked' : '' }}">
+        <span class="user-menu">
+          <a href="javascript:void(0);" class="menu-link">
+            <img class="profile-logo svg-size" src="{{ asset('kaz/images/product.svg') }}" alt="">
+            <span class="profile-text">Badge Menu</span>
+          </a>
+        </span>
+        <!-- Submenu -->
+        <div class="submenu">
+          <ul>
+            <li><a href="{{ route('badge.view') }}">View</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  
   </div>
   

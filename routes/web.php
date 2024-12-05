@@ -212,6 +212,12 @@ Route::get('admin/products/view/search', function() {
     return view(('admin.products.search'));
 })->name('products.search');
 
+Route::get('admin/badge/view', function() {
+
+    return view('admin.user.badge');
+
+})->name('badge.view');
+
 
 Route::get('/product/shared/{link}', [ProductController::class, 'loadSharedProduct' ]);
 

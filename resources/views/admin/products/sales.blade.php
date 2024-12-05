@@ -26,10 +26,10 @@
 
               <!-- Tab panes -->
               <div class="tab-content">
-                <div id="home" class="container tab-pane listed-products active"><br>
+                <div id="home" class="container tab-pane sales active"><br>
 
                 </div>
-                <div id="menu1" class="container delisted-products tab-pane fade"><br>
+                <div id="menu1" class="container connects tab-pane fade"><br>
 
 
                 </div>

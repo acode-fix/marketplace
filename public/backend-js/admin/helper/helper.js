@@ -1,27 +1,27 @@
 import dayjs from 'https://unpkg.com/dayjs@1.11.10/esm/index.js';
 
-export function getToken () {
+export function getToken() {
 
- const token = localStorage.getItem('token');
- if(token) {
+    const token = localStorage.getItem('token');
+    if (token) {
 
-    return token;
- }
- 
- if(!token) {
- 
-     Swal.fire({
-     icon: 'error',
-     title: 'Login Required',
-     text: 'Please log in to continue.',
-     confirmButtonColor: '#ffb705',
- }).then(() => {
- 
-     window.location.href = '/admin/login'; 
-     
- });
+        return token;
+    }
 
-}
+    if (!token) {
+
+        Swal.fire({
+            icon: 'error',
+            title: 'Login Required',
+            text: 'Please log in to continue.',
+            confirmButtonColor: '#ffb705',
+        }).then(() => {
+
+            window.location.href = '/admin/login';
+
+        });
+
+    }
 
 }
 
@@ -32,32 +32,33 @@ export function getToken () {
 
 export function getUserById(userId) {
 
-    
-    axios.get('/api/v1/userDetails',  {
-        params: {
-            user:userId,
-        }
-    },
 
-).then((response) => {
-       console.log(response);
+    axios.get('/api/v1/userDetails', {
+            params: {
+                user: userId,
+            }
+        },
 
-       if(response.status === 200 && response.data) {
+    ).then((response) => {
+        console.log(response);
+
+        if (response.status === 200 && response.data) {
 
             const data = response.data.data;
-            localStorage.setItem('userDetail', JSON.stringify(data));
+           // localStorage.setItem('userDetail', JSON.stringify(data));
+
 
             window.location.href = '/admin/view/user'
 
-       }
-        
+        }
+
     }).catch((error) => {
 
         console.log(error);
 
-        if(error.response) {
+        if (error.response) {
 
-            if(error.response.status === 404 && error.response.data) {
+            if (error.response.status === 404 && error.response.data) {
 
                 Swal.fire({
                     icon: 'error',
@@ -65,11 +66,11 @@ export function getUserById(userId) {
                     confirmButtonColor: '#ffb705',
                     text: error.response.data.message,
                 })
-        
-        
+
+
             }
 
-            if(error.response.status === 500) {
+            if (error.response.status === 500) {
                 serverError();
             }
         }
@@ -80,130 +81,130 @@ export function getUserById(userId) {
 
 export async function getUser(userId) {
     try {
-      const response = await axios.get('/api/v1/userDetails', {
-        params: {
-            user:userId,
+        const response = await axios.get('/api/v1/userDetails', {
+            params: {
+                user: userId,
+            }
+        });
+        // console.log(response);
+
+        if (response.status === 200 && response.data) {
+            const data = response.data.data
+
+            //console.log(data);
+
+            return data;
         }
-      });
-     // console.log(response);
-
-      if(response.status === 200 && response.data) {
-        const data = response.data.data
-
-        console.log(data);
-
-        return data;
-      }
     } catch (error) {
-      if(error.response) {
-      //  console.error(error);
+        if (error.response) {
+            //  console.error(error);
 
 
-      }
+        }
 
-      return null;
+        return null;
     }
-  }
+}
 
 
- export async function getRegisteredUser() {
+export async function getRegisteredUser() {
 
     const token = localStorage.getItem('token');
 
     try {
-        const response = await axios.get('/api/v1/admin/registered-user',{
+        const response = await axios.get('/api/v1/admin/registered-user', {
             headers: {
                 'Authorization': `Bearer ${token}`,
             }
         });
-       // console.log(response);
-  
-        if(response.status === 200 && response.data) {
-          const data = response.data.users
-  
-         // console.log(data);
-  
-          return data;
+        // console.log(response);
+
+        if (response.status === 200 && response.data) {
+            const data = response.data.users
+
+            // console.log(data);
+
+            return data;
         }
-      } catch (error) {
-        if(error.response) {
-        //  console.error(error);
-  
-  
+    } catch (error) {
+        if (error.response) {
+            //  console.error(error);
+
+
         }
-  
+
         return null;
-      }
+    }
 
 
- }
+}
 
- export function calculateTotal(users){
+export function calculateTotal(users) {
 
     const total = users.length;
 
     return total;
 
- }
+}
 
- export async function getSuspendedUsers() {
+export async function getSuspendedUsers() {
 
     const token = localStorage.getItem('token');
 
     try {
-        const response = await axios.get('/api/v1/admin/suspended-users',{
+        const response = await axios.get('/api/v1/admin/suspended-users', {
             headers: {
                 'Authorization': `Bearer ${token}`,
             }
         });
-       // console.log(response);
-  
-        if(response.status === 200 && response.data) {
-          const data = response.data.users
-  
-         // console.log(data);
-  
-          return data;
+        // console.log(response);
+
+        if (response.status === 200 && response.data) {
+            const data = response.data.users
+
+            // console.log(data);
+
+            return data;
         }
-      } catch (error) {
-        if(error.response) {
-        //  console.error(error);
-  
-  
+    } catch (error) {
+        if (error.response) {
+            //  console.error(error);
+
+
         }
-  
+
         return null;
-      }
-    
- }
+    }
+
+}
 
 export async function getDeletedUsers() {
 
-  const token = localStorage.getItem('token');
+    const token = localStorage.getItem('token');
 
-  try {
-      const response = await axios.get('/api/v1/admin/deleted-account',{
-          headers: {
-              'Authorization': `Bearer ${token}`,
-          }
-      });
-     // console.log(response);
+    try {
+        const response = await axios.get('/api/v1/admin/deleted-account', {
+            headers: {
+                'Authorization': `Bearer ${token}`,
+            }
+        });
+        // console.log(response);
 
-      if(response.status === 200 && response.data) {
-        const data = response.data.users
+        if (response.status === 200 && response.data) {
+            const data = response.data.users
 
-       // console.log(data);
+            // console.log(data);
 
-        return data;
-      }
+            return data;
+        }
     } catch (error) {
-      if(error.response) {
-      //  console.error(error);
+        if (error.response) {
+            //  console.error(error);
 
 
-      }
+        }
 
-      return null;
+        return null;
     }
 
 }
@@ -211,27 +212,27 @@ export async function getDeletedUsers() {
 
 export async function getListedProducts() {
 
-  try {
-      const response = await axios.get('/api/v1/admin/listed-products',{
-        
-      });
-     // console.log(response);
+    try {
+        const response = await axios.get('/api/v1/admin/listed-products', {
 
-      if(response.status === 200 && response.data) {
-        const data = response.data.products
+        });
+        // console.log(response);
 
-      //  console.log(data);
+        if (response.status === 200 && response.data) {
+            const data = response.data.products
 
-        return data;
-      }
+            //  console.log(data);
+
+            return data;
+        }
     } catch (error) {
-      if(error.response) {
-        console.error(error);
+        if (error.response) {
+            console.error(error);
 
 
-      }
+        }
 
-      return null;
+        return null;
     }
 
 
@@ -239,37 +240,64 @@ export async function getListedProducts() {
 
 export async function getDelistedProducts() {
 
-  try {
-    const response = await axios.get('/api/v1/admin/delisted-products',{
-      
-    });
-   // console.log(response);
+    try {
+        const response = await axios.get('/api/v1/admin/delisted-products', {
 
-    if(response.status === 200 && response.data) {
-      const data = response.data.products
+        });
+        // console.log(response);
 
-    //  console.log(data);
+        if (response.status === 200 && response.data) {
+            const data = response.data.products
 
-      return data;
+            //  console.log(data);
+
+            return data;
+        }
+    } catch (error) {
+        if (error.response) {
+            console.error(error);
+
+
+        }
+
+        return null;
     }
-  } catch (error) {
-    if(error.response) {
-      console.error(error);
-
-
-    }
-
-    return null;
-  }
 
 }
 
 export function formatDate(date) {
 
-  return dayjs(date).format('D MMMM YYYY, HH:mm') || null;
+    return dayjs(date).format('D MMMM YYYY, HH:mm') || null;
 
 }
 
 
+export async function getBadgeDetails() {
 
-  
+    try {
+        const response = await axios.get('/api/v1/admin/badge', {
+
+        });
+        // console.log(response);
+
+        if (response.status === 200 && response.data) {
+            
+
+
+            //  console.log(data);
+
+            return response;
+        }
+    } catch (error) {
+        if (error.response) {
+            console.error(error);
+
+
+        }
+
+
+
+    }
+
+
+}

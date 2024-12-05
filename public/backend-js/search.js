@@ -342,10 +342,12 @@ if(token) {
         verifyStatus,
       }
     }).then((response) => {
+
+      console.log(response);
       
       if(response.status === 200 && response.data) {
 
-        const products = response.data;
+        const products = response.data.products;
 
         loadProducts(products);
 

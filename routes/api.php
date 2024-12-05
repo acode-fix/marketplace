@@ -120,6 +120,9 @@ Route::get('admin/products-performance', [AdminController::class, 'getProductsBy
 Route::get('admin/products-category', [AdminController::class, 'getProductCategory']);
 Route::get('admin/filter', [AdminController::class, 'getFilteredProducts']);
 
+//ROUTE ADMIN BADGES MENU
+Route::get('admin/badge',[AdminController::class, 'getAllBadges']);
+
 
 //Verified Seller Shop Route;
 

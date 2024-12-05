@@ -66,8 +66,95 @@ document.querySelector('.js-help-search').addEventListener('click', (event) => {
 });
 
 
+const newBtn = document.querySelector('.js-new');
+const usedBtn = document.querySelector('.js-used');
+const locations = document.querySelectorAll('.location');
+const verified = document.querySelector('input[name="verify"]');
+
+verified.addEventListener('change', () => {
 
 
+  const filter = { verified: verified.checked}
+
+  applyFilter(filter);
+
+});
+
+locations.forEach((location) => {
+
+  location.addEventListener('click', () => {
+      
+   const value = document.querySelector(".locationInput").value ;
+
+   const  filter ={ location : value.trim()};
+
+   applyFilter(filter);
+
+
+   
+  })
+
+});
+
+newBtn.addEventListener('click',() => {
+
+  
+
+  newBtn.classList.toggle('newBtn');
+
+ const newProducts = newBtn.dataset.value;
+
+ const filter = {newProducts};
+
+
+   applyFilter(filter);
+
+});
+
+usedBtn.addEventListener('click', () => {
+
+  usedBtn.classList.toggle('usedBtn');
+
+  const used = usedBtn.dataset.value;
+
+  const filter = {used}
+
+  applyFilter(filter);
+
+});
+
+
+
+function applyFilter(filter) {
+  const url = new URL(window.location.href);
+  const category = url.searchParams.get('category');
+  
+  axios.get('/api/v1/product/category-filter', {
+
+    params: {
+       filters : filter,
+      category,
+    }
+
+  }).then((response) => {
+
+     console.log(response);
+
+    if(response.status === 200 && response.data) {
+
+      const products = response.data.products;
+      renderProducts(products);
+    }
+
+  }).catch((error) => {
+ //   console.log(error);
+  })
+}
+
+
+
+
+/*
 
 
  const newButton = document.querySelector('.js-new');
@@ -131,7 +218,7 @@ document.querySelector('.js-help-search').addEventListener('click', (event) => {
 
   }
 
-
+*/
 
   const products = JSON.parse(localStorage.getItem('allProducts'));
   const categoryName = localStorage.getItem('categoryName');

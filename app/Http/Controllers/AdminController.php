@@ -10,7 +10,9 @@ use Illuminate\Http\Request;
 use Barryvdh\Debugbar\Facades\Debugbar;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\DB;
 
+use function PHPUnit\Framework\isEmpty;
 
 class AdminController extends Controller
 {
@@ -354,15 +356,26 @@ class AdminController extends Controller
 
     public function getProductsByPerformance() {
 
-        $products = Product::with(['user', 'category'])->orderBy('sold','desc')->get();
+        $products_sold = Product::with(['user', 'category'])->orderBy('sold','desc')->get();
 
-        $productEngagements = ProductEngagementLog::select('product_id')
-                             ->selectRaw('COUNT(*) as total_engagement')
-                             ->groupBy('product_id')
-                             ->orderByDesc('total_engagement')
-                             ->get();
+        $productEngagements = DB::table('product_engagement_logs as e')
+                                  ->join('products as p','e.product_id', '=', 'p.id')
+                                  ->join('categories as c', 'p.category_id', '=', 'c.id',)
+                                  ->select('e.product_id',
+                                   'p.title as product_name',
+                                    'p.description',
+                                    'p.location',
+                                    'c.name as category_name',
+                                    DB::raw('COUNT(e.product_id) as total_engagements'))
+                                  ->groupBy('e.product_id','p.title', 'c.name','p.description', 'p.location')
+                                  ->orderByDesc('total_engagements')
+                                  ->get();
 
-        if($products->isEmpty() || $productEngagements->isEmpty()) {
+        debugbar::info($productEngagements);
+
+       
+                            
+        if($products_sold->isEmpty() || $productEngagements->isEmpty()) {
 
             return response()->json([
                 'status'=> true,
@@ -372,32 +385,15 @@ class AdminController extends Controller
             ],200);
 
         }
-     
 
-         $engagedProducts = []; 
-
-        foreach($productEngagements as $productsEngagement) {
-
-          $productId =  $productsEngagement->product_id;
-
-          $productsEngaged = Product::with('user')->where('id', $productId)->first();
-
-          $engagedProducts[] = $productsEngaged;
-
-
-        }
-       
-        
 
         return response()->json([
             'status' => true,
-            'message' => 'products fetched successfully',
-            'products' => $products,
-            'engagedProducts' => $engagedProducts,
+            'message' => 'Products Engagement Fetched Successfully',
+            'products_sold' => $products_sold,
+            'productEngagements' => $productEngagements,
 
-        ],200);
-
-        
+        ],200); 
 
     }
 
@@ -489,6 +485,83 @@ class AdminController extends Controller
 
                         
                         
+
+    }
+
+
+    public function getAllBadges() {
+
+
+        $users = User::all()->groupBy(function($user) {
+
+            if($user->verify_status == 1 && $user->badge_status == 1) {
+
+                return 'activeBadges';
+
+            }
+
+            if($user->verify_status == 1 && $user->badge_status == -1) {
+
+                return 'expiredBadges';
+            } 
+
+            if($user->verify_status == 0 && $user->badge_status == 0) {
+
+                return 'unverifiedUser';
+            }
+
+        });
+
+    
+    return response()->json([
+        'status' => true,
+        'message' => $users->isEmpty() ? 'No information available' : 'Badges Info Fetched Successfully',
+        'activeBadges' => $users->get('activeBadges', []),
+        'unverifiedUser' => $users->get('unverifiedUser', []),
+        'expiredBadges' => $users->get('expiredBadges', []),
+    ], 200);
+
+
+
+
+        /*
+
+        $activeBadges = User::where('verify_status', 1)
+                              ->where('badge_status', 1)
+                              ->get();
+
+        $unverifiedSeller = User::where('verify_status', 0)
+                                ->where('badge_status', 0)
+                                ->get();
+
+        $expiredBadges = User::where('verify_status', 1)
+                             ->where('badge_status', -1)
+                             ->get();
+
+
+        if($activeBadges->isEmpty() || $unverifiedSeller->isEmpty() || $expiredBadges->isEmpty()) {
+
+            return response()->json([
+                'status' => true,
+                'message' => 'No information available',
+                'Badges' => [],
+            ],200);
+        }
+
+
+        return response()->json([
+             'status' => true,
+             'message' => 'Badges Info Fetched Successfully',
+             'activeBades' => $activeBadges,
+             'unverifiedSeller' => $unverifiedSeller,
+             'expiredBadges' => $expiredBadges,
+        ],200);
+
+
+
+   */
+
+
 
     }
 

@@ -1,6 +1,6 @@
 import { serverError } from "./auth-helper.js";
 import { logoutUser } from "./auth.js";
-import { getRegisteredUser, calculateTotal, getSuspendedUsers, getDeletedUsers, getListedProducts, getDelistedProducts } from "./helper/helper.js";
+import { getRegisteredUser, calculateTotal, getSuspendedUsers, getDeletedUsers, getListedProducts, getDelistedProducts, getBadgeDetails } from "./helper/helper.js";
 
 const token = localStorage.getItem('token');
 
@@ -193,6 +193,33 @@ async function getDeletedProducts() {
   
 }
 getDeletedProducts();
+
+async function getActiveBadges() {
+
+  const users = await getBadgeDetails();
+
+  const activeBadges = users.data.activeBadges;
+  const expiredBadges = users.data.expiredBadges;
+  const unverifiedUser = users.data.unverifiedUser;
+
+  
+  const total = calculateTotal(activeBadges);
+  const totalEl = document.querySelector('.js-total-active');
+
+  const total1 = calculateTotal(expiredBadges);
+  const totalEl1 = document.querySelector('.js-total-expired');
+
+  const total2 = calculateTotal(unverifiedUser);
+  const totalEl2 = document.querySelector('.js-total-unverified');
+
+  displayTotalProducts(total, totalEl);
+  displayTotalProducts(total1, totalEl1);
+  displayTotalProducts(total2, totalEl2);
+
+
+}
+
+getActiveBadges()
 
 
 

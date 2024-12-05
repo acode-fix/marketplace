@@ -1,3 +1,5 @@
+import { getUser } from "./helper/helper.js";
+
 const token = localStorage.getItem('token');
 
 axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
@@ -18,11 +20,30 @@ if(!token) {
 
 }
 
-const fullDetails = JSON.parse(localStorage.getItem('userDetail'));
+//const fullDetails = JSON.parse(localStorage.getItem('userDetail'));
 
-console.log(fullDetails);
+const userId = JSON.parse(localStorage.getItem('userId'));
 
-for (let field in fullDetails) {
+console.log(userId);
+
+async function loadUser() {
+
+  const fullDetails = await getUser(userId);
+
+ // console.log(fullDetails);
+
+  return fullDetails;
+  
+}
+
+
+const fullDetails = await loadUser();
+
+
+
+//console.log(fullDetails);
+
+for (let field in fullDetails ) {
 
         const element  = document.getElementById(`${field}_data`);
 

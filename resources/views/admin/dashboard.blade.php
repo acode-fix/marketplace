@@ -55,12 +55,42 @@
   <div class="col">
     <div class="card" style="width: 18rem;">
       <div class="card-body">
-        <h5 class="card-title text-danger"></h5>
-        <p class="card-text js-total-"></p> 
+        <h5 class="card-title text-success">Active :: Badges</h5>
+        <p class="card-text js-total-active"></p> 
       </div>
     </div>
 
   </div>
+</div>
+<div class="row mt-3">
+  <div class="col">
+    <div class="card" style="width: 18rem;">
+      <div class="card-body">
+        <h5 class="card-title text-danger">Expired :: Badges</h5>
+        <p class="card-text js-total-expired"></p> 
+      </div>
+    </div>
+
+  </div>
+
+  <div class="col">
+    <div class="card" style="width: 18rem;">
+      <div class="card-body">
+        <h5 class="card-title text-danger">Unverified :: Seller</h5>
+        <p class="card-text js-total-unverified"></p> 
+      </div>
+    </div>
+
+  </div>
+   <div class="col">
+    <div class="card" style="width: 18rem;">
+      <div class="card-body">
+        <h5 class="card-title text-success"></h5>
+        <p class="card-text js-total-"></p> 
+      </div>
+    </div>
+
+  </div> 
 </div>
 
 

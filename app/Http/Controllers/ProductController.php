@@ -255,46 +255,6 @@ public function filterProducts(Request $request)
         ]);
 
 
-     
-
-
-        
-               
-
-              
-
-        /*
-
-        if ($request->has('condition') && $request->condition !== '') {
-            $query->where('condition', $request->condition);
-            
-        }
-
-        if ($request->has('location') && $request->location !== '') {
-
-            $location = $request->location;
-            $query->where('location', $location);
-        }
-
-        if ($request->has('verifyStatus') && $request->verifyStatus !== '') {
-
-            $status = $request->verifyStatus;
-            $query->whereHas('user', function($q) use ($status){
-                $q->where('verify_status', $status);
-
-            });
-            
-        }
-
-      
-        $products = $query->get();
-
-        DebugBar::info($request->condition, $location,  $status, $products);
-
-        return response()->json($products);
-
-        */
-
     } catch (\Exception $e) {
         // Log the error for debugging
         Log::error('Error filtering products: ' . $e->getMessage());
@@ -307,28 +267,37 @@ public function filterProducts(Request $request)
 
 public function filterProductByCategory(Request $request){
 
-    //debugbar::info($request->all());
+    debugbar::info($request->all());
 
-    $location = $request->location;
-    $condition = $request->condition;
-    $verifyStatus = $request->verifyStatus;
+    $verified = filter_var($request->verified, FILTER_VALIDATE_BOOLEAN);
 
-    $query = Product::with('user')
+    if($request->filters) {
+        $query = Product::with('user')
+        //->where('category_id', $request->category)
+                        ->where('condition', $request->filters);
+    }
+
+   /* $query = Product::with('user')
                     ->where('quantity', '!=', 0)
                     ->where('category_id', $request->category)
-                    ->when($request->has('location'), function($q) use ($location) {
-                        $q->where('location',$location);
+                    ->when($request->location, function($q) use ($request) {
+                        $q->where('location',$request->location);
                     })
-                    ->when($request->has('condition'), function($q) use ($condition) {
-                        $q->where('condition', $condition);
+                    ->when($request->newProducts, function($q) use ($request) {
+                        $q->where('condition', $request->newProducts);
 
                     })
-                    ->when($request->has('verifyStatus'), function($q) use ($verifyStatus) {
-                        $q->whereHas('user', function($q) use ($verifyStatus) {
-                            $q->where('verify_status', $verifyStatus);
+                    ->when($request->used, function($q) use ($request) {
+                        $q->where('condition', $request->used);
+                    })
+                    ->when($request->verified, function($q) use ($verified) {
+                        $q->whereHas('user', function($q) use ($verified) {
+                            $q->where('verify_status', $verified);
 
                         });
                     });
+
+    */
 
     $products = $query->get();
 

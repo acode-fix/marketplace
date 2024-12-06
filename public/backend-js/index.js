@@ -148,7 +148,7 @@ locations.forEach((location) => {
             return
         }
     
-     const value = document.querySelector(".locationInput").value ;
+     const value = document.querySelector(".locationInput").value;
  
      const  filters ={ location : value.trim()};
 
@@ -749,6 +749,38 @@ function changeToInput() {
       }, 2000);
     }
   }
+
+
+  const input = document.querySelector('.search-input');
+  const btn = document.querySelector('.search');
+
+  btn.addEventListener('click', () => {
+
+    const search_input = input.value;
+    
+    if(search_input.trim() === '') {
+        
+        Swal.fire({
+            icon: 'error',
+            title: 'Search',
+            text: 'Please input a search parameter',
+            confirmButtonColor: '#ffb705',
+         });
+
+         return
+
+
+    }
+
+    input.value = '';
+
+    localStorage.setItem('input', search_input); 
+    
+    window.location.href = '/search';
+
+  });
+
+
 
 
 

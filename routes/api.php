@@ -133,8 +133,11 @@ Route::get('/verified-seller/id', [UsersController::class, 'getUserId']);
 //SEARCH PAGE ROUTE
 
 Route::get('/search/products', [ProductController::class, 'searchProducts']);
+Route::get('/product/search/filter', [ProductController::class, 'searchPageFilter']);
 Route::get('/search/shop/products', [ProductController::class, 'searchShopProducts']);
 Route::get('/recent/search', [ProductController::class, 'getRecentSearch']);
+
+
 
 
 //Route product link 

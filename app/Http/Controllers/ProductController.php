@@ -264,6 +264,66 @@ public function filterProducts(Request $request)
     }
 }
 
+public function searchPageFilter(Request $request) {
+
+
+    $new = $request->new ?? null;
+    $used = $request->used ?? null;
+    $search = trim($request->search) ?? '';
+    $location = $request->location ?? null;
+    
+
+    $products = Product::with('user')
+        ->where('quantity', '!=', 0);
+
+    if ($search) {
+        $products = $products->where(function($query) use ($search) {
+            $query->where('title', 'LIKE', "%{$search}%")
+                  ->orWhere('description', 'LIKE', "%{$search}%")
+                  ->orWhere('location', 'LIKE', "%{$search}%");
+        });
+    }
+
+ 
+    if ($new) {
+        $products = $products->where('condition', $new);
+    }
+
+
+    if ($used) {
+        $products = $products->where('condition', $used);
+    }
+
+    
+    if ($location) {
+        $products = $products->where('location', $location);
+    }
+  
+    if(!is_null($request->verified)) {
+        $verified = filter_var($request->verified, FILTER_VALIDATE_BOOLEAN);
+
+        $products->whereHas('user', function ($q) use ($verified) {
+            $q->where('verify_status', $verified)
+              ->where('badge_status', 1);
+        });
+
+
+      }
+
+    
+   $products = $products->get(); 
+
+   $message = $products->isEmpty() ? 'No products found' : 'Products filtered successfully';
+
+
+
+    return response()->json([
+        'status' => true,
+        'message' => $message,
+        'newProducts' => $products,
+    ], 200);
+}
+
 
 public function filterProductByCategory(Request $request){
 
@@ -388,12 +448,12 @@ public function filterProductByCategory(Request $request){
             'image_url.*' => json_encode([]), // Initialize with an empty array
      ]);
 
-// dd($product);
+   // dd($product);
 
-$imageNames = [];
+  $imageNames = [];
 
-// Step 2: Check if the request has files and debug the files array
-if ($request->hasFile('image_url')) {
+ // Step 2: Check if the request has files and debug the files array
+  if ($request->hasFile('image_url')) {
     $files = $request->file('image_url');
     if (!is_array($files)) {
         $files = [$files];
@@ -654,18 +714,19 @@ public function getRecentSearch() {
 }
 
 
+
 public function searchProducts(Request $request) {
 
   $search = trim($request->searchParams);
 
-  if(!$search) {
+//   if(!$search) {
 
-    return response()->json([
-        'status' => false,
-        'message' => 'Invalid Search Input',
+//     return response()->json([
+//         'status' => false,
+//         'message' => 'Invalid Search Input',
 
-    ], 404);
-  }
+//     ], 404);
+//   }
 
 
 
@@ -718,6 +779,8 @@ public function searchProducts(Request $request) {
 
 
 }
+
+
 
 public function searchShopProducts(Request $request) {
 

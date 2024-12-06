@@ -357,8 +357,11 @@ if(token) {
         }
     
         //console.log(filters);
+        //document.querySelector('.filter-result').style.display = 'none';
+        document.querySelector('.js-display').innerHTML = '';
+        document.querySelector('.js-display2').innerHTML = '';
         applyFilter(filters);
-        document.querySelector('.filter-result').style.display = 'none';
+       
        
     
       });
@@ -379,8 +382,12 @@ if(token) {
         }
     
        // console.log(filters);
+      //  document.querySelector('.filter-result').style.display = 'none';
+
+        document.querySelector('.js-display').innerHTML = '';
+        document.querySelector('.js-display2').innerHTML = '';
+
         applyFilter(filters);
-        document.querySelector('.filter-result').style.display = 'none';
         
        
       });
@@ -493,123 +500,6 @@ if(token) {
   }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-//  document.querySelectorAll('.buttons').forEach((button) => {
-
-//   button.addEventListener('click', () => {
-//     document.getElementById("find-what-to-buy_search_page").value = button.textContent;
-//     document.getElementById("search_main").style.display="block"
-//     document.getElementById("search_container").style.display="none"
-//     document.getElementById("search_main").style.paddingTop="90px"
-
-//     filterBySearchInput();
-                                           
-//   });
-
-//  });
-
-/*
- const newButton = document.querySelector('.js-new');
- const usedButton =  document.querySelector('.js-used');
- const verifyElement = document.querySelector('.js-check');
-
- [newButton, usedButton, verifyElement].forEach((button) => {
-
-  if(button) {
-
-    button.addEventListener('click', () => {
-      
-        const condition = button.dataset.filterValue;
-     
-        const locationElement = document.getElementById('clickMe');
-        const verifyElement = document.querySelector('.js-check');
-     
-        const{location, verifyStatus}   =  filter(locationElement, verifyElement,);
-     
-        searchFilter(location, verifyStatus, condition);
-     
-    })
-  }
-
- });
-
-
- const mobileNewBtn = document.querySelector('.js-new-mobile');
- const usedMobileBtn = document.querySelector('.js-used-mobile');
- const verifyMobileEl = document.querySelector('.js-check-mobile');
-
- [mobileNewBtn, usedMobileBtn, verifyMobileEl].forEach((button) => {
-
-  if(button) {
-
-    button.addEventListener('click', () => {
-      
-        const condition = button.dataset.filterValue;
-     
-        const locationElement = document.getElementById('clickMe2');
-        const verifyElement = document.querySelector('.js-check-mobile');
-     
-        const{location, verifyStatus}   =  filter(locationElement, verifyElement,);
-     
-        searchFilter(location, verifyStatus, condition);
-     
-    })
-  }
-
-
- });
-
-
-  function searchFilter(location, verifyStatus, condition) {
-
-  
-
-    axios.get('/api/v1/product/filter', {
-      params: {
-        condition,
-        location,
-        verifyStatus,
-      }
-    }).then((response) => {
-
-      console.log(response);
-      
-      if(response.status === 200 && response.data) {
-
-        const products = response.data.products;
-
-        loadProducts(products);
-
-      }
-
-    }).catch((error) => {
-      
-      if(error.response) {
-        serverError();
-      }
-
-    })
-
-
-
-  }
-
-
-  */
 
 
 

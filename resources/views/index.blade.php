@@ -185,8 +185,8 @@
                 <p class="product_condition_p">Product Condition</p>
                 <div class="product_condition_desktop">
 
-                    <button class="button new js-new"   data-value="new">New</button>
-                    <button class="button used js-used" data-value="fairly_used">Fairly Used</button>
+                    <button class="button  js-new"   data-value="new">New</button>
+                    <button class="button  js-used" data-value="fairly_used">Fairly Used</button>
 
 
                     <!-- Button trigger modal -->
@@ -1140,7 +1140,7 @@
 
  <script  src="{{ asset('backend-js/user/auth.js') }}"></script>
  <script type="module" src="{{ asset('backend-js/index.js') }}"></script>
- {{-- <script type="module"  src="{{ asset('backend-js/notification.js') }}"></script> --}}
+ <script type="module"  src="{{ asset('backend-js/notification.js') }}"></script> 
 
     
 </body>

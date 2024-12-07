@@ -134,6 +134,8 @@ verified.addEventListener('change', () => {
 
     const filters = { verified: verified.checked}
 
+    document.querySelector('.filter-result').style.display = 'none';
+
     applyFilter(filters);
 
 });
@@ -152,6 +154,8 @@ locations.forEach((location) => {
  
      const  filters ={ location : value.trim()};
 
+     document.querySelector('.filter-result').style.display = 'none';
+
      applyFilter(filters);
 
 
@@ -169,7 +173,9 @@ newBtn.addEventListener('click',() => {
     }
 
 
-    newBtn.classList.toggle('newBtn');
+    newBtn.classList.toggle('newBtn'); 
+
+    used.classList.remove('usedBtn');
 
    const newValue = newBtn.dataset.value;
 
@@ -177,6 +183,7 @@ newBtn.addEventListener('click',() => {
 
 
      applyFilter(filters);
+     document.querySelector('.filter-result').style.display = 'none';
 
 });
 
@@ -187,14 +194,20 @@ used.addEventListener('click', () => {
         return
     }
 
+    used.classList.toggle('usedBtn'); 
 
-    used.classList.toggle('usedBtn');
+
+    newBtn.classList.remove('newBtn');
+
+
+   // used.classList.toggle('usedBtn');
 
     const usedValue = used.dataset.value;
 
     const filters = { used: usedValue}
 
     applyFilter(filters);
+    document.querySelector('.filter-result').style.display = 'none';
 
 });
 
@@ -215,11 +228,11 @@ function applyFilter(filters) {
 
         document.querySelector('.filter-result').style.display = 'block';
 
-        setTimeout(() => {
-            document.querySelector('.filter-result').style.display = 'none';
-            window.location.reload();
+        // setTimeout(() => {
+        //     document.querySelector('.filter-result').style.display = 'none';
+        //     window.location.reload();
 
-        },8000);
+        // },8000);
 
       }
         renderProductsAndSections(products);
@@ -342,6 +355,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
 function renderProductsAndSections(products) {
+    
     const productCardDisplay1 = document.getElementById('productCardDisplay');
     const productCardDisplay2 = document.getElementById('productCardDisplay2');
 
@@ -756,29 +770,47 @@ function changeToInput() {
 
   btn.addEventListener('click', () => {
 
-    const search_input = input.value;
-    
-    if(search_input.trim() === '') {
-        
-        Swal.fire({
-            icon: 'error',
-            title: 'Search',
-            text: 'Please input a search parameter',
-            confirmButtonColor: '#ffb705',
-         });
-
-         return
+    inputSearch()
 
 
-    }
+});
 
-    input.value = '';
+input.addEventListener('keypress', (event) => {
 
-    localStorage.setItem('input', search_input); 
-    
-    window.location.href = '/search';
+ if(event.key === 'Enter') {
+     inputSearch();
+ }
 
-  });
+});
+
+
+function inputSearch() {
+
+ 
+ const search_input = input.value;
+  
+ if(search_input.trim() === '') {
+     
+     Swal.fire({
+         icon: 'error',
+         title: 'Search',
+         text: 'Please input a search parameter',
+         confirmButtonColor: '#ffb705',
+      });
+
+      return
+
+
+ }
+
+ input.value = '';
+
+ localStorage.setItem('input', search_input); 
+ 
+ window.location.href = '/search';
+
+}
+
 
 
 

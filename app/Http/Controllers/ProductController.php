@@ -326,18 +326,53 @@ public function searchPageFilter(Request $request) {
 
 
 public function filterProductByCategory(Request $request){
+    
+    $new = $request->filter['new'] ?? null;
+    $used = $request->filter['used'] ?? null;
+    $verified = $request->filter['verified'] ?? null;
+    $location = $request->filter['location'] ?? null;
 
-    debugbar::info($request->all());
 
-    $verified = filter_var($request->verified, FILTER_VALIDATE_BOOLEAN);
+    $query = Product::with('user')
+                         ->where('quantity', '!=', 0)
+                        ->where('category_id', $request->category);
 
-    if($request->filters) {
-        $query = Product::with('user')
-        //->where('category_id', $request->category)
-                        ->where('condition', $request->filters);
+    if($new) {
+
+        $query->where('condition', $new);
     }
 
-   /* $query = Product::with('user')
+    if($used) {
+        $query->where('condition', $used);
+
+    }
+
+    if($location) {
+
+        $query->where('location', $location);
+    }
+                
+
+
+    if(!is_null($verified) ) {
+
+        $verified = filter_var($verified, FILTER_VALIDATE_BOOLEAN);
+
+        $query->whereHas('user', function($q) use ($verified) {
+            $q->where('verify_status', $verified)
+              ->where('badge_status', 1);
+
+        });
+
+    }
+
+    
+
+    
+
+    /*
+
+    $query = Product::with('user')
                     ->where('quantity', '!=', 0)
                     ->where('category_id', $request->category)
                     ->when($request->location, function($q) use ($request) {
@@ -350,9 +385,9 @@ public function filterProductByCategory(Request $request){
                     ->when($request->used, function($q) use ($request) {
                         $q->where('condition', $request->used);
                     })
-                    ->when($request->verified, function($q) use ($verified) {
-                        $q->whereHas('user', function($q) use ($verified) {
-                            $q->where('verify_status', $verified);
+                    ->when($request->verified, function($q) use ($request) {
+                        $q->whereHas('user', function($q) use ($request) {
+                            $q->where('verify_status', $request->verified);
 
                         });
                     });

@@ -1,4 +1,4 @@
-import { getToken, filter, getProdProfileDescImg, sendProductRequest,displayHelpCenter, getIndexPrice,formatProductCondition, getStarted } from "./helper/helper.js";
+import { getToken, filter, loadResponse, getProdProfileDescImg, sendProductRequest,displayHelpCenter, getIndexPrice,formatProductCondition,} from "./helper/helper.js";
 
 const token = getToken();
 
@@ -18,7 +18,40 @@ if (token) {
 
     const getEl = document.querySelector('.js-get-started');
 
-     getStarted(user, getEl);
+        getEl.addEventListener('click', (event) => {
+
+            event.preventDefault();
+
+              if(user.verify_status == 1 && user.badge_status == 1) {
+
+                const title = '<span class="text-success">verified seller</span>';
+                const content = '<span class="text-dark">You have an active badge</span>';
+            
+                loadResponse(title, content);
+              
+               }
+            
+               if(user.verify_status == -2 && user.badge_status == 0) {
+            
+                const title = '<span class="text-success">Pending Verification</span>';
+                const content = '<span class="text-dark">Awaiting Admin Approval </span>';
+            
+                loadResponse(title, content);
+                   
+             
+               }
+            
+               if(user.verify_status == 0 && user.badge_status == 0) {
+                  window.location.href = '/become';
+               }
+            
+
+
+            
+
+          
+
+        })
 
 
 
@@ -88,6 +121,8 @@ locations.forEach((location) => {
 
    const  filter ={ location : value.trim()};
 
+   
+
    applyFilter(filter);
 
 
@@ -100,11 +135,14 @@ newBtn.addEventListener('click',() => {
 
   
 
-  newBtn.classList.toggle('newBtn');
+  newBtn.classList.toggle('newBtn'); 
+
+  usedBtn.classList.remove('usedBtn');
+
 
  const newProducts = newBtn.dataset.value;
 
- const filter = {newProducts};
+ const filter = {new: newProducts};
 
 
    applyFilter(filter);
@@ -113,11 +151,15 @@ newBtn.addEventListener('click',() => {
 
 usedBtn.addEventListener('click', () => {
 
-  usedBtn.classList.toggle('usedBtn');
+  usedBtn.classList.toggle('usedBtn'); 
 
-  const used = usedBtn.dataset.value;
 
-  const filter = {used}
+  newBtn.classList.remove('newBtn');
+
+
+  const usedProduct = usedBtn.dataset.value;
+
+  const filter = {used : usedProduct}
 
   applyFilter(filter);
 
@@ -132,13 +174,13 @@ function applyFilter(filter) {
   axios.get('/api/v1/product/category-filter', {
 
     params: {
-       filters : filter,
+      filter,
       category,
     }
 
   }).then((response) => {
 
-     console.log(response);
+    // console.log(response);
 
     if(response.status === 200 && response.data) {
 
@@ -152,73 +194,54 @@ function applyFilter(filter) {
 }
 
 
+   const input = document.querySelector('.search-input');
+   const btn = document.querySelector('.search');
+ 
+   btn.addEventListener('click', () => {
+
+       inputSearch()
+ 
+ 
+   });
+
+   input.addEventListener('keypress', (event) => {
+
+    if(event.key === 'Enter') {
+        inputSearch();
+    }
+
+   });
 
 
-/*
+   function inputSearch() {
 
-
- const newButton = document.querySelector('.js-new');
- const used = document.querySelector('.js-used');
- const verifyElement = document.querySelector('.js-check');
-
-
- [newButton, used, verifyElement].forEach((button) => {
-
-  if(button) {
-
-    button.addEventListener('click', () => {
-      
-        const condition = button.dataset.filterValue;
-     
-        const locationElement = document.getElementById('clickMe');
-        const verifyElement = document.querySelector('.js-check');
-     
-        const{location, verifyStatus}   =  filter(locationElement, verifyElement, );
-     
-        categoryFilter(location, verifyStatus, condition);
-     
-    })
-  }
-
- })
-
-  function categoryFilter(location, verifyStatus, condition) {
-
-    // console.log(location);
-    // console.log(verifyStatus);
-    // console.log(condition);
-
-    const url = new URL(window.location.href);
-    const category = url.searchParams.get('category');
     
-    axios.get('/api/v1/product/category-filter', {
+    const search_input = input.value;
+     
+    if(search_input.trim() === '') {
+        
+        Swal.fire({
+            icon: 'error',
+            title: 'Search',
+            text: 'Please input a search parameter',
+            confirmButtonColor: '#ffb705',
+         });
 
-      params: {
-        location,
-        verifyStatus,
-        condition,
-        category,
-      }
-
-    }).then((response) => {
-
-   //   console.log(response);
-
-      if(response.status === 200 && response.data) {
-
-        const products = response.data.products;
-        renderProducts(products);
-      }
-
-    }).catch((error) => {
-   //   console.log(error);
-    })
+         return
 
 
+    }
 
-  }
+    input.value = '';
 
-*/
+    localStorage.setItem('input', search_input); 
+    
+    window.location.href = '/search';
+
+   }
+    
+
+
 
   const products = JSON.parse(localStorage.getItem('allProducts'));
   const categoryName = localStorage.getItem('categoryName');
@@ -236,8 +259,13 @@ function applyFilter(filter) {
 
        if(products.length === 0) {
         
-         productCardDisplay1.innerHTML = '<p class="text-danger fs-5 text-center">Sorry, No match was found!!</p>';
-        // productCardDisplay2.innerHTML = '<p class="text-danger fs-5 text-center">Sorry, No match was found!!</p>'
+         productCardDisplay1.innerHTML =
+        ` <div">
+                    <p class="text-danger fs-6 ps-4">No Product listed in this region yet, will you like to list a product</p>
+                    <a class="start-sell" href="{{ url('/start_selling') }}">Start Selling</a>
+
+                 </div>`;
+        return;
 
        }
 
@@ -247,7 +275,7 @@ function applyFilter(filter) {
       const card = createProductCard(product);
 
           // Insert product into appropriate container
-          if (index < 8) {
+          if (index < 9) {
               productCardDisplay1.appendChild(card);
           } else {
               productCardDisplay2.appendChild(card);

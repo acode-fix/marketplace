@@ -972,6 +972,19 @@ input[type="range"] {
     border-radius: 6px;
 }
 
+
+/* New Button */
+.new2 {
+    background-color: white;
+}
+
+/* Used Button */
+.used2 {
+    background-color: white;
+    margin-left: 5px;
+}
+
+
 /* New Button */
 .new {
     background-color: white;

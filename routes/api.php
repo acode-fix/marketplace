@@ -182,7 +182,6 @@ Route::post('/user/product-request', [UsersController::class, 'storeProductReque
 
 
 
-
 //Route::get('/product/{id}', [AuditlogController::class, 'create']);
 
 // //product

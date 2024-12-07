@@ -202,8 +202,6 @@
    });
 
 
-
-
    function displayProductDetails(product) {
 
     
@@ -307,7 +305,6 @@
        updateCarousel(product.image_url);
    }
 
-   
 
    function updateCarousel(imagesJson) {
 
@@ -486,12 +483,52 @@
    });
 
 
-  
-  
+   const input = document.querySelector('.search-input');
+   const btn = document.querySelector('.search');
+ 
+   btn.addEventListener('click', () => {
+
+       inputSearch()
+ 
+ 
+   });
+
+   input.addEventListener('keypress', (event) => {
+
+    if(event.key === 'Enter') {
+        inputSearch();
+    }
+
+   });
 
 
+   function inputSearch() {
+
+    
+    const search_input = input.value;
+     
+    if(search_input.trim() === '') {
+        
+        Swal.fire({
+            icon: 'error',
+            title: 'Search',
+            text: 'Please input a search parameter',
+            confirmButtonColor: '#ffb705',
+         });
+
+         return
 
 
+    }
+
+    input.value = '';
+
+    localStorage.setItem('input', search_input); 
+    
+    window.location.href = '/search';
+
+   }
+    
 
    function promptLogin(message) {
        Swal.fire({
@@ -503,3 +540,9 @@
            window.location.href = '/'; // Redirect to login page
        });
    }
+
+
+
+
+
+

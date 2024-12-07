@@ -62,10 +62,15 @@
                 <option value="3">Russia</option>
             </select> --}}
             <div class="vertical-bar"></div>
-           <a href="{{ url('/search') }}"> <span onclick="localStorage.setItem('previousPage', '{{ url('/category_search') }}')" >
+            <span>
+                <input type="text" placeholder="Find what to buy..." class="find-what-to-buy search-input">
+                <button type="button" class="search">Search</button>
+            </span>
+
+           {{-- <a href="{{ url('/search') }}"> <span onclick="localStorage.setItem('previousPage', '{{ url('/category_search') }}')" >
             <input id="find-what-to-buy" type="text" placeholder="Find what to buy..." class="find-what-to-buy search_main">
             <button id="search" type="button" class="search" onclick="check_input()">Search</button>
-            </span></a>
+            </span></a> --}}
         </div>
         <a href="{{ url('/') }}"><img src="{{asset('innocent/assets/image/transparent_logo.png')}}" alt="" class="search_buy_and_sell_logo"></a>
 

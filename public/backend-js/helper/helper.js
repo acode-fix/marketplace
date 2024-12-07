@@ -325,7 +325,10 @@ export function loadConnect(product) {
   const productName = title;
 
   const token = localStorage.getItem('apiToken');
-  
+
+  console.log(id);
+  console.log(user_id);
+
   axios.post('/api/v1/product/engagement', {id, user_id}, {
     headers: {
       'Authorization': `Bearer ${token}`,

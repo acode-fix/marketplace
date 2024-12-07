@@ -10,6 +10,18 @@
     text-decoration: none;
 }
 
+
+.newBtn1 {
+    background-color: rgb(105, 231, 41);
+    border: 1px solid rgb(103, 221, 44);
+}
+
+.usedBtn1 {
+    background-color: rgb(104, 203, 216);
+    border: 1px solid rgb(104, 203, 216);
+}
+
+
 .swal2-confirm {
     box-shadow: none !important;  /* Removes the outline (focus ring) */
     outline: none !important;      /* Ensures no outline on focus */
@@ -223,7 +235,7 @@
     }
 }
 
-/* Button Styles for "New" or "Fairly Used" on Mobile */
+/*Button Styles for "New" or "Fairly Used" on Mobile */
 .button2 {
     background-color: white;
     color: black;
@@ -236,6 +248,7 @@
     height: 25px;
     font-size: 10px;
 }
+
 
 
 @media screen and (max-width: 340px) {
@@ -254,6 +267,8 @@
 
 }
 
+
+
 /* New Button */
 .new2 {
     background-color: white;
@@ -265,14 +280,29 @@
     margin-left: 5px;
 }
 
-/* Clicked New Button */
-.new2.clicked {
+
+
+/* .new2.clicked {
     background-color: rgb(128, 216, 104);
     border: 1px solid rgb(130, 216, 104);
 }
 
-/* Clicked Used Button */
+
 .used2.clicked {
     background-color: rgb(104, 203, 216);
     border: 1px solid rgb(104, 203, 216);
+} */
+
+
+
+.new2 {
+    background-color: rgb(128, 216, 104);
+    border: 1px solid rgb(130, 216, 104);
 }
+
+
+.used2 {
+    background-color: rgb(104, 203, 216);
+    border: 1px solid rgb(104, 203, 216);
+}
+

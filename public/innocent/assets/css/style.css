@@ -982,17 +982,17 @@ input[type="range"] {
     background-color: white;
 }
 
-/* Clicked New Button */
+/*
 .new.clicked {
     background-color: rgb(105, 231, 41);
     border: 1px solid rgb(103, 221, 44);
 }
 
-/* Clicked Used Button */
 .used.clicked {
     background-color: rgb(104, 203, 216);
     border: 1px solid rgb(104, 203, 216);
 }
+    */
 
 .newBtn {
     background-color: rgb(105, 231, 41);

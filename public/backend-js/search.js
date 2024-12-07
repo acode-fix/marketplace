@@ -346,18 +346,24 @@ if(token) {
 
   newBtns.forEach((newBtn) => {
 
+   
     if(newBtn) {
-      newBtn.addEventListener('click', () => {
+
+        newBtn.addEventListener('click', () => {
 
         const newValue = newBtn.dataset.value;
+      //  newBtns.forEach((btn) => btn.classList.remove('new2'));
+        newBtn.classList.toggle('new2'); 
+
+        // Reset all usedBtns
+        usedBtns.forEach((usedBtn) => usedBtn.classList.remove('used2'));
+
         const filters = {
            search: searchParams,
            new: newValue,
     
         }
     
-        //console.log(filters);
-        //document.querySelector('.filter-result').style.display = 'none';
         document.querySelector('.js-display').innerHTML = '';
         document.querySelector('.js-display2').innerHTML = '';
         applyFilter(filters);
@@ -376,13 +382,18 @@ if(token) {
       usedBtn.addEventListener('click', () => {
 
         const usedValue = usedBtn.dataset.value;
+       // usedBtns.forEach((btn) => btn.classList.remove('used2'));
+        usedBtn.classList.toggle('used2'); 
+
+        // Reset all newBtns
+        newBtns.forEach((newBtn) => newBtn.classList.remove('new2'));
+
+
         const filters = {
           search: searchParams,
           used: usedValue,
         }
     
-       // console.log(filters);
-      //  document.querySelector('.filter-result').style.display = 'none';
 
         document.querySelector('.js-display').innerHTML = '';
         document.querySelector('.js-display2').innerHTML = '';

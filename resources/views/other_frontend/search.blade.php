@@ -95,8 +95,8 @@
                 <p class="product_condition_p">Product Condition</p>
                 <div class="product_condition_desktop">
 
-                    <button class="button new js-new" data-value ='new'>New</button>
-                    <button class="button used js-used" data-value ='fairly_used'>Fairly Used</button>
+                    <button class="button  js-new" data-value ='new'>New</button>
+                    <button class="button  js-used" data-value ='fairly_used'>Fairly Used</button>
 
                     <!-- Button trigger modal -->
                     <div data-bs-toggle="modal" data-bs-target="#location_input_modal" class="clickMe_div">
@@ -174,8 +174,8 @@
 
 
                         <div class="filter_labels_mobile">Product Condition <br>
-                            <button class="button2 new2  js-new" data-value ='new'>New</button>
-                            <button class="button2 used2 js-used" data-value ='fairly_used'>Fairly Used</button>
+                            <button class="button2    js-new" data-value ='new' >New</button>
+                            <button class="button2   js-used" data-value ='fairly_used'>Fairly Used</button>
 
                         </div>
                         <div class="filter_labels_mobile"><span style="margin-left: 10px;">Location </span> <br>

@@ -324,6 +324,23 @@ export function loadConnect(product) {
 
   const productName = title;
 
+  const token = localStorage.getItem('apiToken');
+  
+  axios.post('/api/v1/product/engagement', {id, user_id}, {
+    headers: {
+      'Authorization': `Bearer ${token}`,
+    },
+  
+
+  }).then((response) => {
+    console.log(response);
+
+  }).catch((error) => {
+   console.log(error);
+  })
+
+
+
 
   Swal.fire({
       icon: 'info',
@@ -338,23 +355,23 @@ export function loadConnect(product) {
   
   });
 
-  const token = localStorage.getItem('apiToken');
+  // const token = localStorage.getItem('apiToken');
 
-//  console.log(id)
+  // console.log(id)
 
 
-  axios.post('/api/v1/product/engagement', {id, user_id}, {
-    headers: {
-      'Authorization': `Bearer ${token}`,
-    },
+  // axios.post('/api/v1/product/engagement', {id, user_id}, {
+  //   headers: {
+  //     'Authorization': `Bearer ${token}`,
+  //   },
   
 
-  }).then((response) => {
-    console.log(response);
+  // }).then((response) => {
+  //   console.log(response);
 
-  }).catch((error) => {
-   console.log(error);
-  })
+  // }).catch((error) => {
+  //  console.log(error);
+  // })
 
 
 }

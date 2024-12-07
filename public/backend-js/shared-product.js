@@ -188,7 +188,7 @@ const logoLink = document.querySelector('.js-logo-link');
         }
   
     })
-  ;
+  
 
 
     }
@@ -685,16 +685,16 @@ const logoLink = document.querySelector('.js-logo-link');
 
   }
 
-  document.querySelector('.js-search-bar-input').addEventListener('click', (event) => {
+  // document.querySelector('.js-search-bar-input').addEventListener('click', (event) => {
     
-    if(!token) {
-      event.preventDefault();
+  //   if(!token) {
+  //     event.preventDefault();
 
-      promptLogin();
-    }
+  //     promptLogin();
+  //   }
 
 
-  })
+  // })
 
  
   
@@ -809,6 +809,70 @@ function loadMobileProduct(products) {
     }
 
    })
+
+   const input = document.querySelector('.search-input');
+   const btn = document.querySelector('.search');
+ 
+   btn.addEventListener('click', () => {
+
+    if(!token) {
+      promptLogin();
+
+      return;
+    }
+
+
+       inputSearch()
+ 
+ 
+   });
+
+   input.addEventListener('keypress', (event) => {
+
+    
+    if(!token) {
+      event.preventDefault();
+
+      promptLogin();
+
+      return;
+    }
+
+
+    if(event.key === 'Enter') {
+        inputSearch();
+    }
+
+   });
+
+
+   function inputSearch() {
+
+    
+    const search_input = input.value;
+     
+    if(search_input.trim() === '') {
+        
+        Swal.fire({
+            icon: 'error',
+            title: 'Search',
+            text: 'Please input a search parameter',
+            confirmButtonColor: '#ffb705',
+         });
+
+         return
+
+
+    }
+
+    input.value = '';
+
+    localStorage.setItem('input', search_input); 
+    
+    window.location.href = '/search';
+
+   }
+    
    
    
 

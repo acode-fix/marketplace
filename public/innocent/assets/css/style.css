@@ -1808,17 +1808,20 @@ input:checked+.slider:before {
 
         /* font-size: 16px; */
         font-size: 12px;
+        font-weight: bold;
 
     }
 
     .ask_for_price {
         /* font-size: 16px; */
         font-size: 12px;
+        font-weight: bold;
     }
 
     .main_price {
         /* font-size: 14px; */
         font-size: 10px;
+        font-weight: bold;
     }
 }
 
@@ -1827,17 +1830,20 @@ input:checked+.slider:before {
 
         /* font-size: 14px; */
         font-size: x-small;
+        font-weight: bold;
 
     }
 
     .ask_for_price {
         /* font-size: 14px; */
         font-size: x-small;
+        font-weight: bold;
     }
 
     .main_price {
         /* font-size: 12px; */
         font-size: x-small;
+        font-weight: bold;
     }
 }
 
@@ -1846,17 +1852,20 @@ input:checked+.slider:before {
 
         /* font-size: 13px; */
         font-size: x-small;
+        font-weight: bold;
 
     }
 
     .ask_for_price {
         /* font-size: 13px; */
         font-size: x-small;
+        font-weight: bold;
     }
 
     .main_price {
         /* font-size: 10px; */
         font-size: x-small;
+        font-weight: bold;
     }
 }
 
@@ -1865,18 +1874,21 @@ input:checked+.slider:before {
 
         /* font-size: 11px; */
         font-size: x-small;
+        font-weight: bold;
 
     }
 
     .ask_for_price {
         /* font-size: 11px; */
         font-size: x-small;
+        font-weight: bold;
     }
 
     .main_price {
         /* font-size: 9px; */
 
         font-size: x-small;
+        font-weight: bold;
     }
 }
 
@@ -1886,18 +1898,21 @@ input:checked+.slider:before {
         /* font-size: 9px; */
 
         font-size: x-small;
+        font-weight: bold;
 
     }
 
     .ask_for_price {
         /* font-size: 9px; */
         font-size: x-small;
+        font-weight: bold;
     }
 
     .main_price {
         /* font-size: 8px; */
 
         font-size: x-small;
+        font-weight: bold;
     }
 }
 

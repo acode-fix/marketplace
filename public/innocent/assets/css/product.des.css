@@ -1191,9 +1191,11 @@ grid-template-columns: 1fr 1fr ;
     }
 }
 
+
 .ask_for_price {
     color: red;
-    font-size: 23px;
+    /* font-size: 23px; */
+    font-size: 18px;
     padding-right: 2px;
     margin: 0px;
     margin-bottom: 15px;
@@ -1212,13 +1214,192 @@ grid-template-columns: 1fr 1fr ;
 /* Promo Price */
 .promo_price {
     color: red;
+    /* font-size: 23px; */
+    font-size: 18px;
+    padding-right: 2px;
+    margin: 0px;
+
+
+}
+
+/* Main Price */
+.main_price {
+    text-decoration: line-through red;
+    font-size: 12px;
+    max-width: 30%;
+    margin: 0px;
+    margin-left: 5px;
+
+}
+
+.main_price_amount {
+    white-space: nowrap;
+
+}
+
+@media screen and (max-width: 1000px) {
+    .promo_price {
+        /* font-size: 20px; */
+        font-size: 16px;
+
+    }
+
+    .main_price {
+        margin-left: 3.5px;
+    }
+
+    .ask_for_price {
+        /* font-size: 20px; */
+        font-size: 16px;
+    }
+}
+
+
+@media screen and (max-width: 700px) {
+    .promo_price {
+        /* font-size: 18px; */
+        font-size: 12px;
+
+    }
+
+    .main_price {
+        font-size: 12px;
+    }
+
+    .ask_for_price {
+        /* font-size: 18px; */
+        font-size: 12px;
+    }
+
+}
+
+@media screen and (max-width: 450px) {
+    .promo_price {
+
+        /* font-size: 16px; */
+        font-size: 12px;
+
+    }
+
+    .ask_for_price {
+        /* font-size: 16px; */
+        font-size: 12px;
+    }
+
+    .main_price {
+        /* font-size: 14px; */
+        font-size: 10px;
+    }
+}
+
+@media screen and (max-width: 400px) {
+    .promo_price {
+
+        /* font-size: 14px; */
+        font-size: x-small;
+
+    }
+
+    .ask_for_price {
+        /* font-size: 14px; */
+        font-size: x-small;
+    }
+
+    .main_price {
+        /* font-size: 12px; */
+        font-size: x-small;
+    }
+}
+
+@media screen and (max-width: 370px) {
+    .promo_price {
+
+        /* font-size: 13px; */
+        font-size: x-small;
+
+    }
+
+    .ask_for_price {
+        /* font-size: 13px; */
+        font-size: x-small;
+    }
+
+    .main_price {
+        /* font-size: 10px; */
+        font-size: x-small;
+    }
+}
+
+@media screen and (max-width: 350px) {
+    .promo_price {
+
+        /* font-size: 11px; */
+        font-size: x-small;
+
+    }
+
+    .ask_for_price {
+        /* font-size: 11px; */
+        font-size: x-small;
+    }
+
+    .main_price {
+        /* font-size: 9px; */
+
+        font-size: x-small;
+    }
+}
+
+@media screen and (max-width: 300px) {
+    .promo_price {
+
+        /* font-size: 9px; */
+
+        font-size: x-small;
+
+    }
+
+    .ask_for_price {
+        /* font-size: 9px; */
+        font-size: x-small;
+    }
+
+    .main_price {
+        /* font-size: 8px; */
+
+        font-size: x-small;
+    }
+}
+
+/*
+.ask_for_price {
+    color: red;
+    font-size: 23px;
+    padding-right: 2px;
+    margin: 0px;
+    margin-bottom: 15px;
+
+}
+
+.main_and_promo_price_area {
+    display: flex;
+    margin: 0px;
+    line-height: 9px;
+    margin-top: 10px;
+    margin-bottom: -9px;
+
+}
+
+
+.promo_price {
+    color: red;
     font-size: 23px;
     padding-right: 2px;
     margin: 0px;
 
 }
 
-/* Main Price */
+
 .main_price {
     text-decoration: line-through red;
 
@@ -1341,6 +1522,8 @@ grid-template-columns: 1fr 1fr ;
         font-size: 8px;
     }
 }
+
+*/
 
 .connect {
     float: right;

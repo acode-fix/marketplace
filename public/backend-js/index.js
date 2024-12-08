@@ -6,7 +6,6 @@ const token = localStorage.getItem('apiToken');
 
 //console.log(token);
 
-
 axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
 
 const logoImg =  document.querySelector('.js-logo-img');
@@ -51,11 +50,6 @@ if(!token) {
    });
 
 
-   
-
-   
-
-
  const guestDashboard =   ` <div class="profile_card_user_name">
                 <img class="mt-2" id="profile_image" src="/innocent/assets/image/avatar.svg" alt="Profile Image"
                 style="width: 50px; height:50px; border-radius:50px;">
@@ -74,7 +68,7 @@ if(!token) {
 
  document.querySelector('.js-guest').innerHTML = guestDashboard;
 
- document.querySelectorAll('.js-auth').forEach((unAuthEl) => {
+document.querySelectorAll('.js-auth').forEach((unAuthEl) => {
 
     if(unAuthEl) {
 
@@ -246,114 +240,6 @@ function applyFilter(filters) {
 
 
 
-
-
-  
-
-
-
-/*
-
-document.getElementById('clickMe').addEventListener('click', () => {
-    applyFilter();
-})
-document.getElementById('verifiedSeller').addEventListener('click', () => {
-    applyFilter();
-})
-//THIS IS FOR PRODUCTS
-function applyFilter() {
-
-    if(!token) {
-
-        promptLogin();
-    }
-    
-
-    const locationFilter = document.getElementById('clickMe').innerText.trim().toLowerCase();
-    const verifiedSeller = document.getElementById('verifiedSeller').checked ? 1 : 0;
-
-
-
-
-    let condition = '';
-    const conditionButton = document.querySelector('.product_condition_desktop .button.clicked');
-
-    if (conditionButton) {
-
-      const conditionButtonValue = conditionButton.getAttribute('data-value');
-      condition = conditionButtonValue.trim().toLowerCase();
-       
-    }
-
-  
-
-    const filters = {
-        condition: condition,
-        location: locationFilter,
-        verifyStatus: verifiedSeller,
-    };
-
-    console.log('Filters applied:', filters);
-   
-
-    axios.get('/api/v1/product/filter', { params: filters},)
-        .then(function (response) {
-            const products = response.data;
-         //  console.log(products);
-            renderProductsAndSections(products);
-        })
-        .catch(function (error) {
-            console.error('Error fetching filtered products:', error);
-        });
-}
-
-// Function to handle condition button toggle
-function toggleButton(button) {
-    if(!token) {
-        promptLogin();
-    }
-
-
-    document.querySelectorAll('.product_condition_desktop .button').forEach(btn => btn.classList.remove('clicked'));
-    button.classList.add('clicked');
-    applyFilter();
-}
-
-
-document.addEventListener('DOMContentLoaded', function () {
-    
-    document.querySelectorAll('.product_condition_desktop .button').forEach(button => {
-        button.addEventListener('click', function() {  
-            if(!token) {
-                promptLogin();
-            }
-
-            toggleButton(this);
-        });
-    });
-
-    document.getElementById('verifiedSeller').addEventListener('change', function() {
-        if(!token) {
-
-           promptLogin();
-        }
-
-        applyFilter();
-    });
-
-    document.getElementById('clickMe').addEventListener('input', function() {
-        if(!token) {
-
-        promptLogin();
-    }
-        applyFilter();
-    });
-});
-
-
-*/
-
-
 function renderProductsAndSections(products) {
     
     const productCardDisplay1 = document.getElementById('productCardDisplay');
@@ -402,7 +288,7 @@ function createProductCard(product) {
                 <img src="uploads/products/${product_img_url || 'default.jpg'}" class="card-img-top w-100 product_image" alt="${product.title}">
                 <div class="product_card_title">
                     <div class="main_and_promo_price_area">
-                        ${getIndexPrice(product)}
+                        ${getIndexPrice(product)}   
                     </div>
 
                     <p class="product_name">${product.title}</p>

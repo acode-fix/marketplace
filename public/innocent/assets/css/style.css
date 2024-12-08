@@ -1724,7 +1724,8 @@ input:checked+.slider:before {
 
 .ask_for_price {
     color: red;
-    font-size: 23px;
+    /* font-size: 23px; */
+    font-size: 18px;
     padding-right: 2px;
     margin: 0px;
     margin-bottom: 15px;
@@ -1743,7 +1744,8 @@ input:checked+.slider:before {
 /* Promo Price */
 .promo_price {
     color: red;
-    font-size: 23px;
+    /* font-size: 23px; */
+    font-size: 18px;
     padding-right: 2px;
     margin: 0px;
 
@@ -1753,6 +1755,7 @@ input:checked+.slider:before {
 /* Main Price */
 .main_price {
     text-decoration: line-through red;
+    font-size: 12px;
     max-width: 30%;
     margin: 0px;
     margin-left: 5px;
@@ -1766,7 +1769,8 @@ input:checked+.slider:before {
 
 @media screen and (max-width: 1000px) {
     .promo_price {
-        font-size: 20px;
+        /* font-size: 20px; */
+        font-size: 16px;
 
     }
 
@@ -1775,19 +1779,26 @@ input:checked+.slider:before {
     }
 
     .ask_for_price {
-        font-size: 20px;
+        /* font-size: 20px; */
+        font-size: 16px;
     }
 }
 
 
 @media screen and (max-width: 700px) {
     .promo_price {
-        font-size: 18px;
+        /* font-size: 18px; */
+        font-size: 12px;
 
     }
 
+    .main_price {
+        font-size: 12px;
+    }
+
     .ask_for_price {
-        font-size: 18px;
+        /* font-size: 18px; */
+        font-size: 12px;
     }
 
 }
@@ -1795,80 +1806,98 @@ input:checked+.slider:before {
 @media screen and (max-width: 450px) {
     .promo_price {
 
-        font-size: 16px;
+        /* font-size: 16px; */
+        font-size: 12px;
 
     }
 
     .ask_for_price {
-        font-size: 16px;
+        /* font-size: 16px; */
+        font-size: 12px;
     }
 
     .main_price {
-        font-size: 14px;
+        /* font-size: 14px; */
+        font-size: 10px;
     }
 }
 
 @media screen and (max-width: 400px) {
     .promo_price {
 
-        font-size: 14px;
+        /* font-size: 14px; */
+        font-size: x-small;
 
     }
 
     .ask_for_price {
-        font-size: 14px;
+        /* font-size: 14px; */
+        font-size: x-small;
     }
 
     .main_price {
-        font-size: 12px;
+        /* font-size: 12px; */
+        font-size: x-small;
     }
 }
 
 @media screen and (max-width: 370px) {
     .promo_price {
 
-        font-size: 13px;
+        /* font-size: 13px; */
+        font-size: x-small;
 
     }
 
     .ask_for_price {
-        font-size: 13px;
+        /* font-size: 13px; */
+        font-size: x-small;
     }
 
     .main_price {
-        font-size: 10px;
+        /* font-size: 10px; */
+        font-size: x-small;
     }
 }
 
 @media screen and (max-width: 350px) {
     .promo_price {
 
-        font-size: 11px;
+        /* font-size: 11px; */
+        font-size: x-small;
 
     }
 
     .ask_for_price {
-        font-size: 11px;
+        /* font-size: 11px; */
+        font-size: x-small;
     }
 
     .main_price {
-        font-size: 9px;
+        /* font-size: 9px; */
+
+        font-size: x-small;
     }
 }
 
 @media screen and (max-width: 300px) {
     .promo_price {
 
-        font-size: 9px;
+        /* font-size: 9px; */
+
+        font-size: x-small;
 
     }
 
     .ask_for_price {
-        font-size: 9px;
+        /* font-size: 9px; */
+        font-size: x-small;
     }
 
     .main_price {
-        font-size: 8px;
+        /* font-size: 8px; */
+
+        font-size: x-small;
     }
 }
 

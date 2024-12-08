@@ -309,7 +309,7 @@ export function getPrice(product) {
  return   product.ask_for_price
     ? '<p class="ask-for-price" style="color:red;">Ask for price</p>'
     : `
-     <p class="promo_price">${promoPrice === '0' ? '' : '&#8358;' + promoPrice}</p>
+     <p class="promo_price fw-bold">${promoPrice === '0' ? '' : '&#8358;' + promoPrice}</p>
     <div class="${showPromo ? '' : 'main_price'}"><p class="main_price_amount">&#8358;${actualPrice}</p></div>
     `
   }

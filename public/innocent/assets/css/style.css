@@ -1805,7 +1805,6 @@ input:checked+.slider:before {
 
 @media screen and (max-width: 450px) {
     .promo_price {
-
         /* font-size: 16px; */
         font-size: 12px;
         font-weight: bold;

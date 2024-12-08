@@ -1259,16 +1259,20 @@ grid-template-columns: 1fr 1fr ;
     .promo_price {
         /* font-size: 18px; */
         font-size: 12px;
+        font-weight: bold;
 
     }
 
     .main_price {
         font-size: 12px;
+        font-weight: bold;
     }
 
     .ask_for_price {
         /* font-size: 18px; */
         font-size: 12px;
+        font-weight: bold;
+        
     }
 
 }
@@ -1278,6 +1282,7 @@ grid-template-columns: 1fr 1fr ;
 
         /* font-size: 16px; */
         font-size: 12px;
+        font-weight: bold;
 
     }
 
@@ -1289,6 +1294,7 @@ grid-template-columns: 1fr 1fr ;
     .main_price {
         /* font-size: 14px; */
         font-size: 10px;
+        font-weight: bold;
     }
 }
 
@@ -1297,17 +1303,20 @@ grid-template-columns: 1fr 1fr ;
 
         /* font-size: 14px; */
         font-size: x-small;
+        font-weight: bold;
 
     }
 
     .ask_for_price {
         /* font-size: 14px; */
         font-size: x-small;
+        font-weight: bold;
     }
 
     .main_price {
         /* font-size: 12px; */
         font-size: x-small;
+        font-weight: bold;
     }
 }
 
@@ -1316,17 +1325,20 @@ grid-template-columns: 1fr 1fr ;
 
         /* font-size: 13px; */
         font-size: x-small;
+        font-weight: bold;
 
     }
 
     .ask_for_price {
         /* font-size: 13px; */
         font-size: x-small;
+        font-weight: bold;
     }
 
     .main_price {
         /* font-size: 10px; */
         font-size: x-small;
+        font-weight: bold;
     }
 }
 
@@ -1335,18 +1347,21 @@ grid-template-columns: 1fr 1fr ;
 
         /* font-size: 11px; */
         font-size: x-small;
+        font-weight: bold;
 
     }
 
     .ask_for_price {
         /* font-size: 11px; */
         font-size: x-small;
+        font-weight: bold;
     }
 
     .main_price {
         /* font-size: 9px; */
 
         font-size: x-small;
+        font-weight: bold;
     }
 }
 
@@ -1356,18 +1371,21 @@ grid-template-columns: 1fr 1fr ;
         /* font-size: 9px; */
 
         font-size: x-small;
+        font-weight: bold;
 
     }
 
     .ask_for_price {
         /* font-size: 9px; */
         font-size: x-small;
+        font-weight: bold;
     }
 
     .main_price {
         /* font-size: 8px; */
 
         font-size: x-small;
+        font-weight: bold;
     }
 }
 

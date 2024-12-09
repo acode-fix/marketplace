@@ -108,15 +108,27 @@
 
   }
   
-  /* @keyframes spin {
+   @keyframes spin {
     0% { transform: rotate(0deg); }
     100% { transform: rotate(360deg); }
   }
-   */
+   
   .change-loader-div {
     justify-content:center;
     align-items:center;
     display: none;
+  }
+
+  .loader-div {
+    justify-content:center;
+    align-items:center;
+    display: none;
+  }
+
+  .loader-div2 {
+    justify-content:center;
+    align-items:center;
+    display: none; 
   }
 
 

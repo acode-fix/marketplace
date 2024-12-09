@@ -635,13 +635,13 @@
                     <input type="text" name="details" class="tell_us_input js-tell-us-input" placeholder="write the details of what you are searching for">
                     <button type="submit" class="send js-send-input js-auth input-btn">
                         <span class="input-text">send</span>
-                            <div class="loader-div-signup" aria-hidden="true">
+                            <div class="loader-div" aria-hidden="true">
                                 <div class="loader-text"></div>
                                 <span class="ms-1 text-dark">loading...</span>
                             </div>
-
-
                     </button>
+
+                    
 
                 </div>
                 <p class="submmited">submmited✅</p>

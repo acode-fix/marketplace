@@ -649,14 +649,46 @@ export  function sendProductRequest(input, token) {
   const signupText = document.querySelector('.input-text');
   const loader = document.querySelector('.loader-div');
 
+  const mobileContinueBtn = document.querySelector('.input-btn2');
+  const mobileSignupText = document.querySelector('.input-text2');
+  const mobileLoader = document.querySelector('.loader-div2');
+
+  if(mobileContinueBtn && mobileSignupText && mobileLoader) {
+
+    showLoader(mobileContinueBtn, mobileSignupText, mobileLoader);
+
+  }
+
+  if(continueBtn && signupText && loader) {
+
+    showLoader(continueBtn, signupText, loader);
+
+  }
+
+  
+
   axios.post('/api/v1/user/product-request', { input }, {
       headers: {
           'Authorization': `Bearer ${token}`,
           'Content-type': 'application/json',
       }
   }).then((response) => {
+     
+    if(continueBtn && signupText && loader) {
 
-    hideLoader(continueBtn, signupText, loader)
+      hideLoader(continueBtn, signupText, loader);
+  
+    }
+  
+
+    if(mobileContinueBtn && mobileSignupText && mobileLoader) {
+
+      hideLoader(mobileContinueBtn, mobileSignupText, mobileLoader);
+  
+    }
+  
+
+    
 
      // console.log(response);
       if(response.status === 200 && response.data) {
@@ -676,7 +708,9 @@ export  function sendProductRequest(input, token) {
   }).catch((error) => {
     //  console.log(error);
 
-    hideLoader(continueBtn, signupText, loader)
+    hideLoader(continueBtn, signupText, loader);
+
+    hideLoader(mobileContinueBtn, mobileSignupText, mobileLoader);
 
       if(error.response) {
 

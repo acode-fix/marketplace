@@ -565,7 +565,13 @@
                 <img src="" alt="" class="tell_us_what_u_want_profile js-img-tell">
                <div class="vertical_bar"></div>
                 <input type="text" name="" class="tell_us_input js-input-mobile" placeholder="write the details of what you are searching for the details here">
-                <button class="send js-send-mobile" onclick="send()">send</button>
+                <button class="send js-send-mobile" onclick="send()" >
+                    <span class="input-text">send</span>
+                    <div class="loader-div" aria-hidden="true">
+                        <div class="loader-text"></div>
+                        <span class="ms-1 text-dark">loading...</span>
+                    </div>
+                </button>
 
             </div>
              <p class="submmited" >submmited✅</p>
@@ -897,7 +903,13 @@
                 <img src="" alt="" class="tell_us_what_u_want_profile tell_us_what_u_want_profile2 js-img-tell">
                <div class="vertical_bar"></div>
                 <input type="text" name="details" class="tell_us_input tell_us_input2  js-input2" placeholder="write the details of what you are searching for the details here">
-                <button class="send js-send-input" onclick="send2()">send</button>
+                <button class="send js-send-input" onclick="send2()">
+                    <span class="input-text2">send</span>
+                    <div class="loader-div2" aria-hidden="true">
+                        <div class="loader-text"></div>
+                        <span class="ms-1 text-dark">loading...</span>
+                    </div>
+                </button>
 
             </div>
              <p class="submmited submmited2" >submmited✅</p>

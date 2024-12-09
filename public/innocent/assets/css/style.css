@@ -80,6 +80,8 @@ body {
   }
 
 
+
+
   .request-loader-text {
     border: 6px solid #f3f3f3; 
     border-top: 6px solid #ffb705; 
@@ -139,6 +141,19 @@ body {
   }
    */
   .change-loader-div {
+    justify-content:center;
+    align-items:center;
+    display: none;
+  }
+
+  
+  .loader-div-signup {
+    justify-content:center;
+    align-items:center;
+    /* display: none; */
+  }
+
+  .loader-div {
     justify-content:center;
     align-items:center;
     display: none;

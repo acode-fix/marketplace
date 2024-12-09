@@ -257,6 +257,8 @@ class UsersController extends Controller
     {
         try {
 
+        
+
             $validateUser = Validator::make($request->all(), [
 
                  'username' => 'nullable|max:255|unique:users,username,'.$request->user()->id,
@@ -274,6 +276,17 @@ class UsersController extends Controller
                     'errors' => $validateUser->errors()
                 ], 422);
             }
+
+                    
+        if (empty($request->username) && empty($request->phone_number) && empty($request->bio)) {
+            return response()->json([
+                'status' => false,
+                'message' => 'Empty Request',
+                'errors' => 'No data provided',
+            ], 400);
+        }
+
+        
 
         
             $id =  $request->user()->id;

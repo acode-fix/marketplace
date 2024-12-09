@@ -463,7 +463,7 @@
         <hr style="background-color: black;">
       </div>
       <div class="mt-2" style="display: flex;justify-content: space-between;">
-        <div onmouseover="showText3()" onmouseout="hideText3()">
+        {{-- <div onmouseover="showText3()" onmouseout="hideText3()">
           <div class="verify-badge-m">
             <img class="" height="20px" width="15px" src="{{ asset('/kaz/images/badge.png') }}" alt="">
             <a class="js-verify-url" href="{{ url('/become') }}">
@@ -473,7 +473,7 @@
           </div>
 
           <div class="hover-text" id="hover-text3">become verified seller</div>
-        </div>
+        </div> --}}
         <div style="display: flex; ">
           {{-- <div>
             <div class="location-struct-m">

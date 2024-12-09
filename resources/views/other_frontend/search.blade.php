@@ -586,7 +586,13 @@
                     <img src="" alt="" class="tell_us_what_u_want_profile js-search-product-img">
                     <div class="vertical_bar"></div>
                     <input type="text" name="" class="tell_us_input js-search-input" placeholder="write the details here">
-                    <button class="send js-search-send" onclick="send()">send</button>
+                    <button class="send js-search-send input-btn" onclick="send()">
+                        <span class="input-text">send</span>
+                        <div class="loader-div" aria-hidden="true">
+                            <div class="loader-text"></div> 
+                            <span class="ms-1 text-dark">loading...</span>
+                        </div>
+                    </button>
 
                 </div>
                 <p class="submmited">submmited✅</p>

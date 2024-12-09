@@ -152,6 +152,9 @@ document.addEventListener('DOMContentLoaded', function () {
             }})
             .catch(function (error) {
 
+                hideLoader(continueBtn, signupText, loader);
+                hideLoader(mobileContinueBtn, mobileSignupText, mobileLoader);
+
                 console.log(error);
 
                 if (error.response) {
@@ -177,6 +180,18 @@ document.addEventListener('DOMContentLoaded', function () {
                         displaySwal(errorMsg)
 
                     }
+
+                    if(error.response.status === 400 && error.response.data) {
+
+                        Swal.fire({
+                          icon: 'error',
+                          title: 'Validation Error',
+                          confirmButtonColor: '#ffb705',
+                          text: error.response.data.errors,
+                         
+                      })
+                    }
+
 
                     if(error.response.status === 500) {
 

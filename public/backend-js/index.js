@@ -387,14 +387,6 @@ startSellingEl.forEach((start) => {
 
 
 
-
-
-
-
-
-
-
-
 function updateUserProfile(user) {
 
     const userDashboard = dropDownDetails(user);
@@ -733,6 +725,11 @@ function inputSearch() {
  window.location.href = '/search';
 
 }
+
+
+
+
+
 
 
 

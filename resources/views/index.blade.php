@@ -150,7 +150,7 @@
 
                 </div>
             </div>
-            <a href="{{ url('/start_selling') }}" class="start-selling js-auth">
+            <a href="{{ url('/start_selling') }}" class="start-selling js-auth js-selling-check">
                 <p class="do_you">Do you have <br> anything to sell?</p>
                 <img src="{{asset('innocent/assets/image/logo icon.svg')}}" alt="" style="width: 60px;">
                 <p class="start_selling_p2">Start Selling</p>
@@ -211,7 +211,7 @@
                     </div>
                 </div>
                 <!-- <a href="start_selling.html"><img src="{{asset('innocent/assets/image/Start selling 3.png')}}" alt="" class="start_selling_filter"></a> -->
-                <a href="{{ url('/start_selling') }}" class="start_selling_div js-auth">
+                <a href="{{ url('/start_selling') }}" class="start_selling_div js-auth js-selling-check">
                     <img src="{{asset('innocent/assets/image/logo icon.svg')}}" alt="">
                     <p class="start_selling_p">
                         <span class="start_selling_span"> do you have anything to sell</span><br>
@@ -387,7 +387,7 @@
                 </div>
 
 
-                <a class="js-auth" href="{{ url('/start_selling') }}">
+                <a class="js-auth js-selling-check" href="{{ url('/start_selling') }}">
                     <div class="startselling2">
                         <img src="{{asset('innocent/assets/image/logo icon.svg')}}" alt="">
                         <p>Start Selling</p>
@@ -397,7 +397,7 @@
                 <h5 class="top_sales  animate animate-right">Top Sales</h5>
                  <div class="filter-result">
                     <p class="text-danger fs-6 ps-4">No Product listed in this region yet, will you like to list a product</p>
-                    <a class="start-sell" href="{{ url('/start_selling') }}">Start Selling</a>
+                    <a class="start-sell js-selling-check" href="{{ url('/start_selling') }}">Start Selling</a>
 
                  </div>
                

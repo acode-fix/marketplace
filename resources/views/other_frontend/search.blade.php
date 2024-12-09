@@ -117,7 +117,7 @@
                         </label>
                     </div>
                 </div>
-                <a href="{{ url('/start_selling') }}" class="start_selling_div">
+                <a href="{{ url('/start_selling') }}" class="start_selling_div js-selling-check">
                     <img src="{{ asset('innocent/assets/image/logo icon.svg') }}" alt="">
                     <p class="start_selling_p">
                         <span class="start_selling_span"> do you have anything to sell</span><br>
@@ -211,7 +211,7 @@
                 <h5 class="top_sales  animate animate-right">Top Sales</h5> 
                 <div class="filter-result">
                     <p class="text-danger fs-6 ps-4">No Product listed in this region yet, will you like to list a product</p>
-                    <a class="start-sell" href="{{ url('/start_selling') }}">Start Selling</a>
+                    <a class="start-sell js-selling-check" href="{{ url('/start_selling') }}">Start Selling</a>
 
                  </div>
 

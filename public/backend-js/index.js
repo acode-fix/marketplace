@@ -1,4 +1,4 @@
-import { displayHelpCenter, getIndexProfileImage, sendProductRequest, promptLogin, formatPrice, getShopPrice, getIndexPrice, formatProductCondition, showLoader, hideLoader, getStarted, dropDownDetails,loadResponse } from "./helper/helper.js";
+import { displayHelpCenter, getIndexProfileImage, sendProductRequest, promptLogin, formatPrice, getShopPrice, getIndexPrice, formatProductCondition, showLoader, hideLoader, getStarted, dropDownDetails,loadResponse, checkProfileReg } from "./helper/helper.js";
 
 
 
@@ -341,9 +341,10 @@ function fetchUserData(token) {
     .then(response => {
         const user = response.data;
 
-        //console.log(user)
-
+        console.log(user);
         updateUserProfile(user);
+    
+        loadCheckEl(user);
     })
     .catch(error => {
       //  console.error('Error fetching user data:', error);
@@ -357,6 +358,42 @@ function fetchUserData(token) {
         }
     });
 }
+
+
+function loadCheckEl(user) {
+
+const startSellingEl = document.querySelectorAll('.js-selling-check');
+
+startSellingEl.forEach((start) => {
+
+    if(start) {
+
+        start.addEventListener('click', (event) => {
+
+            event.preventDefault();
+
+            checkProfileReg(user);
+
+            
+
+
+
+        })
+    }
+
+});
+
+}
+
+
+
+
+
+
+
+
+
+
 
 function updateUserProfile(user) {
 

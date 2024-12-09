@@ -1,4 +1,4 @@
-import { getToken, getSingleImage, getBadge, getPrice, filter, getProdProfileDescImg, sendProductRequest, displayHelpCenter, getIndexPrice, formatProductCondition, getStarted } from "./helper/helper.js";
+import { getToken, getSingleImage, getBadge, getPrice, filter, getProdProfileDescImg, sendProductRequest, displayHelpCenter, getIndexPrice, formatProductCondition, getStarted, checkProfileReg } from "./helper/helper.js";
 import { serverError } from "./admin/auth-helper.js";
 
 const token = getToken();
@@ -17,6 +17,8 @@ if(token) {
 
       const getEl = document.querySelector('.js-get-started');
 
+      loadCheckEl(user);
+
       getStarted(user, getEl);
 
        updateProductRequest(user);
@@ -29,6 +31,31 @@ if(token) {
    // console.log(error);
 
   });
+
+  function loadCheckEl(user) {
+
+    const startSellingEl = document.querySelectorAll('.js-selling-check');
+    
+    startSellingEl.forEach((start) => {
+    
+        if(start) {
+    
+            start.addEventListener('click', (event) => {
+    
+                event.preventDefault();
+    
+                checkProfileReg(user);
+    
+                
+    
+    
+    
+            })
+        }
+    
+    });
+    
+    }
 
   const indexSearchValue =  localStorage.getItem('input');
   const searchInput = document.getElementById('find-what-to-buy_search_page');

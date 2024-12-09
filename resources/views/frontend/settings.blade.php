@@ -374,7 +374,13 @@
             </div> --}}
           </div>
           <div class="col-2 mb-5 post-btn">
-            <button id="saveBtn" type="submit" class="btn btn-warning">Save</button>
+            <button id="saveBtn" type="submit" class="btn btn-warning update-loader">
+              <span class="update-text">Save</span>
+              <div class="loader-layout">
+                  <div class="loader"></div>
+                  <span class="ms-1">Loading...</span>
+              </div>
+            </button>
           </div>
         </form>
       </div>
@@ -382,7 +388,7 @@
   </div>
 </div>
 
-<div class="mobile-view">
+<div class="mobile-view mobile-height">
   <div class="container-fluid">
     <div class="row">
       <div class="mobile-struct">
@@ -484,7 +490,14 @@
       </div>
 
       <div class="mobile-btn">
-        <button id="saveBtn1" type="submit" class="btn btn-warning save-btn btn-lg">Save</button>
+        <button id="saveBtn1" type="submit" class="btn btn-warning save-btn btn-lg update-loader-mobile">
+          <span class="update-text-mobile">Save</span>
+          <div class="mobile-layout-loader">
+              <div class="loader-settings-mobile"></div>
+              <span class="ms-1">Loading...</span>
+          </div>
+          
+        </button>
       </div>
     </form>
   </div>

@@ -61,7 +61,7 @@
                 <div style="float: right;">
                     <div class="selling">
                         <img width="15px" height="20px" src="{{ asset('/kaz/images/logo icon.svg') }}" alt="">
-                        <h6 class="start-text ps-1"><a class="start-sell" href="{{ url('/start_selling') }}">Start
+                        <h6 class="start-text ps-1"><a class="start-sell js-selling-check" href="{{ url('/start_selling') }}">Start
                                 Selling</a></h6>
                     </div>
                 </div>
@@ -686,10 +686,10 @@
 </div>
 
 <!-- mobile-view  -->
-<div class="mobile-view">
+<div   class="mobile-view mobile-height">
     <div class="container-fluid">
         <div class="row">
-            <div class=" mobile-structure">
+            <div class="mobile-structure">
                 <div class="mobile-link-btn1">
                     <a href="{{ url('/shop') }}">Shop</a>
                 </div>
@@ -759,7 +759,7 @@
                 </div>
                 <div class="selling2 me-1">
                     <img width="12px" height="20px" src="{{ asset('/kaz/images/logo icon.svg') }}" alt="">
-                    <h6 class="start-text2 ps-1"><a class="start-sell2" href="{{ url('/start_selling') }}">Start
+                    <h6 class="start-text2 ps-1"><a class="start-sell2 js-selling-check" href="{{ url('/start_selling') }}">Start
                             Selling</a>
                     </h6>
                 </div>

@@ -1,4 +1,4 @@
-import { getToken, filter, loadResponse, getProdProfileDescImg, sendProductRequest,displayHelpCenter, getIndexPrice,formatProductCondition,} from "./helper/helper.js";
+import { getToken, filter, loadResponse, getProdProfileDescImg, sendProductRequest,displayHelpCenter, getIndexPrice,formatProductCondition, checkProfileReg,} from "./helper/helper.js";
 
 const token = getToken();
 
@@ -53,9 +53,8 @@ if (token) {
 
         })
 
-
-
      updateProductRequest(user);
+     loadCheckEl(user);
 
 
   }
@@ -65,6 +64,35 @@ if (token) {
 //  console.log(error);
 
 });
+
+function loadCheckEl(user) {
+
+  
+const startSellingEl = document.querySelectorAll('.js-selling-check');
+
+startSellingEl.forEach((start) => {
+
+    if(start) {
+
+      console.log(start);
+
+        start.addEventListener('click', (event) => {
+
+            event.preventDefault();
+
+            checkProfileReg(user);
+
+            
+
+
+
+        })
+    }
+
+});
+
+
+}
 
 
 
@@ -262,7 +290,7 @@ function applyFilter(filter) {
          productCardDisplay1.innerHTML =
         ` <div">
                     <p class="text-danger fs-6 ps-4">No Product listed in this region yet, will you like to list a product</p>
-                    <a class="start-sell" href="{{ url('/start_selling') }}">Start Selling</a>
+                    <a class="start-sell js-selling-check" href="">Start Selling</a>
 
                  </div>`;
         return;

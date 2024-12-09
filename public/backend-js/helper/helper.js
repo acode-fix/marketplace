@@ -831,5 +831,35 @@ export function hideLoader(continueBtn, signupText, loader) {
       return userDashboard;
 
  }
+
+ export function checkProfileReg(user){
+
+  if( !user || (!user.username && !user.phone_number && !user.bio)) {
+
+          Swal.fire({
+              icon: 'info',
+              title: 'Bio Validation Error',
+              confirmButtonColor: '#ffb705',
+              html: '<span class="text-danger">Dashboard Bio Form is required before publishing a product</span>',
+              timer: 3000,
+              timerProgressBar: true,
+              didOpen: () => {
+              Swal.showLoading();
+              },
+              willClose: () => {
+                  window.location.href = '/settings'
+              }
+          });
+  }  else {
+
+      window.location.href = '/start_selling';
+  }
+
+
+
+
+
+
+}
  
 

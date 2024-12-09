@@ -68,7 +68,7 @@
     </div>
    
     <!-- mobile-view  -->
-    <div class="mobile-view">
+    <div class="mobile-view mobile-height">
       <div class="container-fluid">
         <div class="row">
           <div class="mobile-struct">

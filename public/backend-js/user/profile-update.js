@@ -1,4 +1,4 @@
-import { generateAvatar,  } from "../helper/helper.js";
+import { checkProfileReg, generateAvatar,  } from "../helper/helper.js";
 
   // Fetch the user data
  const token = localStorage.getItem('apiToken');
@@ -181,7 +181,7 @@ function updateUserProfile(user) {
                   
              const modalImg =  user.photo_url
                                ? `<img class="img-fluid dp ms-3" style="width:60px; height:60px; border-radius:50px" src="/uploads/users/${user.photo_url}" alt=""></img>`
-                               : `<img class="img-fluid dp ms-3"  src="${generateAvatar(user.email)}" alt="">`;
+                               : `<img class="img-fluid dp ms-3" style="width:60px; height:60px; border-radius:50px"  src="${generateAvatar(user.email)}" alt="">`;
                                
                  const modalContent = `
                         <div style="margin-top: -30px;">
@@ -205,6 +205,8 @@ function updateUserProfile(user) {
                 verifyModalElement.innerHTML = modalContent;
             }
 
+            loadCheckEl(user);
+
 
                  
 
@@ -224,6 +226,34 @@ function updateUserProfile(user) {
         productDesc.src =  user.photo_url ? `/uploads/users/${user.photo_url}` : '';
 
        });
+
+       function loadCheckEl(user) {
+
+
+
+        const startSellingEl = document.querySelectorAll('.js-selling-check');
+        
+        startSellingEl.forEach((start) => {
+        
+            if(start) {
+        
+                start.addEventListener('click', (event) => {
+        
+                    event.preventDefault();
+        
+                    checkProfileReg(user);
+        
+                    
+        
+        
+        
+                })
+            }
+        
+        });
+        
+        }
+    
 
      //User Log Out Link in Layout.main Navbar;
 

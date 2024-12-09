@@ -97,7 +97,7 @@
   </div>
 
    <!-- mobile-view  -->
-    <div class="mobile-view">
+    <div class="mobile-view mobile-height">
     <div class="container-fluid">
       <div class="row">
         <div class="mobile-struct">
@@ -122,7 +122,7 @@
       </div>
 
 
-      <div class="container mt-5">
+      <div class="container mt-4">
         <div class="row">
           <div class="col">
             <table class="table">

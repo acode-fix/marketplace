@@ -1,10 +1,20 @@
-import { validationError,displaySwal, } from "./helper/helper.js";
+import { validationError,displaySwal, showLoader, hideLoader, } from "./helper/helper.js";
 import { serverError } from "./admin/auth-helper.js";
 import dayjs from 'https://unpkg.com/dayjs@1.11.10/esm/index.js';
 
 const token = localStorage.getItem('apiToken');
 
 axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+
+
+const continueBtn = document.querySelector('.update-loader');
+const signupText = document.querySelector('.update-text');
+const loader = document.querySelector('.loader-layout'); 
+
+
+const mobileContinueBtn = document.querySelector('.update-loader-mobile');
+const mobileSignupText = document.querySelector('.update-text-mobile');
+const mobileLoader = document.querySelector('.mobile-layout-loader'); 
 
 
 document.addEventListener('DOMContentLoaded', function () {
@@ -58,7 +68,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
         const bioText = document.getElementById('profileInput').value;
         const bioTextMobile = document.getElementById('profileInput1').value;
-        
+   
         const words = bioText.trim();
         const mobileWords = bioTextMobile.trim();
 
@@ -66,6 +76,8 @@ document.addEventListener('DOMContentLoaded', function () {
         const mobileEl = document.getElementById('bio-error-mobile');  
         
         let isValid = false;
+
+       
 
     
         if(words.length > 300) {  
@@ -94,7 +106,18 @@ document.addEventListener('DOMContentLoaded', function () {
 
     }
 
+    
+
+
+
     function sendUpdateRequest(formData, token) {
+
+         
+
+        showLoader(continueBtn, signupText, loader);
+        showLoader(mobileContinueBtn, mobileSignupText, mobileLoader);
+
+
         axios.post(`/api/v1/auth/update`, formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data',
@@ -102,6 +125,10 @@ document.addEventListener('DOMContentLoaded', function () {
                 }
             })
             .then(function (response) {
+
+                hideLoader(continueBtn, signupText, loader);
+                hideLoader(mobileContinueBtn, mobileSignupText, mobileLoader);
+
                 console.log(response);
 
                 if(response.status === 200 && response.data) {
@@ -170,6 +197,7 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
     document.getElementById('settingFormMobile').addEventListener('submit', function (event) {
+
         handleFormSubmit(event, 'settingFormMobile');
     });
 });
@@ -987,6 +1015,8 @@ previousBtn.addEventListener('click', () => {
 
 // Initialize the first step
 showStep(currentStep);
+
+
 
 
 

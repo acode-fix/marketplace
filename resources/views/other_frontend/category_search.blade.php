@@ -128,7 +128,7 @@
                 </div>
             </div>
             <!-- <a href="start_selling.html"><img src="innocent/assets/image/Start selling 3.png" alt="" class="start_selling_filter"></a> -->
-            <a href="{{ url('/start_selling') }}" class="start_selling_div">
+            <a href="{{ url('/start_selling') }}" class="start_selling_div js-selling-check">
                 <img src="{{ asset('innocent/assets/image/logo icon.svg') }}" alt="">
                 <p class="start_selling_p">
                    <span class="start_selling_span"> do you have anything to sell</span><br>

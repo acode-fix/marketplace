@@ -3,9 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
+use App\Models\Learn;
+use App\Models\Payment;
 use App\Models\Product;
 use App\Models\ProductEngagementLog;
 use App\Models\User;
+use App\Models\UserProductRequest;
 use Illuminate\Http\Request;
 use Barryvdh\Debugbar\Facades\Debugbar;
 use Illuminate\Support\Facades\Log;
@@ -354,6 +357,20 @@ class AdminController extends Controller
 
     }
 
+
+    public function getUnlistedProducts() {
+
+        $user_product_request = UserProductRequest::with('user')->get();
+
+        return response()->json([
+            'status' => true,
+            'message' => 'User Product Request Fetched Successfully',
+            'userRequest' => $user_product_request,
+
+        ],200);
+
+    }
+
     public function getProductsByPerformance() {
 
         $products_sold = Product::with(['user', 'category'])->orderBy('sold','desc')->get();
@@ -492,7 +509,7 @@ class AdminController extends Controller
     public function getAllBadges() {
 
 
-        $users = User::all()->groupBy(function($user) {
+         $users = User::all()->groupBy(function($user) {
 
             if($user->verify_status == 1 && $user->badge_status == 1) {
 
@@ -510,59 +527,126 @@ class AdminController extends Controller
                 return 'unverifiedUser';
             }
 
-        });
+         });
 
     
-    return response()->json([
-        'status' => true,
-        'message' => $users->isEmpty() ? 'No information available' : 'Badges Info Fetched Successfully',
-        'activeBadges' => $users->get('activeBadges', []),
-        'unverifiedUser' => $users->get('unverifiedUser', []),
-        'expiredBadges' => $users->get('expiredBadges', []),
-    ], 200);
+        return response()->json([
+            'status' => true,
+            'message' => $users->isEmpty() ? 'No information available' : 'Badges Info Fetched Successfully',
+            'activeBadges' => $users->get('activeBadges', []),
+            'unverifiedUser' => $users->get('unverifiedUser', []),
+            'expiredBadges' => $users->get('expiredBadges', []),
+        ], 200);
+
+
+    }
+
+
+    public function getAllUserPayments() {
+
+        $payments = Payment::with('user')->get()->groupBy(function($payment) {
+
+            if($payment->status == 1 && $payment->gateway_response == 'Successful') {
+
+                return 'successPayments';
+
+            }
+
+            
+            if($payment->status == -1 && is_null($payment->gateway_response)) {
+
+                return 'failedPayments';
+
+            }
 
 
 
+        });
 
-        /*
-
-        $activeBadges = User::where('verify_status', 1)
-                              ->where('badge_status', 1)
-                              ->get();
-
-        $unverifiedSeller = User::where('verify_status', 0)
-                                ->where('badge_status', 0)
-                                ->get();
-
-        $expiredBadges = User::where('verify_status', 1)
-                             ->where('badge_status', -1)
-                             ->get();
-
-
-        if($activeBadges->isEmpty() || $unverifiedSeller->isEmpty() || $expiredBadges->isEmpty()) {
-
-            return response()->json([
-                'status' => true,
-                'message' => 'No information available',
-                'Badges' => [],
-            ],200);
-        }
 
 
         return response()->json([
-             'status' => true,
-             'message' => 'Badges Info Fetched Successfully',
-             'activeBades' => $activeBadges,
-             'unverifiedSeller' => $unverifiedSeller,
-             'expiredBadges' => $expiredBadges,
+            'status' => true,
+            'message' => 'Payment Data Fetched Successfully',
+            'successPayments' => $payments->get('successPayments', []),
+            'failedPayments' => $payments->get('failedPayments', []),
+
+        ],200);
+    }
+
+
+    public function filterUserPayments(Request $request) {
+
+        $amount = $request->amount ?? null;
+        $status = $request->status ?? null;
+        $trx = $request->trx ?? null; 
+        $from =$request->from ? date('Y-m-d', strtotime($request->from)) . ' 00:00:00' : null;
+        $to = $request->to ? date('Y-m-d', strtotime($request->to)) . ' 23:59:59' : null;
+
+        $null =  (trim($amount) == '' && trim($status) == '' && trim($trx) == ''  && trim($from) == '' && trim($to) == '');
+
+        if(empty($request->all()) || $null) {
+
+            return response()->json([
+                'status' => true,
+                'message' => 'No filterd Parameter given!!',
+                'payments' => [],
+
+            ], 200);
+
+        }
+
+        $payments = Payment::with('user');
+
+        if($amount) {
+
+            $payments->where('amount', $amount);
+        }
+
+        if($status) {
+
+            $payments->where('status', $status);
+        }
+
+        if($trx) {
+
+            $payments->where('transaction_reference', $trx);
+        }
+
+        if($from && $to) {
+
+            $payments->where('payment_date', '>=', $from)
+                     ->where('payment_date', '<=', $to);
+
+        }
+
+        $filteredPayments = $payments->get();
+
+
+        return response()->json([
+            'status' => true,
+            'message' => 'Payments Filterd Successfully',
+            'payments' => $filteredPayments,
+
         ],200);
 
 
 
-   */
 
 
+    }
 
+
+    public function getLearnData() {
+
+        $learns = Learn::all();
+
+        return response()->json([
+            'status' => true,
+            'message' => 'Learn Data Fetched Successfully',
+            'learns' => $learns
+
+        ],200);
     }
 
     /**

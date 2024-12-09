@@ -212,11 +212,35 @@ Route::get('admin/products/view/search', function() {
     return view(('admin.products.search'));
 })->name('products.search');
 
+Route::get('admin/products/view/unlisted', function() {
+    return view(('admin.products.unlisted'));
+})->name('products.unlisted');
+
+
 Route::get('admin/badge/view', function() {
 
     return view('admin.user.badge');
 
 })->name('badge.view');
+
+Route::get('admin/payments/view', function() {
+
+    return view('admin.payments.view');
+
+})->name('payments.view');
+
+Route::get('admin/payments/view/search', function() {
+
+    return view('admin.payments.search');
+
+})->name('payments.search');
+
+Route::get('admin/uploads/view/', function() {
+
+    return view('admin.uploads.learn');
+
+})->name('uploads.view');
+
 
 
 Route::get('/product/shared/{link}', [ProductController::class, 'loadSharedProduct' ]);

@@ -31,6 +31,7 @@
             <li><a href="{{ route('products.view') }}">View</a></li>
             <li><a href="{{ route('products.search') }}">Search</a></li>
             <li><a href="{{ route('products.sales') }}">Sales Performance</a></li>
+            <li><a href="{{ route('products.unlisted') }}">Unlisted Products</a></li>
           </ul>
         </div>
       </div>
@@ -70,6 +71,42 @@
         </div>
       </div>
     </div>
+    <div class="sidebar-link mt-4">
+      <div class="links {{ Request::is('admin/payments/view*') ? 'active-link clicked' : '' }}">
+        <span class="user-menu">
+          <a href="javascript:void(0);" class="menu-link">
+            <img class="profile-logo svg-size" src="{{ asset('kaz/images/profile.svg') }}" alt="">
+            <span class="profile-text">Payment Menu</span>
+          </a>
+        </span>
+        <!-- Submenu -->
+        <div class="submenu">
+          <ul>
+            <li><a href="{{ route('payments.view') }}">View</a></li>
+            <li><a href="{{ route('payments.search') }}">Search</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="sidebar-link mt-4">
+      <div class="links {{ Request::is('admin/uploads/view*') ? 'active-link clicked' : '' }}">
+        <span class="user-menu">
+          <a href="javascript:void(0);" class="menu-link">
+            <img class="profile-logo svg-size" src="{{ asset('kaz/images/learn.svg') }}" alt="">
+            <span class="profile-text">Upload Menu</span>
+          </a>
+        </span>
+        <!-- Submenu -->
+        <div class="submenu">
+          <ul>
+            <li><a href="{{ route('uploads.view') }}">view</a></li>
+            {{-- <li><a href="{{ route('payments.search') }}">Search</a></li> --}}
+          </ul>
+        </div>
+      </div>
+    </div>
+  
   
   </div>
   

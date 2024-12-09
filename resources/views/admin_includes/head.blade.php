@@ -4,6 +4,7 @@
   <title>{{$title}}</title>
   <link rel="stylesheet" href="{{asset('kaz/css/bootstrap.css')}}">
   <link rel="stylesheet" href="{{asset('kaz/css/admin-nav.css')}}">
+  <link rel="stylesheet" href="{{asset('kaz/css/admin-learn.css')}}">
   <link rel="stylesheet" href="{{asset('kaz/css/admin-sidebar.css')}}">
   <link rel="stylesheet" href="{{asset('kaz/css1/all.min.css')}}">
   <link rel="stylesheet" href="{{asset('kaz/css1/fontawesome.min.css')}}">

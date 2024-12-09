@@ -122,4 +122,81 @@ async function loadDeletedProducts() {
 
 }
 
-loadDeletedProducts()
+loadDeletedProducts();
+
+
+axios.get('/api/v1/admin/unlisted-products').then((response) => {
+  console.log(response);
+
+  const userProductRequest = response.data.userRequest;
+
+  loadUserRequest(userProductRequest);
+
+}).catch((error) => {
+
+  console.log(error);
+
+});
+
+
+function loadUserRequest(products) {
+
+      let display = `<table id="example3" class="table table-striped nowrap" style="width:100%">'
+      <thead>
+          <tr> 
+              <th>S/N</th>
+              <th>Name</th>
+              <th>Phone</th>
+              <th>Location</th>
+              <th>Product Request</th>
+              <th>Request Date</th>
+              <th>Full Details</th>
+            
+          </tr>
+      </thead>
+      <tbody>`;
+
+    products.forEach((product, index) => {
+
+    display += ` <tr>
+              <td>${index + 1}</td>
+              <td>${product.user.name ?? 'N/A'} </td>
+              <td>${product.user.phone_number ?? 'N/A'}</td>
+              <td>${product.location ?? 'N/A'}</td>
+              <td>${product.request ?? 'N/A'}</td>
+              <td>${formatDate(product.created_at) ?? 'N/A'}</td>
+              <td><a class="user-link  user-link" data-user-id="${product.user_id}" href="" >Full Details</a></td>   
+          </tr>`;
+
+    });
+
+    display += `</tbody></table>`;
+
+
+    document.querySelector('.unlisted-products').innerHTML = display;
+
+
+    $('#example3').DataTable({
+    responsive: true
+    });
+
+
+
+}
+
+
+document.addEventListener('click', (event) => {
+
+  event.preventDefault();
+
+  if(event.target.classList.contains('user-link')) {
+
+   const  userId = event.target.dataset.userId;
+
+
+    localStorage.setItem('userId', JSON.stringify(userId));
+    window.location.href = '/admin/view/user';
+
+  }
+
+});

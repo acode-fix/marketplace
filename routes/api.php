@@ -116,12 +116,25 @@ Route::get('admin/deleted-account', [AdminController::class, 'getDeletedAccounts
 Route::get('admin/product-details/{id}', [ProductController::class, 'getAdminProductDetails']);
 Route::get('admin/listed-products', [AdminController::class, 'getUserProducts']);
 Route::get('admin/delisted-products', [AdminController::class, 'getDelistedProducts']);
+Route::get('admin/unlisted-products', [AdminController::class, 'getUnlistedProducts']);
 Route::get('admin/products-performance', [AdminController::class, 'getProductsByPerformance']);
 Route::get('admin/products-category', [AdminController::class, 'getProductCategory']);
 Route::get('admin/filter', [AdminController::class, 'getFilteredProducts']);
 
-//ROUTE ADMIN BADGES MENU
+
+//ROUTE ADMIN BADGES MENU;
 Route::get('admin/badge',[AdminController::class, 'getAllBadges']);
+
+
+//Route Admin Payments Menu;
+
+Route::get('admin/payments/view', [AdminController::class, 'getAllUserPayments']);
+Route::get('admin/payments/filter', [AdminController::class, 'filterUserPayments']);
+
+
+//ROUTE FOR LEARN MENU;
+
+Route::get('/admin/learn', [AdminController::class, 'getLearnData']);
 
 
 //Verified Seller Shop Route;

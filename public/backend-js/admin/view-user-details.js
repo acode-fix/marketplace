@@ -1,3 +1,4 @@
+import { formatPrice } from "../helper/helper.js";
 import { getUser } from "./helper/helper.js";
 
 const token = localStorage.getItem('token');
@@ -98,11 +99,13 @@ for (let field in fullDetails ) {
 
                   const pay = getPayment(fullDetails[field]);
 
-                  payElement.textContent = pay.status ? 'Success' : 'No Data Yet';
+                  //console.log(pay)
+
+                  payElement.textContent = pay.status == 1 ? 'Successful' : 'Unsuccessful';
 
                   const amountStatus = document.getElementById('amount_status');
                   
-                  amountStatus.textContent = pay.amount ? pay.amount : 'No Data Yet';
+                  amountStatus.innerHTML = pay.status == 1 && pay.amount ? `&#8358;${formatPrice(pay.amount)}` : `&#8358;${formatPrice(0)}`;
 
             } 
  
@@ -120,13 +123,31 @@ for (let field in fullDetails ) {
 
 function getPayment(paymentDetails) {
 
-   const pay = paymentDetails.find((payment) => {
+   console.log(paymentDetails);
 
-     return    payment.status ===  1 
+  for(let i = paymentDetails.length -1; i >= 0; i--) {
 
-  });
+    if(paymentDetails[i].status == 1 ) {
 
-  return pay || {status: 0, amount: 0};
+      return paymentDetails[i];
+    }
+
+    if(paymentDetails[i].status == -1) {
+
+      return paymentDetails[i]
+    }
+
+  }
+
+  //  const pay = paymentDetails.find((payment,index) => {
+
+  
+
+  //    return    payment.status ===  1 
+
+  // });
+
+  // return pay || {status: 0, amount: 0};
   
 }
 

@@ -1,0 +1,36 @@
+/* Make video size responsive */
+.video-size {
+  border-radius: 10px;
+  width: 100%; /* Responsive to its container */
+  /* height: auto;   */
+  height: 200px;
+}
+
+/* Card styles */
+.card-main {
+  border: none;
+  background-color: #f6f8fc;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Card text styles */
+.card-txt {
+  padding: 0px;
+  margin-top: 5px;
+  font-size: 17px;
+  line-height: 1.4em;
+}
+
+/* Footer text */
+.footer-txt {
+  margin-top: -10px;
+  font-size: 14px;
+  font-family: "Poppins", sans-serif;
+  color: rgb(154, 150, 150);
+}
+
+
+.error-border {
+  border: 2px solid red;
+}

@@ -19,9 +19,9 @@
                 <li class="nav-item">
                   <a class="nav-link  " data-bs-toggle="tab" href="#menu1">Delisted Products</a>
                 </li>
-                {{-- <li class="nav-item">
-                  <a class="nav-link " data-bs-toggle="tab" href="#menu2">Deleted</a>
-                </li> --}}
+                <li class="nav-item">
+                  <a class="nav-link " data-bs-toggle="tab" href="#menu2">Unlisted Products</a>
+                </li>
               </ul>
 
               <!-- Tab panes -->
@@ -33,9 +33,9 @@
 
 
                 </div>
-                {{-- <div id="menu2" class="container deleted tab-pane fade"><br>
+                 <div id="menu2" class="container unlisted-products tab-pane fade"><br>
 
-                </div> --}}
+                </div> 
               </div>
             </div>
           </div>

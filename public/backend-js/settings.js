@@ -220,7 +220,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
 axios.get('/api/v1/user/badge').then((response) => {
-   console.log(response);
+  // console.log(response);
 
     const expiryData = response.data.badge.expiry_date;
     const expiryDate = dayjs(expiryData).format('D MMM, YYYY');

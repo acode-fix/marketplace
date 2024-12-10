@@ -24,6 +24,9 @@
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 <script src="https://js.pusher.com/8.2.0/pusher.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/js-cookie@3.0.1/dist/js.cookie.min.js"></script>
+
+
 
 
     
@@ -742,7 +745,17 @@
                                 placeholder="Password">
 
                         </div>
-                        <p class="forget_password_login" onclick="showResetPassword()">Forgot password</p>
+                        <div style="display: flex; align-items:center; justify-content:space-between">
+                        <div style="display: flex; align-items:center; margin-top:-20px" class="">
+                            <input class="form-check-input" type="checkbox" value="" id="remember">
+                            <label class="form-check-label ms-1" for="remember">
+                            Remember me
+                            </label>
+                         </div>
+                         <p class="forget_password_login" onclick="showResetPassword()">Forgot password</p>
+
+                        </div>
+                       
                         <p id="or_login_using" >or Login using</p><br>
                         <hr>
                         <div class="auth_icons">

@@ -341,7 +341,7 @@ function fetchUserData(token) {
     .then(response => {
         const user = response.data;
 
-        console.log(user);
+        //console.log(user);
         updateUserProfile(user);
     
         loadCheckEl(user);
@@ -725,6 +725,7 @@ function inputSearch() {
  window.location.href = '/search';
 
 }
+
 
 
 

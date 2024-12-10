@@ -96,6 +96,7 @@ class UsersController extends Controller
             $validator = Validator::make($request->all(), [
                 'email' => 'required|email',
                 'password' => 'required',
+                'rememberMe' => 'nullable|boolean',
 
            ]);
 
@@ -104,49 +105,72 @@ class UsersController extends Controller
                    'status' => false,
                    'message' => 'validation error',
                    'errors' => $validator->errors()
-               ], 401);
+               ], 422);
            }
 
-           if(!Auth::attempt($request->only(['email', 'password']))){
+           
+
+           $user = User::withTrashed()->where('email', $request->email)->first();
+
+           if(!$user) {
+
             return response()->json([
                 'status' => false,
-                'message' => 'Email and password does not match with our record',
-            ], 401);
+                'message' => 'Email Not Found',
+
+            ],404);
+
            }
 
-           $user = User::where('email', $request->email)->first();
-           if(!$user)
-             {
 
-                return response()->json([
-                    'status' => false,
-                    'message' => 'email is not found',
+           if($user->trashed()) {
 
-                ], 401);
-             }
+            return response()->json([
+                'status' => false,
+                'message' => 'Your account has been deleted',
+
+            ],401);
 
 
-             if($user->user_type == -2) {
 
-                return response()->json([
-                    'status' => false,
-                    'message' => 'Account Suspendend!!'
-
-                ], 403);
+           }
 
 
-             }
+           if($user->user_type == -2) {
+
+            return response()->json([
+                'status' => false,
+                'message' => 'Account Suspendend!!'
+
+            ], 403);
+
+
+         }
+
+          
+
+           if(!Auth::attempt($request->only(['email', 'password']),$request->remeberMe)){
+            return response()->json([
+                'status' => false,
+                'message' => 'Invalid Email or Password',
+            ], 401);
+           }
+ 
 
            $token = $user->createToken(env('APP_NAME','defaultAppName'))->plainTextToken;
+           
+           $emailCookie = cookie('email', $request->email, 60 * 24, '/', null, false, false);
+           $passwordCookie = cookie('password', $request->password, 60 * 24, '/', null, false, false);
 
           // $user = Auditlog::getLog();
             // AuditLog::storeAudith()
+            
            return response()->json([
             'status' => true,
             'message' => 'User Logged in successfully',
-            'data' => ['token'=>$token, 'user' => $user]
+            'data' => ['token'=>$token, 'user' => $user,]
 
-        ], 200);
+           ])->cookie($emailCookie)->cookie($passwordCookie);
 
 
         } catch (\Throwable $th) {

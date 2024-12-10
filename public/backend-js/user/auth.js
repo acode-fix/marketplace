@@ -118,10 +118,30 @@ function displaySwal(errorMsg, invalidCredentials) {
 
 }
 
+const email = Cookies.get('email');
+const password = Cookies.get('password');
+
+if(email && password) {
+
+    //console.log(email);
+    //console.log(password);
+
+    const emailEl = document.getElementById("login_email");
+    const passwordEl = document.getElementById("login_password");
+
+    emailEl.value = email;
+    passwordEl.value = password;
+
+
+
+}
+
+
 function loginUser() {
 
     const email = document.getElementById("login_email").value;
     const password = document.getElementById("login_password").value;
+    const rememberMe = document.getElementById('remember').checked;
 
     const continueBtn = document.querySelector('.login-btn');
     const signupText = document.querySelector('.login-text');
@@ -132,9 +152,14 @@ function loginUser() {
 
     axios.post('/api/auth/login', {
             email: email,
-            password: password
+            password: password,
+            rememberMe :rememberMe,
         })
         .then(function (response) {
+
+            console.log(response);
+
+        
 
             hideLoader(continueBtn, signupText, loader);
             const responseData = response.data;
@@ -172,7 +197,7 @@ function loginUser() {
 
                 $('#signup_login-modal').modal('hide');
 
-                if (error.response.status === 401 && error.response.data) {
+                if (error.response.status === 422 && error.response.data) {
 
                     const invalidCredentials = error.response.data.message;
 
@@ -225,6 +250,30 @@ function loginUser() {
 
                         }
                     })
+
+
+                }
+
+                if(error.response.status === 404 && error.response.data) {
+
+                    Swal.fire({
+                        icon: 'error',
+                        confirmButtonColor: '#ffb705',
+                        title: 'Login Failed',
+                        text: error.response.message,
+                    });
+
+
+                }
+
+                if(error.response.status === 401 && error.response.data) {
+
+                    Swal.fire({
+                        icon: 'error',
+                        confirmButtonColor: '#ffb705',
+                        title: 'Login Failed',
+                        text: error.response.message,
+                    });
 
 
                 }

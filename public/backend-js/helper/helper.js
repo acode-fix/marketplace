@@ -872,7 +872,7 @@ export function hideLoader(continueBtn, signupText, loader) {
 
           Swal.fire({
               icon: 'info',
-              title: 'Bio Validation Error',
+              title: 'Profile Setup',
               confirmButtonColor: '#ffb705',
               html: '<span class="text-danger">Dashboard Bio Form is required before publishing a product</span>',
               timer: 3000,

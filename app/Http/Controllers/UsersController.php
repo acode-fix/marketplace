@@ -149,7 +149,7 @@ class UsersController extends Controller
 
           
 
-           if(!Auth::attempt($request->only(['email', 'password']),$request->remeberMe)){
+           if(!Auth::attempt($request->only(['email', 'password']))){
             return response()->json([
                 'status' => false,
                 'message' => 'Invalid Email or Password',
@@ -158,19 +158,41 @@ class UsersController extends Controller
  
 
            $token = $user->createToken(env('APP_NAME','defaultAppName'))->plainTextToken;
-           
-           $emailCookie = cookie('email', $request->email, 60 * 24, '/', null, false, false);
-           $passwordCookie = cookie('password', $request->password, 60 * 24, '/', null, false, false);
+
+           $emailCookie = null;
+           $passwordCookie = null;
+
+           if($request->rememberMe) {
+
+            $emailCookie = cookie('email', $request->email, 60 * 24, '/', null, false, false);
+            $passwordCookie = cookie('password', $request->password, 60 * 24, '/', null, false, false);
+
+           }
 
           // $user = Auditlog::getLog();
             // AuditLog::storeAudith()
             
-           return response()->json([
+           $response = response()->json([
             'status' => true,
             'message' => 'User Logged in successfully',
             'data' => ['token'=>$token, 'user' => $user,]
 
-           ])->cookie($emailCookie)->cookie($passwordCookie);
+           ]);
+
+
+           if($emailCookie) {
+
+            $response->cookie($emailCookie);
+
+           }
+
+           if($passwordCookie) {
+
+            $response->cookie($passwordCookie);
+
+           }
+
+           return $response;
 
 
         } catch (\Throwable $th) {

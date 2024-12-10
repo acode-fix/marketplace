@@ -123,8 +123,8 @@ const password = Cookies.get('password');
 
 if(email && password) {
 
-    //console.log(email);
-    //console.log(password);
+    console.log(email);
+    console.log(password);
 
     const emailEl = document.getElementById("login_email");
     const passwordEl = document.getElementById("login_password");
@@ -260,7 +260,7 @@ function loginUser() {
                         icon: 'error',
                         confirmButtonColor: '#ffb705',
                         title: 'Login Failed',
-                        text: error.response.message,
+                        text: error.response.data.message,
                     });
 
 
@@ -272,7 +272,7 @@ function loginUser() {
                         icon: 'error',
                         confirmButtonColor: '#ffb705',
                         title: 'Login Failed',
-                        text: error.response.message,
+                        text: error.response.data.message,
                     });
 
 

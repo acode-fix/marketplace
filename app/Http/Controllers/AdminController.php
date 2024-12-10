@@ -649,6 +649,157 @@ class AdminController extends Controller
         ],200);
     }
 
+    public function storeLearnData(Request $request) {
+
+        debugbar::info($request->all());
+
+        $validator = Validator::make($request->all(), [
+            'title' => 'required|string',
+            'description' => 'required|string',
+            'url' => 'required|url'
+
+        ]);
+
+
+        if($validator->fails()) {
+            return response()->json([
+                'status' => false,
+                'message' => 'validation error',
+                'errors' => $validator->errors(),
+
+            ],422);
+        }
+
+         $learn = Learn::create($validator->validated());
+
+         if($learn) {
+
+            return response()->json([
+                'status' => true,
+                'message' => 'learn data uploaded successfully',
+
+            ],200);
+         }
+
+
+
+         return response()->json([
+            'status' => false,
+            'message' => 'learn could not be created'
+
+         ],500);
+
+    }
+
+
+    public function getLearnDetails(Request $request) {
+
+       debugbar::info($request->learnId);
+
+       $learn = Learn::find($request->learnId);
+
+       if($learn) {
+
+        return response()->json([
+            'status' => true,
+            'message' => 'Learn data fetched successfully',
+            'learn' => $learn,
+
+        ],200);
+
+        
+
+       }
+
+       return response()->json([
+          'status' => false,
+          'message' => 'Learn data not found',
+
+       ],404);
+
+
+
+
+
+
+
+
+
+
+    }
+
+    public function updateLearnData(Request $request) {
+
+        debugbar::info($request->all());
+
+
+        $validator = Validator::make($request->all(), [
+            'id' => 'required|exists:learns,id',
+            'title' => 'required|string',
+            'description' => 'required|string',
+            'url' => 'required|url'
+            
+
+        ]);
+
+        if($validator->fails()) {
+            return response()->json([
+                'status' => false,
+                'message' => 'Validation Error',
+                'errors' => $validator->errors()
+
+            ],422);
+        }
+
+        $learn = Learn::find($request->id);
+
+        if($learn) {
+
+            $learn->update($validator->validated());
+
+            return response()->json([
+                'status' => true,
+                'message' => 'Learn Data Updated Successfully',
+
+            ], 200);
+
+        }
+
+
+        return response()->json([
+            'status' => false,
+            'message' => 'learn  data update failed',
+
+        ],500);
+    }
+
+
+    public function deleteLearnData($id) {
+
+        debugbar::info($id);
+        
+        $learn = Learn::find($id);
+
+        if($learn) {
+            $learn->delete();
+
+            return response()->json([
+                'status' => true,
+                'message' => 'Learn data deleted successfully'
+
+            ], 200);
+        }
+
+
+        return response()->json([
+            'status' => false,
+            'message'=> 'learn data failed to delete'
+
+        ], 500);
+
+        
+    }
+
     /**
      * Display the specified resource.
      */

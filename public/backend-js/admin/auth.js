@@ -66,9 +66,9 @@ login.addEventListener('click', () => {
 
       const fieldError = error.response.data.error;
 
-    const msg = validationError(fieldError);
+      const msg = validationError(fieldError);
 
-    displaySwal(msg);
+      displaySwal(msg);
 
     
 

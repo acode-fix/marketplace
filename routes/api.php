@@ -135,6 +135,10 @@ Route::get('admin/payments/filter', [AdminController::class, 'filterUserPayments
 //ROUTE FOR LEARN MENU;
 
 Route::get('/admin/learn', [AdminController::class, 'getLearnData']);
+Route::post('admin/update-learn', [AdminController::class, 'storeLearnData']);
+Route::get('admin-learn/details', [AdminController::class, 'getLearnDetails']);
+Route::post('admin/learn-update', [AdminController::class, 'updateLearnData']);
+Route::delete('admin-learn/delete/{id}', [AdminController::class, 'deleteLearnData']);
 
 
 //Verified Seller Shop Route;

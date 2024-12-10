@@ -34,3 +34,15 @@
 .error-border {
   border: 2px solid red;
 }
+
+.link {
+  text-decoration: none;
+  color: black;
+  margin-top: -10px;
+  font-size: 15px;
+}
+
+.link-layout {
+  display: flex;
+
+}

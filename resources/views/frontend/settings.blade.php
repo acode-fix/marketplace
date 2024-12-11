@@ -6,8 +6,8 @@
 
 @section('content')
 
-<div class="main">
-  <div class="content">
+<div  class="main">
+  <div style="margin-top: -45px" class="content">
     <div class="container">
       <div class="row mt-1">
         <div class="col-10">
@@ -20,7 +20,6 @@
             <div id="hover-text" class="hover-text ps-1">become verified seller</div>
           </div>
         </div>
-
 
         <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
           aria-labelledby="exampleModalLabel" aria-hidden="true">

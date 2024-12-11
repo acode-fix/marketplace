@@ -100,8 +100,10 @@ if(token) {
     showLoader(continueBtn, signupText, loader);
 
     for (let field of formData) {
-    //  console.log(field[0] + ':' + field[1]);
+      console.log(field[0] + ':' + field[1]);
     }
+
+    
 
       axios.post('/api/v1/verify/bio', formData, {
 
@@ -153,7 +155,7 @@ if(token) {
 
       }).catch((error) => {
 
-        showLoader(continueBtn, signupText, loader);
+        hideLoader(continueBtn, signupText, loader);
         
         if (error.response) {
 

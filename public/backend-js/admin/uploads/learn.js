@@ -214,35 +214,42 @@ function validation() {
 
   let errors = [];
 
-  const title = document.getElementById('title').value;
-  const desc = document.getElementById('desc').value;
-  const url = document.getElementById('url').value;
+  const title = document.getElementById('title').value.trim();
+  const desc = document.getElementById('desc').value.trim();
+  const url = document.getElementById('url').value.trim();
 
 
   document.getElementById('title_error').textContent = '';
   document.getElementById('desc_error').textContent = '';
   document.getElementById('url_error').textContent = '';
-  
 
 
-  if(title.trim() === '') {
+
+  if(title === '' ) {
 
     errors.push({field:'title', error:'* Title field is required *'});
 
 
-  }
+  }else if( title.length > 70) {
 
-  
-  if(desc.trim() === '') {
-
-    errors.push({field:'desc', error:'* description field is required *'});
-
+    errors.push({field:'title', error:'*Learn title must not exceed 70 characters *'});
 
   }
 
+  
+  if(desc === '' ) {
+
+    errors.push({field:'desc', error: '* description field is required *'});
+
+  }else if (desc.length > 180) {
+
+    errors.push({field:'desc', error: '* description field must not exceed 180 characters*'});
+
+  }
+
 
   
-  if(url.trim() === '') {
+  if(url  === '') {
 
     errors.push({field:'url', error:'* url field is required *'});
 
@@ -250,14 +257,15 @@ function validation() {
   }
 
 
-  for  (let field of errors ) {
+  for  (let error of errors ) {
 
-   document.getElementById(`${field.field}_error`).textContent = field.error;
+    console.log( document.getElementById(`${error.field}_error`));
+
+   document.getElementById(`${error.field}_error`).textContent = error.error;
    
   }
 
-
-
+  console.log(errors);
 
   return errors.length === 0;
 
@@ -267,19 +275,20 @@ const title = document.getElementById('title');
 const desc = document.getElementById('desc');
 const url = document.getElementById('url');
 
+
 title.addEventListener('input', () => {
 
-  document.getElementById('title_error').style.display = 'none';
+  document.getElementById('title_error').textContent = '';
 });
 
 desc.addEventListener('input', () => {
 
-  document.getElementById('desc_error').style.display = 'none';
+  document.getElementById('desc_error').textContent = '';
 });
 
 url.addEventListener('input', () => {
 
-  document.getElementById('url_error').style.display = 'none';
+  document.getElementById('url_error').textContent = '';
 });
 
 const saveBtn = document.getElementById('save');

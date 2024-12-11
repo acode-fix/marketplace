@@ -131,7 +131,7 @@ function updateUserProfile(user) {
 
                     } else {
                         verify.textContent = 'Unverified Seller';
-                        verify.href = '/shop';  
+                        verify.href = '/become';  
                         verify.style.color = '#fe3d3d'; 
 
 

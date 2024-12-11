@@ -613,8 +613,8 @@ function loadModalDetails(user,email,name,username) {
             <tr>
                 <th>Name</th>
                 <th>Email</th>
-                <th>Address</th>
                 <th>Phone Number</th>
+                <th>Reason For Deletion</th>
                 <th>Deletion Date</th>
                 <th>Full Details</th>
             </tr>
@@ -626,8 +626,8 @@ function loadModalDetails(user,email,name,username) {
         display += ` <tr>
                 <td>${user.name ? user.name : 'No Data Yet'} </td>
                 <td>${user.email ? user.email : 'No Data Yet'}</td>
-                <td>${user.address ? user.address : 'No Data Yet'}</td>
                 <td>${user.phone_number ? user.phone_number : 'No Data Yet'}</td>
+                 <td>${user.deletion_reason ?? 'No Data Yet'}</td>
                 <td>${formatDate(user.deleted_at) ?? 'N/A'}</td>
                 <td><a class="user-link" data-user-id="${user.id}" href="" >User Details</a></td> 
           

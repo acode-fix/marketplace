@@ -575,12 +575,11 @@ a {
 
 }
 
-/* style the card text*/
+
 .card-txt {
   padding: 0px;
-  margin-top: 5px;
-  font-size: 17px;
-  /* word-spacing: 5px;  */
+  margin-top: -7px;
+  font-size: 14px;
   font-weight: 20px;
   line-height: 1em;
 }

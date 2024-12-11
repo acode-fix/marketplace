@@ -219,6 +219,8 @@ class VerificationController extends Controller
 
         ]);
 
+        debugbar::info($validator);
+
 
         if($validator->fails()) {
             return response()->json([

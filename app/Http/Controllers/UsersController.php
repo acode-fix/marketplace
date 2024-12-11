@@ -568,6 +568,20 @@ class UsersController extends Controller
     public function deleteAccount(Request $request)
 {
     try {
+
+        $validator = Validator::make($request->all(), [
+            'deletion_reason' => 'required|string',
+        ]);
+
+        if($validator->fails()) {
+
+            return response()->json([
+                'status' => false,
+                'message' => 'Validation Error',
+                'errors' => $validator->errors(),
+
+            ],422);
+        }
         
         $user = $request->user();
 
@@ -578,16 +592,13 @@ class UsersController extends Controller
                 'message' => 'User not authenticated',
             ], 401);
         }
+         
+       // Product::where('user_id', $user->id)->update(['deleted_at' => now()]);
 
-        Product::where('user_id', $user->id)->update(['deleted_at' => now()]);
+       $user->products()->update(['deleted_at' => now()]);
 
-        // foreach($getProducts as $getProduct) {
-
-        //     $getProduct->deleted_at = now();
-
-        //     $getProduct->save();
-
-        // }
+        $user->deletion_reason = $request->deletion_reason;
+        $user->save();
         $user->tokens()->delete(); 
         $user->delete();
 
@@ -595,6 +606,8 @@ class UsersController extends Controller
             'status' => true,
             'message' => 'User account deleted successfully',
         ], 200);
+
+        
 
     } catch (\Throwable $th) {
         return response()->json([

@@ -27,8 +27,8 @@ document.addEventListener('DOMContentLoaded', function () {
             <iframe style="width: 335px;" class="video-size" src="${item.url}" title="${item.title}" frameborder="0"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                 referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-            <div class="card-body card-txt">
-                <p class="card-text new-tex">${item.title}</p>
+            <div style="width: 335px;" class="card-body card-txt">
+                <p class="card-text ">${item.title}</p>
                  <p class="fw-light footer-txt">${item.description} </p>
             </div>
         `;
@@ -43,8 +43,8 @@ document.addEventListener('DOMContentLoaded', function () {
            <iframe  class="mobile-video-size" src="${item.url}" title="${item.title}" frameborder="0"
                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-           <div class="card-body card-txt">
-               <p class="card-text new-tex">${item.title}</p>
+           <div  class="card-body card-txt">
+               <p class="card-text ">${item.title}</p>
                 <p class="fw-light footer-txt">${item.description} </p>
            </div>
        `;
@@ -60,6 +60,8 @@ document.addEventListener('DOMContentLoaded', function () {
 .catch(function (error) {
     console.error('Error fetching learn data:', error);
 });
+
+
 
 
 document.querySelector('.js-learn-help').addEventListener('click', (event) => {

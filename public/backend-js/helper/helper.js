@@ -487,7 +487,7 @@ export function loadSidebar(user) {
           <img src="/kaz/images/star-nill.svg" class="img-fluid image-rate" width="15px" alt=""> <span
             style="font-size: small;">(4.5)</span>
         </div>
-        <a class="view js-review" href="">View all</a>
+        
 
       </div>`;
 

@@ -41,7 +41,7 @@
   </div>
   <div class="container-fluid">
     <div class="scroll-text">
-      <h6 class="fw-bold ms-3">The verified badge offers several benefits to sellers like yourself on buy and sell
+      <h6 class="fw-bold ms-3">The verified badge offers several benefits to sellers like yourself on our
         marketplace</h6>
       <ol class="list-style mt-2 me-2">
         <li>
@@ -85,7 +85,7 @@
         <li class="mt-2">
           <h6><span class="fw-bold">Long-term Reputation Building:</span><span class=" modal-text fw-light">Maintaining
               a verified status over time can contribute to building a positive
-              reputation for you as a seller and your brand on buy and sell marketplace,which can lead to repeat
+              reputation for you as a seller and your brand on our marketplace,which can lead to repeat
               business and word-of-mouth refferals.
             </span></h6>
         </li>

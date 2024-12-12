@@ -212,9 +212,9 @@ Route::get('admin/products/view/search', function() {
     return view(('admin.products.search'));
 })->name('products.search');
 
-Route::get('admin/products/view/unlisted', function() {
-    return view(('admin.products.unlisted'));
-})->name('products.unlisted');
+// Route::get('admin/products/view/unlisted', function() {
+//     return view(('admin.products.unlisted'));
+// })->name('products.unlisted');
 
 
 Route::get('admin/badge/view', function() {

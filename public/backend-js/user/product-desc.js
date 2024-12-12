@@ -204,7 +204,7 @@
 
    function displayProductDetails(product) {
 
-    
+      const productCondition =  document.querySelector('.condition2');
 
        // Display product details in the UI
 
@@ -217,6 +217,10 @@
        document.querySelector('.stock2').textContent = product.quantity + ' in stock';
        //document.querySelector('.condition2').textContent = product.condition;
        document.querySelector('.condition2').textContent = formatProductCondition(product);
+
+       formatProductCondition(product) === 'new' ? productCondition.classList.add('condition-new') :   productCondition.classList.add('condition2')
+
+
        document.querySelector('.description').textContent = product.description;
        document.querySelector('.product_name_on_sidebar').textContent = product.title;
 

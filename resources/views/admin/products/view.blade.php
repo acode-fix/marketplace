@@ -20,7 +20,7 @@
                   <a class="nav-link  " data-bs-toggle="tab" href="#menu1">Delisted Products</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link " data-bs-toggle="tab" href="#menu2">Unlisted Products</a>
+                  <a class="nav-link " data-bs-toggle="tab" href="#menu2">Products Request</a>
                 </li>
               </ul>
 

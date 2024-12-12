@@ -229,7 +229,7 @@ const logoLink = document.querySelector('.js-logo-link');
               ${product.quantity ?? ''} in stock
           </p>
           
-          <p class="condition2">
+          <p class="${ formatProductCondition(product) === 'new'? 'condition-new' : 'condition2' }">
               ${formatProductCondition(product)}
           </p>
     </div>`;
@@ -245,7 +245,7 @@ const logoLink = document.querySelector('.js-logo-link');
 
   
     const content = `
-    <p class="product_name_on_sidebar" > Buy Hp ${product.title ?? 'N/A'}</p>         
+    <p class="product_name_on_sidebar" >${product.title ?? 'N/A'}</p>         
           <hr>
           <div class="main_and_promo_price_des_sidebar">
           ${ getIndexPrice(product)}

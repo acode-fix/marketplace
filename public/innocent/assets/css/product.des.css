@@ -842,6 +842,14 @@
     background-color: #e1eeff;
 }
 
+.condition-new {
+    padding: 4px;
+    margin-left: auto;
+    border-radius: 4px;
+    background-color: rgb(105, 231, 41);
+}
+
+
 
 /* Sidebar Container */
 .sidebar_and_main_container {

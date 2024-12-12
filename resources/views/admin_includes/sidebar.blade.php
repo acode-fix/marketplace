@@ -31,7 +31,6 @@
             <li><a href="{{ route('products.view') }}">View</a></li>
             <li><a href="{{ route('products.search') }}">Search</a></li>
             <li><a href="{{ route('products.sales') }}">Sales Performance</a></li>
-            <li><a href="{{ route('products.unlisted') }}">Unlisted Products</a></li>
           </ul>
         </div>
       </div>

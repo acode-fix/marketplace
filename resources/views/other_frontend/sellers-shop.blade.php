@@ -65,7 +65,7 @@
         <a href="{{ url('/ads') }}"><button type="button" class="btn btn-warning btn-height me-5"> + create Ads</button></a>
       </div>
       <div class="me-1">
-        <h6 class="name js-name">Loading</h6>
+        <h6 class="name js-name ms-2">Loading</h6>
         <h6 class="mired-text fw-light js-email ps-4">loading</h6>
       </div>
       <div class="profile-dropdown">

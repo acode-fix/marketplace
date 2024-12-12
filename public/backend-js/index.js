@@ -256,7 +256,7 @@ function renderProductsAndSections(products) {
         const card = createProductCard(product);
 
         // Insert product into appropriate container
-        if (index < 9) {
+        if (index < 12) {
             productCardDisplay1.appendChild(card);
         } else {
             productCardDisplay2.appendChild(card);

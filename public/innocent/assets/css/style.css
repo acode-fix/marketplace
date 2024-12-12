@@ -1636,7 +1636,7 @@ input:checked+.slider:before {
 .product_card_display {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
-    column-gap: 10px;
+    column-gap: 10px; 
     row-gap: 20px;
 
 }

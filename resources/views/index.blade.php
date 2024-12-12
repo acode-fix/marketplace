@@ -408,7 +408,7 @@
                 <!-- Product Cards -->
                 <div class="product_card_container top_sales_margin">
 
-                    <div class="container-fluid">
+                    {{-- <div class="container-fluid"> --}}
 
 
                         <div class="row">
@@ -419,7 +419,7 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    {{-- </div> --}}
 
 
                     <!-- More Product Cards -->

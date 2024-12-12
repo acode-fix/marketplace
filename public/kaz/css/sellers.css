@@ -236,3 +236,74 @@
   
 }
 
+
+
+.camera-seller {
+  width: 30px;
+  height: 30px;
+  background-color: #e3e5e8;
+  border-radius: 50%;
+  position: absolute;
+  left: 68px;
+  bottom: 25px;
+  
+
+}
+
+/* @media screen and (max-width:1216px) {
+
+  .camera-seller {
+    bottom: 25px;
+  }
+}
+
+@media screen and (max-width:1050px) {
+
+.camera-seller {
+ bottom: 25px;
+
+}
+
+} */
+
+@media screen and (max-width:1030px) {
+
+  .camera-seller {
+   bottom: 28px;
+  
+  }
+  
+  }
+  
+
+.camera-seller-m {
+  width: 25px;
+  height: 25px;
+  background-color: #e3e5e8;
+  border-radius: 50%;
+  position: absolute;
+  left: 45px;
+  bottom: 30px;
+
+}
+
+@media screen and (max-width:471px) {
+
+  .camera-seller-m {
+    width: 25px;
+    height: 25px;
+    background-color: #e3e5e8;
+    border-radius: 50%;
+    position: absolute;
+    left: 45px;
+    bottom: 28px;
+  
+  
+  }
+
+  .mired-drill-m  {
+    font-size: small;
+  } 
+
+}
+

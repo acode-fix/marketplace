@@ -108,7 +108,7 @@ if (!userId) {
     function updateAuthUser(authData) {
 
       document.querySelectorAll('.js-name').forEach((username) => {
-        username.textContent = authData.name ?? 'No Data Provided';
+        username.textContent = authData.username ?? 'No Data Provided';
       });
       
       document.querySelectorAll('.js-email').forEach((userEmail) => {
@@ -486,11 +486,12 @@ if (!userId) {
                     <div class="col mt-2">
                       <div style="display: flex; align-items: center;">
                         ${getUserProfileImage(user)}
-                        <div class="camera2">
+                        <div class="camera-seller">
                           <img class="badge-cam" height="20px" width="15px" src="kaz/images/badge.png" alt="">
                         </div>
                         <div class="mt-4 ms-4">
-                          <h5 class="">${user.name ? user.name : 'No Data Provided'}<span style="font-size: small;">(Shop No: ${user.shop_no ? user.shop_no : 'N/A'})</span></h5>
+                          <h5 class="">${user.username ?? 'No Data Provided'}</h5>
+                          <h6 style="margin-bottom:7px" class="mired-email">Shop No: ${user.shop_no ? user.shop_no : 'N/A'}</h6>
                           <h6 class="mired-email">${user.email ? user.email : 'No Data Provided'}</h6>
                           <a class="verified-link" href="#">verified seller</a>
                         </div>
@@ -526,11 +527,12 @@ if (!userId) {
             <div style="display: flex;justify-content: space-between;">
               <div class="drill">
                 ${userMobileImg}
-                <div class="camera2-m">
+                <div class="camera-seller-m">
                   <img class="badge-cam-m" height="20px" width="15px" src="kaz/images/badge.png" alt="">
                 </div>
                 <div class="ms-3 mb-2 ">
-                  <h5 class="pt-3 mired-drill-m">${user.username ?? ''}<span style="font-size: small;"> (Shop No: ${user.shop_no ? user.shop_no : 'No Data Provided'})</span></h5>
+                  <h5 class="pt-3 mired-drill-m">${user.username ?? ''}</h5>
+                   <h6 style="margin-bottom:7px" class="mired-email">Shop No: ${user.shop_no ? user.shop_no : 'N/A'}</h6>
                   <h6 class="mired-email">${user.email ?? ''}</h6>
                   <h6 class="veri-m pt-1">verified seller</h6>
                 </div>

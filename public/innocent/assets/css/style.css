@@ -1265,7 +1265,7 @@ input:checked+.slider:before {
         transition: opacity 2s, transform 3s;
         transition-delay: 0.2s;
         display: block;
-        margin-top: 20px;
+        margin-top: 15px;
         margin-bottom: 0px;
         margin-left: 20px;
          /* position: absolute;   */

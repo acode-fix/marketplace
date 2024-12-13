@@ -180,9 +180,9 @@
     
 
     </div>
-    <div class="content">
-      <div class="container">
-        <div class="row ">
+    <div class="seller-desktop-content">
+      <div  class="container">
+        <div class="row">
           <div class="col  content-margin">
               {{-- <div style="width: 90%;" class="card mb-3  main-card-preview">
                 <img style="height:220px;" id="banner" src="{{ asset('') }}/kaz/images/Picture of product (Tablet).png"
@@ -450,7 +450,7 @@
 
     </div>
 
-    <div class="mt-5 sellers-footer">
+    <div style="margin-top: 109px" class="sellers-footer">
       <div><img class="main-logo" src="{{asset('/kaz/images/transparent_logo.png') }}" alt=""></div>
       <div>
         <a href=""><p class="fw-light text-footer">About<br>us</p></a>
@@ -478,6 +478,7 @@
     </div>
 
   </div>
+  
 
 
   <!-- mobile-view  -->

@@ -230,6 +230,9 @@ input[type="search"] {
   .content {
     display: none;
   }
+  .seller-desktop-content {
+    display: none;
+  }
 
   .left-section {
     display: none;
@@ -364,10 +367,11 @@ input[type="search"] {
 
 }
 
+
 /*  style the main content*/
 .content {
   margin-left: 207px;
-  /* height: 910px; */
+ /* height: 910px; */
   overflow-x: hidden;
 
 

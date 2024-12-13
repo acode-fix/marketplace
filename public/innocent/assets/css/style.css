@@ -1580,7 +1580,7 @@ input:checked+.slider:before {
 }
 
 .top_sales_margin {
-    margin-top: 15px;
+    margin-top: -10px;
 }
 
 /* .category_search_page_code */

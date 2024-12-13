@@ -482,7 +482,7 @@
 
   <!-- mobile-view  -->
   <div class="mobile-view">
-    <div style="margin-top: -20px;" class="card  main-card-mobile">
+    <div style="margin-top: -49px;" class="card  main-card-mobile">
        {{-- <img style="height:180px;" id="banner" src="{{ asset('') }}/kaz/images/thumbnail-2.webp" class="card-img-top main-img-border2"
         alt="...">
       <div class="card-body">

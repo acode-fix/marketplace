@@ -406,7 +406,7 @@
                
                 
                 <!-- Product Cards -->
-                <div class="product_card_container top_sales_margin">
+                <div style="overflow-x: hidden" class="product_card_container top_sales_margin">
 
                     {{-- <div class="container-fluid"> --}}
 
@@ -461,9 +461,9 @@
                 </div>
 
                 <!-- More Product Cards -->
-                <div class="product_card_container">
+                <div style="overflow-x: hidden" class="product_card_container">
 
-                    <div class="container-fluid">
+                    {{-- <div class="container-fluid"> --}}
                         <div class="row">
                             <div class="col">
                                 <div class="product_card_display card-margin content-margin mt-4" id="productCardDisplay2">
@@ -617,7 +617,7 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    {{-- </div> --}}
 
 
                 </div>

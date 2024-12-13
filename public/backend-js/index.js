@@ -262,7 +262,10 @@ function renderProductsAndSections(products) {
             productCardDisplay2.appendChild(card);
         }
     });
+
+    
 }
+
 
 function createProductCard(product) {
 

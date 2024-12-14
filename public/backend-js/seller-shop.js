@@ -440,8 +440,8 @@ if (!userId) {
       products.forEach((product) => {
       
         display += `
-        <a class="link-card" href="/product_des">
-              <div class="card card-preview" data-card-id="1">
+        <a class="link-card" href="">
+              <div class="card card-preview" >
                 <div class="sold-mobile">
                   <h6 class="amount-sold-m ps-1 pt-1">Sold ${product.sold ?? 0}</h6>
                   <img src="kaz/images/Rate.png" class="img-fluid ps-1" width="13px" alt=""><span

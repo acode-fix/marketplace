@@ -241,6 +241,12 @@ Route::get('admin/uploads/view/', function() {
 
 })->name('uploads.view');
 
+Route::get('admin/profile/view/', function() {
+
+    return view('admin.profile.view');
+
+})->name('profile.view');
+
 
 
 Route::get('/product/shared/{link}', [ProductController::class, 'loadSharedProduct' ]);

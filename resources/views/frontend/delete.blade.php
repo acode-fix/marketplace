@@ -127,7 +127,13 @@
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="button" id="mobile-save-btn" class="btn btn-success">save</button>
+                <button type="button" id="mobile-save-btn" class="btn btn-success mobile-del-btn">
+                  <span class="del-text">save</span>
+                  <div class="del-layout" aria-hidden="true">
+                     <div class="del-loader"></div>
+                      <span class="ms-1 text-dark">loading...</span>
+                  </div>
+                </button>
               </div>
             </div>
           </div>

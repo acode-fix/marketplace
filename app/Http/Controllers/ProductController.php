@@ -90,6 +90,7 @@ public function index()
                         )
                         ->withoutTrashed()
                        ->orderBy('users.badge_status', 'desc')
+                       ->inRandomOrder()
                        ->get();
 
         return response()->json($data);

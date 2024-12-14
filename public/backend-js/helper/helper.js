@@ -847,7 +847,7 @@ export function hideLoader(continueBtn, signupText, loader) {
         didOpen: () => {
           Swal.showLoading();
           timerInterval = setInterval(() => {
-            // You can add any additional logic for the timer here if needed
+          
           }, 1000);
         },
       });

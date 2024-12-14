@@ -105,6 +105,44 @@
         </div>
       </div>
     </div>
+    
+    <div class="sidebar-link mt-4">
+      <div class="links {{ Request::is('admin/profile/view*') ? 'active-link clicked' : '' }}">
+        <span class="user-menu">
+          <a href="javascript:void(0);" class="menu-link">
+            <img class="profile-logo svg-size" src="{{ asset('kaz/images/profile.svg') }}" alt="">
+            <span class="profile-text">Profile Menu</span>
+          </a>
+        </span>
+        <!-- Submenu -->
+        <div class="submenu">
+          <ul>
+            <li><a href="{{ route('profile.view') }}">view</a></li>
+            
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    
+    <div class="sidebar-link mt-4">
+      <div class="links">
+        <span class="user-menu">
+          <a href="javascript:void(0);" class="menu-link">
+            <img class="profile-logo svg-size" src="{{ asset('kaz/images/product.svg') }}" alt="">
+            <span class="profile-text log-out text-danger">Log Out</span>
+          </a>
+        </span>
+        <!-- Submenu -->
+        <div class="submenu">
+          <ul style="display: none">
+            <li><a href="{{ route('profile.view') }}">view</a></li>
+            
+          </ul>
+        </div>
+      </div>
+    </div>
+  
   
   
   </div>

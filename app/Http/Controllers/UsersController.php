@@ -246,6 +246,7 @@ class UsersController extends Controller
             'status' => true,
             'message' => 'You Have Logged In Successfully',
             'token' => $token,
+            'adminUser' => $user,
 
         ],200);
 

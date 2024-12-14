@@ -25,9 +25,9 @@ class UserSeeder extends Seeder
         ],
         [
          'name' => 'Admin User',
-         'email' => 'testAdmin@gmail.com',
+         'email' => 'info@loopmart.ng',
          'user_type' => 1,
-         'password' => bcrypt('1234'),
+        'password'=>Hash::make('$loopmart@+2024'),
         ]
            
 

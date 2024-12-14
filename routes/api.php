@@ -132,13 +132,20 @@ Route::get('admin/payments/view', [AdminController::class, 'getAllUserPayments']
 Route::get('admin/payments/filter', [AdminController::class, 'filterUserPayments']);
 
 
-//ROUTE FOR LEARN MENU;
+//ROUTE FOR ADMIN LEARN MENU;
 
 Route::get('/admin/learn', [AdminController::class, 'getLearnData']);
 Route::post('admin/update-learn', [AdminController::class, 'storeLearnData']);
 Route::get('admin-learn/details', [AdminController::class, 'getLearnDetails']);
 Route::post('admin/learn-update', [AdminController::class, 'updateLearnData']);
 Route::delete('admin-learn/delete/{id}', [AdminController::class, 'deleteLearnData']);
+
+
+//ROUTE FOR ADMIN PROFILE DETAILS
+
+Route::get('admin/details',[AdminController::class, 'getProfile']);
+Route::post('admin/profile/update',[AdminController::class,'updateProfile']);
+
 
 
 //Verified Seller Shop Route;
@@ -153,6 +160,8 @@ Route::get('/search/products', [ProductController::class, 'searchProducts']);
 Route::get('/product/search/filter', [ProductController::class, 'searchPageFilter']);
 Route::get('/search/shop/products', [ProductController::class, 'searchShopProducts']);
 Route::get('/recent/search', [ProductController::class, 'getRecentSearch']);
+
+
 
 
 

@@ -577,5 +577,12 @@ input:checked + .slider:before {
   background-color: #ffce29;
 }
 
+.js-profile {
+
+  height: 50px;
+  width: 50px;
+  border-radius: 40px;
+}
+
 
 

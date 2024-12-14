@@ -1,6 +1,6 @@
+
 import { serverError } from "./auth-helper.js";
-import { logoutUser } from "./auth.js";
-import { getRegisteredUser, calculateTotal, getSuspendedUsers, getDeletedUsers, getListedProducts, getDelistedProducts, getBadgeDetails } from "./helper/helper.js";
+import { getRegisteredUser, calculateTotal, getSuspendedUsers, getDeletedUsers, getListedProducts, getDelistedProducts, getBadgeDetails, logout, loadDashboard } from "./helper/helper.js";
 
 const token = localStorage.getItem('token');
 
@@ -36,33 +36,7 @@ if(!token) {
 }
 
 
-
-
-const logOut = document.getElementById('adminLogOut');
-
-logOut.addEventListener('click', function(event) {
-
-        event.preventDefault(); 
-
-        Swal.fire({
-          title: "Are you sure?",
-          text: "You won't be able to revert this!",
-          icon: "warning",
-          showCancelButton: true,
-          confirmButtonColor: '#ffb705',
-          cancelButtonColor: "#d33",
-          confirmButtonText: "Yes,I am sure!"
-
-      }).then((result) => {
-
-      if (result.isConfirmed) {
-
-        logoutUser();
-        
-      }
-      });
-
-});
+loadDashboard();
 
 
 
@@ -243,6 +217,32 @@ function displayTotalProducts(total, totalEl) {
 
 
 }
+
+
+const logOut = document.querySelector('.log-out');
+
+logOut.addEventListener('click', () => {
+
+  Swal.fire({
+    title: "Are you sure?",
+    text: "You won't be able to revert this!",
+    icon: "warning",
+    showCancelButton: true,
+    confirmButtonColor: '#ffb705',
+    cancelButtonColor: "#d33",
+    confirmButtonText: "Yes,I am sure!"
+    }).then((result) => {
+    if (result.isConfirmed) {
+      logout();
+      
+    }
+});
+
+
+});
+
+
+
 
 
 

@@ -11,6 +11,7 @@ use App\Models\User;
 use App\Models\UserProductRequest;
 use Illuminate\Http\Request;
 use Barryvdh\Debugbar\Facades\Debugbar;
+use Exception;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\DB;
@@ -798,6 +799,140 @@ class AdminController extends Controller
         ], 500);
 
         
+    }
+
+
+    public function getProfile() 
+    {    try
+         {
+
+           $user = User::where('user_type', 1)->first();
+
+           if(!$user) {
+
+            return response()->json([
+                'status' => false,
+                'message' => 'User not found',
+               ],404);
+
+           }
+
+           return response()->json([
+            'status' => true,
+            'message' => 'User Fetched Successfully',
+            'user' => $user,
+
+           ],200);
+
+         } catch(Exception $err) {
+
+            Log::error('Error fetching user profile: ' . $err->getMessage());
+
+            return response()->json([
+                'status' => false,
+                'message' => 'Something went wrong, Try again later!!'
+               
+            ],500);
+         }
+        
+    }
+
+
+    public function updateProfile(Request $request)
+    {
+
+        $validator = Validator::make($request->all(), [
+            'name' => ['required', 'string', 'max:255'],
+          //  'email' => 'required|email|unique:users',
+          //  'password' => ['required'],
+            'photo_url' => 'required|image|mimes:jpg,jpeg,png,gif,svg|max:1024',
+        ]);
+
+        
+
+        if($validator->fails()) {
+
+            return response()->json([
+                'status' => false,
+                'message' => 'Validation failed',
+                'errors' => $validator->errors(),
+
+            ],422);
+
+        }
+
+        $validated = $validator->validated();
+
+        try{
+
+      
+
+        try {
+
+        if($request->hasFile('photo_url')) {
+
+            $image = $request->file('photo_url');
+
+            $rad = mt_rand(1000,9999);
+
+            $imageName = md5($image->getClientOriginalName()). $rad . '.' . $image->getClientOriginalExtension();
+
+            $image->move(public_path('./uploads/users/'), $imageName);
+
+            $validated['photo_url'] = $imageName;
+             
+        }
+
+      } catch(Exception $err) {
+
+        log::error('Image upload failed' . ''. $err->getMessage());
+
+
+        return response()->json([
+            'status' => false,
+            'message' => 'image upload failed',
+
+
+        ],500);
+
+
+
+      }
+
+
+      $user = User::where('email', $request->email)->first();
+
+      if(!$user) {
+        return response()->json([
+            'status' => false,
+            'message' => 'User not found'
+
+        ],404);
+      }
+
+      debugbar::info($validated);
+
+      $user->update($validated);
+
+      return response()->json([
+        'status' => true,
+        'message'=> 'Admin profile updated successfully'
+
+      ],200);
+
+
+        } catch (Exception $err) {
+
+            log::error('User details update failed'. ''. $err->getMessage());
+
+            return response()->json([
+                'status' => false,
+                'message' => 'User details update failed',
+
+            ],500);
+
+        }
+
     }
 
     /**

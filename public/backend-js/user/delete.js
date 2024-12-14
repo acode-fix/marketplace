@@ -1,6 +1,8 @@
 import {
     displaySwal,
-    getToken
+    getToken,
+    hideLoader,
+    showLoader
 } from "../helper/helper.js";
 
 const token = getToken();
@@ -11,6 +13,14 @@ if (token) {
 
     const btn = document.getElementById('save-btn');
     const mobileBtn = document.getElementById('mobile-save-btn');
+ 
+    const delBtn = document.querySelector('.mobile-del-btn');
+    const delText = document.querySelector('.del-text');
+    const loader = document.querySelector('.del-layout');
+
+
+    
+
 
 
      btn.addEventListener('click', function () {
@@ -42,6 +52,8 @@ if (token) {
             cancelButtonText: 'Cancel'
         }).then((result) => {
             if (result.isConfirmed) {
+                showLoader(delBtn, delText, loader);
+
                 axios.delete('api/v1/user',{
                         data: {
                             deletion_reason : deletionReason,
@@ -51,6 +63,7 @@ if (token) {
                         }
                     })
                     .then(function (response) {
+                        hideLoader(delBtn, delText, loader);
                         if (response.data.status) {
                           
                             Swal.fire({
@@ -67,6 +80,7 @@ if (token) {
                        
                     })
                     .catch(function (error) {
+                        hideLoader(delBtn, delText, loader);
                     
                         if(error.response) {
 

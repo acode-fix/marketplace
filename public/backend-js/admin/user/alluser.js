@@ -7,12 +7,14 @@ import {
     getToken,
     getUser,
     getUserById,
+    loadDashboard,
 } from '../helper/helper.js';
 
 
 const token = getToken();
 
 axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+
 
 async function loadUsers() {
 
@@ -180,7 +182,7 @@ function   submitForm(form1, form2, continueBtn, signupText, loader) {
 
                 const responseErrors =  error.response.data.errors;
 
-             const  errorMsg =  validationError(responseErrors);
+               const  errorMsg =  validationError(responseErrors);
 
                 displaySwal(errorMsg);
             }
@@ -215,7 +217,7 @@ function   submitForm(form1, form2, continueBtn, signupText, loader) {
     
 }
 
-function swalAlert(iconAlert, titleAlert, msg) {
+ function swalAlert(iconAlert, titleAlert, msg) {
 
       
     Swal.fire({
@@ -650,6 +652,8 @@ function loadModalDetails(user,email,name,username) {
 }
 
 loadDeletedAccounts();
+
+
 
 
 

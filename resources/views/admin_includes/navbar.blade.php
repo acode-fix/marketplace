@@ -18,11 +18,11 @@
     <button type="button" class="btn btn-warning btn-height"> + create Ads</button>  
   </div> -->
 
-  <div class="right-section me-4">
-    <div class="create">
+  <div class="right-section me-4 js-admin-profile">
+    {{-- <div class="create">
       <button type="button" class="btn btn-warning btn-height me-5"> + create Ads</button>
-    </div>
-    <div class="me-1">
+    </div> --}}
+    {{-- <div class="me-1">
       <h6 class="name">Mired Augustine</h6>
       <h6 class="mired-text fw-light">miredaugustine@gmail.com</h6>
     </div>
@@ -46,7 +46,7 @@
         </div>
 
       </div>
-    </div>
+    </div> --}}
   </div>
 
   <div class="menu-toggle">

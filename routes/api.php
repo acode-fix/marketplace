@@ -142,8 +142,8 @@ Route::delete('admin-learn/delete/{id}', [AdminController::class, 'deleteLearnDa
 
 
 //ROUTE FOR ADMIN PROFILE DETAILS
-
-Route::get('admin/details',[AdminController::class, 'getProfile']);
+Route::post('admin/new-user', [AdminController::class, 'createUser']);
+Route::get('admin/details/{id}',[AdminController::class, 'getProfile']);
 Route::post('admin/profile/update',[AdminController::class,'updateProfile']);
 
 

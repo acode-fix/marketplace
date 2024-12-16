@@ -802,11 +802,11 @@ class AdminController extends Controller
     }
 
 
-    public function getProfile() 
+    public function getProfile($id) 
     {    try
          {
 
-           $user = User::where('user_type', 1)->first();
+           $user = User::find($id);
 
            if(!$user) {
 
@@ -845,7 +845,7 @@ class AdminController extends Controller
             'name' => ['required', 'string', 'max:255'],
           //  'email' => 'required|email|unique:users',
           //  'password' => ['required'],
-            'photo_url' => 'required|image|mimes:jpg,jpeg,png,gif,svg|max:1024',
+           // 'photo_url' => 'required|image|mimes:jpg,jpeg,png,gif,svg|max:1024',
         ]);
 
         
@@ -932,6 +932,104 @@ class AdminController extends Controller
             ],500);
 
         }
+
+    }
+
+
+    public function createUser(Request $request) 
+    {
+        $validator = Validator::make($request->all(), [
+            'name' => ['required', 'string', 'max:255'],
+             'email' => ['required','email','unique:users'],
+             'password' => ['required','min:8'],
+             'photo_url' => 'required|image|mimes:jpg,jpeg,png,gif,svg|max:1024',
+
+        ]);
+ 
+        if($validator->fails()) {
+
+            return response()->json([
+                'status' => false,
+                'message' => 'Validation failed',
+                'errors' => $validator->errors(),
+
+            ],422);
+
+        }
+        
+        $validated = $validator->validated();
+
+    try{
+
+      
+
+      try {
+
+        if($request->hasFile('photo_url')) {
+
+            $image = $request->file('photo_url');
+
+            $rad = mt_rand(1000,9999);
+
+            $imageName = md5($image->getClientOriginalName()). $rad . '.' . $image->getClientOriginalExtension();
+
+            $image->move(public_path('./uploads/users/'), $imageName);
+
+            $validated['photo_url'] = $imageName;
+             
+        }
+
+      } catch(Exception $err) {
+
+        log::error('Image upload failed' . ''. $err->getMessage());
+
+
+        return response()->json([
+            'status' => false,
+            'message' => 'image upload failed',
+
+
+        ],500);
+
+
+
+      }
+
+      $validated['user_type'] = 1;
+
+       User::create($validated);
+
+      return response()->json([
+        'status' => true,
+        'message'=> 'Admin profile updated successfully'
+
+      ],200);
+
+
+        } catch (Exception $err) {
+
+            log::error('User creation  failed'. ''. $err->getMessage());
+
+            return response()->json([
+                'status' => false,
+                'message' => 'User creation failed',
+
+            ],500);
+
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     }
 

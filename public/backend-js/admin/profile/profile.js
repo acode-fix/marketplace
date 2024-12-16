@@ -6,7 +6,10 @@ const token = getToken();
 axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
 
 
-axios.get('/api/v1/admin/details').then((response) => {
+const userData =JSON.parse(localStorage.getItem('adminUser'));
+console.log(userData);
+
+axios.get(`/api/v1/admin/details/${userData.id}`).then((response) => {
  // console.log(response);
 
   if(response.status === 200 && response.data) {
@@ -53,6 +56,15 @@ function loadUser(user) {
               
 
    document.querySelector('.js-user-table').innerHTML = display;
+
+   if(user.id === 2) {
+
+    const addUserBtn = ` <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#addUser">Add User</button>`;
+     
+    document.querySelector('.js-admin').innerHTML = addUserBtn;
+
+
+   }
 
 
    var modal = new bootstrap.Modal(document.getElementById('staticBackdrop'));
@@ -190,4 +202,75 @@ function swalAlert(iconAlert, titleAlert, msg) {
   });
 
 }
+
+const saveBtn = document.getElementById('save-user');
+
+saveBtn.addEventListener('click', (event) => {
+
+  event.preventDefault();
+
+  const form = document.getElementById('admin-form');
+
+  const formData = new FormData(form);
+
+  axios.post('/api/v1/admin/new-user', formData).then((response) => {
+
+   // console.log(response);
+
+    if(response.status === 200 && response.data) {
+      Swal.fire({
+        icon: 'info',
+        title: 'Profile Update',
+        confirmButtonColor: '#ffb705',
+        html: `<h6>User created successfully</h6>`,
+        timer: 3000,
+        timerProgressBar: true,
+        didOpen: () => {
+          Swal.showLoading();
+        },
+        willClose: () => {
+          window.location.reload();
+        }
+      });
+
+    }
+      
+
+  }).catch((error) => {
+   // console.log(error);
+
+    if(error.response) {
+
+      if(error.response.status === 422 && error.response.data) {
+
+         const responseErrors =  error.response.data.errors;
+        
+          const  errorMsg =  validationError(responseErrors);
+
+          displaySwal(errorMsg);
+          
+      }
+     
+    if(error.response.status === 500) {
+        
+        const iconAlert = 'error';
+        const titleAlert = 'Upload Error';
+        const msg = error.response.data.message;
+
+        swalAlert(iconAlert, titleAlert, msg);
+        
+       
+    }
+
+
+
+
+    }
+
+
+  });
+
+
+
+});
 

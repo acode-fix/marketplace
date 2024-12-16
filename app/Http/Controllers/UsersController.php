@@ -232,7 +232,9 @@ class UsersController extends Controller
             ], 401);
            }
 
-           $user = User::where('user_type', 1)->first();
+           $user = User::where('user_type', 1)
+                         ->where('email', $request->email)
+                         ->first();
 
            $userType = $user->email;
 

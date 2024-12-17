@@ -802,25 +802,26 @@ class AdminController extends Controller
     }
 
 
-    public function getProfile($id) 
+    public function getAdminUsers() 
     {    try
          {
 
-           $user = User::find($id);
+           $users = User::where('user_type', 1)->get();
 
-           if(!$user) {
+           if($users->isEmpty()) {
 
             return response()->json([
-                'status' => false,
-                'message' => 'User not found',
-               ],404);
+                'status' => true,
+                'message' => 'No admin users',
+                'users' => [],
+               ],200);
 
            }
 
            return response()->json([
             'status' => true,
-            'message' => 'User Fetched Successfully',
-            'user' => $user,
+            'message' => 'Admin Users Fetched Successfully',
+            'users' => $users,
 
            ],200);
 

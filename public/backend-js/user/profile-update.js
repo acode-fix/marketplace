@@ -11,7 +11,7 @@ if (token) {
 
    }).then(response => {
       const  user = response.data;
-      //console.log(user);
+     // console.log(user);
 
       
 
@@ -208,13 +208,7 @@ function updateUserProfile(user) {
             loadCheckEl(user);
 
 
-            const settingVerifyModal = document.querySelector('.setting-modal');
-
-            if(settingVerifyModal) {
-                displayVerifybtn(user, settingVerifyModal);
-
-
-            }
+         
 
            
             
@@ -226,6 +220,37 @@ function updateUserProfile(user) {
 
                     
                 
+            }
+
+            const settingVerifyModal = document.querySelector('.setting-modal');
+            const shopVerifyEl = document.querySelector('.shop-verify-div');
+            const shopVerifyMobileEl = document.querySelector('.shop-verify-div-mobile');
+
+            
+          
+
+            
+
+           if(settingVerifyModal || shopVerifyEl || shopVerifyMobileEl) {
+
+           
+                [settingVerifyModal, shopVerifyEl, shopVerifyMobileEl].forEach((verifyElement) => {
+
+                    if(verifyElement) {
+
+                        displayVerifybtn(user, verifyElement);
+
+                    }
+
+                    
+
+                  
+
+                });
+
+              
+
+
             }
 
             

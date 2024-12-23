@@ -3,7 +3,8 @@ import {
     getShopPrice,
     displayHelpCenter,
     generateStars,
-    showLoader,hideLoader
+    showLoader,hideLoader,
+    displayVerifybtn
 } from "./helper/helper.js";
 import {
     serverError
@@ -26,7 +27,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     axios.get('/api/v1/user/badge').then((response) => {
-      console.log(response);
+     // console.log(response);
 
         const expiryData = response.data.badge.expiry_date;
 
@@ -288,7 +289,22 @@ document.addEventListener("DOMContentLoaded", function () {
         
                 if(products.length === 0) {
 
-                return    productList.innerHTML = '<p class="text-danger">You have no product listed!!</p>';
+                    const shopVerifyEl = document.querySelector('.shop-verify-div');
+                    const shopVerifyMobileEl = document.querySelector('.shop-verify-div-mobile');
+                      
+
+                    [shopVerifyEl, shopVerifyMobileEl].forEach((verifyElement) => {
+                        if(verifyElement) {
+
+                        verifyElement.style.display = 'none';
+                        }
+                        
+
+                    })
+
+                productList.innerHTML = '<p class="text-danger">You have no product listed!!</p>';
+
+                return;
                 
                 }
 

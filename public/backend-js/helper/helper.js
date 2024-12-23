@@ -896,11 +896,12 @@ export function hideLoader(continueBtn, signupText, loader) {
 
 }
 
-export function displayVerifybtn(user, settingVerifyModal) {
+export function displayVerifybtn(user, verifyElement) {
   
   if(!user || (!user.username || !user.bio || !user.phone_number) ) {
-
-    settingVerifyModal.style.display = 'none';
+    
+  
+    verifyElement.style.display = 'none';
 
   }
 

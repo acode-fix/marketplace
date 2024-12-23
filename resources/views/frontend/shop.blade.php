@@ -36,7 +36,7 @@
                             </div>
                             <div class="col">
                                 <div style="float: right;">
-                                    <div onmouseover="showText()" onmouseout="hideText()" class="badge-shop me-3">
+                                    <div onmouseover="showText()" onmouseout="hideText()" class="badge-shop me-3 shop-verify-div">
                                         <img height="20px" width="15px" src="{{ asset('/kaz/images/badge.png') }}"
                                             alt="">
                                         <a class="become-tag" href="{{ url('/become') }}">
@@ -736,8 +736,8 @@
                         </div>
 
                     </div>
-                    <div onmouseover="showText2()" onmouseout="hideText2()">
-                        <div class="verify-badge-m">
+                    <div onmouseover="showText2()" onmouseout="hideText2()" class="shop-verify-div-mobile">
+                        <div class="verify-badge-m ">
                             <img class="mobile-badge" src="{{ asset('/kaz/images/badge.png') }}" alt="">
                             <a class="become-link become-tag-m" href="{{ url('/become') }}">
                                 <h6 class="verify-m ps-1">Verify Now</h6>

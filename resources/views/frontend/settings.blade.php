@@ -316,7 +316,7 @@
           <div class="col-8 upload-div">
             <img style="height:80px; width:80px;" id="previewImgDesktop" class="img-fluid js-previewImgDesktop" src="" alt="">
             <h6 class="ms-4">Upload your profile picture <br>
-              <span class="fw-light identify-text">This helps visitors to recognize you on loopMart</span>
+              <span class="fw-light identify-text">This helps visitors to recognize you on loopMart Marketplace</span>
             </h6>
           </div>
           <div class="col-2 post-btn">

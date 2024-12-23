@@ -42,7 +42,7 @@
     <div class="row">
       <div class="col">
         <h5 class="fw-bold">About Us</h5>
-        <p class="fw-light">Welcome to LoopMart—an innovative marketplace built to connect buyers and sellers directly. At LoopMart, we’re reshaping how people buy and sell by focusing on building connections rather than facilitating payments, making every transaction safe, transparent, and community driven.</p>
+        <p class="fw-light">Welcome to LoopMart—an innovative marketplace built to connect buyers and sellers directly. At LoopMart, we’re reshaping how people loopMart by focusing on building connections rather than facilitating payments, making every transaction safe, transparent, and community driven.</p>
         <h5 class="fw-bold">Our Mission</h5>
         <p class="fw-light">LoopMart was created with a clear purpose: to empower a trustworthy, connection-based marketplace where buyers and sellers can interact freely, transparently, and securely. We aim to make buying and selling simple, secure, and accessible, with a mission to foster a community where everyone can find what they need or discover new opportunities.</p>
         <h5 class="fw-bold">How LoopMart Works</h5>

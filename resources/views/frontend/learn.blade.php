@@ -16,8 +16,8 @@
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
               referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
             <div class="card-body card-txt">
-              <p class="card-text new-tex">How to Create Ads on Buy and Sell</p>
-              <p class="fw-light footer-txt">Buy and sell <br>
+              <p class="card-text new-tex">How to Create Ads on loopMart</p>
+              <p class="fw-light footer-txt">loopMart <br>
                 9.1k views 7days ago
               </p>
             </div>
@@ -98,8 +98,8 @@
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                 referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
               <div class="card-body card-txt">
-                <p class="card-text new-tex">How to Create Ads on Buy and Sell</p>
-                <p class="fw-light footer-txt">Buy and sell <br>
+                <p class="card-text new-tex">How to Create Ads on loopMart</p>
+                <p class="fw-light footer-txt">loopMart <br>
                   9.1k views 7days ago
                 </p>
               </div>

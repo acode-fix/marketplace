@@ -9,10 +9,10 @@
 <div  class="main">
   <div style="margin-top: -45px" class="content">
     <div class="container">
-      <div class="row mt-1">
+      <div class="row mt-4">
         <div class="col-10">
           <div style="float: right;">
-            <div onmouseover="showText()" onmouseout="hideText()" class="badge-shop me-3 mb-2modal-font"
+            <div onmouseover="showText()" onmouseout="hideText()" class="badge-shop me-3 mb-2modal-font setting-modal"
               data-bs-toggle="modal" data-bs-target="#staticBackdrop">
               <img height="20px" width="15px" src="{{ asset('/kaz/images/badge.png') }}" alt="">
               <a class="revalidate-link" ><h6 style="font-size: small;" class="ps-1 verify-text">Verify Now</h6></a>
@@ -39,7 +39,7 @@
                       <h6><span class="fw-bold">Enhanced Trust and Credibility:</span><span
                           class=" modal-text fw-light">A verified badge signals to potential buyers that the seller's
                           identity and
-                          information have been verified by the us (buy and sell marketplace).This can enhance trust
+                          information have been verified by the us (loopMart marketplace).This can enhance trust
                           and credibility especially
                           for new or lesser-known sellers.
                         </span></h6>
@@ -82,7 +82,7 @@
                       <h6><span class="fw-bold">Long-term Reputation Building:</span><span
                           class=" modal-text fw-light">Maintaining a verified status over time can contribute to
                           building a positive
-                          reputation for ypu as a seller and your brand on buy and sell marketplace,which can lead to
+                          reputation for ypu as a seller and your brand on loopMart marketplace,which can lead to
                           repeat business and word-of-mouth refferals.
                         </span></h6>
                     </li>
@@ -316,7 +316,7 @@
           <div class="col-8 upload-div">
             <img style="height:80px; width:80px;" id="previewImgDesktop" class="img-fluid js-previewImgDesktop" src="" alt="">
             <h6 class="ms-4">Upload your profile picture <br>
-              <span class="fw-light identify-text">This helps visitors to recognize you on buy and sell</span>
+              <span class="fw-light identify-text">This helps visitors to recognize you on loopMart</span>
             </h6>
           </div>
           <div class="col-2 post-btn">
@@ -417,7 +417,7 @@
       <div class="col-10 upload-div">
         <img style="height: 50px; width: 50px;border-radius:100%" id="previewImgMobile" class="img-fluid js-previewImgMobile" src="" alt="">
         <h6 class="ms-2"><span class="upload-text">Upload your profile picture</span> <br>
-          <span class="fw-light identify-text">This helps visitors to recognize you on buy and sell</span>
+          <span class="fw-light identify-text">This helps visitors to recognize you on loopmart marketplace</span>
         </h6>
       </div>
       <div class="col-2 post-btn">

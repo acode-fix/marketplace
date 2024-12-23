@@ -868,7 +868,7 @@ export function hideLoader(continueBtn, signupText, loader) {
 
  export function checkProfileReg(user){
 
-  if( !user || (!user.username && !user.phone_number && !user.bio)) {
+  if( !user || (!user.username || !user.phone_number || !user.bio)) {
 
           Swal.fire({
               icon: 'info',
@@ -893,6 +893,16 @@ export function hideLoader(continueBtn, signupText, loader) {
 
 
 
+
+}
+
+export function displayVerifybtn(user, settingVerifyModal) {
+  
+  if(!user || (!user.username || !user.bio || !user.phone_number) ) {
+
+    settingVerifyModal.style.display = 'none';
+
+  }
 
 }
  

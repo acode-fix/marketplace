@@ -17,6 +17,9 @@ const mobileSignupText = document.querySelector('.update-text-mobile');
 const mobileLoader = document.querySelector('.mobile-layout-loader'); 
 
 
+
+
+
 document.addEventListener('DOMContentLoaded', function () {
     function handleFormSubmit(event, formId) {
         event.preventDefault();

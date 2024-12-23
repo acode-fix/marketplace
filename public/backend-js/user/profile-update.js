@@ -1,4 +1,4 @@
-import { checkProfileReg, generateAvatar,  } from "../helper/helper.js";
+import { checkProfileReg, displayVerifybtn, generateAvatar,  } from "../helper/helper.js";
 
   // Fetch the user data
  const token = localStorage.getItem('apiToken');
@@ -206,6 +206,18 @@ function updateUserProfile(user) {
             }
 
             loadCheckEl(user);
+
+
+            const settingVerifyModal = document.querySelector('.setting-modal');
+
+            if(settingVerifyModal) {
+                displayVerifybtn(user, settingVerifyModal);
+
+
+            }
+
+           
+            
 
 
                  

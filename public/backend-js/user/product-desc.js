@@ -138,7 +138,7 @@
 
        const allProducts = JSON.parse(localStorage.getItem('allProducts'));
 
-     //  console.log(selectedProduct);
+       // console.log(selectedProduct);
 
        
 
@@ -168,9 +168,9 @@
            viewShopButton.addEventListener('click', function (event) {
                event.preventDefault();
                if (selectedProduct) {
-                   //const userId = selectedProduct.user.id;
-                   const userId = selectedProduct.id;
-                   //console.log(userId);
+                
+                   const userId = selectedProduct.user_id;
+                 
 
                    localStorage.setItem('userId', JSON.stringify(userId));
 
@@ -379,7 +379,7 @@
            }
        });
    }
-   /*
+
 
    function createProductCard(product) {
        // Function to create a product card element
@@ -391,8 +391,27 @@
            if (i === 0) product_img_url = el;
        });
 
+       const sanitizeString = (str) => {
+        return str.replace(/'/g, "&#39;") // Escape single quotes
+            .replace(/"/g, "&quot;") // Escape double quotes
+            .replace(/\\/g, "&#92;") // Escape backslashes
+            .replace(/\n/g, ' ') // Replace newlines with a space
+            .replace(/\r/g, ' ') // Replace carriage returns with a space
+            .replace(/\u2028/g, '&#8238;') // Escape line separator
+            .replace(/\u2029/g, '&#8239;') // Escape paragraph separator
+            .replace(/[\r\n]+/g, ' '); // Remove all \r\n sequences
+    };
+        
+    const sanitizedProduct = {
+        ...product,
+        description: product.description ? sanitizeString(product.description) : ""
+    };
+
+    const jsonString = JSON.stringify(sanitizedProduct);
+    const encodedJson = jsonString.replace(/"/g, '&quot;'); // Encode quotes for HTML attribute
+
        card.innerHTML = `
-             <a href="/product_des" class="product_card_link" data-product='${JSON.stringify(product)}'>
+             <a href="/product_des" class="product_card_link" data-product='${encodedJson}'>
                  <div class="card product_card">
                      <h6 class="sold ${formatProductCondition(product) === 'new' ? 'new-product' : 'used-product'} ">${formatProductCondition(product)} <br> <img src="innocent/assets/image/Rate.png" alt=""> ${product.avg_rating || 0}</h6>
                      <img src="uploads/products/${product_img_url || 'default.jpg'}"  class="card-img-top w-100 product_image" alt="${product.title}">
@@ -417,8 +436,8 @@
 
        return card;
    }
-*/
 
+/*
 function createProductCard(product) {
     const card = document.createElement('div');
     card.className = 'card';
@@ -493,6 +512,8 @@ function createProductCard(product) {
 
     return card;
 }
+
+*/
    function fetchProductDetails(productId) {
        // Simulate fetching product details from API
        // Replace with actual API call if needed

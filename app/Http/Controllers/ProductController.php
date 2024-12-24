@@ -678,7 +678,7 @@ public function store(Request $request)
     {
          debugbar::info($id);
 
-        $product =  Product::where('quantity', '!=', 0)
+        $product =  Product::with('user')->where('quantity', '!=', 0)
                            ->where('id', $id)
                            ->withoutTrashed()
                            ->first();

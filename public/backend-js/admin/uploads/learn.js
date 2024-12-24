@@ -52,109 +52,119 @@ function loadLearnData(learnsData) {
 
   document.querySelector('.js-content').innerHTML = display;
 
-  const editBtn = document.querySelector('.edit-btn');
-  const delBtn = document.querySelector('.del-btn');
+  const editBtns = document.querySelectorAll('.edit-btn');
+  const delBtns = document.querySelectorAll('.del-btn');
 
-  editBtn.addEventListener('click', (event) => {
-    event.preventDefault();
+  editBtns.forEach((editBtn) => {
 
-    const {learnId }= editBtn.dataset;
-
-   
-
-    axios.get('/api/v1/admin-learn/details', {
-      params: {
-        learnId,
-      }
-    }).then((response) => {
-      console.log(response)
-
-      if(response.status === 200 && response.data) {
-
-        const data = response.data.learn;
-
-        document.querySelector('.title').value = data.title;
-        document.querySelector('.desc').value = data.description;
-        document.querySelector('.url').value = data.url;
-        document.querySelector('.id').value = data.id;
-
-        modal.show();
-
-      }
-
-    }).catch((error) => {
-      console.log(error);
-
-      if(error.response) {
-
-        if(error.response.status === 404) {
-
-          
-          Swal.fire({
-            icon: 'error',
-            title: 'Learn Upload Data',
-            confirmButtonColor: '#ffb705',
-            text: error.response.data.message,
-            timer: 3000,
-            timerProgressBar: true,
-            didOpen: () => {
-            Swal.showLoading();
-            },
+    editBtn.addEventListener('click', (event) => {
+      event.preventDefault();
+  
+      const {learnId }= editBtn.dataset;
+  
+     
+  
+      axios.get('/api/v1/admin-learn/details', {
+        params: {
+          learnId,
+        }
+      }).then((response) => {
+        console.log(response)
+  
+        if(response.status === 200 && response.data) {
+  
+          const data = response.data.learn;
+  
+          document.querySelector('.title').value = data.title;
+          document.querySelector('.desc').value = data.description;
+          document.querySelector('.url').value = data.url;
+          document.querySelector('.id').value = data.id;
+  
+          modal.show();
+  
+        }
+  
+      }).catch((error) => {
+        console.log(error);
+  
+        if(error.response) {
+  
+          if(error.response.status === 404) {
+  
             
-        });
-
-          
+            Swal.fire({
+              icon: 'error',
+              title: 'Learn Upload Data',
+              confirmButtonColor: '#ffb705',
+              text: error.response.data.message,
+              timer: 3000,
+              timerProgressBar: true,
+              didOpen: () => {
+              Swal.showLoading();
+              },
+              
+          });
+  
+            
+          }
+  
+          if(error.response.status === 500) {
+  
+            serverError();
+          }
         }
-
-        if(error.response.status === 500) {
-
-          serverError();
-        }
-      }
-
+  
+      });
+  
     });
 
   });
 
-  delBtn.addEventListener('click', (event) => {
+  
+  delBtns.forEach((delBtn) => {
 
-    event.preventDefault();
+    delBtn.addEventListener('click', (event) => {
 
-    const {learnId }= delBtn.dataset;
-
-    axios.get('/api/v1/admin-learn/details', {
-      params: {
-        learnId,
-      }
-    }).then((response) => {
-      if(response.status === 200 && response.data) {
-
-
-        const data = response.data.learn;
-
-        document.querySelector('.title-text').textContent= data.title;
-        document.querySelector('.del-id').value = data.id;
-
-        delModal.show();
-
-
-      }
-
-    }).catch((error) => {
-      console.log(error);
-
+      event.preventDefault();
+  
+      const {learnId }= delBtn.dataset;
+  
+      axios.get('/api/v1/admin-learn/details', {
+        params: {
+          learnId,
+        }
+      }).then((response) => {
+        if(response.status === 200 && response.data) {
+  
+  
+          const data = response.data.learn;
+  
+          document.querySelector('.title-text').textContent= data.title;
+          document.querySelector('.del-id').value = data.id;
+  
+          delModal.show();
+  
+  
+        }
+  
+      }).catch((error) => {
+        console.log(error);
+  
+      });
+  
+  
+      
+  
+  
+  
+  
+  
+  
     });
+  
 
-
-    
-
-
-
-
-
-
-  });
-
+  })
+ 
 }
 
 
@@ -303,6 +313,8 @@ saveBtn.addEventListener('click', (event) => {
    }
 
    const form = document.getElementById('learn-form');
+   
+
 
    const formData = new FormData(form);
    console.log([...formData]);
@@ -321,6 +333,8 @@ saveBtn.addEventListener('click', (event) => {
             timerProgressBar: true,
             didOpen: () => {
             Swal.showLoading();
+            window.location.reload();
+            
             },
             
         });

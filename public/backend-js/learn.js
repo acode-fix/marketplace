@@ -23,18 +23,41 @@ document.addEventListener('DOMContentLoaded', function () {
     let cardContent = '';
 
     response.data.forEach(item => {
-         cardContent += `
+        cardContent += `   
+          <div class="card-main">
             <iframe style="width: 335px;" class="video-size" src="${item.url}" title="${item.title}" frameborder="0"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-            <div style="width: 335px;" class="card-body card-txt">
-                <p class="card-text ">${item.title}</p>
-                 <p class="fw-light footer-txt">${item.description} </p>
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            <div style="width: 335px;" class="">
+              <p class="">${item.title}</p>
+              <p style="margin-top: -20px" class="fw-light">${item.description}
+              </p>
             </div>
-        `;
+          </div>
+       `;
+
+      
+   });
+
+
+   
+
+    
+    // let cardContent = '';
+
+    // response.data.forEach(item => {
+    //      cardContent += `
+    //         <iframe style="width: 335px;" class="video-size" src="${item.url}" title="${item.title}" frameborder="0"
+    //             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+    //             referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+    //         <div style="width: 335px;" class="card-body card-txt">
+    //             <p class="card-text ">${item.title}</p>
+    //              <p class="fw-light footer-txt">${item.description} </p>
+    //         </div>
+    //     `;
 
        
-    });
+    // });
 
     let mobileContent = '';
 
@@ -54,8 +77,8 @@ document.addEventListener('DOMContentLoaded', function () {
 
     
 
-    desktTopLearn.innerHTML = cardContent;
-    mobileLearn.innerHTML = mobileContent;
+   desktTopLearn.innerHTML = cardContent;
+   mobileLearn.innerHTML = mobileContent;
 })
 .catch(function (error) {
     console.error('Error fetching learn data:', error);

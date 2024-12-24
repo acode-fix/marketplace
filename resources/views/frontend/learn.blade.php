@@ -6,7 +6,7 @@
 @section('content')
   <div class="main">
     <div class="content">
-      <div class="container mt-2 js-content">
+      <div class="container mt-2">
         
         {{-- <div class="outer-div" id="web-learn-container">
           Example static card, remove if unnecessary -->
@@ -23,6 +23,11 @@
             </div>
           </div> 
         </div> --}}
+
+        <div class="outer-div js-content">
+          
+        
+        </div>
 
       </div>
 

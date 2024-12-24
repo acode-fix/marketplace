@@ -107,6 +107,9 @@ public function index()
                                           'users.shop_token',
                                           'users.name',
                                           'users.username',
+                                          'users.photo_url',
+                                          'users.phone_number',
+                                          'users.id'
                                   )
                                   ->withoutTrashed()
                                  ->orderBy('users.badge_status', 'desc') 

@@ -317,7 +317,7 @@ export function getPrice(product) {
 
 export function loadConnect(product) {
 
- // console.log(product);
+  //console.log(product);
 
   const {title, id, user_id} = product;
   const {name, phone_number, email} = product?.user ?? product;

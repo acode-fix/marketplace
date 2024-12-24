@@ -360,7 +360,7 @@
     <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content upload_sucess">
         <p class="upload_sucess_modal_p">
-            <i class="fa-solid fa-angle-left" data-bs-dismiss="modal" aria-label="Close"></i>
+            {{-- <i class="fa-solid fa-angle-left" data-bs-dismiss="modal" aria-label="Close"></i> --}}
             <img src="{{asset('innocent/assets/image/transparent_logo.png')}}" alt="" class="upload_logo" width="120px">
         </p>
         <p class="upload_sucess_modal_p2">

@@ -127,8 +127,8 @@ document.getElementById('productForm').addEventListener('submit', function(event
 
            // Redirect to the index page after a short delay
            setTimeout(function() {
-               window.location.href = '/';
-           }, 5000);
+               window.location.href = '/shop';
+           }, 3000);
        } 
    })
    .catch(function(error) {

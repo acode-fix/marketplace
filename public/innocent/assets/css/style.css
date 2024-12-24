@@ -495,7 +495,8 @@ a:hover {
 /* Carousel and Start Selling Container Media Query */
 @media screen and (max-width: 700px) {
     .banner_veiw {
-        margin-top: 135px;
+        /* margin-top: 135px; */
+        margin-top: 131px;
         display: block;
     }
 }
@@ -1612,13 +1613,13 @@ input:checked+.slider:before {
 }
 
 /* Image Container */
-.product_card_container {
+/* .product_card_container {
     display: flex;
     flex-wrap: wrap;
     max-width: 100%;
 
 
-}
+} */
 
 
 

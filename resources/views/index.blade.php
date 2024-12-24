@@ -411,7 +411,7 @@
                     {{-- <div class="container-fluid"> --}}
 
 
-                        <div class="row">
+                        <div class="row mb-5">
                             <div class="col">
                                 <div class="product_card_display card-margin content-margin mt-4" id="productCardDisplay">
                                     <!-- Products will be dynamically added here -->
@@ -617,7 +617,7 @@
                                 </div>
                             </div>
                         </div>
-                    {{-- </div> --}}
+                    {{-- </div>  --}}
 
 
                 </div>

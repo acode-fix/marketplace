@@ -764,7 +764,7 @@
                     </h6>
                 </div>
             </div>
-            <div class="row mt-4">
+            <div class="row mt-4 mb-5">
                 <div class="col">
                     <div class="mobile-card">
                         {{-- <div class="card card-preview" data-bs-toggle="modal" data-bs-target="#exampleModal2"

@@ -104,7 +104,8 @@ axios.get('/api/allproduct')
 .then(function (response) {
     const products = response.data;
 
- //  console.log(products);
+    console.log(products);
+    
     localStorage.setItem('allProducts', JSON.stringify(products));
     renderProductsAndSections(products);
 })

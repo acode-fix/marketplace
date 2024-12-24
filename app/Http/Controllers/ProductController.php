@@ -415,139 +415,261 @@ public function filterProductByCategory(Request $request){
     /**
      * Store a newly created resource in storage.
      */
+
+     /*
     public function store(Request $request)
     {
         //
         try{
-        $validateProduct = Validator::make($request->all(), [
+            $validateProduct = Validator::make($request->all(), [
 
+                'title' => 'required',
+                'description' => 'required',
+                'category_id' => 'required|exists:categories,id',
+                'quantity' => 'required',
+                'location' => 'required',
+                'condition' => ['required','in:fairly_used,new'],
+                'ask_for_price' => 'required|boolean',
+                'image_url' => 'required',
+                'image_url.*' => 'image|mimes:jpg,jpeg,png,gif|max:2048'
+            ]);
+
+            // Conditionally add validation rules for actual_price and promo_price
+            $validateProduct->sometimes('actual_price', 'required', function ($input) {
+                return !$input->ask_for_price;
+            });
+
+                // $validateProduct->sometimes('promo_price', 'required', function ($input) {
+                //     return !$input->ask_for_price;
+                // });
+
+            if($validateProduct->fails()){
+                return response()->json([
+                    'status' => false,
+                    'message' => 'validation error',
+                    'errors' => $validateProduct->errors()
+                ], 401);
+            }
+
+                    $authUser = $request->user();
+                    $user_id = $authUser->id;
+
+            //check if a user has conpleted settings registration form;
+
+            $userData =  User::find($user_id);
+
+            if(empty($userData->username)  || empty($userData->phone_number) || empty($userData->bio)) {
+
+                return response()->json([
+                    'status' => false,
+                    'message' => 'Dashboard Bio Form is required before publishing a product',
+
+                ], 404);
+
+            
+            }
+
+        
+                $product = Product::create([
+                        'user_id' => $user_id,
+                        'title' => $request->title,
+                        'description' => $request->description,
+                        'category_id' => $request->category_id,
+                        'quantity' => $request->quantity,
+                        'location' => $request->location,
+                        'actual_price' => $request->ask_for_price ? null : $request->actual_price,
+                        'promo_price' => $request->ask_for_price ? null : $request->promo_price,
+                        // 'actual_price' => $request->actual_price,
+                        // 'promo_price' => $request->promo_price,
+                        'condition' => $request->condition,
+                        'ask_for_price' => $request->ask_for_price,
+                        'image_url.*' => json_encode([]), // Initialize with an empty array
+                ]);
+
+   // dd($product);
+
+            $imageNames = [];
+
+            // Step 2: Check if the request has files and debug the files array
+            if ($request->hasFile('image_url')) {
+            $files = $request->file('image_url');
+            if (!is_array($files)) {
+                $files = [$files];
+            }
+
+            // Debugging: Log the structure of the files array
+            Log::info('Image Files Count:', ['count' => count($files)]);
+
+            foreach ($files as $file) {
+                // Additional debugging to check each file
+                Log::info('Processing File:', ['originalName' => $file->getClientOriginalName(), 'isValid' => $file->isValid()]);
+
+                if (!$file->isValid()) {
+                    Log::error('Invalid file detected', ['file' => $file->getClientOriginalName()]);
+                    continue;
+                }
+
+                $imageName = md5($file->getClientOriginalName() . time()) . "." . $file->getClientOriginalExtension();
+                $file->move(public_path('uploads/products/'), $imageName);
+                $imageNames[] = $imageName;
+            }
+
+            // Debugging: Log the image names array
+            Log::info('Processed Image Names:', $imageNames);
+
+            // Debugging: Check if image names are being collected
+            if (empty($imageNames)) {
+                return response()->json([
+                    'status' => false,
+                    'message' => 'No images were processed'
+                ]);
+            }
+
+            // Step 3: Update the product's image_url field with all processed image names
+            $product->image_url = json_encode($imageNames);
+            $product->save();
+
+            } else {
+            // Debugging: No files found in the request
+            return response()->json([
+                'status' => false,
+                'message' => 'No image files found in the request'
+            ]);
+
+
+
+            }
+
+            // Step 4: Return the response with the updated product
+            return response()->json([
+            'status' => true,
+            'message' => 'Product created successfully',
+            'data' => $product
+            ]);
+
+            }
+             catch (\Throwable $th) {
+            return response()->json([
+                'status' => false,
+                'message' => $th->getMessage()
+            ], 500);
+            }
+
+
+
+  }
+
+
+
+*/
+
+public function store(Request $request)
+{
+    try {
+        // Validate the product data
+        $validateProduct = Validator::make($request->all(), [
             'title' => 'required',
             'description' => 'required',
             'category_id' => 'required|exists:categories,id',
             'quantity' => 'required',
             'location' => 'required',
-            'condition' => ['required','in:fairly_used,new'],
+            'condition' => ['required', 'in:fairly_used,new'],
             'ask_for_price' => 'required|boolean',
             'image_url' => 'required',
             'image_url.*' => 'image|mimes:jpg,jpeg,png,gif|max:2048'
         ]);
 
-         // Conditionally add validation rules for actual_price and promo_price
-         $validateProduct->sometimes('actual_price', 'required', function ($input) {
+        // Conditionally add validation rules for actual_price and promo_price
+        $validateProduct->sometimes('actual_price', 'required', function ($input) {
             return !$input->ask_for_price;
         });
 
-        // $validateProduct->sometimes('promo_price', 'required', function ($input) {
-        //     return !$input->ask_for_price;
-        // });
+        if ($validateProduct->fails()) {
+            return response()->json([
+                'status' => false,
+                'message' => 'Validation error',
+                'errors' => $validateProduct->errors()
+            ], 401);
+        }
 
-       if($validateProduct->fails()){
-           return response()->json([
-               'status' => false,
-               'message' => 'validation error',
-               'errors' => $validateProduct->errors()
-           ], 401);
-       }
+        // Get authenticated user
+        $authUser = $request->user();
+        $user_id = $authUser->id;
 
-      $authUser = $request->user();
-      $user_id = $authUser->id;
+        // Check if user has completed the settings registration form
+        $userData = User::find($user_id);
 
-      //check if a user has conpleted settings registration form;
-
-      $userData =  User::find($user_id);
-
-      if(empty($userData->username)  || empty($userData->phone_number) || empty($userData->bio)) {
-
-        return response()->json([
-            'status' => false,
-            'message' => 'Dashboard Bio Form is required before publishing a product',
-
-        ], 404);
+        if (empty($userData->username) || empty($userData->phone_number) || empty($userData->bio)) {
+            return response()->json([
+                'status' => false,
+                'message' => 'Dashboard Bio Form is required before publishing a product'
+            ], 404);
+        }
 
     
-      }
 
-        
-       $product = Product::create([
-           'user_id' => $user_id,
+        // Create the product
+        $product = Product::create([
+            'user_id' => $user_id,
             'title' => $request->title,
             'description' => $request->description,
             'category_id' => $request->category_id,
             'quantity' => $request->quantity,
             'location' => $request->location,
             'actual_price' => $request->ask_for_price ? null : $request->actual_price,
-             'promo_price' => $request->ask_for_price ? null : $request->promo_price,
-            // 'actual_price' => $request->actual_price,
-            // 'promo_price' => $request->promo_price,
+            'promo_price' => $request->ask_for_price ? null : $request->promo_price,
             'condition' => $request->condition,
             'ask_for_price' => $request->ask_for_price,
-            'image_url.*' => json_encode([]), // Initialize with an empty array
-     ]);
+            'image_url' => json_encode([]) // Initialize with an empty array
+        ]);
 
-   // dd($product);
+        $imageNames = [];
 
-  $imageNames = [];
+        // Process uploaded images
+        if ($request->hasFile('image_url')) {
+            $files = $request->file('image_url');
+            $files = is_array($files) ? $files : [$files];
 
- // Step 2: Check if the request has files and debug the files array
-  if ($request->hasFile('image_url')) {
-    $files = $request->file('image_url');
-    if (!is_array($files)) {
-        $files = [$files];
-    }
+            foreach ($files as $file) {
+                if ($file->isValid()) {
+                    $imageName = md5($file->getClientOriginalName() . time()) . "." . $file->getClientOriginalExtension();
+                    $file->move(public_path('uploads/products/'), $imageName);
+                    $imageNames[] = $imageName;
+                }
+            }
 
-    // Debugging: Log the structure of the files array
-    Log::info('Image Files Count:', ['count' => count($files)]);
+            if (empty($imageNames)) {
+                return response()->json([
+                    'status' => false,
+                    'message' => 'No images were processed'
+                ]);
+            }
 
-    foreach ($files as $file) {
-        // Additional debugging to check each file
-        Log::info('Processing File:', ['originalName' => $file->getClientOriginalName(), 'isValid' => $file->isValid()]);
-
-        if (!$file->isValid()) {
-            Log::error('Invalid file detected', ['file' => $file->getClientOriginalName()]);
-            continue;
+            // Update the product's image_url field
+            $product->image_url = json_encode($imageNames);
+            $product->save();
+        } else {
+            return response()->json([
+                'status' => false,
+                'message' => 'No image files found in the request'
+            ]);
         }
 
-        $imageName = md5($file->getClientOriginalName() . time()) . "." . $file->getClientOriginalExtension();
-        $file->move(public_path('uploads/products/'), $imageName);
-        $imageNames[] = $imageName;
-    }
-
-    // Debugging: Log the image names array
-    Log::info('Processed Image Names:', $imageNames);
-
-    // Debugging: Check if image names are being collected
-    if (empty($imageNames)) {
+        // Return success response
+        return response()->json([
+            'status' => true,
+            'message' => 'Product created successfully',
+            'data' => $product
+        ]);
+    } catch (\Throwable $th) {
         return response()->json([
             'status' => false,
-            'message' => 'No images were processed'
-        ]);
+            'message' => $th->getMessage()
+        ], 500);
     }
-
-    // Step 3: Update the product's image_url field with all processed image names
-    $product->image_url = json_encode($imageNames);
-    $product->save();
-} else {
-    // Debugging: No files found in the request
-    return response()->json([
-        'status' => false,
-        'message' => 'No image files found in the request'
-    ]);
 }
 
-// Step 4: Return the response with the updated product
-return response()->json([
-    'status' => true,
-    'message' => 'Product created successfully',
-    'data' => $product
-]);
 
-} catch (\Throwable $th) {
-    return response()->json([
-        'status' => false,
-        'message' => $th->getMessage()
-    ], 500);
-}
-    }
 
     /**
      * Display the specified resource.

@@ -37,7 +37,7 @@
 
   <div class="header-section">
     <div class="arrow-div">
-      <a href="{{ url('/') }}"><img class="arrow" src="{{asset('kaz/images/Arrow.png')}}" alt=""></a>
+      <a href="{{ url('/notification_mobile') }}"><img class="arrow" src="{{asset('kaz/images/Arrow.png')}}" alt=""></a>
       <h6 style="font-size: 20px;" class="fw-light ms-4">Rating</h6>
     </div>
     <div class="left-section">

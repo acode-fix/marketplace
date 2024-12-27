@@ -157,7 +157,7 @@ function loginUser() {
         })
         .then(function (response) {
 
-            console.log(response);
+            //console.log(response);
 
         
 
@@ -305,6 +305,8 @@ function sendResetOtp() {
             email: email,
         })
         .then(function (response) {
+
+          console.log(response)
             hideLoader(continueBtn, signupText, loader);
 
             Swal.fire({
@@ -432,7 +434,6 @@ function resetPassword() {
             text: 'The new passwords do not match. Please try again.',
             confirmButtonColor: '#ffb705',
         });
-        return;
     }
 
     axios.post('/api/reset-password', {
@@ -450,10 +451,14 @@ function resetPassword() {
                 title: 'Password Reset Successful',
                 text: 'Your password has been reset successfully.',
                 confirmButtonColor: '#ffb705',
-                willClose: function () {
-                    const url = sessionStorage.getItem('sharedPage');
+                preConfirm: function () {
 
-                    url ? window.location.reload() : window.location.href = '/';
+                        const loginPage = document.getElementById('loginModal');
+                        loginPage.style.display = 'block';
+
+                        const changePasswordPage = document.getElementById('changepassword');
+                        changePasswordPage.style.display = 'none';
+
                 }
             });
         })

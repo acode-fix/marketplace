@@ -15,9 +15,10 @@
     <link rel="stylesheet" href="{{ asset('innocent/assets/css/modal.css') }}">
     <link rel="stylesheet" href="{{ asset('innocent/assets/css/preloader.css')}}">
     <script src="{{ asset('innocent/assets/js/preloader.js') }}"></script> 
-    <link href="https://fonts.cdnfonts.com/css/product-sans" rel="stylesheet">
+
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/js-cookie@3.0.1/dist/js.cookie.min.js"></script>
   
     
 </head>
@@ -987,7 +988,18 @@
                         placeholder="Password">
 
                 </div>
-                <p class="forget_password_login" onclick="showResetPassword()">Forgot password</p>
+                <div style="display: flex; align-items:center; justify-content:space-between">
+                    <div style="display: flex; align-items:center; margin-top:-20px" class="">
+                        <input class="form-check-input" type="checkbox" value="" id="remember">
+                        <label class="form-check-label ms-1" for="remember">
+                        Remember me
+                        </label>
+                     </div>
+                     <p class="forget_password_login" onclick="showResetPassword()">Forgot password</p>
+
+                    </div>
+
+
                 <p id="or_login_using" >or Login using</p><br>
                 <hr>
                 <div class="auth_icons">

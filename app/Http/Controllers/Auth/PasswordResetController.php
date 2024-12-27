@@ -45,7 +45,7 @@ class PasswordResetController extends Controller
             );
 
 
-            Mail::to($request->email)->send(new OtpMail($otp));
+             Mail::to($request->email)->send(new OtpMail($otp));
 
             // Mail::raw('Your OTP is: ' . $otp, function ($message) use ($request) {
             //     $message->to($request->email)->subject('Reset Password OTP');

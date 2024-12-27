@@ -95,11 +95,11 @@ if(token) {
 
 
   function updateUserProfile(data) {
-    const{name, email, photo_url} = data;
+    const{username, email, photo_url} = data;
 
 
 
-   const userName = loadName(name,email);
+   const userName = loadName(username,email);
 
    document.querySelector('.js-name').innerHTML = userName;
 
@@ -135,7 +135,7 @@ if(token) {
 
   function loadContent(product) {
 
-    const {photo_url, email, name} = product.user;
+    const {photo_url, email, username} = product.user;
     
 
    const img = photo_url 
@@ -146,7 +146,7 @@ if(token) {
           <div class="structure-m2 card-body pt-2">
                   ${img}        
                   <div class="ps-2">
-                    <h6 style="font-size: small;" class="pt-1">${name ?? 'No Data Provided'}</h6>
+                    <h6 style="font-size: small;" class="pt-1">${username ?? 'No Data Provided'}</h6>
                     <img width="9px" src="/kaz/images/location.svg" alt="">
                     <span style="font-size: small;" class="ps-1">${product.location ?? 'N/A'}</span>
                   </div>
@@ -158,18 +158,18 @@ if(token) {
 
     document.querySelector('.js-review').innerHTML = productContent;
 
-    loadMobileContent(img,name,product)
+    loadMobileContent(img,username,product)
 
   }
 
 
-  function loadMobileContent(img,name,product) {
+  function loadMobileContent(img,username,product) {
 
     const mobile = `
        <div class="mobile-st">
               ${img}
               <div class="ps-3">
-                <h6 style="font-size: small;" class="pt-1">${name ?? 'No Data Provided'}</h6>
+                <h6 style="font-size: small;" class="pt-1">${username ?? 'No Data Provided'}</h6>
                 <img width="9px" src="/kaz/images/location.svg" alt="">
                 <span style="font-size: small;" class="ps-1">${product.location ?? 'N/A'}</span>
               </div>

@@ -684,7 +684,9 @@ public function store(Request $request)
         $product =  Product::with('user')->where('quantity', '!=', 0)
                            ->where('id', $id)
                            ->withoutTrashed()
-                           ->first();
+                           ->first(); 
+
+         //$product = Product::find($id);
 
         if($product) {
 

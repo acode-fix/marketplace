@@ -1,3 +1,4 @@
+import { serverError } from "./admin/auth-helper.js";
 import { getDropDownImg, getToken, loadName, loadSidebar, logoutUser,generateAvatar, getSingleImage, getDate, loadAvgStars, displayHelpCenter, getUserProfileImage, displayData, generateStars } from "./helper/helper.js";
 
 const token = getToken();
@@ -46,9 +47,12 @@ if(token) {
     }
 
   }).catch((error) => {
-  console.log(error);
+    console.log(error);
 
-    if(error.response) {
+    if(error.response.status === 500) {
+
+      serverError();
+
       
     }
 
@@ -237,6 +241,8 @@ if(token) {
     // totalReview.textContent = allReview;
 
      const total = Math.floor(avgRating);
+
+     
      
       if(total > 0) {
 
@@ -496,7 +502,9 @@ if(token) {
         const reviewerLocation = review.user.location;
         const reviewerPhoto = review.user.photo_url; 
         const reviewerEmail = review.user.email; 
-        const stars = generateStars(review.rate);      
+        const stars = generateStars(review.rate);  
+
+
 
         const img = reviewerPhoto
         ? `<img  class="img-fluid  js-profile" src="/uploads/users/${reviewerPhoto}" alt="" >`

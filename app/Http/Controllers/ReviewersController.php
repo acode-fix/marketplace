@@ -84,13 +84,13 @@ class ReviewersController extends Controller
 
  public function store(Request $request) {
 
-       // debugbar::info($request->all());
+        debugbar::info($request->all());
 
         $validator = Validator::make($request->all(),[
             'user_id' => 'required|exists:users,id',
             'product_id' => 'required|exists:products,id',
             'comment' => 'required|string',
-            'rate' => 'required|numeric|min:0|max:5',
+            'rate' => 'required|string|in:1,2,3,4,5',
         ]);
 
         if($validator->fails()) {
@@ -131,7 +131,7 @@ class ReviewersController extends Controller
                     $product->update([
                         'quantity' => $quantity,
                         'sold' => $sold,
-                         'avg_rating' => $avgProductRating,
+                        'avg_rating' => $avgProductRating,
 
                     ]);
 

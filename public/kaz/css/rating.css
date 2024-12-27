@@ -42,7 +42,6 @@
 #submit {
   background-color: #ffce29;
   color: #343434;
-  ;
   font-size: small;
   border: 1px solid #e3e5e8;
   cursor: pointer;
@@ -54,20 +53,19 @@
 }
 
 #submit:hover {
-  background-color: #ffce60;
-  color: #14ae5c;
+  background-color: #facb5e;
 
 }
 
 #submit2:hover {
-  color: #14ae5c;
+  background-color: #facb5e;
+  
 
 }
 
 #submit2 {
   background-color: #ffce29;
   color: #343434;
-  ;
   font-size: small;
   border: 1px solid #e3e5e8;
   cursor: pointer;
@@ -165,7 +163,7 @@
 }
 
 .no-link:hover {
-  color: #14ae5c;
+  color: #fe3d3d;
 }
 
 #exampleFormControlTextarea1 {
@@ -198,8 +196,10 @@
 }
 
 .js-mobile-no {
-
   cursor: pointer;
+}
+.js-mobile-no:hover {
+  color: #fe3d3d;
 }
 
 .main-logo {

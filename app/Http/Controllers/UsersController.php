@@ -827,7 +827,11 @@ public function sendNotification(Request $request) {
 
         $user = User::findOrFail($userId);
 
-        $productId = Product::find($productConnectId);
+        //$productId = Product::find($productConnectId);
+
+        $productId = Product::where('id', $productConnectId)
+                            ->where('quantity', '!=', 0)
+                            ->first();
 
         if(!$productId) {
             continue;

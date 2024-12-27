@@ -70,6 +70,7 @@ async function loadNotification(data) {
                <img src="innocent/assets/image/logo icon.svg" alt="Profile Picture">
            </div>
            <div class="message_area">
+              
                <p class="time">${data.comment}</p>
                <p class="message"><strong>Congratulations</strong><br>It is a perfect time to give a review .</p>
               
@@ -177,7 +178,8 @@ async function getUnreadNotification(notifications) {
                           <img src="innocent/assets/image/logo icon.svg" alt="Profile Picture">
                       </div>
                       <div class="message_area">
-                          <p class="time">${data.comment}</p>
+                          <strong>Your experience matters</strong>
+                          <p class="time pt-1">${data.comment}</p>
                           <p class="message"><strong>Congratulations</strong><br>It is a perfect time to give a review .</p>
                          
                           

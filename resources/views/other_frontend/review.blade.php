@@ -183,8 +183,10 @@
           <div class="col-11">
             <div style="display: flex;justify-content: space-between;">
               <h6 class="review">Reviews</h6>
-              <h6 class="view-shop"><a class="view-link" href="{{ url('/shop') }}">View Shop</a></h6>
-
+                  <div class="seller-shop-btn">
+                  
+                  </div>
+                
             </div>
           </div>
         </div>

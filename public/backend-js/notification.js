@@ -100,7 +100,7 @@ async function loadNotification(data) {
 }
 
 async function loadProductDetails(id) {
-  console.log(id);
+ // console.log(id);
 
   try {
       const response = await axios.get(`/api/v1/product/${id}`, {

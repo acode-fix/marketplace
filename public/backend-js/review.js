@@ -129,7 +129,7 @@ if(token) {
                       : '';  
                       
     const checkSeller = checkBagdge !== '' 
-                        ? `<h6 class="veri-m pt-1 js-verified-link" data-user-id="${id}">verified seller</h6>` 
+                        ? `<h6 class="veri-m pt-1 js-verified-link verified-seller-link" data-user-id="${id}">verified seller</h6>` 
                         : `<a href="/shop"><h6 class="veri-m pt-1 text-danger">Unverified seller</h6></a>`
                       //  : `<h6 class="veri-m pt-1 text-danger"><a class="veri-m pt-1 text-danger href="/shop">Unverified seller</a></h6>`
 
@@ -156,29 +156,32 @@ if(token) {
 
   });
 
-  const verifiedEl = document.querySelector('.js-verified-link');
+  const verifiedEls = document.querySelectorAll('.verified-seller-link');
 
-  if(verifiedEl) {
+  verifiedEls.forEach((verifiedEl) => {
 
-    verifiedEl.addEventListener('click', () => {
-      const{ userId }= verifiedEl.dataset;
+    if(verifiedEl) {
 
-    //  console.log(userId);
+      verifiedEl.addEventListener('click', (event) => {
+        event.preventDefault();
 
-      
-      localStorage.setItem('userId', JSON.stringify(userId))
+        const{ userId }= verifiedEl.dataset;
+        
+        localStorage.setItem('userId', JSON.stringify(userId))
+  
+        window.location.href = '/sellers-shop';
+  
+  
+  
+  
+      })
+    }
+  
+  
 
-      window.location.href = '/sellers-shop';
+  });
 
-
-
-      
-
-
-    })
-  }
-
-
+ 
 
   }
 
@@ -194,6 +197,14 @@ if(token) {
 
 
     const reviewerData = data?.user ?? data;
+
+    console.log(reviewerData);
+    
+    if(reviewerData.badge_status == 1 && reviewerData.verify_status == 1) {
+
+      const shopBtn = document.querySelector('.seller-shop-btn') 
+      shopBtn.innerHTML = ` <h6 class="view-shop"><a class="view-link  verified-seller-link" href="" data-user-id="${reviewerData.id}">View Shop</a></h6>`
+    } 
 
     updateReviewerMobileUser(reviewerData);
 

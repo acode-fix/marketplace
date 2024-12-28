@@ -113,7 +113,7 @@ async function loadProductDetails(id) {
 
       if (response.status === 200 && response.data) {
 
-         console.log(response)
+        // console.log(response)
           const product = response.data.data;
           const image = getSingleImage(product.image_url);
 
@@ -243,6 +243,9 @@ function notificationStatus(filteredMessages) {
         
 
     })
+
+    
+
     
     }
   

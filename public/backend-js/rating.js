@@ -271,9 +271,9 @@ const text = document.querySelector('.js-input');
 
   const formData = new FormData(reviewForm);
 
-   console.log([...formData]);
+//   console.log([...formData]);
 
-   return;
+
 
   const url = new URL(window.location.href);
   const userId = url.searchParams.get('user');

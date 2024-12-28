@@ -273,8 +273,9 @@
                      ${product.quantity ?? 'No Data Provided'} in stock
                  </p>
      
-                 <p class="condition">
-                     ${formatProductCondition(product)}
+                 <p class="condition  ${formatProductCondition(product) === 'new' ? 'new-product' : 'used-product'} ">
+                    ${formatProductCondition(product)} 
+                    
                  </p>
               </div>`;
 

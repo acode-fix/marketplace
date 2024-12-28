@@ -30,7 +30,7 @@
 
      {{-- @include('layouts.others.profile-js') --}}
 
-<script type="module" src="{{ asset('backend-js/user/profile-update.js') }}"></script>
+<script type="module" src="{{ asset('backend-js/user/profile-update.js') }}?time={{ time() }}"></script>
 </body>
 
 </html>

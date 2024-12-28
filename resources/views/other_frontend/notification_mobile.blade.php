@@ -7,7 +7,7 @@
     <title>Notification</title>
     <link rel="icon" href="{{ asset('innocent/assets/image/favicon.svg') }}" type="image/x-icon">
     <link rel="stylesheet" href="{{ asset('innocent/assets/css/bootstrap.css') }}">
-    <link rel="stylesheet" href="{{ asset('innocent/assets/css/notification_mobile.css') }}">
+    <link rel="stylesheet" href="{{ asset('innocent/assets/css/notification_mobile.css') }}?time={{ time() }}">
     <link rel="stylesheet" href="{{ asset('innocent/assets/icons/css/all.min.css') }}">
     <link rel="stylesheet" href="{{ asset('innocent/assets/icons/css/fontawesome.min.css') }}">
      <link rel="stylesheet" href="{{ asset('innocent/assets/css/preloader.css')}}"> 
@@ -189,9 +189,9 @@
 
     </div>
 
-    <script src="{{ asset('innocent/assets/js/notification.js') }}"></script>
-    <script type="module" src="{{ asset('backend-js/mobile-notification.js') }}"></script> 
-    <script type="module"  src="{{ asset('backend-js/notification.js') }}"></script>
+    <script src="{{ asset('innocent/assets/js/notification.js') }}?time={{ time() }}"></script>
+    <script type="module" src="{{ asset('backend-js/mobile-notification.js') }}?time={{ time() }}"></script> 
+    <script type="module"  src="{{ asset('backend-js/notification.js') }}?time={{ time() }}"></script>
     <script src="{{ asset('innocent/assets/js/preloader.js') }}"></script> 
 
 </body>

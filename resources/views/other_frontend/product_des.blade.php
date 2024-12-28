@@ -8,13 +8,13 @@
     <link rel="icon" href="{{ asset('innocent/assets/image/favicon.svg') }}" type="image/x-icon">
     <link rel="stylesheet" href="{{ asset('innocent/assets/css/bootstrap.css') }}">
     <link rel="stylesheet" href="{{ asset('innocent/assets/css/animation.css') }}">
-    <link rel="stylesheet" href="{{ asset('innocent/assets/css/product.des.css') }}">
+    <link rel="stylesheet" href="{{ asset('innocent/assets/css/product.des.css') }}?time={{ time() }}">
     <link rel="stylesheet" href="{{ asset('innocent/assets/css/notification.css') }}">
     <link rel="stylesheet" href="{{ asset('innocent/assets/css/alert.css') }}">
     <link rel="stylesheet" href="{{ asset('innocent/assets/icons/css/all.min.css') }}">
     <link rel="stylesheet" href="{{ asset('innocent/assets/icons/css/fontawesome.min.css') }}">
     <link rel="stylesheet" href="{{ asset('innocent/assets/css/preloader.css')}}">
-    <link href="https://fonts.cdnfonts.com/css/product-sans" rel="stylesheet">
+    
                 
     
 
@@ -223,12 +223,12 @@
                         {{-- <button  class="product_card_veiw_shop_button" >
                           <a href="{{ url('/sellers-shop') }}">view shop <img src="innocent/assets/image/badge.png" alt="" ></a>
                         </button> --}}
-                        <button class="product_card_view_shop_button" id="viewShopButton" style="display: none;">
+                        <button class="product_card_view_shop_button " id="viewShopButton" style="display: none;">
                             {{-- <a href="#" onclick="viewShop()">View Shop</a> --}}
                             <a href="">View Shop</a>
                           </button>
 
-                        <button  class="product_card_connect_button js-connect-btn">
+                        <button  class="product_card_connect_button js-connect-btn ">
                            <a href="#">connect <img src="{{asset('innocent/assets/image/Shopping bag.png')}}" alt="" ></a>
                         </button>
                     </div>
@@ -699,9 +699,9 @@
      {{-- Axios and Moment.js Scripts --}}
   <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/moment@2.29.1/min/moment.min.js"></script>
-  <script type="module" src="{{ asset('backend-js/user/profile-update.js') }}"></script>
-  <script type="module" src="{{ asset('backend-js/user/product-desc.js') }}"></script>
- <script type="module"  src="{{ asset('backend-js/notification.js') }}"></script> 
+  <script type="module" src="{{ asset('backend-js/user/profile-update.js') }}?time={{ time() }}"></script>
+  <script type="module" src="{{ asset('backend-js/user/product-desc.js') }}?time={{ time() }}"></script>
+ <script type="module"  src="{{ asset('backend-js/notification.js') }}?time={{ time() }}"></script> 
  <script src="{{ asset('innocent/assets/js/preloader.js') }}"></script>
 
 

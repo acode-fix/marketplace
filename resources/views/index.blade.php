@@ -7,10 +7,10 @@
     <title>MarketPlace</title>
     <link rel="icon" href="{{ asset('innocent/assets/image/favicon.svg') }}" type="image/x-icon">
     <link rel="stylesheet" href="{{ asset('innocent/assets/css/bootstrap.css') }}">
-    <link rel="stylesheet" href="{{ asset('innocent/assets/css/style.css') }}">
+    <link rel="stylesheet" href="{{ asset('innocent/assets/css/style.css') }}?time={{ time() }}">
     <link rel="stylesheet" href="{{ asset('innocent/assets/css/animation.css')}}">
-    <link rel="stylesheet" href="{{ asset('innocent/assets/css/modal.css') }}">
-    <link rel="stylesheet" href="{{ asset('innocent/assets/css/notification.css')}}">
+    <link rel="stylesheet" href="{{ asset('innocent/assets/css/modal.css') }}?time={{ time() }}">
+    <link rel="stylesheet" href="{{ asset('innocent/assets/css/notification.css')}}?time={{ time() }}">
     <link rel="stylesheet" href="{{ asset('innocent/assets/css/location.css') }}">
     <link rel="stylesheet" href="{{ asset('innocent/assets/css/alert.css') }}">
     <link rel="stylesheet" href="{{ asset('innocent/assets/icons/css/all.min.css') }}">
@@ -1152,9 +1152,9 @@
     
 
 
- <script  src="{{ asset('backend-js/user/auth.js') }}"></script>
- <script type="module" src="{{ asset('backend-js/index.js') }}"></script>
- <script type="module"  src="{{ asset('backend-js/notification.js') }}"></script> 
+ <script  src="{{ asset('backend-js/user/auth.js') }}?time={{ time() }}"></script>
+ <script type="module" src="{{ asset('backend-js/index.js') }}?time={{ time() }}"></script>
+ <script type="module"  src="{{ asset('backend-js/notification.js') }}?time={{ time() }}"></script> 
 
     
 </body>

@@ -9,7 +9,7 @@
   <link rel="stylesheet" href="{{ asset('kaz/css/bootstrap.css') }}">
   <link rel="stylesheet" href="{{ asset('kaz/css/navbar.css') }}">
   <link rel="stylesheet" href="{{ asset('kaz/css/shop.css') }}">
-  <link rel="stylesheet" href="{{ asset('kaz/css/review.css') }}">
+  <link rel="stylesheet" href="{{ asset('kaz/css/review.css') }}?time={{ time() }}">
   <link rel="stylesheet" href="{{ asset('kaz/css1/all.min.css') }}">
   <link rel="stylesheet" href="{{ asset('kaz/css1/fontawesome.min.css') }}">
   <link rel="stylesheet" href="{{ asset('innocent/assets/css/preloader.css')}}">
@@ -782,7 +782,7 @@
   </div>
 
  
-<script type="module" src="{{ asset('backend-js/review.js') }}"></script>
+<script type="module" src="{{ asset('backend-js/review.js') }}?time={{ time() }}"></script>
 <script src="{{ asset('innocent/assets/js/preloader.js') }}"></script> 
 </body>
 

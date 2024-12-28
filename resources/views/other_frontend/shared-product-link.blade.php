@@ -7,7 +7,7 @@
     <link rel="icon" href="{{ asset('innocent/assets/image/favicon.svg') }}" type="image/x-icon">
     <link rel="stylesheet" href="{{ asset('innocent/assets/css/bootstrap.css') }}">
     <link rel="stylesheet" href="{{ asset('innocent/assets/css/animation.css') }}">
-    <link rel="stylesheet" href="{{ asset('innocent/assets/css/product.des.css') }}">
+    <link rel="stylesheet" href="{{ asset('innocent/assets/css/product.des.css') }}?time={{ time() }}">
     <link rel="stylesheet" href="{{ asset('innocent/assets/css/notification.css') }}">
     <link rel="stylesheet" href="{{ asset('innocent/assets/css/alert.css') }}">
     <link rel="stylesheet" href="{{ asset('innocent/assets/icons/css/all.min.css') }}">
@@ -1333,7 +1333,7 @@
 
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-    <script type="module" src="{{ asset('backend-js/shared-product.js') }}" ></script>
-    <script  src="{{ asset('backend-js/user/auth.js') }}"></script>
+    <script type="module" src="{{ asset('backend-js/shared-product.js') }}?time={{ time() }}" ></script>
+    <script  src="{{ asset('backend-js/user/auth.js') }}?time={{ time() }}"></script>
 </body>
 </html>

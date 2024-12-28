@@ -8,7 +8,7 @@
   <link rel="icon" href="{{ asset('innocent/assets/image/favicon.svg') }}" type="image/x-icon">
   <link rel="stylesheet" href="{{ asset('kaz/css/bootstrap.css') }}">
   <link rel="stylesheet" href="{{ asset('kaz/css/navbar.css') }}">
-  <link rel="stylesheet" href="{{ asset('kaz/css/rating.css') }}">
+  <link rel="stylesheet" href="{{ asset('kaz/css/rating.css') }}?time={{ time() }}">
   <link rel="stylesheet" href="{{ asset('innocent/assets/css/preloader.css')}}">
   <script src="{{ asset('kaz/js/rating.js') }}"></script>
   <script src="{{ asset('kaz/js/bootstrap.js') }}"></script>
@@ -235,8 +235,8 @@
 
 
 
-<script type="module" src="{{ asset('backend-js/rating.js') }}"></script>
-<script src="{{ asset('innocent/assets/js/preloader.js') }}"></script> 
+<script type="module" src="{{ asset('backend-js/rating.js') }}?time={{ time() }}"></script>
+<script src="{{ asset('innocent/assets/js/preloader.js') }}?time={{ time() }}"></script> 
 </body>
 
 </html>

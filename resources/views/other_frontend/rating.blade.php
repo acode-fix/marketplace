@@ -10,7 +10,7 @@
   <link rel="stylesheet" href="{{ asset('kaz/css/navbar.css') }}">
   <link rel="stylesheet" href="{{ asset('kaz/css/rating.css') }}?time={{ time() }}">
   <link rel="stylesheet" href="{{ asset('innocent/assets/css/preloader.css')}}">
-  <script src="{{ asset('kaz/js/rating.js') }}"></script>
+  <script src="{{ asset('kaz/js/rating.js') }}?time={{ time() }}"></script>
   <script src="{{ asset('kaz/js/bootstrap.js') }}"></script>
 
   <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>

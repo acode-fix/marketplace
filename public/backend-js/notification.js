@@ -2,6 +2,8 @@ import { getSingleImage } from "./helper/helper.js";
   
 
 const token = localStorage.getItem('apiToken');
+
+
 let shopToken;
 
 axios.get('/api/v1/userId', {
@@ -101,6 +103,8 @@ async function loadNotification(data) {
 
 async function loadProductDetails(id) {
  // console.log(id);
+ 
+ const token = localStorage.getItem('apiToken')
 
   try {
       const response = await axios.get(`/api/v1/product/${id}`, {
@@ -111,7 +115,7 @@ async function loadProductDetails(id) {
 
       if (response.status === 200 && response.data) {
 
-       // console.log(response)
+         console.log(response)
           const product = response.data.data;
           const image = getSingleImage(product.image_url);
 

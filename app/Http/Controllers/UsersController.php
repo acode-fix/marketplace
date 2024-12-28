@@ -814,7 +814,8 @@ public function getUserId(Request $request) {
 
 }
 
-public function sendNotification(Request $request) {
+public function sendNotification(Request $request)
+ {
 
 
     $pendingConnects =  ProductEngagementLog::where('status', 0)->get();
@@ -851,7 +852,7 @@ public function sendNotification(Request $request) {
     return response()->json([
         'status' => true,
         'message' => 'Notifications sent successfully',
-], 200);
+     ], 200);
 
 }
 

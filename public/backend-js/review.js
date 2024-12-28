@@ -198,7 +198,7 @@ if(token) {
 
     const reviewerData = data?.user ?? data;
 
-    console.log(reviewerData);
+   // console.log(reviewerData);
     
     if(reviewerData.badge_status == 1 && reviewerData.verify_status == 1) {
 

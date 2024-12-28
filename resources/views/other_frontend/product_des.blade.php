@@ -163,7 +163,7 @@
                                     <img style="margin-bottom: 4px" src="{{asset('innocent/assets/image/Rate.png')}}" alt="">
                                     <span class="rate_value">loading</span>
                                 </span>
-                                <span><a class="js-review review-link ps-2 text-success" href="">Reviews</a></span>
+                                {{-- <span><a class="js-review review-link ps-2 text-success" href="">Reviews</a></span> --}}
                             </p>
                         </div>
                         <div class="close_product_des"><a href="{{ url('/') }}"><i class="fa-solid fa-close "></i></a></div>
@@ -215,9 +215,13 @@
 
                     </div>
                     <div>
-                     <span style="font-weight: bold;">Description</span>
+                    <div class="desc-wrapper">
+
+                    </div>
+                       
+                    
                      <p class="description">Loading</p>
-                 </div>
+                   </div>
                     <div class="connect_buttons">
 
                         {{-- <button  class="product_card_veiw_shop_button" >
@@ -636,7 +640,7 @@
                         </div>
                     </div>
                 </a> --}}
-                <div class="d-flex ">
+                <div style="margin-top: 410px"  class="d-flex ">
                     <i id="volumeHighIcon" class="fa-solid fa-volume-high notification_volume"
                         onclick="turnOnNotifications()"></i>
                     <i id="volumeMuteIcon" class="fa-solid fa-volume-mute notification_volume" style="display: none;"

@@ -628,9 +628,10 @@
 }
 .rate {
     background-color: #ffce29;
-    padding: 3px;
+    padding: 3px 5px 3px 5px;
     font-size: 10px;
     border-radius: 2px;
+
 
 }
 

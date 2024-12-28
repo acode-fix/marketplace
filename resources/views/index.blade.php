@@ -15,7 +15,7 @@
     <link rel="stylesheet" href="{{ asset('innocent/assets/css/alert.css') }}">
     <link rel="stylesheet" href="{{ asset('innocent/assets/icons/css/all.min.css') }}">
     <link rel="stylesheet" href="{{ asset('innocent/assets/icons/css/fontawesome.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('innocent/assets/css/preloader.css')}}">
+    <link rel="stylesheet" href="{{ asset('innocent/assets/css/preloader.css')}}?{{ time() }}">
     
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -1025,7 +1025,7 @@
                     </div>
                 </div>
             </a> --}}
-            <div class="d-flex ">
+            <div style="margin-top: 410px" class="d-flex ">
                 <i id="volumeHighIcon" class="fa-solid fa-volume-high notification_volume"
                     onclick="turnOnNotifications()"></i>
                 <i id="volumeMuteIcon" class="fa-solid fa-volume-mute notification_volume" style="display: none;"
@@ -1148,7 +1148,7 @@
     <script src="{{ asset('innocent/assets/js/animation.js') }}"></script>
     <script src="{{ asset('innocent/assets/js/location.js') }}"></script>
     <script src="{{ asset('innocent/assets/js/modal.js') }}"></script>
-    <script src="{{ asset('innocent/assets/js/preloader.js') }}"></script>
+    <script src="{{ asset('innocent/assets/js/preloader.js') }}?time={{ time() }}"></script>
     
 
 

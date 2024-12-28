@@ -1,12 +1,13 @@
-/* Basic CSS to center the preloader on the page */
-body, html {
+
+body {
   margin: 0;
   padding: 0;
-  overflow: hidden; /* Prevent scrolling while loading */
+  overflow: hidden;
   height: 100vh;
 }
+
 .preloader {
-  position: fixed;
+  position: fixed; 
   top: 0;
   left: 0;
   width: 100%;
@@ -15,7 +16,7 @@ body, html {
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 9999; /* Ensure it’s on top of all other content */
+  z-index: 9999; 
 }
 
 /* Updated CSS */

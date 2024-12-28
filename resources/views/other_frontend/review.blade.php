@@ -9,10 +9,10 @@
   <link rel="stylesheet" href="{{ asset('kaz/css/bootstrap.css') }}">
   <link rel="stylesheet" href="{{ asset('kaz/css/navbar.css') }}">
   <link rel="stylesheet" href="{{ asset('kaz/css/shop.css') }}">
-  <link rel="stylesheet" href="{{ asset('kaz/css/review.css') }}?time={{ time() }}">
   <link rel="stylesheet" href="{{ asset('kaz/css1/all.min.css') }}">
   <link rel="stylesheet" href="{{ asset('kaz/css1/fontawesome.min.css') }}">
-  <link rel="stylesheet" href="{{ asset('innocent/assets/css/preloader.css')}}">
+  <link rel="stylesheet" href="{{ asset('innocent/assets/css/preloader.css')}}"> 
+  <link rel="stylesheet" href="{{ asset('kaz/css/review.css') }}?time={{ time() }}">
   <script src="{{ asset('kaz/js/bootstrap.js') }}"></script>
   <script src="{{ asset('kaz/js/review.js') }}"></script>
 

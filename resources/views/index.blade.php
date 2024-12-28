@@ -1025,7 +1025,7 @@
                     </div>
                 </div>
             </a> --}}
-            <div style="margin-top: 410px" class="d-flex ">
+            <div  class="d-flex ">
                 <i id="volumeHighIcon" class="fa-solid fa-volume-high notification_volume"
                     onclick="turnOnNotifications()"></i>
                 <i id="volumeMuteIcon" class="fa-solid fa-volume-mute notification_volume" style="display: none;"

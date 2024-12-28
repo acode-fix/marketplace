@@ -295,7 +295,7 @@ export function getPrice(product) {
   const showPromo =  promoPrice === '0';
 
     return product.ask_for_price
-    ? '<h6 class="amount" style="color:red; font-size:15px;">Ask for price</h6>' 
+    ? '<h6 class="amount" style="color:red; font-size:small;">Ask for price</h6>' 
     : `<h6 class="amount">${promoPrice === '0' ? '' : '&#8358;' + promoPrice}  <span class="ps-1 ${showPromo ? '' : 'amount-span' } ">&#8358;${actualPrice}</span></h6>`;
   }
 

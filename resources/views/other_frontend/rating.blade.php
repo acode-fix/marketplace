@@ -198,13 +198,13 @@
                 <h6 style="text-align: center;" class="fw-light pt-3">How would you rate your experience with this
                   seller?</h6>
                 <div style="text-align: center;">
-                  <button class="star" type="button">&#9734;</button>
-                  <button class="star" type="button">&#9734;</button>
-                  <button class="star" type="button">&#9734;</button>
-                  <button class="star" type="button">&#9734;</button>
-                  <button class="star" type="button">&#9734;</button>
-                  <p class="current-rating d-none">0 of 5</p>
-                  <input type="hidden" id="rating" name="rate" value="0">
+                  <button class="mobile-star" type="button">&#9734;</button>
+                  <button class="mobile-star" type="button">&#9734;</button>
+                  <button class="mobile-star" type="button">&#9734;</button>
+                  <button class="mobile-star" type="button">&#9734;</button>
+                  <button class="mobile-star" type="button">&#9734;</button>
+                  <p class="mobile-current-rating d-none">0 of 5</p>
+                  <input type="hidden" id="mobile-rating" name="rate" value="0">
                   <h6 class="mobileErr-rating text-danger"></h6>
                   <h6 class="mobileErr-comment text-danger"></h6>
                   <div class=" pt-2">

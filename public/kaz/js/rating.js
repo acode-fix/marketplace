@@ -21,6 +21,30 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 
+document.addEventListener('DOMContentLoaded', () => {
+  const stars = document.querySelectorAll('.mobile-star');
+  const currentRating = document.querySelector('.mobile-current-rating');
+  const ratingInput = document.getElementById('mobile-rating');
+
+  stars.forEach((star, index) => {
+    star.addEventListener('click', () => {
+      let currentStar = index + 1;
+      currentRating.innerText = `${currentStar} of 5`;
+      ratingInput.value = currentStar;
+
+      stars.forEach((star, i) => {
+        if (currentStar >= i + 1) {
+          star.innerHTML = '&#9733;'; // filled star
+        } else {
+          star.innerHTML = '&#9734;'; // empty star
+        }
+      });
+    });
+  });
+});
+
+
+
 document.addEventListener('DOMContentLoaded', function() {
   var checkbox = document.getElementById('menu-checkbox');
   var menuOverlay = document.querySelector('.menu-overlay');

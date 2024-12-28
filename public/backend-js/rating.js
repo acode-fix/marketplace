@@ -214,7 +214,7 @@ const text = document.querySelector('.js-input');
 
   event.preventDefault();
 
-  const rating = document.getElementById('rating');
+  const rating = document.getElementById('mobile-rating');
   const text = document.querySelector('.mobile-text');
 
   const prefix = `mobileErr`;
@@ -272,6 +272,8 @@ const text = document.querySelector('.js-input');
   const formData = new FormData(reviewForm);
 
    console.log([...formData]);
+
+   return;
 
   const url = new URL(window.location.href);
   const userId = url.searchParams.get('user');

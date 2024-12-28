@@ -26,6 +26,13 @@
   font-size: 1.5rem;
 }
 
+.mobile-star {
+  border: none;
+  background-color: unset;
+  color: #ffce29;
+  font-size: 1.5rem;
+}
+
 .comments {
   position: absolute;
   bottom: 8px;

@@ -317,9 +317,9 @@ export function getPrice(product) {
 
 export function loadConnect(product) {
 
-  //console.log(product);
+   
 
-  const {title, id, user_id} = product;
+  const {title, product_id, user_id} = product;
   const {name, phone_number, email} = product?.user ?? product;
 
   const productName = title;
@@ -343,7 +343,7 @@ export function loadConnect(product) {
   // console.log(id)
 
 
-  axios.post('/api/v1/product/engagement', {id, user_id}, {
+  axios.post('/api/v1/product/engagement', {product_id, user_id}, {
     headers: {
       'Authorization': `Bearer ${token}`,
     },

@@ -194,6 +194,8 @@
 
         if(selectedProduct) {
 
+         // console.log(selectedProduct)
+
             loadConnect(selectedProduct);   
         }
 

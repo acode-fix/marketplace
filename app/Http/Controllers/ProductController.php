@@ -77,7 +77,8 @@ public function index()
 
        $data = Product::where('quantity', '!=', 0)
                        ->join('users', 'products.user_id', '=', 'users.id' )
-                       ->select('products.*',
+                       ->select('products.id as product_id', 
+                                'products.*',
                                 'users.badge_status',
                                 'users.verify_status',
                                 'users.email',
@@ -100,7 +101,8 @@ public function index()
         // Fetch a random set of products
         $randomProducts = Product::where('quantity', '!=', 0)
                                  ->join('users', 'products.user_id', '=', 'users.id' )
-                                 ->select('products.*',
+                                 ->select('products.id as product_id',
+                                          'products.*',
                                           'users.badge_status',
                                           'users.verify_status',
                                           'users.email',
@@ -1097,7 +1099,7 @@ public function  storeProductEngagement(Request $request) {
    }
 
    $validator = Validator::make($request->all(), [
-        'id' => 'required|exists:products,id',
+        'product_id' => 'required|exists:products,id',
         'user_id' => 'required|exists:users,id',
    ]);
 
@@ -1112,7 +1114,7 @@ public function  storeProductEngagement(Request $request) {
 
    }
 
-   $productId = $request->id;
+   $productId = $request->product_id;
   // $userId = $request->user_id;
   $userId = $request->user()->id;
 

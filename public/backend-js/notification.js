@@ -53,16 +53,20 @@ channel.bind("Illuminate\\Notifications\\Events\\BroadcastNotificationCreated", 
 })
 
 
-
+/*
 async function loadNotification(data) {
   let content = [data];
  
 
   const notificationPromises = content.map(async (item) => {
 
- //   console.log(data)
+   console.log(data)
 
       const productImageHtml = await loadProductDetails(item.product_id);
+
+      if(data.user_id == data.product_id) {
+        continue;
+      }
     
    
    return   productImageHtml ? `<a class="notification-link"  href="/rating/page?user=${data.user_id}&product=${data.product_id}&shop=${shopToken}">
@@ -100,6 +104,52 @@ async function loadNotification(data) {
       
   }
 }
+*/
+
+async function loadNotification(data) {
+  const content = Array.isArray(data) ? data : [data]; // Ensure content is an array
+
+  const notificationPromises = content.map(async (item) => {
+    // Skip processing if user_id matches product_id
+   if (item.user_id === item.product_user_id) return '';
+
+    try {
+      const productImageHtml = await loadProductDetails(item.product_id);
+
+      return productImageHtml
+        ? `<a class="notification-link" href="/rating/page?user=${item.user_id}&product=${item.product_id}&shop=${shopToken}">
+            <div class="notification">
+              <div class="notification_details">
+                <div class="notification_image">
+                  <img src="innocent/assets/image/logo icon.svg" alt="Profile Picture">
+                </div>
+                <div class="message_area">
+                  <p class="time">${item.comment}</p>
+                  <p class="message"><strong>Congratulations</strong><br>It is a perfect time to give a review.</p>
+                </div>
+                ${productImageHtml}
+              </div>
+            </div>
+          </a>`
+        : '';
+    } catch (error) {
+      console.error(`Failed to load product details for product ID ${item.product_id}`, error);
+      return '';
+    }
+  });
+
+  const messages = await Promise.all(notificationPromises);
+
+  const filteredMessages = messages.filter((message) => message.trim() !== '');
+
+  if (filteredMessages.length > 0) {
+    const notification = document.querySelector('.notifications_layout');
+    if (notification) {
+      notification.innerHTML += filteredMessages.join('');
+      notificationStatus(filteredMessages); 
+    }
+  }
+}
 
 async function loadProductDetails(id) {
  // console.log(id);
@@ -118,6 +168,7 @@ async function loadProductDetails(id) {
           const image = getSingleImage(product.image_url);
 
           if (image) {
+            
               return `<img src="/uploads/products/${image}" alt="Picture" class="notification_product_image">`;
           }
       }
@@ -158,19 +209,14 @@ axios.get('/api/v1/user/notification',  {
 })
 
 
-
+/*
 async function getUnreadNotification(notifications) {
   // Use map to create an array of promises for each notification's HTML content
   const messagePromises = notifications.map(async (notification) => {
       const data = JSON.parse(notification.data);
 
-     // console.log(data);
-
-     // console.log(data.product_id)
-
-    // return;
-
-      // Load product image asynchronously
+      console.log(data);
+         
       const productImageHtml = await loadProductDetails(data.product_id);
 
    return   productImageHtml ? `<a class="notification-link"  href="/rating/page?user=${data.user_id}&product=${data.product_id}&shop=${shopToken}">
@@ -218,6 +264,60 @@ async function getUnreadNotification(notifications) {
 
 
   
+}
+*/
+
+async function getUnreadNotification(notifications) {
+  // Process each notification asynchronously
+  const messagePromises = notifications.map(async (notification) => {
+    try {
+      const data = JSON.parse(notification.data);
+
+     // console.log(data);
+
+      // Skip notifications where user_id matches product_id
+      if (data.user_id === data.product_user_id) return '';
+
+      // Load product details
+      const productImageHtml = await loadProductDetails(data.product_id);
+
+      // Return notification HTML or an empty string if no product details are found
+      return `
+        <a class="notification-link" href="/rating/page?user=${data.user_id}&product=${data.product_id}&shop=${shopToken}">
+          <div class="notification">
+            <div class="notification_details">
+              <div class="notification_image">
+                <img src="innocent/assets/image/logo icon.svg" alt="Profile Picture">
+              </div>
+              <div class="message_area">
+                <strong>Your experience matters</strong>
+                <p class="time pt-1">${data.comment}</p>
+                <p class="message"><strong>Congratulations</strong><br>It is a perfect time to give a review.</p>
+              </div>
+              ${productImageHtml ?? '<img src="innocent/assets/image/laptop2.jpg" alt="Picture" class="notification_product_image">'}
+            </div>
+          </div>
+        </a>`;
+    } catch (error) {
+      console.error('Error processing notification:', error);
+      return ''; // Return empty string for failed notifications
+    }
+  });
+
+  // Wait for all promises to resolve
+  const messages = await Promise.all(messagePromises);
+
+  // Filter out empty or invalid messages
+  const filteredMessages = messages.filter((message) => message.trim() !== '');
+
+  // Update notification status
+  notificationStatus(filteredMessages);
+
+  // Insert notifications into the DOM
+  const notificationContainer = document.querySelector('.notifications_layout');
+  if (notificationContainer) {
+    notificationContainer.innerHTML += filteredMessages.join('');
+  }
 }
 
 

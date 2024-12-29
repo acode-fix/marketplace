@@ -830,15 +830,15 @@ public function sendNotification(Request $request)
 
         //$productId = Product::find($productConnectId);
 
-        $productId = Product::where('id', $productConnectId)
+        $product = Product::where('id', $productConnectId)
                             ->where('quantity', '!=', 0)
                             ->first();
 
-        if(!$productId) {
+        if(!$product) {
             continue;
         }
 
-        $user->notify(new ReviewPushNotification($userId, $productId->id, 'You connected with this product'));
+        $user->notify(new ReviewPushNotification($userId, $product->id, $product->user_id,  'You connected with this product'));
 
         $connect->status = 1;
         $connect->save();

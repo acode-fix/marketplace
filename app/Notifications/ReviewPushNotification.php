@@ -14,15 +14,17 @@ class ReviewPushNotification extends Notification
 
     protected $user_id;
     protected $productId;
+    protected $userProductId;
     protected $msg;
 
     /**
      * Create a new notification instance.
      */
-    public function __construct($user_id, $productId, $msg)
+    public function __construct($user_id, $productId, $userProductId, $msg)
     {
         $this->user_id = $user_id;
         $this->productId = $productId;
+        $this->userProductId = $userProductId;
         $this->msg = $msg;
 
     }
@@ -47,6 +49,7 @@ class ReviewPushNotification extends Notification
              'comment'=>$this->msg,
              'user_id'=>$this->user_id,
              'product_id' => $this->productId,
+             'product_user_id' => $this->userProductId,
          ];
      }
      public function toBroadcast($notifiable)

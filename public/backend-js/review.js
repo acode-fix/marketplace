@@ -215,14 +215,14 @@ if(token) {
 
 
      // Update sidebar with user data
-   const display =  loadSidebar(userData);
+       loadSidebar(userData);
   
           
    
 
 
 
-    document.querySelector('.test').innerHTML = display;
+    // document.querySelector('.test').innerHTML = display;
 
     const sidebarPicElement = document.querySelector('.sidebar-pic');
 

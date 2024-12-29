@@ -109,7 +109,7 @@
     <div class="side-barr">
       <div class="card sidebar-card mb-3 text-dark ms-2 mt-3" style="width:240px;">
         <div class="card-body ">
-          <div class="test">
+          <div class="sidebar-wrapper">
 
           </div>
           {{-- <div class="ms-2">
@@ -780,8 +780,8 @@
   </div>
   </div>
   </div>
-
  
+
 <script type="module" src="{{ asset('backend-js/review.js') }}?time={{ time() }}"></script>
 <script src="{{ asset('innocent/assets/js/preloader.js') }}"></script> 
 </body>

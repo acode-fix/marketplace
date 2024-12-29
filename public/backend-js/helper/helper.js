@@ -432,9 +432,11 @@ export function loadSidebar(user) {
   const createdAt = userData?.user?.created_at ?? userData.created_at;
 
 
+
   const previewLength = 100;
 
-  const visibleBio =  bioText ? bioText.slice(0, previewLength) : '';   
+  const visibleBio =  bioText ? bioText.slice(0, previewLength) : ''; 
+  
 //  const hiddenBio = bioText ? bioText.length > previewLength  ? bioText.slice(previewLength) : '' : '';
   const hiddenBio = bioText && bioText.length > previewLength ? bioText.slice(previewLength) : '';
 
@@ -493,46 +495,49 @@ export function loadSidebar(user) {
 
      const starEl = document.querySelector('.js-stars');
 
+    const sidebarContainer = document.querySelector('.sidebar-wrapper');
 
-      if(hiddenBio) {
-        var moreText = document.getElementById("moreText");
-        var readMoreBtn = document.getElementById("readMoreBtn");
+    if(sidebarContainer) {
 
-        console.log(readMoreBtn);
+          sidebarContainer.innerHTML = display;
 
-        // Function to close the accordion
-        function closeAccordion() {
-            moreText.style.display = "none";
-            readMoreBtn.textContent = ".......Read more";
-        }
+            if(hiddenBio) {
+              var moreText = document.getElementById("moreText");
+              var readMoreBtn = document.getElementById("readMoreBtn");
 
       
-         if(readMoreBtn) {
-
-          // Toggle accordion on read more button click
-            readMoreBtn.addEventListener("click", function(e) {
-              e.preventDefault();
-              if (moreText.style.display === "none") {
-                  moreText.style.display = "inline";
-                  readMoreBtn.textContent = "Read less";
-              } else {
-                  closeAccordion();
+              // Function to close the accordion
+              function closeAccordion() {
+                  moreText.style.display = "none";
+                  readMoreBtn.textContent = ".......Read more";
               }
-          });
-      
-         }
-        
-        // Close accordion when clicking outside of it
-        document.addEventListener("click", function(e) {
-            var isClickInsideAccordion = readMoreBtn.contains(e.target) || moreText.contains(e.target);
-            if (!isClickInsideAccordion) {
-                closeAccordion();
+
+            
+              
+              // Toggle accordion on read more button click
+              readMoreBtn.addEventListener("click", function(e) {
+                  e.preventDefault();
+                  if (moreText.style.display === "none") {
+                      moreText.style.display = "inline";
+                      readMoreBtn.textContent = "Read less";
+                  } else {
+                      closeAccordion();
+                  }
+              });
+            
+              // Close accordion when clicking outside of it
+              document.addEventListener("click", function(e) {
+                  var isClickInsideAccordion = readMoreBtn.contains(e.target) || moreText.contains(e.target);
+                  if (!isClickInsideAccordion) {
+                      closeAccordion();
+                  }
+              });
+
+
+
             }
-        });
 
-
-
-      }
+    }
     
 
       
@@ -542,7 +547,7 @@ export function loadSidebar(user) {
 
   
     
-return  display;
+//return  display;
 
 }
 

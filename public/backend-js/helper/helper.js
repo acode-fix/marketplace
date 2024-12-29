@@ -498,6 +498,8 @@ export function loadSidebar(user) {
         var moreText = document.getElementById("moreText");
         var readMoreBtn = document.getElementById("readMoreBtn");
 
+        console.log(readMoreBtn);
+
         // Function to close the accordion
         function closeAccordion() {
             moreText.style.display = "none";
@@ -505,18 +507,21 @@ export function loadSidebar(user) {
         }
 
       
+         if(readMoreBtn) {
+
+          // Toggle accordion on read more button click
+            readMoreBtn.addEventListener("click", function(e) {
+              e.preventDefault();
+              if (moreText.style.display === "none") {
+                  moreText.style.display = "inline";
+                  readMoreBtn.textContent = "Read less";
+              } else {
+                  closeAccordion();
+              }
+          });
       
-        // Toggle accordion on read more button click
-        readMoreBtn.addEventListener("click", function(e) {
-            e.preventDefault();
-            if (moreText.style.display === "none") {
-                moreText.style.display = "inline";
-                readMoreBtn.textContent = "Read less";
-            } else {
-                closeAccordion();
-            }
-        });
-      
+         }
+        
         // Close accordion when clicking outside of it
         document.addEventListener("click", function(e) {
             var isClickInsideAccordion = readMoreBtn.contains(e.target) || moreText.contains(e.target);

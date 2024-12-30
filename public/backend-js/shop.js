@@ -331,7 +331,7 @@ document.addEventListener("DOMContentLoaded", function () {
                              ${generateStars(product.avg_rating)}
                           </div>
                           <div>
-                              <h6 class="ps-1 rate-no">${product.avg_rating == 0 ? '' : product.avg_rating}</h6>
+                              <h6 class="ps-1 pt-1 rate-no">${product.avg_rating == 0 ? '' : product.avg_rating}</h6>
                           </div>
                       </div>
                   </div>

@@ -310,9 +310,25 @@ export function getPrice(product) {
     ? '<p class="ask-for-price" style="color:red;">Ask for price</p>'
     : `
      <p class="promo_price">${promoPrice === '0' ? '' : '&#8358;' + promoPrice}</p>
-    <div class="${showPromo ? '' : 'main_price'}"><p class="main_price_amount">&#8358;${actualPrice}</p></div>
+     <div class="${showPromo ? '' : 'main_price'}"><p class="main_price_amount">&#8358;${actualPrice}</p></div>
     `
   }
+
+  export function getSharePrice(product) {
+
+    const promoPrice = formatPrice(product.promo_price);
+    const actualPrice = formatPrice(product.actual_price);
+    const showPromo = promoPrice === '0';
+
+
+  return   product.ask_for_price
+    ? '<p class="ask-for-price" style="color:red;">Ask for price</p>'
+    : `
+     <p class="promo_price">${promoPrice === '0' ? '' : '&#8358;' + promoPrice}</p>
+     <span class="${showPromo ? '' : 'main_price'}"><p class="mt-3">&#8358;${actualPrice}</p></span>
+    `
+  }
+
 
 
 export function loadConnect(product) {

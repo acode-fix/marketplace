@@ -276,7 +276,7 @@ async function getUnreadNotification(notifications) {
      // console.log(data);
 
       // Skip notifications where user_id matches product_id
-      if (data.user_id === data.product_user_id) return '';
+     // if (data.user_id === data.product_user_id) return '';
 
       // Load product details
       const productImageHtml = await loadProductDetails(data.product_id);

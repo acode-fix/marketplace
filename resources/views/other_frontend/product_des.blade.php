@@ -159,10 +159,10 @@
                                 <img  class="js-badge" src="" alt="">
                                 <i class="fa-solid fa-location-dot" style="font-size: 12px;"></i>
                                 <span class="user_state">loading</span>
-                                <span class="rate">
+                                {{-- <span class="rate">
                                     <img style="margin-bottom: 4px" src="{{asset('innocent/assets/image/Rate.png')}}" alt="">
                                     <span class="rate_value">loading</span>
-                                </span>
+                                </span> --}}
                                 {{-- <span><a class="js-review review-link ps-2 text-success" href="">Reviews</a></span> --}}
                             </p>
                         </div>
@@ -209,17 +209,20 @@
                <div class="product_descriptoin_card">
                     <p class="product_name_on_sidebar">Loading</p>
                     <hr>
-                    <div class="main_and_promo_price_des_sidebar js-price">
-                    <p class="promo_price2">loading</p>
-                     <p class="main_price2">loading</p>
+                    <div class="price-wrapper">
+                        <div class="main_and_promo_price_des_sidebar js-price">
+                            <p class="promo_price2">loading</p>
+                            <p class="main_price2">loading</p>
+       
+                        </div>
+                        <div class="desc-wrapper">
+
+                        </div>
 
                     </div>
-                    <div>
-                    <div class="desc-wrapper">
-
-                    </div>
-                       
                     
+                    <div>
+                    <span style="font-weight: bold;">Description</span>
                      <p class="description">Loading</p>
                    </div>
                     <div class="connect_buttons">

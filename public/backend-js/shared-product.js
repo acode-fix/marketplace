@@ -1,4 +1,4 @@
-import { getToken, getProdDesImage, getProdProfileDescImg, loadDashboard,logoutUser, getSingleImage, getBadge, getPrice, loadConnect, sendProductRequest, displayHelpCenter, promptLogin, getIndexPrice, formatProductCondition, loadResponse} from "./helper/helper.js";
+import { getToken, getProdDesImage, getProdProfileDescImg, loadDashboard,logoutUser, getSingleImage, getBadge, getPrice, loadConnect, sendProductRequest, displayHelpCenter, promptLogin, getIndexPrice, formatProductCondition, loadResponse, getSharePrice} from "./helper/helper.js";
 
   const currentUrl = new URL(window.location.href);
   const id = currentUrl.searchParams.get('id');
@@ -210,12 +210,8 @@ const logoLink = document.querySelector('.js-logo-link');
                    ${badge}
                   <i class="fa-solid fa-location-dot " style="font-size: 12px;"></i>
                   <span class="user_state">${product.location ?? 'No Location Provided'}</span>
-                  <span class="rate">
-                      <img src="/innocent/assets/image/Rate.png" alt="">
-                      ${product.avg_rating ?? 0}
-                  </span >
               </span>
-               <span><a class="review-link js-link ps-2 text-success" href="">Reviews</a></span>
+          
           </p> 
           <div class="close_product_des"><a href="{{ url('/') }}"><i class="fa-solid fa-close "></i></a></div>
       </div>
@@ -243,12 +239,50 @@ const logoLink = document.querySelector('.js-logo-link');
                   <a href="">view shop <img src="/innocent/assets/image/badge.png" alt="" ></a>  
                 </button> ` : '';
 
-  
+                const content = `
+                <p class="product_name_on_sidebar" >${product.title ?? 'N/A'}</p>         
+                      <hr>
+                      <div class="price-wrapper">
+                        <div class="main_and_promo_price_des_sidebar_shared">
+                        ${getSharePrice(product)}
+       
+                        </div>
+                        <div class="desc-wrapper">
+                         <div style="display: flex; justify-content:space-between; margin-bottom:12px;">
+                               <div>
+                                <span><a class="review-link text-success me-2 fw-bold js-link" href="">Reviews</a></span>
+                                <span class="rate">
+                                <img src="/innocent/assets/image/Rate.png" alt="">
+                                <span class="rate_value fw-bold">${product.avg_rating}</span>
+                                </span>
+                              
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+                    
+                      <div>
+                          <span style="font-weight: bold;">Description</span>
+                          <p>
+                          ${product.description}
+                          </p>
+                      </div>
+                        <div class="connect_buttons">
+                             ${verifyStatus}
+                            <button  class="product_card_connect_button js-connect-btn">
+                                <a href="">connect <img src="/innocent/assets/image/Shopping bag.png" alt="" ></a> 
+                            </button>
+                        </div>
+                    </div>`;
+
+  /*
     const content = `
     <p class="product_name_on_sidebar" >${product.title ?? 'N/A'}</p>         
           <hr>
           <div class="main_and_promo_price_des_sidebar">
-          ${ getIndexPrice(product)}
+          ${getIndexPrice(product)}
             
           </div>
         
@@ -266,7 +300,7 @@ const logoLink = document.querySelector('.js-logo-link');
             </div>
         </div>`;
 
-
+*/
     document.querySelector('.js-desc').innerHTML = content;
 
     if( document.getElementById('js-viewshop')) {
@@ -320,13 +354,10 @@ const logoLink = document.querySelector('.js-logo-link');
         <p class="user_name"><strong>${user.username ?? 'No Username Provided'}</strong><br>
             <span class="location">
                 ${badge}
-                <span>lagos,</span> 
-                <span class="rate">
-                    <img src="/innocent/assets/image/Rate.png" alt="">
-                    ${product.avg_rating ?? 0}
-                </span >
+                <span>${product.location},</span> 
+                
             </span>
-             <span><a class="review-link js-link ps-2 text-success" href="">Reviews</a></span>
+             
         </p> 
         <div class="products_details_head">
             <p class="sold2">
@@ -345,13 +376,11 @@ const logoLink = document.querySelector('.js-logo-link');
   
      document.querySelector('.js-user-info').innerHTML = mobileHeader;
 
-     const reviewLinks = document.querySelectorAll('.js-link');
+     const reviewLink = document.querySelector('.js-link');
 
    
 
-     reviewLinks.forEach((link) => {
-      if(link) {
-        link. addEventListener('click', (event) => {
+        reviewLink.addEventListener('click', (event) => {
           event.preventDefault();
     
           if(!token) {
@@ -365,9 +394,7 @@ const logoLink = document.querySelector('.js-logo-link');
             window.location.href = `/review/product?user=${user.id}&shop=${user.shop_token}`;
           }
          })
-      }
-
-     })
+      
      
     
 
@@ -580,13 +607,18 @@ const logoLink = document.querySelector('.js-logo-link');
     let  displayProduct = `
        <a href="" class="product_card_link js-id" data-product-id="${id}">
               <div class="card product_card">
-                  <h6 class="sold ${formatProductCondition(product) === 'new' ? 'new-product' : 'used-product'}" ">${formatProductCondition(product)} <br> <img  style="margin-bottom: 4px" src="/innocent/assets/image/Rate.png" alt=""> ${avg_rating}</h6>
+                  <h6 class="sold ${formatProductCondition(product) === 'new' ? 'new-product' : 'used-product'}" ">${formatProductCondition(product)} </h6>
                   <img src="/uploads/products/${getSingleImage(image_url)}" class="card-img-top w-100 product_image" alt="...">
               
                   <div class="product_card_title">
-                      <div class="main_and_promo_price_area">
-                      ${ getIndexPrice(product) }
-                      </div> 
+                      <div class="price-wrapper">
+                    <div class="main_and_promo_price_area">
+                        ${getIndexPrice(product)} 
+                    </div>
+                    <div class="rate-wrapper">
+                        <img  src="/kaz/images/star-active.svg" alt=""> ${product.avg_rating || 0}
+                    </div>
+                    </div>
                           <p class="product_name">${title ?? 'N/A'}</p>
                           <span class="product_card_location"><i class="fa-solid fa-location-dot"></i>  ${location ?? 'N/A'}</span>
                           ${getBadge(product)}
@@ -596,7 +628,7 @@ const logoLink = document.querySelector('.js-logo-link');
               </div>
         </a>`;
 
-        if(index <= 6) {
+        if(index <= 12) {
            displayTopContent += displayProduct
 
         }else {
@@ -706,29 +738,26 @@ function loadMobileProduct(products) {
   products.forEach((product, index) => {
 
     //OBJECT DESTRUCTURING;
-    const {image_url, title, location,} = product;
+    const {image_url, title, location, id} = product;
 
-  const  display = `
-  <a href="#" class="product_card_link">
-         <div class="card product_card">
-             <h6 class="sold  ${formatProductCondition(product) === 'new' ? 'new-product' : 'used-product'} ">${formatProductCondition(product)} <br> <img src="/innocent/assets/image/Rate.png" alt="">${product.avg_rating}</h6>
-             <img src="/uploads/products/${getSingleImage(image_url)}" class="card-img-top w-100 product_image" alt="...">
-         
-             <div class="product_card_title">
-                 <div class="main_and_promo_price_area">
-                    ${ getIndexPrice(product) }
-                 </div>
-                 <p class="product_name">${title}</p>
-                 <span class="product_card_location"><i class="fa-solid fa-location-dot"></i>  ${location ?? 'N/A'}</span>
-                 ${getBadge(product)}
-                 <span class="connect"><strong>connect</strong></span>
-                 
-             </div>
-         </div>
-   </a>`;
+    const display = ` <a href="" class="product_card_link js-mobile-id" data-product-id="${id}">
+                                <div class="card product_card">
+                                   <h6 class="sold  ${formatProductCondition(product) === 'new' ? 'new-product' : 'used-product'} ">${formatProductCondition(product)} </h6>
+                                  <img src="/uploads/products/${getSingleImage(image_url)}" class="card-img-top w-100 product_image" alt="...">
+                                    <div class="product_card_title">
+                                        <div class="main_and_promo_price_area">
+                                             ${getIndexPrice(product) }
+                                        </div>
+                                      <p class="product_name">${title}</p>
+                                      <span class="product_card_location"><i class="fa-solid fa-location-dot"></i>  ${location ?? 'N/A'}</span>
+                                      ${getBadge(product)}
+                                      <span class="connect"><strong>connect</strong></span>
 
+                                   </div>
+                                </div>
+                             </a>`;
 
-   if(index <= 6) {
+   if(index <= 12) {
     displayTopContent += display;
 
    }else {
@@ -739,6 +768,10 @@ function loadMobileProduct(products) {
   
  document.querySelector('.js-mobileCard-top').innerHTML = displayTopContent;
  document.querySelector('.js-mobileCard-down').innerHTML = displayDownContent;
+
+ const mobileCardElements =  document.querySelectorAll('.js-mobile-id');
+
+    getCardId(mobileCardElements)
 
 
 

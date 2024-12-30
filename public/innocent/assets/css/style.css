@@ -1721,7 +1721,8 @@ input:checked+.slider:before {
     /* background-color: #ffce29; */
     font-size: small;
     text-align: justify;
-    padding: 6px;
+    /* padding: 6px; */
+    padding: 10px 6px 10px 6px;
     border-top-left-radius: 8px;
     border-bottom-right-radius: 8px;
     line-height: 12px;
@@ -1729,7 +1730,8 @@ input:checked+.slider:before {
 
 @media screen and (max-width: 450px) {
     .sold {
-        padding: 4px;
+        /* padding: 4px; */
+        padding: 8px 4px 8px 4px;
         font-size: 12px;
     }
 }
@@ -1756,6 +1758,16 @@ input:checked+.slider:before {
     margin-top: 10px;
     margin-bottom: -9px;
 
+}
+.price-wrapper {
+    display: flex;
+    justify-content:space-between;
+     align-items:center;
+}
+
+.rate-wrapper {
+    padding-top: 10px;
+    margin-bottom: -9px; 
 }
 
 /* Promo Price */
@@ -1799,6 +1811,13 @@ input:checked+.slider:before {
         /* font-size: 20px; */
         font-size: 16px;
     }
+
+    .rate-wrapper {
+        padding-top: 0px;
+        margin-bottom: -9px; 
+    }
+
+   
 }
 
 

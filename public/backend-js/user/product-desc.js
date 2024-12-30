@@ -230,7 +230,7 @@
        document.querySelector('.user_state').textContent = product.location;
        //    document.querySelector('.user_name2').textContent = product.user.name;
        document.querySelector('.user_name2').textContent = product.username;
-       document.querySelector('.rate_value').textContent = product.avg_rating;
+      // document.querySelector('.rate_value').textContent = product.avg_rating;
        document.querySelector('.sold3').textContent = 'sold ' + (product.sold || 0);
        document.querySelector('.stock2').textContent = product.quantity + ' in stock';
        //document.querySelector('.condition2').textContent = product.condition;
@@ -298,29 +298,19 @@
                  </p>
               </div>`;
 
-              /*
-               <span class="rate">
-                         <img src="innocent/assets/image/Rate.png" alt="">
-                         <span class="rate_value">${product.avg_rating}</span>
-                     </span>
-                     <span><a class="review-link ps-2 text-success" href="/review/product?user=${user_id}&shop=${shop_token}">Reviews</a></span>
-                
-              */
-
-       const descWrapper = ` <div style="display: flex; justify-content:space-between">
-                            <span style="font-weight: bold;">Description</span>
-                            <div>
+              
+       const descWrapper = ` <div style="display: flex; justify-content:space-between;">
+                               <div>
                                 <span><a class="review-link text-success me-2 fw-bold" href="/review/product?user=${user_id}&shop=${shop_token}">Reviews</a></span>
                                 <span class="rate">
                                 <img src="innocent/assets/image/Rate.png" alt="">
                                 <span class="rate_value fw-bold">${product.avg_rating}</span>
                                 </span>
                               
-                            </div>
+                                </div>
+                            </div>`;
 
-                        </div>`;
-
-    document.querySelector('.desc-wrapper').innerHTML = descWrapper;
+     document.querySelector('.desc-wrapper').innerHTML = descWrapper;
 
        document.querySelector('.user_info').innerHTML = mobileHeader;
 
@@ -456,6 +446,29 @@
        const encodedJson = jsonString.replace(/"/g, '&quot;'); // Encode quotes for HTML attribute
 
        card.innerHTML = `
+       <a href="/product_des" class="product_card_link" data-product='${encodedJson}'>
+           <div class="card product_card">
+               <h6 class="sold ${formatProductCondition(product) === 'new' ? 'new-product' : 'used-product'} ">${formatProductCondition(product)} </h6>
+               <img src="uploads/products/${product_img_url || 'default.jpg'}"  class="card-img-top w-100 product_image" alt="${product.title}">
+               <div class="product_card_title">
+                    <div class="price-wrapper">
+                    <div class="main_and_promo_price_area">
+                        ${getIndexPrice(product)} 
+                    </div>
+                    <div class="rate-wrapper">
+                        <img  src="/kaz/images/star-active.svg" alt=""> ${product.avg_rating || 0}
+                    </div>
+                    </div>
+                   <p class="product_name">${product.title}</p>
+                   <span class="product_card_location"><i class="fa-solid fa-location-dot"></i> ${product.location}</span>
+                    ${getBadge(product)}
+                   <span class="connect"><strong>connect</strong></span>
+               </div>
+           </div>
+       </a>
+   `;
+/*
+       card.innerHTML = `
              <a href="/product_des" class="product_card_link" data-product='${encodedJson}'>
                  <div class="card product_card">
                      <h6 class="sold ${formatProductCondition(product) === 'new' ? 'new-product' : 'used-product'} ">${formatProductCondition(product)} <br> <img src="innocent/assets/image/Rate.png" alt=""> ${product.avg_rating || 0}</h6>
@@ -472,7 +485,7 @@
                  </div>
              </a>
          `;
-
+*/
        card.querySelector('.product_card_link').addEventListener('click', function (event) {
            event.preventDefault();
            localStorage.setItem('selectedProduct', this.getAttribute('data-product'));
@@ -482,83 +495,7 @@
        return card;
    }
 
-   /*
-   function createProductCard(product) {
-       const card = document.createElement('div');
-       card.className = 'card';
-
-       let product_img_url = '';
-       JSON.parse(product.image_url).forEach((el, i) => {
-           if (i === 0) product_img_url = el;
-       });
-
-       const { verify_status, badge_status } = product?.user ?? product;
-
-       const badge = verify_status == 1 && badge_status == 1
-           ? `<img class="logo-bag" src="kaz/images/badge.png" alt="">`
-           : `<img src="innocent/assets/image/logo icon.svg" alt="">`;
-
-           const sanitizeString = (str) => {
-               return str.replace(/'/g, "&#39;") // Escape single quotes
-                   .replace(/"/g, "&quot;") // Escape double quotes
-                   .replace(/\\/g, "&#92;") // Escape backslashes
-                   .replace(/\n/g, ' ') // Replace newlines with a space
-                   .replace(/\r/g, ' ') // Replace carriage returns with a space
-                   .replace(/\u2028/g, '&#8238;') // Escape line separator
-                   .replace(/\u2029/g, '&#8239;') // Escape paragraph separator
-                   .replace(/[\r\n]+/g, ' '); // Remove all \r\n sequences
-           };
-           
-       const sanitizedProduct = {
-           ...product,
-           description: product.description ? sanitizeString(product.description) : ""
-       };
-
-       const jsonString = JSON.stringify(sanitizedProduct);
-       const encodedJson = jsonString.replace(/"/g, '&quot;'); // Encode quotes for HTML attribute
-
-       card.innerHTML = `
-           <a href="/product_des" class="product_card_link js-auth-card" data-product="${encodedJson}">
-               <div class="card product_card">
-                   <h6 class="sold ${formatProductCondition(product) === 'new' ? 'new-product' : 'used-product'}">${formatProductCondition(product)} <br> <img src="innocent/assets/image/Rate.png" alt=""> ${product.avg_rating || 0}</h6> 
-                   <img src="uploads/products/${product_img_url || 'default.jpg'}" class="card-img-top w-100 product_image" alt="${product.title}">
-                   <div class="product_card_title">
-                       <div class="main_and_promo_price_area">
-                           ${getIndexPrice(product)}   
-                       </div>
-
-                       <p class="product_name">${product.title}</p>
-                       <span class="product_card_location"><i class="fa-solid fa-location-dot"></i> ${product.location}</span>
-                       ${badge}
-                       <span class="connect"><strong>connect</strong></span>
-                   </div>
-               </div>
-           </a>
-       `;
-
-       card.querySelector('.product_card_link').addEventListener('click', function (event) {
-           event.preventDefault();
-
-           if (!token) {
-               promptLogin();
-               return;
-           }
-
-           const productData = this.getAttribute('data-product');
-           try {
-               const parsedData = JSON.parse(productData);
-               console.log(parsedData);
-               localStorage.setItem('selectedProduct', JSON.stringify(parsedData));
-               window.location.href = this.href;
-           } catch (error) {
-               console.error('Error parsing JSON:', error);
-           }
-       });
-
-       return card;
-   }
-
-   */
+  
    function fetchProductDetails(productId) {
        // Simulate fetching product details from API
        // Replace with actual API call if needed

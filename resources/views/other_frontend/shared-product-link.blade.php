@@ -175,8 +175,11 @@
                             fairly used
                         </p>
                     </div> --}}
+                    
 
                     </div>
+              
+
                 </div>
                <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
                     <div class="carousel-indicators">
@@ -253,12 +256,11 @@
             <!-- Product Cards -->
             <div class="product_card_container related_search_margin">
 
-                <div class="container-fluid">
+                <div class="">
                     <div class="row">
                       <div class="col">
                         <div class="product_card_display card-margin content-margin mt-4 js-mobileCard-top">
-                  
-                        
+
                             {{-- <a href="#" class="product_card_link">
                                 <div class="card product_card">
                                     <h6 class="sold"> Sold 35 <br> <img src="{{asset('innocent/assets/image/Rate.png')}}" alt=""> 4.0</h6>

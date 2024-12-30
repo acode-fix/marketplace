@@ -10,7 +10,8 @@
        getIndexPrice,
        formatPrice,
        formatProductCondition,
-       loadResponse
+       loadResponse,
+       getSharePrice
    } from "../helper/helper.js";
 
 
@@ -302,8 +303,8 @@
        const descWrapper = ` <div style="display: flex; justify-content:space-between;">
                                <div>
                                 <span><a class="review-link text-success me-2 fw-bold" href="/review/product?user=${user_id}&shop=${shop_token}">Reviews</a></span>
-                                <span class="rate">
-                                <img src="innocent/assets/image/Rate.png" alt="">
+                                <span  class="rate">
+                                <img style="margin-bottom:2px;" src="innocent/assets/image/Rate.png" alt="">
                                 <span class="rate_value fw-bold">${product.avg_rating}</span>
                                 </span>
                               
@@ -317,11 +318,13 @@
        const imgMobile = document.getElementById('js-profile-mobile');
        getProdProfileDescImg(product, imgMobile);
 
+       document.querySelector('.js-price').innerHTML =  getSharePrice(product);
 
+        /*
        // Handle price display
        if (product.ask_for_price) {
-           document.querySelector('.promo_price2').textContent = 'ASK FOR PRICE';
-           document.querySelector('.main_price2').textContent = '';
+          document.querySelector('.promo_price2').textContent = 'ASK FOR PRICE';
+          document.querySelector('.main_price2').textContent = '';
        } else {
            const promoPrice = formatPrice(product.promo_price);
            const mainPrice = formatPrice(product.actual_price);
@@ -331,7 +334,9 @@
                          <p class="promo_price2">${promoPrice === '0' ? '' : '&#8358;' + promoPrice}</p>
                          <p class="${showPromo ? '' : 'main_price_check'} main_price2">${'&#8358;' + mainPrice}</p>`;
 
-           document.querySelector('.js-price').innerHTML = price;
+                        
+
+           document.querySelector('.js-price').innerHTML =  price;
 
 
 
@@ -339,6 +344,8 @@
            //    document.querySelector('.promo_price2').innerHTML = '&#8358;' + (formatPrice(product.promo_price) || '');
            //    document.querySelector('.main_price2').innerHTML = '&#8358;' + ( formatPrice(product.actual_price) || '');
        }
+
+       */
 
        // Update the image carousel
        updateCarousel(product.image_url);

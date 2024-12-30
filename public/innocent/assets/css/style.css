@@ -1770,6 +1770,10 @@ input:checked+.slider:before {
     margin-bottom: -9px; 
 }
 
+.rate {
+    display: none;
+}
+
 /* Promo Price */
 .promo_price {
     color: red;

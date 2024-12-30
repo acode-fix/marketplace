@@ -248,11 +248,11 @@ const logoLink = document.querySelector('.js-logo-link');
        
                         </div>
                         <div class="desc-wrapper">
-                         <div style="display: flex; justify-content:space-between; margin-bottom:12px;">
+                         <div style="display: flex; justify-content:space-between;">
                                <div>
                                 <span><a class="review-link text-success me-2 fw-bold js-link" href="">Reviews</a></span>
                                 <span class="rate">
-                                <img src="/innocent/assets/image/Rate.png" alt="">
+                                <img style="margin-bottom:2px;" src="/innocent/assets/image/Rate.png" alt="">
                                 <span class="rate_value fw-bold">${product.avg_rating}</span>
                                 </span>
                               

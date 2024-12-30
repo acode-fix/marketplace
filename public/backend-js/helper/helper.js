@@ -292,11 +292,13 @@ export function getPrice(product) {
   const promoPrice = formatPrice(product.promo_price);
   const actualPrice = formatPrice(product.actual_price);
 
-  const showPromo =  promoPrice === '0';
+  console.log(actualPrice);
+
+  const showPromo =  promoPrice == '0';
 
     return product.ask_for_price
     ? '<h6 class="amount" style="color:red; font-size:small;">Ask for price</h6>' 
-    : `<h6 class="amount">${promoPrice === '0' ? '' : '&#8358;' + promoPrice}  <span class="ps-1 ${showPromo ? '' : 'amount-span' } ">&#8358;${actualPrice}</span></h6>`;
+    : `<h6 class="${promoPrice == '0' ? 'amount-actual' : 'amount'}">${promoPrice == '0' ? '' : '&#8358;' + promoPrice}  <span class="ps-1 ${showPromo ? '' : 'amount-span' } ">&#8358;${actualPrice}</span></h6>`;
   }
 
 
@@ -322,7 +324,7 @@ export function getPrice(product) {
 
 
   return   product.ask_for_price
-    ? '<p class="ask-for-price" style="color:red;">Ask for price</p>'
+    ? '<p class="ask-for-price fw-bold" style="color:red; margin-top:8px">Ask for price</p>'
     : `
      <p class="promo_price">${promoPrice === '0' ? '' : '&#8358;' + promoPrice}</p>
      <span class="${showPromo ? '' : 'main_price'}"><p class="mt-3">&#8358;${actualPrice}</p></span>

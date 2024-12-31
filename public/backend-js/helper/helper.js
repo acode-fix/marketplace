@@ -784,7 +784,7 @@ export  function sendProductRequest(input, token) {
 
  export function formatProductCondition(product) {
 
-  const sold = document.querySelectorAll('.sold');
+  //const sold = document.querySelectorAll('.sold');
 
   if(product.condition === 'new') { 
 

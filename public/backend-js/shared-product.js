@@ -349,32 +349,34 @@ const logoLink = document.querySelector('.js-logo-link');
   
     const mobileImg = getProdDesImage(product);
 
-    const mobileHeader = `
-           ${mobileImg}
-        <p class="user_name"><strong>${user.username ?? 'No Username Provided'}</strong><br>
-            <span class="location">
-                ${badge}
-                <span>${product.location},</span> 
-                
-            </span>
-             
-        </p> 
-        <div class="products_details_head">
-            <p class="sold2">
-                sold ${product.sold ?? 0}
-            </p>
-            
-            <p class="stock">
-                ${product.quantity ?? 'N/A'} in stock
-            </p>
-            
-            <p class="condition">
-                ${formatProductCondition(product)}
-            </p>
-     </div>`;
+    const mobileHeader = ` <div>${mobileImg}</div>
+             <div class="user_name_area">
+                 <p class="user_name">${user.username ?? 'No Data Provided'}</p>
+     
+                 <p class="location">
+                     ${badge}
+                     <span class="user_state_mobile">${product.location ?? 'No Data Provided'}</span>
+                    
+                 </p>
+             </div>
+             <div class="products_details_head">
+                 <p class="sold2">
+                  sold ${product.sold ?? 0}
+                 </p>
+     
+                 <p class="stock">
+                     ${product.quantity ?? 'N/A'} in stock
+                 </p>
+     
+                 <p class="condition  ${formatProductCondition(product) === 'new' ? 'new-product' : 'used-product'} ">
+                    ${formatProductCondition(product)} 
+                    
+                 </p>
+              </div>`;
 
-  
-     document.querySelector('.js-user-info').innerHTML = mobileHeader;
+              document.querySelector('.js-user-info').innerHTML = mobileHeader;
+
+
 
      const reviewLink = document.querySelector('.js-link');
 
@@ -739,8 +741,8 @@ function loadMobileProduct(products) {
 
     //OBJECT DESTRUCTURING;
     const {image_url, title, location, id} = product;
-
-    const display = ` <a href="" class="product_card_link js-mobile-id" data-product-id="${id}">
+  
+    const display = ` <a href="" class="product_card_link" data-product-id="${id}">
                                 <div class="card product_card">
                                    <h6 class="sold  ${formatProductCondition(product) === 'new' ? 'new-product' : 'used-product'} ">${formatProductCondition(product)} </h6>
                                   <img src="/uploads/products/${getSingleImage(image_url)}" class="card-img-top w-100 product_image" alt="...">

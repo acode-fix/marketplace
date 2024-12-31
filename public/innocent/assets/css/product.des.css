@@ -1252,8 +1252,13 @@ grid-template-columns: 1fr 1fr ;
 }
 
 .rate-wrapper {
-    padding-top: 10px;
-    margin-bottom: -9px; 
+    margin-bottom: -12px;
+    display: flex;
+    align-items: center; 
+}
+.avg-rate {
+    padding-right: 7px;
+    margin-bottom: 6px;
 }
 
 

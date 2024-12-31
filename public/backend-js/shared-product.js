@@ -618,8 +618,9 @@ const logoLink = document.querySelector('.js-logo-link');
                         ${getIndexPrice(product)} 
                     </div>
                     <div class="rate-wrapper">
-                        <img  src="/kaz/images/star-active.svg" alt=""> ${product.avg_rating || 0}
-                    </div>
+                    <img src="/kaz/images/Rate.png" alt="" style="width: 20px; height: 20px;">
+                    <span class="avg-rate">${product.avg_rating || 0}</span>
+                  </div>
                     </div>
                           <p class="product_name">${title ?? 'N/A'}</p>
                           <span class="product_card_location"><i class="fa-solid fa-location-dot"></i>  ${location ?? 'N/A'}</span>
@@ -758,13 +759,6 @@ function loadMobileProduct(products) {
                                    </div>
                                 </div>
                              </a>`;
-
-                             
-
- 
-
-
-
    if(index <= 8) {
     displayTopContent += display;
 

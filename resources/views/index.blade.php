@@ -424,6 +424,7 @@
 
                     <!-- More Product Cards -->
                 </div>
+                
                 <!-- Promotion Section -->
                 <div class="promotion">
                     <img src="{{asset('innocent/assets/image/Annoucement.png')}}" alt="" class="Annoucement">

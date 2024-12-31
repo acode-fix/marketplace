@@ -385,10 +385,11 @@ function createProductCard(product) {
                 <div class="main_and_promo_price_area">
                     ${getIndexPrice(product)} 
                 </div>
-                <div class="rate-wrapper">
-                    <img  src="/kaz/images/star-active.svg" alt=""> ${product.avg_rating || 0}
-                </div>
-              </div>
+                  <div class="rate-wrapper">
+                    <img src="/kaz/images/Rate.png" alt="" style="width: 20px; height: 20px;">
+                    <span class="avg-rate">${product.avg_rating || 0}</span>
+                  </div>
+              </div>    
                 <p class="product_name">${product.title}</p>
                 <span class="product_card_location"><i class="fa-solid fa-location-dot"></i> ${product.location}</span>
                 ${badge}
@@ -435,6 +436,8 @@ function createProductCard(product) {
             console.error('Error parsing JSON:', error);
         }
     });
+
+
 
     return card;
 }
@@ -557,6 +560,10 @@ function updateUserProfile(user) {
                 window.location.href = '/become';
              }
             
+
+
+
+
         })
          
         

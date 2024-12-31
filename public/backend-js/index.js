@@ -526,11 +526,7 @@ function updateUserProfile(user) {
 
         const getEl = document.querySelector('.js-get-started');
 
-        console.log(getEl);
-
         getEl.addEventListener('click', (event) => {
-
-            console.log(true);
 
             event.preventDefault();
 
@@ -553,7 +549,7 @@ function updateUserProfile(user) {
              
                }
             
-               if(user.verify_status == 0 && user.badge_status == 0) {
+               if((user.verify_status == 0 || user.verify_status == 1 )&& user.badge_status == 0 ) {
                   window.location.href = '/become';
                }
             

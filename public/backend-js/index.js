@@ -526,7 +526,11 @@ function updateUserProfile(user) {
 
         const getEl = document.querySelector('.js-get-started');
 
+        console.log(getEl);
+
         getEl.addEventListener('click', (event) => {
+
+            console.log(true);
 
             event.preventDefault();
 

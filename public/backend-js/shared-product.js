@@ -759,7 +759,13 @@ function loadMobileProduct(products) {
                                 </div>
                              </a>`;
 
-   if(index <= 12) {
+                             
+
+ 
+
+
+
+   if(index <= 8) {
     displayTopContent += display;
 
    }else {
@@ -768,7 +774,7 @@ function loadMobileProduct(products) {
 
   })
   
- document.querySelector('.js-mobileCard-top').innerHTML = displayTopContent;
+ document.querySelector('.js-test').innerHTML = displayTopContent;
  document.querySelector('.js-mobileCard-down').innerHTML = displayDownContent;
 
  const mobileCardElements =  document.querySelectorAll('.js-mobile-id');

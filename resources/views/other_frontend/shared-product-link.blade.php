@@ -250,141 +250,25 @@
 
            
             <!-- Main Body Section -->
-        <div class="main2" >
+        <div class="main2">
            
             <h5 class="related_search  animate animate-right">Related Search</h5>
             <!-- Product Cards -->
             <div class="product_card_container related_search_margin">
-
-                <div class="">
+                <div class="container">
                     <div class="row">
-                      <div class="col">
-                        <div class="product_card_display card-margin content-margin mt-4 js-mobileCard-top">
-
-                            {{-- <a href="#" class="product_card_link">
-                                <div class="card product_card">
-                                    <h6 class="sold"> Sold 35 <br> <img src="{{asset('innocent/assets/image/Rate.png')}}" alt=""> 4.0</h6>
-                                    <img src="{{asset('innocent/assets/image/pexels-pixabay-164558.jpg')}}" class="card-img-top w-100 product_image" alt="...">
+                        <div class="col">
+                            <div class="mt-4 product_card_display card-margin content-margin js-test">
+                                <!-- Example Product Card -->
+                                
+                                
                                
-                                    <div class="product_card_title">
-                                        <div class="main_and_promo_price_area">
-                                            <p class="promo_price">$100,000,000</p>
-                                            <div class="main_price"><p class="main_price_amount">$120,000,000</p></div>
-                                            
-                                        </div>
-                                       
-                                       
-                                        <p class="product_name">3 Bed Room Flat</p>
-                                        <span class="product_card_location"><i class="fa-solid fa-location-dot"></i>  Abuja</span>
-                                        <img src="{{asset('innocent/assets/image/logo icon.png')}}" alt="" >
-                                        <span class="connect"><strong>connect</strong></span>
-                                       
-                                    </div>
-                                </div>
-                            </a> --}}
-                             {{-- <a href="product_des.html" class="product_card_link">
-                                <div class="card product_card">
-                                    <h6 class="sold"> Sold 7 <br> <img src="innocent/assets/image/Rate.png" alt=""> 3.6</h6>
-                                    <img src="innocent/assets/image/felipe-simo-dWQDNyPfKPU-unsplash.jpg" class="card-img-top w-100 product_image" alt="...">
                                
-                                    <div class="product_card_title">
-                                        <div class="main_and_promo_price_area">
-                                            <p class="promo_price">$500,000</p>
-                                            <div class="main_price"><p class="main_price_amount">$520,000</p></div>
-                                            
-                                        </div>
-                                       
-                                            
-                                            <p class="product_name">Mercedes-Benz M Class ML 350 4Matic 2012 Silver</p>
-                                            <span class="product_card_location"><i class="fa-solid fa-location-dot"></i>  Abuja</span>
-                                            <img src="innocent/assets/image/logo icon.png" alt="" >
-                                            <span class="connect"><strong>connect</strong></span>
-                                       
-                                    </div>
-                                </div>
-                             </a>
-                             <a href="product_des.html" class="product_card_link">
-                                <div class="card product_card">
-                                    <h6 class="sold"> Sold 175 <br> <img src="innocent/assets/image/Rate.png" alt=""> 3.6</h6>
-                                    <img src="innocent/assets/image/laptop.jpg" class="card-img-top w-100 product_image" alt="...">
-                               
-                                    <div class="product_card_title">
-                                       
-                                        <div class="main_and_promo_price_area">
-                                            <div class="ask_for_price">Ask for price</div>
-                                            
-                                        </div>
-                                            <p class="product_name">Laptop Apple MacBook Pro 2015 8GB</p>
-                                            <span class="product_card_location"><i class="fa-solid fa-location-dot"></i> Ilorin</span>
-                                            <img src="innocent/assets/image/logo icon.png" alt="" >
-                                           <span class="connect"><strong>connect</strong></span>
-                                    </div>
-                                </div>
-                             </a>
-                           
-                             <a href="product_des.html" class="product_card_link">
-                                <div class="card product_card">
-                                    <h6 class="sold"> Sold 75 <br> <img src="innocent/assets/image/Rate.png" alt=""> 5.0</h6>
-                                    <img src="innocent/assets/image/portrait-smiling-afro-american-male-photographer.jpg" class="card-img-top w-100 product_image" alt="...">
-                               
-                                    <div class="product_card_title">
-                                       
-                                        <div class="main_and_promo_price_area">
-                                            <div class="ask_for_price">Ask for price</div>
-                                            
-                                        </div>
-                                            <p class="product_name">Photographer</p>
-                                            <span class="product_card_location"><i class="fa-solid fa-location-dot"></i>  Lagos</span>
-                                            <img src="innocent/assets/image/logo icon.png" alt="" >
-                                           <span class="connect"><strong>connect</strong></span>
-                                    </div>
-                                </div>
-                             </a>
-                             <a href="product_des.html" class="product_card_link">
-                                <div class="card product_card">
-                                    <h6 class="sold"> Sold 95 <br> <img src="innocent/assets/image/Rate.png" alt=""> 3.6</h6>
-                                    <img src="innocent/assets/image/laptop2.jpg" class="card-img-top w-100 product_image" alt="...">
-                               
-                                    <div class="product_card_title">
-                                       
-                                        <div class="main_and_promo_price_area">
-                                            <p class="promo_price">$70,000</p>
-                                            <div class="main_price"><p class="main_price_amount">$82,000</p></div>
-                                            
-                                        </div>
-                                            <p class="product_name">Lenovo 600gb Finger Print 2020</p>
-                                            <span class="product_card_location"><i class="fa-solid fa-location-dot"></i>  Lagos</span>
-                                            <img src="innocent/assets/image/logo icon.png" alt="" >
-                                           <span class="connect"><strong>connect</strong></span>
-                                    </div>
-                                </div>
-                             </a>
-                             <a href="product_des.html" class="product_card_link">
-                                <div class="card product_card">
-                                    <h6 class="sold"> Sold 70 <br> <img src="innocent/assets/image/Rate.png" alt=""> 3.0</h6>
-                                    <img src="innocent/assets/image/usb-flash-drive-mockup-technology-data-storage-device.jpg" class="card-img-top w-100 product_image" alt="...">
-                               
-                                    <div class="product_card_title">
-                                       
-                                        <div class="main_and_promo_price_area">
-                                            <p class="promo_price">$500</p>
-                                            <div class="main_price"><p class="main_price_amount">$550</p></div>
-                                            
-                                        </div>
-                                            <p class="product_name">USB Type C OTG Card Reader</p>
-                                            <span class="product_card_location"><i class="fa-solid fa-location-dot"></i>  Lagos</span>
-                                            <img src="innocent/assets/image/logo icon.png" alt="" >
-                                           <span class="connect"><strong>connect</strong></span>
-                                    </div>
-                                </div>
-                             </a>
-                            --}}
+                                <!-- Repeat similar structure for other product cards -->
+                            </div>
                         </div>
-                      </div>
                     </div>
-                  </div>
-
-                <!-- More Product Cards -->
+                </div>
             </div>
             <!-- Promotion Section -->
             <div class="promotion">

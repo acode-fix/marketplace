@@ -254,7 +254,7 @@
                 <div class="container-fluid">
                     <div class="row">
                         <div class="col">
-                            <div class="mt-4 product_card_display card-margin content-margin">
+                            <div class="mt-4 product_card_display card-margin content-margin ">
                                 <!-- Example Product Card -->
                                 <a href="#" class="product_card_link" data-product-id="1">
                                     <div class="card product_card">

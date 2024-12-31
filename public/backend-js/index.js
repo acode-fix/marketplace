@@ -549,16 +549,14 @@ function updateUserProfile(user) {
              
                }
             
-               if((user.verify_status == 0 || user.verify_status == 1 )&& user.badge_status == 0 ) {
+               if((user.verify_status == 0  )&& user.badge_status == 0 ) {
                   window.location.href = '/become';
                }
+
+               if((user.verify_status == 1  )&& user.badge_status == -1 ) {
+                window.location.href = '/become';
+             }
             
-
-
-            
-
-          
-
         })
          
         

@@ -647,7 +647,7 @@ document.querySelector('.js-mobile-send').addEventListener('click', () => {
         return
     }
 
-    const shopNo = document.querySelector('.js-mobile-input').value;
+   const shopNo = document.querySelector('.js-mobile-input').value;
 
     getVerifiedSellerShop(shopNo);
 })

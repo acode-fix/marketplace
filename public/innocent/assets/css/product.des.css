@@ -1245,6 +1245,16 @@ grid-template-columns: 1fr 1fr ;
 
 }
 
+.main_and_promo_price_area_mobile {
+    display: flex;
+    margin: 0px;
+    line-height: 9px;
+    margin-top: 10px;
+    margin-bottom: -9px;
+    
+
+}
+
 .price-wrapper {
     display: flex;
     justify-content:space-between;

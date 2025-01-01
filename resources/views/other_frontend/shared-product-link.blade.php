@@ -254,16 +254,44 @@
            
             <h5 class="related_search  animate animate-right">Related Search</h5>
             <!-- Product Cards -->
-            <div class="product_card_container related_search_margin">
-                <div class="container">
+            <div  class="product_card_container related_search_margin">
+                <div class="container-fluid">
                     <div class="row">
                         <div class="col">
                             <div class="mt-4 product_card_display card-margin content-margin js-test">
-                                <!-- Example Product Card -->
-                                
-                                
-                               
-                               
+                                <a href="#" class="product_card_link" data-product-id="1">
+                                    <div class="card product_card">
+                                        <h6 class="sold"> Sold 35 <br> <img src="{{asset('innocent/assets/image/Rate.png')}}" alt=""> 4.0</h6>
+                                        <img src="{{asset('innocent/assets/image/pexels-pixabay-164558.jpg')}}" class="card-img-top w-100 product_image" alt="...">
+                                        <div class="product_card_title">
+                                            <div class="main_and_promo_price_area">
+                                                <p class="promo_price">$100,000,000</p>
+                                                <div class="main_price"><p class="main_price_amount">$120,000,000</p></div>
+                                            </div>
+                                            <p class="product_name">3 Bed Room Flat</p>
+                                            <span class="product_card_location"><i class="fa-solid fa-location-dot"></i>  Abuja</span>
+                                            <img src="{{asset('innocent/assets/image/logo icon.png')}}" alt="">
+                                            <span class="connect"><strong>connect</strong></span>
+                                        </div>
+                                    </div>
+                                </a>
+                                <a href="#" class="product_card_link" data-product-id="1">
+                                    <div class="card product_card">
+                                        <h6 class="sold"> Sold 35 <br> <img src="{{asset('innocent/assets/image/Rate.png')}}" alt=""> 4.0</h6>
+                                        <img src="{{asset('innocent/assets/image/pexels-pixabay-164558.jpg')}}" class="card-img-top w-100 product_image" alt="...">
+                                        <div class="product_card_title">
+                                            <div class="main_and_promo_price_area">
+                                                <p class="promo_price">$100,000,000</p>
+                                                <div class="main_price"><p class="main_price_amount">$120,000,000</p></div>
+                                            </div>
+                                            <p class="product_name">3 Bed Room Flat</p>
+                                            <span class="product_card_location"><i class="fa-solid fa-location-dot"></i>  Abuja</span>
+                                            <img src="{{asset('innocent/assets/image/logo icon.png')}}" alt="">
+                                            <span class="connect"><strong>connect</strong></span>
+                                        </div>
+                                    </div>
+                                </a>    
+                                  
                                 <!-- Repeat similar structure for other product cards -->
                             </div>
                         </div>

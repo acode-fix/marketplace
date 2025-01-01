@@ -1,4 +1,4 @@
-import { getToken, getProdDesImage, getProdProfileDescImg, loadDashboard,logoutUser, getSingleImage, getBadge, getPrice, loadConnect, sendProductRequest, displayHelpCenter, promptLogin, getIndexPrice, formatProductCondition, loadResponse, getSharePrice} from "./helper/helper.js";
+import { getToken, getProdDesImage, getProdProfileDescImg, loadDashboard,logoutUser, getSingleImage, getBadge, getPrice, loadConnect, sendProductRequest, displayHelpCenter, promptLogin, getIndexPrice, formatProductCondition, loadResponse, getSharePrice, getTestPrice} from "./helper/helper.js";
 
   const currentUrl = new URL(window.location.href);
   const id = currentUrl.searchParams.get('id');
@@ -611,22 +611,20 @@ const logoLink = document.querySelector('.js-logo-link');
               <div class="card product_card">
                   <h6 class="sold ${formatProductCondition(product) === 'new' ? 'new-product' : 'used-product'}" ">${formatProductCondition(product)} </h6>
                   <img src="/uploads/products/${getSingleImage(image_url)}" class="card-img-top w-100 product_image" alt="...">
-              
                   <div class="product_card_title">
-                      <div class="price-wrapper">
-                    <div class="main_and_promo_price_area">
-                        ${getIndexPrice(product)} 
-                    </div>
-                    <div class="rate-wrapper">
-                    <img src="/kaz/images/Rate.png" alt="" style="width: 20px; height: 20px;">
-                    <span class="avg-rate">${product.avg_rating || 0}</span>
-                  </div>
-                    </div>
+                     <div class="price-wrapper">
+                        <div class="main_and_promo_price_area">
+                            ${getIndexPrice(product)} 
+                        </div>
+                          <div class="rate-wrapper">
+                            <img src="/kaz/images/Rate.png" alt="" style="width: 20px; height: 20px;">
+                            <span class="avg-rate">${product.avg_rating || 0}</span>
+                          </div>
+                      </div>
                           <p class="product_name">${title ?? 'N/A'}</p>
                           <span class="product_card_location"><i class="fa-solid fa-location-dot"></i>  ${location ?? 'N/A'}</span>
                           ${getBadge(product)}
-                          <span class="connect"><strong>connect</strong></span>
-                      
+                          <span class="connect"><strong>connect</strong></span>                    
                   </div>
               </div>
         </a>`;
@@ -743,22 +741,28 @@ function loadMobileProduct(products) {
     //OBJECT DESTRUCTURING;
     const {image_url, title, location, id} = product;
   
-    const display = ` <a href="" class="product_card_link" data-product-id="${id}">
-                                <div class="card product_card">
-                                   <h6 class="sold  ${formatProductCondition(product) === 'new' ? 'new-product' : 'used-product'} ">${formatProductCondition(product)} </h6>
-                                  <img src="/uploads/products/${getSingleImage(image_url)}" class="card-img-top w-100 product_image" alt="...">
-                                    <div class="product_card_title">
-                                        <div class="main_and_promo_price_area">
-                                             ${getIndexPrice(product) }
-                                        </div>
-                                      <p class="product_name">${title}</p>
-                                      <span class="product_card_location"><i class="fa-solid fa-location-dot"></i>  ${location ?? 'N/A'}</span>
-                                      ${getBadge(product)}
-                                      <span class="connect"><strong>connect</strong></span>
-
-                                   </div>
-                                </div>
-                             </a>`;
+    const display = ` <a href="/product_des" class="product_card_link" data-product='${id}'>
+           <div class="card product_card">
+               <h6 class="sold ${formatProductCondition(product) === 'new' ? 'new-product' : 'used-product'} ">${formatProductCondition(product)} </h6>
+               <img src="/uploads/products/${getSingleImage(product.image_url)}"  class="card-img-top w-100 product_image" alt="${product.title}">
+               <div class="product_card_title">
+                    <div class="price-wrapper">
+                    <div class="main_and_promo_price_area">
+                        ${getIndexPrice(product)} 
+                    </div>
+                    <div class="rate-wrapper">
+                    <img src="/kaz/images/Rate.png" alt="" style="width: 20px; height: 20px;">
+                    <span class="avg-rate">${product.avg_rating || 0}</span>
+                  </div>
+                    </div>
+                   <p class="product_name">${product.title}</p>
+                   <span class="product_card_location"><i class="fa-solid fa-location-dot"></i> ${product.location}</span>
+                    ${getBadge(product)}
+                   <span class="connect"><strong>connect</strong></span>
+               </div>
+           </div>
+       </a>`;
+                             
    if(index <= 8) {
     displayTopContent += display;
 

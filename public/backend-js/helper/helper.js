@@ -331,6 +331,23 @@ export function getPrice(product) {
     `
   }
 
+  export function getTestPrice(product) {
+
+    const promoPrice = formatPrice(product.promo_price);
+    const actualPrice = formatPrice(product.actual_price);
+    const showPromo = promoPrice === '0';
+
+ return   product.ask_for_price
+    ? '<p class="ask-for-price" style="color:red;">Ask for price</p>'
+    : `
+    
+    <p class="promo_price">${promoPrice === '0' ? '' : '&#8358;' + promoPrice}</p>
+     <div class="${showPromo ? '' : 'main_price'}"><p class="">&#8358;${actualPrice}</p></div>
+    
+    `
+  } 
+  
+
 
 
 export function loadConnect(product) {

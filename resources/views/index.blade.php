@@ -235,7 +235,7 @@
                 <div id="shop_number_mobile" class="shop_number_mobile">
                     <i class="fa-solid fa-close close_shop_no" onclick=" return_enter_shop_no_mobile()"></i>
 
-                    <input type="text" class="form-control js- mobile-input" id="shop_no_input_mobile" placeholder="enter shop no ">
+                    <input type="text" class="form-control js-mobile-input" id="shop_no_input_mobile" placeholder="enter shop no ">
 
                     <img class="js-mobile-send" src="{{asset('innocent/assets/image/send 3.svg') }}" alt="" id="send"
                         onclick=" return_enter_shop_no_mobile()">
@@ -403,13 +403,13 @@
                     <a class="start-sell js-selling-check" href="{{ url('/start_selling') }}">Start Selling</a>
 
                  </div>
+                   
                
                 
                 <!-- Product Cards -->
                 <div style="overflow-x: hidden" class="product_card_container top_sales_margin">
 
                     {{-- <div class="container-fluid"> --}}
-
 
                         <div class="row mb-5">
                             <div class="col">

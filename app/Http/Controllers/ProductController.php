@@ -580,14 +580,19 @@ public function store(Request $request)
             'location' => 'required',
             'condition' => ['required', 'in:fairly_used,new'],
             'ask_for_price' => 'required|boolean',
-            'image_url' => 'required',
-            'image_url.*' => 'image|mimes:jpg,jpeg,png,gif|max:2048'
+            'actual_price' => 'required_if:ask_for_price,false|max:7',
+            'promo_price' => 'nullable|max:7',
+            'image_url.*' => 'required|image|mimes:jpg,jpeg,png,gif|max:2048'
         ]);
 
+
+        /*
         // Conditionally add validation rules for actual_price and promo_price
-        $validateProduct->sometimes('actual_price', 'required', function ($input) {
+        $validateProduct->sometimes('actual_price', 'required|max:7', function ($input) {
             return !$input->ask_for_price;
         });
+        */
+       
 
         if ($validateProduct->fails()) {
             return response()->json([

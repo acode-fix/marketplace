@@ -1316,7 +1316,7 @@
             <img class="main-logo" src="{{asset('innocent/assets/image/transparent_logo.png')}}" alt="">
         </div>
         <nav class="footer_links">
-            <a href="{{ url('/') }}">About Us</a>
+            <a href="{{ url('/about') }}">About Us</a>
             <a href="">Terms and condition</a>
             <a class="js-help-shared" href="">Help desk</a>
             <a href="{{ url('/privacy') }}">Privacy & policy</a>

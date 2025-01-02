@@ -228,7 +228,7 @@ if (!product) {
         </div>
         <hr>
         <div class="accont_features">
-                <p class="js-unauth">Account Setting </p>
+                <p class="js-unauth">Dashboard </p>
                 <p class="js-unauth" > Refer a Friend </p>
                 <p class="js-unauth" >Privacy and Policy </p>
                 <p class="js-unauth" > Log in</p>
@@ -257,7 +257,7 @@ if (!product) {
   </div>
   <hr>
   <div class="accont_features">
-      <p><a href="/settings">Account Setting </a></p>
+      <p><a href="/settings">Dashboard </a></p>
       <p><a href="/refer"> Reffer a Friend </a></p>
       <p> <a href="/privacy'">Privacy and Policy </a></p>
       <p><a href="#" id="logout-link">Log out</a></p>
@@ -340,12 +340,13 @@ export function getPrice(product) {
  return   product.ask_for_price
     ? '<p class="ask-for-price" style="color:red;">Ask for price</p>'
     : `
-    
-    <p class="promo_price">${promoPrice === '0' ? '' : '&#8358;' + promoPrice}</p>
-     <div class="${showPromo ? '' : 'main_price'}"><p class="">&#8358;${actualPrice}</p></div>
-    
+     <p style="font-size:x-small;" class="promo_price-test">${promoPrice === '0' ? '' : '&#8358;' + promoPrice}</p>
+     <div class="${showPromo ? '' : 'main_price-test'}"><p class="main_price_amount">&#8358;${actualPrice}</p></div>
     `
-  } 
+  }
+
+
+  
   
 
 
@@ -760,6 +761,8 @@ export  function sendProductRequest(input, token) {
       if(error.response) {
 
           if(error.response.status === 422 && error.response.data) {
+
+            console.log(error.response);
               Swal.fire({
                   icon: 'error',
                   title: 'validation Error',

@@ -27,8 +27,8 @@
                                             </div>
                                     </form>
                                     <div class="mt-4 ms-4">
-                                        <h5 class="mired-name js-mired-name" id="mired-name">Loading</h5>
-                                        <h6 class="mired-email js-mired-email" id="mired-email">loading</h6>
+                                        <h5 class="mired-name js-mired-name" id="mired-name"></h5>
+                                        <h6 class="mired-email js-mired-email" id="mired-email"></h6>
                                         <a class="verified-link js-verification"
                                             href="{{ url('/sellers-shop') }}">Unverified seller</a>
                                     </div>
@@ -729,8 +729,8 @@
                             </div>
                         </form>
                         <div class="ms-3">
-                            <h6 class="mired-shop-m pt-3  js-mired-name">Mired Augustine</h6>
-                            <h6 class="mired-shop-email-m js-mired-email">miredaugustine@gmail.com</h6>
+                            <h6 class="mired-shop-m pt-3  js-mired-name"></h6>
+                            <h6 class="mired-shop-email-m js-mired-email"></h6>
                             <a class="mired-un-m  js-verification" href="{{ url('/sellers-shop') }}">Unverified
                                 seller</a>
                         </div>

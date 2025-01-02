@@ -1283,6 +1283,16 @@ grid-template-columns: 1fr 1fr ;
 
 }
 
+.promo_price-test {
+    color: red;
+    /* font-size: 23px; */
+    font-size: small;
+    /* padding-right: 2px; */
+    margin: 0px;
+
+
+}
+
 
 
 /* Main Price */
@@ -1293,6 +1303,16 @@ grid-template-columns: 1fr 1fr ;
     margin: 0px;
     margin-left: 5px;
     
+
+}
+
+.main_price-test {
+    text-decoration: line-through red;
+    /* font-size: 12px; */
+    font-size: x-small;
+    max-width: 30%;
+    margin: 0px;
+    margin-left: 5px;
 
 }
 

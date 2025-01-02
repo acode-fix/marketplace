@@ -116,7 +116,7 @@ class UsersController extends Controller
 
             return response()->json([
                 'status' => false,
-                'message' => 'Email Not Found',
+                'message' => 'Email Or password does not exists',
 
             ],404);
 
@@ -647,7 +647,6 @@ public function getUserPayment(Request $request) {
         ], 200);
     }else {
 
-
         return response()->json([
             'status' => false,
             'message' => 'User Not Found',
@@ -843,10 +842,6 @@ public function sendNotification(Request $request)
         $connect->status = 1;
         $connect->save();
 
-        
-
-       
-    
     }
 
     return response()->json([

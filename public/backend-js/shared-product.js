@@ -8,6 +8,8 @@ import { getToken, getProdDesImage, getProdProfileDescImg, loadDashboard,logoutU
 
   const token = localStorage.getItem('apiToken');
 
+  
+
 
 const logoImg =  document.querySelector('.js-logo-img');
 const logoLink = document.querySelector('.js-logo-link');
@@ -748,7 +750,7 @@ function loadMobileProduct(products) {
                <div class="product_card_title">
                     <div class="price-wrapper">
                     <div class="main_and_promo_price_area">
-                        ${getIndexPrice(product)} 
+                        ${getTestPrice(product)} 
                     </div>
                     <div class="rate-wrapper">
                     <img src="/kaz/images/Rate.png" alt="" style="width: 20px; height: 20px;">
@@ -763,7 +765,7 @@ function loadMobileProduct(products) {
            </div>
        </a>`;
                              
-   if(index <= 8) {
+   if(index <= 12) {
     displayTopContent += display;
 
    }else {
@@ -784,34 +786,42 @@ function loadMobileProduct(products) {
   }
 
 
+  
   document.querySelector('.js-send-input').addEventListener('click', () => {
-    
-    const input = document.querySelector('.js-input2').value;
 
-    if(input.trim() === '') {
-        return;
+    if(!token) {
+
+      promptLogin();
+
+      return
     }
+    
+    const input = document.querySelector('.js-input2');
 
-    const token = localStorage.getItem('apiToken');
+    if(input.value.trim() === '') return  send(input);
 
-    sendProductRequest(input,token);
+    sendProductRequest(input.value,token);
 
 
    });
 
    document.querySelector('.js-send-mobile').addEventListener('click', () => {
 
-    const input = document.querySelector('.js-input-mobile').value;
-
-    if(input.trim() === '') {
-        return;
-    }
-
     
-    const token = localStorage.getItem('apiToken');
+    if(!token) {
 
+      promptLogin();
 
-    sendProductRequest(input, token);
+      return
+    }
+    
+
+    const input = document.querySelector('.js-input-mobile');
+
+    if(input.value.trim() === '') return  send(input);
+    
+
+    sendProductRequest(input.value, token);
 
    });
 
@@ -843,6 +853,8 @@ function loadMobileProduct(products) {
     
           return
         }
+
+        changeToInput() ;
     
        })
     }
@@ -911,6 +923,40 @@ function loadMobileProduct(products) {
     window.location.href = '/search';
 
    }
+
+
+   
+function changeToInput() {
+  document.querySelector(".tell_us_paragraph").style.display="none"
+  document.querySelector(".tell_us_what_u_want_input_area").style.display="flex"
+  document.querySelector(".tell_us_input").focus();
+  document.querySelector(".tell_us_input").value="";
+}
+
+function send(input) {
+
+  if (input.value.trim() === "") {
+
+    var myModal = new bootstrap.Modal(document.getElementById('tell_us_what_u_want_input_condition'));
+      myModal.show();
+
+  } 
+  // else {
+  //   document.querySelector(".tell_us_what_u_want_input_area").style.display="none"
+  //   document.querySelector(".loader").style.display="block";
+  //   setTimeout(function(){
+  //     document.querySelector(".loader").style.display="none";
+  //     document.querySelector(".submmited").style.display="block";
+  //     setTimeout(function(){
+  //         document.querySelector(".submmited").style.display="none";
+  //         document.querySelector(".tell_us_paragraph").style.display="block";
+  //     }, 2000);
+  //   }, 2000);
+  // }
+
+  
+}
+
     
    
    

@@ -124,7 +124,16 @@ function updateUserProfile(user) {
 
                     verification.forEach((verify) => {
 
-                        if(user.verify_status == 1 && user.badge_status == 1) {
+                        verify.addEventListener('click', (event) => {
+                            event.preventDefault();
+
+                            localStorage.setItem('userId', JSON.stringify(user.id));
+                      
+                            window.location.href = '/sellers-shop';
+
+                        })
+
+                   /*    if(user.verify_status == 1 && user.badge_status == 1) {
                         verify.textContent = 'Verified Seller';
                         verify.style.color = '#14ae5c';
                         verify.addEventListener('click', (event) => {
@@ -135,8 +144,8 @@ function updateUserProfile(user) {
                             window.location.href = '/sellers-shop';
 
                         })
-            
-
+                   
+                       
                     } else {
                         verify.textContent = 'Unverified Seller';
                         verify.href = '/become';  
@@ -144,7 +153,8 @@ function updateUserProfile(user) {
 
 
                     }
-
+                   
+                    */
 
                     })
 
@@ -152,7 +162,7 @@ function updateUserProfile(user) {
 
                        // user.banner ?  bannerImg.src = `/uploads/users/${user.banner}` : bannerImg.src = `${generateAvatar(user.email)}`;
 
-                       user.banner ?  bannerImg.src = `/uploads/users/${user.banner}` : bannerImg.src = '/kaz/images/banner.svg';
+                       user.banner ?  bannerImg.src = `/uploads/users/${user.banner}` : bannerImg.src = '/kaz/images/banner_new.jpg';
 
                     });
 

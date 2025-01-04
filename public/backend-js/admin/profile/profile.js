@@ -16,16 +16,18 @@ axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
 const userData = JSON.parse(localStorage.getItem('adminUser'));
 console.log(userData);
 
+
 axios.get('/api/v1/admin/details').then((response) => {
     // console.log(response);
 
     if (response.status === 200 && response.data) {
 
         const users = response.data.users;
+        const roles = response.data.roles;
 
-        // console.log(user);
+        console.log(users)
 
-        loadUser(users)
+        loadUser(users, roles)
 
 
     }
@@ -38,20 +40,19 @@ axios.get('/api/v1/admin/details').then((response) => {
 
 
 
-function loadUser(users) {
+function loadUser(users, roles) {
 
     let otherUsers = [];
 
-  if(userData.id !== 2) {
+  if(userData.role_id !== 1) {
 
     const user =  users.find((user) => {
 
       return   user.email === userData.email;
 
     });
-    otherUsers.push(user);
 
-    //console.log(otherUsers);
+    otherUsers.push(user);
         
   }
 
@@ -61,6 +62,7 @@ function loadUser(users) {
                   <th>S/N</th>
                   <th>Name</th>
                   <th>Email</th>
+                  <th>Role</th>
                   <th>Phone Number</th>
                   <th>Action</th>    
                 </tr>
@@ -74,6 +76,7 @@ const userDatas = otherUsers.length !== 0 ? otherUsers : users
                     <td>${index + 1}</td>
                     <td>${user.name ?? 'N/A'}</td>
                     <td>${user.email ?? 'N/A'}</td>
+                    <td>${user.role.name.replace('_', ' ')}</td>
                     <td>${user.phone_number ?? 'N/A'}</td>  
                     <td><a href="" data-user-id="${user.id}" class="btn btn-success edit-btn">edit</a></td>
                   </tr>`;
@@ -83,14 +86,26 @@ const userDatas = otherUsers.length !== 0 ? otherUsers : users
     display += `<tbody>`;
 
 
-
     document.querySelector('.js-user-table').innerHTML = display;
 
-    if (userData.id === 2) {
+    if (userData.role_id === 1) {
 
         const addUserBtn = ` <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#addUser">Add User</button>`;
 
         document.querySelector('.js-admin').innerHTML = addUserBtn;
+
+
+        let select =`<select name = "role_id" class="form-select" aria-label="Default select example">
+                       <option selected>Select A role </option>`;
+        roles.forEach((role) => {
+         select +=  `<option value="${role.id}">${role.name.replace('_', ' ')}</option> `  
+
+        });
+
+        select += `</select>`;
+
+        document.querySelector('.js-roles').innerHTML = select;
+        
 
 
     }

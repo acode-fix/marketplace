@@ -191,6 +191,12 @@ Route::get('/admin/dashboard/alluser', function() {
     return view('admin.user.alluser');
 });
 
+Route::get('/admin/dashboard/onboarded-user', function() {
+
+    return view('admin.user.onboarded');
+    
+})->name('admin.onboarded-user');
+
 Route::get('/admin/products/view', function() {
 
     return view('admin.products.view');

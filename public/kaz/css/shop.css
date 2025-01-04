@@ -405,6 +405,17 @@ border-top-left-radius:14px;
   font-size: small;
 }
 
+.init-sellers-link {
+  font-size: small;
+  text-decoration-color: #14ae5c;
+  color: #14ae5c;
+
+}
+
+.init-sellers-link:hover {
+  color: #14ae5c;
+}
+
 .camera2 {
   width: 30px;
   height: 30px;

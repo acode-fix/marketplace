@@ -236,10 +236,14 @@ const logoLink = document.querySelector('.js-logo-link');
 
 
     //LOAD CAROUSEL CONTENT;
-
+    /*
     const verifyStatus = user.verify_status == 1 && user.badge_status == 1 ? ` <button  id="js-viewshop" class="product_card_veiw_shop_button" >
                   <a href="">view shop <img src="/innocent/assets/image/badge.png" alt="" ></a>  
-                </button> ` : '';
+                </button> ` : ''; */
+
+    const btnBadge =  user.verify_status == 1 && user.badge_status == 1
+                      ?  ` <img src="/innocent/assets/image/Shopping bag.png" alt="" >`
+                      : '';
 
                 const content = `
                 <p class="product_name_on_sidebar" >${product.title ?? 'N/A'}</p>         
@@ -272,7 +276,9 @@ const logoLink = document.querySelector('.js-logo-link');
                           </p>
                       </div>
                         <div class="connect_buttons">
-                             ${verifyStatus}
+                             <button  id="js-viewshop" class="product_card_veiw_shop_button" >
+                              <a href="">view shop ${btnBadge}</a>  
+                            </button>
                             <button  class="product_card_connect_button js-connect-btn">
                                 <a href="">connect <img src="/innocent/assets/image/Shopping bag.png" alt="" ></a> 
                             </button>

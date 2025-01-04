@@ -71,3 +71,7 @@
 .profile-picture {
     cursor: pointer;
 } 
+
+.role {
+    display: none;
+}

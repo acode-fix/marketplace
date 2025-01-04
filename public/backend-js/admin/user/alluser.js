@@ -15,6 +15,9 @@ const token = getToken();
 
 axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
 
+const adminData = JSON.parse(localStorage.getItem('adminUser'));
+
+
 
 async function loadUsers() {
 
@@ -35,6 +38,13 @@ async function loadUsers() {
 
     users.forEach((user) => {
 
+        const suspendBtn = adminData.role_id === 1 
+                        ? ` <button data-user-id="${user.id}"   type="btn" class="btn btn-warning suspend btn-sm js-suspend">Suspend</button>` 
+                        : '';
+        const deleteBtn = adminData.role_id === 1
+                        ? `<button data-user-id="${user.id}"   type="btn" class="btn btn-sm btn-danger delete js-delete">Delete</button>`
+                        : '';
+
         display += ` <tr>
                   <td>${user.name ? user.name : 'No Data Yet'} </td>
                   <td>${user.email ? user.email : 'No Data Yet'}</td>
@@ -43,8 +53,9 @@ async function loadUsers() {
                   <td><a class="user-link" data-user-id="${user.id}" href="" >User Details</a></td> 
                   <td>
                   <button data-user-id="${user.id}"   type="btn" class="btn btn-sm edit btn-success js-edit">Edit</button>
-                  <button data-user-id="${user.id}"   type="btn" class="btn btn-warning suspend btn-sm js-suspend">Suspend</button>
-                  <button data-user-id="${user.id}"   type="btn" class="btn btn-sm btn-danger delete js-delete">Delete</button>
+                  ${suspendBtn}
+                  ${deleteBtn}
+                  
                   </td>  
               </tr>`;
 
@@ -95,18 +106,19 @@ document.addEventListener('click', (event) => {
       userId  = event.target.dataset.userId;
 
         axios.get(`/api/v1/admin/edit/${userId}`).then((response) => {
-            console.log(response);
+           // console.log(response);
 
             if (response.status === 200 && response.data) {
 
                 const userData = response.data.user;
-                document.querySelector('.fullname').value = userData.name;
-                document.querySelector('.username').value = userData.username;
-                document.querySelector('.phone').value = userData.phone_number;
-                document.querySelector('.address').value = userData.address;
-                document.querySelector('.email').value = userData.email;
-                document.querySelector('.nationality').value = userData.nationality;
-                document.querySelector('.bio').value = userData.bio;
+                document.querySelector('.fullname').value = userData.name ?? '';
+                document.querySelector('.username').value = userData.username ?? '';
+                document.querySelector('.phone').value = userData.phone_number ?? '';
+                document.querySelector('.shop_no').value = userData.shop_no ?? '';
+                document.querySelector('.address').value = userData.address ?? '';
+                document.querySelector('.email').value = userData.email ?? '';
+               // document.querySelector('.nationality').value = userData.nationality ?? '';
+                document.querySelector('.bio').value = userData.bio ?? '';
                 document.querySelector(`input[name="gender"][value="${userData.gender}"]`).checked = true;
             }
 

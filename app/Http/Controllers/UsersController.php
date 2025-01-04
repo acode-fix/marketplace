@@ -66,6 +66,7 @@ class UsersController extends Controller
             'email' => $request->email,
             'password' => Hash::make($request->password),
             'shop_token' => $shopToken,
+            'role_id'  => 3,
         ]);
 
         return response()->json([
@@ -147,7 +148,6 @@ class UsersController extends Controller
 
          }
 
-          
 
            if(!Auth::attempt($request->only(['email', 'password']))){
             return response()->json([
@@ -668,23 +668,34 @@ public function getDetails(Request $request) {
 
         if($userId) {
 
-            $user = User::with('products')->where('id', $userId)->where('verify_status', 1)
+       /*     $user = User::with('products')->where('id', $userId)->where('verify_status', 1)
                                             ->where('badge_status', 1)
                                             ->whereNotNull('shop_token')
                                             ->whereHas('products', function($query) {
                                                 $query->where('quantity', '!=', 0);
-                                            })->first();
+                                            })->first();  */
 
-                
-            
+                 //new flow where all users have sellers shop
+                $user = User::with('products')->where('id', $userId)
+                ->whereNotNull('shop_token')
+                ->whereHas('products', function($query) {
+                    $query->where('quantity', '!=', 0);
+                })->first();
+
+
+
                     if(!$user) {
                        // debugbar::info($userId);
 
-                        $user = User::where('id', $userId)->where('verify_status', 1)
+                       /* $user = User::where('id', $userId)->where('verify_status', 1)
                                     ->where('badge_status', 1)
                                     ->whereNotNull('shop_token')
-                                    ->first();
+                                    ->first();  */
 
+                       //new flow where all users have sellers shop
+                        $user = User::where('id', $userId)
+                        ->whereNotNull('shop_token')
+                        ->first();
 
                         debugbar::info($user);
 

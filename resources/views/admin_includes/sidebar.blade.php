@@ -12,6 +12,8 @@
           <ul>
             <li><a href="{{ route('admin.dashboard') }}">Dashboard</a></li>
             <li><a href="" id="get-users">View Users</a></li>
+            <li><a href="{{ route('admin.onboarded-user') }}" id="get-users">Onboarded Users</a></li>
+
           </ul>
         </div>
       </div>

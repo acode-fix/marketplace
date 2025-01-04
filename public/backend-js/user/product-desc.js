@@ -129,7 +129,8 @@
 
        if (viewShopButton) {
            // Apply initial styles
-           viewShopButton.style.display = 'none'; // Initially hidden
+          // viewShopButton.style.display = 'none'; // Initially hidden
+          viewShopButton.style.display = 'block';
            viewShopButton.style.border = '1px solid rgb(117, 116, 116)';
            viewShopButton.style.backgroundColor = 'white';
            viewShopButton.style.padding = '10px 10px';
@@ -173,11 +174,12 @@
            } = selectedProduct;
 
 
-           if (id && verify_status == 1 && badge_status == 1) {
+         /*  if (id && verify_status == 1 && badge_status == 1) {
                viewShopButton.style.display = 'block'; // Show button
            } else {
                viewShopButton.style.display = 'none'; // Hide button
            }
+        */
        }
 
        // Add event listener for "View Shop" button

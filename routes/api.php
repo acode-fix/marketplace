@@ -125,6 +125,11 @@ Route::get('admin/filter', [AdminController::class, 'getFilteredProducts']);
 //ROUTE ADMIN BADGES MENU;
 Route::get('admin/badge',[AdminController::class, 'getAllBadges']);
 
+//ROUTE ONBOARDERD USERS;
+
+Route::get('admin/onboarded-users/{id}', [AdminController::class, 'getOnboardedUsers']);
+Route::get('admin/onboarded-users/', [AdminController::class, 'getAllAgentRefferals']);
+
 
 //Route Admin Payments Menu;
 

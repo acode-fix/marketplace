@@ -291,9 +291,6 @@ export function getPrice(product) {
 
   const promoPrice = formatPrice(product.promo_price);
   const actualPrice = formatPrice(product.actual_price);
-
-  console.log(actualPrice);
-
   const showPromo =  promoPrice == '0';
 
     return product.ask_for_price

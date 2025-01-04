@@ -7,7 +7,6 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
-use Spatie\Permission\Traits\HasRoles;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Auth\Passwords\CanResetPassword;
@@ -15,7 +14,7 @@ use Illuminate\Support\Str;
 
 class User extends Authenticatable
 {
-    use HasApiTokens, HasFactory, Notifiable, HasRoles, CanResetPassword;
+    use HasApiTokens, HasFactory, Notifiable,  CanResetPassword;
 
     /**
      * The attributes that are mass assignable.
@@ -51,6 +50,16 @@ class User extends Authenticatable
 
     protected $dates = ['deleted_at']; // Optional: ensures dates are treated as instances of Carbon;
 
+    public function role() 
+    {
+        return $this->hasOne(Role::class, 'id', 'role_id');
+    }
+
+    public function refferals()
+    {
+      return $this->hasMany(Refferal::class, 'customer_id', 'id' );
+    }
+
 
     public function payment() {
 
@@ -63,15 +72,7 @@ class User extends Authenticatable
           // return  \Auth::guard('sanctum')->user();
        }
 
-       public function referrals()
-    {
-        return $this->hasMany(Referral::class);
-    }
-
-    public function referredBy()
-    {
-        return $this->hasOne(Referral::class, 'referred_user_id');
-    }
+    
 
         public function products()
     {

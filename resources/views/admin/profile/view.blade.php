@@ -47,6 +47,9 @@
                 <label for="email" class="form-label">Email</label>
                 <input type="email" class="form-control"  name="email" aria-describedby="email">
               </div>
+              <div class="mb-3 js-roles">
+
+              </div>
               <div class="mb-3">
                 <label for="password" class="form-label">Password</label>
                 <input type="text" class="form-control"  name="password" aria-describedby="password">

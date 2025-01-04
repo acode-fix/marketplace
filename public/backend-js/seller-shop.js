@@ -46,9 +46,8 @@ if (!userId) {
 
         //    console.log(response);
 
-      
             getProduct(data.products, data);
-            loadMobileCard(data.products);
+            loadMobileCard(data.products, data);
             updateUserProfile(data);
             authUser();
             getAvgRating();
@@ -163,6 +162,10 @@ if (!userId) {
 
         products.forEach((product) => {
 
+          const badge = data.verify_status == 1 && data.badge_status == 1 
+                       ? ` <img class=" logo-bag" src="kaz/images/badge.png" alt="">`
+                       : '';
+
             display += `
           <div>
                 <div class="card card-preview productCard" data-product-id="${product.id}">
@@ -182,7 +185,9 @@ if (!userId) {
                     </div>
                     <div class="footer-card">
                       <p class="card-text infinix-text pt-3">${product.title}</p>
-                      <img class="mt-3 logo-bag" src="kaz/images/badge.png" alt="">
+                      <div class="mt-3">
+                       ${badge}  
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -429,7 +434,7 @@ if (!userId) {
     }
 
 
-    function loadMobileCard(products) {
+    function loadMobileCard(products, user) {
 
       if(!Array.isArray(products)) {
         return  document.querySelector('.mobile-card').innerHTML = `<p class="text-danger ms-1">You Have No Product Listed!!<p>`;
@@ -438,6 +443,10 @@ if (!userId) {
       let display = '';
 
       products.forEach((product) => {
+
+        const badge = user.verify_status == 1 && user.badge_status == 1 
+                      ? `<button style="margin-top: -10px;" type="button" class="dropbtn"><img class="mt-3 logo-bag" src="kaz/images/badge.png" alt=""></button>`
+                      : '';
       
         display += `
         <a class="link-card" href="">
@@ -456,7 +465,7 @@ if (!userId) {
                       <img style="margin-left:-10px;" width="8px" src="kaz/images/location.svg" alt=""><span
                         class="location-text ps-1">${product.location}, Nigera</span>
                     </div>
-                    <button style="margin-top: -10px;" type="button" class="dropbtn"><img class="mt-3 logo-bag" src="kaz/images/badge.png" alt=""></button>
+                    ${badge} 
                   </div>
 
                 </div>
@@ -476,8 +485,11 @@ if (!userId) {
          ?  `<img style="height:220px; width:100%; object-fit:cover" id="banner" src="/uploads/users/${user.banner}" class="card-img-top main-img-border" alt="...">` 
          : `<img style="height:220px; width:100%; object-fit:cover" id="banner" src="/kaz/images/banner.svg" class="card-img-top main-img-border" alt="...">`;
 
-  
-
+        const badge = user.verify_status == 1 && user.badge_status == 1 
+                      ? `<div class="camera-seller">
+                          <img class="badge-cam" height="20px" width="15px" src="kaz/images/badge.png" alt="">
+                        </div>`  
+                      : '';
       const bannerUpdate = `
       <div style="width: 90%;" class="card mb-3  main-card-preview">
                ${bannerImg}
@@ -486,9 +498,8 @@ if (!userId) {
                     <div class="col mt-2">
                       <div style="display: flex; align-items: center;">
                         ${getUserProfileImage(user)}
-                        <div class="camera-seller">
-                          <img class="badge-cam" height="20px" width="15px" src="kaz/images/badge.png" alt="">
-                        </div>
+                        ${badge}
+                        
                         <div class="mt-4 ms-4">
                           <h5 class="">${user.username ?? 'No Data Provided'}</h5>
                           <h6 style="margin-bottom:7px" class="mired-email">Shop No: ${user.shop_no ? user.shop_no : 'N/A'}</h6>
@@ -521,15 +532,20 @@ if (!userId) {
             ? `<img class="mobile-profile"  src="/uploads/users/${user.photo_url}"  alt="">`
             : `<img class="mobile-profile"  src="${generateAvatar(user.email)}"  alt="">`;
 
+      
+      const mobileBadge = user.verify_status == 1 && user.badge_status == 1 
+            ? `<div class="camera-seller-m">
+                  <img class="badge-cam-m" height="20px" width="15px" src="kaz/images/badge.png" alt="">
+                </div>`  
+            : '';
+
         const mobileBannerUpdate =`
            ${mobileBannerImg}
           <div class="card-body">
             <div style="display: flex;justify-content: space-between;">
               <div class="drill">
                 ${userMobileImg}
-                <div class="camera-seller-m">
-                  <img class="badge-cam-m" height="20px" width="15px" src="kaz/images/badge.png" alt="">
-                </div>
+                
                 <div class="ms-3 mb-2 ">
                   <h5 class="pt-3 mired-drill-m">${user.username ?? ''}</h5>
                    <h6 style="margin-bottom:7px" class="mired-email">Shop No: ${user.shop_no ? user.shop_no : 'N/A'}</h6>

@@ -22,12 +22,26 @@ class DatabaseSeeder extends Seeder
         //     'email' => 'test@example.com',
         // ]);
 
-           $this->call(UserSeeder::class);
-           $this->call(CategorySeeder::class);
-            $this->call(Role_and_Permission::class);
-            $this->call(Ads_categorySeeder::class);
-            $this->call(LearnSeeder::class);
-            $this->call(BadgeUnitSeeder::class);
+        //    $this->call(UserSeeder::class);
+        //    $this->call(CategorySeeder::class);
+        //     $this->call(Role_and_Permission::class);
+        //     $this->call(Ads_categorySeeder::class);
+        //     $this->call(LearnSeeder::class);
+        //     $this->call(BadgeUnitSeeder::class);
+        //     $this->call(RoleSeeder::class);
+
+        $this->call([
+            RoleSeeder::class,
+           /*
+            UserSeeder::class,
+            CategorySeeder::class,
+            Ads_CategorySeeder::class,
+            LearnSeeder::class,
+            BadgeUnitSeeder::class,*/
+        ]);
+        
+
+            
 
     }
 }

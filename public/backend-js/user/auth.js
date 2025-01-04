@@ -158,9 +158,6 @@ function loginUser() {
         .then(function (response) {
 
             //console.log(response);
-
-        
-
             hideLoader(continueBtn, signupText, loader);
             const responseData = response.data;
             if (responseData.status) {

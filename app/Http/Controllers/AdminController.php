@@ -2,11 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\AgentRefferal;
 use App\Models\Category;
 use App\Models\Learn;
 use App\Models\Payment;
 use App\Models\Product;
+use App\Models\Role;
 use App\Models\ProductEngagementLog;
+use App\Models\Refferal;
 use App\Models\User;
 use App\Models\UserProductRequest;
 use Illuminate\Http\Request;
@@ -79,6 +82,7 @@ class AdminController extends Controller
 
         $validator = Validator::make($request->all(), [
             'name' => 'nullable|string',
+            'shop_no' => 'nullable|unique:users,shop_no',
             'username' => 'nullable|max:255|unique:users,username,'.$user->id,
             'phone_number'=> ['nullable', 'regex:/^(080|091|090|070|081)[0-9]{8}$/'],
             'address' => 'nullable',
@@ -110,6 +114,19 @@ class AdminController extends Controller
         $validatedData = $validator->validated();
 
         debugbar::info($validatedData);
+
+        if($request->shop_no) {
+
+            Refferal::create([
+                'refferal_id' =>  $request->user()->id,
+                'customer_id' => $id,
+
+            ]);
+
+        }
+
+
+
 
         $uploads = [
 
@@ -806,7 +823,8 @@ class AdminController extends Controller
     {    try
          {
 
-           $users = User::where('user_type', 1)->get();
+           $users = User::with('role')->where('user_type', 1)->get();
+           $roles = Role::all();
 
            if($users->isEmpty()) {
 
@@ -822,6 +840,7 @@ class AdminController extends Controller
             'status' => true,
             'message' => 'Admin Users Fetched Successfully',
             'users' => $users,
+            'roles' => $roles,
 
            ],200);
 
@@ -940,7 +959,8 @@ class AdminController extends Controller
     public function createUser(Request $request) 
     {
         $validator = Validator::make($request->all(), [
-            'name' => ['required', 'string', 'max:255'],
+             'name' => ['required', 'string', 'max:255'],
+             'role_id' => ['required'],
              'email' => ['required','email','unique:users'],
              'password' => ['required','min:8'],
              'photo_url' => 'required|image|mimes:jpg,jpeg,png,gif,svg|max:1024',
@@ -1127,6 +1147,78 @@ class AdminController extends Controller
 
 
   
+    }
+
+
+    public function getOnboardedUsers($id)
+    {
+
+        $refferals = Refferal::where('refferal_id', $id)->get();
+
+    
+        if($refferals->isEmpty()) {
+
+            return response()->json([
+                'status' => false,
+                'message' => 'No onboarded users yet!!',
+                'users' => [],
+    
+            ],404);
+
+        }
+
+
+        $userIds = $refferals->pluck('customer_id');
+        $users = User::wherein('id', $userIds)->get();
+
+        
+        return response()->json([
+
+            'status' => true,
+            'message' => 'Onboarder users fetched successfully',
+            'users' => $users,
+    
+        ],200);
+
+
+
+    }
+
+
+    public function getAllAgentRefferals()
+    {
+        $refferals = Refferal::all();
+
+        $groupedRefferals = $refferals->groupBy('refferal_id'); 
+
+        $result = [];
+
+        foreach($groupedRefferals as $agentId => $agentRefferals) {
+
+             //$agentId represents the refferal_id
+            $agent = User::find($agentId);
+
+            if($agent) {
+
+                $referredUserIds = $agentRefferals->pluck('customer_id');
+                $referredUsers = User::wherein('id', $referredUserIds)->get();
+            }
+
+            $result[] = [
+                'agent' => $agent,
+                'referred_users' => $referredUsers,
+            ];
+
+        }
+
+        return response()->json([
+            'status' => true,
+            'message' => 'All agent referrals fetched successfully',
+            'data' => $result,
+        ]);
+
+
+
     }
 
 

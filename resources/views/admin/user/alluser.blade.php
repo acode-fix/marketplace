@@ -61,6 +61,10 @@
                     <label for="fullname" class="form-label fw-bold">FullName</label>
                     <input name="name" type="text" class="form-control fullname">
                   </div>
+                  <div class="col-md-6 mt-4">
+                    <label for="nationality" class="form-label fw-bold">Shop No</label>
+                    <input name="shop_no" type="text" class="form-control shop_no">
+                  </div>
                   <div class="col-md-6">
                     <label for="username" class="form-label fw-bold">Username</label>
                     <input name="username" type="text" class="form-control username">
@@ -79,10 +83,10 @@
                       <input name="email" type="text" class="form-control email">
                     </div>
                   </div>
-                  <div class="col-md-6 mt-4">
+                  {{-- <div class="col-md-6 mt-4">
                     <label for="nationality" class="form-label fw-bold">Nationality</label>
                     <input name="nationality" type="text" class="form-control nationality">
-                  </div>
+                  </div> --}}
                   <div class="col-md-6 mt-4">
                     <label for="bio" class="form-label fw-bold">Bio</label>
                     <input name="bio" type="text" class="form-control bio">

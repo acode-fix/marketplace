@@ -162,7 +162,7 @@ if (!userId) {
 
         products.forEach((product) => {
 
-          const badge = data.verify_status == 1 && data.badge_status == 1 
+          const badge = (data.verify_status == 1 || data.verify_status == 0 )  && data.badge_status == 1 
                        ? ` <img class=" logo-bag" src="kaz/images/badge.png" alt="">`
                        : '';
 
@@ -444,7 +444,7 @@ if (!userId) {
 
       products.forEach((product) => {
 
-        const badge = user.verify_status == 1 && user.badge_status == 1 
+        const badge = ( user.verify_status == 1 || user.verify_status == 0 ) && user.badge_status == 1 
                       ? `<button style="margin-top: -10px;" type="button" class="dropbtn"><img class="mt-3 logo-bag" src="kaz/images/badge.png" alt=""></button>`
                       : '';
       
@@ -485,7 +485,7 @@ if (!userId) {
          ?  `<img style="height:220px; width:100%; object-fit:cover" id="banner" src="/uploads/users/${user.banner}" class="card-img-top main-img-border" alt="...">` 
          : `<img style="height:220px; width:100%; object-fit:cover" id="banner" src="/kaz/images/banner.svg" class="card-img-top main-img-border" alt="...">`;
 
-        const badge = user.verify_status == 1 && user.badge_status == 1 
+        const badge = (user.verify_status == 1 || user.verify_status == 0 ) && user.badge_status == 1 
                       ? `<div class="camera-seller">
                           <img class="badge-cam" height="20px" width="15px" src="kaz/images/badge.png" alt="">
                         </div>`  

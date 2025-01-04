@@ -64,7 +64,7 @@ axios.get(`/api/v1/admin/onboarded-users/${userData.id}`).then((response) => {
 
 
  
-if(userData.role_id === 1)  {
+if(userData.role_id == 1)  {
 
 
 

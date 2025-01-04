@@ -88,7 +88,7 @@ const userDatas = otherUsers.length !== 0 ? otherUsers : users
 
     document.querySelector('.js-user-table').innerHTML = display;
 
-    if (userData.role_id === 1) {
+    if (userData.role_id == 1) {
 
         const addUserBtn = ` <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#addUser">Add User</button>`;
 

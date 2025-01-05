@@ -179,8 +179,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
             function fetchLink(productId) {
 
-
-
+            
                 axios.get('/api/v1/product/link', {
                     params: {
                         productId,
@@ -191,6 +190,9 @@ document.addEventListener("DOMContentLoaded", function () {
                  //   console.log(response)
 
                     if (response.status === 200 && response.data) {
+
+                        
+
                         const key = response.data.data;
 
                         const encode = key.encode;
@@ -224,6 +226,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
                                     clearInterval(timerInterval);
                                   //  window.location.href = '/shop';
+                                  
+
+                                
 
                                 }
                             });
@@ -983,11 +988,15 @@ document.addEventListener("DOMContentLoaded", function () {
 
             });
 
+
             //console.log(mobileProductId);
             //hide the mobile-view modal btn
-            var modal = new bootstrap.Modal(document.getElementById('exampleModal2'))
+            var modal = new bootstrap.Modal(document.getElementById('exampleModal2'));
+            
             document.querySelector('.js-modal-edit').addEventListener('click', () => {
+                console.log(modal);
                 modal.hide();
+               
                // console.log(mobileProductId);
 
 
@@ -1072,7 +1081,28 @@ document.addEventListener("DOMContentLoaded", function () {
 
                 })
 
+                  // Handle "Close" button on second modal
+                    document.querySelector('.js-close').addEventListener('click', () => {
+                        document.body.classList.remove('modal-open');
+                        document.body.style.overflow = 'auto'; // Restore scrolling
+                        document.body.style.paddingRight = ''; // Reset padding
+                    });
+
+                    // Ensure no lingering backdrops after the second modal is closed
+                    document.getElementById('staticBackdrop').addEventListener('hidden.bs.modal', () => {
+                        const backdrops = document.querySelectorAll('.modal-backdrop');
+                        backdrops.forEach((backdrop) => backdrop.remove());
+                        document.body.classList.remove('modal-open');
+                        document.body.style.overflow = 'auto'; // Ensure scrolling is enabled
+                    });
+
             });
+
+           
+
+            
+
+
 
             document.getElementById('save-product-mobile').addEventListener('click', () => {
 

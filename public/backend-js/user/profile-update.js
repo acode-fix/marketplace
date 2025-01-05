@@ -162,7 +162,7 @@ function updateUserProfile(user) {
 
                        // user.banner ?  bannerImg.src = `/uploads/users/${user.banner}` : bannerImg.src = `${generateAvatar(user.email)}`;
 
-                       user.banner ?  bannerImg.src = `/uploads/users/${user.banner}` : bannerImg.src = '/kaz/images/banner_new.jpg';
+                       user.banner ?  bannerImg.src = `/uploads/users/${user.banner}` : bannerImg.src = '/kaz/images/banner.svg';
 
                     });
 

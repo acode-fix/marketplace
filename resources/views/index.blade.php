@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MarketPlace</title>
+    <title>Loopmart-marketPlace</title>
     <link rel="icon" href="{{ asset('innocent/assets/image/favicon.svg') }}" type="image/x-icon">
     <link rel="stylesheet" href="{{ asset('innocent/assets/css/bootstrap.css') }}">
     <link rel="stylesheet" href="{{ asset('innocent/assets/css/style.css') }}?time={{ time() }}">
@@ -133,7 +133,7 @@
                 <div class="carousel-inner">
 
                     <div class="carousel-item active">
-                        <img src="{{asset('innocent/assets/image/c1.png')}}" class="d-block w-100 " alt="...">
+                        <img src="{{asset('innocent/assets/image/c12.jpg')}}" class="d-block w-100 " alt="...">
                     </div>
                     <div class="carousel-item">
                         <img src="{{asset('innocent/assets/image/c3.png')}}" class="d-block w-100 " alt="...">

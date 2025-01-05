@@ -138,6 +138,35 @@ if(userData.role_id == 1)  {
         $('#example4').DataTable({
           responsive: true,
         });
+
+
+        document.addEventListener('click', (event) => {
+
+          if (event.target.classList.contains('user-link')) {
+      
+              event.preventDefault();
+      
+              const userId = event.target.dataset.userId;
+      
+              localStorage.setItem('userId', JSON.stringify(userId));
+               window.location.href = '/admin/view/user'
+      
+      
+             // getUserById(userId);
+      
+          }
+      })
+
+
+
+
+
+
+
+
+
+
+
       }
 
 

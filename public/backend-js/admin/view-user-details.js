@@ -48,7 +48,7 @@ for (let field in fullDetails ) {
 
         const element  = document.getElementById(`${field}_data`);
 
-        console.log(field)
+      //  console.log(field)
 
         if(field === 'nin_file')  {
 
@@ -99,13 +99,11 @@ for (let field in fullDetails ) {
 
                   const pay = getPayment(fullDetails[field]);
 
-                  //console.log(pay)
-
-                  payElement.textContent = pay.status == 1 ? 'Successful' : 'Unsuccessful';
+                  payElement.textContent = pay ? pay.status === 1 ? 'Successful' : 'Unsuccessful' : 'No payment available';
 
                   const amountStatus = document.getElementById('amount_status');
                   
-                  amountStatus.innerHTML = pay.status == 1 && pay.amount ? `&#8358;${formatPrice(pay.amount)}` : `&#8358;${formatPrice(0)}`;
+                  amountStatus.innerHTML = pay ?.status == 1 && pay.amount ? `&#8358;${formatPrice(pay.amount)}` : 'No payment available';
 
             } 
  
@@ -123,7 +121,11 @@ for (let field in fullDetails ) {
 
 function getPayment(paymentDetails) {
 
-   console.log(paymentDetails);
+   if(paymentDetails.length == 0) {
+
+    return null;
+
+   }
 
   for(let i = paymentDetails.length -1; i >= 0; i--) {
 
@@ -136,6 +138,8 @@ function getPayment(paymentDetails) {
 
       return paymentDetails[i]
     }
+
+    
 
   }
 

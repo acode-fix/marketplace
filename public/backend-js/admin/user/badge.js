@@ -27,9 +27,9 @@ badgeDetails();
 
 document.addEventListener('click', (event) => {
 
-  event.preventDefault();
-
   if(event.target.classList.contains('user-link')) {
+
+    event.preventDefault();
 
     const { userId } = event.target.dataset;
     

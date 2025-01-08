@@ -115,6 +115,59 @@
     <script type="module" src="{{ asset('backend-js/admin/dashboard.js') }}"></script>
     <script type="module" src="{{ asset('backend-js/admin/auth-helper.js') }}"></script>
 
+    <script>
+  document.addEventListener('DOMContentLoaded', function() {
+  var checkbox = document.getElementById('menu-checkbox');
+  var menuOverlay = document.querySelector('.menu-overlay');
+  var menu = document.querySelector('.menu');
+
+  checkbox.addEventListener('change', function() {
+      if (this.checked) {
+          menuOverlay.style.display = 'block';
+          menu.style.display = 'block';
+      } else {
+          menuOverlay.style.display = 'none';
+          menu.style.display = 'none';
+      }
+  });
+
+  menuOverlay.addEventListener('click', function() {
+      checkbox.checked = false;
+      menuOverlay.style.display = 'none';
+      menu.style.display = 'none';
+  });
+ });
+
+ 
+ const logOuts = document.querySelectorAll('.log-out');
+
+  logOuts.forEach((logOut) => {
+
+  logOut.addEventListener('click', () => {
+
+
+      Swal.fire({
+        title: "Are you sure?",
+        text: "You won't be able to revert this!",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: '#ffb705',
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Yes,I am sure!"
+        }).then((result) => {
+        if (result.isConfirmed) {
+          logout();
+          
+        }
+    });
+    
+    
+    });
+
+ })
+
+    </script>
+
 
 
 </body>

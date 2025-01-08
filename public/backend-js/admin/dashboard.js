@@ -281,27 +281,35 @@ function displayTotalProducts(total, totalEl) {
 }
 
 
-const logOut = document.querySelector('.log-out');
+// const logOuts = document.querySelectorAll('.log-out');
 
-logOut.addEventListener('click', () => {
+//   logOuts.forEach((logOut) => {
 
-  Swal.fire({
-    title: "Are you sure?",
-    text: "You won't be able to revert this!",
-    icon: "warning",
-    showCancelButton: true,
-    confirmButtonColor: '#ffb705',
-    cancelButtonColor: "#d33",
-    confirmButtonText: "Yes,I am sure!"
-    }).then((result) => {
-    if (result.isConfirmed) {
-      logout();
-      
-    }
-});
+//   logOut.addEventListener('click', () => {
+
+//     console.log('test');
+
+//       Swal.fire({
+//         title: "Are you sure?",
+//         text: "You won't be able to revert this!",
+//         icon: "warning",
+//         showCancelButton: true,
+//         confirmButtonColor: '#ffb705',
+//         cancelButtonColor: "#d33",
+//         confirmButtonText: "Yes,I am sure!"
+//         }).then((result) => {
+//         if (result.isConfirmed) {
+//           logout();
+          
+//         }
+//     });
+    
+    
+//     });
+
+//  })
 
 
-});
 
 
 

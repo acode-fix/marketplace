@@ -54,25 +54,7 @@ async function loadListedProducts() {
 
 loadListedProducts();
 
- let productId;
-
-document.addEventListener('click', (event) => {
-
-  event.preventDefault();
-
-  if(event.target.classList.contains('full-details')) {
-
-     productId = event.target.dataset.productId;
-
-    // console.log(productId);
-
-    localStorage.setItem('productId', JSON.stringify(productId));
-    window.location.href = '/admin/view/product-details';
-
-  }
-
-});
-
+// let productId;
 
 
 async function loadDeletedProducts() {
@@ -185,18 +167,29 @@ function loadUserRequest(products) {
 }
 
 
+
 document.addEventListener('click', (event) => {
 
-  event.preventDefault();
+  if (event.target.classList.contains('user-link')) {
+      event.preventDefault();
 
-  if(event.target.classList.contains('user-link')) {
+      const userId = event.target.dataset.userId;
+     // console.log('User ID:', userId);
 
-   const  userId = event.target.dataset.userId;
-
-
-    localStorage.setItem('userId', JSON.stringify(userId));
-    window.location.href = '/admin/view/user';
-
+      localStorage.setItem('userId', JSON.stringify(userId));
+      window.location.href = '/admin/view/user';
   }
+
+
+  if (event.target.classList.contains('full-details')) {
+      event.preventDefault();
+
+      const productId = event.target.dataset.productId;
+     // console.log('Product ID:', productId);
+
+      localStorage.setItem('productId', JSON.stringify(productId));
+      window.location.href = '/admin/view/product-details';
+  }
+
 
 });

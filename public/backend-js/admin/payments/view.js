@@ -7,7 +7,7 @@ axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
 
 axios.get('/api/v1/admin/payments/view').then((response) => {
 
-  console.log(response);
+ // console.log(response);
 
   const successPayments = response.data.successPayments;
   const failedPayments = response.data.failedPayments;
@@ -122,10 +122,10 @@ function loadFailedPayments(payments) {
 
 
 document.addEventListener('click', (event) => {
-
-  event.preventDefault();
-
+  
   if(event.target.classList.contains('full-details')) {
+
+    event.preventDefault();
 
    const  userId = event.target.dataset.userId;
 

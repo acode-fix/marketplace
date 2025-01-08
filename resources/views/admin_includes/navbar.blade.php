@@ -54,12 +54,10 @@
     <label for="menu-checkbox" class="menu-btn">&#9776;</label>
     <div class="menu-overlay"></div>
     <ul class="menu">
-      <li><a href="settings.html">Dashboard</a></li>
-      <li><a href="refer.html">Refer A Friend</a></li>
-      <li><a href="privacy.html">Privacy Policy</a></li>
-      <li><a href="#">Log Out</a></li>
-      <hr style="background-color: black; width: 70%;">
-      <li><a style="color: #ff0000;" href="delete.html">Delete Account</a></li>
+      <li><a href="{{ route('profile.view') }}">Profile Menu</a></li>
+      <li><a class="text-danger log-out">Log Out</a></li>
     </ul>
   </div>
 </div>
+
+<p>test</p>

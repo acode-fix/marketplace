@@ -104,10 +104,10 @@ function loadPayments(payments) {
 }
 
 document.addEventListener('click', (event) => {
-
-  event.preventDefault();
-
   if(event.target.classList.contains('full-details')) {
+
+    event.preventDefault();
+
 
    const  userId = event.target.dataset.userId;
 

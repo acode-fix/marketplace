@@ -14,7 +14,7 @@ axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
 
 
 const userData = JSON.parse(localStorage.getItem('adminUser'));
-console.log(userData);
+//console.log(userData);
 
 
 axios.get('/api/v1/admin/details').then((response) => {
@@ -25,7 +25,7 @@ axios.get('/api/v1/admin/details').then((response) => {
         const users = response.data.users;
         const roles = response.data.roles;
 
-        console.log(users)
+     //   console.log(users)
 
         loadUser(users, roles)
 

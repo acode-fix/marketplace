@@ -609,4 +609,9 @@ input:checked + .slider:before {
 }
 
 
+a.dropdown-item {
+  pointer-events: auto; /* Ensure links are clickable */
+}
+
+
 

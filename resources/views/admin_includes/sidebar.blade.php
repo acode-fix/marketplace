@@ -11,8 +11,8 @@
         <div class="submenu">
           <ul>
             <li><a href="{{ route('admin.dashboard') }}">Dashboard</a></li>
-            <li><a href="" id="get-users">View Users</a></li>
-            <li><a href="{{ route('admin.onboarded-user') }}" id="get-users">Onboarded Users</a></li>
+            <li><a href="" class="get-users">View Users</a></li>
+            <li><a href="{{ route('admin.onboarded-user') }}">Onboarded Users</a></li>
 
           </ul>
         </div>
@@ -49,8 +49,8 @@
         <!-- Submenu -->
         <div class="submenu">
           <ul>
-            <li><a href="#" id="view">View</a></li>
-            <li><a href="{{ url('settings') }}">Settings</a></li>
+            <li><a href="#" class="views">View</a></li>
+            {{-- <li><a href="{{ url('settings') }}">Settings</a></li> --}}
           </ul>
         </div>
       </div>

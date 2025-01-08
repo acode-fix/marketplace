@@ -38,7 +38,56 @@ if(!token) {
 
 loadDashboard();
 
+document.querySelectorAll('.views').forEach((view) => {
 
+  view.addEventListener('click', () => {
+    
+  axios.get('/api/v1/verify/user').then((response) => {
+    // console.log(response);
+ 
+     if(response.status === 200 && response.data) {
+       const data = response.data.data;
+       //console.log(data);
+ 
+     localStorage.setItem('userData', JSON.stringify(data));
+ 
+      window.location.href = '/admin/verification/view';
+ 
+     } 
+ 
+     if(response.status === 500) {
+ 
+       serverError();
+     }
+ 
+ 
+   }).catch((error) => {
+ 
+     //console.log(error);
+ 
+     if(error.response) {
+ 
+       if(error.response.status === 404 && error.response.data) {
+ 
+         Swal.fire({
+             icon: 'error',
+             confirmButtonColor: '#ffb705',
+             title: 'Loading All User',
+             text: error.response.data.message,
+         })
+ 
+ 
+     }
+ 
+ 
+     }
+   })
+ 
+  })
+
+})
+
+/*
 
 document.getElementById('view').addEventListener('click', () => {
 
@@ -87,12 +136,25 @@ document.getElementById('view').addEventListener('click', () => {
 });
 
 
-document.getElementById('get-users').addEventListener('click', (event) => {
-  event.preventDefault();
+*/
+document.querySelectorAll('.get-users').forEach((user) => {
 
-  window.location.href = '/admin/dashboard/alluser';
-
+     user.addEventListener('click', (event) => {
+      event.preventDefault();
+    
+      window.location.href = '/admin/dashboard/alluser';
+    
+    });
+    
 });
+
+
+// document.getElementById('get-users').addEventListener('click', (event) => {
+//   event.preventDefault();
+
+//   window.location.href = '/admin/dashboard/alluser';
+
+// });
 
 
 async function fetchRegisteredUser() {

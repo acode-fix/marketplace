@@ -15,7 +15,7 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  height: 120px;
+  height: 90px;
   position: fixed;
   top: 0;
   left: 0;
@@ -183,7 +183,6 @@ input[type="search"] {
 /* the classes will not display at this sceeen size*/
 @media screen and (max-width:970px) {
  
-
   .new-footer {
     display: none;
   }
@@ -205,6 +204,10 @@ input[type="search"] {
   }
 
   .content {
+    display: block;
+  }
+
+  .mobile-nav {
     display: block;
   }
 
@@ -300,6 +303,10 @@ input[type="search"] {
   .arrow-div {
     display: none;
   }
+
+  .mobile-nav {
+    display: none;
+  }
   
 
 }
@@ -312,7 +319,7 @@ input[type="search"] {
 /* sidebar style */
 .side-bar {
   position: fixed;
-  top: 120px;
+  top: 90px;
   left: 0;
   width: 200px;
   height: 100%;
@@ -325,9 +332,26 @@ input[type="search"] {
 
 /* holds the sidebar,content bar and the mobile view bar */
 .main {
-  margin-top: 140px;
+  margin-top: 120px;
 
 }
+
+.mobile-nav .dropdown {
+  text-align: center; /* Center align dropdown button */
+}
+
+
+@media (max-width: 970px) {
+  .drop {
+      margin-bottom: 15px; 
+    
+  }
+
+   .dropdown .btn {
+      width: 100%; 
+  }
+} 
+
 
 /*  style the main content*/
 .content {

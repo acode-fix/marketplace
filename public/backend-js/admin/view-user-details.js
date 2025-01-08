@@ -99,7 +99,7 @@ for (let field in fullDetails ) {
 
                   const pay = getPayment(fullDetails[field]);
 
-                  payElement.textContent = pay ? pay.status === 1 ? 'Successful' : 'Unsuccessful' : 'No payment available';
+                  payElement.textContent = pay ? pay.status == 1 ? 'Successful' : 'Unsuccessful' : 'No payment available';
 
                   const amountStatus = document.getElementById('amount_status');
                   

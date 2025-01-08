@@ -1159,11 +1159,11 @@ class AdminController extends Controller
         if($refferals->isEmpty()) {
 
             return response()->json([
-                'status' => false,
+                'status' => true,
                 'message' => 'No onboarded users yet!!',
                 'users' => [],
     
-            ],404);
+            ],200);
 
         }
 

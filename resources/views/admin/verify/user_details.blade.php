@@ -163,7 +163,7 @@
   </div>
 
 
-  <script type="module" src="{{ asset('backend-js/admin/view-user-details.js')}}"></script>
+  <script type="module" src="{{ asset('backend-js/admin/view-user-details.js')}}?{{ time() }}"></script>
 
   <script>
     function test(element) {

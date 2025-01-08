@@ -185,5 +185,5 @@
 
 
 
-<script type="module" src="{{ asset('backend-js/admin/helper/helper.js') }}"></script>
+<script type="module" src="{{ asset('backend-js/admin/helper/helper.js') }}?{{ time() }}"></script>
 </x-admin-layout>

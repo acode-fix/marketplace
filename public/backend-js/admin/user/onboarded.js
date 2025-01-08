@@ -24,7 +24,7 @@ axios.get(`/api/v1/admin/onboarded-users/${userData.id}`).then((response) => {
     function loadUsers(users) {
 
 
-      let display = `<table id="example3" class="table table-striped nowrap" style="width:100%">'
+      let display = `<table id="example2" class="table table-striped nowrap" style="width:100%">'
       <thead>
           <tr>
               <th>Name</th>
@@ -53,7 +53,7 @@ axios.get(`/api/v1/admin/onboarded-users/${userData.id}`).then((response) => {
 
     document.querySelector('.onboarded-users').innerHTML = display;
 
-    $('#example3').DataTable({
+    $('#example2').DataTable({
       responsive: true
     });
 
@@ -90,7 +90,7 @@ if(userData.role_id == 1)  {
 
       function loadAgents(data) {
         let display = `
-          <table id="example4" class="table table-striped nowrap" style="width:100%">
+          <table id="example3" class="table table-striped nowrap" style="width:100%">
             <thead>
               <tr>
                 <th>Agent Name</th>
@@ -135,7 +135,7 @@ if(userData.role_id == 1)  {
         document.querySelector('.agent-refferal').innerHTML = display;
 
         // Initialize DataTables for the table
-        $('#example4').DataTable({
+        $('#example3').DataTable({
           responsive: true,
         });
 

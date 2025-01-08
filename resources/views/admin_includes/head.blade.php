@@ -29,8 +29,8 @@
   
   
   {{-- <script src="{{asset('kaz/js/bootstrap.js')}}"></script> --}}
-  <script src="{{asset('kaz/js/shop.js')}}"></script> 
-  <script  src="{{asset('kaz/js/dashboard.js')}}"></script> 
+  <script src="{{asset('kaz/js/shop.js')}}?{{ time() }}"></script> 
+  <script  src="{{asset('kaz/js/dashboard.js')}}?{{ time() }}"></script> 
 
   
   <style>

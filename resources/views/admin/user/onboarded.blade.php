@@ -17,7 +17,7 @@
                   <a class="nav-link active" data-bs-toggle="tab" href="#home">User :: with shop No</a>
                 </li>
                 <li class="nav-item  agent-tab">
-                  <a class="nav-link  " data-bs-toggle="tab" href="#menu1">Agent :: Refferals</a>
+                  <a class="nav-link  "data-bs-toggle="tab" href="#menu1">Agent :: Refferals</a>
                 </li>
                 
                  
@@ -29,7 +29,7 @@
 
                 </div>
 
-                <div id="menu1" class="container agent-refferal tab-pane fade"><br>
+                <div id="menu1" class="container     agent-refferal tab-pane fade"><br>
 
 
                 </div>

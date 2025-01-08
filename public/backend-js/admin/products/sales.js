@@ -26,22 +26,6 @@ axios.get('/api/v1/admin/products-performance').then((response) => {
 });
 
 
-document.addEventListener('click', (event) => {
-
-  event.preventDefault();
-
-  if(event.target.classList.contains('sales-details')) {
-
- const productId = event.target.dataset.productId;
-
-    // console.log(productId);
-
-    localStorage.setItem('productId', JSON.stringify(productId));
-    window.location.href = '/admin/view/product-details';
-
-  }
-
-});
 
 
 function loadProducts(products) {
@@ -137,9 +121,23 @@ function loadProductsEngagement(products) {
 
 document.addEventListener('click', (event) => {
 
-  event.preventDefault();
+  if(event.target.classList.contains('sales-details')) {
+
+    event.preventDefault();
+
+    const productId = event.target.dataset.productId;
+   
+       // console.log(productId);
+   
+       localStorage.setItem('productId', JSON.stringify(productId));
+       window.location.href = '/admin/view/product-details';
+   
+     }
+
+
 
   if(event.target.classList.contains('connect-details')) {
+    event.preventDefault();
 
   const productId = event.target.dataset.productId;
 

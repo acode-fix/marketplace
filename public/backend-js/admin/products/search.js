@@ -23,7 +23,30 @@ axios.get('/api/v1/admin/products-category').then((response) => {
 
 });
 
+function loadCategories(categories) {
+  let select = `
+    <select id="product-category" class="form-select form-select-lg" aria-label="Choose Product Category">
+      <option selected>Choose Product Category</option>
+  `;
 
+  categories.forEach((category) => {
+    select += `<option value="${category.id}">${category.name}</option>`;
+  });
+
+  select += `</select>`;
+
+  // Inject the dropdown into the designated container
+  const selEl = document.querySelector('.js-select');
+  if (selEl) {
+    selEl.innerHTML = select;
+  }
+
+  const category = document.getElementById('product-category');
+
+  getCategoryEl(category)
+}
+
+/*
 function loadCategories(categories) {
 
     let select = `<select id="product-category" class="form-select form-select-lg mb-3" aria-label=".form-select-lg example">
@@ -47,7 +70,7 @@ function loadCategories(categories) {
   getCategoryEl(category)
 
 }
-
+*/
 
 
 const conditionQuery = {
@@ -121,23 +144,23 @@ document.getElementById('filterBtn').addEventListener('click', () => {
 
   
 
-  let productId;
+  // let productId;
 
-  function getdetailsPage (fullDetails) {
+  // function getdetailsPage (fullDetails) {
 
 
-    fullDetails.addEventListener('click', (event) => {
+  //   fullDetails.addEventListener('click', (event) => {
 
-      event.preventDefault();
+  //     event.preventDefault();
 
-        productId = fullDetails.dataset.productId;
+  //       productId = fullDetails.dataset.productId;
 
-        localStorage.setItem('productId', JSON.stringify(productId));
-        window.location.href = '/admin/view/product-details';  
+  //       localStorage.setItem('productId', JSON.stringify(productId));
+  //       window.location.href = '/admin/view/product-details';  
 
-    });
+  //   });
 
-  }
+  // }
    
 
     
@@ -146,48 +169,100 @@ document.getElementById('filterBtn').addEventListener('click', () => {
 
 
 
-  function loadProducts(products) {
+  // function loadProducts(products) {
 
-    let display = `<table class="table">
-          <thead>
-            <tr>
-              <th scope="col">S/N</th>
-              <th scope="col">Title</th>
-              <th scope="col">Category</th>
-              <th scope="col">Location</th>
-              <th scope="col">Description</th>
-              <th scope="col">Full Details</th>
-            </tr>
-          </thead>`;
+  //   let display = `<table class="table">
+  //         <thead>
+  //           <tr>
+  //             <th scope="col">S/N</th>
+  //             <th scope="col">Title</th>
+  //             <th scope="col">Category</th>
+  //             <th scope="col">Location</th>
+  //             <th scope="col">Description</th>
+  //             <th scope="col">Full Details</th>
+  //           </tr>
+  //         </thead>`;
 
-  products.forEach((product, index) => {
+  // products.forEach((product, index) => {
 
-    display += `  <tbody class="table-hover">
-            <tr>
-              <th scope="row">${index + 1}</th>
-              <td>${product.title ?? 'N/A'}</td>
-              <td>${product.category.name}</td>
-              <td>${product.location}</td>
-              <td>${product.description}</td>
-               <td><a class="user-link full-details" data-product-id="${product.id}" href="" >Full Details</a></td>    
-            </tr>
-            <tr>
-              </tbody>`;
-    });
+  //   display += `  <tbody class="table-hover">
+  //           <tr>
+  //             <th scope="row">${index + 1}</th>
+  //             <td>${product.title ?? 'N/A'}</td>
+  //             <td>${product.category.name}</td>
+  //             <td>${product.location}</td>
+  //             <td>${product.description}</td>
+  //              <td><a class="user-link full-details" data-product-id="${product.id}" href="" >Full Details</a></td>    
+  //           </tr>
+  //           <tr>
+  //             </tbody>`;
+  //   });
 
-  display += `</table>`;
+  // display += `</table>`;
 
 
-   document.querySelector('.js-content').innerHTML = display;
+  //  document.querySelector('.js-content').innerHTML = display;
 
-   const details = document.querySelector('.full-details');
+  //  const details = document.querySelector('.full-details');
 
-   getdetailsPage(details);
+  //  getdetailsPage(details);
 
 
      
-  }
+  // }
 
+
+
+  function loadProducts(products) {
+    let display = `
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">S/N</th>
+            <th scope="col">Title</th>
+            <th scope="col">Category</th>
+            <th scope="col">Location</th>
+            <th scope="col">Description</th>
+            <th scope="col">Full Details</th>
+          </tr>
+        </thead>
+        <tbody>
+    `;
+  
+    products.forEach((product, index) => {
+      display += `
+        <tr>
+          <th scope="row">${index + 1}</th>
+          <td>${product.title ?? 'N/A'}</td>
+          <td>${product.category.name}</td>
+          <td>${product.location}</td>
+          <td>${product.description}</td>
+          <td>
+            <a class="user-link full-details" data-product-id="${product.id}" href="#">
+              Full Details
+            </a>
+          </td>
+        </tr>
+      `;
+    });
+  
+    display += `</tbody></table>`;
+  
+    const contentContainer = document.querySelector('.js-content');
+    contentContainer.innerHTML = display;
+  
+    // Attach click event for full details
+    const detailLinks = document.querySelectorAll('.full-details');
+    detailLinks.forEach((link) => {
+      link.addEventListener('click', (event) => {
+        event.preventDefault();
+        const productId = link.dataset.productId;
+        localStorage.setItem('productId', JSON.stringify(productId));
+        window.location.href = '/admin/view/product-details';
+      });
+    });
+  }
+  
 
 
 

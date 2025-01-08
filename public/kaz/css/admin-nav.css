@@ -205,12 +205,14 @@ input[type="search"] {
 
   .content {
     display: block;
+    
   }
 
   .mobile-nav {
     display: block;
   }
 
+ 
   .left-section {
     display: none;
   }
@@ -333,8 +335,9 @@ input[type="search"] {
 /* holds the sidebar,content bar and the mobile view bar */
 .main {
   margin-top: 120px;
-
+  overflow: hidden;;
 }
+
 
 .mobile-nav .dropdown {
   text-align: center; /* Center align dropdown button */
@@ -349,6 +352,10 @@ input[type="search"] {
 
    .dropdown .btn {
       width: 100%; 
+  }
+
+  .main {
+    margin-top: 100px;
   }
 } 
 
@@ -606,11 +613,6 @@ input:checked + .slider:before {
   height: 50px;
   width: 50px;
   border-radius: 40px;
-}
-
-
-a.dropdown-item {
-  pointer-events: auto; /* Ensure links are clickable */
 }
 
 

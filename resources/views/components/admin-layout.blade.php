@@ -126,8 +126,8 @@
     <script src="https://cdn.datatables.net/responsive/3.0.3/js/responsive.bootstrap5.js"></script>
 
 
-    <script type="module" src="{{ asset('backend-js/admin/dashboard.js') }}"></script>
-    <script type="module" src="{{ asset('backend-js/admin/auth-helper.js') }}"></script>
+    <script type="module" src="{{ asset('backend-js/admin/dashboard.js')}}?{{ time() }}"></script>
+    <script type="module" src="{{ asset('backend-js/admin/auth-helper.js')}}?{{ time()  }}"></script>
 
     <script>
   document.addEventListener('DOMContentLoaded', function() {

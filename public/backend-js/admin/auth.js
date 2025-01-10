@@ -30,7 +30,7 @@ login.addEventListener('click', () => {
       const token = response.data.token;
       const adminUser = response.data.adminUser;
 
-      console.log(adminUser);
+     // console.log(adminUser);
   
       localStorage.setItem('adminUser', JSON.stringify(adminUser));
       localStorage.setItem('token', token);

@@ -307,7 +307,7 @@ export function loadDashboard() {
      
     const adminUser = JSON.parse(localStorage.getItem('adminUser'));
 
-    console.log(adminUser);
+ //   console.log(adminUser);
 
     
         const img = adminUser.photo_url 

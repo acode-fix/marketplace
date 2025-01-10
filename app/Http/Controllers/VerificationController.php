@@ -75,7 +75,7 @@ class VerificationController extends Controller
 
         } else {
 
-            $shopNo = Shop::shopNo();
+         //   $shopNo = Shop::shopNo();
            
 
            // DeBugBar::info($shopNo, $shopToken, $payment->user);
@@ -97,7 +97,7 @@ class VerificationController extends Controller
                 $expiryDate = Payment::getExpiryDate($user->badge_type);
 
                 $validate = [
-                    'shop_no' => $shopNo,
+                //    'shop_no' => $shopNo,
                     'verify_status' => 1,
                     'badge_status' => 1,
                     'purchase_date' => $purchaseDate,

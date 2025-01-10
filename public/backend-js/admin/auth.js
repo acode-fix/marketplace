@@ -29,6 +29,8 @@ login.addEventListener('click', () => {
     if (response.status === 200 ) {
       const token = response.data.token;
       const adminUser = response.data.adminUser;
+
+      console.log(adminUser);
   
       localStorage.setItem('adminUser', JSON.stringify(adminUser));
       localStorage.setItem('token', token);

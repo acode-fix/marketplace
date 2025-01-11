@@ -163,8 +163,9 @@ const users = await getRegisteredUser();
 
 const total =  calculateTotal(users);
 const totalEl = document.querySelector('.js-total-user');
+const content = 'Users'
  
-displayTotal(total,totalEl)
+displayTotal(total,totalEl,content)
 
   
 }
@@ -180,7 +181,9 @@ async function  fetchSuspendedUsers() {
 
   const totalEl = document.querySelector('.js-total-suspended-user');
 
-  displayTotal(total,totalEl)
+  const content = 'Users';
+
+  displayTotal(total,totalEl,content);
   
 }
 
@@ -195,7 +198,9 @@ async function getDeletedAccounts() {
 
   const totalEl = document.querySelector('.js-total-deleted-user');
 
-   displayTotal(total,totalEl)
+  const content = 'Users';
+
+  displayTotal(total,totalEl,content);
 
 
   
@@ -212,7 +217,10 @@ async function getActiveProducts() {
   const total = calculateTotal(products);
   const totalEl = document.querySelector('.js-total-products');
 
-  displayTotalProducts(total, totalEl)
+  const content = 'Products';
+
+  displayTotal(total,totalEl,content);
+
  
 }
 
@@ -225,7 +233,10 @@ async function getDeletedProducts() {
   const total = calculateTotal(products);
   const totalEl = document.querySelector('.js-total-deleted-products');
 
-  displayTotalProducts(total, totalEl);
+  const content = 'Products';
+
+  displayTotal(total,totalEl,content);
+
   
 }
 getDeletedProducts();
@@ -248,9 +259,13 @@ async function getActiveBadges() {
   const total2 = calculateTotal(unverifiedUser);
   const totalEl2 = document.querySelector('.js-total-unverified');
 
-  displayTotalProducts(total, totalEl);
-  displayTotalProducts(total1, totalEl1);
-  displayTotalProducts(total2, totalEl2);
+  const content = 'Users';
+
+  displayTotal(total,totalEl,content);
+  displayTotal(total, totalEl1,content);
+  displayTotal(total, totalEl2,content);
+
+
 
 
 }
@@ -260,10 +275,10 @@ getActiveBadges()
 
 
 
-function displayTotal(total, totalEl) {
+function displayTotal(total, totalEl, content) {
 
   if(totalEl) {
-    totalEl.innerHTML = `Total Number Of  Users :: ${total}`;
+    totalEl.innerHTML = `Total Number Of  ${content}  :: ${total}`;
   }
 
 

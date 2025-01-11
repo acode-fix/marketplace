@@ -18,7 +18,7 @@
     @include('admin_includes.navbar')
     <div class="main">
         @include('admin_includes.sidebar')
-        <div  class="container mobile-nav">
+        <div  class="container mobile-nav mt-1">
             <div class="row">
                 
                 <div class="col-4 drop">

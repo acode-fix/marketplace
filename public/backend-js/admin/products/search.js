@@ -46,31 +46,7 @@ function loadCategories(categories) {
   getCategoryEl(category)
 }
 
-/*
-function loadCategories(categories) {
 
-    let select = `<select id="product-category" class="form-select form-select-lg mb-3" aria-label=".form-select-lg example">
-    <option selected>Choose Product Category</option>`;
-
-    categories.forEach((category) => {
-        select += ` <option value="${category.id}">${category.name}</option>`
-    });
-
-    select += `</select>`;
-
-  const selEl =  document.querySelector('.js-select');
-
-  if(selEl) {
-
-    selEl.innerHTML = select;
-  }
-
-  const category = document.getElementById('product-category');
-
-  getCategoryEl(category)
-
-}
-*/
 
 
 const conditionQuery = {
@@ -112,7 +88,7 @@ function getCategoryEl(category) {
 
 
 document.getElementById('filterBtn').addEventListener('click', () => {
-  console.log(conditionQuery.ask_for_price);
+ // console.log(conditionQuery.ask_for_price);
 
   axios.get('/api/v1/admin/filter', {
     params: {
@@ -144,76 +120,8 @@ document.getElementById('filterBtn').addEventListener('click', () => {
 
   
 
-  // let productId;
-
-  // function getdetailsPage (fullDetails) {
-
-
-  //   fullDetails.addEventListener('click', (event) => {
-
-  //     event.preventDefault();
-
-  //       productId = fullDetails.dataset.productId;
-
-  //       localStorage.setItem('productId', JSON.stringify(productId));
-  //       window.location.href = '/admin/view/product-details';  
-
-  //   });
-
-  // }
-   
-
-    
-
-
-
-
-
-  // function loadProducts(products) {
-
-  //   let display = `<table class="table">
-  //         <thead>
-  //           <tr>
-  //             <th scope="col">S/N</th>
-  //             <th scope="col">Title</th>
-  //             <th scope="col">Category</th>
-  //             <th scope="col">Location</th>
-  //             <th scope="col">Description</th>
-  //             <th scope="col">Full Details</th>
-  //           </tr>
-  //         </thead>`;
-
-  // products.forEach((product, index) => {
-
-  //   display += `  <tbody class="table-hover">
-  //           <tr>
-  //             <th scope="row">${index + 1}</th>
-  //             <td>${product.title ?? 'N/A'}</td>
-  //             <td>${product.category.name}</td>
-  //             <td>${product.location}</td>
-  //             <td>${product.description}</td>
-  //              <td><a class="user-link full-details" data-product-id="${product.id}" href="" >Full Details</a></td>    
-  //           </tr>
-  //           <tr>
-  //             </tbody>`;
-  //   });
-
-  // display += `</table>`;
-
-
-  //  document.querySelector('.js-content').innerHTML = display;
-
-  //  const details = document.querySelector('.full-details');
-
-  //  getdetailsPage(details);
-
-
-     
-  // }
-
-
-
   function loadProducts(products) {
+
     let display = `
       <table class="table">
         <thead>
@@ -238,9 +146,8 @@ document.getElementById('filterBtn').addEventListener('click', () => {
           <td>${product.location}</td>
           <td>${product.description}</td>
           <td>
-            <a class="user-link full-details" data-product-id="${product.id}" href="#">
-              Full Details
-            </a>
+          <button class="btn btn-sm btn-light full-details"  data-product-id="${product.id}">Full details</button>
+
           </td>
         </tr>
       `;
@@ -249,6 +156,8 @@ document.getElementById('filterBtn').addEventListener('click', () => {
     display += `</tbody></table>`;
   
     const contentContainer = document.querySelector('.js-content');
+    const tableWrapper = document.querySelector('.table-wrapper');
+    tableWrapper.style.display = 'block';
     contentContainer.innerHTML = display;
   
     // Attach click event for full details

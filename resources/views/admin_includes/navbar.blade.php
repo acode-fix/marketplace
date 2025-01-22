@@ -54,7 +54,7 @@
     <label for="menu-checkbox" class="menu-btn">&#9776;</label>
     <div class="menu-overlay"></div>
     <ul class="menu">
-      <li><a href="{{ route('profile.view') }}">Profile Menu</a></li>
+      <li><a href="{{ route('admin.view') }}">Profile Menu</a></li>
       <li><a class="text-danger log-out">Log Out</a></li>
     </ul>
   </div>

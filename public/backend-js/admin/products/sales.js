@@ -4,151 +4,171 @@ const token = getToken();
 
 axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
 
+ let salesTableInstance;
 
-axios.get('/api/v1/admin/products-performance').then((response) => {
-  console.log(response);
-  if(response.status === 200 && response.data) {
+ salesTableInstance = $('#datatable').DataTable({
+    processing: true,
+    serverSide: true, 
+    ajax: function (data, callback, settings) {
+        const page = data.start / data.length + 1;
+        const perPage = data.length; 
+        const searchTerm = data.search.value; 
 
-    const products_sold = response.data.products_sold;
-    const productEngagements = response.data.productEngagements;
-
-    loadProducts(products_sold);
-
-    loadProductsEngagement(productEngagements)
-
-
-  }
- 
-
-}).catch((error) => {
-
-  console.log(error);
-});
-
-
-
-
-function loadProducts(products) {
- 
-  let display = `<table id="example1" class="table table-striped nowrap" style="width:100%">'
-        <thead>
-            <tr> 
-                <th>S/N</th>
-                <th>Title</th>
-                <th>Amount Sold</th>
-                <th>Category</th>
-                <th>Location</th>
-                <th>Description</th>
-                <th>Full Details</th>
+        // Fetch data from the server with pagination and search term
+        axios.get('/api/v1/admin/products-performance', {
+            params: {
+                page: page,
+                per_page: perPage,
+                search: searchTerm,
                
-            </tr>
-        </thead>
-        <tbody>`;
+            },
+        })
+        .then((response) => {
 
-      products.forEach((product, index) => {
+      //   console.log(response);
+          const result = response.data;
 
-      display += ` <tr>
-                <td>${index + 1}</td>
-                <td> ${product.title ?? 'N/A'}</td>
-                <td>${product.sold ?? 'N/A'} </td>
-                <td>${product.category.name ?? 'N/A'}</td>
-                <td>${product.location ?? 'N/A'}</td>
-                <td>${product.description}</td>
-                <td><a class="user-link sales-details" data-product-id="${product.id}" href="" >Full Details</a></td>   
-            </tr>`;
+          
 
-      });
-
-      display += `</tbody></table>`;
-
-
-    document.querySelector('.sales').innerHTML = display;
-
-
-      $('#example1').DataTable({
-      responsive: true
-      });
-}
-
-
-
-function loadProductsEngagement(products) {
-
- // return console.log(products)
- 
-  let display = `<table id="example2" class="table table-striped nowrap" style="width:100%">'
-        <thead>
-            <tr> 
-                <th>S/N</th>
-                <th>Total Connects</th>
-                <th>Title</th>
-                <th>Category</th>
-                <th>Location</th>
-                <th>Description</th>
-                <th>Full Details</th>              
-            </tr>
-        </thead>
-        <tbody>`;
-
-      products.forEach((product, index) => {
-
-      display += `
-                <tr>
-                <td>${index + 1}</td>
-                <td>${product.total_engagements ?? 'N/A'} </td>
-                <td> ${product.product_name ?? 'N/A'}</td>
-                <td>${product.category_name ?? 'N/A'}</td>
-                <td>${product.location ?? 'N/A'}</td>
-                <td>${product.description}</td>
-                <td><a class="user-link connect-details" data-product-id="${product.product_id}" href="" >Full Details</a></td>   
-               </tr>`;
-
-      });
-
-      display += `</tbody></table>`;
-
-
-    document.querySelector('.connects').innerHTML = display;
-
-
-      $('#example2').DataTable({
-      responsive: true
-      });
-
-
-}
-
-
-document.addEventListener('click', (event) => {
-
-  if(event.target.classList.contains('sales-details')) {
-
-    event.preventDefault();
-
-    const productId = event.target.dataset.productId;
-   
-       // console.log(productId);
-   
-       localStorage.setItem('productId', JSON.stringify(productId));
-       window.location.href = '/admin/view/product-details';
-   
-     }
-
-
-
-  if(event.target.classList.contains('connect-details')) {
-    event.preventDefault();
-
-  const productId = event.target.dataset.productId;
-
-    // console.log(productId);
-
-    localStorage.setItem('productId', JSON.stringify(productId));
-    window.location.href = '/admin/view/product-details';
-
-  }
-
+            // Pass data to DataTable
+            callback({
+                draw: data.draw,
+                recordsTotal: result.total, // Total number of records without filtering
+                recordsFiltered: result.filtered_total, // Total number of records after filtering
+                data: result.products, // Data for the current page
+            });
+        })
+        .catch((error) => {
+            console.error("Error fetching data:", error);
+        });
+    },
+    columns: [
+        {
+            data: null,
+            render: function (data, type, row, meta) {
+                return (meta.row + 1) + (meta.settings._iDisplayStart); // Serial Number (starts from 1)
+            }
+        },
+        { data: 'title', render: function(data) { return data ? data : 'N/A'; }},
+        { data: 'sold', render: function(data) { return data ? data : 'N/A'; }},
+        { data: 'category.name', render: function(data) { return data ? data : 'N/A'; }},
+        { data: 'location', render: function(data) { return data ? data : 'N/A'; }},
+        { data: 'description', render: function(data) { return data ? data : 'N/A'; }},
+  
+        {
+            data: null,
+            orderable: false,
+            searchable: false,
+            render: function (data) {
+                return `<button class="btn btn-sm btn-light sales-details " data-product-id="${data.id}">Full details</button>`;
+            },
+        },
+    ],
+    responsive: true,
 });
+  // Search input handler
+  $('#datatable_filter input').on('keyup', function () {
+      // Trigger the search on the DataTable to filter the data
+      salesTableInstance.search(this.value).draw();
+  });
+
+  let connectsTableInstance;
+
+  connectsTableInstance = $('#datatable2 ').DataTable({
+    processing: true,
+    serverSide: true, 
+    ajax: function (data, callback, settings) {
+        const page = data.start / data.length + 1;
+        const perPage = data.length; 
+        const searchTerm = data.search.value; 
+
+        // Fetch data from the server with pagination and search term
+        axios.get('/api/v1/admin/products-connect-performance', {
+            params: {
+                page: page,
+                per_page: perPage,
+                search: searchTerm,
+               
+            },
+        })
+        .then((response) => {
+        
+        const result = response.data;
+            // Pass data to DataTable
+            callback({
+                draw: data.draw,
+                recordsTotal: result.total, // Total number of records without filtering
+                recordsFiltered: result.filtered_total, // Total number of records after filtering
+                data: result.products, // Data for the current page
+            });
+        })
+        .catch((error) => {
+            console.error("Error fetching data:", error);
+        });
+    },
+    columns: [
+        {
+            data: null,
+            render: function (data, type, row, meta) {
+                return (meta.row + 1) + (meta.settings._iDisplayStart); // Serial Number (starts from 1)
+            }
+        },
+      
+        { data: 'total_engagements', render: function(data) { return data ? data : 'N/A'; }},
+        { data: 'product_name', render: function(data) { return data ? data : 'N/A'; }},
+        { data: 'category_name', render: function(data) { return data ? data : 'N/A'; }},
+        { data: 'location', render: function(data) { return data ? data : 'N/A'; }},
+        { data: 'description', render: function(data) { return data ? data : 'N/A'; }},
+  
+        {
+            data: null,
+            orderable: false,
+            searchable: false,
+            render: function (data) {
+                return `<button class="btn btn-sm btn-light connect-details " data-product-id="${data.product_id}">Full details</button>`;
+            },
+        },
+    ],
+    responsive: true,
+});
+  // Search input handler
+  $('#datatable_filter input').on('keyup', function () {
+      // Trigger the search on the DataTable to filter the data
+      connectsTableInstance.search(this.value).draw();
+  });
+
+
+  document.addEventListener('click', (event) => {
+
+    if(event.target.classList.contains('sales-details')) {
+  
+      event.preventDefault();
+  
+      const productId = event.target.dataset.productId;
+     
+         // console.log(productId);
+     
+         localStorage.setItem('productId', JSON.stringify(productId));
+         window.location.href = '/admin/view/product-details';
+     
+       }
+  
+  
+  
+    if(event.target.classList.contains('connect-details')) {
+      event.preventDefault();
+  
+    const productId = event.target.dataset.productId;
+  
+      // console.log(productId);
+  
+      localStorage.setItem('productId', JSON.stringify(productId));
+      window.location.href = '/admin/view/product-details';
+  
+    }
+  
+  });
+
 
 
 

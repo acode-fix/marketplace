@@ -83,7 +83,7 @@
 
                         </button>
                         <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton5">
-                            <li><a class="dropdown-item" href="{{ route('uploads.view') }}">View</a></li>
+                            <li><a class="dropdown-item" href="{{ route('learn.view') }}">View</a></li>
                            
                         </ul>
                     </div>

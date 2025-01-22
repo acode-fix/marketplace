@@ -30,16 +30,16 @@ function loadLearnData(learnsData) {
 
   learnsData.forEach((data) => {
   
-    display += ` <div class="col-lg-4 col-md-6 col-sm-12 mb-4">
+    display += ` <div class="col-lg-4 col-md-6 col-sm-12 mb-2">
                   <div class="card card-main">
                     <iframe class="video-size" src="${data.url}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
                     <div class="card-body card-txt">
                       <p class="card-text new-text">${data.title}</p>
                       <p class="fw-light footer-txt">${data.description}</p>
                     </div>
-                    <div class="link-layout">
-                    <a  data-learn-id="${data.id}" class="edit-btn link"  href="">Edit</a>
-                     <a  data-learn-id="${data.id}" class="del-btn link text-danger ms-2" href="">delete</a>
+                    <div style="margin-top:-30px;"  class="link-layout ms-3 mb-2">
+                     <button data-learn-id="${data.id}" class="btn btn-sm btn-success edit-btn">Edit</button>
+                     <button data-learn-id="${data.id}" class="btn btn-sm btn-danger del-btn">Delete</button>
                     </div>
                   </div>
                 </div>

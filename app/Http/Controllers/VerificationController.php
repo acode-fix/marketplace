@@ -25,33 +25,33 @@ class VerificationController extends Controller
      */
     public function index(Request $request)
     {
-       //$user = User::where('user_type', 2)->get();
 
-       $user = User::with('payment')->where('user_type', 2)->where('verify_status', -2)->get();
+       $perPage = $request->input('per_page', 10);
+       $search = $request->input('search');
 
-       Debugbar::info($user);
+       $pendingUserApprovals = User::with('payment')->where('user_type', 2)->where('verify_status', -2);
 
-       if(!$user->isEmpty()) {
-        
-        return response()->json([
-            'status' => true,
-            'message' => 'Users Data Found',
-            'data' => $user,
-
-        ], 200);
-
-       } else {
-
-        return response()->json([
-            'status' => false,
-            'message' => 'No User Data Not Found',
-            
-        
-        ], 404);
+       if($search) {
+        $pendingUserApprovals->where(function($query) use ($search) {
+            $query->where('name', 'like', "% $search %")
+                   ->orWhere('username', 'like', "% $search %" )
+                   ->orWhere('email', 'like', "% $search %" )
+                   ->orWhere('address', 'like', "% $search %" );
+                   
+        });
 
        }
 
+       $users = $pendingUserApprovals->paginate($perPage);
 
+
+       return response()->json([
+        'status' => true,
+        'message' => 'User with pending approval fetched successfully',
+        'users' => $users->items(),
+        'total' => $users->total(),
+        'filtered_total' => $users->total(),
+       ],200);
     
     }
 
@@ -572,53 +572,73 @@ class VerificationController extends Controller
 
     public function showApproved(Request $request) {
 
+        $perPage = $request->input('per_page', 10);
+        $search = $request->input('search');
 
-        $user = User::with('payment')->where('verify_status', 1)->get();
+        $approvedUsers = User::with('payment')->where('verify_status', 1);
 
-        if ($user->isEmpty()) {
+        if($search) {
+            $approvedUsers->where(function($query) use ($search) {
+                $query->where('name', 'like', "% $search %")
+                       ->orWhere('username', 'like', "% $search %" )
+                       ->orWhere('email', 'like', "% $search %" )
+                       ->orWhere('address', 'like', "% $search %" );
+                       
+            });
 
-            return response()->json([
-                'status' => false,
-                'message' => 'No User Found',
 
-            ],404);
-
-        }else {
-
-
-            return response()->json([
-                'status' => true,
-                'message' => 'User Details Fetched Successfully',
-                'data' => $user,
-
-            ],200);
         }
+
+        $users = $approvedUsers->paginate($perPage);
+
+        return response()->json([
+            'status' => true,
+            'message' => 'Approved Users  Fetched Successfully',
+            'users' => $users->items(),
+            'total' => $users->total(),
+            'filtered_total' => $users->total(),
+        ],200);
+        
 
     }
 
     public function showRejectedUser(Request $request) {
 
-
-        $user = User::with('payment')->where('verify_status', -1)->get();
-
-        if ($user->isEmpty()) {
-
-            return response()->json([
-                'status' => false,
-                'message' => 'No User Found',
-
-            ],404);
-
-        }else {
+        
+        $perPage = $request->input('per_page', 10);
+        $search = $request->input('search');
 
 
-            return response()->json([
-                'status' => true,
-                'message' => 'User Details Fetched Successfully',
-                'data' => $user,
+        $rejectedUsers = User::with('payment')->where('verify_status', -1);
 
-            ],200);
+        if($search) {
+            $rejectedUsers->where(function($query) use ($search) {
+                $query->where('name', 'like', "% $search %")
+                       ->orWhere('username', 'like', "% $search %" )
+                       ->orWhere('email', 'like', "% $search %" )
+                       ->orWhere('address', 'like', "% $search %" );
+                       
+            });
+
+
         }
+
+
+        $users = $rejectedUsers->paginate($perPage);
+
+        return response()->json([
+            'status' => true,
+            'message' => 'Rejected Users  Fetched Successfully',
+            'users' => $users->items(),
+            'total' => $users->total(),
+            'filtered_total' => $users->total(),
+        ],200);
+        
+
+
+
+
+       
 
     }
 

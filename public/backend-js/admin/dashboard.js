@@ -161,11 +161,13 @@ async function fetchRegisteredUser() {
 
 const users = await getRegisteredUser();
 
-const total =  calculateTotal(users);
+//console.log(users.total);
+
+//const total =  calculateTotal(users.total);
 const totalEl = document.querySelector('.js-total-user');
 const content = 'Users'
  
-displayTotal(total,totalEl,content)
+displayTotal(users.total,totalEl,content)
 
   
 }
@@ -177,13 +179,14 @@ async function  fetchSuspendedUsers() {
 
   const users = await getSuspendedUsers();
 
-  const total = calculateTotal(users);
+ // const total = calculateTotal(users);
 
-  const totalEl = document.querySelector('.js-total-suspended-user');
+  
+  const totalEl = document.querySelector('.suspended-user');
 
   const content = 'Users';
 
-  displayTotal(total,totalEl,content);
+  displayTotal(users.total,totalEl,content);
   
 }
 
@@ -194,13 +197,13 @@ async function getDeletedAccounts() {
 
   const users = await getDeletedUsers();
 
-  const total = calculateTotal(users);
+  //const total = calculateTotal(users);
 
-  const totalEl = document.querySelector('.js-total-deleted-user');
+  const totalEl = document.querySelector('.deleted-user');
 
   const content = 'Users';
 
-  displayTotal(total,totalEl,content);
+  displayTotal(users.total,totalEl,content);
 
 
   
@@ -214,12 +217,12 @@ async function getActiveProducts() {
 
   const products = await getListedProducts();
 
-  const total = calculateTotal(products);
-  const totalEl = document.querySelector('.js-total-products');
+  //const total = calculateTotal(products);
+  const totalEl = document.querySelector('.total-products');
 
   const content = 'Products';
 
-  displayTotal(total,totalEl,content);
+  displayTotal(products.total,totalEl,content);
 
  
 }
@@ -230,12 +233,12 @@ async function getDeletedProducts() {
 
   const  products = await getDelistedProducts();
 
-  const total = calculateTotal(products);
-  const totalEl = document.querySelector('.js-total-deleted-products');
+  //const total = calculateTotal(products);
+  const totalEl = document.querySelector('.deleted-products');
 
   const content = 'Products';
 
-  displayTotal(total,totalEl,content);
+  displayTotal(products.total,totalEl,content);
 
   
 }
@@ -251,19 +254,19 @@ async function getActiveBadges() {
 
   
   const total = calculateTotal(activeBadges);
-  const totalEl = document.querySelector('.js-total-active');
+  const totalEl = document.querySelector('.total-active');
 
   const total1 = calculateTotal(expiredBadges);
-  const totalEl1 = document.querySelector('.js-total-expired');
+  const totalEl1 = document.querySelector('.total-expired');
 
   const total2 = calculateTotal(unverifiedUser);
-  const totalEl2 = document.querySelector('.js-total-unverified');
+  const totalEl2 = document.querySelector('.total-unverified');
 
   const content = 'Users';
 
   displayTotal(total,totalEl,content);
-  displayTotal(total, totalEl1,content);
-  displayTotal(total, totalEl2,content);
+  displayTotal(total1, totalEl1,content);
+  displayTotal(total2, totalEl2,content);
 
 
 
@@ -278,7 +281,7 @@ getActiveBadges()
 function displayTotal(total, totalEl, content) {
 
   if(totalEl) {
-    totalEl.innerHTML = `Total Number Of  ${content}  :: ${total}`;
+    totalEl.innerHTML = `${total}`;
   }
 
 
@@ -295,7 +298,7 @@ function displayTotalProducts(total, totalEl) {
 
 }
 
-
+/*
 const logOuts = document.querySelectorAll('.log-out');
 
   logOuts.forEach((logOut) => {
@@ -324,7 +327,26 @@ const logOuts = document.querySelectorAll('.log-out');
 
  })
 
+*/
 
+document.querySelector('.log-out').addEventListener('click', () => {
+  Swal.fire({
+    title: "Are you sure?",
+    text: "You won't be able to revert this!",
+    icon: "warning",
+    showCancelButton: true,
+    confirmButtonColor: '#ffb705',
+    cancelButtonColor: "#d33",
+    confirmButtonText: "Yes,I am sure!"
+    }).then((result) => {
+    if (result.isConfirmed) {
+      logout();
+      
+    }
+});
+
+
+});
 
 
 

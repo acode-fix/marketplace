@@ -121,7 +121,7 @@ export async function getRegisteredUser() {
         // console.log(response);
 
         if (response.status === 200 && response.data) {
-            const data = response.data.users
+            const data = response.data;
 
             // console.log(data);
 
@@ -161,7 +161,7 @@ export async function getSuspendedUsers() {
         // console.log(response);
 
         if (response.status === 200 && response.data) {
-            const data = response.data.users
+            const data = response.data;
 
             // console.log(data);
 
@@ -192,7 +192,7 @@ export async function getDeletedUsers() {
         // console.log(response);
 
         if (response.status === 200 && response.data) {
-            const data = response.data.users
+            const data = response.data;
 
             // console.log(data);
 
@@ -220,7 +220,7 @@ export async function getListedProducts() {
         // console.log(response);
 
         if (response.status === 200 && response.data) {
-            const data = response.data.products
+            const data = response.data;
 
             //  console.log(data);
 
@@ -248,7 +248,7 @@ export async function getDelistedProducts() {
         // console.log(response);
 
         if (response.status === 200 && response.data) {
-            const data = response.data.products
+            const data = response.data;
 
             //  console.log(data);
 
@@ -267,6 +267,7 @@ export async function getDelistedProducts() {
 }
 
 export function formatDate(date) {
+
 
     return dayjs(date).format('D MMMM YYYY, HH:mm') || null;
 
@@ -303,64 +304,33 @@ export async function getBadgeDetails() {
 
 }
 
+
+
 export function loadDashboard() {
      
     const adminUser = JSON.parse(localStorage.getItem('adminUser'));
 
- //   console.log(adminUser);
+    //console.log(adminUser);
+      const img = adminUser.photo_url 
+      ? ` <img src="/uploads/users/${adminUser.photo_url}" alt="" class="avatar-md rounded-circle">;`
+      : `<img src="${generateAvatar(adminUser.email)}" alt="" class="avatar-md rounded-circle">`;
 
+      const roleName = adminUser.role.name;
     
-        const img = adminUser.photo_url 
-      ? `<img  class="img-fluid  js-profile" src="/uploads/users/${adminUser.photo_url}" alt="" id="profileDropdownBtn">`
-      : `<img  class="img-fluid js-profile" src="${generateAvatar(adminUser.email)}" alt="" id="profileDropdownBtn">`;
+      const profile = `
+                        <div class="">
+                            ${img}
+                        </div>
+                        <div class="mt-3">
+                            <h4 class="font-size-16 mb-1">${roleName.replace('_', ' ').toUpperCase()}</h4>
+                            <span class="text-muted"><i class="ri-record-circle-line align-middle font-size-30 text-success"></i>${adminUser.name}</span>
+                        </div>
+                    `
+      document.querySelector('.header-profile-user').src =  adminUser.photo_url ? `/uploads/users/${adminUser.photo_url}` : `${generateAvatar(adminUser.email)}`;
+      document.querySelector('.header-name').textContent = adminUser.name ?? 'N/A';
 
+      document.querySelector('.admin-profile').innerHTML = profile;
 
-    const dashboard = ` <div class="me-1">
-        <h6 class="name">${adminUser.name}</h6>
-        <h6 class="mired-text fw-light">${adminUser.email}</h6>
-      </div>
-      <div class="profile-dropdown">
-      ${img}
-        <div class="dropdown-menu" id="dropdownMenu">
-          <div class="container drop-struct">
-            <img class="pt-1" width="50px" src="" alt="">
-            <div class="ms-2 pt-1">
-              <h6>Mired Augustine</h6>
-              <h6 style="font-size: small;">Miredaugustine@gmail.com</h6>
-            </div>
-          </div>
-          <hr style="background-color: black; margin-left: 10px;margin-right: 10px;">
-          <div style="margin-top: -9px;">
-            <a href="settings.html">Dashboard</a>
-            <a href="refer.html">Refer A Friend</a>
-            <a href="privacy.html">Privacy Policy</a>
-            <a href="#" id="adminLogOut">Log Out</a>
-  
-          </div>
-  
-        </div>
-      </div>`;
-
-      document.querySelector('.js-admin-profile').innerHTML = dashboard;
-
-      
-//  document.addEventListener("DOMContentLoaded", function () {
-//   const profileDropdownBtn = document.getElementById('profileDropdownBtn');
-//   const dropdownMenu = document.getElementById('dropdownMenu');
-
-//   profileDropdownBtn.addEventListener('click', function () {
-//     dropdownMenu.classList.toggle('show');
-//   });
-
-//   // Close the dropdown if the user clicks outside of it
-//   window.addEventListener('click', function (event) {
-//     if (!event.target.matches('#profileDropdownBtn')) {
-//       if (dropdownMenu.classList.contains('show')) {
-//         dropdownMenu.classList.remove('show');
-//       }
-//     }
-//   });
-// });
   
   }
 
@@ -408,4 +378,5 @@ export function loadDashboard() {
 
 
   }
+  
   

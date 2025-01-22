@@ -8,7 +8,7 @@ const paymentFilter = {
 };
 
 const amount  = document.getElementById('amount');
-const status = document.getElementById('status');
+const status = document.getElementById('status-input');
 const trx = document.getElementById('trx');
 const from = document.getElementById('from');
 const to = document.getElementById('to');
@@ -90,7 +90,8 @@ function loadPayments(payments) {
 
       display += `</tbody></table>`;
 
-
+      const tableWrapper = document.querySelector('.table-wrapper');
+      tableWrapper.style.display = 'block';
     document.querySelector('.js-content').innerHTML = display;
 
 

@@ -26,30 +26,36 @@ class AdminController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $users = User::where('user_type', '=', 2 )->get();
+        $perPage = $request->input('per_page', 10);
+        $search = $request->input('search');
+        $users = User::where('user_type', '=', 2 );
 
-        if(!$users->isEmpty()) {
+        if($search) {
 
-            return response()->json([
-                'status' => true,
-                'message' => 'Registered Users Fetched Successfully',
-                'users' => $users,
+          $users->where(function($query) use ($search) {
 
-            ], 200);
+            $query->where('name', 'like', '%'.$search.'%')
+                  ->orWhere('email', 'like', '%'.$search.'%')
+                  ->orWhere('address', 'like', '%'.$search.'%')
+                  ->orWhere('phone_number', 'like', '%'.$search.'%');
 
+             });
+    
         }
+
+        $usersPaginated = $users->paginate($perPage);
 
 
         return response()->json([
-            'status' => false,
-            'message' => 'No Registered Users',
+            'status' => true,
+            'message' => 'Registered Users Fetched Successfully',
+            'users' => $usersPaginated->items(),
+            'total' => $users->count(),
+            'filtered_total' =>  $usersPaginated->total()
 
-        ], 404);
-
-
-
+        ], 200);
 
     }
 
@@ -240,24 +246,39 @@ class AdminController extends Controller
 
     public function getSuspendedUsers(Request $request) {
 
-        $users = User::where('user_type', -2)->get();
+        $perPage = $request->input('per_page', 10);
+        $search = $request->input('search');
 
-        if($users->isEmpty()) {
-            return response()->json([
-                'status' => true,
-                'message' => 'No Suspended Users Found',
-                'users' => [],
+        $users = User::where('user_type', -2);
 
-            ],200);
-        }
+        if($search) {
 
-        return response()->json([
-            'status' => true,
-            'message' => 'Suspended Uses Fetched Successfully',
-            'users' => $users
+            $users->where(function($query) use ($search) {
+  
+              $query->where('name', 'like', '%'.$search.'%')
+                    ->orWhere('email', 'like', '%'.$search.'%')
+                    ->orWhere('address', 'like', '%'.$search.'%')
+                    ->orWhere('phone_number', 'like', '%'.$search.'%');
+  
+               });
+      
+          }
+  
+          $usersPaginated = $users->paginate($perPage);
+  
+  
+          return response()->json([
+              'status' => true,
+              'message' => 'Suspended Users Fetched Successfully',
+              'users' => $usersPaginated->items(),
+              'total' => $users->count(),
+              'filtered_total' =>  $usersPaginated->total()
+  
+          ], 200);
 
-        ],200);
 
+
+       
     }
 
 
@@ -294,141 +315,240 @@ class AdminController extends Controller
     }
 
 
-    public function getDeletedAccounts() {
+    public function getDeletedAccounts(Request $request) {
 
-       // $users = User::whereNotNull('deleted_at')->get();
-       $users = User::onlyTrashed()->get();
+        $perPage = $request->input('per_page', 10);
+        $search = $request->input('search');
 
-        if($users->isEmpty()) {
-            return response()->json([
-                'status' => true,
-                'message' => 'No Deleted Account Yet',
-                'users' => $users,
-
-            ],200);
-        } 
-
-
-        return response()->json([
-            'status' => true,
-            'message' => 'Deleted Accounts Fetched Succesfully',
-            'users' => $users,
-
-        ],200);
-
-
-
-    }
-
-
-    public function getUserProducts() {
-
-       $products = Product::with(['user', 'category'])->get();
-
-     //  debugbar::info($products);
-
-      Log::info($products);
-
-        if($products->isEmpty()) {
-            return response()->json([
-                'status' => true,
-                'message' => 'Products is Empty!!',
-                'products' => [],
-
-            ],200);
-
-        }
-
-
-        return response()->json([
-            'status' => true,
-            'message' => 'Products Fetched Successfully',
-            'products' => $products,
-
-        ],200);
-
-
-
-
-    }
-
-
-    public function getDelistedProducts() {
-
-        $products = Product::with(['user', 'category'])->onlyTrashed()->get();
-
-        if($products->isEmpty()) {
-            return response()->json([
-                'status' => true,
-                'message' => 'No Deleted Products',
-                'products' => [],
-
-            ],200);
-        }
-
-        return response()->json([
-            'status' => true,
-            'message' => 'Deleted Products Fetched Successfully',
-            'products' => $products,
-
-        ],200);
-
-    }
-
-
-    public function getUnlistedProducts() {
-
-        $user_product_request = UserProductRequest::with('user')->get();
-
-        return response()->json([
-            'status' => true,
-            'message' => 'User Product Request Fetched Successfully',
-            'userRequest' => $user_product_request,
-
-        ],200);
-
-    }
-
-    public function getProductsByPerformance() {
-
-        $products_sold = Product::with(['user', 'category'])->orderBy('sold','desc')->get();
-
-        $productEngagements = DB::table('product_engagement_logs as e')
-                                  ->join('products as p','e.product_id', '=', 'p.id')
-                                  ->join('categories as c', 'p.category_id', '=', 'c.id',)
-                                  ->select('e.product_id',
-                                   'p.title as product_name',
-                                    'p.description',
-                                    'p.location',
-                                    'c.name as category_name',
-                                    DB::raw('COUNT(e.product_id) as total_engagements'))
-                                  ->groupBy('e.product_id','p.title', 'c.name','p.description', 'p.location')
-                                  ->orderByDesc('total_engagements')
-                                  ->get();
-
-        debugbar::info($productEngagements);
+       $users = User::onlyTrashed();
 
        
-                            
-        if($products_sold->isEmpty() || $productEngagements->isEmpty()) {
+       if($search) {
 
-            return response()->json([
-                'status'=> true,
-                'message' => 'No Products Found',
-                'products' => [],
+        $users->where(function($query) use ($search) {
 
-            ],200);
+          $query->where('name', 'like', '%'.$search.'%')
+                ->orWhere('email', 'like', '%'.$search.'%')
+                ->orWhere('address', 'like', '%'.$search.'%')
+                ->orWhere('phone_number', 'like', '%'.$search.'%');
 
-        }
+           });
+  
+      }
 
+      $usersPaginated = $users->paginate($perPage);
+
+
+      return response()->json([
+          'status' => true,
+          'message' => 'Deleted Users Fetched Successfully',
+          'users' => $usersPaginated->items(),
+          'total' => $users->count(),
+          'filtered_total' =>  $usersPaginated->total()
+
+      ], 200);
+
+
+       
+
+
+    }
+
+
+ public function getUserProducts(Request $request) {
+
+        
+        $perPage = $request->input('per_page', 10);
+        $search = $request->input('search');
+
+
+       $products = Product::with(['user', 'category']);
+
+
+       if($search) {
+
+        $products->where(function($query) use ($search) {
+
+          $query->where('title', 'like', '%'.$search.'%')
+                ->orWhere('description', 'like', '%'.$search.'%')
+                ->orWhere('quantity', 'like', '%'.$search.'%')
+                ->orWhere('location', 'like', '%'.$search.'%');
+
+           });
+  
+      }
+
+      $productsPaginated = $products->paginate($perPage);
+
+
+      return response()->json([
+          'status' => true,
+          'message' => 'Products Fetched Successfully',
+          'products' => $productsPaginated->items(),
+          'total' => $products->count(),
+          'filtered_total' =>  $productsPaginated->total()
+
+      ], 200);
+
+
+    }
+
+
+    public function getDelistedProducts(Request $request) {
+
+        $perPage = $request->input('per_page', 10);
+        $search = $request->input('search');
+
+        $products = Product::with(['user', 'category'])->onlyTrashed();
+
+        
+       if($search) {
+
+        $products->where(function($query) use ($search) {
+
+          $query->where('title', 'like', '%'.$search.'%')
+                ->orWhere('description', 'like', '%'.$search.'%')
+                ->orWhere('quantity', 'like', '%'.$search.'%')
+                ->orWhere('location', 'like', '%'.$search.'%');
+
+           });
+  
+      }
+
+      $productsPaginated = $products->paginate($perPage);
+
+      return response()->json([
+        'status' => true,
+        'message' => 'Delisted Products Fetched Successfully',
+        'products' => $productsPaginated->items(),
+        'total' => $products->count(),
+        'filtered_total' =>  $productsPaginated->total()
+
+    ], 200);
+
+
+       
+    }
+
+
+    public function getUnlistedProducts(Request $request) {
+
+        $perPage = $request->input('per_page', 10);
+        $search = $request->input('search');
+
+
+        $user_product_request = UserProductRequest::with('user');
+   
+       if($search) {
+
+        $user_product_request->where(function($query) use ($search) {
+
+          $query->Where('request', 'like', '%'.$search.'%');
+
+           });
+  
+      }
+
+
+      $productsPaginated = $user_product_request->paginate($perPage);
 
         return response()->json([
             'status' => true,
-            'message' => 'Products Engagement Fetched Successfully',
-            'products_sold' => $products_sold,
-            'productEngagements' => $productEngagements,
+            'message' => 'Delisted Products Fetched Successfully',
+            'products' => $productsPaginated->items(),
+            'total' => $productsPaginated->total(),
+            'filtered_total' =>  $productsPaginated->total()
 
+        ], 200);
+
+       
+
+    }
+
+
+
+
+
+
+    public function getProductsBySoldPerformance(Request $request) {
+
+        $perPage = $request->input('per_page', 10);
+        $search = $request->input('search');
+
+        $products_sold = Product::with(['user', 'category'])->orderBy('sold','desc');
+
+
+        if($search) {
+
+            $products_sold->where(function ($query) use($search) {
+
+                $query->where('title', 'like', '%'.$search . '%')
+                      ->orWhere('sold', 'like', '%'.$search . '%')
+                      ->orWhere('location', 'like', '%'.$search . '%')
+                      ->orWhere('description', 'like', '%'.$search . '%');
+
+            });
+        }
+
+        $products = $products_sold->paginate($perPage);
+
+        return response()->json([
+            'status' => true,
+            'message' => 'Products Sold Fetched Successfully',
+            'products' => $products->items(),
+            'total' => $products->total(),
+            'filtered_total' => $products->total(),
+            
+            
         ],200); 
+
+    }
+
+    public function getProductsByConectPerformance(Request $request) 
+    {
+               $perPage = $request->input('per_page',10);
+               $search = $request->input('search');
+             
+                $productEngagements = DB::table('product_engagement_logs as e')
+                ->join('products as p','e.product_id', '=', 'p.id')
+                ->join('categories as c', 'p.category_id', '=', 'c.id',)
+                ->select('e.product_id',
+                'p.title as product_name',
+                'p.description',
+                'p.location',
+                'c.name as category_name',
+                DB::raw('COUNT(e.product_id) as total_engagements'))
+                ->groupBy('e.product_id','p.title', 'c.name','p.description', 'p.location')
+                ->orderByDesc('total_engagements');
+
+
+                if($search) {
+
+                    $productEngagements->where(function($query) use ($search) {
+
+                        $query->where('p.title', 'like', '%'. $search . '%')
+                               ->orWhere('c.name', 'like', '%'. $search . '%')
+                               ->orWhere('p.description', 'like', '%'. $search . '%')
+                               ->orWhere('p.location', 'like', '%'. $search . '%');
+
+                    });
+
+
+                }
+
+
+                $products = $productEngagements->paginate($perPage);
+
+
+                return response()->json([
+                    'status' => true,
+                    'message' => 'Products Engagements Fetched Successfully',
+                    'products' => $products->items(),
+                    'total' => DB::table('product_engagement_logs as e')->count(),
+                    'filtered_total' =>  $products->total()
+        
+                ], 200);
+        
 
     }
 
@@ -523,7 +643,120 @@ class AdminController extends Controller
 
     }
 
+    
+    public function getActiveBadges(Request $request)
+     {
 
+        
+        $perPage = $request->input('per_page',10);
+        $search = $request->input('search');
+
+        $activeBadges = User::where('verify_status', 1)->where('badge_status', 1);
+
+        if($search) {
+
+            $activeBadges->where(function ($query) use ($search) {
+                $query->where('name', 'like', '%'.$search.'%')
+                  ->orWhere('email', 'like', '%'.$search.'%')
+                  ->orWhere('address', 'like', '%'.$search.'%')
+                  ->orWhere('phone_number', 'like', '%'.$search.'%');
+
+             });
+        }
+
+        $users = $activeBadges->paginate($perPage);
+
+
+        return response()->json([
+            'status' => true,
+            'message' => 'Users with active badges fetched successfully',
+            'users' => $users->items(),
+            'total' => $users->total(),
+            'filtered_total' => $users->total(),
+
+
+        ],200);
+
+
+     }
+
+     public function getExpiredBadges(Request $request)
+     {
+
+        
+        $perPage = $request->input('per_page',10);
+        $search = $request->input('search');
+
+        $expiredBadges = User::where('verify_status', 1)->where('badge_status', -1);
+
+        if($search) {
+
+            $expiredBadges->where(function ($query) use ($search) {
+                $query->where('name', 'like', '%'.$search.'%')
+                  ->orWhere('email', 'like', '%'.$search.'%')
+                  ->orWhere('address', 'like', '%'.$search.'%')
+                  ->orWhere('phone_number', 'like', '%'.$search.'%');
+
+             });
+        }
+
+        $users = $expiredBadges->paginate($perPage);
+
+
+        return response()->json([
+            'status' => true,
+            'message' => 'Users with expired badges fetched successfully',
+            'users' => $users->items(),
+            'total' => $users->total(),
+            'filtered_total' => $users->total(),
+
+
+        ],200);
+
+
+     }
+
+     public function getUnbadgedUsers(Request $request)
+     {
+
+        
+        $perPage = $request->input('per_page',10);
+        $search = $request->input('search');
+
+        $unBadgedUsers = User::where('verify_status', 0)->where('badge_status', 0);
+
+        if($search) {
+
+            $unBadgedUsers->where(function ($query) use ($search) {
+                $query->where('name', 'like', '%'.$search.'%')
+                  ->orWhere('email', 'like', '%'.$search.'%')
+                  ->orWhere('address', 'like', '%'.$search.'%')
+                  ->orWhere('phone_number', 'like', '%'.$search.'%');
+
+             });
+        }
+
+        $users = $unBadgedUsers->paginate($perPage);
+
+
+        return response()->json([
+            'status' => true,
+            'message' => 'unBadged users fetched successfully',
+            'users' => $users->items(),
+            'total' => $users->total(),
+            'filtered_total' => $users->total(),
+
+
+        ],200);
+
+
+     }
+
+
+
+
+
+   
     public function getAllBadges() {
 
 
@@ -559,7 +792,96 @@ class AdminController extends Controller
 
     }
 
+    public function getSuccessFullPayments(Request $request)
+    {
+        $perPage = $request->input('per_page',10);
+        $search = $request->input('search');
 
+        $userPayments = Payment::with('user')->where('status', 1)->where('gateway_response', 'successful');
+
+        if($search) {
+
+            $userPayments->where(function ($query) use ($search) {
+                $query->whereHas('user', function($query) use ($search) {
+                    $query->where('name', 'like', '%'.$search.'%')
+                    ->orWhere('email', 'like', '%'.$search.'%')
+                    ->orWhere('address', 'like', '%'.$search.'%')
+                    ->orWhere('phone_number', 'like', '%'.$search.'%');
+  
+                });
+
+                $query->orWhere('amount', 'like', '%'.$search.'%')
+                      ->orWhere('invoice_number', 'like', '%'.$search.'%')
+                      ->orWhere('transaction_reference', 'like', '%'.$search.'%');    
+             });
+        }
+
+
+        $payments = $userPayments->paginate($perPage);
+
+
+        return response()->json([
+            'status' => true,
+            'message' => 'Users payments fetched successfully',
+            'payments' => $payments->items(), // Current page items
+            'current_page' => $payments->currentPage(), // Current page number
+            'last_page' => $payments->lastPage(), // Last page number
+            'per_page' => $payments->perPage(), // Items per page
+            'total' => $userPayments->count(),
+            'filtered_total' => $payments->total(),
+
+
+        ],200);
+
+
+    }
+
+    public function getFailedPayments(Request $request)
+    {
+        $perPage = $request->input('per_page',10);
+        $search = $request->input('search');
+
+        $userPayments = Payment::with('user')->where('status', -1)->whereNull('gateway_response');
+
+        if($search) {
+
+            $userPayments->where(function ($query) use ($search) {
+                $query->whereHas('user', function($query) use ($search) {
+                    $query->where('name', 'like', '%'.$search.'%')
+                    ->orWhere('email', 'like', '%'.$search.'%')
+                    ->orWhere('address', 'like', '%'.$search.'%')
+                    ->orWhere('phone_number', 'like', '%'.$search.'%');
+  
+                });
+
+                $query->orWhere('amount', 'like', '%'.$search.'%')
+                      ->orWhere('invoice_number', 'like', '%'.$search.'%')
+                      ->orWhere('transaction_reference', 'like', '%'.$search.'%');    
+             });
+        }
+
+
+        $payments = $userPayments->paginate($perPage);
+
+
+        return response()->json([
+            'status' => true,
+            'message' => 'Users failed payments fetched successfully',
+            'payments' => $payments->items(), // Current page items
+            'current_page' => $payments->currentPage(), // Current page number
+            'last_page' => $payments->lastPage(), // Last page number
+            'per_page' => $payments->perPage(), // Items per page
+            'total' => $userPayments->count(),
+            'filtered_total' => $payments->total(),
+
+
+        ],200);
+
+
+
+    }
+
+    /*
     public function getAllUserPayments() {
 
         $payments = Payment::with('user')->get()->groupBy(function($payment) {
@@ -591,7 +913,7 @@ class AdminController extends Controller
 
         ],200);
     }
-
+    */
 
     public function filterUserPayments(Request $request) {
 
@@ -818,12 +1140,63 @@ class AdminController extends Controller
         
     }
 
-
-    public function getAdminUsers() 
+    public function getAdminUsers(Request $request) 
     {    try
          {
+            $perPage = $request->input('per_page',10);
+            $search = $request->input('search');
 
-           $users = User::with('role')->where('user_type', 1)->get();
+           $adminUsers = User::with('role')->where('user_type', 1);
+           $roles = Role::all();
+
+           if($search) {
+
+            $adminUsers->where(function ($query) use ($search) {
+                    $query->where('name', 'like', '%'.$search.'%')
+                    ->orWhere('email', 'like', '%'.$search.'%')
+                    ->orWhere('address', 'like', '%'.$search.'%')
+                    ->orWhere('phone_number', 'like', '%'.$search.'%');
+             });
+
+            
+
+
+           }
+            $users = $adminUsers->paginate($perPage);
+
+           return response()->json([
+            'status' => true,
+            'message' => 'Admin Users Fetched Successfully',
+            'roles' => $roles,
+            'users' => $users->items(),
+            'total' => $adminUsers->count(),
+            'filtered_total' => $users->total(),
+            
+
+           ],200);
+
+         } catch(Exception $err) {
+
+            Log::error('Error fetching user profile: ' . $err->getMessage());
+
+            return response()->json([
+                'status' => false,
+                'message' => 'Something went wrong, Try again later!!'
+               
+            ],500);
+         }
+        
+    }
+
+
+    /*
+    public function getAdminUsers(Request $request) 
+    {    try
+         {
+            $perPage = $request->input('per_page',10);
+            $search = $request->input('search');
+
+           $users = User::with('role')->where('user_type', 1);
            $roles = Role::all();
 
            if($users->isEmpty()) {
@@ -856,7 +1229,7 @@ class AdminController extends Controller
          }
         
     }
-
+    */
 
     public function updateProfile(Request $request)
     {
@@ -865,7 +1238,7 @@ class AdminController extends Controller
             'name' => ['required', 'string', 'max:255'],
           //  'email' => 'required|email|unique:users',
           //  'password' => ['required'],
-           // 'photo_url' => 'required|image|mimes:jpg,jpeg,png,gif,svg|max:1024',
+            'photo_url' => 'required|image|mimes:jpg,jpeg,png,gif,svg|max:1024',
         ]);
 
         
@@ -920,7 +1293,7 @@ class AdminController extends Controller
       }
 
 
-      $user = User::where('email', $request->email)->first();
+      $user = User::with('role')->where('email', $request->email)->first();
 
       if(!$user) {
         return response()->json([
@@ -936,7 +1309,8 @@ class AdminController extends Controller
 
       return response()->json([
         'status' => true,
-        'message'=> 'Admin profile updated successfully'
+        'message'=> 'Admin profile updated successfully',
+        'user' => $user,
 
       ],200);
 
@@ -1150,7 +1524,7 @@ class AdminController extends Controller
     }
 
 
-    public function getOnboardedUsers($id)
+    public function getOnboardedUsers(Request  $request, $id)
     {
 
         $refferals = Refferal::where('refferal_id', $id)->get();
@@ -1169,21 +1543,109 @@ class AdminController extends Controller
 
 
         $userIds = $refferals->pluck('customer_id');
-        $users = User::wherein('id', $userIds)->get();
+        $users = User::wherein('id', $userIds);
+
+        $perPage = $request->input('per_page', 10);
+        $search = $request->input('search');
+        
+
+        if($search) {
+
+          $users->where(function($query) use ($search) {
+
+            $query->where('name', 'like', '%'.$search.'%')
+                  ->orWhere('email', 'like', '%'.$search.'%')
+                  ->orWhere('address', 'like', '%'.$search.'%')
+                  ->orWhere('phone_number', 'like', '%'.$search.'%');
+
+             });
+    
+        }
+
+        $usersPaginated = $users->paginate($perPage);
+        return response()->json([
+            'status' => true,
+            'message' => 'Onboarded Users Fetched Successfully',
+            'users' => $usersPaginated->items(),
+            'total' => $usersPaginated->total(),
+            'filtered_total' =>  $usersPaginated->total()
+
+        ], 200);
+
 
         
-        return response()->json([
+        // return response()->json([
 
-            'status' => true,
-            'message' => 'Onboarder users fetched successfully',
-            'users' => $users,
+        //     'status' => true,
+        //     'message' => 'Onboarder users fetched successfully',
+        //     'users' => $users,
     
-        ],200);
+        // ],200);
 
 
 
     }
 
+    public function getAllAgentRefferals(Request $request)
+    {
+        $perPage = $request->input('per_page', 10);
+        $search = $request->input('search');
+    
+        // Start building the query
+        $query = Refferal::with(['agent', 'customer']) // Load both agent and customer relationships
+            ->when($search, function ($q) use ($search) {
+                // Filter customers based on search term (name or email)
+                $q->whereHas('user', function ($subQuery) use ($search) {
+                    $subQuery->where('name', 'like', "%{$search}%")
+                     ->orWhere('email', 'like', '%'.$search.'%')
+                    ->orWhere('address', 'like', '%'.$search.'%')
+                    ->orWhere('phone_number', 'like', '%'.$search.'%');
+  
+                });
+            });
+    
+        // Get all referrals without pagination for grouping
+        $referrals = $query->get(); // Using get() to fetch all results for grouping
+    
+        // Group referrals by the agent (referral_id)
+        $groupedReferrals = $referrals->groupBy('refferal_id');
+    
+        $result = [];
+    
+        foreach ($groupedReferrals as $agentId => $agentReferrals) {
+            // Find the agent (referring user)
+            $agent = User::find($agentId);
+    
+            if (!$agent) {
+                continue; // Skip if agent does not exist
+            }
+    
+            // Get the referred users (customers) for this agent
+            $referredUsers = $agentReferrals->pluck('customer')->filter();
+    
+            // Collect the data for the agent and their referred users
+            $result[] = [
+                'agent' => $agent,
+                'referred_users' => $referredUsers->values(),
+                'total' => $referredUsers->count(),
+            ];
+        }
+    
+        // Apply pagination to the final result
+        $paginatedResult = collect($result)->forPage($request->input('page', 1), $perPage);
+    
+        return response()->json([
+            'status' => true,
+            'message' => 'All agent referrals fetched successfully',
+            'total' => $query->count(), // Total number of referrals without pagination
+            'filtered_total' => $referrals->count(), // Total after applying search filters
+            'data' => $paginatedResult, // The grouped data for agents and their referred users
+        ]);
+    }
+    
+
+
+    /*
 
     public function getAllAgentRefferals()
     {
@@ -1221,7 +1683,7 @@ class AdminController extends Controller
 
     }
 
-
+*/
 
 
 

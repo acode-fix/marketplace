@@ -5,6 +5,174 @@ const token = getToken();
 
 axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
 
+
+
+let successPaymentsTableInstance;
+
+successPaymentsTableInstance = $('#datatable').DataTable({
+    processing: true,
+    serverSide: true, 
+    ajax: function (data, callback, settings) {
+        const page = data.start / data.length + 1;
+        const perPage = data.length; 
+        const searchTerm = data.search.value; 
+        axios.get('/api/v1/admin/payments/success', {
+            params: {
+                page: page,
+                per_page: perPage,
+                search: searchTerm,
+            
+            },
+        })
+        .then((response) => {
+                    
+        const result = response.data;
+
+       // console.log(response);
+
+  
+            callback({
+                draw: data.draw,
+                recordsTotal: result.total, // Total number of records without filtering
+                recordsFiltered: result.filtered_total, // Total number of records after filtering
+                data: result.payments, // Data for the current page
+            });
+        })
+        .catch((error) => {
+            console.error("Error fetching data:", error);
+        });
+    },
+    columns: [
+        {
+            data: null,
+            render: function (data, type, row, meta) {
+                return (meta.row + 1) + (meta.settings._iDisplayStart); 
+            }
+        },
+
+        { data: 'user.name', render: function(data) { return data ? data : 'N/A'; }},
+        { data: 'status', render: function(data) { return data == 1 ? '<p class="text-success">Success<p>' : 'N/A'; }},
+        { data: 'amount', render: function(data) { return  ` &#8358;${formatPrice(data) ?? 'N/A'} ` }},
+        { data: 'invoice_number',render: function(data) { return data ? data : 'N/A' }},
+        { data: 'transaction_reference',render: function(data) { return data ? data : 'N/A' }},
+        { data: 'description', render: function(data) { return data ? data : 'N/A' }},
+        { data: 'payment_date', render: function(data) { return `${formatDate(data)} ?? 'N/A`}},
+
+        {
+            data: null,
+            orderable: false,
+            searchable: false,
+            render: function (data) {
+                return `<button class="btn btn-sm btn-light user-link" data-user-id="${data.user_id}">Full details</button>`;
+            },
+        },
+       
+
+        
+    ],
+    responsive: true,
+});
+
+
+$('#datatable_filter input').on('keyup', function () {
+  successPaymentsTableInstance.search(this.value).draw();
+});
+
+
+
+let failedPaymentsTableInstance;
+
+failedPaymentsTableInstance = $('#datatable2').DataTable({
+    processing: true,
+    serverSide: true, 
+    ajax: function (data, callback, settings) {
+        const page = data.start / data.length + 1;
+        const perPage = data.length; 
+        const searchTerm = data.search.value; 
+        axios.get('/api/v1/admin/payments/failed', {
+            params: {
+                page: page,
+                per_page: perPage,
+                search: searchTerm,
+            
+            },
+        })
+        .then((response) => {
+                    
+        const result = response.data;
+
+       // console.log(response);
+
+  
+            callback({
+                draw: data.draw,
+                recordsTotal: result.total, // Total number of records without filtering
+                recordsFiltered: result.filtered_total, // Total number of records after filtering
+                data: result.payments, // Data for the current page
+            });
+        })
+        .catch((error) => {
+            console.error("Error fetching data:", error);
+        });
+    },
+    columns: [
+        {
+            data: null,
+            render: function (data, type, row, meta) {
+                return (meta.row + 1) + (meta.settings._iDisplayStart); 
+            }
+        },
+
+        { data: 'user.name', render: function(data) { return data ? data : 'N/A'; }},
+        { data: 'status', render: function(data) { return data == 1 ? 'success' : '<p class="text-danger">Failed<p>'; }},
+        { data: 'amount', render: function(data) { return  ` &#8358;${formatPrice(data) ?? 'N/A'} ` }},
+        { data: 'invoice_number',render: function(data) { return data ? data : 'N/A' }},
+        { data: 'transaction_reference',render: function(data) { return data ? data : 'N/A' }},
+        { data: 'description', render: function(data) { return data ? data : 'N/A' }},
+        { data: 'created_at', render: function(data) { return `${formatDate(data)}`}},
+
+        {
+            data: null,
+            orderable: false,
+            searchable: false,
+            render: function (data) {
+                return `<button class="btn btn-sm btn-light full-details" data-user-id="${data.user_id}">Full details</button>`;
+            },
+        },
+       
+
+        
+    ],
+    responsive: true,
+});
+
+
+$('#datatable_filter input').on('keyup', function () {
+  failedPaymentsTableInstance.search(this.value).draw();
+});
+
+
+
+document.addEventListener('click', (event) => {
+  
+  if(event.target.classList.contains('full-details')) {
+
+    event.preventDefault();
+
+   const  userId = event.target.dataset.userId;
+
+
+    localStorage.setItem('userId', JSON.stringify(userId));
+    window.location.href = '/admin/view/user';
+
+  }
+
+});
+
+
+
+/*
+
 axios.get('/api/v1/admin/payments/view').then((response) => {
 
  // console.log(response);
@@ -136,3 +304,5 @@ document.addEventListener('click', (event) => {
   }
 
 });
+
+*/

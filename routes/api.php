@@ -117,23 +117,28 @@ Route::get('admin/product-details/{id}', [ProductController::class, 'getAdminPro
 Route::get('admin/listed-products', [AdminController::class, 'getUserProducts']);
 Route::get('admin/delisted-products', [AdminController::class, 'getDelistedProducts']);
 Route::get('admin/unlisted-products', [AdminController::class, 'getUnlistedProducts']);
-Route::get('admin/products-performance', [AdminController::class, 'getProductsByPerformance']);
+Route::get('admin/products-performance', [AdminController::class, 'getProductsBySoldPerformance']);
+Route::get('admin/products-connect-performance', [AdminController::class, 'getProductsByConectPerformance']);
 Route::get('admin/products-category', [AdminController::class, 'getProductCategory']);
 Route::get('admin/filter', [AdminController::class, 'getFilteredProducts']);
 
 
 //ROUTE ADMIN BADGES MENU;
 Route::get('admin/badge',[AdminController::class, 'getAllBadges']);
+Route::get('admin/active-badges',[AdminController::class, 'getActiveBadges']);
+Route::get('admin/expired-badges',[AdminController::class, 'getExpiredBadges']);
+Route::get('admin/unbadged-users',[AdminController::class, 'getUnbadgedUsers']);
 
 //ROUTE ONBOARDERD USERS;
 
 Route::get('admin/onboarded-users/{id}', [AdminController::class, 'getOnboardedUsers']);
-Route::get('admin/onboarded-users/', [AdminController::class, 'getAllAgentRefferals']);
+Route::get('admin/onboarded-users', [AdminController::class, 'getAllAgentRefferals']);
 
 
 //Route Admin Payments Menu;
 
-Route::get('admin/payments/view', [AdminController::class, 'getAllUserPayments']);
+Route::get('admin/payments/success', [AdminController::class, 'getSuccessFullPayments']);
+Route::get('admin/payments/failed', [AdminController::class, 'getFailedPayments']);
 Route::get('admin/payments/filter', [AdminController::class, 'filterUserPayments']);
 
 

@@ -101,7 +101,7 @@
         <!-- Submenu -->
         <div class="submenu">
           <ul>
-            <li><a href="{{ route('uploads.view') }}">view</a></li>
+            <li><a href="{{ route('learn.view') }}">view</a></li>
             {{-- <li><a href="{{ route('payments.search') }}">Search</a></li> --}}
           </ul>
         </div>
@@ -119,7 +119,7 @@
         <!-- Submenu -->
         <div class="submenu">
           <ul>
-            <li><a href="{{ route('profile.view') }}">view</a></li>
+            <li><a href="{{ route('admin.view') }}">view</a></li>
             
           </ul>
         </div>
@@ -138,7 +138,7 @@
         <!-- Submenu -->
         <div class="submenu">
           <ul style="display: none">
-            <li><a href="{{ route('profile.view') }}">view</a></li>
+            <li><a href="{{ route('admin.view') }}">view</a></li>
             
           </ul>
         </div>

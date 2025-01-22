@@ -180,7 +180,8 @@ Route::get('/admin/dashboard', function() {
 Route::get('/admin/verification/view', function() {
 
     return view('admin.verify.view');
-});
+    
+})->name('admin.verify');
 Route::get('/admin/view/user', function() {
 
     return view('admin.verify.user_details');
@@ -189,7 +190,7 @@ Route::get('/admin/view/user', function() {
 Route::get('/admin/dashboard/alluser', function() {
 
     return view('admin.user.alluser');
-});
+})->name('allUser');
 
 Route::get('/admin/dashboard/onboarded-user', function() {
 
@@ -241,17 +242,17 @@ Route::get('admin/payments/view/search', function() {
 
 })->name('payments.search');
 
-Route::get('admin/uploads/view/', function() {
+Route::get('admin/learn/view', function() {
 
     return view('admin.uploads.learn');
 
-})->name('uploads.view');
+})->name('learn.view');
 
-Route::get('admin/profile/view/', function() {
+Route::get('admin/admin/view/', function() {
 
     return view('admin.profile.view');
 
-})->name('profile.view');
+})->name('admin.view');
 
 
 

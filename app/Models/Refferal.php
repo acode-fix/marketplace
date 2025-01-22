@@ -15,4 +15,18 @@ class Refferal extends Model
     {
         return $this->belongsTo(User::class,  'refferal_id', 'id');
     }
+
+
+    public function agent() 
+    {
+        return $this->belongsTo(User::class, 'refferal_id', 'id');
+    }
+
+
+    public function customer()
+    {
+        return $this->belongsTo(User::class, 'customer_id', 'id');
+    }
+
+
 }

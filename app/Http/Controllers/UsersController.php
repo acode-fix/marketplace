@@ -228,11 +228,11 @@ class UsersController extends Controller
         if(!Auth::attempt($request->only(['email', 'password']))){
             return response()->json([
                 'status' => false,
-                'message' => 'Email and password does not match with our record',
+                'message' => 'Email or password does not match with our record',
             ], 401);
            }
 
-           $user = User::where('user_type', 1)
+           $user = User::with('role')->where('user_type', 1)
                          ->where('email', $request->email)
                          ->first();
 

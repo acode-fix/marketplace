@@ -17,6 +17,8 @@ axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
 
 const adminData = JSON.parse(localStorage.getItem('adminUser'));
 
+console.log(adminData);
+
 document.addEventListener('DOMContentLoaded', function () {
     let dataTableInstance;
 
@@ -39,7 +41,7 @@ document.addEventListener('DOMContentLoaded', function () {
             })
             .then((response) => {
 
-                console.log(response);
+             //   console.log(response);
 
                 const result = response.data;
 
@@ -128,7 +130,7 @@ document.addEventListener('DOMContentLoaded', function () {
             })
             .then((response) => {
 
-                console.log(response);
+           //     console.log(response);
 
                 const result = response.data;
 

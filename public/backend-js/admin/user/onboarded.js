@@ -30,7 +30,7 @@
             })
             .then((response) => {
 
-            //  console.log(response);
+                console.log(response);
 
                 const result = response.data
 
@@ -76,7 +76,7 @@
         dataTableInstance.search(this.value).draw();
     });
 
-  if (userData.role_id === 1) {
+  if (userData.role_id == 1) {
 
     document.querySelector('.agent-referral').style.display = 'block';
 

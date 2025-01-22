@@ -82,10 +82,10 @@ document.addEventListener('DOMContentLoaded', function () {
                 searchable: false,
                 render: function (data) {
 
-                    const suspendBtn = adminData.role_id === 1 
+                    const suspendBtn = adminData.role_id == 1 
                                     ? ` <button data-user-id="${data.id}" class="btn btn-sm btn-warning text-white suspend">Suspend</button> `
                                     : '';
-                   const deleteBtn =  adminData.role_id === 1 
+                   const deleteBtn =  adminData.role_id == 1 
                                      ? `<button data-user-id="${data.id}" class="btn btn-sm btn-danger delete">Delete</button>`
                                      : '';
 
@@ -171,7 +171,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 searchable: false,
                 render: function (data) {
 
-                    const unSuspendBtn = adminData.role_id === 1 
+                    const unSuspendBtn = adminData.role_id == 1 
                                     ? ` <button data-user-id="${data.id}" class="btn btn-sm btn-success text-white unsuspend">Unsuspend</button> `
                                     : '';
                    

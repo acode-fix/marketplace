@@ -1563,6 +1563,8 @@ class AdminController extends Controller
         }
 
         $usersPaginated = $users->paginate($perPage);
+
+        
         return response()->json([
             'status' => true,
             'message' => 'Onboarded Users Fetched Successfully',
@@ -1571,16 +1573,6 @@ class AdminController extends Controller
             'filtered_total' =>  $usersPaginated->total()
 
         ], 200);
-
-
-        
-        // return response()->json([
-
-        //     'status' => true,
-        //     'message' => 'Onboarder users fetched successfully',
-        //     'users' => $users,
-    
-        // ],200);
 
 
 

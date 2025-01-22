@@ -83,7 +83,7 @@
               <li class="nav-item">
                 <a class="nav-link active" data-bs-toggle="tab" href="#home" role="tab">
                   <span class="d-block d-sm-none"><i class="fas fa-home"></i></span>
-                  <span class="d-none d-sm-block">Users :: With Shop No</span>
+                  <span class="d-none d-sm-block users-onboarded">Users :: With Shop No</span>
                 </a>
               </li>
               <li style="display: none" class="nav-item agent-referral">

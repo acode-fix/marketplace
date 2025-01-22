@@ -8,6 +8,9 @@
    axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
 
   const userData = JSON.parse(localStorage.getItem('adminUser'));
+
+  document.querySelector('.users-onboarded').textContent = `Onboarded by: ${userData.email}`
+
   
    let dataTableInstance;
 
@@ -30,7 +33,7 @@
             })
             .then((response) => {
 
-                console.log(response);
+               // console.log(response);
 
                 const result = response.data
 

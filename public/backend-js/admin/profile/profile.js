@@ -207,12 +207,11 @@ saveBtn.addEventListener('click', (event) => {
 
             const adminUser = response.data.user;
               
-            localStorage.setItem('adminUser', JSON.stringify(adminUser));
             Swal.fire({
                 icon: 'info',
                 title: 'Profile Update',
                 confirmButtonColor: '#ffb705',
-                html: `<h6>Profile updated successfully</h6>`,
+                html: `<h6>Profile updated successfully <br> The changes will be effected when next you login </h6>`,
                 timer: 3000,
                 timerProgressBar: true,
                 didOpen: () => {

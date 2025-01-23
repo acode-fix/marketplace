@@ -59,6 +59,8 @@ login.addEventListener('click', () => {
           if(userData.role_id == 3){
 
             window.location.href = '/admin/admin/view';
+
+            return;
           }
             
            window.location.href = '/admin/dashboard';

@@ -104,7 +104,7 @@
                 .then((response) => {
 
                 
-                // console.log(response)
+               // console.log(response)
 
                         let rows = [];
                         const results = response.data.data;
@@ -175,7 +175,7 @@
         });
 
         // Search input handler
-        $('#datatable_filter input').on('keyup', function () {
+        $('#datatable2_filter input').on('keyup', function () {
             // Trigger the search on the DataTable to filter the data
             agentReferralsTable.search(this.value).draw();
         });

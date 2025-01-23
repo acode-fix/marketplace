@@ -1556,7 +1556,8 @@ class AdminController extends Controller
             $query->where('name', 'like', '%'.$search.'%')
                   ->orWhere('email', 'like', '%'.$search.'%')
                   ->orWhere('address', 'like', '%'.$search.'%')
-                  ->orWhere('phone_number', 'like', '%'.$search.'%');
+                  ->orWhere('phone_number', 'like', '%'.$search.'%')
+                  ->orWhere('shop_no', 'like', '%'.$search.'%');
 
              });
     
@@ -1564,7 +1565,7 @@ class AdminController extends Controller
 
         $usersPaginated = $users->paginate($perPage);
 
-        
+
         return response()->json([
             'status' => true,
             'message' => 'Onboarded Users Fetched Successfully',
@@ -1583,18 +1584,16 @@ class AdminController extends Controller
         $perPage = $request->input('per_page', 10);
         $search = $request->input('search');
     
-        // Start building the query
         $query = Refferal::with(['agent', 'customer']) // Load both agent and customer relationships
-            ->when($search, function ($q) use ($search) {
-                // Filter customers based on search term (name or email)
-                $q->whereHas('user', function ($subQuery) use ($search) {
-                    $subQuery->where('name', 'like', "%{$search}%")
-                     ->orWhere('email', 'like', '%'.$search.'%')
-                    ->orWhere('address', 'like', '%'.$search.'%')
-                    ->orWhere('phone_number', 'like', '%'.$search.'%');
-  
-                });
+        ->when($search, function ($q) use ($search) {
+            $q->whereHas('user', function ($subQuery) use ($search) {
+                $subQuery->where('name', 'like', "%{$search}%")
+                    ->orWhere('email', 'like', "%{$search}%")
+                    ->orWhere('address', 'like', "%{$search}%")
+                    ->orWhere('username', 'like', "%{$search}%")
+                    ->orWhere('phone_number', 'like', "%{$search}%");
             });
+        });
     
         // Get all referrals without pagination for grouping
         $referrals = $query->get(); // Using get() to fetch all results for grouping

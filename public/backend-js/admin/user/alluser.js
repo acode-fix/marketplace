@@ -189,7 +189,7 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
     // Search input handler
-    $('#datatable_filter input').on('keyup', function () {
+    $('#datatable2_filter input').on('keyup', function () {
         // Trigger the search on the DataTable to filter the data
         suspendedUserdataTable.search(this.value).draw();
     });
@@ -265,7 +265,7 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
     // Search input handler
-    $('#datatable_filter input').on('keyup', function () {
+    $('#datatable3_filter input').on('keyup', function () {
         // Trigger the search on the DataTable to filter the data
         deletedUserdataTable.search(this.value).draw();
     });

@@ -266,23 +266,24 @@
             <!-- Nav tabs -->
             <ul class="nav nav-tabs pt-4" role="tablist">
               <li class="nav-item">
-                <a class="nav-link active" data-bs-toggle="tab" href="#home" role="tab">
+                <a class="nav-link active" data-bs-toggle="tab" href="#home" role="tab" data-bs-toggle="tooltip" data-bs-placement="top" title="View all registered users">
                   <span class="d-block d-sm-none"><i class="fas fa-home"></i></span>
                   <span class="d-none d-sm-block">Registered Users</span>
                 </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" data-bs-toggle="tab" href="#profile" role="tab">
+                <a class="nav-link" data-bs-toggle="tab" href="#profile" role="tab" data-bs-toggle="tooltip" data-bs-placement="top" title="View all suspended users">
                   <span class="d-block d-sm-none"><i class="far fa-user"></i></span>
                   <span class="d-none d-sm-block">Suspended Users</span>
                 </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" data-bs-toggle="tab" href="#messages" role="tab">
+                <a class="nav-link" data-bs-toggle="tab" href="#messages" role="tab" data-bs-toggle="tooltip" data-bs-placement="top" title="View all deleted users">
                   <span class="d-block d-sm-none"><i class="far fa-envelope"></i></span>
                   <span class="d-none d-sm-block">Deleted Users</span>
                 </a>
               </li>
+              
             </ul>
 
             <!-- Tab panes -->
@@ -541,4 +542,13 @@
 
 
     <script type="module" src="{{ asset('backend-js/admin/user/alluser.js') }}"></script>
+    <script>
+      // Initialize all tooltips on the page
+      document.addEventListener('DOMContentLoaded', function () {
+        var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+        var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+          return new bootstrap.Tooltip(tooltipTriggerEl)
+        })
+      });
+    </script>
 </x-admin-layouts>

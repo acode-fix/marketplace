@@ -145,7 +145,7 @@
              
               </div>
               <br>
-              <div class="js-user-table">
+              <div class="js-user-table  table-responsive">
 
               </div>
 

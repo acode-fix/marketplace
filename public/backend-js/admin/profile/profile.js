@@ -119,17 +119,17 @@ if (adminData.role_id == 1) {
    }  else {
 
   
-let display = ` <table class="table  table-hover">
-   <thead>
-     <tr>
-       <th>S/N</th>
-       <th>Name</th>
-       <th>Email</th>
-       <th>Role</th>
-       <th>Phone Number</th>
-       <th>Action</th>    
-     </tr>
-   </thead>
+let display = ` <table class="table table-hover table-striped table-bordered table-sm">
+   <thead class="thead-dark">
+      <tr>
+        <th style="width: 5%;">S/N</th>
+        <th style="width: 20%;">Name</th>
+        <th style="width: 25%;">Email</th>
+        <th style="width: 20%;">Role</th>
+        <th style="width: 20%;">Phone Number</th>
+        <th style="width: 10%;">Action</th>    
+      </tr>
+    </thead>
    <tbody>
    <tr>
          <td>${1}</td>

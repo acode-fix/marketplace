@@ -77,7 +77,7 @@ function loadPayments(payments) {
 
       display += ` <tr>
                 <td>${index + 1}</td>
-                <td>${payment.user.name ?? 'N/A'} </td>
+                <td>${payment?.user?.name ? payment.user.name : 'N/A'} </td>
                 <td>${payment.status == 1 ? 'success' : 'Failed'} </td>
                 <td> &#8358;${formatPrice(payment.amount) ?? 'N/A'}</td>
                 <td>${payment.transaction_reference ?? 'N/A'}</td>

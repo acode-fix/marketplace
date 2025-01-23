@@ -168,7 +168,7 @@ document.addEventListener('click', (event) => {
 
                 const userData = response.data.user;
 
-                console.log(userData);
+                //console.log(userData);
 
                 document.getElementById('name').value = userData.name;
                 document.getElementById('email').value = userData.email;

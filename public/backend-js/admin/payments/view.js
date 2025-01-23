@@ -101,7 +101,7 @@ failedPaymentsTableInstance = $('#datatable2').DataTable({
                     
         const result = response.data;
 
-           console.log(response);
+       // console.log(response);
 
   
             callback({
@@ -123,7 +123,7 @@ failedPaymentsTableInstance = $('#datatable2').DataTable({
             }
         },
 
-        { data: 'user.name', render: function(data) { return data ? data : 'N/A'; }},
+        { data: null, render: function(data) { return data?.user?.name ? data.user.name : 'N/A'; }},
         { data: 'status', render: function(data) { return data == 1 ? 'success' : '<p class="text-danger">Failed<p>'; }},
         { data: 'amount', render: function(data) { return  ` &#8358;${formatPrice(data) ?? 'N/A'} ` }},
         { data: 'invoice_number',render: function(data) { return data ? data : 'N/A' }},

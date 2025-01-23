@@ -33,10 +33,10 @@ class VerificationController extends Controller
 
        if($search) {
         $pendingUserApprovals->where(function($query) use ($search) {
-            $query->where('name', 'like', "% $search %")
-                   ->orWhere('username', 'like', "% $search %" )
-                   ->orWhere('email', 'like', "% $search %" )
-                   ->orWhere('address', 'like', "% $search %" );
+            $query->where('name', 'like', "%$search%")
+                   ->orWhere('username', 'like', "%$search%" )
+                   ->orWhere('email', 'like', "%$search%" )
+                   ->orWhere('address', 'like', "%$search%" );
                    
         });
 
@@ -579,10 +579,10 @@ class VerificationController extends Controller
 
         if($search) {
             $approvedUsers->where(function($query) use ($search) {
-                $query->where('name', 'like', "% $search %")
-                       ->orWhere('username', 'like', "% $search %" )
-                       ->orWhere('email', 'like', "% $search %" )
-                       ->orWhere('address', 'like', "% $search %" );
+                $query->where('name', 'like', "%$search%")
+                       ->orWhere('username', 'like', "%$search%" )
+                       ->orWhere('email', 'like', "%$search%" )
+                       ->orWhere('address', 'like', "%$search%" );
                        
             });
 
@@ -613,10 +613,10 @@ class VerificationController extends Controller
 
         if($search) {
             $rejectedUsers->where(function($query) use ($search) {
-                $query->where('name', 'like', "% $search %")
-                       ->orWhere('username', 'like', "% $search %" )
-                       ->orWhere('email', 'like', "% $search %" )
-                       ->orWhere('address', 'like', "% $search %" );
+                $query->where('name', 'like', "%$search%")
+                       ->orWhere('username', 'like', "%$search%" )
+                       ->orWhere('email', 'like', "%$search%" )
+                       ->orWhere('address', 'like', "%$search%" );
                        
             });
 

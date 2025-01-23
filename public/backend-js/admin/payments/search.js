@@ -36,7 +36,7 @@ to.addEventListener('change', () => {
 
 document.getElementById('filterBtn').addEventListener('click', () => {
 
-      console.log(paymentFilter);
+     // console.log(paymentFilter);
 
       axios.get('/api/v1/admin/payments/filter', {params: paymentFilter}).then((response) => {
 

@@ -402,7 +402,7 @@ function getPaymentStatus(payment) {
     });
     
 
-    $('#datatable_filter input').on('keyup', function () {
+    $('#datatable2_filter input').on('keyup', function () {
         approvedTableInstance.search(this.value).draw();
     });
 
@@ -473,6 +473,11 @@ function getPaymentStatus(payment) {
         ],
         responsive: true,
     });
+
+    $('#datatable3_filter input').on('keyup', function () {
+        approvedTableInstance.search(this.value).draw();
+    });
+
     
 
     

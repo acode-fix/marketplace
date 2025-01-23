@@ -165,6 +165,7 @@
       </div>
 
     </div>
-
+    
+    <script type="module" src="{{ asset('backend-js/admin/user/permission.js') }}"></script>
     <script type="module" src="{{ asset('backend-js/admin/payments/view.js') }}"></script> 
 </x-admin-layouts>

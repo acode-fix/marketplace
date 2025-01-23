@@ -67,6 +67,8 @@
     <script type="module" src="{{ asset('backend-js/admin/dashboard.js')}}?{{ time() }}"></script>
     <script type="module" src="{{ asset('backend-js/admin/auth-helper.js')}}?{{ time()  }}"></script>
 
+    <script type="module" src="{{ asset('backend-js/admin/user/check.js') }}"></script>
+
     
     
 </body>

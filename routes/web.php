@@ -272,5 +272,11 @@ Route::get('/about', function() {
 
 });
 
+Route::get('access/denied', function() {
+
+    return view('admin.user.unauthorized_access');
+
+});
+
 
 

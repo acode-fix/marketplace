@@ -53,7 +53,15 @@ login.addEventListener('click', () => {
         willClose: () => {
 
           clearInterval(timerInterval);
-          window.location.href = '/admin/dashboard';
+
+           const userData = JSON.parse(localStorage.getItem('adminUser'));
+
+          if(userData.role_id == 3){
+
+            window.location.href = '/admin/admin/view';
+          }
+            
+           window.location.href = '/admin/dashboard';
 
         }
       })

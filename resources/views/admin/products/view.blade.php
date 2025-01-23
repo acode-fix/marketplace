@@ -123,6 +123,6 @@
 
     </div>
 
-
+<script type="module" src="{{ asset('backend-js/admin/user/permission.js') }}"></script>
 <script type="module" src="{{ asset('backend-js/admin/products/products.js') }}"></script> 
 </x-admin-layouts>

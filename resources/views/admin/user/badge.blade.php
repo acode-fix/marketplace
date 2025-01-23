@@ -173,6 +173,6 @@
 
   
 
-
+    <script type="module" src="{{ asset('backend-js/admin/user/permission.js') }}"></script>
     <script type="module" src="{{ asset('backend-js/admin/user/badge.js') }}"></script> 
 </x-admin-layouts>

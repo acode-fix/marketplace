@@ -20,7 +20,7 @@
             <ul class="metismenu list-unstyled" id="side-menu">
                 <li class="menu-title">Menu</li>
 
-                <li>
+                <li class="permission">
                     <a href="{{ route('admin.dashboard') }}" class="waves-effect">
                         <i class="ri-dashboard-line"></i><span class="badge rounded-pill bg-success float-end"></span>
                         <span>Dashboard</span>
@@ -44,7 +44,7 @@
                         <li><a href="{{ route('admin.onboarded-user') }}">Onboarded Users</a></li>
                     </ul>
                 </li>
-                <li>
+                <li class="permission">
                     <a href="javascript: void(0);" class="has-arrow waves-effect">
                         <i class="ri-gift-2-line"></i>
                         <span>Products Menu</span>
@@ -55,7 +55,7 @@
                         <li><a href="{{ route('products.sales') }}">Performance</a></li>
                     </ul>
                 </li>
-                <li>
+                <li class="permission">
                     <a href="javascript: void(0);" class="has-arrow waves-effect">
                         <i class="ri-currency-line"></i>
                         <span>Payment</span>
@@ -65,7 +65,7 @@
                         <li><a href="{{ route('payments.search') }}">Search</a></li>
                     </ul>
                 </li>
-                <li>
+                <li class="permission">
                     <a href="javascript: void(0);" class="has-arrow waves-effect">
                         <i class="ri-vip-crown-2-line"></i>
                         <span>Verification</span>
@@ -74,14 +74,14 @@
                         <li><a href="{{ route('admin.verify') }}">View</a></li>
                     </ul>
                 </li> 
-                <li>
+                <li class="permission">
                     <a href="{{ route('badge.view') }}" class="waves-effect">
                         <i class=" ri-honour-line"></i><span class="badge rounded-pill bg-success float-end"></span>
                         <span>Badge Menu</span>
                     </a>
                 </li>
                 
-                <li>
+                <li class="permission">
                     <a href="{{ route('learn.view') }}" class="waves-effect">
                         <i class="ri-book-mark-line"></i><span class="badge rounded-pill bg-success float-end"></span>
                         <span>Learn Menu</span>

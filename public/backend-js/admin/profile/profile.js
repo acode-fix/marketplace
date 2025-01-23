@@ -66,7 +66,7 @@ if (adminData.role_id == 1) {
           })
           .then((response) => {
 
-              console.log(response);
+            //  console.log(response);
 
               const result = response.data;
               loadRoles(result.roles);
@@ -92,7 +92,7 @@ if (adminData.role_id == 1) {
 
           { data: 'name', render: function(data) { return data ? data : 'N/A'; }},
           { data: 'email', render: function(data) { return data ? data : 'N/A'; }},
-          { data: 'role.name', render: function(data) { return `${data.replace('_', ' ')}`; }},
+          { data: null, render: function(data) { return data?.role?.name ? data.role.name.replace('_', ' ') : 'N/A'; }},
           { data: 'phone_number', render: function(data) { return data ? data : 'N/A'; }},
           {
               data: null,
@@ -135,7 +135,7 @@ let display = ` <table class="table  table-hover">
          <td>${1}</td>
          <td>${adminData.name ?? 'N/A'}</td>
          <td>${adminData.email ?? 'N/A'}</td>
-         <td>${adminData.role.name.replace('_', ' ')}</td>
+         <td>${adminData?.role?.name ? adminData.role.name.replace('_', ' ') : ''}</td>
          <td>${adminData.phone_number ?? 'N/A'}</td>  
          <td><button class="btn btn-sm btn-success edit-btn" data-user-id="${adminData.id}">Edit</button></td>
        </tr>

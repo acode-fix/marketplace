@@ -132,7 +132,7 @@ dataTableInstance = $('#datatable').DataTable({
 });
 
   // Search input handler
-  $('#datatable_filter input').on('keyup', function () {
+  $('#datatable2_filter input').on('keyup', function () {
       // Trigger the search on the DataTable to filter the data
       unListedTableInstance.search(this.value).draw();
   });
@@ -201,7 +201,7 @@ dataTableInstance = $('#datatable').DataTable({
 });
 
   // Search input handler
-  $('#datatable_filter input').on('keyup', function () {
+  $('#datatable3_filter input').on('keyup', function () {
       // Trigger the search on the DataTable to filter the data
       productRequestdataTable.search(this.value).draw();
   });

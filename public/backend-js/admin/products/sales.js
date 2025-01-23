@@ -132,7 +132,7 @@ axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
     responsive: true,
 });
   // Search input handler
-  $('#datatable_filter input').on('keyup', function () {
+  $('#datatable2_filter input').on('keyup', function () {
       // Trigger the search on the DataTable to filter the data
       connectsTableInstance.search(this.value).draw();
   });

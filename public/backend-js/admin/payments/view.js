@@ -101,7 +101,7 @@ failedPaymentsTableInstance = $('#datatable2').DataTable({
                     
         const result = response.data;
 
-       // console.log(response);
+           console.log(response);
 
   
             callback({
@@ -147,7 +147,7 @@ failedPaymentsTableInstance = $('#datatable2').DataTable({
 });
 
 
-$('#datatable_filter input').on('keyup', function () {
+$('#datatable2_filter input').on('keyup', function () {
   failedPaymentsTableInstance.search(this.value).draw();
 });
 

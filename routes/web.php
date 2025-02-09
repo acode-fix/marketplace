@@ -36,7 +36,7 @@ Route::get('/learn5', function () {
     return view('frontend.learn5');
 });
 
-Route::get('/audit-logs', [AuditlogController::class, 'index']);
+
 
 Route::get('/public', function () {
     return view('index_public');

@@ -881,39 +881,6 @@ class AdminController extends Controller
 
     }
 
-    /*
-    public function getAllUserPayments() {
-
-        $payments = Payment::with('user')->get()->groupBy(function($payment) {
-
-            if($payment->status == 1 && $payment->gateway_response == 'Successful') {
-
-                return 'successPayments';
-
-            }
-
-            
-            if($payment->status == -1 && is_null($payment->gateway_response)) {
-
-                return 'failedPayments';
-
-            }
-
-
-
-        });
-
-
-
-        return response()->json([
-            'status' => true,
-            'message' => 'Payment Data Fetched Successfully',
-            'successPayments' => $payments->get('successPayments', []),
-            'failedPayments' => $payments->get('failedPayments', []),
-
-        ],200);
-    }
-    */
 
     public function filterUserPayments(Request $request) {
 
@@ -1189,47 +1156,7 @@ class AdminController extends Controller
     }
 
 
-    /*
-    public function getAdminUsers(Request $request) 
-    {    try
-         {
-            $perPage = $request->input('per_page',10);
-            $search = $request->input('search');
-
-           $users = User::with('role')->where('user_type', 1);
-           $roles = Role::all();
-
-           if($users->isEmpty()) {
-
-            return response()->json([
-                'status' => true,
-                'message' => 'No admin users',
-                'users' => [],
-               ],200);
-
-           }
-
-           return response()->json([
-            'status' => true,
-            'message' => 'Admin Users Fetched Successfully',
-            'users' => $users,
-            'roles' => $roles,
-
-           ],200);
-
-         } catch(Exception $err) {
-
-            Log::error('Error fetching user profile: ' . $err->getMessage());
-
-            return response()->json([
-                'status' => false,
-                'message' => 'Something went wrong, Try again later!!'
-               
-            ],500);
-         }
-        
-    }
-    */
+    
 
     public function updateProfile(Request $request)
     {
@@ -1636,45 +1563,7 @@ class AdminController extends Controller
     
 
 
-    /*
-
-    public function getAllAgentRefferals()
-    {
-        $refferals = Refferal::all();
-
-        $groupedRefferals = $refferals->groupBy('refferal_id'); 
-
-        $result = [];
-
-        foreach($groupedRefferals as $agentId => $agentRefferals) {
-
-             //$agentId represents the refferal_id
-            $agent = User::find($agentId);
-
-            if($agent) {
-
-                $referredUserIds = $agentRefferals->pluck('customer_id');
-                $referredUsers = User::wherein('id', $referredUserIds)->get();
-            }
-
-            $result[] = [
-                'agent' => $agent,
-                'referred_users' => $referredUsers,
-            ];
-
-        }
-
-        return response()->json([
-            'status' => true,
-            'message' => 'All agent referrals fetched successfully',
-            'data' => $result,
-        ]);
-
-
-
-    }
-
-*/
+   
 
 
 

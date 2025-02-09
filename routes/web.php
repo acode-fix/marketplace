@@ -13,21 +13,12 @@ use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\BadgeController;
 use App\Models\User;
 use App\Notifications\ReviewPushNotification;
-use Illuminate\Support\Facades\Auth;
 
  
 // web.php
 Route::get('/sellers-shop', [ProductController::class, 'showSellerShop']);
 Route::get('/product_des/{id}', [ProductController::class, 'showProduct']);
-// Route::get('/sellers-shop/{productId}', [ProductController::class, 'showSellerShop'])->name('sellers-shop');
-// Route::get('/product_des', [ProductController::class, 'showProductDes']);
 Route::get('/sellers-shop/{userId}', [ShopController::class, 'showUserShop'])->name('sellers.shop');
-
-// Route::get('/category_search/{id}', [CategoriesController::class, 'show']);
-
-// web.php
-// Route::get('/api/product/{id}', [ProductController::class, 'getProductData']);
-Route::get('/ggg', [ProductController::class, 'index']);
 
 
 Route::get('/api/learn', [LearnController::class, 'getLearnData']);
@@ -54,9 +45,7 @@ Route::get('/public', function () {
 Route::get('/', function () {
     return view('index');
 });
-// Route::get('/dashboard', function () {
-//     return view('admin.index');
-// });
+
 
 Route::get('/shop', function () {
     return view('frontend.shop');
@@ -224,10 +213,6 @@ Route::get('admin/products/view/search', function() {
     return view(('admin.products.search'));
 })->name('products.search');
 
-// Route::get('admin/products/view/unlisted', function() {
-//     return view(('admin.products.unlisted'));
-// })->name('products.unlisted');
-
 
 Route::get('admin/badge/view', function() {
 
@@ -282,6 +267,3 @@ Route::get('access/denied', function() {
     return view('admin.user.unauthorized_access');
 
 });
-
-
-

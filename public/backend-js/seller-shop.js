@@ -107,11 +107,11 @@ if (!userId) {
     function updateAuthUser(authData) {
 
       document.querySelectorAll('.js-name').forEach((username) => {
-        username.textContent = authData.username ?? 'No Data Provided';
+        username.textContent = authData.username ?? 'N/A';
       });
       
       document.querySelectorAll('.js-email').forEach((userEmail) => {
-        userEmail.textContent = authData.email ?? 'No Data Provided';
+        userEmail.textContent = authData.email ?? 'N/A';
       });
       
        document.querySelectorAll('.js-profile').forEach((userProfile) => {
@@ -501,7 +501,7 @@ if (!userId) {
                         ${badge}
                         
                         <div class="mt-4 ms-4">
-                          <h5 class="">${user.username ?? 'No Data Provided'}</h5>
+                          <h5 class="">${user.username ? user.username : 'N/A'}</h5>
                           <h6 style="margin-bottom:7px" class="mired-email">Shop No: ${user.shop_no ? user.shop_no : 'N/A'}</h6>
                           <h6 class="mired-email">${user.email ? user.email : 'No Data Provided'}</h6>
                           <a class="verified-link" href="#">verified seller</a>
@@ -547,7 +547,7 @@ if (!userId) {
                 ${userMobileImg}
                 
                 <div class="ms-3 mb-2 ">
-                  <h5 class="pt-3 mired-drill-m">${user.username ?? ''}</h5>
+                  <h5 class="pt-3 mired-drill-m">${user.username ?? 'N/A'}</h5>
                    <h6 style="margin-bottom:7px" class="mired-email">Shop No: ${user.shop_no ? user.shop_no : 'N/A'}</h6>
                   <h6 class="mired-email">${user.email ?? ''}</h6>
                   <h6 class="veri-m pt-1">verified seller</h6>

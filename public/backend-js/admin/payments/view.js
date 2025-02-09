@@ -56,7 +56,7 @@ successPaymentsTableInstance = $('#datatable').DataTable({
         { data: 'invoice_number',render: function(data) { return data ? data : 'N/A' }},
         { data: 'transaction_reference',render: function(data) { return data ? data : 'N/A' }},
         { data: 'description', render: function(data) { return data ? data : 'N/A' }},
-        { data: 'payment_date', render: function(data) { return `${formatDate(data)} ?? 'N/A`}},
+        { data: 'payment_date', render: function(data) { return `${formatDate(data) ?? 'N/A'}`}},
 
         {
             data: null,

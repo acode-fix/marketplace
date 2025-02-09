@@ -62,10 +62,13 @@ class UsersController extends Controller
             ], 401);
         }
         $shopToken = Shop::shopToken(50);
+        $shop_no = Shop::shopNo();
+
         $user = User::create([
             'email' => $request->email,
             'password' => Hash::make($request->password),
             'shop_token' => $shopToken,
+            'shop_no' => $shop_no,
             'role_id'  => 3,
         ]);
 
@@ -117,7 +120,7 @@ class UsersController extends Controller
 
             return response()->json([
                 'status' => false,
-                'message' => 'Email Or password does not exists',
+                'message' => 'Invalid Email Or password',
 
             ],404);
 

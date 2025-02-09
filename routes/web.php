@@ -13,12 +13,9 @@ use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\BadgeController;
 use App\Models\User;
 use App\Notifications\ReviewPushNotification;
+use Illuminate\Support\Facades\Auth;
 
-
-
-
-
-
+ 
 // web.php
 Route::get('/sellers-shop', [ProductController::class, 'showSellerShop']);
 Route::get('/product_des/{id}', [ProductController::class, 'showProduct']);
@@ -164,7 +161,8 @@ Route::get('/payment-success', [PaymentController::class, 'successPage'])->name(
 Route::get('/admin/login', function() {
     return view('admin.login');
 
-});
+})->name('admin.login');
+
 Route::get('/admin/reset-password', function() {
     return view('admin.reset_password');
 
@@ -197,6 +195,13 @@ Route::get('/admin/dashboard/onboarded-user', function() {
     return view('admin.user.onboarded');
     
 })->name('admin.onboarded-user');
+
+Route::get('/admin/agents', function() {
+
+    return view('admin.user.agent');
+    
+})->name('admin.agent');
+
 
 Route::get('/admin/products/view', function() {
 

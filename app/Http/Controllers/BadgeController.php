@@ -84,7 +84,8 @@ class BadgeController extends Controller
  public function verifyBadge() {
 
 
-  $expiredBadges = User::where('expiry_date', '<', Carbon::now())->get();
+//   $expiredBadges = User::where('expiry_date', '<', Carbon::now())->get();
+$expiredBadges = User::whereDate('expiry_date', '<', Carbon::today())->get();
   
 
   log::info($expiredBadges);

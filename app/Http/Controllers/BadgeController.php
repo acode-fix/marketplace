@@ -101,10 +101,6 @@ $expiredBadges = User::whereDate('expiry_date', '<', Carbon::today())->get();
     
   }
 
-  $expiredBadges->update([
-    'badge_status' => -1
-  ]);
-
   foreach($expiredBadges as $expire) {
 
         $expire->badge_status = -1;

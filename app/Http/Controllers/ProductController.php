@@ -583,7 +583,7 @@ public function store(Request $request)
             'actual_price' => 'required_if:ask_for_price,false|max:7',
             'promo_price' => 'nullable|max:7',
            // 'image_url.*' => 'required|image|mimes:jpg,jpeg,png,gif|max:1024',
-           'image_url.*' => 'required|image|max:1024',
+           'image_url.*' => 'required|mimes:jpg,jpeg,png,gif|max:1024',
         ]);
 
 
@@ -778,7 +778,7 @@ public function update(Request $request, $id) {
         'category'  => 'required|exists:categories,id',
         'ask_for_price'=> 'sometimes|required|accepted',
         //'image_url.*' => 'sometimes|image|mimes:jpg,jpeg,png,gif|max:1024',
-        'image_url.*' => 'sometimes|image|max:1024',
+        'image_url.*' => 'sometimes|mimes:jpg,jpeg,png,gif|max:1024',
 
     ]);
 

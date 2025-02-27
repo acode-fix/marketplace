@@ -60,7 +60,7 @@ if(!token) {
             <hr>
             <div class="accont_features">
                 <p><a class="js-auth" href="">Dashboard</a></p>
-                <p><a class="js-auth" href=""> Reffer a Friend </a></p>
+                <p><a class="js-auth" href=""> Refer a Friend </a></p>
                 <p> <a class="js-auth" href="">Privacy and Policy </a></p>
                 <p><a class="js-auth" href="#" id="logoutLink">Log In</a></p>
             </div>`;

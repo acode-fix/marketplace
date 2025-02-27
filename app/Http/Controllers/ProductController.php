@@ -582,7 +582,8 @@ public function store(Request $request)
             'ask_for_price' => 'required|boolean',
             'actual_price' => 'required_if:ask_for_price,false|max:7',
             'promo_price' => 'nullable|max:7',
-            'image_url.*' => 'required|image|mimes:jpg,jpeg,png,gif|max:2048'
+           // 'image_url.*' => 'required|image|mimes:jpg,jpeg,png,gif|max:1024',
+           'image_url.*' => 'required|image|max:1024',
         ]);
 
 
@@ -774,10 +775,10 @@ public function update(Request $request, $id) {
         'condition' => ['required','in:fairly_used,new'],
         'actual_price' => 'required_if:ask_for_price,false',
         'promo_price' => 'sometimes|required_if:ask_for_price,false',
-        //'image_url' => 'required|array',
         'category'  => 'required|exists:categories,id',
         'ask_for_price'=> 'sometimes|required|accepted',
-        'image_url.*' => 'sometimes|image|mimes:jpg,jpeg,png,gif|max:1024',
+        //'image_url.*' => 'sometimes|image|mimes:jpg,jpeg,png,gif|max:1024',
+        'image_url.*' => 'sometimes|image|max:1024',
 
     ]);
 

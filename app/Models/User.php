@@ -21,10 +21,7 @@ class User extends Authenticatable
      *
      * @var array<int, string>
      */
-    protected $guarded = [
-        
-
-    ];
+    protected $guarded = [];
 
     /**
      * The attributes that should be hidden for serialization.
@@ -50,31 +47,33 @@ class User extends Authenticatable
 
     protected $dates = ['deleted_at']; // Optional: ensures dates are treated as instances of Carbon;
 
-    public function role() 
+    public function role()
     {
         return $this->hasOne(Role::class, 'id', 'role_id');
     }
 
     public function refferals()
     {
-      return $this->hasMany(Refferal::class, 'customer_id', 'id' );
+        return $this->hasMany(Refferal::class, 'customer_id', 'id');
     }
 
 
-    public function payment() {
+    public function payment()
+    {
 
         return $this->hasMany(Payment::class);
     }
 
 
-       static function getAuthUser(){
+    static function getAuthUser()
+    {
 
-          // return  \Auth::guard('sanctum')->user();
-       }
+        // return  \Auth::guard('sanctum')->user();
+    }
 
-    
 
-        public function products()
+
+    public function products()
     {
         return $this->hasMany(Product::class)->where('quantity', '!=', 0);
     }
@@ -95,5 +94,11 @@ class User extends Authenticatable
         } while (self::where('referral_code', $code)->exists());
 
         return $code;
+    }
+
+
+    public function linkedSocialAccounts()
+    {
+        return $this->hasOne(LinkedSocialAccount::class);
     }
 }

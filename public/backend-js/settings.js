@@ -2,9 +2,26 @@ import { validationError,displaySwal, showLoader, hideLoader, } from "./helper/h
 import { serverError } from "./admin/auth-helper.js";
 import dayjs from 'https://unpkg.com/dayjs@1.11.10/esm/index.js';
 
-const token = localStorage.getItem('apiToken');
 
-axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+let token = null;
+
+const currentUrl = new URL(window.location.href);
+
+const tokenFromUrl = currentUrl.searchParams.get("token");
+const userIdFromUrl = currentUrl.searchParams.get("user");
+
+if (tokenFromUrl && userIdFromUrl) {
+    localStorage.setItem("apiToken", tokenFromUrl);
+    localStorage.setItem("userId", JSON.stringify(userIdFromUrl));
+    axios.defaults.headers.common["Authorization"] = `Bearer ${tokenFromUrl}`;
+
+     window.history.replaceState({}, document.title, "/settings");
+          
+}
+
+token = localStorage.getItem("apiToken");
+
+axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
 
 
 const continueBtn = document.querySelector('.update-loader');

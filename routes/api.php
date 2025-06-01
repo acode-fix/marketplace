@@ -17,10 +17,14 @@ use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\AdvertController;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\BadgeController;
+use App\Http\Controllers\SocialiteController;
 use App\Models\Verification;
 
 
 
+
+
+Route::get('/auth/provider-user/', [UsersController::class,'getUserByShop']);
 
 Route::get('/userStatus', [UsersController::class, 'status']);
 
@@ -52,7 +56,7 @@ Route::get('/user/products', [ProductController::class, 'userProducts']);
 
 
 Route::prefix('v1')->middleware('auth:sanctum')->group(function () {
-
+    
         Route::get('/users', [UsersController::class, 'view']);
         Route::post('/auth/update',[UsersController::class, 'accountSettings']);
         Route::post('/auth/logout',[UsersController::class, 'logoutUser']);

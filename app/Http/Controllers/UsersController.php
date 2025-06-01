@@ -17,10 +17,12 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Barryvdh\Debugbar\Facades\Debugbar;
 use App\Notifications\ReviewPushNotification;
-
+use App\Traits\HasApiResponse;
+use Illuminate\Http\Response;
 
 class UsersController extends Controller
-{    
+{
+    use HasApiResponse;
 
     /**
      * Display a listing of the resource.
@@ -29,6 +31,9 @@ class UsersController extends Controller
     {
         //
     }
+
+
+
 
     /**
      * Show the form for creating a new resource.
@@ -45,46 +50,44 @@ class UsersController extends Controller
      */
     public function register(Request $request)
     {
-        try{
-        //
-        $validator = Validator::make($request->all(), [
-             'email' => 'required|email|unique:users,email',
-             'password' => 'required|min:6|confirmed',
-             'password' => 'required|min:6',
+        try {
+            //
+            $validator = Validator::make($request->all(), [
+                'email' => 'required|email|unique:users,email',
+                'password' => 'required|min:6|confirmed',
+                'password' => 'required|min:6',
 
-        ]);
+            ]);
 
-        if($validator->fails()){
+            if ($validator->fails()) {
+                return response()->json([
+                    'status' => false,
+                    'message' => 'validation error',
+                    'errors' => $validator->errors()
+                ], 401);
+            }
+            $shopToken = Shop::shopToken(50);
+            $shop_no = Shop::shopNo();
+
+            $user = User::create([
+                'email' => $request->email,
+                'password' => Hash::make($request->password),
+                'shop_token' => $shopToken,
+                'shop_no' => $shop_no,
+                'role_id'  => 3,
+            ]);
+
+            return response()->json([
+                'status' => true,
+                'message' => 'User created successfully',
+                'token' => $user->createToken("API TOKEN")->plainTextToken
+            ], 200);
+        } catch (\Throwable $th) {
             return response()->json([
                 'status' => false,
-                'message' => 'validation error',
-                'errors' => $validator->errors()
-            ], 401);
+                'message' => $th->getMessage()
+            ], 500);
         }
-        $shopToken = Shop::shopToken(50);
-        $shop_no = Shop::shopNo();
-
-        $user = User::create([
-            'email' => $request->email,
-            'password' => Hash::make($request->password),
-            'shop_token' => $shopToken,
-            'shop_no' => $shop_no,
-            'role_id'  => 3,
-        ]);
-
-        return response()->json([
-            'status' => true,
-            'message' => 'User created successfully',
-            'token' => $user->createToken("API TOKEN")->plainTextToken
-        ], 200);
-
-    } catch (\Throwable $th) {
-        return response()->json([
-            'status' => false,
-            'message' => $th->getMessage()
-        ], 500);
-    }
-
     }
 
 
@@ -92,7 +95,7 @@ class UsersController extends Controller
      * Login The User
      * @param Request $request
      * @return User
-    */
+     */
     public function loginUser(Request $request)
     {
         try {
@@ -102,102 +105,89 @@ class UsersController extends Controller
                 'password' => 'required',
                 'rememberMe' => 'nullable|boolean',
 
-           ]);
+            ]);
 
-           if($validator->fails()){
-               return response()->json([
-                   'status' => false,
-                   'message' => 'validation error',
-                   'errors' => $validator->errors()
-               ], 422);
-           }
-
-           
-
-           $user = User::withTrashed()->where('email', $request->email)->first();
-
-           if(!$user) {
-
-            return response()->json([
-                'status' => false,
-                'message' => 'Invalid Email Or password',
-
-            ],404);
-
-           }
-
-
-           if($user->trashed()) {
-
-            return response()->json([
-                'status' => false,
-                'message' => 'Your account has been deleted',
-
-            ],401);
+            if ($validator->fails()) {
+                return response()->json([
+                    'status' => false,
+                    'message' => 'validation error',
+                    'errors' => $validator->errors()
+                ], 422);
+            }
 
 
 
-           }
+            $user = User::withTrashed()->where('email', $request->email)->first();
+
+            if (!$user) {
+
+                return response()->json([
+                    'status' => false,
+                    'message' => 'Invalid Email Or password',
+
+                ], 404);
+            }
 
 
-           if($user->user_type == -2) {
+            if ($user->trashed()) {
 
-            return response()->json([
-                'status' => false,
-                'message' => 'Account Suspendend!!'
+                return response()->json([
+                    'status' => false,
+                    'message' => 'Your account has been deleted',
 
-            ], 403);
-
-
-         }
+                ], 401);
+            }
 
 
-           if(!Auth::attempt($request->only(['email', 'password']))){
-            return response()->json([
-                'status' => false,
-                'message' => 'Invalid Email or Password',
-            ], 401);
-           }
- 
+            if ($user->user_type == -2) {
 
-           $token = $user->createToken(env('APP_NAME','defaultAppName'))->plainTextToken;
+                return response()->json([
+                    'status' => false,
+                    'message' => 'Account Suspendend!!'
 
-           $emailCookie = null;
-           $passwordCookie = null;
-
-           if($request->rememberMe) {
-
-            $emailCookie = cookie('email', $request->email, 60 * 24, '/', null, false, false);
-            $passwordCookie = cookie('password', $request->password, 60 * 24, '/', null, false, false);
-
-           }
-
-          // $user = Auditlog::getLog();
-            // AuditLog::storeAudith()
-            
-           $response = response()->json([
-            'status' => true,
-            'message' => 'User Logged in successfully',
-            'data' => ['token'=>$token, 'user' => $user,]
-
-           ]);
+                ], 403);
+            }
 
 
-           if($emailCookie) {
-
-            $response->cookie($emailCookie);
-
-           }
-
-           if($passwordCookie) {
-
-            $response->cookie($passwordCookie);
-
-           }
-
-           return $response;
+            if (!Auth::attempt($request->only(['email', 'password']))) {
+                return response()->json([
+                    'status' => false,
+                    'message' => 'Invalid Email or Password',
+                ], 401);
+            }
 
 
+            $token = $user->createToken(env('APP_NAME', 'Api Token'))->plainTextToken;
+
+            $emailCookie = null;
+            $passwordCookie = null;
+
+            if ($request->rememberMe) {
+
+                $emailCookie = cookie('email', $request->email, 60 * 24, '/', null, false, false);
+                $passwordCookie = cookie('password', $request->password, 60 * 24, '/', null, false, false);
+            }
+
+
+            $response = response()->json([
+                'status' => true,
+                'message' => 'User Logged in successfully',
+                'data' => ['token' => $token, 'user' => $user,]
+
+            ]);
+
+
+            if ($emailCookie) {
+
+                $response->cookie($emailCookie);
+            }
+
+            if ($passwordCookie) {
+
+                $response->cookie($passwordCookie);
+            }
+
+            return $response;
         } catch (\Throwable $th) {
             //throw $th;
             return response()->json([
@@ -207,16 +197,50 @@ class UsersController extends Controller
         }
     }
 
-    public function  adminLogin(Request $request) {
 
-        $validator = Validator::make($request->all(),[
+    public function getUserByShop($shopToken)
+    {
+
+        $user = User::where('shop_token', $shopToken)->first();
+
+        if (!$user) {
+
+            return  $this->notFoundResponse(
+                message: 'User not found',
+            );
+        }
+
+        if ($user->user_type == -2) {
+
+            return $this->errorResponse(
+                message: 'Your account has been suspended!!',
+                statusCode: Response::HTTP_FORBIDDEN,
+            );
+        }
+
+        return $this->successResponse(
+            message: 'User fetched successfully',
+            statusCode: Response::HTTP_OK,
+            data: ['user' => $user]
+        );
+    }
+
+
+
+
+
+
+    public function  adminLogin(Request $request)
+    {
+
+        $validator = Validator::make($request->all(), [
             'email' => 'required|email',
-            'password' => 'required', 
+            'password' => 'required',
 
         ]);
-    
 
-        if($validator->fails()) {
+
+        if ($validator->fails()) {
 
             return response()->json([
                 'status' => false,
@@ -226,52 +250,42 @@ class UsersController extends Controller
             ], 422);
         }
 
-    
 
-        if(!Auth::attempt($request->only(['email', 'password']))){
+
+        if (!Auth::attempt($request->only(['email', 'password']))) {
             return response()->json([
                 'status' => false,
                 'message' => 'Email or password does not match with our record',
             ], 401);
-           }
+        }
 
-           $user = User::with('role')->where('user_type', 1)
-                         ->where('email', $request->email)
-                         ->first();
+        $user = User::with('role')->where('user_type', 1)
+            ->where('email', $request->email)
+            ->first();
 
-           $userType = $user->email;
+        $userType = $user->email;
 
-           $email = $request->email;
-          
-       if ($email === $userType) {
+        $email = $request->email;
 
-        $token = $request->user()->createToken(env('APP_NAME','defaultAppName'))->plainTextToken;
+        if ($email === $userType) {
 
-        return response()->json([
-            'status' => true,
-            'message' => 'You Have Logged In Successfully',
-            'token' => $token,
-            'adminUser' => $user,
+            $token = $request->user()->createToken(env('APP_NAME', 'defaultAppName'))->plainTextToken;
 
-        ],200);
+            return response()->json([
+                'status' => true,
+                'message' => 'You Have Logged In Successfully',
+                'token' => $token,
+                'adminUser' => $user,
 
-       } else{
+            ], 200);
+        } else {
 
-        return response()->json([
-            'status' => false,
-            'message' => 'Unauthorized Access',
+            return response()->json([
+                'status' => false,
+                'message' => 'Unauthorized Access',
 
-        ], 403);
-        
-
-
-       }
-
-
-
-        
-
-
+            ], 403);
+        }
     }
 
     /**
@@ -282,16 +296,13 @@ class UsersController extends Controller
         //
         try {
             //code...
-                //$user = User::find($id);
-                $user = User::all();
+            //$user = User::find($id);
+            $user = User::all();
 
-                return response()->json([
-                    'status' => true,
-                    'Detail of all users' =>  $user,
-                ], 200);
-
-
-
+            return response()->json([
+                'status' => true,
+                'Detail of all users' =>  $user,
+            ], 200);
         } catch (\Throwable $th) {
             //throw $th;
             return response()->json([
@@ -305,23 +316,23 @@ class UsersController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function accountSettings( Request $request)
+    public function accountSettings(Request $request)
     {
         try {
 
-        
+
 
             $validateUser = Validator::make($request->all(), [
 
-                 'username' => 'nullable|max:255|unique:users,username,'.$request->user()->id,
+                'username' => 'nullable|max:255|unique:users,username,' . $request->user()->id,
                 'phone_number' => ['nullable', 'regex:/^(080|091|090|070|081)[0-9]{8}$/'],
                 'bio' => 'nullable|string',
                 'photo_url' => 'nullable|image|mimes:jpg,jpeg,png,gif,svg|max:1024',
-                
-              
+
+
             ]);
 
-            if($validateUser->fails()){
+            if ($validateUser->fails()) {
                 return response()->json([
                     'status' => false,
                     'message' => 'validation error',
@@ -329,185 +340,162 @@ class UsersController extends Controller
                 ], 422);
             }
 
-                    
-        if (empty($request->username) && empty($request->phone_number) && empty($request->bio)) {
-            return response()->json([
-                'status' => false,
-                'message' => 'Empty Request',
-                'errors' => 'No data provided',
-            ], 400);
-        }
 
-        
+            if (empty($request->username) && empty($request->phone_number) && empty($request->bio)) {
+                return response()->json([
+                    'status' => false,
+                    'message' => 'Empty Request',
+                    'errors' => 'No data provided',
+                ], 400);
+            }
 
-        
+
+
+
             $id =  $request->user()->id;
 
-            
-            $user = User::find($id); 
+
+            $user = User::find($id);
             debugbar::info($user);
 
-            if($request->has('username') && trim($request->input('username')) !== '') {
+            if ($request->has('username') && trim($request->input('username')) !== '') {
 
                 $user->username = $request->input('username');
             }
 
-            if($request->has('phone_number') && trim($request->input('phone_number')) !== '') {
+            if ($request->has('phone_number') && trim($request->input('phone_number')) !== '') {
 
-                $user->phone_number=$request->input('phone_number');
-
+                $user->phone_number = $request->input('phone_number');
             }
 
-            if($request->has('bio') && trim($request->input('bio')) !== '') {
+            if ($request->has('bio') && trim($request->input('bio')) !== '') {
 
-                $user->bio=$request->input('bio');
-
+                $user->bio = $request->input('bio');
             }
 
-            
-            
-            
-          
-
-        $imageName = null;
-     if (request()->hasFile('photo_url')) {
-        $file = request()->file('photo_url');
-        $imageName = md5($file->getClientOriginalName() . time()) . "." . $file->getClientOriginalExtension();
-        $file->move('./uploads/users/', $imageName);
-
-        $user->photo_url=$imageName;
-         
-      }
-
-      $user->save();
 
 
-      return response()->json([
-        'status' => true,
-        'message' => 'User Updated Succesfully',
-        'review' => $user,
-    ], 200);
 
-            
-        }
 
-            catch (\Throwable $th) {
+
+            $imageName = null;
+            if (request()->hasFile('photo_url')) {
+                $file = request()->file('photo_url');
+                $imageName = md5($file->getClientOriginalName() . time()) . "." . $file->getClientOriginalExtension();
+                $file->move('./uploads/users/', $imageName);
+
+                $user->photo_url = $imageName;
+            }
+
+            $user->save();
+
+
+            return response()->json([
+                'status' => true,
+                'message' => 'User Updated Succesfully',
+                'review' => $user,
+            ], 200);
+        } catch (\Throwable $th) {
             return response()->json([
                 'status' => false,
                 'message' => $th->getMessage()
             ], 500);
+        }
     }
 
 
 
+    public function uploadBanner(Request $request)
+    {
+
+        $validator = Validator::make($request->all(), [
+            'banner' => 'image|mimes:jpg,jpeg,png,gif,svg|max:1024',
+            'photo_url' => 'image|mimes:jpg,jpeg,png,gif,svg|max:1024',
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json([
+                'status' => false,
+                'message' => 'validation error',
+                'errors' => $validator->errors(),
+            ], 422);
+        }
+
+        if ($request->hasFile('banner')) {
+
+            $bannerImg = $request->File('banner');
+            $rad =  mt_rand(1000, 9999);
+
+            $bannerName =  md5($bannerImg->getClientOriginalName()) . mt_rand(000, 999) . '.' . $bannerImg->getClientOriginalExtension();
 
 
+            $bannerImg->move(public_path('./uploads/users/'), $bannerName);
+        }
 
-}
-    
+        $userId = $request->user()->id;
 
+        $user = User::findorfail($userId);
 
-   public function uploadBanner(Request $request) {
+        if ($request->hasFile('photo_url')) {
+            $photo_url = $request->file('photo_url');
+            $rad = mt_rand(1000, 9999);
 
-    $validator = Validator::make($request->all(), [
-        'banner' => 'image|mimes:jpg,jpeg,png,gif,svg|max:1024',
-        'photo_url' => 'image|mimes:jpg,jpeg,png,gif,svg|max:1024',
-    ]);
+            $photoName = md5($photo_url->getClientOriginalName()) . $rad . '.' . $photo_url->getClientOriginalExtension();
 
-    if($validator->fails()) {
-        return response()->json([
-            'status' => false,
-            'message' => 'validation error',
-            'errors' => $validator->errors(),
-        ],422);
-    }
+            $photo_url->move(public_path('./uploads/users/'), $photoName);
 
-    if ($request->hasFile('banner')) {
+            $photoUpload =  $photoName;
 
-        $bannerImg = $request->File('banner');  
-        $rad =  mt_rand(1000, 9999);
-      
-        $bannerName =  md5($bannerImg->getClientOriginalName()) . mt_rand(000, 999) . '.' . $bannerImg->getClientOriginalExtension();
+            $user->photo_url = $photoUpload;
 
+            if ($user->save()) {
 
-        $bannerImg->move(public_path('./uploads/users/'), $bannerName);
-    
-    }
+                return response()->json([
+                    'status' => true,
+                    'message' => 'Profile Picture Updated Successfully',
+                    'data' => $user,
+                ], 200);
+            } else {
 
-    $userId = $request->user()->id;
+                return response()->json([
+                    'status' => false,
+                    'message' => 'Something went wrong',
 
-    $user = User::findorfail($userId);
+                ], 500);
+            }
+        }
 
-    if($request->hasFile('photo_url')){
-        $photo_url = $request->file('photo_url');
-        $rad = mt_rand(1000,9999);
+        $user->banner = $bannerName;
 
-        $photoName = md5($photo_url->getClientOriginalName()) . $rad . '.' . $photo_url->getClientOriginalExtension();
-
-        $photo_url->move(public_path('./uploads/users/'), $photoName);
-
-        $photoUpload =  $photoName;
-
-        $user->photo_url = $photoUpload;
-
-        if ( $user->save()) {
+        if ($user->save()) {
 
             return response()->json([
                 'status' => true,
-                'message' => 'Profile Picture Updated Successfully',
+                'message' => 'Banner Image Updated Successfully',
                 'data' => $user,
-            ],200);
-        
-           } else {
-        
+            ], 200);
+        } else {
+
             return response()->json([
                 'status' => false,
                 'message' => 'Something went wrong',
-                
-            ],500);
 
+            ], 500);
+        }
     }
-}
-   
-    $user->banner = $bannerName;
 
-    if ( $user->save()) {
+    public function uploadProfileImage(Request $request)
+    {
 
-    return response()->json([
-        'status' => true,
-        'message' => 'Banner Image Updated Successfully',
-        'data' => $user,
-    ],200);
+        log::info($request->all());
 
-   } else {
+        return response()->json([
 
-    return response()->json([
-        'status' => false,
-        'message' => 'Something went wrong',
-        
-    ],500);
+            'status' => true,
+            'message' => 'test'
 
-    
-   }
-
-
-
-
-
-   }
-
-   public function uploadProfileImage(Request $request) {
-
-    log::info($request->all());
-
-    return response()->json([
-
-        'status' => true,
-        'message' => 'test'
-
-    ], 200);
-
-   }
+        ], 200);
+    }
 
 
     // public function getReferralLink(Request $request)
@@ -525,15 +513,15 @@ class UsersController extends Controller
     // }
 
     public function showSellerShop($userId)
-{
-    $user = User::with('products')->findOrFail($userId);
+    {
+        $user = User::with('products')->findOrFail($userId);
 
-    if (!$user) {
-        return response()->json(['message' => 'User not found'], 404);
+        if (!$user) {
+            return response()->json(['message' => 'User not found'], 404);
+        }
+
+        return response()->json($user);
     }
-
-    return response()->json($user);
-}
 
 
     /**
@@ -544,7 +532,9 @@ class UsersController extends Controller
     public function logoutUser(Request $request)
     {
         try {
-            $user = $request->user(); // Get the authenticated user;        
+            $user = $request->user(); // Get the authenticated user;  
+
+            Log::info($user);
 
             if ($user) {
                 // Get the user's token and revoke it
@@ -572,191 +562,175 @@ class UsersController extends Controller
      * Remove the specified resource from storage.
      */
     public function deleteAccount(Request $request)
-{
-    try {
+    {
+        try {
 
-        $validator = Validator::make($request->all(), [
-            'deletion_reason' => 'required|string',
-        ]);
+            $validator = Validator::make($request->all(), [
+                'deletion_reason' => 'required|string',
+            ]);
 
-        if($validator->fails()) {
+            if ($validator->fails()) {
+
+                return response()->json([
+                    'status' => false,
+                    'message' => 'Validation Error',
+                    'errors' => $validator->errors(),
+
+                ], 422);
+            }
+
+            $user = $request->user();
+
+            if (!$user) {
+
+                return response()->json([
+                    'status' => false,
+                    'message' => 'User not authenticated',
+                ], 401);
+            }
+
+            // Product::where('user_id', $user->id)->update(['deleted_at' => now()]);
+
+            $user->products()->update(['deleted_at' => now()]);
+
+            $user->deletion_reason = $request->deletion_reason;
+            $user->save();
+            $user->tokens()->delete();
+            $user->delete();
 
             return response()->json([
-                'status' => false,
-                'message' => 'Validation Error',
-                'errors' => $validator->errors(),
-
-            ],422);
-        }
-        
-        $user = $request->user();
-
-        if (!$user) {
-
+                'status' => true,
+                'message' => 'User account deleted successfully',
+            ], 200);
+        } catch (\Throwable $th) {
             return response()->json([
                 'status' => false,
-                'message' => 'User not authenticated',
-            ], 401);
+                'message' => $th->getMessage()
+            ], 500);
         }
-         
-       // Product::where('user_id', $user->id)->update(['deleted_at' => now()]);
-
-       $user->products()->update(['deleted_at' => now()]);
-
-        $user->deletion_reason = $request->deletion_reason;
-        $user->save();
-        $user->tokens()->delete(); 
-        $user->delete();
-
-        return response()->json([
-            'status' => true,
-            'message' => 'User account deleted successfully',
-        ], 200);
-
-        
-
-    } catch (\Throwable $th) {
-        return response()->json([
-            'status' => false,
-            'message' => $th->getMessage()
-        ], 500);
     }
 
 
+    public function getUserPayment(Request $request)
+    {
 
+        $userId = $request->user;
 
+        //  $user = User::with('payment')->where('user_type', 2)->where('id', $userId)->first();
 
+        $user = User::with('payment')->where('id', $userId)->withTrashed()->first();
 
-}
+        DeBugBar::info($user, $userId);
 
+        if ($user) {
 
-public function getUserPayment(Request $request) {
+            return response()->json([
+                'status' => true,
+                'message' => 'User Details Fetched Successfuly',
+                'data' => $user,
 
-    $userId = $request->user;
+            ], 200);
+        } else {
 
-  //  $user = User::with('payment')->where('user_type', 2)->where('id', $userId)->first();
+            return response()->json([
+                'status' => false,
+                'message' => 'User Not Found',
 
-   $user = User::with('payment')->where('id', $userId)->withTrashed()->first();
-
-    DeBugBar::info($user, $userId);
-
-    if($user) {
-
-        return response()->json([
-            'status' => true,
-            'message' => 'User Details Fetched Successfuly',
-            'data' => $user,
-
-        ], 200);
-    }else {
-
-        return response()->json([
-            'status' => false,
-            'message' => 'User Not Found',
-            
-        ],404);
+            ], 404);
+        }
     }
 
-}
+
+    public function getDetails(Request $request)
+    {
 
 
-public function getDetails(Request $request) {
-
-   
-   $userId = $request->query('userId');
-   $shopNo = $request->query('shopNo');
+        $userId = $request->query('userId');
+        $shopNo = $request->query('shopNo');
 
 
 
 
-        if($userId) {
+        if ($userId) {
 
-       /*     $user = User::with('products')->where('id', $userId)->where('verify_status', 1)
+            /*     $user = User::with('products')->where('id', $userId)->where('verify_status', 1)
                                             ->where('badge_status', 1)
                                             ->whereNotNull('shop_token')
                                             ->whereHas('products', function($query) {
                                                 $query->where('quantity', '!=', 0);
                                             })->first();  */
 
-                 //new flow where all users have sellers shop
-                $user = User::with('products')->where('id', $userId)
+            //new flow where all users have sellers shop
+            $user = User::with('products')->where('id', $userId)
                 ->whereNotNull('shop_token')
-                ->whereHas('products', function($query) {
+                ->whereHas('products', function ($query) {
                     $query->where('quantity', '!=', 0);
                 })->first();
 
 
 
-                    if(!$user) {
-                       // debugbar::info($userId);
+            if (!$user) {
+                // debugbar::info($userId);
 
-                       /* $user = User::where('id', $userId)->where('verify_status', 1)
+                /* $user = User::where('id', $userId)->where('verify_status', 1)
                                     ->where('badge_status', 1)
                                     ->whereNotNull('shop_token')
                                     ->first();  */
 
-                       //new flow where all users have sellers shop
-                        $user = User::where('id', $userId)
-                        ->whereNotNull('shop_token')
-                        ->first();
+                //new flow where all users have sellers shop
+                $user = User::where('id', $userId)
+                    ->whereNotNull('shop_token')
+                    ->first();
 
-                        debugbar::info($user);
+                debugbar::info($user);
 
-                        if(!$user) {
+                if (!$user) {
 
-                            return response()->json([
-                                'status' => false,
-                                'message' => 'User is Unverified',
-                                
-    
-                            ],404);
+                    return response()->json([
+                        'status' => false,
+                        'message' => 'User is Unverified',
 
 
-                        }else  {
+                    ], 404);
+                } else {
 
-                            return response()->json([
-                                'status' => true,
-                                'message' => 'User is verified but does not have  Product listed',
-                                'data' => $user,
-    
-                            ],200);
+                    return response()->json([
+                        'status' => true,
+                        'message' => 'User is verified but does not have  Product listed',
+                        'data' => $user,
 
-                        }
-             
-                       
+                    ], 200);
+                }
+            }
 
-                    }
-                    
 
-                return response()->json([
-                    'status' => true,
-                    'message' => 'Verified User Details Fetched Successfully',
-                    'data' => $user,
-            
-                    ]);
+            return response()->json([
+                'status' => true,
+                'message' => 'Verified User Details Fetched Successfully',
+                'data' => $user,
 
-        } 
+            ]);
+        }
 
-            
 
-        if($shopNo) {
+
+        if ($shopNo) {
 
             debugbar::info($shopNo);
 
             $user = User::query()->where('shop_no', $shopNo)
-                                ->whereNotNull('shop_token')
-                                ->first();
+                ->whereNotNull('shop_token')
+                ->first();
 
-            if(!$user) {
+            if (!$user) {
 
                 return response()->json([
                     'status' => false,
                     'message' => 'Invalid Shop Number',
 
-                ],404);
+                ], 404);
+            } else {
 
-            }else {
-            
                 Debugbar::info($user);
 
                 return response()->json([
@@ -765,13 +739,7 @@ public function getDetails(Request $request) {
                     'data' => $user->id,
 
                 ]);
-
-                    
-            
             }
-
-            
-
         }
 
 
@@ -779,131 +747,127 @@ public function getDetails(Request $request) {
             'status' => false,
             'message' => 'User verification failed',
         ], 400);
-
-
-
-}
-
-
-
-
-
-public function getLink(Request $request) {
-
-  if(!$request->user()) {
-    return response()->json([
-        'status' => false,
-        'message' => 'User Not authenticated',
-
-
-    ],404);
-  }
-
-   //Debugbar::info(env('APP_URL'));
-
-   $url = config('app.url');
-
-   return response()->json([
-    'status' => true,
-    'message' => 'App url fetched successfully',
-     'url' => $url,
-
-   ]);
-
-}
-
-public function getUserId(Request $request) {
-
-   $user = $request->user();
-
-   Debugbar::info($user);
-
-   return response()->json([
-    'status' => true,
-    'message'=> 'ID fetched successfully',
-     'user' => $user,
-
-   ],200);
-
-}
-
-public function sendNotification(Request $request)
- {
-
-
-    $pendingConnects =  ProductEngagementLog::where('status', 0)->get();
-
-    foreach($pendingConnects as $connect) {
-
-        $productConnectId = $connect->product_id;
-
-        $userId = $connect->user_id;
-
-        $user = User::findOrFail($userId);
-
-        //$productId = Product::find($productConnectId);
-
-        $product = Product::where('id', $productConnectId)
-                            ->where('quantity', '!=', 0)
-                            ->first();
-
-        if(!$product) {
-            continue;
-        }
-
-        $user->notify(new ReviewPushNotification($userId, $product->id, $product->user_id,  'You connected with this product'));
-
-        $connect->status = 1;
-        $connect->save();
-
     }
 
-    return response()->json([
-        'status' => true,
-        'message' => 'Notifications sent successfully',
-     ], 200);
-
-}
 
 
-    public function storeProductRequest(Request $request) {
 
-        $validator = Validator::make($request->all(),[
+
+    public function getLink(Request $request)
+    {
+
+        if (!$request->user()) {
+            return response()->json([
+                'status' => false,
+                'message' => 'User Not authenticated',
+
+
+            ], 404);
+        }
+
+        //Debugbar::info(env('APP_URL'));
+
+        $url = config('app.url');
+
+        return response()->json([
+            'status' => true,
+            'message' => 'App url fetched successfully',
+            'url' => $url,
+
+        ]);
+    }
+
+    public function getUserId(Request $request)
+    {
+
+        $user = $request->user();
+
+        Debugbar::info($user);
+
+        return response()->json([
+            'status' => true,
+            'message' => 'ID fetched successfully',
+            'user' => $user,
+
+        ], 200);
+    }
+
+    public function sendNotification(Request $request)
+    {
+
+
+        $pendingConnects =  ProductEngagementLog::where('status', 0)->get();
+
+        foreach ($pendingConnects as $connect) {
+
+            $productConnectId = $connect->product_id;
+
+            $userId = $connect->user_id;
+
+            $user = User::findOrFail($userId);
+
+            //$productId = Product::find($productConnectId);
+
+            $product = Product::where('id', $productConnectId)
+                ->where('quantity', '!=', 0)
+                ->first();
+
+            if (!$product) {
+                continue;
+            }
+
+            $user->notify(new ReviewPushNotification($userId, $product->id, $product->user_id,  'You connected with this product'));
+
+            $connect->status = 1;
+            $connect->save();
+        }
+
+        return response()->json([
+            'status' => true,
+            'message' => 'Notifications sent successfully',
+        ], 200);
+    }
+
+
+    public function storeProductRequest(Request $request)
+    {
+
+        $validator = Validator::make($request->all(), [
             'input' => 'required|string',
 
         ]);
 
-        if($validator->fails()) {
+        if ($validator->fails()) {
 
             return response()->json([
                 'status' => false,
                 'message' => 'Validation Failed',
                 'errors' => $validator->errors(),
 
-            ],422);
+            ], 422);
         }
 
 
         $user_id = $request->user()->id;
 
 
-    $storeRequest = UserProductRequest::create([
+        $storeRequest = UserProductRequest::create([
 
-                'user_id' => $user_id,
-                'request' => $request->input,
-                    
+            'user_id' => $user_id,
+            'request' => $request->input,
+
 
         ]);
 
 
 
-        if($storeRequest) {
+        if ($storeRequest) {
 
             return response()->json([
                 'status' => true,
                 'message' => 'Request saved successfully'
 
-            ],200);
+            ], 200);
         }
 
 
@@ -912,44 +876,6 @@ public function sendNotification(Request $request)
             'status' => false,
             'message' => 'Request was not saved',
 
-        ],500);
-
-
-
+        ], 500);
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 }

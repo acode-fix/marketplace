@@ -121,10 +121,11 @@ function displaySwal(errorMsg, invalidCredentials) {
 const email = Cookies.get('email');
 const password = Cookies.get('password');
 
+
 if(email && password) {
 
-  //  console.log(email);
-  //  console.log(password);
+  // console.log(email);
+   //console.log(password);
 
     const emailEl = document.getElementById("login_email");
     const passwordEl = document.getElementById("login_password");

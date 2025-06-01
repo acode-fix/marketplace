@@ -11,11 +11,16 @@ use App\Http\Controllers\ShopController;
 use App\Http\Controllers\UsersController;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\BadgeController;
+use App\Http\Controllers\SocialiteController;
 use App\Models\User;
 use App\Notifications\ReviewPushNotification;
 
  
-// web.php
+Route::get('auth/{provider}/redirect', [SocialiteController::class, 'redirect'])->where('provider', 'google|facebook');
+Route::get('auth/{provider}/callback', [SocialiteController::class, 'handleProviderCallback'])->where('provider', 'google|facebook');
+
+
+
 Route::get('/sellers-shop', [ProductController::class, 'showSellerShop']);
 Route::get('/product_des/{id}', [ProductController::class, 'showProduct']);
 Route::get('/sellers-shop/{userId}', [ShopController::class, 'showUserShop'])->name('sellers.shop');
@@ -267,3 +272,5 @@ Route::get('access/denied', function() {
     return view('admin.user.unauthorized_access');
 
 });
+
+

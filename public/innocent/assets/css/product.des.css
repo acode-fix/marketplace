@@ -164,7 +164,7 @@
 /* Navbar Links */
 .navbar-1 a {
     margin-bottom: 10px;
-    margin-right: auto;
+    /* margin-right: auto;   */
     z-index: 9999;
 
 
@@ -174,6 +174,7 @@
     max-width: 160px;
     margin-left: 0%;
     margin-right: 6%;
+    
 }
 .buy_and_sell_logo_product_des_mobile{
     max-width: 150px;
@@ -301,6 +302,7 @@
     overflow: hidden;
     padding: 4px;
     width: 65%;
+   
 }
 
 .search-bar:focus-within {

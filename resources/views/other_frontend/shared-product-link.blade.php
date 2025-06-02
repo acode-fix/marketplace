@@ -8,7 +8,7 @@
     <link rel="icon" href="{{ asset('innocent/assets/image/favicon.svg') }}" type="image/x-icon">
     <link rel="stylesheet" href="{{ asset('innocent/assets/css/bootstrap.css') }}">
     <link rel="stylesheet" href="{{ asset('innocent/assets/css/animation.css') }}">
-    <link rel="stylesheet" href="{{ asset('innocent/assets/css/product.des.css') }}?time={{ time() }}">
+    <link rel="stylesheet" href="{{ asset('innocent/assets/css/product.des.css') }}">
     <link rel="stylesheet" href="{{ asset('innocent/assets/css/notification.css') }}">
     <link rel="stylesheet" href="{{ asset('innocent/assets/css/alert.css') }}">
     <link rel="stylesheet" href="{{ asset('innocent/assets/icons/css/all.min.css') }}">
@@ -26,6 +26,10 @@
 
 </head>
 <style>
+   
+
+
+
 </style>
 
 <body>
@@ -50,9 +54,11 @@
 
         <!-- Navbar and Search Button -->
         <div class="navbar-1 fixed-top">
+
             <a class="js-logo-link" href="{{ url('/') }}"><img class="search_buy_and_sell_logo js-logo-img"
                     src="{{ asset('innocent\assets\image\transparent_logo.png')}}" alt="" data-bs-toggle=""
                     data-bs-target=""></a>
+
             <div class="search-bar">
                 <div class="location-icon"><i class="fa-solid fa-location-dot"></i></div>
                 <div style="margin-left: 8px;" class="country-input">
@@ -84,6 +90,8 @@
             <img id="js-profile-desk" src="" alt=".profile picture " class="profile_picture">
             <img id="js-profile-mobile" src="" alt=".profile picture " class="profile_picture_mobile">
         </div>
+
+        
 
         <!-- prifile card -->
         <div class="profile_card">
@@ -944,10 +952,11 @@
                         <hr>
                         <div class="auth_icons">
                             <div class="facebook_icon" style="cursor: pointer;">
-                                <img src="{{asset('innocent/assets/image/Facebook Logo.png')}}" alt="">
+                                <a href="" class="fb-login"> <img src="{{asset('innocent/assets/image/Facebook Logo.png')}}" alt=""></a>
                             </div>
                             <div class="gmail_icon" style="cursor: pointer;">
-                                <img src="{{asset('innocent/assets/image/gmail.png')}}" alt="">
+                                <a href="" class="google-login"> <img src="{{asset('innocent/assets/image/gmail.png')}}"
+                                        alt=""></a>
                             </div>
                         </div>
                         <p>Already have an account? <a href="#" onclick="login()" class="signup_links">Login</a></p>
@@ -1000,10 +1009,11 @@
                         <hr>
                         <div class="auth_icons">
                             <div class="facebook_icon" style="cursor: pointer;">
-                                <img src="{{asset('innocent/assets/image/Facebook Logo.png')}}" alt="">
+                                <a href="" class="fb-login"> <img src="{{asset('innocent/assets/image/Facebook Logo.png')}}" alt=""></a>
                             </div>
                             <div class="gmail_icon" style="cursor: pointer;">
-                                <img src="{{asset('innocent/assets/image/gmail.png')}}" alt="">
+                                <a href="" class="google-login"> <img src="{{asset('innocent/assets/image/gmail.png')}}"
+                                        alt=""></a>
                             </div>
                         </div>
                         <button type="submit" class="signup_continue_button continueBtn login-btn"
@@ -1358,8 +1368,9 @@
 
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-    <script type="module" src="{{ asset('backend-js/shared-product.js') }}?time={{ time() }}"></script>
-    <script src="{{ asset('backend-js/user/auth.js') }}?time={{ time() }}"></script>
+    <script type="module" src="{{ asset('backend-js/shared-product.js') }}"></script>
+    <script src="{{ asset('backend-js/user/auth.js') }}"></script>
+    <script type="module" src="{{ asset('backend-js/user/social-login.js') }}"></script>
 </body>
 
 </html>

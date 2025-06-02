@@ -68,24 +68,6 @@ class SocialiteController extends Controller
 
           return redirect(config('app.url') . "/settings?success=You+have+successfully+logged+in&token={$token}&user={$user->id}");
 
-
-      /*  auth()->login($user);
-
-        if (auth()->check()) {
-
-            $token = $user->createToken(env('APP_NAME', 'API TOKEN'))->plainTextToken;
-
-            return redirect(config('app.url') . "/settings?success=You+have+successfully+logged+in&token={$token}&user={$user->id}");
-
-        } else {
-            Log::error('OAuth callback error');
-            return $this->errorResponse(
-                message: 'Failed to login try again',
-                statusCode: Response::HTTP_UNAUTHORIZED,
-            );
-        }
-
-        */
     }
 
 

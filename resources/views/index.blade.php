@@ -7,15 +7,15 @@
     <title>Loopmart-marketplace</title>
     <link rel="icon" href="{{ asset('innocent/assets/image/favicon.svg') }}" type="image/x-icon">
     <link rel="stylesheet" href="{{ asset('innocent/assets/css/bootstrap.css') }}">
-    <link rel="stylesheet" href="{{ asset('innocent/assets/css/style.css') }}?time={{ time() }}">
+    <link rel="stylesheet" href="{{ asset('innocent/assets/css/style.css') }}">
     <link rel="stylesheet" href="{{ asset('innocent/assets/css/animation.css')}}">
-    <link rel="stylesheet" href="{{ asset('innocent/assets/css/modal.css') }}?time={{ time() }}">
-    <link rel="stylesheet" href="{{ asset('innocent/assets/css/notification.css')}}?time={{ time() }}">
+    <link rel="stylesheet" href="{{ asset('innocent/assets/css/modal.css') }}">
+    <link rel="stylesheet" href="{{ asset('innocent/assets/css/notification.css')}}">
     <link rel="stylesheet" href="{{ asset('innocent/assets/css/location.css') }}">
     <link rel="stylesheet" href="{{ asset('innocent/assets/css/alert.css') }}">
     <link rel="stylesheet" href="{{ asset('innocent/assets/icons/css/all.min.css') }}">
     <link rel="stylesheet" href="{{ asset('innocent/assets/icons/css/fontawesome.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('innocent/assets/css/preloader.css')}}?{{ time() }}">
+    <link rel="stylesheet" href="{{ asset('innocent/assets/css/preloader.css')}}">
 
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>

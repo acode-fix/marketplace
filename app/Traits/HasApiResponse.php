@@ -112,4 +112,15 @@ trait HasApiResponse
       headers: [],
     );
   }
+
+
+  protected function requestHasOnlyEmptyValues(string $message = '')
+  {
+      return self::errorResponse(
+        message: $message,
+        errors: [],
+        statusCode: Response::HTTP_BAD_REQUEST,
+        headers: [],
+      );
+  }
 }

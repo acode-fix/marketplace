@@ -6,7 +6,7 @@
 
 @section('content')
 
-<div  class="main">
+<div class="main">
   <div style="margin-top: -45px" class="content">
     <div class="container">
       <div class="row mt-4">
@@ -15,7 +15,9 @@
             <div onmouseover="showText()" onmouseout="hideText()" class="badge-shop me-3 mb-2modal-font setting-modal"
               data-bs-toggle="modal" data-bs-target="#staticBackdrop">
               <img height="20px" width="15px" src="{{ asset('/kaz/images/badge.png') }}" alt="">
-              <a class="revalidate-link" ><h6 style="font-size: small;" class="ps-1 verify-text">Verify Now</h6></a>
+              <a class="revalidate-link">
+                <h6 style="font-size: small;" class="ps-1 verify-text">Verify Now</h6>
+              </a>
             </div>
             <div id="hover-text" class="hover-text ps-1">become verified seller</div>
           </div>
@@ -31,151 +33,155 @@
                 <button type="button" class="btn-close btn-sm" data-bs-dismiss="modal" aria-label="Close"></button>
               </div>
               <div class="modal-body">
-               <form id="bio-form">
-                <div id="page1">
-                  <h6 class="fw-bold">The verified badge offers several benefits to sellers like yourself on LoopMart marketplace</h6>
-                  <ol class="list-style mt-2">
-                    <li>
-                      <h6><span class="fw-bold">Enhanced Trust and Credibility:</span><span
-                          class=" modal-text fw-light">A verified badge signals to potential buyers that the seller's
-                          identity and
-                          information have been verified by the us (loopMart marketplace).This can enhance trust
-                          and credibility especially
-                          for new or lesser-known sellers.
-                        </span></h6>
-                    </li>
-                    <li class="mt-3">
-                      <h6><span class="fw-bold">Increased Visibility:</span><span class=" modal-text fw-light">We (LoopMart market place) prioritize verfied sellers in search results and feautured
-                          listings.This increased visibility can lead to more exposure and sales opportunities for
-                          verified sellers
-                        </span></h6>
-                    </li>
-                    <li class="mt-3">
-                      <h6><span class="fw-bold">Improved Conversion Rates:</span><span
-                          class=" modal-text fw-light">Buyers are more likely to purchase from sellers they
-                          trust.Having a verified
-                          badge can reassure potential buyers,leading to higher conversion rates for Verified sellers.
-                        </span></h6>
-                    </li>
-                    <li class="mt-3">
-                      <h6><span class="fw-bold">Reduce Risk Of Fraud:</span><span
-                          class=" modal-text fw-light">Verification processes help weed out fraudulent or
-                          untrustworthy sellers.By displaying
-                          a verified badge,sellers demonstrate their legitmacy and reduced the risk of being perceived
-                          as a scam.
-                        </span></h6>
-                    </li>
-                    <li class="mt-3">
-                      <h6><span class="fw-bold">Access to premium Feautures:</span><span class=" modal-text fw-light">We
-                          offer exclusive feautures and benefits to verified
-                          sellers,such as promotional
-                          opportunities,and dedicated customer support.
-                        </span></h6>
-                    </li>
-                    <li class="mt-3">
-                      <h6><span class="fw-bold">Competitive Advantage:</span><span class=" modal-text fw-light">In
-                          competitive marketplaces,having a verified badge can differentiate
-                          sellers from their competitors and give them an edge in attracting customers
-                        </span></h6>
-                    </li>
-                    <li class="mt-3">
-                      <h6><span class="fw-bold">Long-term Reputation Building:</span><span
-                          class=" modal-text fw-light">Maintaining a verified status over time can contribute to
-                          building a positive
-                          reputation for ypu as a seller and your brand on loopMart marketplace,which can lead to
-                          repeat business and word-of-mouth refferals.
-                        </span></h6>
-                    </li>
-                  </ol>
+                <form id="bio-form">
+                  <div id="page1">
+                    <h6 class="fw-bold">The verified badge offers several benefits to sellers like yourself on LoopMart
+                      marketplace</h6>
+                    <ol class="list-style mt-2">
+                      <li>
+                        <h6><span class="fw-bold">Enhanced Trust and Credibility:</span><span
+                            class=" modal-text fw-light">A verified badge signals to potential buyers that the seller's
+                            identity and
+                            information have been verified by the us (loopMart marketplace).This can enhance trust
+                            and credibility especially
+                            for new or lesser-known sellers.
+                          </span></h6>
+                      </li>
+                      <li class="mt-3">
+                        <h6><span class="fw-bold">Increased Visibility:</span><span class=" modal-text fw-light">We
+                            (LoopMart market place) prioritize verfied sellers in search results and feautured
+                            listings.This increased visibility can lead to more exposure and sales opportunities for
+                            verified sellers
+                          </span></h6>
+                      </li>
+                      <li class="mt-3">
+                        <h6><span class="fw-bold">Improved Conversion Rates:</span><span
+                            class=" modal-text fw-light">Buyers are more likely to purchase from sellers they
+                            trust.Having a verified
+                            badge can reassure potential buyers,leading to higher conversion rates for Verified sellers.
+                          </span></h6>
+                      </li>
+                      <li class="mt-3">
+                        <h6><span class="fw-bold">Reduce Risk Of Fraud:</span><span
+                            class=" modal-text fw-light">Verification processes help weed out fraudulent or
+                            untrustworthy sellers.By displaying
+                            a verified badge,sellers demonstrate their legitmacy and reduced the risk of being perceived
+                            as a scam.
+                          </span></h6>
+                      </li>
+                      <li class="mt-3">
+                        <h6><span class="fw-bold">Access to premium Feautures:</span><span
+                            class=" modal-text fw-light">We
+                            offer exclusive feautures and benefits to verified
+                            sellers,such as promotional
+                            opportunities,and dedicated customer support.
+                          </span></h6>
+                      </li>
+                      <li class="mt-3">
+                        <h6><span class="fw-bold">Competitive Advantage:</span><span class=" modal-text fw-light">In
+                            competitive marketplaces,having a verified badge can differentiate
+                            sellers from their competitors and give them an edge in attracting customers
+                          </span></h6>
+                      </li>
+                      <li class="mt-3">
+                        <h6><span class="fw-bold">Long-term Reputation Building:</span><span
+                            class=" modal-text fw-light">Maintaining a verified status over time can contribute to
+                            building a positive
+                            reputation for ypu as a seller and your brand on loopMart marketplace,which can lead to
+                            repeat business and word-of-mouth refferals.
+                          </span></h6>
+                      </li>
+                    </ol>
 
-                  <h6 class=" modal-text fw-light"> Overall,the verified badge serves as a valuable trust signal than
-                    can benefit sellers by improving thier visibility,
-                    credibility,and ultimately thier sales performance on the marketplace.
-                  </h6>
-                </div>
-                <div id="page2" style="display: none;">
-
-                  <!-- Content for page 2 -->
-                  <div style="text-align: center;">
-                    <h5 class="fw-bold">Your Bio</h5>
-                    <h6 class="fw-light"> It's crucial to verify the credibility <br> and legitmacy of our sellers.
+                    <h6 class=" modal-text fw-light"> Overall,the verified badge serves as a valuable trust signal than
+                      can benefit sellers by improving thier visibility,
+                      credibility,and ultimately thier sales performance on the marketplace.
                     </h6>
                   </div>
+                  <div id="page2" style="display: none;">
 
-                  <div class="container">
+                    <!-- Content for page 2 -->
+                    <div style="text-align: center;">
+                      <h5 class="fw-bold">Your Bio</h5>
+                      <h6 class="fw-light"> It's crucial to verify the credibility <br> and legitmacy of our sellers.
+                      </h6>
+                    </div>
 
-                    <div class="row g-3 mt-3">
-                      <div class="col-md-6">
-                        <label for="inputEmail4" class="form-label fw-bold">Email</label>
-                        <input name="email" oninput="hideIcon(this)" id="search-modal" type="text" class="form-control email"
-                          placeholder="Enter Your Email">
+                    <div class="container">
+
+                      <div class="row g-3 mt-3">
+                        <div class="col-md-6">
+                          <label for="inputEmail4" class="form-label fw-bold">Email</label>
+                          <input name="email" oninput="hideIcon(this)" id="search-modal" type="text"
+                            class="form-control email" placeholder="Enter Your Email">
                           <span class="error" id="email_error"></span>
-                      </div>
-                      <div class="col-md-6">
-                        <label for="inputState" class="form-label fw-bold">Nationality</label>
-                        <select id="inputState" class="form-select nationality"  name="nationality">
-                          <option selected value="">Choose..</option>
-                          <option value="nigeria">Nigera</option>
-                          <option value="others">Others</option>
-                        </select>
-                        <span class="error" id="nationality_error"></span>
-                      </div>
-                      <div class="col-md-6 mt-4">
-                        <label for="name" class="form-label fw-bold n">Fullname</label>
-                        <input name="name" oninput="hideIcon(this)" id="search-modal1" type="text" class="form-control username"
-                          placeholder="Your legalName">
+                        </div>
+                        <div class="col-md-6">
+                          <label for="inputState" class="form-label fw-bold">Nationality</label>
+                          <select id="inputState" class="form-select nationality" name="nationality">
+                            <option selected value="">Choose..</option>
+                            <option value="nigeria">Nigera</option>
+                            <option value="others">Others</option>
+                          </select>
+                          <span class="error" id="nationality_error"></span>
+                        </div>
+                        <div class="col-md-6 mt-4">
+                          <label for="name" class="form-label fw-bold n">Fullname</label>
+                          <input name="name" oninput="hideIcon(this)" id="search-modal1" type="text"
+                            class="form-control username" placeholder="Your legalName">
                           <span class="error" id="name_error"></span>
-                      </div>
-                      <div class="col-md-6 mt-4">
-                        <label for="address" class="form-label fw-bold">Address</label>
-                        <input name="address" oninput="hideIcon(this)" id="search-modal2" type="text"
-                          class="form-control address" placeholder="Enter your work Address">
+                        </div>
+                        <div class="col-md-6 mt-4">
+                          <label for="address" class="form-label fw-bold">Address</label>
+                          <input name="address" oninput="hideIcon(this)" id="search-modal2" type="text"
+                            class="form-control address" placeholder="Enter your work Address">
                           <span class="error" id="address_error"></span>
-                      </div>
-                      <div class="col-md-6 mt-5">
-                        <div>
-                          <label for="gender" class="form-label fw-bold">Gender</label>
+                        </div>
+                        <div class="col-md-6 mt-5">
+                          <div>
+                            <label for="gender" class="form-label fw-bold">Gender</label>
+                          </div>
+
+                          <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="gender" id="inlineRadio1" value="male">
+                            <label class="form-check-label" for="inlineRadio1">Male</label>
+                          </div>
+                          <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="gender" id="inlineRadio2" value="female">
+                            <label class="form-check-label" for="inlineRadio2">Female</label>
+                            <span class="error" id="gender_error"></span>
+                          </div>
+
+                        </div>
+                        <div class="col-md-6 mt-5">
+                          <label for="phone_number" class="form-label fw-bold">Phone Number</label>
+                          <input name="phone_number" oninput="hideIcon(this)" id="search-modal3" type="text"
+                            class="form-control phone_number" placeholder="Enter Your Contact Phone Number">
+                          <span class="error" id="phone_error"></span>
+                        </div>
+                        <div class="col-md-6">
+                          <button id="save" type="submit" class="btn btn-warning ">Save</button>
                         </div>
 
-                        <div class="form-check form-check-inline">
-                          <input class="form-check-input" type="radio" name="gender" id="inlineRadio1" value="male">
-                          <label class="form-check-label" for="inlineRadio1">Male</label>
-                        </div>
-                        <div class="form-check form-check-inline">
-                          <input class="form-check-input" type="radio" name="gender" id="inlineRadio2" value="female">
-                          <label class="form-check-label" for="inlineRadio2">Female</label>
-                          <span class="error" id="gender_error"></span>
-                        </div>
-                        
                       </div>
-                      <div class="col-md-6 mt-5">
-                        <label for="phone_number" class="form-label fw-bold">Phone Number</label>
-                        <input name="phone_number" oninput="hideIcon(this)" id="search-modal3" type="text"
-                          class="form-control phone_number" placeholder="Enter Your Contact Phone Number">
-                          <span class="error" id="phone_error"></span>
-                      </div>
-                      <div class="col-md-6">
-                        <button id="save" type="submit" class="btn btn-warning ">Save</button>
-                      </div>
-                      
+
                     </div>
 
                   </div>
-
-                </div>
-              </form>
+                </form>
                 <div id="page3" style="display: none;">
-                  
+
                   <div class="mt-5" style="text-align: center;">
                     <h2 class="fw-light">NIN</h2>
                     <p>Kind Upload Your Natonal <br>Identification Card </p>
                     <img id="preview-image" class="mt-4" src="{{ asset('/kaz/images/Nin upload.svg') }}" alt="">
                   </div>
                   <div class="mt-5" style="text-align: center; ">
-                    <form id="nin_form"> 
+                    <form id="nin_form">
                       <input type="file" name="nin_file" id="actual-btn-desktop" class="file" hidden>
-                      <label  id="upload" class="label nin_upload" for="actual-btn-desktop">Upload</label>
-                      <button id="upload_nin" style=" padding: 13px 40px 11px 40px; display:none" type="submit" class="btn btn-success mb-1 ms-1">Save</button>
+                      <label id="upload" class="label nin_upload" for="actual-btn-desktop">Upload</label>
+                      <button id="upload_nin" style=" padding: 13px 40px 11px 40px; display:none" type="submit"
+                        class="btn btn-success mb-1 ms-1">Save</button>
                     </form>
                     <span id="nin_error"></span>
                   </div>
@@ -216,7 +222,7 @@
                   </form> --}}
 
                 </div>
-                
+
                 <div id="page5" style="display: none;">
                   <!-- Content for page 5 -->
                   <div class="container">
@@ -238,7 +244,7 @@
                         </div>
                         <div class="mt-4">
                           <!-- <h6>Monthly</h6> -->
-                         <form id="badge_form"> 
+                          <form id="badge_form">
                             <div class="month js-click" onclick="selectPlan('month')">
                               <h6>Monthly</h6>
                               <p class="badge-text">Your badge cost #2500 per month to stay <input
@@ -254,8 +260,9 @@
                                 per year to stay active on your profile</p>
 
                             </div>
-                            <button style="display: none" id="save_badge" type="submit" class="btn btn-success btn-sm">save</button>
-                          </form> 
+                            <button style="display: none" id="save_badge" type="submit"
+                              class="btn btn-success btn-sm">save</button>
+                          </form>
 
                         </div>
 
@@ -277,7 +284,7 @@
                   </div>
 
                 </div>
-                
+
                 <div id="page6" style="display: none;">
                   <!-- Content for page 6 -->
                   <div style="text-align: center; margin-top: 40px;">
@@ -286,16 +293,17 @@
                     <p class="fw-light approval-text mt-3">Your document has been uploded.<br>
                       Awaiting Approval normally approval <br>
                       may take up to 1hrs during business days <br>and up to 3hrs during off business days </p>
-                      
-                    <button  id="proceedBtn" type="button" class="btn btn-md btn-success js-btn">Proceed To Make Payment</button>
-                      
+
+                    <button id="proceedBtn" type="button" class="btn btn-md btn-success js-btn">Proceed To Make
+                      Payment</button>
+
 
                   </div>
-                  
-                 
+
+
 
                 </div>
-              
+
               </div>
               <div style="border: none;" class="modal-footer">
                 <button style="width: 15%;" id="previousBtn" type="button"
@@ -310,11 +318,12 @@
 
 
       <div class="container">
-        
+
         <form action="" id="settingForm" class="row" enctype="multipart/form-data">
-        
+
           <div class="col-8 upload-div">
-            <img style="height:80px; width:80px;" id="previewImgDesktop" class="img-fluid js-previewImgDesktop" src="" alt="">
+            <img style="height:80px; width:80px;" id="previewImgDesktop" class="img-fluid js-previewImgDesktop" src=""
+              alt="">
             <h6 class="ms-4">Upload your profile picture <br>
               <span class="fw-light identify-text">This helps visitors to recognize you on loopMart Marketplace</span>
             </h6>
@@ -338,17 +347,17 @@
               class="btn btn-info">Edit</button>
           </div>
           <div class="col-8 mb-3">
-            <label for="usernameInput" class="form-label">Profile Bio</label>
+            <label for="usernameInput" class="form-label">Describe your business</label>
             <input type="text" name="bio" class="form-control" id="profileInput"
               placeholder="This is will be displayed to potential buyers only if you are a verified seller (Max3000)">
-              <span id="bio-error" class="error"></span>
+            <span id="bio-error" class="error"></span>
           </div>
           <div class="col-2 mt-3 post-btn">
             <button id="editProfileBtn" style="background-color: whitesmoke;" type="button"
               class="btn btn-info">Edit</button>
           </div>
           <div class="col-8 mb-3">
-            <label for="phoneInput" class="form-label">Contact Phone Number</label>
+            <label for="phoneInput" class="form-label">Contact phone number</label>
             <input type="number" name="phone_number" class="form-control" id="phoneInput"
               placeholder="This contact will be used by visitors on LoopMart to reach you via phone call">
           </div>
@@ -356,7 +365,69 @@
             <button id="editPhoneBtn" style="background-color: whitesmoke;" type="button"
               class="btn btn-info">Edit</button>
           </div>
-          
+          <div class="col-8 mb-3">
+            <label for="shop_address" class="form-label">Shop address</label>
+            <input type="text" name="shop_address" class="form-control" id="shopAddressInput"
+              placeholder="This address will be visible to your potential buyers on loopmart">
+          </div>
+          <div class="col-2 mt-3 post-btn">
+            <button id="shopAddressBtn" style="background-color: whitesmoke;" type="button"
+              class="btn btn-info">Edit</button>
+          </div>
+
+          <div class="col-8 mb-3">
+            <label for="Business-location" class="form-label">Business location</label>
+            <select id="business-location" class="form-select" name="business_location">
+              <option value="">Choose your businees location</option>
+              <option value="Abakaliki">Abakaliki</option>
+              <option value="Aba">Aba</option>
+              <option value="Abeokuta">Abeokuta</option>
+              <option value="Abuja">Abuja</option>
+              <option value="Ado Ekiti">Ado Ekiti</option>
+              <option value="Akure">Akure</option>
+              <option value="Asaba">Asaba</option>
+              <option value="Awka">Awka</option>
+              <option value="Bauchi">Bauchi</option>
+              <option value="Benin City">Benin City</option>
+              <option value="Birnin Kebbi">Birnin Kebbi</option>
+              <option value="Calabar">Calabar</option>
+              <option value="Damaturu">Damaturu</option>
+              <option value="Delta">Delta</option>
+              <option value="Dutse">Dutse</option>
+              <option value="Edo">Edo</option>
+              <option value="Ekiti">Ekiti</option>
+              <option value="Enugu">Enugu</option>
+              <option value="Gombe">Gombe</option>
+              <option value="Gusau">Gusau</option>
+              <option value="Ibadan">Ibadan</option>
+              <option value="Ikeja">Ikeja</option>
+              <option value="Ilorin">Ilorin</option>
+              <option value="Imo">Imo</option>
+              <option value="Jalingo">Jalingo</option>
+              <option value="Jos">Jos</option>
+              <option value="Kaduna">Kaduna</option>
+              <option value="Kano">Kano</option>
+              <option value="Katsina">Katsina</option>
+              <option value="Lafia">Lafia</option>
+              <option value="Lagos">Lagos</option>
+              <option value="Lokoja">Lokoja</option>
+              <option value="Maiduguri">Maiduguri</option>
+              <option value="Makurdi">Makurdi</option>
+              <option value="Minna">Minna</option>
+              <option value="Ogun">Ogun</option>
+              <option value="Owerri">Owerri</option>
+              <option value="Owere">Owere</option>
+              <option value="Port Harcourt">Port Harcourt</option>
+              <option value="Sokoto">Sokoto</option>
+              <option value="Umuahia">Umuahia</option>
+              <option value="Uyo">Uyo</option>
+              <option value="Yenagoa">Yenagoa</option>
+              <option value="Yola">Yola</option>
+              <option value="Zaria">Zaria</option>
+            </select>
+
+          </div>
+
           <div class="col-8">
             <hr style="background-color: black;">
           </div>
@@ -376,8 +447,8 @@
             <button id="saveBtn" type="submit" class="btn btn-warning update-loader">
               <span class="update-text">Save</span>
               <div class="loader-layout">
-                  <div class="loader"></div>
-                  <span class="ms-1">Loading...</span>
+                <div class="loader"></div>
+                <span class="ms-1">Loading...</span>
               </div>
             </button>
           </div>
@@ -412,10 +483,11 @@
     </div>
     {{-- THE MAIN FORM FOR USER UPDATE MOBILE VIEW --}}
     <form class="row mt-5 " action="" id="settingFormMobile" enctype="multipart/form-data">
-      @csrf
-      
+
+
       <div class="col-10 upload-div">
-        <img style="height: 50px; width: 50px;border-radius:100%" id="previewImgMobile" class="img-fluid js-previewImgMobile" src="" alt="">
+        <img style="height: 50px; width: 50px;border-radius:100%" id="previewImgMobile"
+          class="img-fluid js-previewImgMobile" src="" alt="">
         <h6 class="ms-2"><span class="upload-text">Upload your profile picture</span> <br>
           <span class="fw-light identify-text">This helps visitors to recognize you on loopmart marketplace</span>
         </h6>
@@ -439,11 +511,11 @@
           class="btn btn-info">Edit</button>
       </div>
       <div class="col-10 mb-3">
-        <label for="usernameInput" class="form-label">Profile Bio</label>
+        <label for="usernameInput" class="form-label">Describe your business</label>
         <input type="text" class="form-control" name="bio" id="profileInput1"
           placeholder="This is will be displayed to potential buyers only if you are a verified seller (Max300)">
-          <span id="bio-error-mobile" class="error"></span>
-        
+        <span id="bio-error-mobile" class="error"></span>
+
       </div>
       <div class="col-2 mt-3 post-btn">
         <button id="editProfileBtn1" style="background-color: whitesmoke;" type="button"
@@ -458,6 +530,68 @@
         <button id="editPhoneBtn1" style="background-color: whitesmoke;" type="button"
           class="btn btn-info">Edit</button>
       </div>
+      <div class="col-10 mb-3">
+        <label for="shop_address" class="form-label">Shop address</label>
+        <input type="text" class="form-control" name="shop_address" id="shopAddressInput1"
+           placeholder="This address will be visible to your potential buyers on loopmart">
+      </div>
+      <div class="col-2 mt-3 post-btn">
+        <button id="shopAddressBtn1" style="background-color: whitesmoke;" type="button"
+          class="btn btn-info">Edit</button>
+      </div>
+
+       <div class="col-10 mb-3">
+            <label for="Business-location" class="form-label">Business location</label>
+            <select id="business-location" class="form-select" name="business_location">
+               <option value="">Choose your businees location</option>
+              <option value="Abakaliki">Abakaliki</option>
+              <option value="Aba">Aba</option>
+              <option value="Abeokuta">Abeokuta</option>
+              <option value="Abuja">Abuja</option>
+              <option value="Ado Ekiti">Ado Ekiti</option>
+              <option value="Akure">Akure</option>
+              <option value="Asaba">Asaba</option>
+              <option value="Awka">Awka</option>
+              <option value="Bauchi">Bauchi</option>
+              <option value="Benin City">Benin City</option>
+              <option value="Birnin Kebbi">Birnin Kebbi</option>
+              <option value="Calabar">Calabar</option>
+              <option value="Damaturu">Damaturu</option>
+              <option value="Delta">Delta</option>
+              <option value="Dutse">Dutse</option>
+              <option value="Edo">Edo</option>
+              <option value="Ekiti">Ekiti</option>
+              <option value="Enugu">Enugu</option>
+              <option value="Gombe">Gombe</option>
+              <option value="Gusau">Gusau</option>
+              <option value="Ibadan">Ibadan</option>
+              <option value="Ikeja">Ikeja</option>
+              <option value="Ilorin">Ilorin</option>
+              <option value="Imo">Imo</option>
+              <option value="Jalingo">Jalingo</option>
+              <option value="Jos">Jos</option>
+              <option value="Kaduna">Kaduna</option>
+              <option value="Kano">Kano</option>
+              <option value="Katsina">Katsina</option>
+              <option value="Lafia">Lafia</option>
+              <option value="Lagos">Lagos</option>
+              <option value="Lokoja">Lokoja</option>
+              <option value="Maiduguri">Maiduguri</option>
+              <option value="Makurdi">Makurdi</option>
+              <option value="Minna">Minna</option>
+              <option value="Ogun">Ogun</option>
+              <option value="Owerri">Owerri</option>
+              <option value="Owere">Owere</option>
+              <option value="Port Harcourt">Port Harcourt</option>
+              <option value="Sokoto">Sokoto</option>
+              <option value="Umuahia">Umuahia</option>
+              <option value="Uyo">Uyo</option>
+              <option value="Yenagoa">Yenagoa</option>
+              <option value="Yola">Yola</option>
+              <option value="Zaria">Zaria</option>
+            </select>
+
+          </div>
       <div>
         <hr style="background-color: black;">
       </div>
@@ -492,10 +626,10 @@
         <button id="saveBtn1" type="submit" class="btn btn-warning save-btn btn-lg update-loader-mobile">
           <span class="update-text-mobile">Save</span>
           <div class="mobile-layout-loader">
-              <div class="loader-settings-mobile"></div>
-              <span class="ms-1">Loading...</span>
+            <div class="loader-settings-mobile"></div>
+            <span class="ms-1">Loading...</span>
           </div>
-          
+
         </button>
       </div>
     </form>
@@ -508,8 +642,8 @@
 <script type="module" src="{{ asset('backend-js/settings.js')}}?time={{ time() }}"></script>
 
 <script>
-  
-  
+
+
 </script>
 
 

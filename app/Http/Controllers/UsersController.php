@@ -295,7 +295,7 @@ class UsersController extends Controller
     {
         //
         try {
-            //code...
+            
             //$user = User::find($id);
             $user = User::all();
 
@@ -328,6 +328,8 @@ class UsersController extends Controller
                 'phone_number' => ['nullable', 'regex:/^(080|091|090|070|081)[0-9]{8}$/'],
                 'bio' => 'nullable|string',
                 'photo_url' => 'nullable|image|mimes:jpg,jpeg,png,gif,svg|max:1024',
+                'shop_address' => ['nullable', 'string', 'max:255'],
+                'business_location' => ['nullable', 'string'],
 
 
             ]);
@@ -340,41 +342,29 @@ class UsersController extends Controller
                 ], 422);
             }
 
+            $isEmpty =  $this->checkForEmptyRequest($request);
 
-            if (empty($request->username) && empty($request->phone_number) && empty($request->bio)) {
-                return response()->json([
-                    'status' => false,
-                    'message' => 'Empty Request',
-                    'errors' => 'No data provided',
-                ], 400);
+            if ($isEmpty) {
+
+                return  $this->errorResponse(
+                    message: 'At least one field must be filled',
+                );
             }
-
-
 
 
             $id =  $request->user()->id;
 
-
             $user = User::find($id);
-            debugbar::info($user);
 
-            if ($request->has('username') && trim($request->input('username')) !== '') {
 
-                $user->username = $request->input('username');
+            $fields = ['username', 'phone_number', 'bio', 'shop_address', 'business_location'];
+
+            foreach ($fields as $field) {
+
+                if ($request->has($field) && trim($request->input($field) !== '')) {
+                    $user->$field = $request->input($field);
+                }
             }
-
-            if ($request->has('phone_number') && trim($request->input('phone_number')) !== '') {
-
-                $user->phone_number = $request->input('phone_number');
-            }
-
-            if ($request->has('bio') && trim($request->input('bio')) !== '') {
-
-                $user->bio = $request->input('bio');
-            }
-
-
-
 
 
 
@@ -401,6 +391,12 @@ class UsersController extends Controller
                 'message' => $th->getMessage()
             ], 500);
         }
+    }
+
+
+    public function checkForEmptyRequest(Request $request)
+    {
+        return collect($request->all())->every(fn($val) => empty($val));
     }
 
 

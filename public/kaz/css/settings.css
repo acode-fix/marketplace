@@ -729,6 +729,19 @@ a {
 
 }
 
+#business-location {
+  outline: none;
+  box-shadow: none;
+  transition: border-color 0.1s;
+
+}
+
+#business-location:focus {
+  border: 1px solid #ffce29;;
+}
+
+
+
 #search-modal.form-control:focus {
   border-top: 1px solid #ffce29;
   /* Set top border to 1px solid #ffce29 */

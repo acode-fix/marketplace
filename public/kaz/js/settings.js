@@ -100,14 +100,14 @@ document.addEventListener("DOMContentLoaded", function() {
   //  Get all the input fields
   const usernameInput = document.getElementById('usernameInput');
   const phoneInput = document.getElementById('phoneInput');
-  // const whatsappInput = document.getElementById('whatsappInput');
+  const shopAddressInput = document.getElementById('shopAddressInput');
   const profileInput = document.getElementById('profileInput');
 
 
   // Get all the edit buttons
   const editUsernameBtn = document.getElementById('editUsernameBtn');
   const editPhoneBtn = document.getElementById('editPhoneBtn');
-  // const editWhatsappBtn = document.getElementById('editWhatsappBtn');
+  const shopAddressBtn = document.getElementById('shopAddressBtn');
   const editProfileBtn = document.getElementById('editProfileBtn');
 
   // Get the save button
@@ -121,7 +121,7 @@ document.addEventListener("DOMContentLoaded", function() {
   }
 
 
-  if (editUsernameBtn && editPhoneBtn && editProfileBtn && saveBtn) {
+  if (editUsernameBtn && editPhoneBtn && editProfileBtn && shopAddressBtn && saveBtn) {
 
  
   // Add click event listeners to edit buttons
@@ -133,9 +133,11 @@ document.addEventListener("DOMContentLoaded", function() {
     toggleReadOnly(phoneInput);
   });
 
-  // editWhatsappBtn.addEventListener('click', () => {
-  //   toggleReadOnly(whatsappInput);
-  // });
+  shopAddressBtn.addEventListener('click', () => {
+    toggleReadOnly(shopAddressInput);
+  })
+
+  
    editProfileBtn.addEventListener('click', () => {
     toggleReadOnly(profileInput);
   });
@@ -156,11 +158,13 @@ document.addEventListener("DOMContentLoaded", function() {
   const usernameInput = document.getElementById('usernameInput1');
   const profileInput = document.getElementById('profileInput1');
   const phoneInput = document.getElementById('phoneInput1');
+  const shopAddressInput = document.getElementById('shopAddressInput1');
 
   // Get all the edit buttons
   const editUsernameBtn = document.getElementById('editUsernameBtn1');
   const editProfileBtn = document.getElementById('editProfileBtn1');
   const editPhoneBtn = document.getElementById('editPhoneBtn1');
+  const shopAddressBtn = document.getElementById('shopAddressBtn1');
 
   // Get the save button
   const saveBtn = document.getElementById('saveBtn1');
@@ -172,7 +176,7 @@ document.addEventListener("DOMContentLoaded", function() {
     }
     
   }
- if (usernameInput && profileInput && phoneInput && saveBtn) {
+ if (usernameInput && profileInput && phoneInput && shopAddressBtn && saveBtn) {
 
     // Add click event listeners to edit buttons
     editUsernameBtn.addEventListener('click', () => {
@@ -186,6 +190,10 @@ document.addEventListener("DOMContentLoaded", function() {
     editPhoneBtn.addEventListener('click', () => {
       toggleReadOnly(phoneInput);
     });
+
+    shopAddressBtn.addEventListener('click', () => {
+      toggleReadOnly(shopAddressInput);
+    })
   
 
 

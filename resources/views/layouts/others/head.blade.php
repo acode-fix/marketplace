@@ -5,7 +5,7 @@
   <meta http-equiv="Pragma" content="no-cache">
   <meta http-equiv="Expires" content="0">
 
-  <title> @yield('title','MarketPlace') </title>
+  <title> @yield('title','Loopmart') </title>
   <link rel="icon" href="{{ asset('innocent/assets/image/favicon.svg') }}" type="image/x-icon">
   <link rel="stylesheet" href="{{ asset('kaz/css/bootstrap.css') }}">
   <link rel="stylesheet" href="{{ asset('kaz/css/settings.css') }}">

@@ -528,13 +528,11 @@ class UsersController extends Controller
     public function logoutUser(Request $request)
     {
         try {
-             $user = $request->user(); // Get the authenticated user;  
+            $user = $request->user(); // Get the authenticated user;  
 
             if ($user) {
                 // Get the user's token and revoke it
-               // $user->currentAccessToken()->delete();
-
-               auth()->user()->currentAccessToken()->delete();
+                $user->currentAccessToken()->delete();
 
                 return response()->json([
                     'status' => true,
@@ -547,11 +545,9 @@ class UsersController extends Controller
                 ], 401);
             }
         } catch (\Throwable $th) {
-
-            Log::error(message:"Log out error: $th->getMessage()");
             return response()->json([
                 'status' => false,
-                'message' => 'Log out failed',
+                'message' => $th->getMessage()
             ], 500);
         }
     }

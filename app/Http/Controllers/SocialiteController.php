@@ -63,7 +63,13 @@ class SocialiteController extends Controller
             );
         }
 
-        auth()->login($user);
+
+          $token = $user->createToken(env('APP_NAME', 'API TOKEN'))->plainTextToken;
+
+          return redirect(config('app.url') . "/settings?success=You+have+successfully+logged+in&token={$token}&user={$user->id}");
+
+
+      /*  auth()->login($user);
 
         if (auth()->check()) {
 
@@ -78,6 +84,8 @@ class SocialiteController extends Controller
                 statusCode: Response::HTTP_UNAUTHORIZED,
             );
         }
+
+        */
     }
 
 

@@ -295,7 +295,7 @@ class UsersController extends Controller
     {
         //
         try {
-            
+
             //$user = User::find($id);
             $user = User::all();
 
@@ -528,11 +528,15 @@ class UsersController extends Controller
     public function logoutUser(Request $request)
     {
         try {
-            $user = $request->user(); // Get the authenticated user;  
+            $user = $request->user();
 
             if ($user) {
-                // Get the user's token and revoke it
-                $user->currentAccessToken()->delete();
+
+                if(method_exists(auth()->user()->currentAccessToken(), 'delete')) {
+                    auth()->user()->currentAccessToken()->delete();
+                }
+
+                auth()->guard('web')->logout();
 
                 return response()->json([
                     'status' => true,
@@ -541,10 +545,13 @@ class UsersController extends Controller
             } else {
                 return response()->json([
                     'status' => false,
-                    'message' => 'User not authenticated',
+                    'message' => 'Log out failed',
                 ], 401);
             }
         } catch (\Throwable $th) {
+
+            Log::error(($th->getMessage()));
+
             return response()->json([
                 'status' => false,
                 'message' => $th->getMessage()

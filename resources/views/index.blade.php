@@ -124,7 +124,7 @@
         <p>We are pleased to announce that the shop settings page has been modify to accommodate your shop location and
             shop address, visit settings to update your information</p>
 
-        <a class="dialog-link" href="">settings</a>
+        <a class="dialog-link" href="{{ url('/settings')}}">settings</a>
     </div>
 
 

@@ -5,17 +5,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Loopmart-marketplace</title>
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.14.1/themes/base/jquery-ui.css">
+
+
     <link rel="icon" href="{{ asset('innocent/assets/image/favicon.svg') }}" type="image/x-icon">
     <link rel="stylesheet" href="{{ asset('innocent/assets/css/bootstrap.css') }}">
     <link rel="stylesheet" href="{{ asset('innocent/assets/css/style.css') }}">
-    <link rel="stylesheet" href="{{ asset('innocent/assets/css/animation.css')}}">
+    <link rel="stylesheet" href="{{ asset('innocent/assets/css/animation.css') }}">
     <link rel="stylesheet" href="{{ asset('innocent/assets/css/modal.css') }}">
-    <link rel="stylesheet" href="{{ asset('innocent/assets/css/notification.css')}}">
+    <link rel="stylesheet" href="{{ asset('innocent/assets/css/notification.css') }}">
     <link rel="stylesheet" href="{{ asset('innocent/assets/css/location.css') }}">
     <link rel="stylesheet" href="{{ asset('innocent/assets/css/alert.css') }}">
     <link rel="stylesheet" href="{{ asset('innocent/assets/icons/css/all.min.css') }}">
     <link rel="stylesheet" href="{{ asset('innocent/assets/icons/css/fontawesome.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('innocent/assets/css/preloader.css')}}">
+    <link rel="stylesheet" href="{{ asset('innocent/assets/css/preloader.css') }}">
 
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -28,13 +31,79 @@
 
 
 
+    <link rel="stylesheet" href="/resources/demos/style.css">
+    <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+    <script src="https://code.jquery.com/ui/1.14.1/jquery-ui.js"></script>
+
+
+
+
+
+
+
+    <script>
+        $(function() {
+             $.ui.dialog.prototype._focusTabbable = function() {};
+             
+            $("#dialog").dialog({
+                autoOpen: true,
+                autoFocus: false,
+                show: {
+                    effect: "blind",
+                    duration: 1000
+                },
+                hide: {
+                    effect: "explode",
+                    duration: 1000
+                },
+
+            
+
+            });
+        });
+    </script>
+
+
+
 
 
 </head>
 <style>
+    /* Optional: Add a custom X symbol */
+    .ui-dialog-titlebar-close::after {
+        content: "✖";
+        /* Unicode X */
+        position: absolute;
+        right: -5px;
+        top: 45%;
+        width: 30px;
+        margin: -10px 0 0 0;
+        padding: 1px;
+        height: 20px;
 
+    }
 
+    .ui-dialog-titlebar-close {
+        background: white;
+        border: none;
+        border-radius: 50%;
+    }
 
+    .dialog-link {
+        display: inline-block;
+        padding: 0.2rem 1rem;
+        background-color:  #ffce29;
+        color: white;
+        text-decoration: none;
+        border-radius: 5px;
+        font-weight: bold;
+        
+        
+    }
+
+    .dialog-link:hover {
+        background-color: #ffb705;
+    }
 </style>
 
 <body>
@@ -51,6 +120,14 @@
 
     </div>
 
+    <div id="dialog" title="Update">
+        <p>We are pleased to announce that the shop settings page has been modify to accommodate your shop location and
+            shop address, visit settings to update your information</p>
+
+        <a class="dialog-link" href="">settings</a>
+    </div>
+
+
 
 
     <div id="scrollToTop"><i class="fa-solid fa-arrow-up"></i></div>
@@ -58,7 +135,7 @@
         <!-- Navbar and Search Button -->
         <div class="navbar-1 fixed-top">
             <a class="js-logo-link" href=""><img class="buy_and_sell_logo js-logo-img"
-                    src="{{ asset('innocent\assets\image\transparent_logo.png')}}" alt="" data-bs-toggle=""
+                    src="{{ asset('innocent\assets\image\transparent_logo.png') }}" alt="" data-bs-toggle=""
                     data-bs-target=""></a>
             <div class="search-bar">
                 <div class="location-icon">
@@ -89,9 +166,10 @@
                 </a> --}}
             </div>
             <div id="notification_icon_div"><img class="notification-icon"
-                    src="{{asset('innocent/assets/image/notification.svg')}}" alt="Logo" id="notification_icon"></div>
+                    src="{{ asset('innocent/assets/image/notification.svg') }}" alt="Logo" id="notification_icon">
+            </div>
             <div id="notification_icon_div2"> <a href="{{ url('/notification_mobile') }}"><img
-                        class="notification-icon js-auth" src="{{asset('innocent/assets/image/notification.svg')}}"
+                        class="notification-icon js-auth" src="{{ asset('innocent/assets/image/notification.svg') }}"
                         alt="Logo"></a></div>
 
             <div><img id="profile_picture" src="" alt=".profile picture " class="mt-2 profile_picture js-default"></div>
@@ -136,29 +214,29 @@
                 <div class="carousel-inner">
 
                     <div class="carousel-item active">
-                        <img src="{{asset('innocent/assets/image/c12.jpg')}}" class="d-block w-100 " alt="...">
+                        <img src="{{ asset('innocent/assets/image/c12.jpg') }}" class="d-block w-100 " alt="...">
                     </div>
                     <div class="carousel-item">
-                        <img src="{{asset('innocent/assets/image/c3.png')}}" class="d-block w-100 " alt="...">
+                        <img src="{{ asset('innocent/assets/image/c3.png') }}" class="d-block w-100 " alt="...">
                     </div>
                     <div class="carousel-item">
-                        <img src="{{asset('innocent/assets/image/c4.png')}}" class="d-block w-100 " alt="...">
+                        <img src="{{ asset('innocent/assets/image/c4.png') }}" class="d-block w-100 " alt="...">
                     </div>
                     <div class="carousel-item">
-                        <img src="{{asset('innocent/assets/image/c5.png')}}" class="d-block w-100" alt="...">
+                        <img src="{{ asset('innocent/assets/image/c5.png') }}" class="d-block w-100" alt="...">
                     </div>
                     <div class="carousel-item">
-                        <img src="{{asset('innocent/assets/image/c11.png')}}" class="d-block w-100" alt="...">
+                        <img src="{{ asset('innocent/assets/image/c11.png') }}" class="d-block w-100" alt="...">
                     </div>
                     <div class="carousel-item">
-                        <img src="{{asset('innocent/assets/image/c2.png')}}" class="d-block w-100" alt="...">
+                        <img src="{{ asset('innocent/assets/image/c2.png') }}" class="d-block w-100" alt="...">
                     </div>
 
                 </div>
             </div>
             <a href="{{ url('/start_selling') }}" class="start-selling js-auth js-selling-check">
                 <p class="do_you">Do you have <br> anything to sell?</p>
-                <img src="{{asset('innocent/assets/image/logo icon.svg')}}" alt="" style="width: 60px;">
+                <img src="{{ asset('innocent/assets/image/logo icon.svg') }}" alt="" style="width: 60px;">
                 <p class="start_selling_p2">Start Selling</p>
             </a>
 
@@ -171,7 +249,7 @@
                 <!-- Filter Section -->
                 <div class="filter_section">
                     <p>
-                        <img src="{{asset('innocent/assets/image/filter.png')}}" alt="">
+                        <img src="{{ asset('innocent/assets/image/filter.png') }}" alt="">
                     <p class="filter">Filter</p>
                     <p class="filter_line"></p>
 
@@ -206,7 +284,7 @@
                 <br>
                 <div class="row">
                     <div class="col d-flex">
-                        <img src="{{asset('innocent/assets/image/badge.png')}}" alt="" class="verify_badge">
+                        <img src="{{ asset('innocent/assets/image/badge.png') }}" alt="" class="verify_badge">
 
                         <p>verified seller</p>
                         <label class="switch">
@@ -216,9 +294,9 @@
                         </label>
                     </div>
                 </div>
-                <!-- <a href="start_selling.html"><img src="{{asset('innocent/assets/image/Start selling 3.png')}}" alt="" class="start_selling_filter"></a> -->
+                <!-- <a href="start_selling.html"><img src="{{ asset('innocent/assets/image/Start selling 3.png') }}" alt="" class="start_selling_filter"></a> -->
                 <a href="{{ url('/start_selling') }}" class="start_selling_div js-auth js-selling-check">
-                    <img src="{{asset('innocent/assets/image/logo icon.svg')}}" alt="">
+                    <img src="{{ asset('innocent/assets/image/logo icon.svg') }}" alt="">
                     <p class="start_selling_p">
                         <span class="start_selling_span"> do you have anything to sell</span><br>
                         <span class="start_selling_span2">start selling</span>
@@ -234,7 +312,7 @@
 
 
                 <div id="shop_number_mobile_icon" class="shop_number_mobile_icon js-auth"
-                    onclick="enter_shop_no_mobile()"><img src="{{asset('innocent/assets/image/shop.svg') }}" alt="">
+                    onclick="enter_shop_no_mobile()"><img src="{{ asset('innocent/assets/image/shop.svg') }}" alt="">
                 </div>
                 <div id="shop_number_mobile" class="shop_number_mobile">
                     <i class="fa-solid fa-close close_shop_no" onclick=" return_enter_shop_no_mobile()"></i>
@@ -242,14 +320,14 @@
                     <input type="text" class="form-control js-mobile-input" id="shop_no_input_mobile"
                         placeholder="enter shop no ">
 
-                    <img class="js-mobile-send" src="{{asset('innocent/assets/image/send 3.svg') }}" alt="" id="send"
+                    <img class="js-mobile-send" src="{{ asset('innocent/assets/image/send 3.svg') }}" alt="" id="send"
                         onclick=" return_enter_shop_no_mobile()">
 
                 </div>
 
 
                 <div id="shop_no_dekstop" class="shop js-auth" onclick="enter_shop_no()"><img
-                        src="{{asset('innocent/assets/image/shop.svg') }}" alt=""></div>
+                        src="{{ asset('innocent/assets/image/shop.svg') }}" alt=""></div>
                 <div id="shop_no_dekstop2" class="shop3">
 
                     <i class="fa-solid fa-close close_shop_no" onclick="return_enter_shop_no()"></i>
@@ -257,7 +335,7 @@
                     <input type="text" class="form-control js-input-value" id="shop_no_input"
                         placeholder="enter shop no ">
 
-                    <img class="js-send" src="{{asset('innocent/assets/image/send 3.svg')}}" alt="" id="send"
+                    <img class="js-send" src="{{ asset('innocent/assets/image/send 3.svg') }}" alt="" id="send"
                         onclick="return_enter_shop_no()">
 
 
@@ -275,50 +353,50 @@
                     <!-- Category Images -->
                     <a href="#" class="category-link js-auth" data-category-id="1" data-category-name="Gadgets">
                         <div class="image2">
-                            <img src="{{asset('innocent/assets/image/category 1.png')}}">
+                            <img src="{{ asset('innocent/assets/image/category 1.png') }}">
                             <div class="text2">Gadgets</div>
                         </div>
                     </a>
                     <a href="#" class="category-link js-auth" data-category-id="2" data-category-name="Vehicles">
                         <div class="image2">
-                            <img src="{{asset('innocent/assets/image/category 2.png')}}">
+                            <img src="{{ asset('innocent/assets/image/category 2.png') }}">
                             <div class="text2">Vehicles</div>
                         </div>
                     </a>
                     <a href="#" class="category-link js-auth" data-category-id="3" data-category-name="Houses">
                         <div class="image2">
-                            <img src="{{asset('innocent/assets/image/category 3.png')}}">
+                            <img src="{{ asset('innocent/assets/image/category 3.png') }}">
                             <div class="text2">Houses</div>
                         </div>
                     </a>
                     <a href="#" class="category-link js-auth" data-category-id="4" data-category-name="Fashion">
                         <div class="image2">
-                            <img src="{{asset('innocent/assets/image/category 4.png')}}">
+                            <img src="{{ asset('innocent/assets/image/category 4.png') }}">
                             <div class="text2">Fashion</div>
                         </div>
                     </a>
                     <a href="#" class="category-link js-auth" data-category-id="5" data-category-name="Jobs">
                         <div class="image2">
-                            <img src="{{asset('innocent/assets/image/category 5.png')}}">
+                            <img src="{{ asset('innocent/assets/image/category 5.png') }}">
                             <div class="text2">Jobs</div>
                         </div>
                     </a>
                     <a href="#" class="category-link js-auth" data-category-id="6" data-category-name="Cosmetics">
                         <div class="image2">
-                            <img src="{{asset('innocent/assets/image/category 6.png')}}">
+                            <img src="{{ asset('innocent/assets/image/category 6.png') }}">
                             <div class="text2">Cosmetics</div>
                         </div>
                     </a>
                     <a href="#" class="category-link js-auth" data-category-id="7" data-category-name="Fruits">
                         <div class="image2">
-                            <img src="{{asset('innocent/assets/image/category 7.png')}}">
+                            <img src="{{ asset('innocent/assets/image/category 7.png') }}">
                             <div class="text2">Fruits</div>
                         </div>
                     </a>
                     <a href="#" class="category-link js-auth" data-category-id="8"
                         data-category-name="Kitchen Utensils">
                         <div class="image2">
-                            <img src="{{asset('innocent/assets/image/category 8.png')}}">
+                            <img src="{{ asset('innocent/assets/image/category 8.png') }}">
                             <div class="text2">Kitchen utensils</div>
                         </div>
                     </a>
@@ -344,50 +422,50 @@
                         <!-- Category Images Gallery -->
                         <a href="#" class="category-link js-auth" data-category-id="1" data-category-name="Gadgets">
                             <div class="image">
-                                <img src="{{asset('innocent/assets/image/category 1.png')}}">
+                                <img src="{{ asset('innocent/assets/image/category 1.png') }}">
                                 <div class="text">Gadgets</div>
                             </div>
                         </a>
                         <a href="#" class="category-link js-auth" data-category-id="2" data-category-name="Vehicles">
                             <div class="image">
-                                <img src="{{asset('innocent/assets/image/category 2.png')}}">
+                                <img src="{{ asset('innocent/assets/image/category 2.png') }}">
                                 <div class="text">Vehicles</div>
                             </div>
                         </a>
                         <a href="#" class="category-link js-auth" data-category-id="3" data-category-name="Houses">
                             <div class="image">
-                                <img src="{{asset('innocent/assets/image/category 3.png')}}">
+                                <img src="{{ asset('innocent/assets/image/category 3.png') }}">
                                 <div class="text">Houses</div>
                             </div>
                         </a>
                         <a href="#" class="category-link js-auth" data-category-id="4" data-category-name="Fashion">
                             <div class="image">
-                                <img src="{{asset('innocent/assets/image/category 4.png')}}">
+                                <img src="{{ asset('innocent/assets/image/category 4.png') }}">
                                 <div class="text">Fashion</div>
                             </div>
                         </a>
                         <a href="#" class="category-link js-auth" data-category-id="5" data-category-name="Jobs">
                             <div class="image">
-                                <img src="{{asset('innocent/assets/image/category 5.png')}}">
+                                <img src="{{ asset('innocent/assets/image/category 5.png') }}">
                                 <div class="text">Jobs</div>
                             </div>
                         </a>
                         <a href="#" class="category-link js-auth" data-category-id="6" data-category-name="Cosmetics">
                             <div class="image">
-                                <img src="{{asset('innocent/assets/image/category 6.png')}}">
+                                <img src="{{ asset('innocent/assets/image/category 6.png') }}">
                                 <div class="text">Cosmetics</div>
                             </div>
                         </a>
                         <a href="#" class="category-link js-auth" data-category-id="7" data-category-name="Fruits">
                             <div class="image">
-                                <img src="{{asset('innocent/assets/image/category 7.png')}}">
+                                <img src="{{ asset('innocent/assets/image/category 7.png') }}">
                                 <div class="text">Fruits</div>
                             </div>
                         </a>
                         <a href="#" class="category-link js-auth" data-category-id="8"
                             data-category-name="Kitchen Utensils">
                             <div class="image">
-                                <img src="{{asset('innocent/assets/image/category 8.png')}}">
+                                <img src="{{ asset('innocent/assets/image/category 8.png') }}">
                                 <div class="text">Kitchen Utensils</div>
                             </div>
                         </a>
@@ -405,7 +483,7 @@
 
                 <a class="js-auth js-selling-check" href="{{ url('/start_selling') }}">
                     <div class="startselling2">
-                        <img src="{{asset('innocent/assets/image/logo icon.svg')}}" alt="">
+                        <img src="{{ asset('innocent/assets/image/logo icon.svg') }}" alt="">
                         <p>Start Selling</p>
                     </div>
                 </a>
@@ -443,11 +521,11 @@
 
                 <!-- Promotion Section -->
                 <div class="promotion">
-                    <img src="{{asset('innocent/assets/image/Annoucement.png')}}" alt="" class="Annoucement">
+                    <img src="{{ asset('innocent/assets/image/Annoucement.png') }}" alt="" class="Annoucement">
                     <p>
-                        <img src="{{asset('innocent/assets/image/transparent_logo.png')}}" alt=""
+                        <img src="{{ asset('innocent/assets/image/transparent_logo.png') }}" alt=""
                             class="buy_and_sell_logo_promotion"><br><br>
-                        <img src="{{asset('innocent/assets/image/Annoucement.png')}}" alt="" class="Annoucement2">
+                        <img src="{{ asset('innocent/assets/image/Annoucement.png') }}" alt="" class="Annoucement2">
                         <strong>Reach more audience by promoting your Product(s)</strong><br>
                         Get an active badge by becoming a verified seller <br> and enjoy multiple benefits that comes
                         with being a verified seller
@@ -468,7 +546,7 @@
 
                 <div class="promotion_card card" id="promotion_card" style="display: none;">
                     <i class="fa-solid fa-close close_get_started" onclick="hideCard_get_started()"></i>
-                    <img src="{{asset('innocent/assets/image/Annoucement.png')}}" alt="">
+                    <img src="{{ asset('innocent/assets/image/Annoucement.png') }}" alt="">
                     <div class="card_content_get_started">
                         <p>chosse your promotion option <br>
                             <span>select your promotion option</span>
@@ -646,7 +724,7 @@
                 <!--tell us what is it-->
                 <div class="tell_us_what_u_want animate animate-left js-auth">
                     <p class="tell_us_paragraph js-change-to-input js-auth">
-                        <img src="{{asset('innocent/assets/image/pen.png')}}" alt="" class="pen">
+                        <img src="{{ asset('innocent/assets/image/pen.png') }}" alt="" class="pen">
                         Can't find what you are looking for?
                         <span>Tell us what it is!</span><br>
                         and we'll do our best to assist you.
@@ -678,22 +756,22 @@
         <!-- Footer Section -->
         <div class="footer_contanier">
             <div>
-                <img class="main-logo" src="{{asset('innocent/assets/image/transparent_logo.png')}}" alt="">
+                <img class="main-logo" src="{{ asset('innocent/assets/image/transparent_logo.png') }}" alt="">
             </div>
             <nav class="footer_links">
                 <a class="js-become-link" href="{{ url('/about') }}">About Us</a>
                 <a class="js-become-link" href="">Terms and condition</a>
                 <a class="js-become-link js-help" href="">Help desk</a>
-                <a class="js-become-link" href="{{ url('/privacy')}}">Privacy</a>
+                <a class="js-become-link" href="{{ url('/privacy') }}">Privacy</a>
                 {{-- <a href="">Report a seller</a> --}}
             </nav>
             <div class="footer_icons">
                 <a class="js-become" href="https://web.facebook.com/loopmart/"><img
-                        src="{{asset('innocent/assets/image/facebook.png')}}" alt=""></a>
-                <img src="{{asset('innocent/assets/image/twitter.png')}}" alt="">
-                <img src="{{asset('innocent/assets/image/linkedin.png')}}" alt="">
+                        src="{{ asset('innocent/assets/image/facebook.png') }}" alt=""></a>
+                <img src="{{ asset('innocent/assets/image/twitter.png') }}" alt="">
+                <img src="{{ asset('innocent/assets/image/linkedin.png') }}" alt="">
                 <a class="js-become" href="mailto:info@gmail.com.ng"><img
-                        src="{{asset('innocent/assets/image/message.png')}}" alt=""></a>
+                        src="{{ asset('innocent/assets/image/message.png') }}" alt=""></a>
 
             </div>
         </div>
@@ -711,7 +789,7 @@
 
                         <h5 id="sign_up">Sign Up</h5>
                         <p>Welcome to</p>
-                        <img src="{{asset('innocent/assets/image/transparent_logo.png')}}" alt="" width="150px">
+                        <img src="{{ asset('innocent/assets/image/transparent_logo.png') }}" alt="" width="150px">
                         <!-- Sign Up Form -->
 
                         <div class="form-group">
@@ -731,11 +809,12 @@
                         <hr>
                         <div class="auth_icons">
                             <div class="facebook_icon" style="cursor: pointer;">
-                               <a href="" class="fb-login"> <img src="{{asset('innocent/assets/image/Facebook Logo.png')}}" alt=""></a>
+                                <a href="" class="fb-login"> <img
+                                        src="{{ asset('innocent/assets/image/Facebook Logo.png') }}" alt=""></a>
                             </div>
                             <div class="gmail_icon" style="cursor: pointer;">
-                                <a href="" class="google-login"> <img src="{{asset('innocent/assets/image/gmail.png')}}"
-                                        alt=""></a>
+                                <a href="" class="google-login"> <img
+                                        src="{{ asset('innocent/assets/image/gmail.png') }}" alt=""></a>
                             </div>
                         </div>
                         <p>Already have an account? <a href="#" onclick="login()" class="signup_links">Login</a></p>
@@ -759,7 +838,7 @@
                             aria-label="Close"> </i>
                         <h5 id="sign_up">Log in</h5>
                         <p>Welcome back to</p>
-                        <img src="{{asset('innocent/assets/image/transparent_logo.png')}}" alt="" width="150px">
+                        <img src="{{ asset('innocent/assets/image/transparent_logo.png') }}" alt="" width="150px">
                         <!-- Login Form -->
 
                         <div class="form-group">
@@ -790,10 +869,11 @@
                         <div class="auth_icons">
                             <div class="facebook_icon" style="cursor: pointer;">
                                 <a href="" class="fb-login"><img
-                                        src="{{asset('innocent/assets/image/Facebook Logo.png')}}" alt=""></a>
+                                        src="{{ asset('innocent/assets/image/Facebook Logo.png') }}" alt=""></a>
                             </div>
                             <div class="gmail_icon" style="cursor: pointer;">
-                               <a href="" class="google-login"> <img src="{{asset('innocent/assets/image/gmail.png')}}" alt=""></a>
+                                <a href="" class="google-login"> <img
+                                        src="{{ asset('innocent/assets/image/gmail.png') }}" alt=""></a>
                             </div>
                         </div>
                         <button type="submit" class="signup_continue_button continueBtn login-btn"
@@ -846,7 +926,8 @@
 
                     <div class="chagepassword" id="changepassword" style="display: none;">
 
-                        <p class="type_new_password"> <span class="type_new_password_head">Hi, Welcome Back </span> <br>
+                        <p class="type_new_password"> <span class="type_new_password_head">Hi, Welcome Back </span>
+                            <br>
                             type in your new password
                         </p>
                         <div class="form-group">
@@ -931,7 +1012,7 @@
         <!-- Navbar and Search Button -->
 
         <p class="notification_indicator">
-            <img class="notification-icon" src="{{asset('innocent/assets/image/notification.svg')}}" alt="">
+            <img class="notification-icon" src="{{ asset('innocent/assets/image/notification.svg') }}" alt="">
             <span>notification(<span class="indicator-span text-danger">0</span>)</span>
 
 
@@ -1069,7 +1150,7 @@
                 <i id="volumeMuteIcon" class="fa-solid fa-volume-mute notification_volume" style="display: none;"
                     onclick="turnOffNotifications()"></i>
                 <audio id="notificationSound">
-                    <source src="{{asset('innocent/assets/notification_sound/mixkit-bell-notification-933.wav')}}"
+                    <source src="{{ asset('innocent/assets/notification_sound/mixkit-bell-notification-933.wav') }}"
                         type="audio/mpeg">
                 </audio>
                 <p class="mt-2">Notification sound</p>
@@ -1236,7 +1317,7 @@
     <script src="{{ asset('innocent/assets/js/preloader.js') }}?time={{ time() }}"></script>
 
 
-    <script type="module" src="{{ asset('backend-js/index.js') }}"></script>    
+    <script type="module" src="{{ asset('backend-js/index.js') }}"></script>
     <script src="{{ asset('backend-js/user/auth.js') }}"></script>
     <script type="module" src="{{ asset('backend-js/notification.js') }}"></script>
     <script type="module" src="{{ asset('backend-js/user/social-login.js') }}"></script>

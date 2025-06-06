@@ -30,7 +30,7 @@
     <script src="https://cdn.jsdelivr.net/npm/js-cookie@3.0.1/dist/js.cookie.min.js"></script>
 
 
-
+    <link rel="stylesheet" href="{{ asset('kaz/css/dialog.css') }}">
     <link rel="stylesheet" href="/resources/demos/style.css">
     <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
     <script src="https://code.jquery.com/ui/1.14.1/jquery-ui.js"></script>
@@ -41,70 +41,13 @@
 
 
 
-    <script>
-        $(function() {
-             $.ui.dialog.prototype._focusTabbable = function() {};
-             
-            $("#dialog").dialog({
-                autoOpen: true,
-                autoFocus: false,
-                show: {
-                    effect: "blind",
-                    duration: 1000
-                },
-                hide: {
-                    effect: "explode",
-                    duration: 1000
-                },
-
-            
-
-            });
-        });
-    </script>
 
 
 
 
 
 </head>
-<style>
-    /* Optional: Add a custom X symbol */
-    .ui-dialog-titlebar-close::after {
-        content: "✖";
-        /* Unicode X */
-        position: absolute;
-        right: -5px;
-        top: 45%;
-        width: 30px;
-        margin: -10px 0 0 0;
-        padding: 1px;
-        height: 20px;
 
-    }
-
-    .ui-dialog-titlebar-close {
-        background: white;
-        border: none;
-        border-radius: 50%;
-    }
-
-    .dialog-link {
-        display: inline-block;
-        padding: 0.2rem 1rem;
-        background-color:  #ffce29;
-        color: white;
-        text-decoration: none;
-        border-radius: 5px;
-        font-weight: bold;
-        
-        
-    }
-
-    .dialog-link:hover {
-        background-color: #ffb705;
-    }
-</style>
 
 <body>
 
@@ -1314,13 +1257,15 @@
     <script src="{{ asset('innocent/assets/js/animation.js') }}"></script>
     <script src="{{ asset('innocent/assets/js/location.js') }}"></script>
     <script src="{{ asset('innocent/assets/js/modal.js') }}"></script>
-    <script src="{{ asset('innocent/assets/js/preloader.js') }}?time={{ time() }}"></script>
+    <script src="{{ asset('innocent/assets/js/preloader.js') }}"></script>
+    <script src="{{asset('kaz/js/dialog.js')}}"></script>
 
 
     <script type="module" src="{{ asset('backend-js/index.js') }}"></script>
     <script src="{{ asset('backend-js/user/auth.js') }}"></script>
     <script type="module" src="{{ asset('backend-js/notification.js') }}"></script>
     <script type="module" src="{{ asset('backend-js/user/social-login.js') }}"></script>
+    
 
 
 </body>

@@ -15,8 +15,6 @@ import {
     checkProfileReg,
 } from "./helper/helper.js";
 
-
-
 const token = localStorage.getItem("apiToken");
 
 axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
@@ -25,8 +23,8 @@ const logoImg = document.querySelector(".js-logo-img");
 const logoLink = document.querySelector(".js-logo-link");
 
 if (!token) {
-   console.log(token)
-    
+    console.log(token);
+
     logoLink.addEventListener("click", (event) => {
         event.preventDefault();
     });

@@ -9,7 +9,7 @@
 <div class="main">
   <div style="margin-top: -45px" class="content">
     <div class="container">
-      <div class="row mt-4">
+      <div class="mt-4 row">
         <div class="col-10">
           <div style="float: right;">
             <div onmouseover="showText()" onmouseout="hideText()" class="badge-shop me-3 mb-2modal-font setting-modal"
@@ -37,7 +37,7 @@
                   <div id="page1">
                     <h6 class="fw-bold">The verified badge offers several benefits to sellers like yourself on LoopMart
                       marketplace</h6>
-                    <ol class="list-style mt-2">
+                    <ol class="mt-2 list-style">
                       <li>
                         <h6><span class="fw-bold">Enhanced Trust and Credibility:</span><span
                             class=" modal-text fw-light">A verified badge signals to potential buyers that the seller's
@@ -109,7 +109,7 @@
 
                     <div class="container">
 
-                      <div class="row g-3 mt-3">
+                      <div class="mt-3 row g-3">
                         <div class="col-md-6">
                           <label for="inputEmail4" class="form-label fw-bold">Email</label>
                           <input name="email" oninput="hideIcon(this)" id="search-modal" type="text"
@@ -125,19 +125,19 @@
                           </select>
                           <span class="error" id="nationality_error"></span>
                         </div>
-                        <div class="col-md-6 mt-4">
+                        <div class="mt-4 col-md-6">
                           <label for="name" class="form-label fw-bold n">Fullname</label>
                           <input name="name" oninput="hideIcon(this)" id="search-modal1" type="text"
                             class="form-control username" placeholder="Your legalName">
                           <span class="error" id="name_error"></span>
                         </div>
-                        <div class="col-md-6 mt-4">
+                        <div class="mt-4 col-md-6">
                           <label for="address" class="form-label fw-bold">Address</label>
                           <input name="address" oninput="hideIcon(this)" id="search-modal2" type="text"
                             class="form-control address" placeholder="Enter your work Address">
                           <span class="error" id="address_error"></span>
                         </div>
-                        <div class="col-md-6 mt-5">
+                        <div class="mt-5 col-md-6">
                           <div>
                             <label for="gender" class="form-label fw-bold">Gender</label>
                           </div>
@@ -153,7 +153,7 @@
                           </div>
 
                         </div>
-                        <div class="col-md-6 mt-5">
+                        <div class="mt-5 col-md-6">
                           <label for="phone_number" class="form-label fw-bold">Phone Number</label>
                           <input name="phone_number" oninput="hideIcon(this)" id="search-modal3" type="text"
                             class="form-control phone_number" placeholder="Enter Your Contact Phone Number">
@@ -181,14 +181,14 @@
                       <input type="file" name="nin_file" id="actual-btn-desktop" class="file" hidden>
                       <label id="upload" class="label nin_upload" for="actual-btn-desktop">Upload</label>
                       <button id="upload_nin" style=" padding: 13px 40px 11px 40px; display:none" type="submit"
-                        class="btn btn-success mb-1 ms-1">Save</button>
+                        class="mb-1 btn btn-success ms-1">Save</button>
                     </form>
                     <span id="nin_error"></span>
                   </div>
                 </div>
                 <div id="page4" style="text-align: center; display: none;">
                   {{-- <form action=""> --}}
-                    <div class="  selfie1 mx-auto mt-5">
+                    <div class="mx-auto mt-5 selfie1">
                       <div class="vid" id="video-container">
                         <video id="video" autoplay></video>
                       </div>
@@ -201,20 +201,20 @@
                       <div class="use-struct">
                         <label id="use-camera" class="">
                           <h6 class="text-success"> Click Here To Take a selfie</h6>
-                          <h6 class="fw-light mt-2"> Please ensure all your face within the border of the scanner</h6>
+                          <h6 class="mt-2 fw-light"> Please ensure all your face within the border of the scanner</h6>
 
                         </label>
                         <button style="display: none;" id="snap" type="button"
-                          class=" btn btn-success btn-lg  ">Snap</button>
+                          class=" btn btn-success btn-lg">Snap</button>
                         <input type="file" name="selfie_photo" id="selfie-photo" hidden>
                       </div>
 
                     </div>
                     <div class="mt-3" style="text-align: center;">
                       <button style="display: none;" id="retake-button" type="button"
-                        class=" btn btn-success btn-lg  ">Retake</button>
+                        class=" btn btn-success btn-lg">Retake</button>
                       <button style="display: none;" id="save-button" type="button"
-                        class=" btn btn-success btn-lg  ">Save</button>
+                        class=" btn btn-success btn-lg">Save</button>
                     </div>
 
 
@@ -235,10 +235,10 @@
                               <img src="{{ asset('/kaz/images/badge.png') }}" alt="">
                             </div>
                           </div>
-                          <div class="ms-4 mt-3">
+                          <div class="mt-3 ms-4">
                             <h5 class="modal-mire">Mired Augustine </h5>
                             <h6 class="modal-augustine" style="margin-top: -10px;">miredaugustine@gmail.com</h6>
-                            <h6 class="vetted-seller pt-2 fw-bold">vetted seller badge</h6>
+                            <h6 class="pt-2 vetted-seller fw-bold">vetted seller badge</h6>
                           </div>
                           <img class="img-vetted" src="{{ asset('/kaz/images/badge.png') }}" alt=""> --}}
                         </div>
@@ -290,7 +290,7 @@
                   <div style="text-align: center; margin-top: 40px;">
                     <img src="{{ asset('/kaz/images/success.svg') }}" alt="">
                     <h6 style="margin-top: 40px;" class="fw-bold ">Successful!</h6>
-                    <p class="fw-light approval-text mt-3">Your document has been uploded.<br>
+                    <p class="mt-3 fw-light approval-text">Your document has been uploded.<br>
                       Awaiting Approval normally approval <br>
                       may take up to 1hrs during business days <br>and up to 3hrs during off business days </p>
 
@@ -336,46 +336,37 @@
           <div class="col-8">
             <hr style="background-color: black;">
           </div>
-          <div class="col-8 mb-3">
+          <div class="mb-3 col-8">
             <label for="usernameInput" class="form-label">Username</label>
             <input type="text" name="username" class="form-control" id="usernameInput"
               placeholder="This is your profile display name on LoopMart">
           </div>
           {{-- <input type="text" name="username" id="usernameInput" readonly style="display: none;"> --}}
-          <div class="col-2 mt-3 post-btn">
+          <div class="mt-3 col-2 post-btn">
             <button id="editUsernameBtn" style="background-color: whitesmoke;" type="button"
               class="btn btn-info">Edit</button>
           </div>
-          <div class="col-8 mb-3">
-            <label for="usernameInput" class="form-label">Describe your business</label>
-            <input type="text" name="bio" class="form-control" id="profileInput"
-              placeholder="This is will be displayed to potential buyers only if you are a verified seller (Max3000)">
-            <span id="bio-error" class="error"></span>
-          </div>
-          <div class="col-2 mt-3 post-btn">
-            <button id="editProfileBtn" style="background-color: whitesmoke;" type="button"
-              class="btn btn-info">Edit</button>
-          </div>
-          <div class="col-8 mb-3">
+
+          <div class="mb-3 col-8">
             <label for="phoneInput" class="form-label">Contact phone number</label>
             <input type="number" name="phone_number" class="form-control" id="phoneInput"
               placeholder="This contact will be used by visitors on LoopMart to reach you via phone call">
           </div>
-          <div class="col-2 mt-3 post-btn">
+          <div class="mt-3 col-2 post-btn">
             <button id="editPhoneBtn" style="background-color: whitesmoke;" type="button"
               class="btn btn-info">Edit</button>
           </div>
-          <div class="col-8 mb-3">
+          <div class="mb-3 col-8">
             <label for="shop_address" class="form-label">Shop address</label>
             <input type="text" name="shop_address" class="form-control" id="shopAddressInput"
               placeholder="This address will be visible to your potential buyers on loopmart">
           </div>
-          <div class="col-2 mt-3 post-btn">
+          <div class="mt-3 col-2 post-btn">
             <button id="shopAddressBtn" style="background-color: whitesmoke;" type="button"
               class="btn btn-info">Edit</button>
           </div>
 
-          <div class="col-8 mb-3">
+          <div class="mb-3 col-8">
             <label for="Business-location" class="form-label">Business location</label>
             <select id="business-location" class="form-select" name="business_location">
               <option value="">Choose your businees location</option>
@@ -428,10 +419,27 @@
 
           </div>
 
+          <div class="mb-3 col-8">
+            <label for="usernameInput" class="form-label">Describe your business</label>
+            <textarea class="form-control" name="bio" id="profileInput" rows="3"
+              placeholder="This is will be displayed to potential buyers only if you are a verified seller (Max3000)"></textarea>
+
+            {{-- <label for="usernameInput" class="form-label">Describe your business</label>
+
+            <input type="text" name="bio" class="form-control" id="profileInput"
+              placeholder="This is will be displayed to potential buyers only if you are a verified seller (Max3000)">
+            --}}
+            <span id="bio-error" class="error"></span>
+          </div>
+          <div class="mt-3 col-2 post-btn">
+            <button id="editProfileBtn" style="background-color: whitesmoke;" type="button"
+              class="btn btn-info d-none">Edit</button>
+          </div>
+
           <div class="col-8">
             <hr style="background-color: black;">
           </div>
-          <div class="col-8 mb-3">
+          <div class="mb-3 col-8">
             {{-- <div class="location-struct">
               <h6 class="me-2">location</h6>
               <label class="switch">
@@ -443,7 +451,7 @@
               <p class="fw-light">Turn current location on</p>
             </div> --}}
           </div>
-          <div class="col-2 mb-5 post-btn">
+          <div class="mb-5 col-2 post-btn">
             <button id="saveBtn" type="submit" class="btn btn-warning update-loader">
               <span class="update-text">Save</span>
               <div class="loader-layout">
@@ -482,7 +490,7 @@
       </div>
     </div>
     {{-- THE MAIN FORM FOR USER UPDATE MOBILE VIEW --}}
-    <form class="row mt-5 " action="" id="settingFormMobile" enctype="multipart/form-data">
+    <form class="mt-5 row " action="" id="settingFormMobile" enctype="multipart/form-data">
 
 
       <div class="col-10 upload-div">
@@ -501,97 +509,102 @@
         <hr style="background-color: black;">
       </div>
 
-      <div class="col-10 mb-3">
+      <div class="mb-3 col-10">
         <label for="usernameInput" class="form-label">Username</label>
         <input type="text" class="form-control" name="username" id="usernameInput1"
           placeholder="This is your profile display name on LoopMart">
       </div>
-      <div class="col-2 mt-3 post-btn">
+      <div class="mt-3 col-2 post-btn">
         <button id="editUsernameBtn1" style="background-color: whitesmoke;" type="button"
           class="btn btn-info">Edit</button>
       </div>
-      <div class="col-10 mb-3">
-        <label for="usernameInput" class="form-label">Describe your business</label>
-        <input type="text" class="form-control" name="bio" id="profileInput1"
-          placeholder="This is will be displayed to potential buyers only if you are a verified seller (Max300)">
-        <span id="bio-error-mobile" class="error"></span>
-
-      </div>
-      <div class="col-2 mt-3 post-btn">
-        <button id="editProfileBtn1" style="background-color: whitesmoke;" type="button"
-          class="btn btn-info">Edit</button>
-      </div>
-      <div class="col-10 mb-3">
+     
+      <div class="mb-3 col-10">
         <label for="phoneInput" class="form-label">Call Phone Number</label>
         <input type="number" class="form-control" name="phone_number" id="phoneInput1"
           placeholder="This contact will be used by visitors on LoopMart to reach you via phone call">
       </div>
-      <div class="col-2 mt-3 post-btn">
+      <div class="mt-3 col-2 post-btn">
         <button id="editPhoneBtn1" style="background-color: whitesmoke;" type="button"
           class="btn btn-info">Edit</button>
       </div>
-      <div class="col-10 mb-3">
+      <div class="mb-3 col-10">
         <label for="shop_address" class="form-label">Shop address</label>
         <input type="text" class="form-control" name="shop_address" id="shopAddressInput1"
-           placeholder="This address will be visible to your potential buyers on loopmart">
+          placeholder="This address will be visible to your potential buyers on loopmart">
       </div>
-      <div class="col-2 mt-3 post-btn">
+      <div class="mt-3 col-2 post-btn">
         <button id="shopAddressBtn1" style="background-color: whitesmoke;" type="button"
           class="btn btn-info">Edit</button>
       </div>
 
-       <div class="col-10 mb-3">
-            <label for="Business-location" class="form-label">Business location</label>
-            <select id="business-location" class="form-select" name="business_location">
-               <option value="">Choose your businees location</option>
-              <option value="Abakaliki">Abakaliki</option>
-              <option value="Aba">Aba</option>
-              <option value="Abeokuta">Abeokuta</option>
-              <option value="Abuja">Abuja</option>
-              <option value="Ado Ekiti">Ado Ekiti</option>
-              <option value="Akure">Akure</option>
-              <option value="Asaba">Asaba</option>
-              <option value="Awka">Awka</option>
-              <option value="Bauchi">Bauchi</option>
-              <option value="Benin City">Benin City</option>
-              <option value="Birnin Kebbi">Birnin Kebbi</option>
-              <option value="Calabar">Calabar</option>
-              <option value="Damaturu">Damaturu</option>
-              <option value="Delta">Delta</option>
-              <option value="Dutse">Dutse</option>
-              <option value="Edo">Edo</option>
-              <option value="Ekiti">Ekiti</option>
-              <option value="Enugu">Enugu</option>
-              <option value="Gombe">Gombe</option>
-              <option value="Gusau">Gusau</option>
-              <option value="Ibadan">Ibadan</option>
-              <option value="Ikeja">Ikeja</option>
-              <option value="Ilorin">Ilorin</option>
-              <option value="Imo">Imo</option>
-              <option value="Jalingo">Jalingo</option>
-              <option value="Jos">Jos</option>
-              <option value="Kaduna">Kaduna</option>
-              <option value="Kano">Kano</option>
-              <option value="Katsina">Katsina</option>
-              <option value="Lafia">Lafia</option>
-              <option value="Lagos">Lagos</option>
-              <option value="Lokoja">Lokoja</option>
-              <option value="Maiduguri">Maiduguri</option>
-              <option value="Makurdi">Makurdi</option>
-              <option value="Minna">Minna</option>
-              <option value="Ogun">Ogun</option>
-              <option value="Owerri">Owerri</option>
-              <option value="Owere">Owere</option>
-              <option value="Port Harcourt">Port Harcourt</option>
-              <option value="Sokoto">Sokoto</option>
-              <option value="Umuahia">Umuahia</option>
-              <option value="Uyo">Uyo</option>
-              <option value="Yenagoa">Yenagoa</option>
-              <option value="Yola">Yola</option>
-              <option value="Zaria">Zaria</option>
-            </select>
+      <div class="mb-3 col-10">
+        <label for="Business-location" class="form-label">Business location</label>
+        <select id="business-location" class="form-select" name="business_location">
+          <option value="">Choose your businees location</option>
+          <option value="Abakaliki">Abakaliki</option>
+          <option value="Aba">Aba</option>
+          <option value="Abeokuta">Abeokuta</option>
+          <option value="Abuja">Abuja</option>
+          <option value="Ado Ekiti">Ado Ekiti</option>
+          <option value="Akure">Akure</option>
+          <option value="Asaba">Asaba</option>
+          <option value="Awka">Awka</option>
+          <option value="Bauchi">Bauchi</option>
+          <option value="Benin City">Benin City</option>
+          <option value="Birnin Kebbi">Birnin Kebbi</option>
+          <option value="Calabar">Calabar</option>
+          <option value="Damaturu">Damaturu</option>
+          <option value="Delta">Delta</option>
+          <option value="Dutse">Dutse</option>
+          <option value="Edo">Edo</option>
+          <option value="Ekiti">Ekiti</option>
+          <option value="Enugu">Enugu</option>
+          <option value="Gombe">Gombe</option>
+          <option value="Gusau">Gusau</option>
+          <option value="Ibadan">Ibadan</option>
+          <option value="Ikeja">Ikeja</option>
+          <option value="Ilorin">Ilorin</option>
+          <option value="Imo">Imo</option>
+          <option value="Jalingo">Jalingo</option>
+          <option value="Jos">Jos</option>
+          <option value="Kaduna">Kaduna</option>
+          <option value="Kano">Kano</option>
+          <option value="Katsina">Katsina</option>
+          <option value="Lafia">Lafia</option>
+          <option value="Lagos">Lagos</option>
+          <option value="Lokoja">Lokoja</option>
+          <option value="Maiduguri">Maiduguri</option>
+          <option value="Makurdi">Makurdi</option>
+          <option value="Minna">Minna</option>
+          <option value="Ogun">Ogun</option>
+          <option value="Owerri">Owerri</option>
+          <option value="Owere">Owere</option>
+          <option value="Port Harcourt">Port Harcourt</option>
+          <option value="Sokoto">Sokoto</option>
+          <option value="Umuahia">Umuahia</option>
+          <option value="Uyo">Uyo</option>
+          <option value="Yenagoa">Yenagoa</option>
+          <option value="Yola">Yola</option>
+          <option value="Zaria">Zaria</option>
+        </select>
 
-          </div>
+      </div>
+       <div class="mb-3 col-10">
+
+        <label  for="usernameInput" class="form-label">Describe your business</label>
+        <textarea class="form-control" name="bio" id="profileInput1" rows="3"   placeholder="This is will be displayed to potential buyers only if you are a verified seller (Max300)"></textarea>
+
+        {{-- <label for="usernameInput" class="form-label">Describe your business</label>
+        <input type="text" class="form-control" name="bio" id="profileInput1"
+          placeholder="This is will be displayed to potential buyers only if you are a verified seller (Max300)"> --}}
+        <span id="bio-error-mobile" class="error"></span>
+
+      </div>
+      <div class="mt-3 col-2 post-btn">
+        <button id="editProfileBtn1" style="background-color: whitesmoke;" type="button"
+          class="btn btn-info d-none">Edit</button>
+      </div>
       <div>
         <hr style="background-color: black;">
       </div>

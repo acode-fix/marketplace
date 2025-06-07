@@ -31,13 +31,15 @@ class DatabaseSeeder extends Seeder
         //     $this->call(RoleSeeder::class);
 
         $this->call([
-            RoleSeeder::class,
-           /*
+           /* RoleSeeder::class,
+           
             UserSeeder::class,
             CategorySeeder::class,
             Ads_CategorySeeder::class,
             LearnSeeder::class,
             BadgeUnitSeeder::class,*/
+
+            UserSeeder::class,
         ]);
         
 

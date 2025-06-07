@@ -56,6 +56,14 @@ class SocialiteController extends Controller
         if ($providerUser && $providerUser->getEmail()) {
 
             $user = $this->findOrCreate($providerUser, $provider);
+
+             if ($user->user_type == -2) {
+                return $this->errorResponse(
+                    message: 'Account suspended, contact support!!',
+                    statusCode: Response::HTTP_FORBIDDEN
+                );
+            }
+
         } else {
             return $this->errorResponse(
                 message: 'Failed to login try again',
@@ -64,10 +72,9 @@ class SocialiteController extends Controller
         }
 
 
-          $token = $user->createToken(env('APP_NAME', 'API TOKEN'))->plainTextToken;
+        $token = $user->createToken(env('APP_NAME', 'API TOKEN'))->plainTextToken;
 
-          return redirect(config('app.url') . "/settings?success=You+have+successfully+logged+in&token={$token}&user={$user->id}");
-
+        return redirect(config('app.url') . "/settings?success=You+have+successfully+logged+in&token={$token}&user={$user->id}");
     }
 
 
@@ -76,6 +83,7 @@ class SocialiteController extends Controller
         $linkedSocialAccount = LinkedSocialAccount::query()->where('provider_name', $provider)->where('provider_id', $providerUser->getId())->first();
 
         if ($linkedSocialAccount) {
+
             return $linkedSocialAccount->user;
         } else {
             $user = null;
@@ -88,6 +96,8 @@ class SocialiteController extends Controller
 
                 $user->retore();
             }
+
+
 
             if (!$user) {
                 $user = User::query()->create([

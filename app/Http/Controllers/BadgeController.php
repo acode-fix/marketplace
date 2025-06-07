@@ -14,116 +14,99 @@ use Carbon\Carbon;
 class BadgeController extends Controller
 {
 
-   public function checkBadgeStatus(Request $request) {
+    public function checkBadgeStatus(Request $request)
+    {
 
-     $userId = $request->user()->id;
+        $userId = $request->user()->id;
 
-      $status = User::find($userId);
+        $status = User::find($userId);
 
-      if(!$status) {
+        if (!$status) {
 
-        return response()->json([
-            'status' => false,
-            'message' => 'User Not Found',
-
-
-        ],404);
-      }
-
-      if(is_null($status->expiry_date) && $status->verify_status == 0) {
-        
-        return response()->json([
-            'status' => true,
-            'message' => 'Not Yet Verify',
-            'badge' => $status,
-
-        ],200);
-      }
+            return response()->json([
+                'status' => false,
+                'message' => 'User Not Found',
 
 
+            ], 404);
+        }
 
-      if($status->verify_status == -2) {
+        if (is_null($status->expiry_date) && $status->verify_status == 0) {
 
-        return response()->json([
-            'status' => true,
-            'message' => 'Pending Approval',
-            'badge' => $status,
+            return response()->json([
+                'status' => true,
+                'message' => 'Not Yet Verify',
+                'badge' => $status,
 
-        ],200);
-      }
-
-
-     $expiryDate = carbon::parse($status->expiry_date);
-     $currentDate = Carbon::now();
-
-
-     if($currentDate > $expiryDate && $status->badge_status == -1) {
-
-        return  response()->json([
-            'status'=> false,
-            'message' => 'Badge Expired',
-            'badge' => $status,
-
-        ], 200);
-        
-     }else if($currentDate <= $expiryDate  && $status->badge_status == 1) {
-
-        return  response()->json([
-            'status'=> true,
-            'message' => 'Active Badge',
-            'badge' => $status,
-
-        ], 200);
-     }
-
-
-   }
+            ], 200);
+        }
 
 
 
- public function verifyBadge() {
+        if ($status->verify_status == -2) {
+
+            return response()->json([
+                'status' => true,
+                'message' => 'Pending Approval',
+                'badge' => $status,
+
+            ], 200);
+        }
 
 
-//   $expiredBadges = User::where('expiry_date', '<', Carbon::now())->get();
-$expiredBadges = User::whereDate('expiry_date', '<', Carbon::today())->get();
-  
-
-  log::info($expiredBadges);
+        $expiryDate = carbon::parse($status->expiry_date);
+        $currentDate = Carbon::now();
 
 
-  if($expiredBadges->isEmpty()) {
+        if ($currentDate > $expiryDate && $status->badge_status == -1) {
 
-        return response()->json([
-            'status' => false,
-            'message' => 'No Badge Found',
+            return  response()->json([
+                'status' => false,
+                'message' => 'Badge Expired',
+                'badge' => $status,
 
-        ]);
-    
-  }
+            ], 200);
+        } else if ($currentDate <= $expiryDate  && $status->badge_status == 1) {
 
-  foreach($expiredBadges as $expire) {
+            return  response()->json([
+                'status' => true,
+                'message' => 'Active Badge',
+                'badge' => $status,
 
-        $expire->badge_status = -1;
-        $expire->save();
-
-    return response()->json([
-        'status' => true,
-        'message' => 'All expired badges processed successfully',
-
-    ]);
-
-   
-
-
-  }
-
-
-
-    
+            ], 200);
+        }
+    }
 
 
 
-   }
+    public function verifyBadge()
+    {
+
+
+        $expiredBadges = User::where('expiry_date', '<', Carbon::now())
+                               ->where('badge_status',  1)->get();
+
+
+        if ($expiredBadges->isEmpty()) {
+
+            return response()->json([
+                'status' => false,
+                'message' => 'No Badge Found',
+
+            ]);
+        }
+
+        foreach ($expiredBadges as $expire) {
+            $expire->badge_status = -1;
+            $expire->save();
+
+            return response()->json([
+                'status' => true,
+                'message' => 'All expired badges processed successfully',
+
+            ]);
+        }
+    }
 
 
 

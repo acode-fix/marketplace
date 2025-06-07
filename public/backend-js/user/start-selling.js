@@ -1,3 +1,7 @@
+import { checkUserSettingStatus } from "./user-setting-status.js";
+
+checkUserSettingStatus();
+
 function descValidation() {
   const desc = document.querySelector('.js-desc').value;
   const descText = desc.trim();

@@ -1,5 +1,7 @@
 import { getToken, filter, loadResponse, getProdProfileDescImg, sendProductRequest,displayHelpCenter, getIndexPrice,formatProductCondition, checkProfileReg,} from "./helper/helper.js";
+import { checkUserSettingStatus } from "./user/user-setting-status.js";
 
+checkUserSettingStatus();
 const token = getToken();
 
 if (token) {

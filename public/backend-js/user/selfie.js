@@ -1,6 +1,10 @@
 import { serverError } from "../admin/auth-helper.js";
 import { getToken, validationError, displaySwal, showLoader, hideLoader } from "../helper/helper.js";
 
+import { checkUserSettingStatus } from "./user-setting-status.js";
+
+checkUserSettingStatus();
+
 
 const token = getToken()
 

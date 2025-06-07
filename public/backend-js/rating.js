@@ -1,6 +1,8 @@
 import {getToken, generateAvatar,getSingleImage, logoutUser, loadName, getDropDownImg} from './helper/helper.js';
 import { serverError } from './admin/auth-helper.js';
+import { checkUserSettingStatus } from './user/user-setting-status.js';
 
+checkUserSettingStatus();
 const token = getToken();
 
 if(token) {

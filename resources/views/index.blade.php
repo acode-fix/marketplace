@@ -29,23 +29,6 @@
     <script src="https://js.pusher.com/8.2.0/pusher.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/js-cookie@3.0.1/dist/js.cookie.min.js"></script>
 
-
-    <link rel="stylesheet" href="{{ asset('kaz/css/dialog.css') }}">
-    <link rel="stylesheet" href="/resources/demos/style.css">
-    <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
-    <script src="https://code.jquery.com/ui/1.14.1/jquery-ui.js"></script>
-
-
-
-
-
-
-
-
-
-
-
-
 </head>
 
 
@@ -63,12 +46,7 @@
 
     </div>
 
-    <div id="dialog" title="Update">
-        <p>We are pleased to announce that the shop settings page has been modify to accommodate your shop location and
-            shop address, visit settings to update your information</p>
 
-        <a class="dialog-link" href="{{ url('/settings')}}">settings</a>
-    </div>
 
 
 
@@ -1258,13 +1236,14 @@
     <script src="{{ asset('innocent/assets/js/location.js') }}"></script>
     <script src="{{ asset('innocent/assets/js/modal.js') }}"></script>
     <script src="{{ asset('innocent/assets/js/preloader.js') }}"></script>
-    <script src="{{asset('kaz/js/dialog.js')}}"></script>
+   
 
 
     <script type="module" src="{{ asset('backend-js/index.js') }}"></script>
     <script src="{{ asset('backend-js/user/auth.js') }}"></script>
     <script type="module" src="{{ asset('backend-js/notification.js') }}"></script>
     <script type="module" src="{{ asset('backend-js/user/social-login.js') }}"></script>
+    <script type="module" src="{{ asset('backend-js/user/user-setting-status.js') }}"></script>
     
 
 

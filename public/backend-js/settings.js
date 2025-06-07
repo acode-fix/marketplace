@@ -14,6 +14,8 @@ let token = null;
 
 const currentUrl = new URL(window.location.href);
 
+
+
 const tokenFromUrl = currentUrl.searchParams.get("token");
 const userIdFromUrl = currentUrl.searchParams.get("user");
 

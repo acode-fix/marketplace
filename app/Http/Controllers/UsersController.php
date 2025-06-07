@@ -33,6 +33,22 @@ class UsersController extends Controller
     }
 
 
+    public function getUser()
+    {
+        $user = Auth::user();
+
+        if (!$user) {
+            return $this->notFoundResponse(message: 'User not found');
+        }
+
+        return $this->successResponse(
+            message: 'User fetched successfully',
+            data: ['user' => $user],
+            statusCode: Response::HTTP_OK
+        );
+    }
+
+
 
 
     /**
@@ -359,12 +375,16 @@ class UsersController extends Controller
 
             $fields = ['username', 'phone_number', 'bio', 'shop_address', 'business_location'];
 
-            foreach ($fields as $field) {
+            $input = collect($request->only($fields))->map(function($value){
+                return is_string($value) ? trim($value) : $value;
+            })->filter(function($value){
 
-                if ($request->has($field) && trim($request->input($field) !== '')) {
-                    $user->$field = $request->input($field);
-                }
-            }
+                return $value !== null && $value !== '';
+
+  
+            })->all();
+
+            $user->update($input);
 
 
 
@@ -375,9 +395,11 @@ class UsersController extends Controller
                 $file->move('./uploads/users/', $imageName);
 
                 $user->photo_url = $imageName;
+
+                 $user->save();
             }
 
-            $user->save();
+           
 
 
             return response()->json([
@@ -532,8 +554,12 @@ class UsersController extends Controller
 
             if ($user) {
 
-                if(method_exists(auth()->user()->currentAccessToken(), 'delete')) {
-                    auth()->user()->currentAccessToken()->delete();
+                // if(method_exists(auth()->user()->currentAccessToken(), 'delete')) {
+                //     auth()->user()->currentAccessToken()->delete();
+                // }
+
+                if (method_exists($user->currentAccessToken(), 'delete')) {
+                    $user->currentAccessToken()->delete();
                 }
 
                 auth()->guard('web')->logout();

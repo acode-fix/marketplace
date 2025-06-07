@@ -1,6 +1,8 @@
 import { getToken, getSingleImage, getBadge, getPrice, filter, getProdProfileDescImg, sendProductRequest, displayHelpCenter, getIndexPrice, formatProductCondition, getStarted, checkProfileReg } from "./helper/helper.js";
 import { serverError } from "./admin/auth-helper.js";
 
+
+
 const token = getToken();
 
 axios.defaults.headers.common['Authorization'] = `Bearer ${token}`

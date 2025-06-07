@@ -782,7 +782,7 @@
   </div>
  
 
-<script type="module" src="{{ asset('backend-js/review.js') }}?time={{ time() }}"></script>
+<script type="module" src="{{ asset('backend-js/review.js') }}"></script>
 <script src="{{ asset('innocent/assets/js/preloader.js') }}"></script> 
 </body>
 

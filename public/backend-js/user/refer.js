@@ -1,6 +1,8 @@
 import { getToken } from "../helper/helper.js";
 import { serverError } from "../admin/auth-helper.js";
+import { checkUserSettingStatus } from "./user-setting-status.js";
 
+checkUserSettingStatus();
 const token = getToken();
 
 axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;

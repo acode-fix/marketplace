@@ -1,8 +1,8 @@
 import { serverError } from "./admin/auth-helper.js";
 import { generateAvatar, getDate, getUserProfileImage, logoutUser, getShopPrice, loadConnect, loadAvgStars, displayData, displayHelpCenter, generateStars } from "./helper/helper.js";
+import { checkUserSettingStatus } from "./user/user-setting-status.js";
 
-
-
+checkUserSettingStatus();
 const token = localStorage.getItem('apiToken');
 
 axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;

@@ -235,8 +235,8 @@
 
 
 
-<script type="module" src="{{ asset('backend-js/rating.js') }}?time={{ time() }}"></script>
-<script src="{{ asset('innocent/assets/js/preloader.js') }}?time={{ time() }}"></script> 
+<script type="module" src="{{ asset('backend-js/rating.js') }}"></script>
+<script src="{{ asset('innocent/assets/js/preloader.js') }}"></script> 
 </body>
 
 </html>

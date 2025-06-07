@@ -7,14 +7,7 @@
 
 
 <body>
-     {{-- <div class="preloader">
-          <img src="{{ asset('innocent/assets/image/brand-icon.png') }}" alt="Loading icon" class="bag-icon" />
-          <div class="dots">
-              <div class="dot"></div>
-              <div class="dot"></div>
-              <div class="dot"></div>
-          </div>
-      </div> --}}
+    
       <!-- HTML structure -->
 <div class="preloader">
      <div class="preloader-content">
@@ -38,7 +31,8 @@
      @yield('content')
 {{-- @include('layouts.main.profile-js') --}}
 
-<script type="module" src="{{ asset('backend-js/user/profile-update.js') }}?time={{ time() }}"></script>
+<script type="module" src="{{ asset('backend-js/user/profile-update.js') }}"></script>
+<script type="module" src="{{ asset('backend-js/user/user-setting-status.js') }}"></script>
 </body>
 
 </html>

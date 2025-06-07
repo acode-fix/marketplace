@@ -1,22 +1,23 @@
 <div class="side-bar">
     <div class="sidebar-link">
-        <div class="links  {{ Request::is('shop*') ? 'active-link clicked': '' }}">
+        <div class="links  {{ Request::is('settings*') ? 'active-link clicked' : '' }}">
             <span>
-                <a href="{{ url('/shop') }}"> <img class="profile-logo svg-size" src="{{ asset('kaz/images/profile.svg') }}"
-                 alt=""><span class="profile-text">Shop</span></a>
+                <a href="{{ url('/settings') }}"><img class="profile-logo svg-size" src="{{ asset('kaz/images/profile.svg') }}"
+                        alt=""><span class="profile-text">Profile</span></a>
                 
             </span>
         </div>
     </div>
     <div class="sidebar-link">
-        <div class="links  {{ Request::is('settings*') ? 'active-link clicked' : '' }}">
+        <div class="links  {{ Request::is('shop*') ? 'active-link clicked': '' }}">
             <span>
-                <a href="{{ url('/settings') }}"><img class="profile-logo svg-size" src="{{ asset('kaz/images/product.svg') }}"
-                        alt=""><span class="profile-text">Settings</span></a>
+                <a href="{{ url('/shop') }}"> <img class="profile-logo svg-size" src="{{ asset('kaz/images/product.svg') }}"
+                 alt=""><span class="profile-text">Shop</span></a>
                 
             </span>
         </div>
     </div>
+    
     <div class="sidebar-link">
         <div class="links {{ Request::is('learn*') ? 'active-link clicked': '' }}">
             <span>

@@ -422,12 +422,12 @@
           <div class="mb-3 col-8">
             <label for="usernameInput" class="form-label">Describe your business</label>
             <textarea class="form-control" name="bio" id="profileInput" rows="3"
-              placeholder="This is will be displayed to potential buyers only if you are a verified seller (Max3000)"></textarea>
+              placeholder="This is will be displayed to potential buyers only if you are a verified seller (Max300)"></textarea>
 
             {{-- <label for="usernameInput" class="form-label">Describe your business</label>
 
             <input type="text" name="bio" class="form-control" id="profileInput"
-              placeholder="This is will be displayed to potential buyers only if you are a verified seller (Max3000)">
+              placeholder="This is will be displayed to potential buyers only if you are a verified seller (Max300)">
             --}}
             <span id="bio-error" class="error"></span>
           </div>

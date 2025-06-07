@@ -56,7 +56,9 @@ Route::get('/user/products', [ProductController::class, 'userProducts']);
 
 
 Route::prefix('v1')->middleware('auth:sanctum')->group(function () {
-    
+
+
+        Route::get('/user', [UsersController::class, 'getUser']);
         Route::get('/users', [UsersController::class, 'view']);
         Route::post('/auth/update',[UsersController::class, 'accountSettings']);
         Route::post('/auth/logout',[UsersController::class, 'logoutUser']);

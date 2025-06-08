@@ -692,12 +692,13 @@
     <div class="container-fluid">
         <div class="row">
             <div class="mobile-structure">
+                <div class="mobile-link-btn">
+                    <a href="{{ url('/settings') }}">Profile</a>
+                </div>
                 <div class="mobile-link-btn1">
                     <a href="{{ url('/shop') }}">Shop</a>
                 </div>
-                <div class="mobile-link-btn">
-                    <a href="{{ url('/settings') }}">Settings</a>
-                </div>
+                
                 <div class="mobile-link-btn">
                     <a href="{{ url('/learn') }}">Learn</a>
                 </div>

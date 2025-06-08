@@ -1,3 +1,5 @@
+import dayjs from 'https://unpkg.com/dayjs@1.11.10/esm/index.js';
+
 const token = localStorage.getItem("apiToken");
 
 axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
@@ -26,9 +28,12 @@ checkUserSettingStatus()
         shop_address: shop,
         business_location: business,
         bio,
+        created_at,
     } = data;
 
-    
+    const isNewUser = dayjs().diff(dayjs(created_at), 'hour') < 24;
+
+    if (isNewUser) return;
 
     if (!username || !phone || !shop || !business || !bio) {
         Swal.fire({

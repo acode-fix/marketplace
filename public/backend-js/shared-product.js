@@ -18,7 +18,7 @@ import {
     getTestPrice,
 } from "./helper/helper.js";
 
-import { checkUserSettingStatus } from "./user-setting-status.js";
+import { checkUserSettingStatus } from "./user/user-setting-status.js";
 
 checkUserSettingStatus();
 

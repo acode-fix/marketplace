@@ -18,9 +18,9 @@ import {
     getTestPrice,
 } from "./helper/helper.js";
 
-import { checkUserSettingStatus } from "./user/user-setting-status.js";
+// import { checkUserSettingStatus } from "./user/user-setting-status.js";
 
-checkUserSettingStatus();
+// checkUserSettingStatus();
 
 const currentUrl = new URL(window.location.href);
 const id = currentUrl.searchParams.get("id");

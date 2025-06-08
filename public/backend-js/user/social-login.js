@@ -13,6 +13,7 @@ links.forEach((link) => {
 
 const fblinks = document.querySelectorAll(".fb-login");
 
+/*
 fblinks.forEach((link) => {
     link.addEventListener("click", (e) => {
         e.preventDefault();
@@ -21,7 +22,7 @@ fblinks.forEach((link) => {
       
     });
 });
-
+*/
 
 
 

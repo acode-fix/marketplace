@@ -93,11 +93,7 @@ class SocialiteController extends Controller
         $linkedSocialAccount = LinkedSocialAccount::query()->where('provider_name', $provider)->where('provider_id', $providerUser->getId())->first();
 
         if ($linkedSocialAccount) {
-<<<<<<< HEAD
-
-=======
             
->>>>>>> user-settings
             return $linkedSocialAccount->user;
         } else {
             $user = null;

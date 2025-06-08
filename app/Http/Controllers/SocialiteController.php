@@ -43,6 +43,7 @@ class SocialiteController extends Controller
 
             // Get the user from the Google/Microsoft callback
             $providerUser = Socialite::driver($provider)->stateless()->user();
+            
         } catch (Exception $e) {
 
             Log::error(message: 'Provider error : ' . $e->getMessage());
@@ -56,6 +57,16 @@ class SocialiteController extends Controller
         if ($providerUser && $providerUser->getEmail()) {
 
             $user = $this->findOrCreate($providerUser, $provider);
+
+             
+            if ($user && $user->trashed()) {
+                return $this->errorResponse(
+                message: 'You account has been deleted',
+                statusCode: Response::HTTP_FORBIDDEN,
+            );
+            }
+
+            
         } else {
             return $this->errorResponse(
                 message: 'Failed to login try again',
@@ -76,6 +87,7 @@ class SocialiteController extends Controller
         $linkedSocialAccount = LinkedSocialAccount::query()->where('provider_name', $provider)->where('provider_id', $providerUser->getId())->first();
 
         if ($linkedSocialAccount) {
+            
             return $linkedSocialAccount->user;
         } else {
             $user = null;
@@ -86,7 +98,7 @@ class SocialiteController extends Controller
 
             if ($user && $user->trashed()) {
 
-                $user->retore();
+                return $user;
             }
 
             if (!$user) {

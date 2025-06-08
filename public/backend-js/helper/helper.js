@@ -913,7 +913,7 @@ export function hideLoader(continueBtn, signupText, loader) {
 
  export function checkProfileReg(user){
 
-  if( !user || (!user.username || !user.phone_number || !user.bio)) {
+  if( !user || (!user.username || !user.phone_number || !user.bio || !user.shop_address || !user.business_location )) {
 
           Swal.fire({
               icon: 'info',

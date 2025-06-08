@@ -1,6 +1,6 @@
 @extends('layouts.others.app')
-@section('title','Settings')
-@section('navtitle', 'Settings')
+@section('title','Profile')
+@section('navtitle', 'Profile')
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@10/dist/sweetalert2.min.css">
 
 
@@ -470,11 +470,12 @@
   <div class="container-fluid">
     <div class="row">
       <div class="mobile-struct">
+        
+        <div class="mobile-link-btn1">
+          <a href="{{ url('/settings') }}">Profile</a>
+        </div>
         <div class="mobile-link-btn">
           <a href="{{ url('/shop') }}">Shop</a>
-        </div>
-        <div class="mobile-link-btn1">
-          <a href="{{ url('/settings') }}">Settings</a>
         </div>
         <div class="mobile-link-btn">
           <a href="{{ url('/learn') }}">Learn</a>

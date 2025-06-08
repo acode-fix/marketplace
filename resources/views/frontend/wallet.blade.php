@@ -101,12 +101,13 @@
     <div class="container-fluid">
       <div class="row">
         <div class="mobile-struct">
+           <div class="mobile-link-btn">
+            <a href="{{ url('/settings') }}">Profile</a>
+          </div>
           <div class="mobile-link-btn">
             <a href="{{ url('/shop') }}">Shop</a>
           </div>
-          <div class="mobile-link-btn">
-            <a href="{{ url('/settings') }}">Settings</a>
-          </div>
+         
           <div class="mobile-link-btn">
             <a href="{{ url('/learn') }}">Learn</a>
           </div>

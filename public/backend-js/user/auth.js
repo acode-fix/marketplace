@@ -69,7 +69,7 @@ function signup() {
                     clearInterval(timerInterval);
                     const url = sessionStorage.getItem('sharedPage');
 
-                    url ? window.location.reload() : window.location.href = '/';
+                    url ? window.location.reload() : window.location.href = '/settings';
           
                   }
                 })
@@ -176,7 +176,7 @@ function loginUser() {
 
                 const url = sessionStorage.getItem('sharedPage');
 
-                url ? window.location.reload() : window.location.href = '/';
+                url ? window.location.reload() : window.location.href = '/settings';
 
 
 

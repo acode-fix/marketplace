@@ -1,4 +1,3 @@
-
 import {
     validationError,
     getShopPrice,
@@ -9,17 +8,14 @@ import {
     displayVerifybtn,
 } from "./helper/helper.js";
 
-
 import { serverError } from "./admin/auth-helper.js";
 
-import copy from 'https://cdn.jsdelivr.net/npm/clipboard-copy/+esm';
+import copy from "https://cdn.jsdelivr.net/npm/clipboard-copy/+esm";
 import dayjs from "https://unpkg.com/dayjs@1.11.10/esm/index.js";
-
 
 const token = localStorage.getItem("apiToken");
 
 axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
-
 
 // //FOR PRODUCT LISTING
 document.addEventListener("DOMContentLoaded", function () {
@@ -153,7 +149,7 @@ document.addEventListener("DOMContentLoaded", function () {
                         },
                     })
                     .then((response) => {
-                       //   console.log(response)
+                        //   console.log(response)
 
                         if (response.status === 200 && response.data) {
                             const key = response.data.data;
@@ -169,47 +165,14 @@ document.addEventListener("DOMContentLoaded", function () {
                                 shopNo ?? ""
                             }&verify=${decoy}&check=${shopToken}&encode=${encode}`;
 
-                            const isCopied = copy(productUrl)
+                            const isCopied =
+                                copy(productUrl) || fallbackCopy(productUrl);
 
-                          //  console.log(productUrl);
+                            showCopy(isCopied);
 
-                            if(isCopied) {
-                                  let timerInterval;
-                                    Swal.fire({
-                                        icon: "success",
-                                        title: "Product Link",
-                                        confirmButtonColor: "#ffb705",
-                                        text: "Product link Copied To Clipboard Successfully",
-                                        timer: 2000,
-                                        timerProgressBar: true,
-                                        didOpen: () => {
-                                            Swal.showLoading();
-                                            const timer =
-                                                Swal.getPopup().querySelector(
-                                                    "b"
-                                                );
-                                            timerInterval = setInterval(() => {
-                                                timer.textContent = `${Swal.getTimerLeft()}`;
-                                            }, 4000);
-                                        },
-                                        willClose: () => {
-                                            clearInterval(timerInterval);
-                                        
-                                        },
-                                    });
-                            }else {
-                                Swal.fire({
-                                        icon: "error",
-                                        title: "Product Link",
-                                        confirmButtonColor: "#ffb705",
-                                        text: "Failed to copy",
-                                        willClose: () => {
-                                            window.location.href = "/shop";
-                                        },
-                                    });
-                            }
-                            
-                          /*
+                            //  console.log(productUrl);
+
+                            /*
                             navigator.clipboard.writeText(productUrl).then(
                                 () => {
                                     let timerInterval;
@@ -249,7 +212,7 @@ document.addEventListener("DOMContentLoaded", function () {
                                 }
                             );
                             */
-                        }    
+                        }
                     })
                     .catch((error) => {
                         if (error.response) {
@@ -273,6 +236,65 @@ document.addEventListener("DOMContentLoaded", function () {
                             }
                         }
                     });
+            }
+
+            function showCopy(ok) {
+                if (ok) {
+                    let timerInterval;
+                    Swal.fire({
+                        icon: "success",
+                        title: "Product Link",
+                        confirmButtonColor: "#ffb705",
+                        text: "Product link Copied To Clipboard Successfully",
+                        timer: 2000,
+                        timerProgressBar: true,
+                        didOpen: () => {
+                            Swal.showLoading();
+                            const timer = Swal.getPopup().querySelector("b");
+                            timerInterval = setInterval(() => {
+                                timer.textContent = `${Swal.getTimerLeft()}`;
+                            }, 4000);
+                        },
+                        willClose: () => {
+                            clearInterval(timerInterval);
+                        },
+                    });
+                } else {
+                    Swal.fire({
+                        icon: "error",
+                        title: "Product Link",
+                        confirmButtonColor: "#ffb705",
+                        text: "Failed to copy",
+                        willClose: () => {
+                            window.location.href = "/shop";
+                        },
+                    });
+                }
+            }
+
+            function fallbackCopy(text) {
+                const ta = document.createElement("textarea");
+                ta.value = text;
+                ta.setAttribute("readonly", "");
+                ta.style.position = "absolute";
+                ta.style.left = "-9999px";
+                ta.style.fontSize = "20px";
+                document.body.appendChild(ta);
+
+                if (/iphone|ipad/i.test(navigator.userAgent)) {
+                    const range = document.createRange();
+                    range.selectNodeContents(ta);
+                    const sel = window.getSelection();
+                    sel.removeAllRanges();
+                    sel.addRange(range);
+                    ta.setSelectionRange(0, 999999);
+                } else {
+                    ta.select();
+                }
+
+                document.execCommand("copy");
+                document.body.removeChild(ta);
+                return true;
             }
 
             function loadShopProducts(products) {

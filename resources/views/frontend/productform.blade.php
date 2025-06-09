@@ -38,7 +38,7 @@
             <div id="imageContainer">
                 <div id="uploadButton">
                     <img src="{{ asset('/innocent/assets/image/upload.png') }}" alt="Upload">
-                    <p>maximum picture size: 5mb<br>supported format: Jpg & Png</p>
+                    <p>maximum picture size: 1mb<br>supported format: Jpg & Png</p>
                 </div>
             </div>
         </div>

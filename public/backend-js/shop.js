@@ -10,7 +10,6 @@ import {
 
 import { serverError } from "./admin/auth-helper.js";
 
-import copy from "https://cdn.jsdelivr.net/npm/clipboard-copy/+esm";
 import dayjs from "https://unpkg.com/dayjs@1.11.10/esm/index.js";
 
 const token = localStorage.getItem("apiToken");
@@ -135,14 +134,92 @@ document.addEventListener("DOMContentLoaded", function () {
 
             document
                 .querySelector(".js-share-link")
-                .addEventListener("click", () => {
-                    // console.log(productId);
+                .addEventListener("click", async () => {
+                    try {
+                        const productUrl = await fetchLink(productId);
 
-                    fetchLink(productId);
+                        const copied = await copyText(productUrl);
+
+                        if (copied) {
+                            Swal.fire({
+                                icon: "success",
+                                title: "Copied!",
+                                text: "Product link copied to clipboard successfully",
+                                confirmButtonColor: "#ffb705",
+                                timer: 2000,
+                                timerProgressBar: true,
+                            });
+                        } else {
+                            Swal.fire({
+                                icon: "error",
+                                title: "Failed to Copy",
+                                text: "Could not copy link to clipboard",
+                                confirmButtonColor: "#ffb705",
+                            });
+                        }
+                    } catch (error) {
+                        console.error("Error:", error);
+                        Swal.fire({
+                            icon: "error",
+                            title: "Error",
+                            text: "Something went wrong while fetching or copying",
+                            confirmButtonColor: "#ffb705",
+                        });
+                    }
                 });
 
-            function fetchLink(productId) {
-                axios
+            async function fetchLink(productId) {
+                const response = await axios.get("/api/v1/product/link", {
+                    params: {
+                        productId,
+                    },
+                });
+
+                if (response.status === 200 && response.data) {
+                    const key = response.data.data;
+
+                    const encode = key.encode;
+                    const shopNo = key.shopNo;
+                    const shopToken = key.shopToken;
+                    const url = key.url;
+                    const id = key.id;
+                    const decoy = key.decoy;
+
+                    const productUrl = `${url}/product/shared/link?id=${id}&shop=${
+                        shopNo ?? ""
+                    }&verify=${decoy}&check=${shopToken}&encode=${encode}`;
+
+                    return productUrl;
+                }
+            }
+
+            async function copyText(text) {
+                // First try Clipboard API
+                if (navigator.clipboard && navigator.clipboard.writeText) {
+                    try {
+                        await navigator.clipboard.writeText(text);
+                        return true;
+                    } catch (err) {
+                        // fallback if API fails
+                    }
+                }
+
+                // Fallback for iOS or older browsers
+                const textarea = document.createElement("textarea");
+                textarea.value = text;
+                textarea.setAttribute("readonly", "");
+                textarea.style.position = "absolute";
+                textarea.style.left = "-9999px";
+                document.body.appendChild(textarea);
+                textarea.select();
+                const success = document.execCommand("copy");
+                document.body.removeChild(textarea);
+                return success;
+            }
+
+            /*
+            async function fetchLink(productId) {
+                const response = await axios
                     .get("/api/v1/product/link", {
                         params: {
                             productId,
@@ -165,10 +242,9 @@ document.addEventListener("DOMContentLoaded", function () {
                                 shopNo ?? ""
                             }&verify=${decoy}&check=${shopToken}&encode=${encode}`;
 
-                            const isCopied =
-                                copy(productUrl) || fallbackCopy(productUrl);
+                            console.log(productUrl);
 
-                            showCopy(isCopied);
+                            return productUrl;
 
                             //  console.log(productUrl);
 
@@ -211,7 +287,7 @@ document.addEventListener("DOMContentLoaded", function () {
                                     });
                                 }
                             );
-                            */
+                            
                         }
                     })
                     .catch((error) => {
@@ -237,8 +313,10 @@ document.addEventListener("DOMContentLoaded", function () {
                         }
                     });
             }
-
+  */
+            /*
             function showCopy(ok) {
+            
                 if (ok) {
                     let timerInterval;
                     Swal.fire({
@@ -296,7 +374,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 document.body.removeChild(ta);
                 return true;
             }
-
+             */
             function loadShopProducts(products) {
                 const productList = document.getElementById("productList");
                 productList.innerHTML = "";
@@ -882,12 +960,42 @@ document.addEventListener("DOMContentLoaded", function () {
 
             document
                 .querySelector(".js-mobile-share-link")
-                .addEventListener("click", () => {
+                .addEventListener("click", async() => {
                     // console.log(mobileProductId);\
 
                     const productId = mobileProductId;
 
-                    fetchLink(productId);
+                      try {
+                        const productUrl = await fetchLink(productId);
+
+                        const copied = await copyText(productUrl);
+
+                        if (copied) {
+                            Swal.fire({
+                                icon: "success",
+                                title: "Copied!",
+                                text: "Product link copied to clipboard successfully",
+                                confirmButtonColor: "#ffb705",
+                                timer: 2000,
+                                timerProgressBar: true,
+                            });
+                        } else {
+                            Swal.fire({
+                                icon: "error",
+                                title: "Failed to Copy",
+                                text: "Could not copy link to clipboard",
+                                confirmButtonColor: "#ffb705",
+                            });
+                        }
+                    } catch (error) {
+                        console.error("Error:", error);
+                        Swal.fire({
+                            icon: "error",
+                            title: "Error",
+                            text: "Something went wrong while fetching or copying",
+                            confirmButtonColor: "#ffb705",
+                        });
+                    }
                 });
 
             document
@@ -909,7 +1017,7 @@ document.addEventListener("DOMContentLoaded", function () {
             document
                 .querySelector(".js-modal-edit")
                 .addEventListener("click", () => {
-                    console.log(modal);
+                  //  console.log(modal);
                     modal.hide();
 
                     // console.log(mobileProductId);

@@ -117,7 +117,7 @@
             <hr>
             <div class="accont_features">
                 <p><a href="{{ url('/shop') }}">Dashboard</a></p>
-                <p><a href="{{ url('/refer') }}"> Reffer a Friend </a></p>
+                <p><a href="{{ url('/refer') }}"> Refer a Friend </a></p>
                 <p> <a href="{{ url('/privacy') }}">Privacy and Policy </a></p>
                 {{-- <p><a href="#"> log out</a></p> --}}
                 <p><a href="#" id="logoutLink">Log out</a></p>

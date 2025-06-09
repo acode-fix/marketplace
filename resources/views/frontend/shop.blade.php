@@ -582,7 +582,7 @@
                                             connect with potential buyer and increase your sales.
                                         </p>
                                         <div class="modal-share">
-                                            <div>
+                                            {{-- <div>
                                                 <img src="{{ asset('/kaz/images/facebook.png') }}" alt="">
                                                 <h6 class="fw-light  share-text ">Facebook</h6>
                                             </div>
@@ -598,7 +598,7 @@
                                                 <img width="40px" src="{{ asset('/kaz/images/Whatsapp logo.png') }}"
                                                     alt="">
                                                 <h6 class="fw-light  share-text ">whatsapp</h6>
-                                            </div>
+                                            </div> --}}
                                             <div class="js-share-link">
                                                 <i style="height: 40px; width: 40px;" class="fa-solid fa-link"></i>
                                                 <h6 class="fw-light  share-text ">Copy link</h6>
@@ -995,7 +995,7 @@
                                         connect with potential buyers and increase your sales.
                                     </p>
                                     <div class="modal-share">
-                                        <div>
+                                        {{-- <div>
                                             <img src="{{ asset('/kaz/images/facebook.png') }}" alt="">
                                             <h6 class="fw-light share-text">Facebook</h6>
                                         </div>
@@ -1010,7 +1010,7 @@
                                         <div>
                                             <img width="40px" src="{{ asset('/kaz/images/Whatsapp logo.png') }}" alt="">
                                             <h6 class="fw-light share-text">WhatsApp</h6>
-                                        </div>
+                                        </div> --}}
                                         <div class="js-mobile-share-link">
                                             <i style="height: 40px; width: 40px;" class="fa-solid fa-link"></i>
                                             <h6 class="fw-light  share-text">Copy link</h6>

@@ -138,11 +138,13 @@ document.addEventListener("DOMContentLoaded", function () {
                 .addEventListener("click", async () => {
                     try {
                         const productUrl = await fetchLink(productId);
+                         
+                     let field = document.getElementById('test');
 
-                        const copied = await copyText(productUrl) || copy(productUrl);
+                     field.value = productUrl;
+                      navigator.clipboard.writeText(field.value).then(() => {
 
-                        if (copied) {
-                            Swal.fire({
+                          Swal.fire({
                                 icon: "success",
                                 title: "Copied!",
                                 text: "Product link copied to clipboard successfully",
@@ -150,14 +152,31 @@ document.addEventListener("DOMContentLoaded", function () {
                                 timer: 2000,
                                 timerProgressBar: true,
                             });
-                        } else {
-                            Swal.fire({
-                                icon: "error",
-                                title: "Failed to Copy",
-                                text: "Could not copy link to clipboard",
-                                confirmButtonColor: "#ffb705",
-                            });
-                        }
+
+                     })
+
+
+                    // const copied = await copyText(productUrl) || copy(productUrl);
+
+                        
+
+                    //     if (copied) {
+                    //         Swal.fire({
+                    //             icon: "success",
+                    //             title: "Copied!",
+                    //             text: "Product link copied to clipboard successfully",
+                    //             confirmButtonColor: "#ffb705",
+                    //             timer: 2000,
+                    //             timerProgressBar: true,
+                    //         });
+                    //     } else {
+                    //         Swal.fire({
+                    //             icon: "error",
+                    //             title: "Failed to Copy",
+                    //             text: "Could not copy link to clipboard",
+                    //             confirmButtonColor: "#ffb705",
+                    //         });
+                    //     }
                     } catch (error) {
                         console.error("Error:", error);
                         Swal.fire({
@@ -971,13 +990,12 @@ document.addEventListener("DOMContentLoaded", function () {
                       try {
                         const productUrl = await fetchLink(productId);
 
-                        const copied = await copyText(productUrl);
+                        let field = document.getElementById('test');
 
-                        
-                
+                     field.value = productUrl;
+                      navigator.clipboard.writeText(field.value).then(() => {
 
-                        if (copied) {
-                            Swal.fire({
+                          Swal.fire({
                                 icon: "success",
                                 title: "Copied!",
                                 text: "Product link copied to clipboard successfully",
@@ -985,14 +1003,31 @@ document.addEventListener("DOMContentLoaded", function () {
                                 timer: 2000,
                                 timerProgressBar: true,
                             });
-                        } else {
-                            Swal.fire({
-                                icon: "error",
-                                title: "Failed to Copy",
-                                text: "Could not copy link to clipboard",
-                                confirmButtonColor: "#ffb705",
-                            });
-                        }
+
+                     })
+
+                      //  const copied = await copyText(productUrl);
+
+                        
+                
+
+                        // if (copied) {
+                        //     Swal.fire({
+                        //         icon: "success",
+                        //         title: "Copied!",
+                        //         text: "Product link copied to clipboard successfully",
+                        //         confirmButtonColor: "#ffb705",
+                        //         timer: 2000,
+                        //         timerProgressBar: true,
+                        //     });
+                        // } else {
+                        //     Swal.fire({
+                        //         icon: "error",
+                        //         title: "Failed to Copy",
+                        //         text: "Could not copy link to clipboard",
+                        //         confirmButtonColor: "#ffb705",
+                        //     });
+                        // }
                     } catch (error) {
                         console.error("Error:", error);
                         Swal.fire({

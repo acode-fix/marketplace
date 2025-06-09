@@ -596,6 +596,7 @@ public function store(Request $request)
        
 
         if ($validateProduct->fails()) {
+
             return response()->json([
                 'status' => false,
                 'message' => 'Validation error',

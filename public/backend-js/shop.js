@@ -9,13 +9,13 @@ import {
 } from "./helper/helper.js";
 
 import { serverError } from "./admin/auth-helper.js";
-
-import copy from 'https://cdn.jsdelivr.net/npm/clipboard-copy/+esm';
 import dayjs from "https://unpkg.com/dayjs@1.11.10/esm/index.js";
 
 const token = localStorage.getItem("apiToken");
 
 axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
+
+var myModal = new bootstrap.Modal(document.querySelector("#exampleModal-1"));
 
 // //FOR PRODUCT LISTING
 document.addEventListener("DOMContentLoaded", function () {
@@ -135,113 +135,12 @@ document.addEventListener("DOMContentLoaded", function () {
 
             document
                 .querySelector(".js-share-link")
-                .addEventListener("click", async () => {
-                    try {
-                        const productUrl = await fetchLink(productId);
-                         
-                     let field = document.getElementById('test');
-
-                     field.value = productUrl;
-                      navigator.clipboard.writeText(field.value).then(() => {
-
-                          Swal.fire({
-                                icon: "success",
-                                title: "Copied!",
-                                text: "Product link copied to clipboard successfully",
-                                confirmButtonColor: "#ffb705",
-                                timer: 2000,
-                                timerProgressBar: true,
-                            });
-
-                     })
-
-
-                    // const copied = await copyText(productUrl) || copy(productUrl);
-
-                        
-
-                    //     if (copied) {
-                    //         Swal.fire({
-                    //             icon: "success",
-                    //             title: "Copied!",
-                    //             text: "Product link copied to clipboard successfully",
-                    //             confirmButtonColor: "#ffb705",
-                    //             timer: 2000,
-                    //             timerProgressBar: true,
-                    //         });
-                    //     } else {
-                    //         Swal.fire({
-                    //             icon: "error",
-                    //             title: "Failed to Copy",
-                    //             text: "Could not copy link to clipboard",
-                    //             confirmButtonColor: "#ffb705",
-                    //         });
-                    //     }
-                    } catch (error) {
-                        console.error("Error:", error);
-                        Swal.fire({
-                            icon: "error",
-                            title: "Error",
-                            text: "Something went wrong while fetching or copying",
-                            confirmButtonColor: "#ffb705",
-                        });
-                    }
+                .addEventListener("click", () => {
+                    fetchLink(productId);
                 });
 
-            async function fetchLink(productId) {
-                const response = await axios.get("/api/v1/product/link", {
-                    params: {
-                        productId,
-                    },
-                });
-
-                if (response.status === 200 && response.data) {
-                    const key = response.data.data;
-
-                    const encode = key.encode;
-                    const shopNo = key.shopNo;
-                    const shopToken = key.shopToken;
-                    const url = key.url;
-                    const id = key.id;
-                    const decoy = key.decoy;
-
-                    const productUrl = `${url}/product/shared/link?id=${id}&shop=${
-                        shopNo ?? ""
-                    }&verify=${decoy}&check=${shopToken}&encode=${encode}`;
-
-                    return productUrl;
-                }
-            }
-
-            async function copyText(text) {
-                // First try Clipboard API
-                if (navigator.clipboard && navigator.clipboard.writeText) {
-                    try {
-                        await navigator.clipboard.writeText(text);
-                        return true;
-                    } catch (err) {
-                        // fallback if API fails
-                    }
-                }
-
-                // Fallback for iOS or older browsers
-                const textarea = document.createElement("textarea");
-                textarea.value = text;
-                textarea.setAttribute("readonly", "");
-                textarea.style.position = "absolute";
-                textarea.style.left = "-9999px";
-                document.body.appendChild(textarea);
-                textarea.select();
-                const success = document.execCommand("copy");
-                document.body.removeChild(textarea);
-
-            
-                return success;
-            }
-
-            /*
-            async function fetchLink(productId) {
-                const response = await axios
+            function fetchLink(productId) {
+                axios
                     .get("/api/v1/product/link", {
                         params: {
                             productId,
@@ -264,12 +163,45 @@ document.addEventListener("DOMContentLoaded", function () {
                                 shopNo ?? ""
                             }&verify=${decoy}&check=${shopToken}&encode=${encode}`;
 
-                            console.log(productUrl);
+                            myModal.hide() || modal.hide();
 
-                            return productUrl;
+                            // Now show a SweetAlert with manual copy fallback
+                            Swal.fire({
+                                title: "Product Link",
+                                html: `
+          <input type="text" id="linkInput" value="${productUrl}" readonly   style="width: 100%; padding: 10px; border: none; outline: none; background: #f9f9f9; border-radius: 4px;" />
+          <button id="copyNowBtn" style="margin-top:10px;padding:6px 12px;background:#ffb705;border:none; border-radius:6px;color:#fff;">Copy</button>
+        `,
+                                showConfirmButton: false,
+                                didOpen: () => {
+                                    const copyBtn =
+                                        document.getElementById("copyNowBtn");
+                                    const input =
+                                        document.getElementById("linkInput");
 
-                            //  console.log(productUrl);
+                                    copyBtn.addEventListener("click", () => {
+                                        input.select();
+                                        const success =
+                                            document.execCommand("copy");
 
+                                        if (success) {
+                                            Swal.fire({
+                                                icon: "success",
+                                                title: "Copied!",
+                                                text: "Link copied to clipboard.",
+                                                timer: 1500,
+                                                showConfirmButton: false,
+                                            });
+                                        } else {
+                                            Swal.fire({
+                                                icon: "error",
+                                                title: "Copy failed",
+                                                text: "Please copy the link manually.",
+                                            });
+                                        }
+                                    });
+                                },
+                            });
                             /*
                             navigator.clipboard.writeText(productUrl).then(
                                 () => {
@@ -309,7 +241,7 @@ document.addEventListener("DOMContentLoaded", function () {
                                     });
                                 }
                             );
-                            
+                            */
                         }
                     })
                     .catch((error) => {
@@ -335,68 +267,7 @@ document.addEventListener("DOMContentLoaded", function () {
                         }
                     });
             }
-  */
-            /*
-            function showCopy(ok) {
-            
-                if (ok) {
-                    let timerInterval;
-                    Swal.fire({
-                        icon: "success",
-                        title: "Product Link",
-                        confirmButtonColor: "#ffb705",
-                        text: "Product link Copied To Clipboard Successfully",
-                        timer: 2000,
-                        timerProgressBar: true,
-                        didOpen: () => {
-                            Swal.showLoading();
-                            const timer = Swal.getPopup().querySelector("b");
-                            timerInterval = setInterval(() => {
-                                timer.textContent = `${Swal.getTimerLeft()}`;
-                            }, 4000);
-                        },
-                        willClose: () => {
-                            clearInterval(timerInterval);
-                        },
-                    });
-                } else {
-                    Swal.fire({
-                        icon: "error",
-                        title: "Product Link",
-                        confirmButtonColor: "#ffb705",
-                        text: "Failed to copy",
-                        willClose: () => {
-                            window.location.href = "/shop";
-                        },
-                    });
-                }
-            }
 
-            function fallbackCopy(text) {
-                const ta = document.createElement("textarea");
-                ta.value = text;
-                ta.setAttribute("readonly", "");
-                ta.style.position = "absolute";
-                ta.style.left = "-9999px";
-                ta.style.fontSize = "20px";
-                document.body.appendChild(ta);
-
-                if (/iphone|ipad/i.test(navigator.userAgent)) {
-                    const range = document.createRange();
-                    range.selectNodeContents(ta);
-                    const sel = window.getSelection();
-                    sel.removeAllRanges();
-                    sel.addRange(range);
-                    ta.setSelectionRange(0, 999999);
-                } else {
-                    ta.select();
-                }
-
-                document.execCommand("copy");
-                document.body.removeChild(ta);
-                return true;
-            }
-             */
             function loadShopProducts(products) {
                 const productList = document.getElementById("productList");
                 productList.innerHTML = "";
@@ -982,61 +853,12 @@ document.addEventListener("DOMContentLoaded", function () {
 
             document
                 .querySelector(".js-mobile-share-link")
-                .addEventListener("click", async() => {
+                .addEventListener("click", () => {
                     // console.log(mobileProductId);\
 
                     const productId = mobileProductId;
 
-                      try {
-                        const productUrl = await fetchLink(productId);
-
-                        let field = document.getElementById('test-mobile');
-
-                     field.value = productUrl;
-                      navigator.clipboard.writeText(field.value).then(() => {
-
-                          Swal.fire({
-                                icon: "success",
-                                title: "Copied!",
-                                text: "Product link copied to clipboard successfully",
-                                confirmButtonColor: "#ffb705",
-                                timer: 2000,
-                                timerProgressBar: true,
-                            });
-
-                     })
-
-                      //  const copied = await copyText(productUrl);
-
-                        
-                
-
-                        // if (copied) {
-                        //     Swal.fire({
-                        //         icon: "success",
-                        //         title: "Copied!",
-                        //         text: "Product link copied to clipboard successfully",
-                        //         confirmButtonColor: "#ffb705",
-                        //         timer: 2000,
-                        //         timerProgressBar: true,
-                        //     });
-                        // } else {
-                        //     Swal.fire({
-                        //         icon: "error",
-                        //         title: "Failed to Copy",
-                        //         text: "Could not copy link to clipboard",
-                        //         confirmButtonColor: "#ffb705",
-                        //     });
-                        // }
-                    } catch (error) {
-                        console.error("Error:", error);
-                        Swal.fire({
-                            icon: "error",
-                            title: "Error",
-                            text: "Something went wrong while fetching or copying",
-                            confirmButtonColor: "#ffb705",
-                        });
-                    }
+                    fetchLink(productId);
                 });
 
             document
@@ -1058,7 +880,7 @@ document.addEventListener("DOMContentLoaded", function () {
             document
                 .querySelector(".js-modal-edit")
                 .addEventListener("click", () => {
-                  //  console.log(modal);
+                    console.log(modal);
                     modal.hide();
 
                     // console.log(mobileProductId);

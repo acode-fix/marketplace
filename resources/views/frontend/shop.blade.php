@@ -601,7 +601,7 @@
                                             </div> --}}
                                             <div class="js-share-link">
                                                 <i style="height: 40px; width: 40px;" class="fa-solid fa-link"></i>
-                                                <h6 class="fw-light  share-text ">Copy link</h6>
+                                                <h6 class="fw-light  share-text ">Generate link</h6>
                                             </div>
                                         </div>
                                     </div>
@@ -978,7 +978,7 @@
                             <div id="page3" class="page1">
                                 <button style="width: 100%;" type="button"
                                     class="btn btn-warning modal-edit1 btn-lg pt-3 pb-3 mb-2">Share</button>
-                                <button style="width: 100%;" type="button"
+                                <button style="width: 100%;" type="button"  
                                     class="btn btn-warning modal-edit1 btn-lg pt-3 pb-3 js-modal-edit"
                                     data-bs-toggle="modal" data-bs-target="#staticBackdrop">Edit</button>
                                 <button style="width: 100%;" type="button"
@@ -1015,7 +1015,7 @@
                                         </div> --}}
                                         <div class="js-mobile-share-link">
                                             <i style="height: 40px; width: 40px;" class="fa-solid fa-link"></i>
-                                            <h6 class="fw-light  share-text">Copy link</h6>
+                                            <h6 class="fw-light  share-text">Generate link</h6>
                                         </div>
                                     </div>
                                 </div>

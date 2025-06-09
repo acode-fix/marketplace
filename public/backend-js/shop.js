@@ -152,6 +152,8 @@ document.addEventListener("DOMContentLoaded", function () {
                         if (response.status === 200 && response.data) {
                             const key = response.data.data;
 
+                            //console.log(key);
+
                             const encode = key.encode;
                             const shopNo = key.shopNo;
                             const shopToken = key.shopToken;

@@ -183,7 +183,7 @@
                 <div id="imageContainer">
                     <div id="uploadButton">
                         <img src="{{asset('innocent/assets/image/Upload.png')}}" alt="Logo" class="upload_camera">
-                        <p class="photo_discribtion">maximum picture size: <span class="photo_discribtion_2">5mb</span><br>
+                        <p class="photo_discribtion">maximum picture size: <span class="photo_discribtion_2">1mb</span><br>
                             supported format: <span class="photo_discribtion_2">Jpg & Png</span>
                         </p>
                     </div>

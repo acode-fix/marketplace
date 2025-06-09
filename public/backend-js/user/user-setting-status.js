@@ -19,7 +19,7 @@ export async function checkUserSettingStatus() {
     }
 }
 
-checkUserSettingStatus()
+checkUserSettingStatus();
 
  function notify(data) {
     const {
@@ -32,6 +32,7 @@ checkUserSettingStatus()
     } = data;
 
     const isNewUser = dayjs().diff(dayjs(created_at), 'hour') < 24;
+
 
     if (isNewUser) return;
 

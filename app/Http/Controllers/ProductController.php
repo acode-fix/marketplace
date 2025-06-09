@@ -32,351 +32,346 @@ class ProductController extends Controller
     // }
 
 
-//     public function index()
-// {
-//        $data = Product::all();
-//     // Step 1: Count the total number of products
-//     $totalProducts = Product::count();
+    //     public function index()
+    // {
+    //        $data = Product::all();
+    //     // Step 1: Count the total number of products
+    //     $totalProducts = Product::count();
 
 
-//     if ($totalProducts <= 16) {
+    //     if ($totalProducts <= 16) {
 
-//        return response()->json($data);
+    //        return response()->json($data);
 
-//     } else if ($totalProducts > 16) {
-//         $numberOfProductsToDisplay = 16;
-//         $randomIndices = [];
+    //     } else if ($totalProducts > 16) {
+    //         $numberOfProductsToDisplay = 16;
+    //         $randomIndices = [];
 
-//         while (count($randomIndices) < $numberOfProductsToDisplay) {
-//             $randomIndex = rand(0, $totalProducts - 1);
-//             if (!in_array($randomIndex, $randomIndices)) {
-//                 $randomIndices[] = $randomIndex;
-//             }
-//         }
+    //         while (count($randomIndices) < $numberOfProductsToDisplay) {
+    //             $randomIndex = rand(0, $totalProducts - 1);
+    //             if (!in_array($randomIndex, $randomIndices)) {
+    //                 $randomIndices[] = $randomIndex;
+    //             }
+    //         }
 
-//         // Step 4: Fetch the products using the generated random indices
-//         // This assumes your Product model's primary key is `id`
-//         $randomProducts = Product::whereIn('id', $randomIndices)->get();
-
-
-//         // Step 5: Return the random products as JSON
-//         return response()->json($randomProducts);
-
-//     } else {
-//         return response()->json([]);
-//     }
-
-// }
-public function index()
-{
-    $totalProducts = Product::count();
-
-    if ($totalProducts <= 16) {
-        
-      // $data = Product::with('user')->where('quantity', '!=', 0)->get();
-
-       $data = Product::where('quantity', '!=', 0)
-                       ->join('users', 'products.user_id', '=', 'users.id' )
-                       ->select('products.id as product_id', 
-                                'products.*',
-                                'users.badge_status',
-                                'users.verify_status',
-                                'users.email',
-                                'users.shop_token',
-                                'users.name',
-                                'users.username', 
-                                'users.photo_url',
-                                'users.phone_number',
-                                'users.id'     
-                        )
-                        ->withoutTrashed()
-                       ->orderBy('users.badge_status', 'desc')
-                       ->inRandomOrder()
-                       ->get();
-
-        return response()->json($data);
-    } else {
-        $numberOfProductsToDisplay = 16;
-
-        // Fetch a random set of products
-        $randomProducts = Product::where('quantity', '!=', 0)
-                                 ->join('users', 'products.user_id', '=', 'users.id' )
-                                 ->select('products.id as product_id',
-                                          'products.*',
-                                          'users.badge_status',
-                                          'users.verify_status',
-                                          'users.email',
-                                          'users.shop_token',
-                                          'users.name',
-                                          'users.username',
-                                          'users.photo_url',
-                                          'users.phone_number',
-                                          'users.id'
-                                  )
-                                  ->withoutTrashed()
-                                 ->orderBy('users.badge_status', 'desc') 
-                                 ->inRandomOrder()
-                                 ->limit($numberOfProductsToDisplay)
-                                 ->get();
+    //         // Step 4: Fetch the products using the generated random indices
+    //         // This assumes your Product model's primary key is `id`
+    //         $randomProducts = Product::whereIn('id', $randomIndices)->get();
 
 
-    //    Product::with('user')->where('quantity', '!=', 0)
-    //                              ->inRandomOrder()
-    //                              ->limit($numberOfProductsToDisplay)
-    //                              ->get();
+    //         // Step 5: Return the random products as JSON
+    //         return response()->json($randomProducts);
 
-        return response()->json($randomProducts);
-    }
-}
+    //     } else {
+    //         return response()->json([]);
+    //     }
+
+    // }
+    public function index()
+    {
+        $totalProducts = Product::count();
+
+        if ($totalProducts <= 16) {
+
+            // $data = Product::with('user')->where('quantity', '!=', 0)->get();
+
+            $data = Product::where('quantity', '!=', 0)
+                ->join('users', 'products.user_id', '=', 'users.id')
+                ->select(
+                    'products.id as product_id',
+                    'products.*',
+                    'users.badge_status',
+                    'users.verify_status',
+                    'users.email',
+                    'users.shop_token',
+                    'users.name',
+                    'users.username',
+                    'users.photo_url',
+                    'users.phone_number',
+                    'users.id'
+                )
+                ->withoutTrashed()
+                ->orderBy('users.badge_status', 'desc')
+                ->inRandomOrder()
+                ->get();
+
+            return response()->json($data);
+        } else {
+            $numberOfProductsToDisplay = 16;
+
+            // Fetch a random set of products
+            $randomProducts = Product::where('quantity', '!=', 0)
+                ->join('users', 'products.user_id', '=', 'users.id')
+                ->select(
+                    'products.id as product_id',
+                    'products.*',
+                    'users.badge_status',
+                    'users.verify_status',
+                    'users.email',
+                    'users.shop_token',
+                    'users.name',
+                    'users.username',
+                    'users.photo_url',
+                    'users.phone_number',
+                    'users.id'
+                )
+                ->withoutTrashed()
+                ->orderBy('users.badge_status', 'desc')
+                ->inRandomOrder()
+                ->limit($numberOfProductsToDisplay)
+                ->get();
 
 
+            //    Product::with('user')->where('quantity', '!=', 0)
+            //                              ->inRandomOrder()
+            //                              ->limit($numberOfProductsToDisplay)
+            //                              ->get();
 
-//
-public function getProductDetails($id) {
-
-    $product = Product::with('user')
-                      ->where('quantity', '!=', 0)
-                      ->where('id', $id)
-                      ->first();
-    
-
-    if (!$product) {
-        return response()->json([
-            'status' => false,
-            'message' => 'Product not found',
-        ], 404);
+            return response()->json($randomProducts);
+        }
     }
 
-    if ($product) {
 
 
-        return response()->json([
-            'status' => true,
-            'message' => 'User Products Fetched Successfully',
-            'product' => $product,
+    //
+    public function getProductDetails($id)
+    {
 
-        ]);
-        
+        $product = Product::with('user')
+            ->where('quantity', '!=', 0)
+            ->where('id', $id)
+            ->first();
+
+
+        if (!$product) {
+            return response()->json([
+                'status' => false,
+                'message' => 'Product not found',
+            ], 404);
+        }
+
+        if ($product) {
+
+
+            return response()->json([
+                'status' => true,
+                'message' => 'User Products Fetched Successfully',
+                'product' => $product,
+
+            ]);
+        }
     }
-}
 
-public function getAdminProductDetails($id) {
+    public function getAdminProductDetails($id)
+    {
 
-    $product = Product::with(['user', 'category']) 
-                      ->where('quantity', '!=', 0)
-                      ->withTrashed()
-                      ->where('id', $id)
-                      ->first();
+        $product = Product::with(['user', 'category'])
+            ->where('quantity', '!=', 0)
+            ->withTrashed()
+            ->where('id', $id)
+            ->first();
 
-    
 
-    if (!$product) {
-        return response()->json([
-            'status' => false,
-            'message' => 'Product not found',
-        ], 404);
+
+        if (!$product) {
+            return response()->json([
+                'status' => false,
+                'message' => 'Product not found',
+            ], 404);
+        }
+
+        if ($product) {
+
+
+            return response()->json([
+                'status' => true,
+                'message' => 'User Products Fetched Successfully',
+                'product' => $product,
+
+            ]);
+        }
     }
-
-    if ($product) {
-
-
-        return response()->json([
-            'status' => true,
-            'message' => 'User Products Fetched Successfully',
-            'product' => $product,
-
-        ]);
-        
-    }
-}
 
     /**
      * 
      * 
      * Show the form for creating a new resource.
      */
-//     public function filterProducts(Request $request)
-// {
-//     $query = Product::query();
+    //     public function filterProducts(Request $request)
+    // {
+    //     $query = Product::query();
 
-//     if ($request->has('condition')) {
-//         $query->where('condition', $request->input('condition'));
-//     }
+    //     if ($request->has('condition')) {
+    //         $query->where('condition', $request->input('condition'));
+    //     }
 
-//     if ($request->has('verified_seller')) {
-//         // Assuming 'verified_seller' is a field in the User model associated with the product
-//         $query->whereHas('user', function ($q) use ($request) {
-//             $q->where('verified_seller', $request->input('verified_seller'));
-//         });
-//     }
+    //     if ($request->has('verified_seller')) {
+    //         // Assuming 'verified_seller' is a field in the User model associated with the product
+    //         $query->whereHas('user', function ($q) use ($request) {
+    //             $q->where('verified_seller', $request->input('verified_seller'));
+    //         });
+    //     }
 
-//     if ($request->has('location')) {
-//         $query->where('location', $request->input('location'));
-//     }
+    //     if ($request->has('location')) {
+    //         $query->where('location', $request->input('location'));
+    //     }
 
-//     $filteredProducts = $query->get();
-//     // Log::info('Filter parameters', $request->all());
-//     // Log::info('Filtered products', $filteredProducts->toArray());
+    //     $filteredProducts = $query->get();
+    //     // Log::info('Filter parameters', $request->all());
+    //     // Log::info('Filtered products', $filteredProducts->toArray());
 
-//     return response()->json($filteredProducts);
-// }
-public function filterProducts(Request $request)
-{
-    try {
-
-
-       debugbar::info($request->newValue, $request->used, $request->location, $request->verified);
-
-       $products = Product::with('user')->where('quantity', '!=', 0)
-
-               ->when($request->newValue, function($q) use ($request) {
-                $q->where('condition', $request->newValue);
-               })
-               ->when($request->used, function($q) use ($request) {
-                $q->where('condition', $request->used);
-               })
-               ->when($request->location, function($q) use ($request) { 
-                $q->where('location', $request->location);
-               });
+    //     return response()->json($filteredProducts);
+    // }
+    public function filterProducts(Request $request)
+    {
+        try {
 
 
-      if(!is_null($request->verified)) {
-        $verified = filter_var($request->verified, FILTER_VALIDATE_BOOLEAN);
+            debugbar::info($request->newValue, $request->used, $request->location, $request->verified);
 
-        $products->whereHas('user', function ($q) use ($verified) {
-            $q->where('verify_status', $verified)
-              ->where('badge_status', 1);
-        });
+            $products = Product::with('user')->where('quantity', '!=', 0)
+
+                ->when($request->newValue, function ($q) use ($request) {
+                    $q->where('condition', $request->newValue);
+                })
+                ->when($request->used, function ($q) use ($request) {
+                    $q->where('condition', $request->used);
+                })
+                ->when($request->location, function ($q) use ($request) {
+                    $q->where('location', $request->location);
+                });
 
 
-      }
-     $products =  $products->get();
+            if (!is_null($request->verified)) {
+                $verified = filter_var($request->verified, FILTER_VALIDATE_BOOLEAN);
+
+                $products->whereHas('user', function ($q) use ($verified) {
+                    $q->where('verify_status', $verified)
+                        ->where('badge_status', 1);
+                });
+            }
+            $products =  $products->get();
+
+
+            return response()->json([
+                'status' => true,
+                'message' => 'Products Fetched Successfully',
+                'products' => $products,
+
+            ]);
+        } catch (\Exception $e) {
+            // Log the error for debugging
+            Log::error('Error filtering products: ' . $e->getMessage());
+
+            // Return error response
+            return response()->json(['error' => 'Internal Server Error'], 500);
+        }
+    }
+
+    public function searchPageFilter(Request $request)
+    {
+
+
+        $new = $request->new ?? null;
+        $used = $request->used ?? null;
+        $search = trim($request->search) ?? '';
+        $location = $request->location ?? null;
+
+
+        $products = Product::with('user')
+            ->where('quantity', '!=', 0);
+
+        if ($search) {
+            $products = $products->where(function ($query) use ($search) {
+                $query->where('title', 'LIKE', "%{$search}%")
+                    ->orWhere('description', 'LIKE', "%{$search}%")
+                    ->orWhere('location', 'LIKE', "%{$search}%");
+            });
+        }
+
+
+        if ($new) {
+            $products = $products->where('condition', $new);
+        }
+
+
+        if ($used) {
+            $products = $products->where('condition', $used);
+        }
+
+
+        if ($location) {
+            $products = $products->where('location', $location);
+        }
+
+        if (!is_null($request->verified)) {
+            $verified = filter_var($request->verified, FILTER_VALIDATE_BOOLEAN);
+
+            $products->whereHas('user', function ($q) use ($verified) {
+                $q->where('verify_status', $verified)
+                    ->where('badge_status', 1);
+            });
+        }
+
+
+        $products = $products->get();
+
+        $message = $products->isEmpty() ? 'No products found' : 'Products filtered successfully';
+
 
 
         return response()->json([
             'status' => true,
-            'message' => 'Products Fetched Successfully',
-            'products' => $products, 
-
-        ]);
-
-
-    } catch (\Exception $e) {
-        // Log the error for debugging
-        Log::error('Error filtering products: ' . $e->getMessage());
-
-        // Return error response
-        return response()->json(['error' => 'Internal Server Error'], 500);
-    }
-}
-
-public function searchPageFilter(Request $request) {
-
-
-    $new = $request->new ?? null;
-    $used = $request->used ?? null;
-    $search = trim($request->search) ?? '';
-    $location = $request->location ?? null;
-    
-
-    $products = Product::with('user')
-        ->where('quantity', '!=', 0);
-
-    if ($search) {
-        $products = $products->where(function($query) use ($search) {
-            $query->where('title', 'LIKE', "%{$search}%")
-                  ->orWhere('description', 'LIKE', "%{$search}%")
-                  ->orWhere('location', 'LIKE', "%{$search}%");
-        });
-    }
-
- 
-    if ($new) {
-        $products = $products->where('condition', $new);
+            'message' => $message,
+            'newProducts' => $products,
+        ], 200);
     }
 
 
-    if ($used) {
-        $products = $products->where('condition', $used);
-    }
+    public function filterProductByCategory(Request $request)
+    {
 
-    
-    if ($location) {
-        $products = $products->where('location', $location);
-    }
-  
-    if(!is_null($request->verified)) {
-        $verified = filter_var($request->verified, FILTER_VALIDATE_BOOLEAN);
-
-        $products->whereHas('user', function ($q) use ($verified) {
-            $q->where('verify_status', $verified)
-              ->where('badge_status', 1);
-        });
+        $new = $request->filter['new'] ?? null;
+        $used = $request->filter['used'] ?? null;
+        $verified = $request->filter['verified'] ?? null;
+        $location = $request->filter['location'] ?? null;
 
 
-      }
+        $query = Product::with('user')
+            ->where('quantity', '!=', 0)
+            ->where('category_id', $request->category);
 
-    
-   $products = $products->get(); 
+        if ($new) {
 
-   $message = $products->isEmpty() ? 'No products found' : 'Products filtered successfully';
+            $query->where('condition', $new);
+        }
 
+        if ($used) {
+            $query->where('condition', $used);
+        }
 
+        if ($location) {
 
-    return response()->json([
-        'status' => true,
-        'message' => $message,
-        'newProducts' => $products,
-    ], 200);
-}
-
-
-public function filterProductByCategory(Request $request){
-    
-    $new = $request->filter['new'] ?? null;
-    $used = $request->filter['used'] ?? null;
-    $verified = $request->filter['verified'] ?? null;
-    $location = $request->filter['location'] ?? null;
+            $query->where('location', $location);
+        }
 
 
-    $query = Product::with('user')
-                         ->where('quantity', '!=', 0)
-                        ->where('category_id', $request->category);
 
-    if($new) {
+        if (!is_null($verified)) {
 
-        $query->where('condition', $new);
-    }
+            $verified = filter_var($verified, FILTER_VALIDATE_BOOLEAN);
 
-    if($used) {
-        $query->where('condition', $used);
-
-    }
-
-    if($location) {
-
-        $query->where('location', $location);
-    }
-                
+            $query->whereHas('user', function ($q) use ($verified) {
+                $q->where('verify_status', $verified)
+                    ->where('badge_status', 1);
+            });
+        }
 
 
-    if(!is_null($verified) ) {
 
-        $verified = filter_var($verified, FILTER_VALIDATE_BOOLEAN);
 
-        $query->whereHas('user', function($q) use ($verified) {
-            $q->where('verify_status', $verified)
-              ->where('badge_status', 1);
 
-        });
-
-    }
-
-    
-
-    
-
-    /*
+        /*
 
     $query = Product::with('user')
                     ->where('quantity', '!=', 0)
@@ -400,28 +395,23 @@ public function filterProductByCategory(Request $request){
 
     */
 
-    $products = $query->get();
+        $products = $query->get();
 
 
-    return response()->json([
-        'status' => true,
-        'message' => 'Product Category Filtered Successfully',
-        'products' => $products,
+        return response()->json([
+            'status' => true,
+            'message' => 'Product Category Filtered Successfully',
+            'products' => $products,
 
-    ],200);
-
-
-    
-
-
-}
+        ], 200);
+    }
 
 
     /**
      * Store a newly created resource in storage.
      */
 
-     /*
+    /*
     public function store(Request $request)
     {
         //
@@ -568,118 +558,118 @@ public function filterProductByCategory(Request $request){
 
 */
 
-public function store(Request $request)
-{
-    try {
-        // Validate the product data
-        $validateProduct = Validator::make($request->all(), [
-            'title' => 'required',
-            'description' => 'required',
-            'category_id' => 'required|exists:categories,id',
-            'quantity' => 'required',
-            'location' => 'required',
-            'condition' => ['required', 'in:fairly_used,new'],
-            'ask_for_price' => 'required|boolean',
-            'actual_price' => 'required_if:ask_for_price,false|max:7',
-            'promo_price' => 'nullable|max:7',
-           // 'image_url.*' => 'required|image|mimes:jpg,jpeg,png,gif|max:1024',
-           'image_url.*' => 'required|mimes:jpg,jpeg,png,gif|max:1024',
-        ]);
+    public function store(Request $request)
+    {
+        try {
+            // Validate the product data
+            $validateProduct = Validator::make($request->all(), [
+                'title' => 'required',
+                'description' => 'required',
+                'category_id' => 'required|exists:categories,id',
+                'quantity' => 'required',
+                'location' => 'required',
+                'condition' => ['required', 'in:fairly_used,new'],
+                'ask_for_price' => 'required|boolean',
+                'actual_price' => 'required_if:ask_for_price,false|max:7',
+                'promo_price' => 'nullable|max:7',
+                'image_url.*' => 'required|image|mimes:jpg,jpeg,png,gif|max:1024',
+            ], [
+                'category_id.exists' => 'The selected category does not exist',
+                'category_id.required' => 'Please select a category',
+                'image_url.required' => 'Please select an image',
+            ]);
 
 
-        /*
-        // Conditionally add validation rules for actual_price and promo_price
-        $validateProduct->sometimes('actual_price', 'required|max:7', function ($input) {
-            return !$input->ask_for_price;
-        });
-        */
-       
+            if ($validateProduct->fails()) {
 
-        if ($validateProduct->fails()) {
-
-            return response()->json([
-                'status' => false,
-                'message' => 'Validation error',
-                'errors' => $validateProduct->errors()
-            ], 401);
-        }
-
-        // Get authenticated user
-        $authUser = $request->user();
-        $user_id = $authUser->id;
-
-        // Check if user has completed the settings registration form
-        $userData = User::find($user_id);
-
-        if (empty($userData->username) || empty($userData->phone_number) || empty($userData->bio)) {
-            return response()->json([
-                'status' => false,
-                'message' => 'Dashboard Bio Form is required before publishing a product'
-            ], 404);
-        }
-
-    
-
-        // Create the product
-        $product = Product::create([
-            'user_id' => $user_id,
-            'title' => $request->title,
-            'description' => $request->description,
-            'category_id' => $request->category_id,
-            'quantity' => $request->quantity,
-            'location' => $request->location,
-            'actual_price' => $request->ask_for_price ? null : $request->actual_price,
-            'promo_price' => $request->ask_for_price ? null : $request->promo_price,
-            'condition' => $request->condition,
-            'ask_for_price' => $request->ask_for_price,
-            'image_url' => json_encode([]) // Initialize with an empty array
-        ]);
-
-        $imageNames = [];
-
-        // Process uploaded images
-        if ($request->hasFile('image_url')) {
-            $files = $request->file('image_url');
-            $files = is_array($files) ? $files : [$files];
-
-            foreach ($files as $file) {
-                if ($file->isValid()) {
-                    $imageName = md5($file->getClientOriginalName() . time()) . "." . $file->getClientOriginalExtension();
-                    $file->move(public_path('uploads/products/'), $imageName);
-                    $imageNames[] = $imageName;
-                }
-            }
-
-            if (empty($imageNames)) {
                 return response()->json([
                     'status' => false,
-                    'message' => 'No images were processed'
+                    'message' => 'Validation error',
+                    'errors' => $validateProduct->errors()
+                ], 401);
+            }
+
+            
+
+            // Get authenticated user
+            $authUser = $request->user();
+            $user_id = $authUser->id;
+            
+         /*
+            // Check if user has completed the settings registration form
+            $userData = User::find($user_id);
+
+            if (empty($userData->username) || empty($userData->phone_number) || empty($userData->bio)) {
+                return response()->json([
+                    'status' => false,
+                    'message' => 'Dashboard Bio Form is required before publishing a product'
+                ], 404);
+            }
+             
+            */
+
+
+            // Create the product
+            $product = Product::create([
+                'user_id' => $user_id,
+                'title' => $request->title,
+                'description' => $request->description,
+                'category_id' => $request->category_id,
+                'quantity' => $request->quantity,
+                'location' => $request->location,
+                'actual_price' => $request->ask_for_price ? null : $request->actual_price,
+                'promo_price' => $request->ask_for_price ? null : $request->promo_price,
+                'condition' => $request->condition,
+                'ask_for_price' => $request->ask_for_price,
+                'image_url' => json_encode([]) // Initialize with an empty array
+            ]);
+
+            $imageNames = [];
+
+            // Process uploaded images
+            if ($request->hasFile('image_url')) {
+                $files = $request->file('image_url');
+                $files = is_array($files) ? $files : [$files];
+
+                foreach ($files as $file) {
+                    if ($file->isValid()) {
+                        $imageName = md5($file->getClientOriginalName() . time()) . "." . $file->getClientOriginalExtension();
+                        $file->move(public_path('uploads/products/'), $imageName);
+                        $imageNames[] = $imageName;
+                    }
+                }
+
+                if (empty($imageNames)) {
+                    return response()->json([
+                        'status' => false,
+                        'message' => 'No images were processed'
+                    ]);
+                }
+
+                // Update the product's image_url field
+                $product->image_url = json_encode($imageNames);
+                $product->save();
+            } else {
+                return response()->json([
+                    'status' => false,
+                    'message' => 'No image files found in the request'
                 ]);
             }
 
-            // Update the product's image_url field
-            $product->image_url = json_encode($imageNames);
-            $product->save();
-        } else {
+            // Return success response
+            return response()->json([
+                'status' => true,
+                'message' => 'Product created successfully',
+                'data' => $product
+            ]);
+            
+        } catch (\Throwable $th) {
             return response()->json([
                 'status' => false,
-                'message' => 'No image files found in the request'
-            ]);
+                'message' => $th->getMessage()
+            ], 500);
         }
-
-        // Return success response
-        return response()->json([
-            'status' => true,
-            'message' => 'Product created successfully',
-            'data' => $product
-        ]);
-    } catch (\Throwable $th) {
-        return response()->json([
-            'status' => false,
-            'message' => $th->getMessage()
-        ], 500);
     }
-}
 
 
 
@@ -688,25 +678,22 @@ public function store(Request $request)
      */
     public function getProduct($id)
     {
-         debugbar::info($id);
+        debugbar::info($id);
 
         $product =  Product::with('user')->where('quantity', '!=', 0)
-                           ->where('id', $id)
-                           ->withoutTrashed()
-                           ->first(); 
+            ->where('id', $id)
+            ->withoutTrashed()
+            ->first();
 
-         //$product = Product::find($id);
+        //$product = Product::find($id);
 
-        if($product) {
+        if ($product) {
 
             return response()->json([
                 'status' => true,
                 'message' => 'products',
                 'data' => $product,
             ], 200);
-        
-
-
         }
 
 
@@ -714,44 +701,38 @@ public function store(Request $request)
         return response()->json([
             'status' => false,
             'message' => 'Product Not Found',
-        
+
         ], 404);
-
-
-    
-    
-
-     
     }
 
     /**
      * Display User of a product.
      */
     public function showUser(string $id)
-{
-    try {
-        $user = User::findOrFail($id); // Use findOrFail to automatically handle 404 if user is not found
+    {
+        try {
+            $user = User::findOrFail($id); // Use findOrFail to automatically handle 404 if user is not found
 
-        $products = Product::where('user_id', $user->id)
-                             ->where('quantity', '!=', 0)
-                             ->get();
+            $products = Product::where('user_id', $user->id)
+                ->where('quantity', '!=', 0)
+                ->get();
 
-        return response()->json([
-            'status' => true,
-            'message' => 'User and products',
-            'data' => [
-                'user' => $user,
-                'products' => $products,
-            ],
-        ], 200);
-    } catch (\Exception $e) {
-        // Log the exception or return a proper error response
-        return response()->json([
-            'status' => false,
-            'message' => 'Failed to fetch user details: ' . $e->getMessage(),
-        ], 500);
+            return response()->json([
+                'status' => true,
+                'message' => 'User and products',
+                'data' => [
+                    'user' => $user,
+                    'products' => $products,
+                ],
+            ], 200);
+        } catch (\Exception $e) {
+            // Log the exception or return a proper error response
+            return response()->json([
+                'status' => false,
+                'message' => 'Failed to fetch user details: ' . $e->getMessage(),
+            ], 500);
+        }
     }
-}
 
 
     /**
@@ -766,173 +747,164 @@ public function store(Request $request)
 
 
 
-public function update(Request $request, $id) {
+    public function update(Request $request, $id)
+    {
 
-    $validator = Validator::make($request->all(),[
-        'title' => 'required|string',
-        'description' => 'required |string',
-        'quantity'  => 'required|numeric',
-        'location' => 'required',
-        'condition' => ['required','in:fairly_used,new'],
-        'actual_price' => 'required_if:ask_for_price,false',
-        'promo_price' => 'sometimes|required_if:ask_for_price,false',
-        'category'  => 'required|exists:categories,id',
-        'ask_for_price'=> 'sometimes|required|accepted',
-        //'image_url.*' => 'sometimes|image|mimes:jpg,jpeg,png,gif|max:1024',
-        'image_url.*' => 'sometimes|mimes:jpg,jpeg,png,gif|max:1024',
+        $validator = Validator::make($request->all(), [
+            'title' => 'required|string',
+            'description' => 'required |string',
+            'quantity'  => 'required|numeric',
+            'location' => 'required',
+            'condition' => ['required', 'in:fairly_used,new'],
+            'actual_price' => 'required_if:ask_for_price,false',
+            'promo_price' => 'sometimes|required_if:ask_for_price,false',
+            'category'  => 'required|exists:categories,id',
+            'ask_for_price' => 'sometimes|required|accepted',
+            //'image_url.*' => 'sometimes|image|mimes:jpg,jpeg,png,gif|max:1024',
+            'image_url.*' => 'sometimes|mimes:jpg,jpeg,png,gif|max:1024',
 
-    ]);
+        ]);
 
-    if($validator->fails()) {
-        return response()->json([
-            'status' => false,
-            'message' => 'Validation Error',
-            'errors' => $validator->errors(),
-        ],422);
+        if ($validator->fails()) {
+            return response()->json([
+                'status' => false,
+                'message' => 'Validation Error',
+                'errors' => $validator->errors(),
+            ], 422);
+        }
+        $imageNames = [];
+
+        if ($request->has('image_url')) {
+
+            $files = $request->file('image_url');
+            debugbar::info($files);
+            if (!is_array($files)) {
+                $files = [$files];
+            }
+
+            foreach ($files as $file) {
+
+                $imageName = md5($file->getClientOriginalName()) . mt_rand(000, 999) . "." . $file->getClientOriginalExtension();
+                $file->move(public_path('uploads/products/'), $imageName);
+                $imageNames[] = $imageName;
+            }
+
+            // Log::info($imageNames);
 
 
-    }
-      $imageNames = [];
-
-    if($request->has('image_url')) {
-
-        $files = $request->file('image_url');
-        debugbar::info($files);
-        if (!is_array($files)) {
-            $files = [$files];
-        }       
-       
-        foreach ($files as $file) {
-
-            $imageName = md5($file->getClientOriginalName() ) . mt_rand(000, 999) . "." . $file->getClientOriginalExtension();
-            $file->move(public_path('uploads/products/'), $imageName);
-            $imageNames[] = $imageName;
         }
 
-       // Log::info($imageNames);
-        
 
+
+        $userId  = $request->user()->id;
+
+        $product = Product::find($id);
+
+        $product->user_id = $userId;
+        $product->title = $request->input('title');
+        $product->description = $request->input('description');
+        $product->quantity = $request->input('quantity');
+        $product->location = $request->input('location');
+        $product->actual_price = $request->input('actual_price') ?? null;
+        $product->promo_price =  $request->input('promo_price') ?? null;
+        $product->ask_for_price = $request->input('ask_for_price') ? 1 : 0;
+        $product->condition = $request->input('condition');
+        $product->category_id = $request->input('category');
+
+        if (count($imageNames) !== 0) {
+            $product->image_url = json_encode($imageNames);
+        }
+
+        $product->save();
+
+        if ($product->save()) {
+
+            return response()->json([
+                'status' => true,
+                'message' => 'Product Details Updated Successfully',
+
+            ], 200);
+        } else {
+
+            return response()->json([
+                'status' => false,
+                'message' => 'Something Went Wrong!!',
+
+            ], 500);
+        }
     }
 
+    public function getRecentSearch()
+    {
 
+        $searches = Search::orderBy('id', 'desc')->get();
 
-  $userId  = $request->user()->id;
+        if (!$searches->isEmpty()) {
 
-  $product = Product::find($id);
-  
-  $product->user_id = $userId;
-  $product->title = $request->input('title');
-  $product->description = $request->input('description');
-  $product->quantity = $request->input('quantity');
-  $product->location = $request->input('location');
-  $product->actual_price = $request->input('actual_price') ?? null;
-  $product->promo_price =  $request->input('promo_price') ?? null;
-  $product->ask_for_price = $request->input('ask_for_price') ? 1 : 0;
-  $product->condition = $request->input('condition');
-  $product->category_id = $request->input('category');
+            return response()->json([
+                'status' => true,
+                'message' => 'Recent Searches Fetched Successfully',
+                'searches' => $searches,
 
-  if(count($imageNames) !== 0) {
-    $product->image_url = json_encode($imageNames);
+            ], 200);
+        }
 
-  }
-
-  $product->save();
-
-  if($product->save()) {
-
-    return response()->json([
-        'status' => true,
-        'message' => 'Product Details Updated Successfully',
-
-    ],200);
-  }else {
-
-    return response()->json([
-        'status' => false,
-        'message' => 'Something Went Wrong!!',
-
-    ],500);
-
-
-  }
-
-
-
-}
-
-public function getRecentSearch() {
-
-    $searches = Search::orderBy('id', 'desc')->get();
-
-    if(!$searches->isEmpty()) {
 
         return response()->json([
-            'status' => true,
-            'message' => 'Recent Searches Fetched Successfully',
-            'searches' => $searches,
 
-        ],200);
+            'status' => true,
+            'message' => 'No Recent Searches Currently Available!!',
+            'searches' => [],
+
+
+        ], 200);
     }
 
 
-    return response()->json([
 
-        'status' => true,
-        'message' => 'No Recent Searches Currently Available!!',
-        'searches' => [],
+    public function searchProducts(Request $request)
+    {
 
+        $search = trim($request->searchParams);
 
-    ],200);
-}
+        //   if(!$search) {
 
+        //     return response()->json([
+        //         'status' => false,
+        //         'message' => 'Invalid Search Input',
 
-
-public function searchProducts(Request $request) {
-
-  $search = trim($request->searchParams);
-
-//   if(!$search) {
-
-//     return response()->json([
-//         'status' => false,
-//         'message' => 'Invalid Search Input',
-
-//     ], 404);
-//   }
+        //     ], 404);
+        //   }
 
 
 
 
-   $products =  Product::with('user')->where(function($query) use ($search) {
-      $query->where('title', 'LIKE', "%{$search}%")
-      ->orWhere('description', 'LIKE', "%{$search}%")
-      ->orWhere('location', 'LIKE', "%{$search}%");
-               
-   }) ->where('quantity', '!=', 0)
-      ->get();
+        $products =  Product::with('user')->where(function ($query) use ($search) {
+            $query->where('title', 'LIKE', "%{$search}%")
+                ->orWhere('description', 'LIKE', "%{$search}%")
+                ->orWhere('location', 'LIKE', "%{$search}%");
+        })->where('quantity', '!=', 0)
+            ->get();
 
-     
-        if(!$products->isEmpty()) {
+
+        if (!$products->isEmpty()) {
 
             DebugBar::info($products);
 
             $existingSearch = Search::where('query', $search)->first();
 
-            if(!$existingSearch) {
-     
-                if(Search::count() >= 10) {
-                
+            if (!$existingSearch) {
+
+                if (Search::count() >= 10) {
+
                     $oldestSearch = Search::orderBy('id', 'asc')->first();
 
                     $oldestSearch->update(['query' => $search]);
-
-                }else {
+                } else {
 
                     Search::create(['query' => $search]);
                 }
-
-
-        }
+            }
             return response()->json([
                 'status' => true,
                 'message' => 'Product Fetched Successsfully',
@@ -947,134 +919,122 @@ public function searchProducts(Request $request) {
             'products' => [],
 
         ], 200);
-
-
-
-}
-
-
-
-public function searchShopProducts(Request $request) {
-
-   if(!$request->user()) {
-    return response()->json([
-        'status' => false,
-        'message' => 'Authentication Failed',
-
-    ],400);
-   }
-
-   $searchParams = $request->searchParams;
-
-   if(!$searchParams) {
-
-    return response()->json([
-        'status' => false,
-        'message' => 'Empty Search Parameter'
-
-    ],404);
- 
-   }
-
-   $userId = $request->user()->id;
-
-   $products = Product::with('user')->where('user_id', $userId)->where(function ($query) use($searchParams) {
-            $query->orWhere('title', 'like', "%{$searchParams}%")
-                    ->orWhere('description', 'like', "%{$searchParams}%")
-                    ->orWhere('location', 'like', "%{$searchParams}%");
-     
-
-   })->where('quantity', '!=', 0)
-   ->get();
-
-   return response()->json([
-        'status' => true,
-        'message' => 'User Product Fetched Successfully',
-        'products' => $products,
-
-   ],200);
-
-
-
-
-
-}
-
-public function loadSharedProduct($link) {
-
-    return view('other_frontend.shared-product-link');
-
-}
-
-public function getProductLink(Request $request) {
-
- $id = $request->productId;
-
- $product = Product::with('user')
-                    ->where('id', $id)
-                    ->where('quantity', '!=', 0)
-                    ->first();
-
- if(!$product) {
-    return response()->json([
-        'status' => true,
-        'message' => 'No Product Found',
-
-    ],404);
-
- }
-
- $user = $product->user;
-
- $shopToken = $user->shop_token;
- $shopNo = $user->shop_no;
- $url = env('APP_URL');
- $encode = Shop::shopToken(10);
- $decoy = Str::random(10);
-
-
- return response()->json([
-    'status' => true,
-    'data' => [
-    'id' => $id,
-    'shopToken' => $shopToken,
-    'shopNo' => $shopNo,
-    'encode' => $encode,
-    'url' => $url,
-    'decoy' => $decoy,]
-
- ],200);
-
-
-}
-
-public function getSharedProductDetails(Request $request) {
-
-    $id = $request->id;
-    $shopToken = $request->shopToken;
-
-    $product = Product::with('user')->where('id', $id)
-                       ->whereHas('user', function($query) use($shopToken) {
-                        $query->where('shop_token', $shopToken);
-
-    })->where('quantity', '!=', 0)
-      ->first();
-
-    if(!$product) {
-        return response()->json([
-            'status' => false,
-            'message' => 'Product Not Found'
-
-
-        ], 404);
-
     }
 
-    $userId = $product->user_id;
 
-    $otherProducts = Product::with('user')
-                            ->where('quantity', '!=', 0)
-                            ->where('user_id', $userId)->get();
+
+    public function searchShopProducts(Request $request)
+    {
+
+        if (!$request->user()) {
+            return response()->json([
+                'status' => false,
+                'message' => 'Authentication Failed',
+
+            ], 400);
+        }
+
+        $searchParams = $request->searchParams;
+
+        if (!$searchParams) {
+
+            return response()->json([
+                'status' => false,
+                'message' => 'Empty Search Parameter'
+
+            ], 404);
+        }
+
+        $userId = $request->user()->id;
+
+        $products = Product::with('user')->where('user_id', $userId)->where(function ($query) use ($searchParams) {
+            $query->orWhere('title', 'like', "%{$searchParams}%")
+                ->orWhere('description', 'like', "%{$searchParams}%")
+                ->orWhere('location', 'like', "%{$searchParams}%");
+        })->where('quantity', '!=', 0)
+            ->get();
+
+        return response()->json([
+            'status' => true,
+            'message' => 'User Product Fetched Successfully',
+            'products' => $products,
+
+        ], 200);
+    }
+
+    public function loadSharedProduct($link)
+    {
+
+        return view('other_frontend.shared-product-link');
+    }
+
+    public function getProductLink(Request $request)
+    {
+
+        $id = $request->productId;
+
+        $product = Product::with('user')
+            ->where('id', $id)
+            ->where('quantity', '!=', 0)
+            ->first();
+
+        if (!$product) {
+            return response()->json([
+                'status' => true,
+                'message' => 'No Product Found',
+
+            ], 404);
+        }
+
+        $user = $product->user;
+
+        $shopToken = $user->shop_token;
+        $shopNo = $user->shop_no;
+        $url = env('APP_URL');
+        $encode = Shop::shopToken(10);
+        $decoy = Str::random(10);
+
+
+        return response()->json([
+            'status' => true,
+            'data' => [
+                'id' => $id,
+                'shopToken' => $shopToken,
+                'shopNo' => $shopNo,
+                'encode' => $encode,
+                'url' => $url,
+                'decoy' => $decoy,
+            ]
+
+        ], 200);
+    }
+
+    public function getSharedProductDetails(Request $request)
+    {
+
+        $id = $request->id;
+        $shopToken = $request->shopToken;
+
+        $product = Product::with('user')->where('id', $id)
+            ->whereHas('user', function ($query) use ($shopToken) {
+                $query->where('shop_token', $shopToken);
+            })->where('quantity', '!=', 0)
+            ->first();
+
+        if (!$product) {
+            return response()->json([
+                'status' => false,
+                'message' => 'Product Not Found'
+
+
+            ], 404);
+        }
+
+        $userId = $product->user_id;
+
+        $otherProducts = Product::with('user')
+            ->where('quantity', '!=', 0)
+            ->where('user_id', $userId)->get();
 
         return response()->json([
             'status' => true,
@@ -1084,80 +1044,72 @@ public function getSharedProductDetails(Request $request) {
                 'otherProduct' => $otherProducts,
             ]
 
-        ],200);
-    
-
-
-}
-
-
-public function  storeProductEngagement(Request $request) {
-
-   debugbar::info($request->all());
-
-   if(!$request->user()) {
-
-    return response()->json([
-        'status' => false,
-        'message' => 'Authentication Fails',
-
-
-    ],401);
-   }
-
-   $validator = Validator::make($request->all(), [
-        'product_id' => 'required|exists:products,id',
-        'user_id' => 'required|exists:users,id',
-   ]);
-
-   if($validator->fails()) {
-    
-    return response()->json([
-        'status' => true,
-        'message' => 'validation failed',
-        'errors' => $validator->errors(),
-
-    ],422);
-
-   }
-
-   $productId = $request->product_id;
-  // $userId = $request->user_id;
-  $userId = $request->user()->id;
-
-  $engagement = ProductEngagementLog::create([
-    'user_id' => $userId,
-    'product_id' => $productId,
-   ]);
-
-
-   if($engagement) {
-
-    return response()->json([
-        'status' => true,
-        'message' => 'Product engagement details saved successfully',
-
-    ],200);
-   } else {
-    
-    return response()->json([
-        'status' => false,
-        'message' => 'Product engagement details could not be saved'
-
-    ],500);
-
-
+        ], 200);
     }
 
 
+    public function  storeProductEngagement(Request $request)
+    {
 
-}
+        debugbar::info($request->all());
+
+        if (!$request->user()) {
+
+            return response()->json([
+                'status' => false,
+                'message' => 'Authentication Fails',
+
+
+            ], 401);
+        }
+
+        $validator = Validator::make($request->all(), [
+            'product_id' => 'required|exists:products,id',
+            'user_id' => 'required|exists:users,id',
+        ]);
+
+        if ($validator->fails()) {
+
+            return response()->json([
+                'status' => true,
+                'message' => 'validation failed',
+                'errors' => $validator->errors(),
+
+            ], 422);
+        }
+
+        $productId = $request->product_id;
+        // $userId = $request->user_id;
+        $userId = $request->user()->id;
+
+        $engagement = ProductEngagementLog::create([
+            'user_id' => $userId,
+            'product_id' => $productId,
+        ]);
+
+
+        if ($engagement) {
+
+            return response()->json([
+                'status' => true,
+                'message' => 'Product engagement details saved successfully',
+
+            ], 200);
+        } else {
+
+            return response()->json([
+                'status' => false,
+                'message' => 'Product engagement details could not be saved'
+
+            ], 500);
+        }
+    }
 
     /**
      * Update the specified resource in storage.
      */
 
-/*
+    /*
 
  public function update(Request $request, string $id)
     {
@@ -1225,32 +1177,32 @@ public function  storeProductEngagement(Request $request) {
 
         // Perform search query
         $products = Product::where('title', 'like', "%$query%")
-                            ->orWhere('description', 'like', "%$query%")
-                            ->orWhereHas('category', function ($q) use ($query) {
-                                $q->where('name', 'like', "%$query%");
-                            })
-                            ->get();
+            ->orWhere('description', 'like', "%$query%")
+            ->orWhereHas('category', function ($q) use ($query) {
+                $q->where('name', 'like', "%$query%");
+            })
+            ->get();
 
         return response()->json($products);
     }
 
-        public function showProduct($id)
+    public function showProduct($id)
     {
         $product = Product::where('id', $id)
-                          ->where('quantity', '!=', 0)
-                          ->first();
+            ->where('quantity', '!=', 0)
+            ->first();
         return view('other_frontend.product_des', compact('product'));
     }
 
 
-// This gets the details of the seller which is a user and other products
-// associated with the user
+    // This gets the details of the seller which is a user and other products
+    // associated with the user
     public function getSellerDetails($productId)
     {
         // Find the product by ID
         $product = Product::where('id', $productId)
-                          ->where('quantity', '!=', 0)
-                          ->first();
+            ->where('quantity', '!=', 0)
+            ->first();
 
         if (!$product) {
             return response()->json(['error' => 'Product not found'], 404);
@@ -1261,9 +1213,9 @@ public function  storeProductEngagement(Request $request) {
 
         // Get other products by the same seller
         $otherProducts = Product::where('user_id', $seller->id)
-                                ->where('id', '!=', $productId)
-                                ->where('quantity', '!=', 0)
-                                ->get();
+            ->where('id', '!=', $productId)
+            ->where('quantity', '!=', 0)
+            ->get();
 
         return response()->json([
             'seller' => $seller,
@@ -1273,12 +1225,12 @@ public function  storeProductEngagement(Request $request) {
 
 
     public function getProductsBySeller($sellerId)
-{
-    $products = Product::where('user_id', $sellerId)
-                       ->where('quantity', '!=', 0)
-                       ->get();
-    return response()->json($products);
-}
+    {
+        $products = Product::where('user_id', $sellerId)
+            ->where('quantity', '!=', 0)
+            ->get();
+        return response()->json($products);
+    }
 
     /**
      * This part works for the product listing in Shop.blade.php
@@ -1295,18 +1247,18 @@ public function  storeProductEngagement(Request $request) {
             }
 
             $products = Product::with('user')
-                               ->where('user_id', $user->id)
-                               ->where('quantity', '!=', 0)
-                               ->get();
-                               
+                ->where('user_id', $user->id)
+                ->where('quantity', '!=', 0)
+                ->get();
+
             return response()->json([
-                    'status' => true,
-                    'message' => 'Product Listed',
-                    'data' => $products,
-                ], 200);
+                'status' => true,
+                'message' => 'Product Listed',
+                'data' => $products,
+            ], 200);
         } catch (\Exception $e) {
             // Log the error for further investigation
-            Log::error("Error fetching user products: ".$e->getMessage());
+            Log::error("Error fetching user products: " . $e->getMessage());
 
             // Return a generic error message to the client
             return response()->json(['message' => 'Internal Server Error'], 500);
@@ -1319,32 +1271,29 @@ public function  storeProductEngagement(Request $request) {
     public function delete(string $id)
     {
         //log::info($id);
-        
+
         $product = Product::find($id);
 
-       $prd =  $product->delete();
+        $prd =  $product->delete();
 
-              if($prd){
-                return response()->json([
-                    'status' => true,
-                    'message' => 'Product deleted successfully',
-                ], 200);
-              }
-            
-           else {
-                return response()->json([
-                    'status' => false,
-                    'message' => 'Unable to delete product',
-                    
-                ], 500);
-              }
+        if ($prd) {
+            return response()->json([
+                'status' => true,
+                'message' => 'Product deleted successfully',
+            ], 200);
+        } else {
+            return response()->json([
+                'status' => false,
+                'message' => 'Unable to delete product',
 
-              
+            ], 500);
+        }
+
+
         return response()->json([
             'status' => false,
             'message' => 'Product Not Found'
 
-        ],404);
-              
+        ], 404);
     }
 }

@@ -990,7 +990,7 @@ document.addEventListener("DOMContentLoaded", function () {
                       try {
                         const productUrl = await fetchLink(productId);
 
-                        let field = document.getElementById('test');
+                        let field = document.getElementById('test-mobile');
 
                      field.value = productUrl;
                       navigator.clipboard.writeText(field.value).then(() => {

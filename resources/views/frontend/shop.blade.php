@@ -714,6 +714,8 @@
         </div>
     </div>
     <div class="mobile_content">
+
+          <input id="test-mobile" type="text" hidden>
         <div class="card mb-3 mt-3  main-card-mobile">
             <form id="banner-image-form2" action="">
                 <img style="height:180px; width:100%; object-fit:cover" id="banner2" src="" class="card-img-top js-backend-img" alt="...">
@@ -1182,7 +1184,7 @@
                 </div>
             </div>
 
-
+   
         </div>
 
 

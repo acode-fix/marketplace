@@ -484,7 +484,7 @@
                                     <button style="float: right" type="button"
                                         class="btn next-edit next-to-step-2">Next</button>
                                 </div>
-
+                                 
                                 <!-- Step 2 -->
                                 <div class="modal-step-2" style="display: none;">
                                     <form id="edit-product-form-2" enctype="multipart/form-data">

@@ -10,6 +10,7 @@ import {
 
 import { serverError } from "./admin/auth-helper.js";
 
+import copy from 'https://cdn.jsdelivr.net/npm/clipboard-copy/+esm';
 import dayjs from "https://unpkg.com/dayjs@1.11.10/esm/index.js";
 
 const token = localStorage.getItem("apiToken");
@@ -138,7 +139,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     try {
                         const productUrl = await fetchLink(productId);
 
-                        const copied = await copyText(productUrl);
+                        const copied = await copyText(productUrl) || copy(productUrl);
 
                         if (copied) {
                             Swal.fire({
@@ -214,6 +215,8 @@ document.addEventListener("DOMContentLoaded", function () {
                 textarea.select();
                 const success = document.execCommand("copy");
                 document.body.removeChild(textarea);
+
+            
                 return success;
             }
 
@@ -969,6 +972,9 @@ document.addEventListener("DOMContentLoaded", function () {
                         const productUrl = await fetchLink(productId);
 
                         const copied = await copyText(productUrl);
+
+                        
+                
 
                         if (copied) {
                             Swal.fire({

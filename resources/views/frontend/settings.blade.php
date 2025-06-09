@@ -406,6 +406,7 @@
               <option value="Makurdi">Makurdi</option>
               <option value="Minna">Minna</option>
               <option value="Ogun">Ogun</option>
+               <option value="Osun">Osun</option>
               <option value="Owerri">Owerri</option>
               <option value="Owere">Owere</option>
               <option value="Port Harcourt">Port Harcourt</option>
@@ -579,6 +580,7 @@
           <option value="Makurdi">Makurdi</option>
           <option value="Minna">Minna</option>
           <option value="Ogun">Ogun</option>
+           <option value="Osun">Osun</option>
           <option value="Owerri">Owerri</option>
           <option value="Owere">Owere</option>
           <option value="Port Harcourt">Port Harcourt</option>

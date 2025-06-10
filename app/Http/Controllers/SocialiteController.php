@@ -28,7 +28,12 @@ class SocialiteController extends Controller
 
     public function redirect($provider)
     {
-        return Socialite::driver($provider)->with(['display' => 'popup'])->stateless()->redirect();
+        $parameters = [
+            'display' => 'popup',
+            'auth_type' => 'rerequest',
+            'force_mobile' => false
+        ];
+        return Socialite::driver($provider)->with($parameters)->stateless()->redirect();
     }
 
     /**

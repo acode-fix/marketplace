@@ -11,17 +11,17 @@ links.forEach((link) => {
 });
 
 
-const fblinks = document.querySelectorAll(".fb-login");
+// const fblinks = document.querySelectorAll(".fb-login");
 
 
-fblinks.forEach((link) => {
-    link.addEventListener("click", (e) => {
-        e.preventDefault();
-        const provider = "facebook";
-        window.location.href = `/auth/${provider}/redirect`;
+// fblinks.forEach((link) => {
+//     link.addEventListener("click", (e) => {
+//         e.preventDefault();
+//         const provider = "facebook";
+//         window.location.href = `/auth/${provider}/redirect`;
       
-    });
-});
+//     });
+// });
 
 
 

@@ -28,12 +28,7 @@ class SocialiteController extends Controller
 
     public function redirect($provider)
     {
-        $parameters = [
-            'display' => 'popup',
-            'auth_type' => 'rerequest',
-            'force_mobile' => false
-        ];
-        return Socialite::driver($provider)->with($parameters)->stateless()->redirect();
+        return Socialite::driver($provider)->stateless()->redirect();
     }
 
     /**
@@ -48,6 +43,7 @@ class SocialiteController extends Controller
 
             // Get the user from the Google/Microsoft callback
             $providerUser = Socialite::driver($provider)->stateless()->user();
+            
         } catch (Exception $e) {
 
             Log::error(message: 'Provider error : ' . $e->getMessage());
@@ -62,20 +58,22 @@ class SocialiteController extends Controller
 
             $user = $this->findOrCreate($providerUser, $provider);
 
-            if ($user->user_type == -2) {
+             if ($user->user_type == -2) {
                 return $this->errorResponse(
                     message: 'Account suspended, contact support!!',
                     statusCode: Response::HTTP_FORBIDDEN
                 );
             }
 
-
+             
             if ($user && $user->trashed()) {
                 return $this->errorResponse(
-                    message: 'You account has been deleted',
-                    statusCode: Response::HTTP_FORBIDDEN,
-                );
+                message: 'You account has been deleted',
+                statusCode: Response::HTTP_FORBIDDEN,
+            );
             }
+
+            
         } else {
             return $this->errorResponse(
                 message: 'Failed to login try again',
@@ -95,7 +93,7 @@ class SocialiteController extends Controller
         $linkedSocialAccount = LinkedSocialAccount::query()->where('provider_name', $provider)->where('provider_id', $providerUser->getId())->first();
 
         if ($linkedSocialAccount) {
-
+            
             return $linkedSocialAccount->user;
         } else {
             $user = null;

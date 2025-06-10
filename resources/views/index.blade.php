@@ -1242,7 +1242,7 @@
     <script type="module" src="{{ asset('backend-js/index.js') }}"></script>
     <script src="{{ asset('backend-js/user/auth.js') }}"></script>
     <script type="module" src="{{ asset('backend-js/notification.js') }}"></script>
-    <script type="module" src="{{ asset('backend-js/user/social-login.js') }}?time={{ time() }}"></script>
+    <script type="module" src="{{ asset('backend-js/user/social-login.js') }}"></script>
     <script type="module" src="{{ asset('backend-js/user/user-setting-status.js') }}"></script>
     
  

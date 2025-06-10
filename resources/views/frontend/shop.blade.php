@@ -1199,7 +1199,7 @@
 
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10/dist/sweetalert2.all.min.js"></script>
-<script type="module" src="{{ asset('backend-js/shop.js') }}?time={{ time() }}"></script>
+<script type="module" src="{{ asset('backend-js/shop.js') }}"></script>
 
 
 

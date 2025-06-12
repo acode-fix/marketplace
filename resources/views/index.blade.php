@@ -451,11 +451,11 @@
                         Get an active badge by becoming a verified seller <br> and enjoy multiple benefits that comes
                         with being a verified seller
                         <br><br><br>
-                         <button class="get_started  animate animate-pulse4 js-get-started">Get
-                            Started</button> 
-                        {{-- <a class="js-become-link js-get-started" href=""><button
+                        {{-- <button class="get_started animate animate-pulse4 js-get-started">Get
+                            Started</button> --}}
+                        <a class="js-become-link js-get-started" href=""><button
                                 class="get_started animate animate-pulse4">Get
-                                Started</button></a> --}}
+                                Started</button></a>
                         {{-- <strong>Reach more audience by promoting your Product(s)</strong><br>
                         determine your target audience location, interest, <br> select a
                         convenient budget and duration

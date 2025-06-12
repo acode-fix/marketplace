@@ -468,6 +468,8 @@ function updateUserProfile(user) {
     );
     const userRequestEl = document.querySelector(".js-tell-us");
 
+
+
     if (user) {
         getIndexProfileImage(user, profileImageElement);
         getIndexProfileImage(user, profilePictureElement);
@@ -479,8 +481,9 @@ function updateUserProfile(user) {
         getEl.addEventListener("click", (event) => {
             event.preventDefault();
 
+    
             if (user.verify_status == 1 && user.badge_status == 1) {
-                console.log(user);
+              return  console.log(user, 'verified & active badge');
                 const title =
                     '<span class="text-success">verified seller</span>';
                 const content =
@@ -490,7 +493,7 @@ function updateUserProfile(user) {
             }
 
             if (user.verify_status == -2 && user.badge_status == 0) {
-                console.log(user);
+            return    console.log(user, 'pending verification');
                 const title =
                     '<span class="text-success">Pending Verification</span>';
                 const content =
@@ -500,13 +503,14 @@ function updateUserProfile(user) {
             }
 
             if (user.verify_status == 0 && user.badge_status == 0) {
-                console.log(user);
+           return     console.log(user, 'No verification and badge');
                 window.location.href = "/become";
             }
 
             if (user.verify_status == 1 && user.badge_status == -1) {
-                console.log(user);
-                window.location.href = "/become";
+               return     console.log(user, 'verified & badge expired');
+                 //badge expired
+                window.location.href = "/badge";
             }
         });
     } else {

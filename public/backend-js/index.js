@@ -218,81 +218,7 @@ function renderProductsAndSections(products) {
     });
 }
 
-/*
-function createProductCard(product) {
 
-    const card = document.createElement('div');
-            card.className = 'card';
-
-    let product_img_url = '';
-    JSON.parse(product.image_url).forEach((el, i) => {
-        if (i === 0) product_img_url = el;
-    });
-
-   
-    const{verify_status, badge_status,} = product?.user ?? product;
-
-   const badge = verify_status == 1 && badge_status == 1 ? `<img class="logo-bag" src="kaz/images/badge.png" alt="">` : `<img src="innocent/assets/image/logo icon.svg" alt="">`;
-   const sold = document.querySelector('.sold');
-
-    // Define a sanitize function for the product description if needed
-    const sanitizeString = (str) => {
-        return str.replace(/'/g, "\\'") // Escape single quotes
-            .replace(/"/g, '\\"') // Escape double quotes
-            .replace(/\\/g, '\\\\') // Escape backslashes
-            .replace(/\n/g, '\\n') // Escape newlines
-            .replace(/\r/g, '\\r') // Escape carriage returns
-            .replace(/\u2028/g, '\\u2028') // Escape line separator
-            .replace(/\u2029/g, '\\u2029'); // Escape paragraph separator
-    };
-
-    const sanitizedProduct = {
-        ...product,
-        description: product.description ? sanitizeString(product.description) : ""
-    };
-
-
-   
-    card.innerHTML = `
-        <a href="/product_des" class="product_card_link js-auth-card" data-product='${JSON.stringify(product)}'>
-            <div class="card product_card">
-                <h6 class="sold ${formatProductCondition(product) === 'new' ? 'new-product' : 'used-product'}">${formatProductCondition(product)} <br> <img src="innocent/assets/image/Rate.png" alt=""> ${product.avg_rating || 0}</h6> 
-                <img src="uploads/products/${product_img_url || 'default.jpg'}" class="card-img-top w-100 product_image" alt="${product.title}">
-                <div class="product_card_title">
-                    <div class="main_and_promo_price_area">
-                        ${getIndexPrice(product)}   
-                    </div>
-
-                    <p class="product_name">${product.title}</p>
-                    <span class="product_card_location"><i class="fa-solid fa-location-dot"></i> ${product.location}</span>
-                    ${badge}
-                    <span class="connect"><strong>connect</strong></span>
-                </div>
-            </div>
-        </a>
-    `;
-
-    card.querySelector('.product_card_link').addEventListener('click', function (event) {
-        event.preventDefault();
-
-        if(!token) {
-            promptLogin();
-
-            return
-            
-        }
-
-        const productData = this.getAttribute('data-product');
-        const parsedData = JSON.parse(productData);
-        
-        localStorage.setItem('selectedProduct', JSON.stringify(parsedData));
-
-    window.location.href = this.href;
-    });
-
-    return card;
-}
-*/
 function createProductCard(product) {
     const card = document.createElement("div");
     card.className = "card";
@@ -467,7 +393,7 @@ function updateUserProfile(user) {
         "profile_picture_mobile"
     );
     const userRequestEl = document.querySelector(".js-tell-us");
-    console.log(user);
+    
 
 
 
@@ -478,6 +404,7 @@ function updateUserProfile(user) {
         getIndexProfileImage(user, userRequestEl);
 
         const getEl = document.querySelector(".js-get-started");
+        console.log(getEl);
 
         getEl.addEventListener("click", (event) => {
             event.preventDefault();

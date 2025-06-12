@@ -467,6 +467,7 @@ function updateUserProfile(user) {
         "profile_picture_mobile"
     );
     const userRequestEl = document.querySelector(".js-tell-us");
+    console.log(user);
 
 
 

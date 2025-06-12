@@ -48,7 +48,7 @@ if (!token) {
             event.preventDefault();
             promptLogin();
           
-        }, {once:true});
+        });
     });
 
     const guestDashboard = ` <div class="profile_card_user_name">
@@ -442,6 +442,7 @@ function updateUserProfile(user) {
                 window.location.href = "/badge";
             }
         });
+
     } else {
         //  console.error('User data is null or undefined');
     }

@@ -408,9 +408,10 @@ function updateUserProfile(user) {
         console.log(getEl);
 
         getEl.addEventListener("click", (event) => {
+            console.log('clicked');
             event.preventDefault();
 
-    
+
             if (user.verify_status == 1 && user.badge_status == 1) {
               return  console.log(user, 'verified & active badge');
                 const title =

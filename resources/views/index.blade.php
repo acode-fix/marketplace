@@ -451,7 +451,7 @@
                         Get an active badge by becoming a verified seller <br> and enjoy multiple benefits that comes
                         with being a verified seller
                         <br><br><br>
-                         <button class="get_started js-get-started animate animate-pulse4 js-get-started">Get
+                         <button class="get_started  animate animate-pulse4 js-get-started">Get
                             Started</button> 
                         {{-- <a class="js-become-link js-get-started" href=""><button
                                 class="get_started animate animate-pulse4">Get

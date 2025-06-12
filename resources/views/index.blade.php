@@ -453,7 +453,7 @@
                         <br><br><br>
                         {{-- <button class="get_started animate animate-pulse4 js-get-started">Get
                             Started</button> --}}
-                        <a class="js-become-link js-get-started" href=""><button
+                        <a class="js-get-started" href=""><button
                                 class="get_started animate animate-pulse4">Get
                                 Started</button></a>
                         {{-- <strong>Reach more audience by promoting your Product(s)</strong><br>

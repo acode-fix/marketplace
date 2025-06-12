@@ -423,13 +423,9 @@
           <div class="mb-3 col-8">
             <label for="usernameInput" class="form-label">Describe your business</label>
             <textarea class="form-control" name="bio" id="profileInput" rows="3"
-              placeholder="This is will be displayed to potential buyers only if you are a verified seller (Max300)"></textarea>
+              placeholder="This is will be displayed to potential buyers only if you are a verified seller (Max500)"></textarea>
 
-            {{-- <label for="usernameInput" class="form-label">Describe your business</label>
-
-            <input type="text" name="bio" class="form-control" id="profileInput"
-              placeholder="This is will be displayed to potential buyers only if you are a verified seller (Max300)">
-            --}}
+            
             <span id="bio-error" class="error"></span>
           </div>
           <div class="mt-3 col-2 post-btn">
@@ -596,11 +592,9 @@
        <div class="mb-3 col-10">
 
         <label  for="usernameInput" class="form-label">Describe your business</label>
-        <textarea class="form-control" name="bio" id="profileInput1" rows="3"   placeholder="This is will be displayed to potential buyers only if you are a verified seller (Max300)"></textarea>
+        <textarea class="form-control" name="bio" id="profileInput1" rows="3"   placeholder="This is will be displayed to potential buyers only if you are a verified seller (Max500)"></textarea>
 
-        {{-- <label for="usernameInput" class="form-label">Describe your business</label>
-        <input type="text" class="form-control" name="bio" id="profileInput1"
-          placeholder="This is will be displayed to potential buyers only if you are a verified seller (Max300)"> --}}
+       
         <span id="bio-error-mobile" class="error"></span>
 
       </div>
@@ -655,7 +649,7 @@
 
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10/dist/sweetalert2.all.min.js"></script>
-<script type="module" src="{{ asset('backend-js/settings.js')}}?time={{ time() }}"></script>
+<script type="module" src="{{ asset('backend-js/settings.js')}}"></script>
 
 <script>
 

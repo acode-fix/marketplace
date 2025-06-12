@@ -3,19 +3,12 @@ import {
     getIndexProfileImage,
     sendProductRequest,
     promptLogin,
-    formatPrice,
-    getShopPrice,
     getIndexPrice,
     formatProductCondition,
-    showLoader,
-    hideLoader,
-    getStarted,
     dropDownDetails,
-    loadResponse,
     checkProfileReg,
 } from "./helper/helper.js";
-
-
+import verificationBtnStatus from "./user/verification-status.js";
 
 const token = localStorage.getItem("apiToken");
 
@@ -25,7 +18,6 @@ const logoImg = document.querySelector(".js-logo-img");
 const logoLink = document.querySelector(".js-logo-link");
 
 if (!token) {
-    
     logoLink.addEventListener("click", (event) => {
         event.preventDefault();
     });
@@ -47,7 +39,6 @@ if (!token) {
         link.addEventListener("click", (event) => {
             event.preventDefault();
             promptLogin();
-          
         });
     });
 
@@ -218,7 +209,6 @@ function renderProductsAndSections(products) {
         }
     });
 }
-
 
 function createProductCard(product) {
     const card = document.createElement("div");
@@ -394,9 +384,6 @@ function updateUserProfile(user) {
         "profile_picture_mobile"
     );
     const userRequestEl = document.querySelector(".js-tell-us");
-    
-
-
 
     if (user) {
         getIndexProfileImage(user, profileImageElement);
@@ -405,46 +392,12 @@ function updateUserProfile(user) {
         getIndexProfileImage(user, userRequestEl);
 
         const getEl = document.querySelector(".js-get-started");
-        console.log(getEl);
 
         getEl.addEventListener("click", (event) => {
-            console.log('clicked', user);
-            
             event.preventDefault();
 
-
-            if (user.verify_status === '1' && user.badge_status === '1') {
-              return  console.log(user, 'verified & active badge');
-                const title =
-                    '<span class="text-success">verified seller</span>';
-                const content =
-                    '<span class="text-dark">You have an active badge</span>';
-
-                loadResponse(title, content);
-            }
-
-            if (user.verify_status === '-2' && user.badge_status === '0') {
-            return    console.log(user, 'pending verification');
-                const title =
-                    '<span class="text-success">Pending Verification</span>';
-                const content =
-                    '<span class="text-dark">Awaiting Admin Approval </span>';
-
-                loadResponse(title, content);
-            }
-
-            if (user.verify_status === '0' && user.badge_status === '0') {
-           return     console.log(user, 'No verification and badge');
-                window.location.href = "/become";
-            }
-
-            if (user.verify_status === '1' && user.badge_status ===  '-1') {
-               return     console.log(user, 'verified & badge expired');
-                 //badge expired
-                window.location.href = "/badge";
-            }
+            verificationBtnStatus(user);
         });
-
     } else {
         //  console.error('User data is null or undefined');
     }

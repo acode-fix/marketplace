@@ -13,12 +13,12 @@ import {
     promptLogin,
     getIndexPrice,
     formatProductCondition,
-    loadResponse,
     getSharePrice,
     getTestPrice,
 } from "./helper/helper.js";
 
 import { checkUserSettingStatus } from "./user/user-setting-status.js";
+import verificationBtnStatus from "./user/verification-status.js";
 
 checkUserSettingStatus();
 
@@ -139,27 +139,7 @@ function loadCarousel(product) {
                 getEl.addEventListener("click", (event) => {
                     event.preventDefault();
 
-                    if (user.verify_status == 1 && user.badge_status == 1) {
-                        const title =
-                            '<span class="text-success">verified seller</span>';
-                        const content =
-                            '<span class="text-dark">You have an active badge</span>';
-
-                        loadResponse(title, content);
-                    }
-
-                    if (user.verify_status == -2 && user.badge_status == 0) {
-                        const title =
-                            '<span class="text-success">Pending Verification</span>';
-                        const content =
-                            '<span class="text-dark">Awaiting Admin Approval </span>';
-
-                        loadResponse(title, content);
-                    }
-
-                    if (user.verify_status == 0 && user.badge_status == 0) {
-                        window.location.href = "/become";
-                    }
+                   verificationBtnStatus(user);
                 });
             }
         });

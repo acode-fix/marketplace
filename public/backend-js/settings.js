@@ -109,9 +109,9 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
 
-        if (words.length > 300) {
+        if (words.length > 500) {
 
-            desktopEl.textContent = '* Bio Must Not Exceed 300 Words !! *';
+            desktopEl.textContent = '* Bio Must Not Exceed 500 chars !! *';
             isValid = true;
 
         } else {
@@ -119,9 +119,9 @@ document.addEventListener('DOMContentLoaded', function () {
             desktopEl.textContent = '';
         }
 
-        if (mobileWords.length > 300) {
+        if (mobileWords.length > 500) {
 
-            mobileEl.textContent = '* Bio Must Not Exceed 300 Words !! *';
+            mobileEl.textContent = '* Bio Must Not Exceed 500 chars !! *';
             isValid = true;
 
         } else {

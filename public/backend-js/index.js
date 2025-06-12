@@ -408,7 +408,8 @@ function updateUserProfile(user) {
         console.log(getEl);
 
         getEl.addEventListener("click", (event) => {
-            console.log('clicked');
+            console.log('clicked', user);
+            
             event.preventDefault();
 
 

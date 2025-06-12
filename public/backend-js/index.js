@@ -47,7 +47,8 @@ if (!token) {
         link.addEventListener("click", (event) => {
             event.preventDefault();
             promptLogin();
-        });
+          
+        }, {once:true});
     });
 
     const guestDashboard = ` <div class="profile_card_user_name">

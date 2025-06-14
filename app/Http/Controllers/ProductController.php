@@ -10,6 +10,7 @@ use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\Category;
 use App\Models\Search;
 use Barryvdh\Debugbar\Facades\Debugbar;
 use Illuminate\Support\Facades\Validator;
@@ -70,6 +71,7 @@ class ProductController extends Controller
     public function index()
     {
         $totalProducts = Product::count();
+        
 
         if ($totalProducts <= 16) {
 

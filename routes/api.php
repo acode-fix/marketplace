@@ -18,6 +18,7 @@ use App\Http\Controllers\AdvertController;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\BadgeController;
 use App\Http\Controllers\SocialiteController;
+use App\Http\Controllers\UserProductListingController;
 use App\Models\Verification;
 
 
@@ -56,7 +57,7 @@ Route::get('/user/products', [ProductController::class, 'userProducts']);
 
 
 Route::prefix('v1')->middleware('auth:sanctum')->group(function () {
-
+  
 
         Route::get('/user', [UsersController::class, 'getUser']);
         Route::get('/users', [UsersController::class, 'view']);
@@ -103,6 +104,9 @@ Route::prefix('v1')->middleware('auth:sanctum')->group(function () {
         Route::get('admin/suspended-users', [AdminController::class, 'getSuspendedUsers']);
         Route::post('admin/unsuspend/{id}', [AdminController::class, 'unsuspendUsers']);
         Route::get('admin/deleted-account', [AdminController::class, 'getDeletedAccounts']);
+        Route::get('admin/user-product-listing', [UserProductListingController::class, 'getUserWithProducts']);
+        Route::get('admin/users/unlisted-products', [UserProductListingController::class, 'getUserWithNoProducts']);
+
 
 
         //ADMIN PRODUCTS MENU ROUTES; 
@@ -150,6 +154,11 @@ Route::prefix('v1')->middleware('auth:sanctum')->group(function () {
         Route::post('admin/profile/update',[AdminController::class,'updateProfile']);
 
 
+        //ROUTE FOR ADMIN DASHBOARD STATISTICS
+
+        Route::get('/admin/dashboard-statistics', [AdminController::class, 'getDashboardStatistics']);
+
+
 
         //Verified Seller Shop Route;
 
@@ -164,9 +173,7 @@ Route::prefix('v1')->middleware('auth:sanctum')->group(function () {
         Route::get('/search/shop/products', [ProductController::class, 'searchShopProducts']);
         Route::get('/recent/search', [ProductController::class, 'getRecentSearch']);
 
-
-
-
+      
 
 
         //Route product link 

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Helpers\RepositoryHelper;
 use App\Models\AgentRefferal;
 use App\Models\Category;
 use App\Models\Learn;
@@ -15,6 +16,7 @@ use App\Models\UserProductRequest;
 use Illuminate\Http\Request;
 use Barryvdh\Debugbar\Facades\Debugbar;
 use Exception;
+use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\DB;
@@ -22,7 +24,27 @@ use Illuminate\Support\Facades\DB;
 use function PHPUnit\Framework\isEmpty;
 
 class AdminController extends Controller
-{
+{    
+    public function __construct(private RepositoryHelper $repositoryHelper)
+    {
+        
+    }
+
+    public function getDashboardStatistics()
+    {
+        $userWithProducts = $this->repositoryHelper->getUserWithProducts();
+        $userWithNoProducts = $this->repositoryHelper->getUserWithNoProduct();
+
+        return $this->successResponse(
+            statusCode: Response::HTTP_OK,
+            message: 'Product listing statistics fetched successfully',
+            data: [
+                'userWithProducts' => $userWithProducts->count(),
+                'userWithNoProducts' => $userWithNoProducts->count(),
+            ]
+        );
+    }
+
     /**
      * Display a listing of the resource.
      */

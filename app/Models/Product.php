@@ -9,18 +9,29 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Product extends Model
 {
-    use HasFactory,softDeletes;
+    use HasFactory, softDeletes;
 
     protected $fillable = [
-        'user_id', 'title', 'description', 'category_id', 'quantity',
-        'location', 'actual_price', 'promo_price', 'condition', 'image_url', 'ask_for_price', 'sold', 'avg_rating'
+        'user_id',
+        'title',
+        'description',
+        'category_id',
+        'quantity',
+        'location',
+        'actual_price',
+        'promo_price',
+        'condition',
+        'image_url',
+        'ask_for_price',
+        'sold',
+        'avg_rating'
     ];
 
     protected $casts = [
         'ask_for_price' => 'boolean' // Ensure this attribute is cast to a boolean
     ];
 
-   // protected $guarded = [];
+    // protected $guarded = [];
 
     // protected $casts = [
     //     'image_url' => 'json'
@@ -42,24 +53,27 @@ class Product extends Model
     //     return $this->belongsTo('App\User');
     // }
 
-        public function user()
+    public function user()
     {
         return $this->belongsTo(User::class);
     }
 
-    public function reviews() {
+    public function reviews()
+    {
 
         return $this->hasMany(Review::class);
     }
 
-    public function category() {
+    public function category()
+    {
 
         return $this->belongsTo(Category::class, 'category_id', 'id');
     }
 
 
-    static function getProduct($id){
-          return  Product::find($id);
+    static function getProduct($id)
+    {
+        return  Product::find($id);
     }
 
     public function getAverageRatingAttribute()

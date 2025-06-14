@@ -3,7 +3,7 @@
     } from "../helper/helper.js";
 
 
-    const token = getToken();
+  const token = getToken();
 
    axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
 

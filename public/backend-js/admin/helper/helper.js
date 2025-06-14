@@ -108,6 +108,7 @@ export async function getUser(userId) {
 }
 
 
+
 export async function getRegisteredUser() {
 
     const token = localStorage.getItem('token');
@@ -118,7 +119,7 @@ export async function getRegisteredUser() {
                 'Authorization': `Bearer ${token}`,
             }
         });
-        // console.log(response);
+      //  console.log(response);
 
         if (response.status === 200 && response.data) {
             const data = response.data;

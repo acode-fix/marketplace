@@ -42,6 +42,7 @@
                     <ul class="sub-menu" aria-expanded="false">
                         <li><a href="{{ route('allUser') }}">View Users</a></li>
                         <li><a href="{{ route('admin.onboarded-user') }}">Onboarded Users</a></li>
+                         <li><a href="{{ route('admin.users.product-listing') }}">Users by product listing</a></li>
                     </ul>
                 </li>
                 <li class="permission">

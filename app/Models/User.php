@@ -102,4 +102,16 @@ class User extends Authenticatable
     {
         return $this->hasOne(LinkedSocialAccount::class);
     }
+
+     public function scopeSearch($query, $searchParams)
+    {
+       return  $query->where(function($q) use ($searchParams) {
+                  
+            $q->where('name', 'like', '%'. $searchParams . '%')
+                  ->orWhere('email', 'like', '%' . $searchParams . '%')
+                  ->orWhere('address', 'like', '%' . $searchParams . '%')
+                  ->orWhere('phone_number', 'like', '%' . $searchParams . '%');
+
+         });
+    }
 }

@@ -15,7 +15,7 @@ use App\Http\Controllers\SocialiteController;
 use App\Models\User;
 use App\Notifications\ReviewPushNotification;
 
- 
+
 Route::get('auth/{provider}/redirect', [SocialiteController::class, 'redirect'])->where('provider', 'google|facebook');
 Route::get('auth/{provider}/callback', [SocialiteController::class, 'handleProviderCallback'])->where('provider', 'google|facebook');
 
@@ -25,8 +25,9 @@ Route::get('/sellers-shop', [ProductController::class, 'showSellerShop']);
 Route::get('/product_des/{id}', [ProductController::class, 'showProduct']);
 Route::get('/sellers-shop/{userId}', [ShopController::class, 'showUserShop'])->name('sellers.shop');
 
-
 Route::get('/api/learn', [LearnController::class, 'getLearnData']);
+
+
 Route::get('/form', function () {
     return view('frontend.productform');
 });
@@ -152,106 +153,98 @@ Route::get('/payment-success', [PaymentController::class, 'successPage'])->name(
 
 //Admin Authentication Route;
 
-Route::get('/admin/login', function() {
+Route::get('/admin/login', function () {
     return view('admin.login');
-
 })->name('admin.login');
 
-Route::get('/admin/reset-password', function() {
+Route::get('/admin/reset-password', function () {
     return view('admin.reset_password');
-
 })->name('reset');
 
 //Admin Dashboard Page Route;
 
-Route::get('/admin/dashboard', function() {
+Route::get('/admin/dashboard', function () {
     return view('admin.dashboard');
-
 })->name('admin.dashboard');
 
-Route::get('/admin/verification/view', function() {
+Route::get('/admin/verification/view', function () {
 
     return view('admin.verify.view');
-    
 })->name('admin.verify');
-Route::get('/admin/view/user', function() {
+Route::get('/admin/view/user', function () {
 
     return view('admin.verify.user_details');
 });
 
-Route::get('/admin/dashboard/alluser', function() {
+Route::get('/admin/dashboard/alluser', function () {
 
     return view('admin.user.alluser');
 })->name('allUser');
 
-Route::get('/admin/dashboard/onboarded-user', function() {
+Route::get('/admin/dashboard/onboarded-user', function () {
 
     return view('admin.user.onboarded');
-    
 })->name('admin.onboarded-user');
 
-Route::get('/admin/agents', function() {
+Route::get('/admin/dashboard/user-product-listing', function () {
+    return view('admin.user.user_product_listing');
+})->name('admin.users.product-listing');
+
+
+Route::get('/admin/agents', function () {
 
     return view('admin.user.agent');
-    
 })->name('admin.agent');
 
 
-Route::get('/admin/products/view', function() {
+Route::get('/admin/products/view', function () {
 
     return view('admin.products.view');
-
 })->name('products.view');
 
-Route::get('admin/view/product-details', function() {
-    
-    return view('admin.products.fulldetails');
+Route::get('admin/view/product-details', function () {
 
+    return view('admin.products.fulldetails');
 });
 
-Route::get('admin/products/view/product-performance', function() {
+Route::get('admin/products/view/product-performance', function () {
     return view(('admin.products.sales'));
 })->name('products.sales');
 
 
-Route::get('admin/products/view/search', function() {
+Route::get('admin/products/view/search', function () {
     return view(('admin.products.search'));
 })->name('products.search');
 
 
-Route::get('admin/badge/view', function() {
+Route::get('admin/badge/view', function () {
 
     return view('admin.user.badge');
-
 })->name('badge.view');
 
-Route::get('admin/payments/view', function() {
+Route::get('admin/payments/view', function () {
 
     return view('admin.payments.view');
-
 })->name('payments.view');
 
-Route::get('admin/payments/view/search', function() {
+Route::get('admin/payments/view/search', function () {
 
     return view('admin.payments.search');
-
 })->name('payments.search');
 
-Route::get('admin/learn/view', function() {
+Route::get('admin/learn/view', function () {
 
     return view('admin.uploads.learn');
-
 })->name('learn.view');
 
-Route::get('admin/admin/view/', function() {
+Route::get('admin/admin/view/', function () {
 
     return view('admin.profile.view');
-
 })->name('admin.view');
 
 
 
-Route::get('/product/shared/{link}', [ProductController::class, 'loadSharedProduct' ]);
+Route::get('/product/shared/{link}', [ProductController::class, 'loadSharedProduct']);
 
 Route::get('/check-badge', [BadgeController::class, 'verifyBadge']);
 
@@ -262,15 +255,11 @@ Route::get('/rating/{id}', function () {
 });
 
 
-Route::get('/about', function() {
+Route::get('/about', function () {
     return view('other_frontend.about');
-
 });
 
-Route::get('access/denied', function() {
+Route::get('access/denied', function () {
 
     return view('admin.user.unauthorized_access');
-
 });
-
-

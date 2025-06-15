@@ -202,7 +202,7 @@ function renderProductsAndSections(products) {
         const card = createProductCard(product);
 
         // Insert product into appropriate container
-        if (index < 12) {
+        if (index < 24) {
             productCardDisplay1.appendChild(card);
         } else {
             productCardDisplay2.appendChild(card);
@@ -211,6 +211,7 @@ function renderProductsAndSections(products) {
 }
 
 function createProductCard(product) {
+
     const card = document.createElement("div");
     card.className = "card";
 

@@ -73,7 +73,7 @@ class ProductController extends Controller
         $totalProducts = Product::count();
         
 
-        if ($totalProducts <= 16) {
+        if ($totalProducts <= 48) {
 
             // $data = Product::with('user')->where('quantity', '!=', 0)->get();
 
@@ -99,7 +99,7 @@ class ProductController extends Controller
 
             return response()->json($data);
         } else {
-            $numberOfProductsToDisplay = 16;
+            $numberOfProductsToDisplay = 48;
 
             // Fetch a random set of products
             $randomProducts = Product::where('quantity', '!=', 0)

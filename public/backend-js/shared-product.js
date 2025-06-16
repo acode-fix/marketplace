@@ -513,7 +513,7 @@ function loadProducts(otherProducts) {
               </div>
         </a>`;
 
-        if (index <= 12) {
+        if (index <= 24) {
             displayTopContent += displayProduct;
         } else {
             displayDownContent += displayProduct;

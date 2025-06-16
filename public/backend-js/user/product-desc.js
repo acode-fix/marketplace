@@ -387,14 +387,14 @@ import verificationBtnStatus from "./verification-status.js";
        // Render product cards
        products.forEach((product, index) => {
            const card = createProductCard(product);
-           if (index < 8) {
+           if (index < 24) {
                productCardDisplay1.appendChild(card);
            } else {
                productCardDisplay2.appendChild(card);
            }
 
            const mobileCard = createProductCard(product);
-           if (index < 8) {
+           if (index < 24) {
                mobileProductContainer1.appendChild(mobileCard);
            } else {
                mobileProductContainer2.appendChild(mobileCard);

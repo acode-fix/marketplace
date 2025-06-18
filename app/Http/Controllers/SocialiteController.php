@@ -43,7 +43,6 @@ class SocialiteController extends Controller
 
             // Get the user from the Google/Microsoft callback
             $providerUser = Socialite::driver($provider)->stateless()->user();
-            
         } catch (Exception $e) {
 
             Log::error(message: 'Provider error : ' . $e->getMessage());
@@ -58,33 +57,39 @@ class SocialiteController extends Controller
 
             $user = $this->findOrCreate($providerUser, $provider);
 
-             if ($user->user_type == -2) {
+            if(!$user) {
+                return $this->errorResponse(
+                    message: 'Login failed, please try again later!!',
+                    statusCode: Response::HTTP_INTERNAL_SERVER_ERROR
+                );
+
+            }
+
+            
+            if ($user && $user->user_type == -2) {
                 return $this->errorResponse(
                     message: 'Account suspended, contact support!!',
                     statusCode: Response::HTTP_FORBIDDEN
                 );
             }
 
-             
+
             if ($user && $user->trashed()) {
                 return $this->errorResponse(
-                message: 'You account has been deleted',
-                statusCode: Response::HTTP_FORBIDDEN,
-            );
+                    message: 'You account has been deleted',
+                    statusCode: Response::HTTP_FORBIDDEN,
+                );
             }
 
-            
+            $token = $user->createToken(env('APP_NAME', 'API TOKEN'))->plainTextToken;
+
+            return redirect(config('app.url') . "/settings?success=You+have+successfully+logged+in&token={$token}&user={$user->id}");
         } else {
             return $this->errorResponse(
                 message: 'Failed to login try again',
                 statusCode: Response::HTTP_UNAUTHORIZED,
             );
         }
-
-
-        $token = $user->createToken(env('APP_NAME', 'API TOKEN'))->plainTextToken;
-
-        return redirect(config('app.url') . "/settings?success=You+have+successfully+logged+in&token={$token}&user={$user->id}");
     }
 
 
@@ -92,8 +97,10 @@ class SocialiteController extends Controller
     {
         $linkedSocialAccount = LinkedSocialAccount::query()->where('provider_name', $provider)->where('provider_id', $providerUser->getId())->first();
 
+        
+
         if ($linkedSocialAccount) {
-            
+
             return $linkedSocialAccount->user;
         } else {
             $user = null;
@@ -116,6 +123,7 @@ class SocialiteController extends Controller
                     'shop_token' => Shop::shopToken(50),
                     'shop_no' => Shop::shopNo(),
                     'password' => Hash::make(1234),
+                    'role_id'  => 3,
                 ]);
             }
 
@@ -123,6 +131,9 @@ class SocialiteController extends Controller
                 'provider_id' => $providerUser->getId(),
                 'provider_name' => $provider,
             ]);
+
+
+            Log::info('user', ['data' => $user]);
 
 
             return $user;

@@ -1,13 +1,8 @@
 import { displaySwal, hideLoader, showLoader, validationError, } from '../../helper/helper.js';
 import {
     formatDate,
-    getDeletedUsers,
-    getRegisteredUser,
-    getSuspendedUsers,
     getToken,
-    getUser,
-    getUserById,
-    loadDashboard,
+    getUser
 } from '../helper/helper.js';
 
 
@@ -17,26 +12,25 @@ axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
 
 const adminData = JSON.parse(localStorage.getItem('adminUser'));
 
-//console.log(adminData);
 
 document.addEventListener('DOMContentLoaded', function () {
     let dataTableInstance;
 
-    // Initialize the DataTable
+    
     dataTableInstance = $('#datatable').DataTable({
         processing: true,
-        serverSide: true, // Keep server-side processing for pagination and filtering
+        serverSide: true, 
         ajax: function (data, callback, settings) {
-            const page = data.start / data.length + 1; // Current page (1-based index)
-            const perPage = data.length; // Number of records per page
-            const searchTerm = data.search.value; // Get the search term for filtering
+            const page = data.start / data.length + 1; 
+            const perPage = data.length;
+            const searchTerm = data.search.value; 
 
-            // Fetch data from the server with pagination and search term
+            
             axios.get('/api/v1/admin/registered-user', {
                 params: {
                     page: page,
                     per_page: perPage,
-                    search: searchTerm, // Send the search term to the server
+                    search: searchTerm,
                 },
             })
             .then((response) => {
@@ -266,8 +260,74 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Search input handler
     $('#datatable3_filter input').on('keyup', function () {
-        // Trigger the search on the DataTable to filter the data
+        
         deletedUserdataTable.search(this.value).draw();
+    });
+
+     
+    let userWithoutShopNo;
+
+     userWithoutShopNo = $('#datatable4').DataTable({
+        processing: true,
+        serverSide: true, 
+        ajax: function (data, callback, settings) {
+            const page = data.start / data.length + 1; 
+            const perPage = data.length; 
+            const searchTerm = data.search.value; 
+
+            
+            axios.get('/api/v1/admin/users/without-shop-no', {
+                params: {
+                    page: page,
+                    per_page: perPage,
+                    search: searchTerm, 
+                },
+            })
+            .then((response) => {
+
+              //  console.log(response);
+
+                const result = response.data;
+
+                
+                callback({
+                    draw: data.draw,
+                    recordsTotal: result.total, 
+                    recordsFiltered: result.filtered_total, 
+                    data: result.users, 
+                });
+            })
+            .catch((error) => {
+                console.log("Error fetching data:", error);
+            });
+        },
+        columns: [
+            {
+                data: null,
+                render: function (data, type, row, meta) {
+                    return (meta.row + 1) + (meta.settings._iDisplayStart);
+                }
+            },
+            { data: 'name', render: function(data) { return data ? data : 'N/A'; }},
+            { data: 'email', render: function(data) { return data ? data : 'N/A'; }},
+            { data: 'phone_number', render: function(data) { return data ? data : 'N/A'; }},
+            { data: 'shop_no', render: function(data) { return data ? data : 'N/A'; }},
+            {
+                data: null,
+                orderable: false,
+                searchable: false,
+                render: function (data) {
+                   return `<button class="btn btn-sm btn-light user-link" data-user-id="${data.id}">Full details</button>`;   
+                },
+            },
+        ],
+        responsive: true,
+    });
+
+  
+    $('#datatable4_filter input').on('keyup', function () {
+        
+        userWithoutShopNo.search(this.value).draw();
     });
 
 

@@ -106,6 +106,7 @@ Route::prefix('v1')->middleware('auth:sanctum')->group(function () {
         Route::get('admin/deleted-account', [AdminController::class, 'getDeletedAccounts']);
         Route::get('admin/user-product-listing', [UserProductListingController::class, 'getUserWithProducts']);
         Route::get('admin/users/unlisted-products', [UserProductListingController::class, 'getUserWithNoProducts']);
+        Route::get('admin/users/without-shop-no', [UsersController::class, 'getUsersWithOutShopNo']);
 
 
 

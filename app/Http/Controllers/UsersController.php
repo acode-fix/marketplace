@@ -17,12 +17,18 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Barryvdh\Debugbar\Facades\Debugbar;
 use App\Notifications\ReviewPushNotification;
+use App\Services\UserService;
 use App\Traits\HasApiResponse;
 use Illuminate\Http\Response;
 
 class UsersController extends Controller
 {
     use HasApiResponse;
+
+    public function __construct(protected UserService $userService)
+    {
+        
+    }
 
     /**
      * Display a listing of the resource.
@@ -905,4 +911,38 @@ class UsersController extends Controller
 
         ], 500);
     }
+
+
+    public function getUsersWithOutShopNo(Request $request)
+    {
+         $perPage = $request->input('per_page', 10);
+         $search = $request->input('search');
+
+         $users =  $this->userService->getUsersWithOutShopNo(perPage: $perPage, search: $search);
+
+          return response()->json([
+            'status' => true,
+            'message' => 'User fetched',
+            'users' => $users->items(),
+            'total' => $users->total(),
+            'filtered_total' => $users->total(),
+
+         ], 200);
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 }

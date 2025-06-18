@@ -11,7 +11,7 @@
           <h4 class="mb-sm-0">User Menu</h4>
 
           <div class="page-title-right">
-            <ol class="breadcrumb m-0">
+            <ol class="m-0 breadcrumb">
               <li class="breadcrumb-item"><a href="javascript: void(0);">Users</a></li>
               <li class="breadcrumb-item active">View all users</li>
             </ol>
@@ -31,7 +31,7 @@
 
 
             <!-- Nav tabs -->
-            <ul class="nav nav-tabs pt-4" role="tablist">
+            <ul class="pt-4 nav nav-tabs" role="tablist">
               <li class="nav-item">
                 <a class="nav-link active" data-bs-toggle="tab" href="#home" role="tab" data-bs-toggle="tooltip" data-bs-placement="top" title="View all registered users">
                   <span class="d-block d-sm-none"><i class="fas fa-home"></i></span>
@@ -50,12 +50,18 @@
                   <span class="d-none d-sm-block">Deleted Users</span>
                 </a>
               </li>
+              <li class="nav-item">
+                <a class="nav-link" data-bs-toggle="tab" href="#user-without-shop-no" role="tab" data-bs-toggle="tooltip" data-bs-placement="top" title="View user without shop no">
+                  <span class="d-block d-sm-none"><i class="far fa-envelope"></i></span>
+                  <span class="d-none d-sm-block">Users without shop no</span>
+                </a>
+              </li>
               
             </ul>
 
             <!-- Tab panes -->
-            <div class="tab-content p-3 text-muted">
-              <div class="tab-pane active mt-3" id="home" role="tabpanel">
+            <div class="p-3 tab-content text-muted">
+              <div class="mt-3 tab-pane active" id="home" role="tabpanel">
 
                 <table id="datatable" class="table table-bordered dt-responsive nowrap"
                   style="border-collapse: collapse; border-spacing: 0; width: 100%;">
@@ -77,7 +83,7 @@
 
 
               </div>
-              <div class="tab-pane mt-3" id="profile" role="tabpanel">
+              <div class="mt-3 tab-pane" id="profile" role="tabpanel">
                 <table id="datatable2" class="table table-bordered dt-responsive nowrap"
                 style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                 <thead>
@@ -116,6 +122,25 @@
                 <tbody></tbody>
               </table>
               </div>
+
+               <div class="tab-pane" id="user-without-shop-no" role="tabpanel">
+                <table id="datatable4" class="table table-bordered dt-responsive nowrap"
+                style="border-collapse: collapse; border-spacing: 0; width: 100%;">
+                <thead>
+                  <tr>
+                    <th>S/N</th>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Phone Number</th>
+                    <th>Shop Number</th>
+                    <th>Full Details</th>
+                  </tr>
+                </thead>
+
+
+                <tbody></tbody>
+              </table>
+              </div>
               
             </div>
 
@@ -142,7 +167,7 @@
                     <label for="fullname" class="form-label fw-bold">FullName</label>
                     <input name="name" type="text" class="form-control fullname">
                   </div>
-                  <div class="col-md-6 mt-4">
+                  <div class="mt-4 col-md-6">
                     <label for="nationality" class="form-label fw-bold">Shop No</label>
                     <input name="shop_no" type="text" class="form-control shop_no">
                   </div>
@@ -150,30 +175,30 @@
                     <label for="username" class="form-label fw-bold">Username</label>
                     <input name="username" type="text" class="form-control username">
                   </div>
-                  <div class="col-md-6 mt-4">
+                  <div class="mt-4 col-md-6">
                     <label for="phone" class="form-label fw-bold">Phone</label>
                     <input name="phone_number" type="text" class="form-control phone">
                   </div>
-                  <div class="col-md-6 mt-4">
+                  <div class="mt-4 col-md-6">
                     <label for="address" class="form-label fw-bold">Address</label>
                     <input name="address" type="text" class="form-control address">
                   </div>
-                  <div class="col-md-6 mt-4">
+                  <div class="mt-4 col-md-6">
                     <div>
                       <label for="email" class="form-label fw-bold">Email</label>
                       <input name="email" type="text" class="form-control email">
                     </div>
                   </div>
-                  <div class="col-md-6 mt-4">
+                  <div class="mt-4 col-md-6">
                     <label for="nationality" class="form-label fw-bold">Nationality</label>
                     <input name="nationality" type="text" class="form-control nationality">
                   </div>
-                  <div class="col-md-6 mt-4">
+                  <div class="mt-4 col-md-6">
                     <label for="bio" class="form-label fw-bold">Bio</label>
                     <input name="bio" type="text" class="form-control bio">
 
                   </div>
-                  <div class="col-md-6 mt-5">
+                  <div class="mt-5 col-md-6">
                     <div>
                       <label for="gender" class="form-label fw-bold">Gender</label>
                     </div>
@@ -208,12 +233,12 @@
                     <input class="form-control" type="file" name="banner">
                   </div>
 
-                  <div class="col-md-6 mt-4">
+                  <div class="mt-4 col-md-6">
                     <label for="selfie_photo" class="form-label">Selfie Img</label>
                     <input class="form-control" type="file" name="selfie_photo">
                   </div>
 
-                  <div class="col-md-6 mt-4">
+                  <div class="mt-4 col-md-6">
                     <label for="nin" class="form-label">Nin Img</label>
                     <input class="form-control" type="file" name="nin_file">
                   </div>
@@ -226,8 +251,8 @@
               </form>
 
               <div style="float: right;">
-                <button type="button" class="btn btn-secondary previous-to-step-1 mt-5 me-2">Previous</button>
-                <button type="submit" class="btn btn-warning update-loader mt-5" id="update">
+                <button type="button" class="mt-5 btn btn-secondary previous-to-step-1 me-2">Previous</button>
+                <button type="submit" class="mt-5 btn btn-warning update-loader" id="update">
                   <span class="update-text">Update</span>
                   <div class="update-layout" aria-hidden="true">
                     <div class="loader-text"></div>

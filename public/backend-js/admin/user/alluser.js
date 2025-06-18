@@ -285,7 +285,7 @@ document.addEventListener('DOMContentLoaded', function () {
             })
             .then((response) => {
 
-              //  console.log(response);
+              // console.log(response);
 
                 const result = response.data;
 
@@ -308,6 +308,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     return (meta.row + 1) + (meta.settings._iDisplayStart);
                 }
             },
+            {data: 'created_at', render: function(data) {return data ? formatDate(data) : 'N/A'}},
             { data: 'name', render: function(data) { return data ? data : 'N/A'; }},
             { data: 'email', render: function(data) { return data ? data : 'N/A'; }},
             { data: 'phone_number', render: function(data) { return data ? data : 'N/A'; }},

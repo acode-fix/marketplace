@@ -642,10 +642,11 @@ class ProductController extends Controller
                 }
 
                 if (empty($imageNames)) {
+
                     return response()->json([
                         'status' => false,
                         'message' => 'No images were processed'
-                    ]);
+                    ], 500);
                 }
 
                 // Update the product's image_url field

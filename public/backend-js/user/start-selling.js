@@ -3,195 +3,204 @@ import { checkUserSettingStatus } from "./user-setting-status.js";
 checkUserSettingStatus();
 
 function descValidation() {
-  const desc = document.querySelector('.js-desc').value;
-  const descText = desc.trim();
+    const desc = document.querySelector(".js-desc").value;
+    const descText = desc.trim();
 
-  let isvalid = false;
+    let isvalid = false;
 
-  if(descText.length > 500){
+    if (descText.length > 500) {
+        document.querySelector(".error").textContent =
+            "* Product Description Must Not Exceed 500 Words !! *";
 
-    document.querySelector('.error').textContent = '* Product Description Must Not Exceed 500 Words !! *'
+        isvalid = true;
+    }
 
-    isvalid = true;
-  }
-
-  return isvalid;
+    return isvalid;
 }
 
+document.addEventListener("DOMContentLoaded", function () {
+    const priceSwitch = document.getElementById("priceSwitch");
+    const priceFields = document.getElementById("priceFields");
+    let selectedFiles = []; // Store all selected files
 
+    // Hide price fields initially if the switch is checked
+    if (priceSwitch.checked) {
+        priceFields.style.display = "none";
+    }
 
-document.addEventListener('DOMContentLoaded', function() {
-const priceSwitch = document.getElementById('priceSwitch');
-const priceFields = document.getElementById('priceFields');
-let selectedFiles = []; // Store all selected files
+    // Toggle price fields visibility based on the switch state
+    priceSwitch.addEventListener("change", function () {
+        if (priceSwitch.checked) {
+            priceFields.style.display = "none";
+        } else {
+            priceFields.style.display = "block";
+        }
+    });
 
-// Hide price fields initially if the switch is checked
-if (priceSwitch.checked) {
-   priceFields.style.display = 'none';
-}
+    document
+        .getElementById("fileInput")
+        .addEventListener("change", function () {
+            // Append the newly selected files to the existing list
+            Array.from(this.files).forEach((file) => {
+                selectedFiles.push(file); // Add the file to the selectedFiles array
+            });
 
-// Toggle price fields visibility based on the switch state
-priceSwitch.addEventListener('change', function() {
-   if (priceSwitch.checked) {
-       priceFields.style.display = 'none';
-   } else {
-       priceFields.style.display = 'block';
-   }
-});
+            // console.log('Currently selected files:', selectedFiles.map(f => f.name));
 
-document.getElementById('fileInput').addEventListener('change', function() {
-   // Append the newly selected files to the existing list
-   Array.from(this.files).forEach(file => {
-       selectedFiles.push(file);  // Add the file to the selectedFiles array
-   });
+            // Reset the file input field to allow new selections
+            this.value = ""; // Reset after each change so the same file can be selected again
+        });
 
-  // console.log('Currently selected files:', selectedFiles.map(f => f.name));
+    document
+        .getElementById("productForm")
+        .addEventListener("submit", function (event) {
+            event.preventDefault();
 
-   // Reset the file input field to allow new selections
-   this.value = '';  // Reset after each change so the same file can be selected again
-});
+            const loader = document.getElementById("btn-loader");
+            const startBtn = document.querySelector(".start-selling-btn");
+            const uploadText = document.querySelector(".js-upload-text");
+            const loadingText = document.getElementById("loading-text");
 
-document.getElementById('productForm').addEventListener('submit', function(event) {
-   event.preventDefault();
+            startBtn.disabled = true;
+            uploadText.style.display = "none";
+            loader.style.display = "block";
+            loadingText.style.display = "block";
 
-  const loader =  document.getElementById('btn-loader');
-  const startBtn = document.querySelector('.start-selling-btn');
-  const uploadText = document.querySelector('.js-upload-text');
-  const loadingText = document.getElementById('loading-text');
+            if (descValidation()) {
+                uploadText.style.display = "block";
+                loader.style.display = "none";
+                loadingText.style.display = "none";
+                startBtn.disabled = false;
 
-  startBtn.disabled = true;
-  uploadText.style.display = 'none';
-  loader.style.display = 'block';
-  loadingText.style.display = 'block';
+                return;
+            }
 
-   if(descValidation()) {
-    uploadText.style.display = 'block';
-    loader.style.display = 'none';
-    loadingText.style.display = 'none';
-    startBtn.disabled = false;
+            let formData = new FormData(this);
 
-       return;
-   }
+            // Add ask_for_price to formData based on the switch state
+            formData.append("ask_for_price", priceSwitch.checked ? 1 : 0);
 
-   let formData = new FormData(this);
+            // Conditionally remove actual_price and promo_price if the switch is on
+            if (priceSwitch.checked) {
+                formData.delete("actual_price");
+                formData.delete("promo_price");
+            }
 
-   // Add ask_for_price to formData based on the switch state
-   formData.append('ask_for_price', priceSwitch.checked ? 1 : 0);
+            const imageArray = [];
 
-   // Conditionally remove actual_price and promo_price if the switch is on
-   if (priceSwitch.checked) {
-       formData.delete('actual_price');
-       formData.delete('promo_price');
-   }
+            // Loop through the accumulated selected files and append them to formData
+            selectedFiles.forEach((file, index) => {
+                formData.append("image_url[]", file); // Append each file to formData
+                imageArray.push(file.name); // Store file names in the array
+                //console.log(`Appending file ${index}: ${file.name}`); // Log each file name
+            });
 
-   const imageArray = [];
+            // Append the JSON string of image URLs to the formData
+            formData.append("image_url_json", JSON.stringify(imageArray));
 
-   // Loop through the accumulated selected files and append them to formData
-   selectedFiles.forEach((file, index) => {
-       formData.append('image_url[]', file); // Append each file to formData
-       imageArray.push(file.name); // Store file names in the array
-       //console.log(`Appending file ${index}: ${file.name}`); // Log each file name
-   });
+            // console.log(imageArray);
 
-   // Append the JSON string of image URLs to the formData
-   formData.append('image_url_json', JSON.stringify(imageArray));
+            // Debug formData content
+            for (let pair of formData.entries()) {
+                if (pair[1] instanceof File) {
+                    //  console.log(`${pair[0]}: File Name - ${pair[1].name}, Size - ${pair[1].size} bytes, Type - ${pair[1].type}`);
+                } else {
+                    // console.log(`${pair[0]}: ${pair[1]}`);
+                }
+            }
 
-  // console.log(imageArray);
+            const token = localStorage.getItem("apiToken");
 
-   // Debug formData content
-   for (let pair of formData.entries()) {
-       if (pair[1] instanceof File) {
-        //  console.log(`${pair[0]}: File Name - ${pair[1].name}, Size - ${pair[1].size} bytes, Type - ${pair[1].type}`);
-       } else {
-          // console.log(`${pair[0]}: ${pair[1]}`);
-       }
-   }
-
-   const token = localStorage.getItem('apiToken');
-  
-
-
-   axios.post('/api/v1/product', formData, {
-       headers: {
-           'Content-Type': 'multipart/form-data',
-           'Authorization': `Bearer ${token}`
-       }
-   })
-   .then(function(response) { 
-    
-    uploadText.style.display = 'block';
-    loader.style.display = 'none';
-    startBtn.disabled = false;
-    loadingText.style.display = 'none';
-
-       if (response.data.status) {
-
-           const modal = new bootstrap.Modal(document.getElementById('exampleModal'));
-           modal.show();
-
-           // Redirect to the index page after a short delay
-           setTimeout(function() {
-               window.location.href = '/shop';
-           }, 3000);
-       } 
-   })
-   .catch(function(error) {
-
-      uploadText.style.display = 'block';
-      loader.style.display = 'none';
-      loadingText.style.display = 'none';
-      startBtn.disabled = false;
-      
-       if(error.response) {
-
-           if(error.response.status === 401 && error.response.data) {
-                  
-               const responseErrors = error.response.data.errors;
-           
-
-               let allErrors = []
-
-               for(let field in responseErrors) {
-
-                const fieldError = responseErrors[field];
-
-                fieldError.forEach((message) => {
-                   allErrors.push(message);
-
+            axios
+                .post("/api/v1/product", formData, {
+                    headers: {
+                        "Content-Type": "multipart/form-data",
+                        Authorization: `Bearer ${token}`,
+                    },
                 })
-               }
+                .then(function (response) {
+                    uploadText.style.display = "block";
+                    loader.style.display = "none";
+                    startBtn.disabled = false;
+                    loadingText.style.display = "none";
 
-         const errorMsg = allErrors.join('\n');
+                    if (response.data.status) {
+                        const modal = new bootstrap.Modal(
+                            document.getElementById("exampleModal")
+                        );
+                        modal.show();
 
-         Swal.fire({ 
-           icon: 'error',
-           confirmButtonColor: '#ffb705',
-           title: 'Validation Error',
-           text:  errorMsg ,
-       });
+                        // Redirect to the index page after a short delay
+                        setTimeout(function () {
+                            window.location.href = "/shop";
+                        }, 3000);
+                    }
+                })
+                .catch(function (error) {
+                    uploadText.style.display = "block";
+                    loader.style.display = "none";
+                    loadingText.style.display = "none";
+                    startBtn.disabled = false;
 
-       
-           }
+                    if (error.response) {
+                        if (
+                            error.response.status === 401 &&
+                            error.response.data
+                        ) {
+                            const responseErrors = error.response.data.errors;
 
+                            let allErrors = [];
 
-           if(error.response.status === 404 && error.response.data) {
-            console.log(error);
+                            for (let field in responseErrors) {
+                                const fieldError = responseErrors[field];
 
-                    Swal.fire({ 
-                        icon: 'error',
-                        confirmButtonColor: '#ffb705',
-                        title: 'Bio Validation Error',
-                        text:  error.response.data.message,
-                        willClose:() => {
-                            window.location.href = '/settings';
+                                fieldError.forEach((message) => {
+                                    allErrors.push(message);
+                                });
+                            }
 
+                            const errorMsg = allErrors.join("\n");
+
+                            Swal.fire({
+                                icon: "error",
+                                confirmButtonColor: "#ffb705",
+                                title: "Validation Error",
+                                text: errorMsg,
+                            });
                         }
-                    });
-     
 
-           }
-       }
+                        if (
+                            error.response.status === 404 &&
+                            error.response.data
+                        ) {
+                            // console.log(error);
 
-   });
-});
+                            Swal.fire({
+                                icon: "error",
+                                confirmButtonColor: "#ffb705",
+                                title: "Bio Validation Error",
+                                text: error.response.data.message,
+                                willClose: () => {
+                                    window.location.href = "/settings";
+                                },
+                            });
+                        }
+
+                        if (
+                            error.response.status === 500 &&
+                            error.response.data
+                        ) {
+                            Swal.fire({
+                                icon: "error",
+                                confirmButtonColor: "#ffb705",
+                                title: "Product upload error",
+                                text: error.response.data.message,
+                                willClose: () => {
+                                    window.location.reload();
+                                },
+                            });
+                        }
+                    }
+                });
+        });
 });

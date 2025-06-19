@@ -666,9 +666,11 @@ class ProductController extends Controller
             ]);
             
         } catch (\Throwable $th) {
+
+            Log::error('product upload error', ['data' => $th->getMessage()]);
             return response()->json([
                 'status' => false,
-                'message' => $th->getMessage()
+                'message' => 'product upload failed!!'
             ], 500);
         }
     }

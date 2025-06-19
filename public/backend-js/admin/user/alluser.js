@@ -1,67 +1,86 @@
-import { displaySwal, hideLoader, showLoader, validationError, } from '../../helper/helper.js';
 import {
-    formatDate,
-    getToken,
-    getUser
-} from '../helper/helper.js';
-
+    displaySwal,
+    hideLoader,
+    showLoader,
+    validationError,
+} from "../../helper/helper.js";
+import { formatDate, getToken, getUser } from "../helper/helper.js";
 
 const token = getToken();
 
-axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
 
-const adminData = JSON.parse(localStorage.getItem('adminUser'));
+const adminData = JSON.parse(localStorage.getItem("adminUser"));
 
+   let userWithoutShopNo;
 
-document.addEventListener('DOMContentLoaded', function () {
+document.addEventListener("DOMContentLoaded", function () {
     let dataTableInstance;
 
-    
-    dataTableInstance = $('#datatable').DataTable({
+    dataTableInstance = $("#datatable").DataTable({
         processing: true,
-        serverSide: true, 
+        serverSide: true,
         ajax: function (data, callback, settings) {
-            const page = data.start / data.length + 1; 
+            const page = data.start / data.length + 1;
             const perPage = data.length;
-            const searchTerm = data.search.value; 
+            const searchTerm = data.search.value;
 
-            
-            axios.get('/api/v1/admin/registered-user', {
-                params: {
-                    page: page,
-                    per_page: perPage,
-                    search: searchTerm,
-                },
-            })
-            .then((response) => {
+            axios
+                .get("/api/v1/admin/registered-user", {
+                    params: {
+                        page: page,
+                        per_page: perPage,
+                        search: searchTerm,
+                    },
+                })
+                .then((response) => {
+                    //   console.log(response);
 
-             //   console.log(response);
+                    const result = response.data;
 
-                const result = response.data;
-
-                // Pass data to DataTable
-                callback({
-                    draw: data.draw,
-                    recordsTotal: result.total, // Total number of records without filtering
-                    recordsFiltered: result.filtered_total, // Total number of records after filtering
-                    data: result.users, // Data for the current page
+                    // Pass data to DataTable
+                    callback({
+                        draw: data.draw,
+                        recordsTotal: result.total, // Total number of records without filtering
+                        recordsFiltered: result.filtered_total, // Total number of records after filtering
+                        data: result.users, // Data for the current page
+                    });
+                })
+                .catch((error) => {
+                    console.error("Error fetching data:", error);
                 });
-            })
-            .catch((error) => {
-                console.error("Error fetching data:", error);
-            });
         },
         columns: [
             {
                 data: null,
                 render: function (data, type, row, meta) {
-                    return (meta.row + 1) + (meta.settings._iDisplayStart); // Serial Number (starts from 1)
-                }
+                    return meta.row + 1 + meta.settings._iDisplayStart; // Serial Number (starts from 1)
+                },
             },
-            { data: 'name', render: function(data) { return data ? data : 'N/A'; }},
-            { data: 'email', render: function(data) { return data ? data : 'N/A'; }},
-            { data: 'address', render: function(data) { return data ? data : 'N/A'; }},
-            { data: 'phone_number', render: function(data) { return data ? data : 'N/A'; }},
+            {
+                data: "name",
+                render: function (data) {
+                    return data ? data : "N/A";
+                },
+            },
+            {
+                data: "email",
+                render: function (data) {
+                    return data ? data : "N/A";
+                },
+            },
+            {
+                data: "address",
+                render: function (data) {
+                    return data ? data : "N/A";
+                },
+            },
+            {
+                data: "phone_number",
+                render: function (data) {
+                    return data ? data : "N/A";
+                },
+            },
             {
                 data: null,
                 orderable: false,
@@ -75,13 +94,14 @@ document.addEventListener('DOMContentLoaded', function () {
                 orderable: false,
                 searchable: false,
                 render: function (data) {
-
-                    const suspendBtn = adminData.role_id == 1 
-                                    ? ` <button data-user-id="${data.id}" class="btn btn-sm btn-warning text-white suspend">Suspend</button> `
-                                    : '';
-                   const deleteBtn =  adminData.role_id == 1 
-                                     ? `<button data-user-id="${data.id}" class="btn btn-sm btn-danger delete">Delete</button>`
-                                     : '';
+                    const suspendBtn =
+                        adminData.role_id == 1
+                            ? ` <button data-user-id="${data.id}" class="btn btn-sm btn-warning text-white suspend">Suspend</button> `
+                            : "";
+                    const deleteBtn =
+                        adminData.role_id == 1
+                            ? `<button data-user-id="${data.id}" class="btn btn-sm btn-danger delete">Delete</button>`
+                            : "";
 
                     return `
                         <button data-user-id="${data.id}" class="btn btn-sm btn-success edit">Edit</button>
@@ -96,17 +116,15 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
     // Search input handler
-    $('#datatable_filter input').on('keyup', function () {
+    $("#datatable_filter input").on("keyup", function () {
         // Trigger the search on the DataTable to filter the data
         dataTableInstance.search(this.value).draw();
     });
 
-
-
     let suspendedUserdataTable;
 
     // Initialize the DataTable
-    suspendedUserdataTable = $('#datatable2').DataTable({
+    suspendedUserdataTable = $("#datatable2").DataTable({
         processing: true,
         serverSide: true, // Keep server-side processing for pagination and filtering
         ajax: function (data, callback, settings) {
@@ -115,42 +133,62 @@ document.addEventListener('DOMContentLoaded', function () {
             const searchTerm = data.search.value; // Get the search term for filtering
 
             // Fetch data from the server with pagination and search term
-            axios.get('/api/v1/admin/suspended-users', {
-                params: {
-                    page: page,
-                    per_page: perPage,
-                    search: searchTerm, // Send the search term to the server
-                },
-            })
-            .then((response) => {
+            axios
+                .get("/api/v1/admin/suspended-users", {
+                    params: {
+                        page: page,
+                        per_page: perPage,
+                        search: searchTerm, // Send the search term to the server
+                    },
+                })
+                .then((response) => {
+                    //     console.log(response);
 
-           //     console.log(response);
+                    const result = response.data;
 
-                const result = response.data;
-
-                // Pass data to DataTable
-                callback({
-                    draw: data.draw,
-                    recordsTotal: result.total, // Total number of records without filtering
-                    recordsFiltered: result.filtered_total, // Total number of records after filtering
-                    data: result.users, // Data for the current page
+                    // Pass data to DataTable
+                    callback({
+                        draw: data.draw,
+                        recordsTotal: result.total, // Total number of records without filtering
+                        recordsFiltered: result.filtered_total, // Total number of records after filtering
+                        data: result.users, // Data for the current page
+                    });
+                })
+                .catch((error) => {
+                    console.error("Error fetching data:", error);
                 });
-            })
-            .catch((error) => {
-                console.error("Error fetching data:", error);
-            });
         },
         columns: [
             {
                 data: null,
                 render: function (data, type, row, meta) {
-                    return (meta.row + 1) + (meta.settings._iDisplayStart); // Serial Number (starts from 1)
-                }
+                    return meta.row + 1 + meta.settings._iDisplayStart; // Serial Number (starts from 1)
+                },
             },
-            { data: 'name', render: function(data) { return data ? data : 'N/A'; }},
-            { data: 'email', render: function(data) { return data ? data : 'N/A'; }},
-            { data: 'address', render: function(data) { return data ? data : 'N/A'; }},
-            { data: 'phone_number', render: function(data) { return data ? data : 'N/A'; }},
+            {
+                data: "name",
+                render: function (data) {
+                    return data ? data : "N/A";
+                },
+            },
+            {
+                data: "email",
+                render: function (data) {
+                    return data ? data : "N/A";
+                },
+            },
+            {
+                data: "address",
+                render: function (data) {
+                    return data ? data : "N/A";
+                },
+            },
+            {
+                data: "phone_number",
+                render: function (data) {
+                    return data ? data : "N/A";
+                },
+            },
             {
                 data: null,
                 orderable: false,
@@ -164,11 +202,10 @@ document.addEventListener('DOMContentLoaded', function () {
                 orderable: false,
                 searchable: false,
                 render: function (data) {
-
-                    const unSuspendBtn = adminData.role_id == 1 
-                                    ? ` <button data-user-id="${data.id}" class="btn btn-sm btn-success text-white unsuspend">Unsuspend</button> `
-                                    : '';
-                   
+                    const unSuspendBtn =
+                        adminData.role_id == 1
+                            ? ` <button data-user-id="${data.id}" class="btn btn-sm btn-success text-white unsuspend">Unsuspend</button> `
+                            : "";
 
                     return `
                         
@@ -183,17 +220,15 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
     // Search input handler
-    $('#datatable2_filter input').on('keyup', function () {
+    $("#datatable2_filter input").on("keyup", function () {
         // Trigger the search on the DataTable to filter the data
         suspendedUserdataTable.search(this.value).draw();
     });
 
-
-    
     let deletedUserdataTable;
 
     // Initialize the DataTable
-    deletedUserdataTable = $('#datatable3').DataTable({
+    deletedUserdataTable = $("#datatable3").DataTable({
         processing: true,
         serverSide: true, // Keep server-side processing for pagination and filtering
         ajax: function (data, callback, settings) {
@@ -202,48 +237,68 @@ document.addEventListener('DOMContentLoaded', function () {
             const searchTerm = data.search.value; // Get the search term for filtering
 
             // Fetch data from the server with pagination and search term
-            axios.get('/api/v1/admin/deleted-account', {
-                params: {
-                    page: page,
-                    per_page: perPage,
-                    search: searchTerm, // Send the search term to the server
-                },
-            })
-            .then((response) => {
+            axios
+                .get("/api/v1/admin/deleted-account", {
+                    params: {
+                        page: page,
+                        per_page: perPage,
+                        search: searchTerm, // Send the search term to the server
+                    },
+                })
+                .then((response) => {
+                    //  console.log(response);
 
-              //  console.log(response);
+                    const result = response.data;
 
-                const result = response.data;
-
-                // Pass data to DataTable
-                callback({
-                    draw: data.draw,
-                    recordsTotal: result.total, // Total number of records without filtering
-                    recordsFiltered: result.filtered_total, // Total number of records after filtering
-                    data: result.users, // Data for the current page
+                    // Pass data to DataTable
+                    callback({
+                        draw: data.draw,
+                        recordsTotal: result.total, // Total number of records without filtering
+                        recordsFiltered: result.filtered_total, // Total number of records after filtering
+                        data: result.users, // Data for the current page
+                    });
+                })
+                .catch((error) => {
+                    console.error("Error fetching data:", error);
                 });
-            })
-            .catch((error) => {
-                console.error("Error fetching data:", error);
-            });
         },
         columns: [
             {
                 data: null,
                 render: function (data, type, row, meta) {
-                    return (meta.row + 1) + (meta.settings._iDisplayStart); // Serial Number (starts from 1)
-                }
+                    return meta.row + 1 + meta.settings._iDisplayStart; // Serial Number (starts from 1)
+                },
             },
-            { data: 'name', render: function(data) { return data ? data : 'N/A'; }},
-            { data: 'email', render: function(data) { return data ? data : 'N/A'; }},
-            { data: 'phone_number', render: function(data) { return data ? data : 'N/A'; }},
-            { data: 'deletion_reason', render: function(data) { return data ? data : 'N/A'; }},
             {
-                data: 'deleted_at',
+                data: "name",
+                render: function (data) {
+                    return data ? data : "N/A";
+                },
+            },
+            {
+                data: "email",
+                render: function (data) {
+                    return data ? data : "N/A";
+                },
+            },
+            {
+                data: "phone_number",
+                render: function (data) {
+                    return data ? data : "N/A";
+                },
+            },
+            {
+                data: "deletion_reason",
+                render: function (data) {
+                    return data ? data : "N/A";
+                },
+            },
+            {
+                data: "deleted_at",
                 orderable: false,
                 searchable: false,
                 render: function (data) {
-                    return  `${formatDate(data)}`;
+                    return `${formatDate(data)}`;
                 },
             },
             {
@@ -251,7 +306,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 orderable: false,
                 searchable: false,
                 render: function (data) {
-                   return `<button class="btn btn-sm btn-light user-link" data-user-id="${data.id}">Full details</button>`;   
+                    return `<button class="btn btn-sm btn-light user-link" data-user-id="${data.id}">Full details</button>`;
                 },
             },
         ],
@@ -259,591 +314,536 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
     // Search input handler
-    $('#datatable3_filter input').on('keyup', function () {
-        
+    $("#datatable3_filter input").on("keyup", function () {
         deletedUserdataTable.search(this.value).draw();
     });
 
-     
-    let userWithoutShopNo;
+ 
 
-     userWithoutShopNo = $('#datatable4').DataTable({
+    userWithoutShopNo = $("#datatable4").DataTable({
         processing: true,
-        serverSide: true, 
+        serverSide: true,
         ajax: function (data, callback, settings) {
-            const page = data.start / data.length + 1; 
-            const perPage = data.length; 
-            const searchTerm = data.search.value; 
+            const page = data.start / data.length + 1;
+            const perPage = data.length;
+            const searchTerm = data.search.value;
 
-            
-            axios.get('/api/v1/admin/users/without-shop-no', {
-                params: {
-                    page: page,
-                    per_page: perPage,
-                    search: searchTerm, 
-                },
-            })
-            .then((response) => {
+            axios
+                .get("/api/v1/admin/users/without-shop-no", {
+                    params: {
+                        page: page,
+                        per_page: perPage,
+                        search: searchTerm,
+                    },
+                })
+                .then((response) => {
+                    // console.log(response);
 
-              // console.log(response);
+                    const result = response.data;
 
-                const result = response.data;
-
-                
-                callback({
-                    draw: data.draw,
-                    recordsTotal: result.total, 
-                    recordsFiltered: result.filtered_total, 
-                    data: result.users, 
+                    callback({
+                        draw: data.draw,
+                        recordsTotal: result.total,
+                        recordsFiltered: result.filtered_total,
+                        data: result.users,
+                    });
+                })
+                .catch((error) => {
+                    console.log("Error fetching data:", error);
                 });
-            })
-            .catch((error) => {
-                console.log("Error fetching data:", error);
-            });
         },
         columns: [
             {
                 data: null,
                 render: function (data, type, row, meta) {
-                    return (meta.row + 1) + (meta.settings._iDisplayStart);
-                }
+                    return meta.row + 1 + meta.settings._iDisplayStart;
+                },
             },
-            {data: 'created_at', render: function(data) {return data ? formatDate(data) : 'N/A'}},
-            { data: 'name', render: function(data) { return data ? data : 'N/A'; }},
-            { data: 'email', render: function(data) { return data ? data : 'N/A'; }},
-            { data: 'phone_number', render: function(data) { return data ? data : 'N/A'; }},
-            { data: 'shop_no', render: function(data) { return data ? data : 'N/A'; }},
+            {
+                data: "created_at",
+                render: function (data) {
+                    return data ? formatDate(data) : "N/A";
+                },
+            },
+            {
+                data: "name",
+                render: function (data) {
+                    return data ? data : "N/A";
+                },
+            },
+            {
+                data: "email",
+                render: function (data) {
+                    return data ? data : "N/A";
+                },
+            },
+            {
+                data: "phone_number",
+                render: function (data) {
+                    return data ? data : "N/A";
+                },
+            },
+            {
+                data: "shop_no",
+                render: function (data) {
+                    return data ? data : "N/A";
+                },
+            },
             {
                 data: null,
                 orderable: false,
                 searchable: false,
                 render: function (data) {
-                   return `<button class="btn btn-sm btn-light user-link" data-user-id="${data.id}">Full details</button>`;   
+                    return `<button class="btn btn-sm btn-success shop" data-user-id="${data.id}">Gen shop no</button>`;
+                },
+            },
+            {
+                data: null,
+                orderable: false,
+                searchable: false,
+                render: function (data) {
+                    return `<button class="btn btn-sm btn-light user-link" data-user-id="${data.id}">Full details</button>`;
                 },
             },
         ],
         responsive: true,
     });
 
-  
-    $('#datatable4_filter input').on('keyup', function () {
-        
+    $("#datatable4_filter input").on("keyup", function () {
         userWithoutShopNo.search(this.value).draw();
     });
-
-
-
-
-
-
 });
 
-
-document.addEventListener('click', (event) => {
-
-    if (event.target.classList.contains('user-link')) {
-
+document.addEventListener("click", (event) => {
+    if (event.target.classList.contains("user-link")) {
         event.preventDefault();
 
         const userId = event.target.dataset.userId;
 
-        localStorage.setItem('userId', JSON.stringify(userId));
-         window.location.href = '/admin/view/user'
+        localStorage.setItem("userId", JSON.stringify(userId));
+        window.location.href = "/admin/view/user";
+    }
 
+    if (event.target.classList.contains("shop")) {
+        event.preventDefault();
 
+        const userId = event.target.dataset.userId;
+        genUserShopNo(userId);
     }
 });
 
-var modal = new bootstrap.Modal(document.getElementById('staticBackdrop'));
+async function genUserShopNo(userId) {
+    try {
+        const response = await axios.get(`/api/v1/admin/user/${userId}`);
+
+        if (response.status === 200 && response.data) {
+            Toastify({
+                text: "Shop number generated successfully",
+                duration: 3000,
+                close: true,
+                gravity: "top",
+                position: "right",
+                stopOnFocus: true,
+                style: {
+                    background: "linear-gradient(to right, #00b09b, #96c93d)",
+                },
+                onClick: function () {}, // Callback after click
+            }).showToast();
+
+            setTimeout(() => {
+                userWithoutShopNo.ajax.reload(null, false);
+            }, 3200);
+        }
+    } catch (error) {
+        if (error) {
+            Toastify({
+                text: "An error occured",
+                duration: 3000,
+                close: true,
+                gravity: "top",
+                position: "right",
+                stopOnFocus: true,
+                style: {
+                    background: "linear-gradient(to right, #ff416c, #ff4b2b)",
+                },
+                onClick: function () {}, // Callback after click
+            }).showToast();
+
+            setTimeout(() => {
+                window.location.reload();
+            }, 3200);
+        }
+    }
+}
+
+var modal = new bootstrap.Modal(document.getElementById("staticBackdrop"));
 let userId;
 
-document.addEventListener('click', (event) => {
-
-    if (event.target.classList.contains('edit')) {
+document.addEventListener("click", (event) => {
+    if (event.target.classList.contains("edit")) {
         event.preventDefault();
 
         modal.show();
 
-      userId  = event.target.dataset.userId;
+        userId = event.target.dataset.userId;
 
-        axios.get(`/api/v1/admin/edit/${userId}`).then((response) => {
-           // console.log(response);
+        axios
+            .get(`/api/v1/admin/edit/${userId}`)
+            .then((response) => {
+                // console.log(response);
+
+                if (response.status === 200 && response.data) {
+                    const userData = response.data.user;
+                    document.querySelector(".fullname").value =
+                        userData.name ?? "";
+                    document.querySelector(".username").value =
+                        userData.username ?? "";
+                    document.querySelector(".phone").value =
+                        userData.phone_number ?? "";
+                    document.querySelector(".shop_no").value =
+                        userData.shop_no ?? "";
+                    document.querySelector(".address").value =
+                        userData.address ?? "";
+                    document.querySelector(".email").value =
+                        userData.email ?? "";
+                    // document.querySelector('.nationality').value = userData.nationality ?? '';
+                    document.querySelector(".bio").value = userData.bio ?? "";
+                    document.querySelector(
+                        `input[name="gender"][value="${userData.gender}"]`
+                    ).checked = true;
+                }
+            })
+            .catch((error) => {
+                console.log(error);
+            });
+    }
+});
+
+document.querySelectorAll(".next-to-step-2").forEach((nextStep) => {
+    nextStep.addEventListener("click", () => {
+        document.querySelectorAll(".modal-step-1").forEach((step1) => {
+            step1.style.display = "none";
+        });
+
+        document.querySelectorAll(".modal-step-2").forEach((step2) => {
+            step2.style.display = "block";
+        });
+    });
+});
+
+document.querySelectorAll(".previous-to-step-1").forEach((previousStep) => {
+    previousStep.addEventListener("click", () => {
+        document.querySelectorAll(".modal-step-1").forEach((modalStep1) => {
+            modalStep1.style.display = "block";
+        });
+
+        document.querySelectorAll(".modal-step-2").forEach((modalStep2) => {
+            modalStep2.style.display = "none";
+        });
+    });
+});
+
+document.getElementById("update").addEventListener("click", () => {
+    const form1 = new FormData(document.getElementById("edit-user-stage1"));
+    const form2 = new FormData(document.getElementById("edit-user-stage2"));
+
+    const continueBtn = document.querySelector(".update-loader");
+    const signupText = document.querySelector(".update-text");
+    const loader = document.querySelector(".update-layout");
+
+    showLoader(continueBtn, signupText, loader);
+    submitForm(form1, form2, continueBtn, signupText, loader);
+});
+
+function submitForm(form1, form2, continueBtn, signupText, loader) {
+    form2.forEach((value, key) => {
+        form1.append(key, value);
+    });
+
+    //return console.log([...form1]);
+
+    axios
+        .post(`/api/v1/admin/store/${userId}`, form1, {
+            headers: {
+                "Content-type": "multipart/form-data",
+            },
+        })
+        .then((response) => {
+            console.log(response);
+
+            hideLoader(continueBtn, signupText, loader);
 
             if (response.status === 200 && response.data) {
-
-                const userData = response.data.user;
-                document.querySelector('.fullname').value = userData.name ?? '';
-                document.querySelector('.username').value = userData.username ?? '';
-                document.querySelector('.phone').value = userData.phone_number ?? '';
-                document.querySelector('.shop_no').value = userData.shop_no ?? '';
-                document.querySelector('.address').value = userData.address ?? '';
-                document.querySelector('.email').value = userData.email ?? '';
-               // document.querySelector('.nationality').value = userData.nationality ?? '';
-                document.querySelector('.bio').value = userData.bio ?? '';
-                document.querySelector(`input[name="gender"][value="${userData.gender}"]`).checked = true;
-            }
-
-        }).catch((error) => {
-
-            console.log(error);
-
-        });
-
-
-
-    }
-
-});
-
-
-document.querySelectorAll('.next-to-step-2').forEach((nextStep) => {
-
-    nextStep.addEventListener('click', () => {
-
-        document.querySelectorAll('.modal-step-1').forEach((step1) => {
-            step1.style.display = 'none';
-
-        });
-
-        document.querySelectorAll('.modal-step-2').forEach((step2) => {
-            step2.style.display = 'block'
-
-        });
-
-    });
-
-
-});
-
-
-document.querySelectorAll('.previous-to-step-1').forEach((previousStep) => {
-
-    previousStep.addEventListener('click', () => {
-
-        document.querySelectorAll('.modal-step-1').forEach((modalStep1) => {
-            modalStep1.style.display = 'block';
-
-        });
-
-        document.querySelectorAll('.modal-step-2').forEach((modalStep2) => {
-            modalStep2.style.display = 'none';
-        });
-
-    });
-
-});
-
-
-document.getElementById('update').addEventListener('click', () => {
-
-    const form1 = new FormData(document.getElementById('edit-user-stage1'));
-    const form2 = new FormData(document.getElementById('edit-user-stage2'));
-
-    
-    const continueBtn = document.querySelector('.update-loader');
-    const signupText = document.querySelector('.update-text');
-    const loader = document.querySelector('.update-layout');
-    
-    showLoader(continueBtn,signupText,loader)
-    submitForm(form1, form2, continueBtn, signupText, loader);
-
-});
-
-
-function   submitForm(form1, form2, continueBtn, signupText, loader) {
-
-        form2.forEach((value, key) => {
-
-        form1.append(key, value);
-
-        });
-
-        //return console.log([...form1]);
-
-        axios.post(`/api/v1/admin/store/${userId}`, form1, {
-
-            headers: {
-                'Content-type': 'multipart/form-data'
-            }
-        }).then((response) => {
-            console.log(response)
-            
-            hideLoader(continueBtn, signupText,loader);
-
-            if(response.status === 200 && response.data) {
-                const iconAlert = 'success';
-                const  titleAlert = 'Profile Update';
+                const iconAlert = "success";
+                const titleAlert = "Profile Update";
                 const msg = response.data.message;
 
                 swalAlert(iconAlert, titleAlert, msg);
 
                 modal.hide();
-
             }
-        }).catch((error) => {
-            hideLoader(continueBtn, signupText,loader);
+        })
+        .catch((error) => {
+            hideLoader(continueBtn, signupText, loader);
 
             console.log(error);
 
-            if(error.response) {
+            if (error.response) {
+                if (error.response.status === 422 && error.response.data) {
+                    const responseErrors = error.response.data.errors;
 
-                if(error.response.status === 422 && error.response.data) {
-
-                    const responseErrors =  error.response.data.errors;
-
-                    const  errorMsg =  validationError(responseErrors);
+                    const errorMsg = validationError(responseErrors);
 
                     displaySwal(errorMsg);
                 }
 
-
-                if(error.response.status === 404 && error.response.data) {
-
-                    const iconAlert = 'error';
-                        const titleAlert = 'Error';
-                        const msg = error.response.data.message;
-
-                    swalAlert(iconAlert, titleAlert, msg )
-
-                }
-
-
-                if(error.response.status === 500) {
-                    
-                    const iconAlert = 'error';
-                    const titleAlert = 'Upload Error';
+                if (error.response.status === 404 && error.response.data) {
+                    const iconAlert = "error";
+                    const titleAlert = "Error";
                     const msg = error.response.data.message;
 
                     swalAlert(iconAlert, titleAlert, msg);
-                    
-                    
+                }
+
+                if (error.response.status === 500) {
+                    const iconAlert = "error";
+                    const titleAlert = "Upload Error";
+                    const msg = error.response.data.message;
+
+                    swalAlert(iconAlert, titleAlert, msg);
                 }
             }
-
-        })
-
-
-   
+        });
 }
 
 function swalAlert(iconAlert, titleAlert, msg) {
-
-     
-        Swal.fire({
-            icon: iconAlert,
-            confirmButtonColor: '#ffb705',
-            title: titleAlert,
-            text: msg,
-            preConfirm: ()=> {
-                window.location.reload();
-            }
-        });
-
+    Swal.fire({
+        icon: iconAlert,
+        confirmButtonColor: "#ffb705",
+        title: titleAlert,
+        text: msg,
+        preConfirm: () => {
+            window.location.reload();
+        },
+    });
 }
 
-
-var suspendModal = new bootstrap.Modal(document.getElementById('suspendModal'));
+var suspendModal = new bootstrap.Modal(document.getElementById("suspendModal"));
 
 let suspendUserId;
 
-document.addEventListener('click', (event) => {
-
-    if (event.target.classList.contains('suspend')) {
-
+document.addEventListener("click", (event) => {
+    if (event.target.classList.contains("suspend")) {
         event.preventDefault();
 
         suspendUserId = event.target.dataset.userId;
 
-        loadDetails(suspendUserId)
-
-    
+        loadDetails(suspendUserId);
     }
-
-})
-
+});
 
 async function loadDetails(userId) {
+    const user = await getUser(userId);
 
-    const user =  await getUser(userId);
+    const email = document.querySelector(".suspend-email");
+    const name = document.querySelector(".suspend-name");
+    const username = document.querySelector(".suspend-username");
 
-  const email =  document.querySelector('.suspend-email');
-  const name =  document.querySelector('.suspend-name');
-  const username = document.querySelector('.suspend-username');
-
-    loadModalDetails(user, email,name,username);
+    loadModalDetails(user, email, name, username);
 
     suspendModal.show();
-
-    
 }
 
- const suspendBtn = document.querySelector('.js-suspend-yes');
+const suspendBtn = document.querySelector(".js-suspend-yes");
 
- suspendBtn.addEventListener('click', () => {
+suspendBtn.addEventListener("click", () => {
+    console.log(suspendUserId);
 
-        console.log(suspendUserId);
+    axios
+        .post("/api/v1/admin/suspend-user", { suspendUserId })
+        .then((response) => {
+            console.log(response);
 
-        axios.post('/api/v1/admin/suspend-user', {suspendUserId}).then((response)=> {
-            console.log(response)
-
-            if(response.status === 200 && response.data) {
-               
+            if (response.status === 200 && response.data) {
                 const msg = response.data.message;
-                const iconAlert = 'success';
-                const titleAlert = 'Suspend User';
+                const iconAlert = "success";
+                const titleAlert = "Suspend User";
 
                 suspendModal.hide();
 
                 swalAlert(iconAlert, titleAlert, msg);
-
-    
-
-
             }
-
-        }).catch((error) => {
+        })
+        .catch((error) => {
             console.log(error);
 
-            if(error.response) {
+            if (error.response) {
                 suspendModal.hide();
 
-                if(error.response.status === 404 && error.response.data) {
-
+                if (error.response.status === 404 && error.response.data) {
                     const msg = error.response.data.message;
-                    const iconAlert =  'error';
-                    const titleAlert = 'User Error';
+                    const iconAlert = "error";
+                    const titleAlert = "User Error";
 
                     swalAlert(iconAlert, titleAlert, msg);
-
-
-
                 }
 
-                if(error.response.status === 500) {
-
+                if (error.response.status === 500) {
                     const msg = error.response.data.message;
-                    const iconAlert =  'error';
-                    const titleAlert = 'Server Error';
+                    const iconAlert = "error";
+                    const titleAlert = "Server Error";
 
                     swalAlert(iconAlert, titleAlert, msg);
-
-
-
                 }
-
-
-
-
-
             }
-
         });
 });
 
-
-function loadModalDetails(user,email,name,username) {
-    
-    email.textContent = user.email ?? 'N/A';
-    name.textContent = user.name ?? 'N/A';
-    username.textContent = user.username ?? 'N/A';
-
+function loadModalDetails(user, email, name, username) {
+    email.textContent = user.email ?? "N/A";
+    name.textContent = user.name ?? "N/A";
+    username.textContent = user.username ?? "N/A";
 }
 
-
-var unsuspendModal = new bootstrap.Modal(document.getElementById('unsuspendModal'));
+var unsuspendModal = new bootstrap.Modal(
+    document.getElementById("unsuspendModal")
+);
 
 let unsuspendId;
 
-document.addEventListener('click', (event) => {
-
-    if(event.target.classList.contains('unsuspend')) {
-
+document.addEventListener("click", (event) => {
+    if (event.target.classList.contains("unsuspend")) {
         unsuspendId = event.target.dataset.userId;
 
         loadunsuspendDetails(unsuspendId);
-
     }
-
 });
 
-async function  loadunsuspendDetails(unsuspendId) {
+async function loadunsuspendDetails(unsuspendId) {
+    const user = await getUser(unsuspendId);
+    const email = document.querySelector(".unsuspend-email");
+    const name = document.querySelector(".unsuspend-name");
+    const username = document.querySelector(".unsuspend-username");
 
-    
-    const user =  await getUser(unsuspendId);
-    const email = document.querySelector('.unsuspend-email');
-    const name =  document.querySelector('.unsuspend-name');
-    const username =   document.querySelector('.unsuspend-username');
-
-    loadModalDetails(user, email,name,username);
+    loadModalDetails(user, email, name, username);
     unsuspendModal.show();
-
-    
 }
 
+const unsuspendBtn = document.querySelector(".js-unsuspend");
 
+unsuspendBtn.addEventListener("click", () => {
+    axios
+        .post(`/api/v1/admin/unsuspend/${unsuspendId}`)
+        .then((response) => {
+            console.log(response);
 
-const unsuspendBtn = document.querySelector('.js-unsuspend');
+            if (response.status === 200 && response.data) {
+                const msg = response.data.message;
+                const iconAlert = "success";
+                const titleAlert = "Unsuspend User";
 
-unsuspendBtn.addEventListener('click', () => {
-
-    axios.post(`/api/v1/admin/unsuspend/${unsuspendId}`).then((response) => {
-
-        console.log(response);
-
-        if(response.status === 200 && response.data) {
-
-            const msg = response.data.message;
-            const iconAlert = 'success';
-            const titleAlert = 'Unsuspend User';
-
-            unsuspendModal.hide();
-
-            swalAlert(iconAlert, titleAlert, msg);
-
-
-
-
-        }
-    }).catch((error) => {
-      //  console.log(error);
-
-      if(error.response) {
-
-        if(error.response.status === 404 && error.response.data) {
-
-            const msg = error.response.data.message;
-            const iconAlert =  'error';
-            const titleAlert = 'User Error';
-
-            deleteModal.hide();
-
-            swalAlert(iconAlert, titleAlert, msg);
-
-        }
-
-        if(error.response.status === 500) {
-
-              const msg = error.response.data.message;
-                const iconAlert =  'error';
-                const titleAlert = 'Server Error';
-
-                deleteModal.hide();
+                unsuspendModal.hide();
 
                 swalAlert(iconAlert, titleAlert, msg);
+            }
+        })
+        .catch((error) => {
+            //  console.log(error);
 
-        }
-    }
+            if (error.response) {
+                if (error.response.status === 404 && error.response.data) {
+                    const msg = error.response.data.message;
+                    const iconAlert = "error";
+                    const titleAlert = "User Error";
 
-    })
+                    deleteModal.hide();
 
+                    swalAlert(iconAlert, titleAlert, msg);
+                }
+
+                if (error.response.status === 500) {
+                    const msg = error.response.data.message;
+                    const iconAlert = "error";
+                    const titleAlert = "Server Error";
+
+                    deleteModal.hide();
+
+                    swalAlert(iconAlert, titleAlert, msg);
+                }
+            }
+        });
 });
 
-
-
-var deleteModal = new bootstrap.Modal(document.getElementById('deleteModal'));
+var deleteModal = new bootstrap.Modal(document.getElementById("deleteModal"));
 
 let deleteUserId;
 
-document.addEventListener('click', (event) => {
-
-    if(event.target.classList.contains('delete')) {
-
+document.addEventListener("click", (event) => {
+    if (event.target.classList.contains("delete")) {
         event.preventDefault();
 
         deleteUserId = event.target.dataset.userId;
 
         loadDelDetails(deleteUserId);
-
-
     }
-
 });
 
+async function loadDelDetails(userId) {
+    const user = await getUser(userId);
 
- async function loadDelDetails(userId) {
+    const email = document.querySelector(".delete-email");
+    const name = document.querySelector(".delete-name");
+    const username = document.querySelector(".delete-username");
 
-  const user =  await getUser(userId);
+    loadModalDetails(user, email, name, username);
 
-  const email = document.querySelector('.delete-email');
-  const name = document.querySelector('.delete-name');
-  const username = document.querySelector('.delete-username');
-
-  loadModalDetails(user, email,name,username);
-
-  deleteModal.show();
-
+    deleteModal.show();
 }
 
-const deleteBtn = document.querySelector('.js-delete-yes');
+const deleteBtn = document.querySelector(".js-delete-yes");
 
-deleteBtn.addEventListener('click', () => {
+deleteBtn.addEventListener("click", () => {
+    axios
+        .post(`/api/v1/admin/delete/${deleteUserId}`)
+        .then((response) => {
+            console.log(response);
 
-    axios.post(`/api/v1/admin/delete/${deleteUserId}`).then((response) => {
-        console.log(response)
-
-        if(response.status === 200 && response.data) {
-
-            const msg = response.data.message;
-            const iconAlert = 'success';
-            const titleAlert = 'Delete User';
-
-            deleteModal.hide();
-
-            swalAlert(iconAlert, titleAlert, msg);
-
-
-
-
-        }
-
-    }).catch((error) => {
-
-     //   console.log(error);
-
-        if(error.response) {
-
-            if(error.response.status === 404 && error.response.data) {
-
-                const msg = error.response.data.message;
-                const iconAlert =  'error';
-                const titleAlert = 'User Error';
+            if (response.status === 200 && response.data) {
+                const msg = response.data.message;
+                const iconAlert = "success";
+                const titleAlert = "Delete User";
 
                 deleteModal.hide();
 
                 swalAlert(iconAlert, titleAlert, msg);
-
             }
+        })
+        .catch((error) => {
+            //   console.log(error);
 
-            if(error.response.status === 500) {
-
-                  const msg = error.response.data.message;
-                    const iconAlert =  'error';
-                    const titleAlert = 'Server Error';
+            if (error.response) {
+                if (error.response.status === 404 && error.response.data) {
+                    const msg = error.response.data.message;
+                    const iconAlert = "error";
+                    const titleAlert = "User Error";
 
                     deleteModal.hide();
 
                     swalAlert(iconAlert, titleAlert, msg);
+                }
 
+                if (error.response.status === 500) {
+                    const msg = error.response.data.message;
+                    const iconAlert = "error";
+                    const titleAlert = "Server Error";
+
+                    deleteModal.hide();
+
+                    swalAlert(iconAlert, titleAlert, msg);
+                }
             }
-        }
-
-    })
-
+        });
 });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 /*
 
@@ -1494,12 +1494,3 @@ function loadModalDetails(user,email,name,username) {
 loadDeletedAccounts();
 
 */
-
-
-
-
-
-
-
-
-

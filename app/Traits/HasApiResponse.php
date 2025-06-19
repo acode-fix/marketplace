@@ -108,7 +108,7 @@ trait HasApiResponse
     return self::errorResponse(
       message: $message,
       errors: [],
-      statusCode: 404,
+      statusCode: Response::HTTP_NOT_FOUND,
       headers: [],
     );
   }

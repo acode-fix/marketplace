@@ -25,10 +25,7 @@ class UsersController extends Controller
 {
     use HasApiResponse;
 
-    public function __construct(protected UserService $userService)
-    {
-        
-    }
+    public function __construct(protected UserService $userService) {}
 
     /**
      * Display a listing of the resource.
@@ -381,13 +378,11 @@ class UsersController extends Controller
 
             $fields = ['username', 'phone_number', 'bio', 'shop_address', 'business_location'];
 
-            $input = collect($request->only($fields))->map(function($value){
+            $input = collect($request->only($fields))->map(function ($value) {
                 return is_string($value) ? trim($value) : $value;
-            })->filter(function($value){
+            })->filter(function ($value) {
 
                 return $value !== null && $value !== '';
-
-  
             })->all();
 
             $user->update($input);
@@ -402,10 +397,10 @@ class UsersController extends Controller
 
                 $user->photo_url = $imageName;
 
-                 $user->save();
+                $user->save();
             }
 
-           
+
 
 
             return response()->json([
@@ -915,34 +910,42 @@ class UsersController extends Controller
 
     public function getUsersWithOutShopNo(Request $request)
     {
-         $perPage = $request->input('per_page', 10);
-         $search = $request->input('search');
+        $perPage = $request->input('per_page', 10);
+        $search = $request->input('search');
 
-         $users =  $this->userService->getUsersWithOutShopNo(perPage: $perPage, search: $search);
+        $users =  $this->userService->getUsersWithOutShopNo(perPage: $perPage, search: $search);
 
-          return response()->json([
+        return response()->json([
             'status' => true,
             'message' => 'User fetched',
             'users' => $users->items(),
             'total' => $users->total(),
             'filtered_total' => $users->total(),
 
-         ], 200);
+        ], 200);
     }
 
 
+    public function genShopNo($userId)
+    {
+
+        $user  =  $this->userService->findUserById(userId: $userId);
+
+        if (!$user) {
+            return $this->notFoundResponse(message: 'User not found');
+        }
+
+        $user = $this->userService->generateUserShopNo(user: $user);
+
+        if (!$user) {
+            return $this->errorResponse(message: 'User shop no update failed', statusCode: Response::HTTP_INTERNAL_SERVER_ERROR);
+        }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
+        return $this->successResponse(
+            message: 'User shop no updated successfully',
+            statusCode: Response::HTTP_OK,
+            data: ['data' => $user],
+        );
+    }
 }

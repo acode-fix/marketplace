@@ -107,6 +107,7 @@ Route::prefix('v1')->middleware('auth:sanctum')->group(function () {
         Route::get('admin/user-product-listing', [UserProductListingController::class, 'getUserWithProducts']);
         Route::get('admin/users/unlisted-products', [UserProductListingController::class, 'getUserWithNoProducts']);
         Route::get('admin/users/without-shop-no', [UsersController::class, 'getUsersWithOutShopNo']);
+        Route::get('admin/user/{id}', [UsersController::class, 'genShopNo']);
 
 
 

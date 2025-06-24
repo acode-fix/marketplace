@@ -707,7 +707,7 @@
   <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/moment@2.29.1/min/moment.min.js"></script>
   <script type="module" src="{{ asset('backend-js/user/profile-update.js') }}"></script>
-  <script type="module" src="{{ asset('backend-js/user/product-desc.js') }}"></script>
+  <script type="module" src="{{ asset('backend-js/user/product-desc.js') }}?time={{ time() }}"></script>
  <script type="module"  src="{{ asset('backend-js/notification.js') }}"></script> 
  <script src="{{ asset('innocent/assets/js/preloader.js') }}"></script>
 

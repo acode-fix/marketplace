@@ -762,7 +762,7 @@
 
   </div>
 
-<script type="module" src="{{ asset('backend-js/seller-shop.js') }}"></script>
+<script type="module" src="{{ asset('backend-js/seller-shop.js') }}?time={{ time() }}"></script>
 <script src="{{ asset('innocent/assets/js/preloader.js') }}"></script> 
 </body>
 

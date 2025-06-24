@@ -1,6 +1,23 @@
 var myModal = new bootstrap.Modal(document.querySelector('#signup_login-modal'));
 const otpModal = new bootstrap.Modal(document.querySelector('#verifyOtpModal'));
 
+// Check for updates on page load
+window.addEventListener('load', function() {
+    // Check if service worker is registered
+    if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.getRegistrations().then(function(registrations) {
+            for (let registration of registrations) {
+                registration.update();
+            }
+        });
+    }
+    
+    // Force clear cache for traditional page loads
+    if (performance.navigation.type === 1) {
+        window.location.reload(true);
+    }
+});
+
 
 
 function showLoader(continueBtn, signupText, loader) {

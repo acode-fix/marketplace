@@ -357,15 +357,16 @@ export function loadConnect(product) {
 
   const productName = title;
 
+  const number = phone_number.replace('/^0/', '');
 
   Swal.fire({
       icon: 'info',
       confirmButtonColor: '#14ae5c',
       title: `${name ?? 'Seller'} Contact: ${phone_number ?? 'N/A'}`, 
       text:  `Product Title: ${productName ?? email}`,
-      confirmButtonText: '<i class="fa-solid fa-phone"></i>',
+      confirmButtonText: '<i style="font-size:25px" class="fa-brands fa-whatsapp"></i>',
       preConfirm: () => {
-        document.location.href = `tel:${phone_number}`;
+        document.location.href = `https://wa.me/234${number}`;
 
       }  
   
@@ -655,6 +656,8 @@ export function displayHelpCenter() {
 
 export function displayData(name, phone_number) {
 
+  const number = phone_number.replace('/^0/', '');
+
   Swal.fire({
     title: "<strong class='text-success'>Connect</strong>",
     icon: "info",
@@ -667,9 +670,9 @@ export function displayData(name, phone_number) {
     showCancelButton: false,
     focusConfirm: false,
     confirmButtonColor: '#14ae5c',
-    confirmButtonText: '<i class="fa-solid fa-phone"></i>',
+    confirmButtonText: '<i style="font-size:25px" class="fa-brands fa-whatsapp"></i>',
     preConfirm: () => {
-      document.location.href = `tel:${phone_number}`;
+      document.location.href = `https://wa.me/234${number}`;
     }
   });
 

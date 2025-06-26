@@ -777,7 +777,7 @@
             <script src="{{ asset('innocent/assets/js/search.js') }}"></script>
             <script src="{{ asset('innocent/assets/js/script.js') }}"></script>
             <script src="{{ asset('innocent/assets/js/animation.js') }}"></script>
-            <script src="{{ asset('innocent/assets/js/product_des.js') }}"></script>
+            <script src="{{ asset('innocent/assets/js/product_des.js') }}?version=1.0.0"></script>
             <script src="{{ asset('innocent/assets/js/notification.js') }}"></script>
             <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 

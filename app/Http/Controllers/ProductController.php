@@ -1180,7 +1180,7 @@ class ProductController extends Controller
     {
         $query = $request->input('query');
 
-        // Perform search query
+        
         $products = Product::where('title', 'like', "%$query%")
             ->orWhere('description', 'like', "%$query%")
             ->orWhereHas('category', function ($q) use ($query) {

@@ -4,9 +4,6 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
-  <meta http-equiv="Pragma" content="no-cache">
-  <meta http-equiv="Expires" content="0">
   <title>Sellers :: Shop</title>
   <link rel="icon" href="{{ asset('innocent/assets/image/favicon.svg') }}" type="image/x-icon">
   <link rel="stylesheet" href="{{ asset('kaz/css/bootstrap.css') }}">
@@ -799,7 +796,7 @@
 
   </div>
 
-  <script type="module" src="{{ asset('backend-js/seller-shop.js') }}?time={{ time() }}"></script>
+  <script type="module" src="{{ asset('backend-js/seller-shop.js') }}"></script>
   <script src="{{ asset('innocent/assets/js/preloader.js') }}"></script>
 </body>
 

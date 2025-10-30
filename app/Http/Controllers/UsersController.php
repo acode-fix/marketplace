@@ -19,11 +19,12 @@ use Barryvdh\Debugbar\Facades\Debugbar;
 use App\Notifications\ReviewPushNotification;
 use App\Services\UserService;
 use App\Traits\HasApiResponse;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Response;
 
 class UsersController extends Controller
 {
-    use HasApiResponse;
+    //use HasApiResponse;
 
     public function __construct(protected UserService $userService) {}
 
@@ -115,7 +116,7 @@ class UsersController extends Controller
      * @param Request $request
      * @return User
      */
-    public function loginUser(Request $request)
+    public function loginUser(Request $request): JsonResponse
     {
         try {
             //
@@ -343,7 +344,7 @@ class UsersController extends Controller
 
             $validateUser = Validator::make($request->all(), [
 
-                'username' => 'nullable|max:255|unique:users,username,' . $request->user()->id,
+                'username' => 'required|max:255|unique:users,username,' . $request->user()->id,
                 'phone_number' => ['nullable', 'regex:/^(080|091|090|070|081)[0-9]{8}$/'],
                 'bio' => 'nullable|string',
                 'photo_url' => 'nullable|image|mimes:jpg,jpeg,png,gif,svg|max:1024',
@@ -388,7 +389,6 @@ class UsersController extends Controller
             $user->update($input);
 
 
-
             $imageName = null;
             if (request()->hasFile('photo_url')) {
                 $file = request()->file('photo_url');
@@ -406,7 +406,7 @@ class UsersController extends Controller
             return response()->json([
                 'status' => true,
                 'message' => 'User Updated Succesfully',
-                'review' => $user,
+                'data' => $user,
             ], 200);
         } catch (\Throwable $th) {
             return response()->json([

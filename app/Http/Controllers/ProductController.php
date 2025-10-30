@@ -652,6 +652,8 @@ class ProductController extends Controller
                 // Update the product's image_url field
                 $product->image_url = json_encode($imageNames);
                 $product->save();
+
+                
             } else {
                 return response()->json([
                     'status' => false,

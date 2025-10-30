@@ -18,7 +18,6 @@ return [
 
     'name' => env('APP_NAME', 'Laravel'),
 
-
     /*
     |--------------------------------------------------------------------------
     | Application Environment
@@ -59,6 +58,8 @@ return [
     */
 
     'url' => env('APP_URL', 'http://localhost'),
+
+    'frontend_url' => env('FRONTEND_URL', 'http://localhost:3000'),
 
     'asset_url' => env('ASSET_URL'),
 
@@ -166,13 +167,12 @@ return [
         /*
          * Application Service Providers...
          */
-        
+
         App\Providers\AppServiceProvider::class,
         App\Providers\AuthServiceProvider::class,
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
-        
 
     ])->toArray(),
 
@@ -189,8 +189,8 @@ return [
 
     'aliases' => Facade::defaultAliases()->merge([
         // 'Example' => App\Facades\Example::class,
-          'PERMIT' => App\Permissions\Permit::class,
-          'Debugbar' => Barryvdh\Debugbar\Facades\Debugbar::class,
+        'PERMIT' => App\Permissions\Permit::class,
+        'Debugbar' => Barryvdh\Debugbar\Facades\Debugbar::class,
     ])->toArray(),
 
 ];

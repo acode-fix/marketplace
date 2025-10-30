@@ -26,7 +26,6 @@ trait HasApiResponse
 
     if (!empty($data)) {
       $response['data'] = $data;
-
       if ($data instanceof AnonymousResourceCollection && $data->resource instanceof LengthAwarePaginator) {
         $meta = array_merge($meta, self::getPaginationMeta($data->resource));
       }

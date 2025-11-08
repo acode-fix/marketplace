@@ -60,7 +60,6 @@ class UsersController extends Controller
      */
     public function getUserData()
     {
-
         $user = Auth::user(); // Get the authenticated user
         return response()->json($user);
     }
@@ -75,7 +74,7 @@ class UsersController extends Controller
             $validator = Validator::make($request->all(), [
                 'email' => 'required|email|unique:users,email',
                 'password' => 'required|min:6|confirmed',
-                'password' => 'required|min:6',
+                'password_confirmation' => 'required|min:6',
 
             ]);
 
@@ -178,7 +177,8 @@ class UsersController extends Controller
 
 
             $token = $user->createToken(env('APP_NAME', 'Api Token'))->plainTextToken;
-
+            
+            /*
             $emailCookie = null;
             $passwordCookie = null;
 
@@ -187,7 +187,7 @@ class UsersController extends Controller
                 $emailCookie = cookie('email', $request->email, 60 * 24, '/', null, false, false);
                 $passwordCookie = cookie('password', $request->password, 60 * 24, '/', null, false, false);
             }
-
+           
 
             $response = response()->json([
                 'status' => true,
@@ -208,6 +208,15 @@ class UsersController extends Controller
             }
 
             return $response;
+            */
+            
+
+            return response()->json([
+                'status' => true,
+                'message' => 'User Logged in successfully',
+                'data' => ['token' => $token, 'user' => $user,]
+
+            ]);
         } catch (\Throwable $th) {
             //throw $th;
             return response()->json([

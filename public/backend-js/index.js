@@ -135,7 +135,7 @@ newBtn.addEventListener("click", () => {
 
     const newValue = newBtn.dataset.value;
 
-    const filters = { newValue };
+    const filters = {new : newValue };
 
     applyFilter(filters);
     document.querySelector(".filter-result").style.display = "none";
@@ -144,7 +144,7 @@ newBtn.addEventListener("click", () => {
 used.addEventListener("click", () => {
     if (!token) {
         promptLogin();
-        return;
+        return; 
     }
 
     used.classList.toggle("usedBtn");
@@ -162,7 +162,7 @@ used.addEventListener("click", () => {
 });
 
 function applyFilter(filters) {
-    // console.log(filters.newValue);
+    console.log(filters);
 
     axios
         .get("/api/v1/product/filter", { params: filters })

@@ -228,13 +228,12 @@ class ProductController extends Controller
     {
         try {
 
-
-            debugbar::info($request->newValue, $request->used, $request->location, $request->verified);
+            //debugbar::info($request->newValue, $request->used, $request->location, $request->verified);
 
             $products = Product::with('user')->where('quantity', '!=', 0)
 
-                ->when($request->newValue, function ($q) use ($request) {
-                    $q->where('condition', $request->newValue);
+                ->when($request->new, function ($q) use ($request) {
+                    $q->where('condition', $request->new);
                 })
                 ->when($request->used, function ($q) use ($request) {
                     $q->where('condition', $request->used);
@@ -413,153 +412,6 @@ class ProductController extends Controller
      * Store a newly created resource in storage.
      */
 
-    /*
-    public function store(Request $request)
-    {
-        //
-        try{
-            $validateProduct = Validator::make($request->all(), [
-
-                'title' => 'required',
-                'description' => 'required',
-                'category_id' => 'required|exists:categories,id',
-                'quantity' => 'required',
-                'location' => 'required',
-                'condition' => ['required','in:fairly_used,new'],
-                'ask_for_price' => 'required|boolean',
-                'image_url' => 'required',
-                'image_url.*' => 'image|mimes:jpg,jpeg,png,gif|max:2048'
-            ]);
-
-            // Conditionally add validation rules for actual_price and promo_price
-            $validateProduct->sometimes('actual_price', 'required', function ($input) {
-                return !$input->ask_for_price;
-            });
-
-                // $validateProduct->sometimes('promo_price', 'required', function ($input) {
-                //     return !$input->ask_for_price;
-                // });
-
-            if($validateProduct->fails()){
-                return response()->json([
-                    'status' => false,
-                    'message' => 'validation error',
-                    'errors' => $validateProduct->errors()
-                ], 401);
-            }
-
-                    $authUser = $request->user();
-                    $user_id = $authUser->id;
-
-            //check if a user has conpleted settings registration form;
-
-            $userData =  User::find($user_id);
-
-            if(empty($userData->username)  || empty($userData->phone_number) || empty($userData->bio)) {
-
-                return response()->json([
-                    'status' => false,
-                    'message' => 'Dashboard Bio Form is required before publishing a product',
-
-                ], 404);
-
-            
-            }
-
-        
-                $product = Product::create([
-                        'user_id' => $user_id,
-                        'title' => $request->title,
-                        'description' => $request->description,
-                        'category_id' => $request->category_id,
-                        'quantity' => $request->quantity,
-                        'location' => $request->location,
-                        'actual_price' => $request->ask_for_price ? null : $request->actual_price,
-                        'promo_price' => $request->ask_for_price ? null : $request->promo_price,
-                        // 'actual_price' => $request->actual_price,
-                        // 'promo_price' => $request->promo_price,
-                        'condition' => $request->condition,
-                        'ask_for_price' => $request->ask_for_price,
-                        'image_url.*' => json_encode([]), // Initialize with an empty array
-                ]);
-
-   // dd($product);
-
-            $imageNames = [];
-
-            // Step 2: Check if the request has files and debug the files array
-            if ($request->hasFile('image_url')) {
-            $files = $request->file('image_url');
-            if (!is_array($files)) {
-                $files = [$files];
-            }
-
-            // Debugging: Log the structure of the files array
-            Log::info('Image Files Count:', ['count' => count($files)]);
-
-            foreach ($files as $file) {
-                // Additional debugging to check each file
-                Log::info('Processing File:', ['originalName' => $file->getClientOriginalName(), 'isValid' => $file->isValid()]);
-
-                if (!$file->isValid()) {
-                    Log::error('Invalid file detected', ['file' => $file->getClientOriginalName()]);
-                    continue;
-                }
-
-                $imageName = md5($file->getClientOriginalName() . time()) . "." . $file->getClientOriginalExtension();
-                $file->move(public_path('uploads/products/'), $imageName);
-                $imageNames[] = $imageName;
-            }
-
-            // Debugging: Log the image names array
-            Log::info('Processed Image Names:', $imageNames);
-
-            // Debugging: Check if image names are being collected
-            if (empty($imageNames)) {
-                return response()->json([
-                    'status' => false,
-                    'message' => 'No images were processed'
-                ]);
-            }
-
-            // Step 3: Update the product's image_url field with all processed image names
-            $product->image_url = json_encode($imageNames);
-            $product->save();
-
-            } else {
-            // Debugging: No files found in the request
-            return response()->json([
-                'status' => false,
-                'message' => 'No image files found in the request'
-            ]);
-
-
-
-            }
-
-            // Step 4: Return the response with the updated product
-            return response()->json([
-            'status' => true,
-            'message' => 'Product created successfully',
-            'data' => $product
-            ]);
-
-            }
-             catch (\Throwable $th) {
-            return response()->json([
-                'status' => false,
-                'message' => $th->getMessage()
-            ], 500);
-            }
-
-
-
-  }
-
-
-
-*/
-
     public function store(Request $request)
     {
         try {
@@ -588,7 +440,7 @@ class ProductController extends Controller
                     'status' => false,
                     'message' => 'Validation error',
                     'errors' => $validateProduct->errors()
-                ], 401);
+                ], 422);
             }
 
             
@@ -1017,9 +869,10 @@ class ProductController extends Controller
     }
 
     public function getSharedProductDetails(Request $request)
-    {
+    {    
 
-        $id = $request->id;
+
+        $id = $request->productId;
         $shopToken = $request->shopToken;
 
         $product = Product::with('user')->where('id', $id)
@@ -1058,7 +911,7 @@ class ProductController extends Controller
     public function  storeProductEngagement(Request $request)
     {
 
-        debugbar::info($request->all());
+       // debugbar::info($request->all());
 
         if (!$request->user()) {
 

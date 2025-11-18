@@ -73,10 +73,10 @@ if (!token) {
 }
 
 axios
-    .post(
+    .get(
         "/api/product/shared",
         {
-            id,
+            productId: id,
             shopToken,
         },
         {

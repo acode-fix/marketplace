@@ -7,7 +7,6 @@
     <title>Loopmart-marketplace</title>
     <link rel="stylesheet" href="https://code.jquery.com/ui/1.14.1/themes/base/jquery-ui.css">
 
-
     <link rel="icon" href="{{ asset('innocent/assets/image/favicon.svg') }}" type="image/x-icon">
     <link rel="stylesheet" href="{{ asset('innocent/assets/css/bootstrap.css') }}">
     <link rel="stylesheet" href="{{ asset('innocent/assets/css/style.css') }}">

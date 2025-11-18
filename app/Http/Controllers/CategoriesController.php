@@ -8,6 +8,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Controllers\Ads_categoryController;
 use App\Models\Product;
 use App\Models\Ads_category;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Validator;
 
 class CategoriesController extends Controller
@@ -18,8 +19,8 @@ class CategoriesController extends Controller
     public function index()
     {
         //
-        $categories = Ads_Category::all();
-        return response()->json($categories);
+       // $categories = Ads_Category::all();
+       // return response()->json($categories);
     }
 
     /**
@@ -62,7 +63,8 @@ class CategoriesController extends Controller
      * Show the form for editing the specified resource.
      */
     public function list(string $id, Request $request)
-    {
+    {   
+         
         //
 
        // $product = Product::find($id);

@@ -788,8 +788,6 @@ class UsersController extends Controller
 
 
 
-
-
     public function getLink(Request $request)
     {
 

@@ -53,58 +53,6 @@ channel.bind("Illuminate\\Notifications\\Events\\BroadcastNotificationCreated", 
 })
 
 
-/*
-async function loadNotification(data) {
-  let content = [data];
- 
-
-  const notificationPromises = content.map(async (item) => {
-
-   console.log(data)
-
-      const productImageHtml = await loadProductDetails(item.product_id);
-
-      if(data.user_id == data.product_id) {
-        continue;
-      }
-    
-   
-   return   productImageHtml ? `<a class="notification-link"  href="/rating/page?user=${data.user_id}&product=${data.product_id}&shop=${shopToken}">
-   <div class="notification">
-       <div class="notification_details">
-           <div class="notification_image">
-               <img src="innocent/assets/image/logo icon.svg" alt="Profile Picture">
-           </div>
-           <div class="message_area">
-              
-               <p class="time">${data.comment}</p>
-               <p class="message"><strong>Congratulations</strong><br>It is a perfect time to give a review .</p>
-              
-               
-           </div>
-           ${productImageHtml ?? `<img src="innocent/assets/image/laptop2.jpg" alt="Picture" class="notification_product_image">`}
-       </div>
-   </div>
-</a>` : '';
-         
-  });
-
-  const messages = await Promise.all(notificationPromises);
-
-  const filteredMessages = messages.filter((message) => message.trim() !== '');
-
-  notificationStatus(filteredMessages);
-
-  const notification = document.querySelector('.notifications_layout');
-  if (notification) {
-
-      notification.innerHTML += filteredMessages.join('');  // Insert all notifications at once
-
- 
-      
-  }
-}
-*/
 
 async function loadNotification(data) {
   const content = Array.isArray(data) ? data : [data]; // Ensure content is an array
@@ -209,63 +157,7 @@ axios.get('/api/v1/user/notification',  {
 })
 
 
-/*
-async function getUnreadNotification(notifications) {
-  // Use map to create an array of promises for each notification's HTML content
-  const messagePromises = notifications.map(async (notification) => {
-      const data = JSON.parse(notification.data);
 
-      console.log(data);
-         
-      const productImageHtml = await loadProductDetails(data.product_id);
-
-   return   productImageHtml ? `<a class="notification-link"  href="/rating/page?user=${data.user_id}&product=${data.product_id}&shop=${shopToken}">
-              <div class="notification">
-                  <div class="notification_details">
-                      <div class="notification_image">
-                          <img src="innocent/assets/image/logo icon.svg" alt="Profile Picture">
-                      </div>
-                      <div class="message_area">
-                          <strong>Your experience matters</strong>
-                          <p class="time pt-1">${data.comment}</p>
-                          <p class="message"><strong>Congratulations</strong><br>It is a perfect time to give a review .</p>
-                         
-                          
-                      </div>
-                      ${productImageHtml ?? `<img src="innocent/assets/image/laptop2.jpg" alt="Picture" class="notification_product_image">`}
-                  </div>
-              </div>
-          </a>` : '';
-
-      
-  });
-
-  // Wait for all notification HTML content to load
-  const messages = await Promise.all(messagePromises);
-
-  const filteredMessages = messages.filter((message) => message.trim() !== '');
-
-
-  notificationStatus(filteredMessages);
-
-
- 
-
-
-  
-
-  // Insert the messages into the notifications region
-  const notificationContainer = document.querySelector('.notifications_layout');
-  if (notificationContainer) {
-      notificationContainer.innerHTML += filteredMessages.join('');
-  }
-
-  
-
-
-  
-}
-*/
 
 async function getUnreadNotification(notifications) {
   // Process each notification asynchronously

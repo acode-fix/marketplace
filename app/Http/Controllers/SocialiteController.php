@@ -26,8 +26,8 @@ class SocialiteController extends Controller
      * @return void
      */
 
-    public function redirect($provider)
-    {
+    public function redirect(Request $request, $provider)
+    {   
         return Socialite::driver($provider)->stateless()->redirect();
     }
 
@@ -84,26 +84,15 @@ class SocialiteController extends Controller
 
             // return redirect(config('app.url') . "/settings?success=You+have+successfully+logged+in&token={$token}&user={$user->id}");
 
-            if (Request::is(config('app.frontend_url'))) {
-                return redirect(config('app.frontend_url') . "?success=You+have+successfully+logged+in&token={$token}&user={$user->id}");
-            } 
+            $allowed = [
+                config('app.frontend_url'),
+                config('app.vercel_url'),
+            ];
 
-              if (Request::is(config('app.vercel_url'))) {
-                return redirect(config('app.vercel_url') . "?success=You+have+successfully+logged+in&token={$token}&user={$user->id}");
-            } 
+            $frontendUrl = in_array($request->input('redirect'), $allowed, true) ? $request->input('redirect') : config('app.frontend_url');
 
+            return redirect()->away($frontendUrl . '?token=' . urlencode($token));
 
-            
-
-            return $this->successResponse(
-                message: "Login successfully",
-                data: [
-                    "token" => $token,
-                    "user" => $user,
-
-                ],
-                statusCode: Response::HTTP_OK,
-            );
         } else {
             return $this->errorResponse(
                 message: 'Failed to login try again',

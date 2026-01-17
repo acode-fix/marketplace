@@ -18,7 +18,7 @@ use Laravel\Socialite\Facades\Socialite;
 
 class SocialiteController extends Controller
 {
-    use HasApiResponse;
+    
     /**
      * Function: Google login
      * Description: This will redirect to google
@@ -57,15 +57,14 @@ class SocialiteController extends Controller
 
             $user = $this->findOrCreate($providerUser, $provider);
 
-            if(!$user) {
+            if (!$user) {
                 return $this->errorResponse(
                     message: 'Login failed, please try again later!!',
                     statusCode: Response::HTTP_INTERNAL_SERVER_ERROR
                 );
-
             }
 
-            
+
             if ($user && $user->user_type == -2) {
                 return $this->errorResponse(
                     message: 'Account suspended, contact support!!',
@@ -83,7 +82,17 @@ class SocialiteController extends Controller
 
             $token = $user->createToken(env('APP_NAME', 'API TOKEN'))->plainTextToken;
 
-            return redirect(config('app.url') . "/settings?success=You+have+successfully+logged+in&token={$token}&user={$user->id}");
+            // return redirect(config('app.url') . "/settings?success=You+have+successfully+logged+in&token={$token}&user={$user->id}");
+
+            return $this->successResponse(
+                message: "Login successfully",
+                data: [
+                    "token" => $token,
+                     "user" => $user,
+
+                ],
+                statusCode: Response::HTTP_OK,
+            );
         } else {
             return $this->errorResponse(
                 message: 'Failed to login try again',
@@ -97,7 +106,7 @@ class SocialiteController extends Controller
     {
         $linkedSocialAccount = LinkedSocialAccount::query()->where('provider_name', $provider)->where('provider_id', $providerUser->getId())->first();
 
-        
+
 
         if ($linkedSocialAccount) {
 

@@ -89,7 +89,7 @@ class SocialiteController extends Controller
                 config('app.vercel_url'),
             ];
 
-            $frontendUrl = in_array($request->input('redirect'), $allowed, true) ? $request->input('redirect') : config('app.frontend_url');
+            $frontendUrl = in_array($request->input('redirect'), $allowed, true) ? $request->input('redirect') : config('app.vercel_url',);
 
             return redirect()->away($frontendUrl . '?token=' . urlencode($token));
 

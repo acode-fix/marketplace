@@ -18,7 +18,7 @@ use Laravel\Socialite\Facades\Socialite;
 
 class SocialiteController extends Controller
 {
-    
+
     /**
      * Function: Google login
      * Description: This will redirect to google
@@ -84,11 +84,22 @@ class SocialiteController extends Controller
 
             // return redirect(config('app.url') . "/settings?success=You+have+successfully+logged+in&token={$token}&user={$user->id}");
 
+            if (Request::is(config('app.frontend_url'))) {
+                return redirect(config('app.frontend_url') . "?success=You+have+successfully+logged+in&token={$token}&user={$user->id}");
+            } 
+
+              if (Request::is(config('app.vercel_url'))) {
+                return redirect(config('app.vercel_url') . "?success=You+have+successfully+logged+in&token={$token}&user={$user->id}");
+            } 
+
+
+            
+
             return $this->successResponse(
                 message: "Login successfully",
                 data: [
                     "token" => $token,
-                     "user" => $user,
+                    "user" => $user,
 
                 ],
                 statusCode: Response::HTTP_OK,

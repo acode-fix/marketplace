@@ -30,8 +30,14 @@ return [
         'secret' => env('AWS_SECRET_ACCESS_KEY'),
         'region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
     ],
-    'secret_key' => [
-        'key' => env('Paystack_bearer_key'),
+   
+    'paystack' => [
+         'secret_key' => env('PAYSTACK_BEARER_KEY'),
+         'monthly_plan' => env('PAYSTACK_MONTHLY_PLAN'),
+         'yearly_plan' => env('PAYSTACK_YEARLY_PLAN'),
+         'base_url' => env('PAYSTACK_BASE_URL')
+
+
     ],
 
     'google' => [

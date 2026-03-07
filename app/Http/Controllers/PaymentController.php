@@ -117,7 +117,7 @@ class PaymentController extends Controller
         curl_setopt($ch, CURLOPT_POST, true);
         curl_setopt($ch, CURLOPT_POSTFIELDS, $fields_string);
         curl_setopt($ch, CURLOPT_HTTPHEADER, [
-            'Authorization: Bearer '.config('services.secret_key.key'),
+            'Authorization: Bearer '.config('services.paystack.secret_key'),
             'Cache-Control: no-cache',
         ]);
 
@@ -177,7 +177,7 @@ class PaymentController extends Controller
             CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
             CURLOPT_CUSTOMREQUEST => 'GET',
             CURLOPT_HTTPHEADER => [
-                'Authorization: Bearer '.config('services.secret_key.key'),
+                'Authorization: Bearer '.config('services.paystack.secret_key'),
                 'Cache-Control: no-cache',
             ],
         ]);

@@ -169,7 +169,6 @@ import verificationBtnStatus from "./verification-status.js";
 
                    const userId = selectedProduct.user_id;
 
-
                    localStorage.setItem('userId', JSON.stringify(userId));
 
                    window.location.href = '/sellers-shop';

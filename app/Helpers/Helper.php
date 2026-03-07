@@ -2,24 +2,29 @@
 
 namespace App\Helpers;
 
+use App\Models\Invoice;
+use App\Models\Plan;
+use App\Models\Subscription;
+use App\Models\User;
+
+use function PHPUnit\Framework\returnValueMap;
+
 class Helper
 {
-  public function __construct()
-  {
-    
-  }
+    public function __construct() {}
 
-  public static function generateShopNo() {
+    public static function generateShopNo()
+    {
 
         $bytes = openssl_random_pseudo_bytes(2);
         $number = hexdec(bin2hex($bytes));
-        $shopNo = $number % 90000 + 10000; 
+        $shopNo = $number % 90000 + 10000;
 
-    return $shopNo;
-
+        return $shopNo;
     }
 
-   public static function generateShopToken($length = 50) {
+    public static function generateShopToken($length = 50)
+    {
 
         $key = '';
         // Include digits, uppercase, and lowercase letters
@@ -31,9 +36,26 @@ class Helper
         }
 
         return $key;
-        
+    }
+
+    public static function getUser($email): User
+    {
+        return User::where('email', $email)->first();
+    }
+
+    public static function getPlan($planCode): Plan
+    {
+        return Plan::where('plan_code', $planCode)->first();
     }
 
 
+    public static function getSubscription($subscriptionCode): ?Subscription
+    {
+        return  Subscription::where('subscription_code', $subscriptionCode)->first();
+    }
 
+    public static function getInvoice($invoiceCode): ?Invoice
+    {
+        return Invoice::where('invoice_code', $invoiceCode)->first();
+    }
 }

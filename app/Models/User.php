@@ -3,6 +3,8 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+
+use App\Enums\SubscriptionStatus;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -113,5 +115,15 @@ class User extends Authenticatable
                   ->orWhere('phone_number', 'like', '%' . $searchParams . '%');
 
          });
+    }
+
+    public function subscription()
+    {
+        return $this->hasOne(Subscription::class);
+    }
+
+    public function hasActiveSubscription()
+    {
+        return $this->subscription && !$this->subscription->period_end?->isPast();
     }
 }

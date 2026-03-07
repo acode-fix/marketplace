@@ -7,13 +7,16 @@ use App\Http\Controllers\CategoriesController;
 use App\Http\Controllers\LearnController;
 use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\PaymentController;
+use App\Http\Controllers\PaystackWebhookController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ReviewersController;
+use App\Http\Controllers\SubscriptionController;
 use App\Http\Controllers\UserProductListingController;
 use App\Http\Controllers\UsersController;
 use App\Http\Controllers\VerificationController;
-use App\Models\Verification;
+use App\Http\Controllers\WebhookController;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Route;
 
 
@@ -183,7 +186,7 @@ Route::prefix('v1')->middleware('auth:sanctum')->group(function () {
 
     Route::get('/product/filter', [ProductController::class, 'filterProducts']);
     Route::get('/product/category-filter', [ProductController::class, 'filterProductByCategory']);
-    Route::post('/product', [ProductController::class, 'store']);
+    Route::post('/product', [ProductController::class, 'store'])->middleware('subscribed');
     Route::get('/product/user/{id}', [ProductController::class, 'showUser']);
 
     Route::get('/product/{id}', [ProductController::class, 'getProduct']);
@@ -217,4 +220,10 @@ Route::prefix('v1')->middleware('auth:sanctum')->group(function () {
     Route::post('/verification/selfie', [VerificationController::class, 'uploadSelfie']);
     Route::post('/verification/status', [VerificationController::class, 'updateVerificationStatus']);
 
+    
+    Route::get('/subscription', [SubscriptionController::class, 'show']);
+    Route::post('/subscription', [SubscriptionController::class, 'initialize']);
+    Route::post('/subscription/cancel', [SubscriptionController::class, 'cancel']);
 });
+
+Route::post('/paystack/webhook', [PaystackWebhookController::class, 'handle']);

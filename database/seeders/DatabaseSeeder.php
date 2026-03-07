@@ -39,7 +39,8 @@ class DatabaseSeeder extends Seeder
             LearnSeeder::class,
             BadgeUnitSeeder::class,*/
 
-            UserSeeder::class,
+           // UserSeeder::class,
+            PlansTableSeeder::class,
         ]);
         
 

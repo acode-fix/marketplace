@@ -25,13 +25,13 @@ class SubscriptionController extends Controller
     public function initialize(Request $request): JsonResponse
     {
         $validated = $request->validate([
-            'plan' => ['required', 'string', 'in:monthly,yearly'],
+            'interval' => ['required', 'string', 'in:monthly,annually'],
         ]);
 
         $user = auth()->user();
 
-        $planCode = $this->paystack->getPlanCode(plan: $validated['plan']);
-        $plan = $this->paystack->getPlan(planCode: $planCode);
+       // $planCode = $this->paystack->getPlanCode(plan: $validated['plan']);
+        $plan = $this->paystack->getPlan( interval: $validated['interval']);
         $amount = (int)  $plan->amount * 100;
 
         $response =  $this->paystack->initalizeSubscription(email: $user->email, planCode: $plan->plan_code, amount: $amount, callbackUrl: config('app.frontend_url') . '/subscription/callback');

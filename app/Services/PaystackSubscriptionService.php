@@ -19,10 +19,11 @@ class PaystackSubscriptionService
     $this->secret = config('services.paystack.secret_key');
   }
 
-  public function request(string $endpoint, array $data = [])
-  {  
-  
-    $response = Http::withToken(token: $this->secret)->post($this->baseUrl . $endpoint, data: $data);
+  public function request(string $method, string $endpoint, array $data = [])
+  {
+
+    $response = Http::withToken(token: $this->secret)->retry(3, 200)
+    ->timeout(10)->{$method}($this->baseUrl . $endpoint,  $data);
 
     if (! $response->successful()) {
       Log::error('Paystack initialization failed', [
@@ -39,10 +40,24 @@ class PaystackSubscriptionService
     return $response->json()['data'] ?? $response->json();
   }
 
+  public function createPlan(string $name, string $interval, int $amount)
+  {
+    return $this->request('post','/plan', [
+      'name' => $name,
+      'interval' => $interval,
+      'amount' => $amount,
+    ]);
+  }
+
+  public function getPlans()
+  {
+    return $this->request('get', '/plan');
+  }
+
 
   public function initalizeSubscription(string $email, string $planCode, int $amount, string $callbackUrl)
   {
-    return $this->request('/transaction/initialize', [
+    return $this->request('post','/transaction/initialize', [
       'email' => $email,
       'plan' => $planCode,
       'amount' => $amount,
@@ -53,15 +68,15 @@ class PaystackSubscriptionService
   public function cancelSubscription(string $subscriptionCode, string $emailToken)
   {
 
-    return $this->request('/subscription/disable', [
+    return $this->request('post','/subscription/disable', [
       'code' => $subscriptionCode,
       'token' => $emailToken,
     ]);
   }
 
-  public function enableSubscription(string $subscriptionCode, string $emailToken)
+  public function enableSubscription( string $subscriptionCode, string $emailToken)
   {
-    return $this->request('/subscription/enable', [
+    return $this->request('post','/subscription/enable', [
       'code' => $subscriptionCode,
       'token' => $emailToken
     ]);
@@ -79,9 +94,9 @@ class PaystackSubscriptionService
     };
   }
 
-  public function getPlan($planCode): Plan
+  public function getPlan($interval): Plan
   {
-    return Plan::where('plan_code', $planCode)->firstOrFail();
+    return Plan::where('interval', $interval)->firstOrFail();
   }
 
   public function getSubscription(int $userId): ?Subscription

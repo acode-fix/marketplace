@@ -29,8 +29,12 @@ class PlansTableSeeder extends Seeder
                     );
             }
 
+            $this->command->info('Plans synced successfully');
+
         }else {
-            $this->command->warn('Failed to fetch plans from paystack');
+            $this->command->error('Failed to fetch plans from paystack');
+            $this->command->line('Status: ' . $response->status());
+            $this->command->line('Response: ' . $response->body());
         }
     }
 }

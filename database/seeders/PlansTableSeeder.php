@@ -14,7 +14,7 @@ class PlansTableSeeder extends Seeder
      */
     public function run(): void
     {
-        $response = Http::withToken(config('services.paystack.secret_key'))->get('https://api.paystack.co/plan');
+        $response = Http::withToken(config('services.paystack.secret_key'))->get(config('services.paystack.base_url') . '/plan');
 
         if($response->successful()){
             $plans = $response->json()['data'];

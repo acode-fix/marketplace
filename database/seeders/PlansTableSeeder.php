@@ -19,6 +19,8 @@ class PlansTableSeeder extends Seeder
         if($response->successful()){
             $plans = $response->json()['data'];
 
+           $this->command->line(json_encode($plans, JSON_PRETTY_PRINT));
+
             foreach($plans as $plan){
                 Plan::updateOrCreate(
                     ['plan_code' => $plan['plan_code']],

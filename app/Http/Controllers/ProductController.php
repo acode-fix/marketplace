@@ -537,7 +537,7 @@ class ProductController extends Controller
      */
     public function getProduct($id)
     {
-        debugbar::info($id);
+        //debugbar::info($id);
 
         $product =  Product::with('user')->where('quantity', '!=', 0)
             ->where('id', $id)

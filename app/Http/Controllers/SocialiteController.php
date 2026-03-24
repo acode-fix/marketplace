@@ -9,12 +9,11 @@ use App\Traits\HasApiResponse;
 use DebugBar\DebugBar;
 use Exception;
 use Illuminate\Http\Request;
-use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Validator;
 use Laravel\Socialite\Facades\Socialite;
-
+use Symfony\Component\HttpFoundation\Response;
 
 class SocialiteController extends Controller
 {
@@ -27,7 +26,7 @@ class SocialiteController extends Controller
      */
 
     public function redirect(Request $request, $provider)
-    {   
+    {
         return Socialite::driver($provider)->stateless()->redirect();
     }
 
@@ -82,17 +81,9 @@ class SocialiteController extends Controller
 
             $token = $user->createToken(env('APP_NAME', 'API TOKEN'))->plainTextToken;
 
-            // return redirect(config('app.url') . "/settings?success=You+have+successfully+logged+in&token={$token}&user={$user->id}");
-
-            $allowed = [
-                config('app.frontend_url'),
-                config('app.vercel_url'),
-            ];
-
-            $frontendUrl = in_array($request->input('redirect'), $allowed, true) ? $request->input('redirect') : config('app.vercel_url',);
+            $frontendUrl =  config('app.frontend_url') ?? config('app.vercel_url');
 
             return redirect()->away($frontendUrl . '?token=' . urlencode($token));
-
         } else {
             return $this->errorResponse(
                 message: 'Failed to login try again',

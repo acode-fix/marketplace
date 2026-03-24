@@ -23,7 +23,7 @@ class PaystackSubscriptionService
   {
 
     $response = Http::withToken(token: $this->secret)->retry(3, 200)
-    ->timeout(10)->{$method}($this->baseUrl . $endpoint,  $data);
+      ->timeout(10)->{$method}($this->baseUrl . $endpoint,  $data);
 
     if (! $response->successful()) {
       Log::error('Paystack initialization failed', [
@@ -37,12 +37,19 @@ class PaystackSubscriptionService
       );
     }
 
+    Log::info('Paystack response', [
+      'body' => $response->body(),
+      'json' => $response->json()
+    ]);
+
+
+
     return $response->json()['data'] ?? $response->json();
   }
 
   public function createPlan(string $name, string $interval, int $amount)
   {
-    return $this->request('post','/plan', [
+    return $this->request('post', '/plan', [
       'name' => $name,
       'interval' => $interval,
       'amount' => $amount,
@@ -57,7 +64,7 @@ class PaystackSubscriptionService
 
   public function initalizeSubscription(string $email, string $planCode, int $amount, string $callbackUrl)
   {
-    return $this->request('post','/transaction/initialize', [
+    return $this->request('post', '/transaction/initialize', [
       'email' => $email,
       'plan' => $planCode,
       'amount' => $amount,
@@ -68,15 +75,15 @@ class PaystackSubscriptionService
   public function cancelSubscription(string $subscriptionCode, string $emailToken)
   {
 
-    return $this->request('post','/subscription/disable', [
+    return $this->request('post', '/subscription/disable', [
       'code' => $subscriptionCode,
       'token' => $emailToken,
     ]);
   }
 
-  public function enableSubscription( string $subscriptionCode, string $emailToken)
+  public function enableSubscription(string $subscriptionCode, string $emailToken)
   {
-    return $this->request('post','/subscription/enable', [
+    return $this->request('post', '/subscription/enable', [
       'code' => $subscriptionCode,
       'token' => $emailToken
     ]);

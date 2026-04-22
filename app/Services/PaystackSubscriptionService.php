@@ -96,7 +96,7 @@ class PaystackSubscriptionService
   {
     return match ($plan) {
       'monthly' => config('services.paystack.monthly_plan'),
-      'yearly' => config('services.paystack.yearly_plan'),
+      'annually' => config('services.paystack.yearly_plan'),
       default => throw new NotFoundHttpException('Plan not found')
     };
   }
@@ -109,5 +109,24 @@ class PaystackSubscriptionService
   public function getSubscription(int $userId): ?Subscription
   {
     return Subscription::where('user_id', $userId)->first();
+  }
+
+  public function resolvePlan(string $interval): array{
+
+  if(app()->environment('local', 'testing')){
+    return [
+      'plan_code' => $this->getPlanCode($interval),
+      'amount' => 1000 * 100
+    ];
+
+  }
+
+  $plan = $this->getPlan($interval);
+
+  return [
+    'plan_code' => $plan->plan_code,
+    'amount' => (int) $plan->amount * 100,
+  ];
+
   }
 }

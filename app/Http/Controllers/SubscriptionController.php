@@ -30,11 +30,23 @@ class SubscriptionController extends Controller
 
         $user = auth()->user();
 
-       // $planCode = $this->paystack->getPlanCode(plan: $validated['plan']);
-        $plan = $this->paystack->getPlan( interval: $validated['interval']);
-        $amount = (int)  $plan->amount * 100;
+        // $planCode = $this->paystack->getPlanCode(plan: $validated['plan']);
+        // $plan = $this->paystack->getPlan( interval: $validated['interval']);
+        // $amount = (int)  $plan->amount * 100;
 
-        $response =  $this->paystack->initalizeSubscription(email: $user->email, planCode: $plan->plan_code, amount: $amount, callbackUrl: config('app.frontend_url') . '/subscription/callback');
+        $planData = $this->paystack->resolvePlan($validated['interval']);
+
+        if (empty($planData['plan_code'])) {
+            throw new \Exception('Invalid plan configuration');
+        }
+
+        Log::info('Resolved plan data', [
+            'user_id' => auth()->id(),
+            'interval' => $validated['interval'],
+            'planData' => $planData,
+        ]);
+
+        $response =  $this->paystack->initalizeSubscription(email: $user->email, planCode: $planData['plan_code'], amount: $planData['amount'], callbackUrl: config('app.frontend_url') . '/start-selling');
 
         return $this->successResponse(
             message: 'Transaction initialized successfully',
@@ -92,7 +104,7 @@ class SubscriptionController extends Controller
 
 
         $data = [
-            'active' => $subscription && !$subscription->period_end  ->isPast(),
+            'active' => $subscription && !$subscription->period_end->isPast(),
             'plan' => $subscription?->plan?->name,
             'expires_at' => $subscription?->period_end,
 

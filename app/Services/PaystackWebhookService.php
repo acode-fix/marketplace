@@ -67,7 +67,7 @@ class PaystackWebhookService
     $plan = Helper::getPlan(planCode: $data['plan']['plan_code']);
 
     if (! $plan) {
-      Log::warning('User not found for subscription', $data);
+      Log::warning('Plan not found for subscription', $data);
       return;
     }
 
@@ -117,10 +117,8 @@ class PaystackWebhookService
     $subscription = $this->getSubscriptionFromCharge($data);
     if (! $subscription) {
       Log::warning('Subscription not found for charge.success', $data);
-    return;
-
-
-    } 
+      return;
+    }
 
     $invoice = null;
 
@@ -152,11 +150,17 @@ class PaystackWebhookService
       ]);
     }
 
+    $base = $subscription->period_end && $subscription->period_end->isFuture()
+      ? $subscription->period_end
+      : now();
+
+    $newEnd = $base->copy()->addMonth();
+
     $subscription->update([
       'status' => SubscriptionStatus::ACTIVE,
-      'period_start' => $this->formatDate($data['created_at'] ?? null) ?? now(),
-      'period_end' => $this->formatDate($data['next_payment_date'] ?? null) ?? $subscription->period_end,
-      'next_payment_date' => $this->formatDate($data['next_payment_date'] ?? null) ?? $subscription->next_payment_date,
+      'period_start' => now(),
+      'period_end' => $newEnd,
+      'next_payment_date' => $newEnd,
     ]);
 
     $this->logProcessed(WebhookEvent::CHARGE_SUCCESS->value, $data);
@@ -249,14 +253,21 @@ class PaystackWebhookService
     return Helper::getInvoice(invoiceCode: $invoiceCode);
   }
 
+
+
   private function getSubscriptionFromCharge(array $data)
   {
-    return  Subscription::where('customer_code', $data['customer']['customer_code'])
-    ->whereHas('plan', function($query) use ($data){
-      $query->where('plan_code', $data['plan']['plan_code']);
-    })
-    ->latest()
-    ->first();
+    $planCode = $data['plan']['plan_code'] ?? null;
+    $customerCode = $data['customer']['customer_code'] ?? null;
+
+    return Subscription::where('customer_code', $customerCode)
+      ->whereHas('plan', function ($query) use ($planCode) {
+        $query->where('plan_code', $planCode)
+          ->orWhere('test_plan_code', $planCode)
+          ->orWhere('live_plan_code', $planCode);
+      })
+      ->latest()
+      ->first();
   }
 
   private function formatDate($date): Carbon|null

@@ -43,9 +43,16 @@ class Helper
         return User::where('email', $email)->first();
     }
 
-    public static function getPlan($planCode): Plan
+    // public static function getPlan($planCode): Plan
+    // {
+    //     return Plan::where('plan_code', $planCode)->first();
+    // }
+
+    public static function getPlan(string $planCode): ?Plan
     {
-        return Plan::where('plan_code', $planCode)->first();
+        return Plan::all()->first(function ($plan) use ($planCode) {
+            return $plan->matchesCode($planCode);
+        });
     }
 
 

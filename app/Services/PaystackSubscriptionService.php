@@ -89,18 +89,6 @@ class PaystackSubscriptionService
     ]);
   }
 
-
-
-
-  public function getPlanCode(string $plan): string
-  {
-    return match ($plan) {
-      'monthly' => config('services.paystack.monthly_plan'),
-      'annually' => config('services.paystack.yearly_plan'),
-      default => throw new NotFoundHttpException('Plan not found')
-    };
-  }
-
   public function getPlan($interval): Plan
   {
     return Plan::where('interval', $interval)->firstOrFail();
@@ -111,22 +99,29 @@ class PaystackSubscriptionService
     return Subscription::where('user_id', $userId)->first();
   }
 
-  public function resolvePlan(string $interval): array{
-
-  if(app()->environment('local', 'testing')){
-    return [
-      'plan_code' => $this->getPlanCode($interval),
-      'amount' => 1000 * 100
-    ];
-
+  private function isLive(): bool
+  {
+    return app()->environment('production');
   }
 
-  $plan = $this->getPlan($interval);
+  public function resolvePlan(string $interval): array 
+  {
+    $plan = $this->getPlan($interval);
 
-  return [
-    'plan_code' => $plan->plan_code,
-    'amount' => (int) $plan->amount * 100,
-  ];
+    $planCode = $this->isLive() ? $plan->live_plan_code : $plan->test_plan_code;
+     
+    //fallback (During migration phase)
+    if(! $planCode){
+      $planCode = $plan->plan_code;
+    }
 
+    if(! $planCode){
+      throw new Exception("No plan configured for {$interval}");
+    }
+
+    return [
+      'plan_code' => $planCode,
+      'amount' => (int) $plan->amount * 100,
+    ];
   }
 }

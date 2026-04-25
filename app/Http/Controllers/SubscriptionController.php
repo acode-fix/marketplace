@@ -30,10 +30,6 @@ class SubscriptionController extends Controller
 
         $user = auth()->user();
 
-        // $planCode = $this->paystack->getPlanCode(plan: $validated['plan']);
-        // $plan = $this->paystack->getPlan( interval: $validated['interval']);
-        // $amount = (int)  $plan->amount * 100;
-
         $planData = $this->paystack->resolvePlan($validated['interval']);
 
         if (empty($planData['plan_code'])) {
@@ -99,25 +95,27 @@ class SubscriptionController extends Controller
      * Display the specified resource.
      */
     public function show()
-    {
-        $subscription = auth()->user()->subscription;
+{
+    $subscription = auth()->user()->subscription;
 
+    $active = $subscription &&
+        $subscription->status === \App\Enums\SubscriptionStatus::ACTIVE &&
+        $subscription->period_end &&
+        $subscription->period_end->isFuture();
 
-        $data = [
-            'active' => $subscription && !$subscription->period_end->isPast(),
-            'plan' => $subscription?->plan?->name,
-            'expires_at' => $subscription?->period_end,
+    $data = [
+        'active' => $active,
+        'plan' => $subscription?->plan?->name,
+        'expires_at' => $subscription?->period_end,
+        'status' => $subscription?->status,
+    ];
 
-        ];
-
-        return $this->successResponse(
-            message: 'Subscription status fetched successfully',
-            data: $data,
-            statusCode: Response::HTTP_OK,
-
-
-        );
-    }
+    return $this->successResponse(
+        message: 'Subscription status fetched successfully',
+        data: $data,
+        statusCode: 200,
+    );
+}
 
     /**
      * Show the form for editing the specified resource.

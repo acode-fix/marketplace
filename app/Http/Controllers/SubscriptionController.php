@@ -42,7 +42,7 @@ class SubscriptionController extends Controller
             'planData' => $planData,
         ]);
 
-        $response =  $this->paystack->initalizeSubscription(email: $user->email, planCode: $planData['plan_code'], amount: $planData['amount'], callbackUrl: config('app.frontend_url') . '/start-selling');
+        $response =  $this->paystack->initalizeSubscription(email: $user->email, planCode: $planData['plan_code'], amount: $planData['amount'], callbackUrl: config('app.frontend_url') . '/payment-success');
 
         return $this->successResponse(
             message: 'Transaction initialized successfully',

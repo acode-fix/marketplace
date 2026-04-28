@@ -161,155 +161,125 @@ class PaymentController extends Controller
 
     }
 
-    public function verifyTransaction($transactionRef)
-    {
+     public function verifyTransaction($transactionRef)
+{
+    $curl = curl_init();
 
-        // log::info($transactionRef);
+    curl_setopt_array($curl, [
+        CURLOPT_URL => "https://api.paystack.co/transaction/verify/$transactionRef",
+        CURLOPT_RETURNTRANSFER => true,
+        CURLOPT_ENCODING => '',
+        CURLOPT_MAXREDIRS => 10,
+        CURLOPT_TIMEOUT => 30,
+        CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+        CURLOPT_CUSTOMREQUEST => 'GET',
+        CURLOPT_HTTPHEADER => [
+            'Authorization: Bearer ' . config('services.paystack.secret_key'),
+            'Cache-Control: no-cache',
+        ],
+    ]);
 
-        $curl = curl_init();
+    $responses = curl_exec($curl);
+    $err = curl_error($curl);
 
-        curl_setopt_array($curl, [
-            CURLOPT_URL => "https://api.paystack.co/transaction/verify/$transactionRef",
-            CURLOPT_RETURNTRANSFER => true,
-            CURLOPT_ENCODING => '',
-            CURLOPT_MAXREDIRS => 10,
-            CURLOPT_TIMEOUT => 30,
-            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-            CURLOPT_CUSTOMREQUEST => 'GET',
-            CURLOPT_HTTPHEADER => [
-                'Authorization: Bearer '.config('services.paystack.secret_key'),
-                'Cache-Control: no-cache',
-            ],
-        ]);
+    curl_close($curl);
 
-        $responses = curl_exec($curl);
-        $err = curl_error($curl);
+    $response = json_decode($responses, true);
 
-        curl_close($curl);
-
-        $response = json_decode($responses, true);
-
-        // Debugbar::info($responses);
-
-        if ($err) {
-            // echo "cURL Error #:" . $err;
-                return response()->json([
-                 'status' => false,
-                 'message' => 'Paystack Verification Failed',
-                  'error' => $err,
-
-                ], 400);
-            
-          //  return redirect()->route('success.page')->with('error', 'Paystack Verification Failed:'.$err);
-
-        } else {
-            // echo $responses;
-
-            if (array_key_exists('status', $response)) {
-
-                // Log::info('exists');
-
-                $status = $response['data']['status'];
-                $gatewayRes = $response['data']['gateway_response'];
-                $paymentDate = $response['data']['paid_at'];
-                $currency = $response['data']['currency'];
-                $transactionRef = $response['data']['reference'];
-                $amount = $response['data']['amount'];
-
-                Debugbar::info($response, $status, $gatewayRes, $currency, $paymentDate, $amount);
-
-                if ($status === 'success') {
-
-                    $storeTransaction = [
-                        'status' => 1,
-                        'gateway_response' => $gatewayRes,
-                        'payment_date' => $paymentDate,
-                        'currency' => $currency,
-                    ];
-
-                    $payment = Payment::where('transaction_reference', $transactionRef)->first();
-
-                    if ($payment) {
-
-                        $userId = $payment->user_id;
-
-                        // change status to pending;
-
-                        $user = User::where('id', $userId)->where('verify_status', 0)->first();
-
-                        if ($user) {
-
-                            $user->verify_status = -2;
-                            $user->save();
-
-                        }
-
-                        $user = User::where('id', $userId)->where('verify_status', 1)->first();
-
-                        if ($user) {
-
-                            $purchaseDate = CarbonImmutable::now();
-                            $expiryDate = Payment::getExpiryDate($user->badge_type);
-
-                            $badgeDetails = [
-                                'purchase_date' => $purchaseDate,
-                                'expiry_date' => $expiryDate,
-                                'badge_status' => 1,
-                            ];
-
-                            $user->update($badgeDetails);
-
-                        }
-
-                        $payment->update($storeTransaction);
-
-                        /* return redirect()->route('success.page')->with(
-                             'message','Transaction Successful'); */
-                        return response()->json([
-                            'status' => true,
-                            'message' => 'Transaction completed successfully',
-                            'data' => $badgeDetails,
-
-                        ]);
-
-                    } else {
-
-                        //  return redirect()->route('success.page')->with('error', 'Transaction Details Could Not Be Saved!!');
-
-                        return response()->json([
-                            'status' => false,
-                            'message' => 'Transaction could not be saved',
-                        ], 404);
-
-                    }
-
-                } else {
-
-                    // return redirect()->route('success.page')->with('error', 'Paystack Status Verification Failed!!');
-
-                    return response()->json([
-                        'status' => false,
-                        'message' => 'Paystack Status Failed',
-                    ], 400);
-
-                }
-
-            } else {
-
-                // return redirect()->route('success.page')->with('error', 'Paystack Status Key Is Empty!!');
-
-                return response()->json([
-                    'status' => false,
-                    'message' => 'Paystack Status Key Empty',
-                    'response' => $response,
-
-                ], 400);
-
-            }
-
-        }
-
+    if ($err) {
+        return response()->json([
+            'status' => false,
+            'message' => 'Paystack Verification Failed',
+            'error' => $err,
+        ], 400);
     }
+
+    //  Corr Paystack response validation
+    if (!isset($response['status']) || !$response['status']) {
+        return response()->json([
+            'status' => false,
+            'message' => 'Invalid Paystack response',
+            'response' => $response,
+        ], 400);
+    }
+
+    $status = $response['data']['status'];
+    $gatewayRes = $response['data']['gateway_response'];
+    $paymentDate = $response['data']['paid_at'];
+    $currency = $response['data']['currency'];
+    $transactionRef = $response['data']['reference'];
+    $amount = $response['data']['amount'];
+
+    Debugbar::info($response, $status, $gatewayRes, $currency, $paymentDate, $amount);
+
+    // Ensure payment was successful
+    if ($status !== 'success') {
+        return response()->json([
+            'status' => false,
+            'message' => 'Payment not successful',
+        ], 400);
+    }
+
+    $payment = Payment::where('transaction_reference', $transactionRef)->first();
+
+    if (!$payment) {
+        return response()->json([
+            'status' => false,
+            'message' => 'Transaction could not be found',
+        ], 404);
+    }
+
+    //  Prevent duplicate processing
+    if ($payment->status == 1) {
+        return response()->json([
+            'status' => true,
+            'message' => 'Transaction already processed',
+        ]);
+    }
+
+
+    // Update payment
+    $payment->update([
+        'status' => 1,
+        'gateway_response' => $gatewayRes,
+        'payment_date' => $paymentDate,
+        'currency' => $currency,
+    ]);
+
+    $user = User::find($payment->user_id);
+    $badgeDetails = null;
+
+    if ($user) {
+
+        if ($user->verify_status == 0) {
+
+            // Move to pending
+            $user->verify_status = -2;
+            $user->save();
+
+        } elseif ($user->verify_status == 1) {
+
+            // Activate badge
+            $purchaseDate = CarbonImmutable::now();
+            $expiryDate = Payment::getExpiryDate($user->badge_type);
+
+            $badgeDetails = [
+                'purchase_date' => $purchaseDate,
+                'expiry_date' => $expiryDate,
+                'badge_status' => 1,
+            ];
+
+            $user->update($badgeDetails);
+        }
+    }
+
+    return response()->json([
+        'status' => true,
+        'message' => 'Transaction completed successfully',
+        'data' => $badgeDetails,
+        'badge_updated' => $badgeDetails ? true : false,
+    ]);
+}
 
     public function successPage()
     {
